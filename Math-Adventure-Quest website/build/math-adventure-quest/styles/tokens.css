@@ -1,0 +1,94 @@
+/* ==========================================================================
+   MATH ADVENTURE QUEST — DESIGN TOKENS
+   Bright EngMath — single source of truth for color, type, spacing, motion.
+   Swap values here to re-theme the entire product.
+   ========================================================================== */
+:root {
+  /* ---- Brand palette ---- */
+  --color-ivory: #FDF6E9;
+  --color-ivory-deep: #F7ECD6;
+  --color-sun: #FFC94A;
+  --color-sun-deep: #F5A623;
+  --color-orange: #FF9A5A;
+  --color-orange-deep: #F17B3E;
+  --color-sky: #6EC6E8;
+  --color-sky-deep: #3EA0C9;
+  --color-mint: #7ED9B8;
+  --color-mint-deep: #4CBE93;
+  --color-lavender: #B7A6E8;
+  --color-lavender-deep: #8C74D6;
+  --color-navy: #24304A;
+  --color-navy-soft: #4A5878;
+  --color-white: #FFFFFF;
+  --color-danger: #E2604F;
+  --color-danger-soft: #FDE6E1;
+  --color-success: #2FA876;
+  --color-success-soft: #E1F5EC;
+
+  /* ---- Semantic roles ---- */
+  --bg-app: var(--color-ivory);
+  --bg-card: var(--color-white);
+  --bg-card-alt: var(--color-ivory-deep);
+  --text-primary: var(--color-navy);
+  --text-secondary: var(--color-navy-soft);
+  --text-on-dark: var(--color-ivory);
+  --border-soft: #E9DFC8;
+  --focus-ring: #1D6FA5;
+
+  /* Chapter accent colors */
+  --chapter-1: var(--color-mint-deep);
+  --chapter-1-soft: #DDF3E9;
+  --chapter-2: var(--color-sky-deep);
+  --chapter-2-soft: #DCEEF6;
+  --chapter-3: var(--color-lavender-deep);
+  --chapter-3-soft: #EAE3F8;
+
+  /* ---- Typography ---- */
+  --font-display: "Baloo Display Fallback", "Trebuchet MS", "Segoe UI Rounded", ui-rounded, system-ui, sans-serif;
+  --font-body: "Atkinson Fallback", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --fs-100: 0.8rem;
+  --fs-200: 0.9rem;
+  --fs-300: 1rem;
+  --fs-400: 1.15rem;
+  --fs-500: 1.35rem;
+  --fs-600: 1.7rem;
+  --fs-700: 2.1rem;
+  --fs-800: 2.6rem;
+  --lh-tight: 1.15;
+  --lh-normal: 1.5;
+  --lh-loose: 1.7;
+
+  /* ---- Spacing scale ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* ---- Radius & elevation ---- */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 2px 8px rgba(36, 48, 74, 0.08);
+  --shadow-md: 0 8px 24px rgba(36, 48, 74, 0.12);
+  --shadow-lg: 0 16px 40px rgba(36, 48, 74, 0.16);
+
+  /* ---- Motion ---- */
+  --dur-fast: 150ms;
+  --dur-normal: 280ms;
+  --dur-slow: 480ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ---- Layout ---- */
+  --max-width: 1100px;
+  --touch-target: 44px;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Reserved for future dark mode; product currently ships light-only by design. */
+}

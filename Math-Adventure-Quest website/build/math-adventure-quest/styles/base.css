@@ -1,0 +1,99 @@
+/* ==========================================================================
+   BASE / RESET / ACCESSIBILITY
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--bg-app);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--fs-300);
+  line-height: var(--lh-normal);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: var(--lh-tight);
+  margin: 0 0 var(--space-3);
+  color: var(--text-primary);
+}
+h1 { font-size: var(--fs-800); }
+h2 { font-size: var(--fs-700); }
+h3 { font-size: var(--fs-600); }
+h4 { font-size: var(--fs-500); }
+p { margin: 0 0 var(--space-3); }
+
+a { color: var(--focus-ring); }
+
+button, input, select, textarea { font-family: inherit; }
+
+img, svg { max-width: 100%; display: block; }
+
+ul, ol { padding-left: 1.25em; }
+
+/* Screen-reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Visible, high-contrast focus ring everywhere (never rely on color alone) */
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Layout shell */
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+}
+
+.screen {
+  flex: 1;
+  padding-bottom: var(--space-8);
+}
+
+/* Touch target minimum */
+button, .btn, .tap-target {
+  min-height: var(--touch-target);
+  min-width: var(--touch-target);
+}
+
+/* Respect reduced motion globally as a baseline safety net */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print (certificate / parent summary) */
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; }
+}
