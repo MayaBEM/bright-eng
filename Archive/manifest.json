@@ -1,0 +1,9 @@
+{
+  "name": "Sound Garden Studio by Bright EngMath",
+  "short_name": "Sound Garden",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FFF9EF",
+  "theme_color": "#22314C",
+  "description": "Interactive phonics teaching studio: seven learning areas, sound lessons, class games, projector mode and printable resources."
+}
