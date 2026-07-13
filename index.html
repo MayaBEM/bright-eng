@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>English Memory Check — Cr. Bright EngMath</title>
+<meta name="description" content="English Memory Check: an original review and test-preparation resource for Primary 4–5 English learners, covering vocabulary, grammar, reading, listening, and conversation.">
+<!-- Kid-friendly, highly legible display + body fonts. Falls back to system
+     fonts automatically if there is no internet connection (e.g. opened
+     straight from disk), so the site stays fully usable offline. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<noscript>English Memory Check needs JavaScript enabled in your browser to run. Please enable JavaScript and reload this page.</noscript>
+
+<!-- Core services (order matters: util/storage/audio before anything that uses them) -->
+<script src="js/util.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/a11y.js"></script>
+
+<!-- Question data (75 original questions across three levels) -->
+<script src="js/data/questions-easy.js"></script>
+<script src="js/data/questions-medium.js"></script>
+<script src="js/data/questions-challenging.js"></script>
+<script src="js/data/index.js"></script>
+
+<!-- Static copy -->
+<script src="js/content.js"></script>
+
+<!-- Feature modules -->
+<script src="js/quiz.js"></script>
+<script src="js/results.js"></script>
+<script src="js/views.js"></script>
+<script src="js/player.js"></script>
+<script src="js/teacher.js"></script>
+
+<!-- App shell + router (boots on DOMContentLoaded) -->
+<script src="js/app.js"></script>
+</body>
+</html>

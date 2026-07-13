@@ -1,0 +1,100 @@
+/* =====================================================================
+   English Memory Check — Design Tokens
+   Original visual identity: soft orange, warm ivory, cream, peach,
+   with mint/sky-blue as small accents. Cr. Bright EngMath.
+   ===================================================================== */
+:root {
+  /* ---- Core brand palette ---- */
+  --c-orange: #e8813a;        /* primary — soft warm orange */
+  --c-orange-dark: #c9682a;   /* hover / pressed */
+  --c-orange-soft: #fbead9;   /* pale orange tint */
+  --c-peach: #f7c9a3;         /* accent peach */
+  --c-cream: #fff8ef;         /* card background */
+  --c-ivory: #fdf5e8;         /* page background */
+  --c-mint: #7fc9ae;          /* small accent */
+  --c-mint-soft: #e4f5ee;
+  --c-sky: #7fb3d5;           /* small accent */
+  --c-sky-soft: #e7f1f8;
+
+  /* ---- Neutrals / ink ---- */
+  --c-ink: #3a2c22;           /* warm dark brown-black for text */
+  --c-ink-soft: #7a6a5c;
+  --c-line: #ecdfce;
+  --c-bg: var(--c-ivory);
+  --c-bg-card: var(--c-cream);
+  --c-white: #ffffff;
+
+  /* ---- Semantic states ---- */
+  --c-correct: #4f9d6e;
+  --c-correct-bg: #e8f5ec;
+  --c-wrong: #d8664f;
+  --c-wrong-bg: #fbeae6;
+  --c-focus: #2f6fb0;
+
+  /* ---- Skill accent colours (used only for small badges/labels) ---- */
+  --sk-vocabulary: #e8813a;
+  --sk-grammar: #b5793f;
+  --sk-reading: #7fb3d5;
+  --sk-listening: #7fc9ae;
+  --sk-conversation: #c98bb0;
+
+  /* ---- Type ----
+     Nunito (body) and Baloo 2 (headings) are warm, rounded, highly legible
+     typefaces designed to read well for young learners. Both load from
+     Google Fonts with a full system-font fallback stack, so the page still
+     looks good and stays fully readable if opened without an internet
+     connection (e.g. straight from disk). */
+  --font-body: "Nunito", "Segoe UI", "Trebuchet MS", system-ui, -apple-system, sans-serif;
+  --font-display: "Baloo 2", "Nunito", "Segoe UI", "Trebuchet MS", system-ui, sans-serif;
+
+  --fs-xs: 0.86rem;
+  --fs-sm: 0.98rem;
+  --fs-base: clamp(1.06rem, 1rem + 0.25vw, 1.18rem);
+  --fs-lg: clamp(1.25rem, 1.1rem + 0.55vw, 1.5rem);
+  --fs-xl: clamp(1.6rem, 1.3rem + 1.3vw, 2.15rem);
+  --fs-2xl: clamp(2rem, 1.5rem + 2.3vw, 3rem);
+
+  /* ---- Shape & shadow ---- */
+  --radius-sm: 10px;
+  --radius: 18px;
+  --radius-lg: 26px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 2px 8px rgba(90, 60, 30, 0.08);
+  --shadow: 0 8px 22px rgba(90, 60, 30, 0.10);
+  --shadow-lg: 0 18px 40px rgba(90, 60, 30, 0.16);
+
+  /* ---- Spacing ---- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+
+  --touch: 48px;
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur: 0.25s;
+  --dur-slow: 0.6s;
+
+  /* ---- Confetti / celebration accents (used only in small bursts) ---- */
+  --confetti-1: var(--c-orange);
+  --confetti-2: var(--c-mint);
+  --confetti-3: var(--c-sky);
+  --confetti-4: #e0a92e;
+  --confetti-5: #c98bb0;
+}
+
+:root.reduced-motion,
+:root.reduced-motion * {
+  scroll-behavior: auto !important;
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+
+:root.text-lg { --fs-base: clamp(1.15rem, 1.05rem + 0.3vw, 1.3rem); }
+:root.text-xl { --fs-base: clamp(1.3rem, 1.2rem + 0.4vw, 1.5rem); }
