@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phonics Garden Adventure | Bright EngMath</title>
+  <style>
+    :root{
+      --ink:#3f4054;
+      --muted:#77798f;
+      --cream:#fffaf3;
+      --white:#ffffff;
+      --purple:#8f75d6;
+      --purple-soft:#eee9ff;
+      --peach:#ffb47a;
+      --peach-soft:#fff0e3;
+      --yellow:#f5cf59;
+      --yellow-soft:#fff8cf;
+      --mint:#75c9ad;
+      --mint-soft:#eafaf4;
+      --rose:#ef8fac;
+      --rose-soft:#fff0f5;
+      --blue:#76b7ea;
+      --blue-soft:#eaf6ff;
+      --shadow:0 14px 34px rgba(72,70,100,.10);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(239,143,172,.14), transparent 24%),
+        radial-gradient(circle at 90% 12%, rgba(118,183,234,.13), transparent 25%),
+        radial-gradient(circle at 50% 100%, rgba(117,201,173,.14), transparent 28%),
+        var(--cream);
+      font-family:
+        "Avenir Next",
+        "Trebuchet MS",
+        "Noto Sans Thai",
+        "Sukhumvit Set",
+        system-ui,
+        -apple-system,
+        sans-serif;
+      font-weight:400;
+      overflow-x:hidden;
+    }
+
+    button{font:inherit}
+    .app{width:min(1080px,100%);margin:auto;padding:18px;position:relative;z-index:2}
+    .screen{display:none}
+    .screen.active{display:block}
+
+    .floating-shape{
+      position:fixed;
+      border-radius:50%;
+      opacity:.38;
+      z-index:0;
+      pointer-events:none;
+      animation:floaty 6s ease-in-out infinite;
+    }
+    .shape-1{width:85px;height:85px;left:3%;top:18%;background:#f7c5d5;animation-delay:0s}
+    .shape-2{width:58px;height:58px;right:4%;top:30%;background:#c8e8ff;animation-delay:1.2s}
+    .shape-3{width:72px;height:72px;left:8%;bottom:10%;background:#caefdf;animation-delay:2s}
+    @keyframes floaty{
+      0%,100%{transform:translateY(0) rotate(0)}
+      50%{transform:translateY(-16px) rotate(6deg)}
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:6px 0 18px;
+    }
+    .brand{display:flex;align-items:center;gap:12px;font-size:18px;font-weight:700}
+    .logo{
+      width:46px;height:46px;border-radius:16px;display:grid;place-items:center;
+      background:linear-gradient(145deg,#a18be2,#7f68c3);color:white;
+      box-shadow:var(--shadow);font-size:22px;
+      animation:pulseLogo 2.8s ease-in-out infinite;
+    }
+    @keyframes pulseLogo{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.06)}
+    }
+    .credit{font-size:13px;color:var(--muted)}
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:34px;
+      border-radius:34px;
+      background:rgba(255,255,255,.92);
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.95);
+      display:grid;
+      grid-template-columns:1.3fr .9fr;
+      gap:24px;
+      align-items:center;
+    }
+
+    .hero-art{
+      min-height:290px;
+      display:grid;
+      place-items:center;
+      position:relative;
+    }
+    .hero-art svg{
+      width:min(100%,330px);
+      filter:drop-shadow(0 16px 18px rgba(72,70,100,.12));
+      animation:bob 4s ease-in-out infinite;
+    }
+    @keyframes bob{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
+    }
+
+    .label{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 13px;
+      border-radius:999px;background:var(--purple-soft);color:#6f58b6;
+      font-size:14px;font-weight:600;
+    }
+    h1{
+      margin:18px 0 12px;
+      max-width:720px;
+      font-size:clamp(38px,7vw,70px);
+      line-height:1.02;
+      font-weight:700;
+      letter-spacing:-1.7px;
+    }
+    .hero p{
+      max-width:670px;margin:0;color:var(--muted);
+      font-size:18px;line-height:1.75;
+    }
+
+    .start-btn,.primary-btn{
+      margin-top:24px;border:0;border-radius:18px;padding:14px 22px;color:white;
+      background:linear-gradient(145deg,#947cda,#7f68c3);
+      box-shadow:0 10px 20px rgba(127,104,195,.22);
+      font-weight:650;cursor:pointer;transition:.2s ease;
+    }
+    .start-btn:hover,.primary-btn:hover{transform:translateY(-2px);box-shadow:0 14px 24px rgba(127,104,195,.28)}
+
+    .section-title{margin:30px 0 14px;font-size:25px;font-weight:700;letter-spacing:-.4px}
+    .set-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .set-card{
+      position:relative;overflow:hidden;min-height:320px;padding:20px;border:0;border-radius:28px;
+      background:white;box-shadow:var(--shadow);text-align:left;cursor:pointer;transition:.22s ease;
+    }
+    .set-card:hover{transform:translateY(-6px) scale(1.01)}
+    .set-card:nth-child(1){background:linear-gradient(180deg,#fff,#faf7ff)}
+    .set-card:nth-child(2){background:linear-gradient(180deg,#fff,#fff8f2)}
+    .set-card:nth-child(3){background:linear-gradient(180deg,#fff,#fffced)}
+    .card-art{
+      height:130px;border-radius:22px;margin-bottom:16px;display:grid;place-items:center;overflow:hidden;
+      background:linear-gradient(145deg,#f6f1ff,#fff);
+    }
+    .set-card:nth-child(2) .card-art{background:linear-gradient(145deg,#fff0e4,#fff)}
+    .set-card:nth-child(3) .card-art{background:linear-gradient(145deg,#fff9d9,#fff)}
+    .card-art svg{width:145px;animation:wiggle 3.8s ease-in-out infinite}
+    .set-card:nth-child(2) .card-art svg{animation-delay:.6s}
+    .set-card:nth-child(3) .card-art svg{animation-delay:1.2s}
+    @keyframes wiggle{
+      0%,100%{transform:rotate(-2deg) translateY(0)}
+      50%{transform:rotate(2deg) translateY(-6px)}
+    }
+    .set-card h3{margin:0 0 8px;font-size:23px;font-weight:700}
+    .set-card p{margin:0;color:var(--muted);font-size:16px;line-height:1.6}
+    .mini-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+    .mini-tag{padding:6px 9px;border-radius:999px;background:#f3f1f8;color:#6d6a7d;font-size:13px;font-weight:500}
+
+    .quiz-wrap{width:min(820px,100%);margin:auto}
+    .quiz-head{
+      display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;gap:10px;margin:8px 0 16px;
+    }
+    .home-btn,.back-btn,.secondary-btn{
+      border:0;border-radius:16px;padding:11px 14px;background:white;color:var(--ink);
+      box-shadow:var(--shadow);font-weight:600;cursor:pointer;transition:.2s;
+    }
+    .home-btn:hover,.back-btn:hover,.secondary-btn:hover{transform:translateY(-2px)}
+    .home-btn{background:var(--purple-soft);color:#6e58b4}
+    .progress-shell{height:13px;border-radius:999px;overflow:hidden;background:#ece9f3}
+    .progress-bar{width:0;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--rose),var(--purple));transition:.3s ease}
+    .score-pill{min-width:76px;text-align:center;padding:10px 13px;border-radius:999px;background:white;box-shadow:var(--shadow);font-size:15px;font-weight:650}
+
+    .question-card{
+      min-height:500px;padding:28px;border-radius:30px;background:rgba(255,255,255,.97);
+      box-shadow:var(--shadow);position:relative;overflow:hidden;
+    }
+    .question-layout{
+      display:grid;
+      grid-template-columns:150px 1fr;
+      gap:22px;
+      align-items:start;
+    }
+    .question-art{
+      min-height:150px;border-radius:24px;background:var(--blue-soft);
+      display:grid;place-items:center;padding:12px;
+    }
+    .question-art svg{width:120px;animation:bob 3.6s ease-in-out infinite}
+    .question-meta{color:#7661bd;font-size:14px;font-weight:600}
+    .question{margin:14px 0 22px;font-size:clamp(27px,5vw,42px);line-height:1.38;font-weight:600;letter-spacing:-.5px}
+    .focus-word{display:inline-block;padding:3px 11px;border-radius:12px;background:var(--yellow-soft);color:#765f1d;font-weight:600}
+    .choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .choice{
+      min-height:62px;padding:15px 17px;border:2px solid #ece8f3;border-radius:18px;background:#fff;
+      color:var(--ink);text-align:left;font-size:20px;line-height:1.35;font-weight:500;cursor:pointer;transition:.16s ease;
+    }
+    .choice:hover{border-color:#cfc2ef;background:#fbf9ff;transform:translateY(-1px)}
+    .choice.correct{border-color:var(--mint);background:var(--mint-soft);color:#266f5a;animation:pop .35s ease}
+    .choice.wrong{border-color:#ef9a9a;background:#fff1f1;color:#a24848;animation:shake .3s ease}
+    @keyframes pop{
+      0%{transform:scale(.96)}
+      70%{transform:scale(1.03)}
+      100%{transform:scale(1)}
+    }
+    @keyframes shake{
+      0%,100%{transform:translateX(0)}
+      25%{transform:translateX(-5px)}
+      75%{transform:translateX(5px)}
+    }
+    .feedback{display:none;margin-top:18px;padding:15px 17px;border-radius:17px;font-size:16px;line-height:1.55;font-weight:500}
+    .feedback.show{display:block;animation:fadeUp .3s ease}
+    .feedback.good{background:var(--mint-soft);color:#286f5b}
+    .feedback.bad{background:#fff1f1;color:#9d4747}
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(8px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    .next-row{display:flex;justify-content:flex-end;margin-top:18px}
+    .next-row .primary-btn{margin-top:0}
+
+    .result-card{
+      width:min(700px,100%);margin:auto;padding:36px;border-radius:32px;background:white;
+      box-shadow:var(--shadow);text-align:center;position:relative;overflow:hidden;
+    }
+    .result-art svg{width:190px;animation:bob 3.8s ease-in-out infinite}
+    .result-card h2{margin:6px 0 10px;font-size:39px;font-weight:700}
+    .big-score{font-size:70px;line-height:1;color:#7760bd;font-weight:700;letter-spacing:-2px}
+    .result-card p{color:var(--muted);font-size:17px;line-height:1.7}
+    .result-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:22px}
+    .footer{padding:24px 0 8px;text-align:center;color:var(--muted);font-size:13px}
+
+    @media(max-width:820px){
+      .hero{grid-template-columns:1fr}
+      .hero-art{min-height:220px}
+      .set-grid{grid-template-columns:1fr}
+      .question-layout{grid-template-columns:1fr}
+      .question-art{min-height:120px}
+      .question-art svg{width:100px}
+      .quiz-head{grid-template-columns:auto auto auto}
+      .progress-shell{grid-column:1/-1;grid-row:2}
+      .score-pill{justify-self:end}
+      .choices{grid-template-columns:1fr}
+      .question-card{padding:22px;min-height:0}
+      .hero{padding:26px 22px}
+    }
+  </style>
+</head>
+
+<body>
+<div class="floating-shape shape-1"></div>
+<div class="floating-shape shape-2"></div>
+<div class="floating-shape shape-3"></div>
+
+<div class="app">
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">★</div>
+      <div>Phonics Garden Adventure</div>
+    </div>
+    <div class="credit">Cr. Bright EngMath</div>
+  </div>
+
+  <section id="home" class="screen active">
+    <div class="hero">
+      <div>
+        <div class="label">Phonics Review • Primary 1</div>
+        <h1>Learn sounds.<br>Grow your words.</h1>
+        <p>
+          เว็บควิซ Phonics สำหรับเด็ก ป.1 พร้อมภาพประกอบน่ารัก
+          อนิเมชันเบา ๆ และแบบฝึกหัด 3 ชุด ชุดละ 15 ข้อ
+        </p>
+        <button class="start-btn" onclick="document.getElementById('sets').scrollIntoView({behavior:'smooth'})">
+          เริ่มผจญภัย
+        </button>
+      </div>
+
+      <div class="hero-art">
+        <svg viewBox="0 0 360 300" aria-hidden="true">
+          <ellipse cx="180" cy="264" rx="115" ry="18" fill="#e7e3f2"/>
+          <path d="M80 220 Q115 155 180 170 Q245 155 280 220 L270 250 H90Z" fill="#c8eadb"/>
+          <rect x="137" y="102" width="86" height="110" rx="24" fill="#ffd98c"/>
+          <path d="M137 122 Q180 90 223 122 V115 Q180 82 137 115Z" fill="#8f75d6"/>
+          <circle cx="164" cy="150" r="7" fill="#3f4054"/>
+          <circle cx="196" cy="150" r="7" fill="#3f4054"/>
+          <path d="M164 178 Q180 190 196 178" fill="none" stroke="#3f4054" stroke-width="5" stroke-linecap="round"/>
+          <rect x="150" y="196" width="60" height="30" rx="14" fill="#ef8fac"/>
+          <path d="M115 180 Q90 150 72 168 Q85 193 115 194" fill="#75c9ad"/>
+          <path d="M245 184 Q274 153 291 174 Q274 199 245 198" fill="#75c9ad"/>
+          <circle cx="62" cy="76" r="20" fill="#fff1a8"/>
+          <path d="M62 43V28M62 124v-16M29 76H14M110 76H95M38 52l-12-12M98 112l-11-11M86 52l12-12M38 100l-12 12" stroke="#f5cf59" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="290" cy="74" r="34" fill="#eaf6ff"/>
+          <circle cx="315" cy="80" r="25" fill="#eaf6ff"/>
+          <circle cx="270" cy="85" r="23" fill="#eaf6ff"/>
+        </svg>
+      </div>
+    </div>
+
+    <h2 class="section-title" id="sets">เลือกด่านฝึกเสียง</h2>
+
+    <div class="set-grid">
+      <button class="set-card" onclick="startQuiz(1)">
+        <div class="card-art">
+          <svg viewBox="0 0 180 130">
+            <rect x="50" y="28" width="80" height="80" rx="22" fill="#d9cff7"/>
+            <circle cx="76" cy="65" r="7" fill="#3f4054"/>
+            <circle cx="104" cy="65" r="7" fill="#3f4054"/>
+            <path d="M76 86 Q90 96 104 86" fill="none" stroke="#3f4054" stroke-width="5" stroke-linecap="round"/>
+            <path d="M58 30 Q90 5 122 30" fill="#8f75d6"/>
+            <circle cx="34" cy="28" r="12" fill="#f5cf59"/>
+            <path d="M140 30 l12 8 -7 13 -15-5z" fill="#ef8fac"/>
+          </svg>
+        </div>
+        <h3>Magic R Sounds</h3>
+        <p>ฝึกแยกเสียงและสะกดคำในกลุ่ม ar, ir, ur, er และ or</p>
+        <div class="mini-tags">
+          <span class="mini-tag">ar</span><span class="mini-tag">ir</span><span class="mini-tag">ur</span><span class="mini-tag">er</span><span class="mini-tag">or</span>
+        </div>
+      </button>
+
+      <button class="set-card" onclick="startQuiz(2)">
+        <div class="card-art">
+          <svg viewBox="0 0 180 130">
+            <path d="M50 90 Q90 38 130 90Z" fill="#ffbe8f"/>
+            <circle cx="90" cy="58" r="28" fill="#fff5dd"/>
+            <circle cx="80" cy="56" r="5" fill="#3f4054"/>
+            <circle cx="100" cy="56" r="5" fill="#3f4054"/>
+            <path d="M80 72 Q90 81 100 72" fill="none" stroke="#3f4054" stroke-width="4" stroke-linecap="round"/>
+            <path d="M34 38 Q50 20 65 38 Q50 52 34 38" fill="#76b7ea"/>
+            <path d="M126 34 Q144 18 155 38 Q140 50 126 34" fill="#ef8fac"/>
+          </svg>
+        </div>
+        <h3>Vowel Teams</h3>
+        <p>ทบทวนคำที่มี ou, ow, oi, oy, oo และ u แบบเข้าใจง่าย</p>
+        <div class="mini-tags">
+          <span class="mini-tag">ou</span><span class="mini-tag">ow</span><span class="mini-tag">oi</span><span class="mini-tag">oy</span><span class="mini-tag">oo</span><span class="mini-tag">u</span>
+        </div>
+      </button>
+
+      <button class="set-card" onclick="startQuiz(3)">
+        <div class="card-art">
+          <svg viewBox="0 0 180 130">
+            <path d="M42 95 Q90 25 138 95Z" fill="#f7dd78"/>
+            <circle cx="90" cy="65" r="25" fill="#fff9df"/>
+            <circle cx="81" cy="62" r="5" fill="#3f4054"/>
+            <circle cx="99" cy="62" r="5" fill="#3f4054"/>
+            <path d="M80 78 Q90 87 100 78" fill="none" stroke="#3f4054" stroke-width="4" stroke-linecap="round"/>
+            <path d="M28 80 q18-20 36 0 q-18 20-36 0" fill="#75c9ad"/>
+            <path d="M117 33 q18-20 36 0 q-18 20-36 0" fill="#ef8fac"/>
+          </svg>
+        </div>
+        <h3>Tricky Sound Teams</h3>
+        <p>ฝึกคำในกลุ่ม au, aw, all, wa, or และ oar ผ่านคำถามหลายรูปแบบ</p>
+        <div class="mini-tags">
+          <span class="mini-tag">au</span><span class="mini-tag">aw</span><span class="mini-tag">all</span><span class="mini-tag">wa</span><span class="mini-tag">or</span><span class="mini-tag">oar</span>
+        </div>
+      </button>
+    </div>
+  </section>
+
+  <section id="quiz" class="screen">
+    <div class="quiz-wrap">
+      <div class="quiz-head">
+        <button class="home-btn" onclick="goHome()">⌂ Home</button>
+        <button class="back-btn" onclick="goHome()">← เลือกชุด</button>
+        <div class="progress-shell"><div id="progressBar" class="progress-bar"></div></div>
+        <div id="scorePill" class="score-pill">0 / 15</div>
+      </div>
+
+      <div class="question-card">
+        <div class="question-layout">
+          <div id="questionArt" class="question-art"></div>
+          <div>
+            <div id="qMeta" class="question-meta"></div>
+            <div id="question" class="question"></div>
+            <div id="choices" class="choices"></div>
+            <div id="feedback" class="feedback"></div>
+            <div class="next-row">
+              <button id="nextBtn" class="primary-btn" style="display:none" onclick="nextQuestion()">ข้อต่อไป →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="result" class="screen">
+    <div class="result-card">
+      <div class="result-art">
+        <svg viewBox="0 0 230 170">
+          <ellipse cx="115" cy="145" rx="80" ry="14" fill="#e9e6f2"/>
+          <path d="M70 120 Q115 40 160 120Z" fill="#f7d86e"/>
+          <circle cx="115" cy="88" r="31" fill="#fff9df"/>
+          <circle cx="104" cy="84" r="6" fill="#3f4054"/>
+          <circle cx="126" cy="84" r="6" fill="#3f4054"/>
+          <path d="M102 103 Q115 115 128 103" fill="none" stroke="#3f4054" stroke-width="5" stroke-linecap="round"/>
+          <path d="M83 55 L95 20 L110 52" fill="#8f75d6"/>
+          <circle cx="95" cy="18" r="8" fill="#ef8fac"/>
+          <path d="M45 78 l12 8 -6 14 -15-6z" fill="#76b7ea"/>
+          <path d="M175 70 l14 6 -4 15 -15-4z" fill="#ef8fac"/>
+        </svg>
+      </div>
+      <h2>ทำครบแล้ว</h2>
+      <div id="bigScore" class="big-score">0/15</div>
+      <p id="resultText"></p>
+      <div class="result-actions">
+        <button class="home-btn" onclick="goHome()">⌂ กลับหน้า Home</button>
+        <button class="secondary-btn" onclick="retryQuiz()">ทำชุดเดิมอีกครั้ง</button>
+        <button class="primary-btn" onclick="goHome()">เลือกชุดอื่น</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">Bright EngMath • Phonics practice for young learners</div>
+</div>
+
+<script>
+const banks = {
+  1: [
+    {q:'Which word has <span class="focus-word">ar</span>?',a:['bird','car','nurse','teacher'],c:1,e:'car มีตัวสะกด ar',art:'book'},
+    {q:'Complete the word: f__m',a:['ar','ir','ur','or'],c:0,e:'f + ar + m = farm',art:'farm'},
+    {q:'Which word has <span class="focus-word">ir</span>?',a:['girl','star','park','doctor'],c:0,e:'girl มีตัวสะกด ir',art:'star'},
+    {q:'Complete the word: b__d',a:['ar','ir','ur','er'],c:1,e:'b + ir + d = bird',art:'bird'},
+    {q:'Which word has <span class="focus-word">ur</span>?',a:['nurse','car','farm','teacher'],c:0,e:'nurse มีตัวสะกด ur',art:'nurse'},
+    {q:'Complete the word: p__ple',a:['ar','ir','ur','or'],c:2,e:'p + ur + ple = purple',art:'purple'},
+    {q:'Which word ends with <span class="focus-word">er</span>?',a:['teacher','bird','star','car'],c:0,e:'teacher ลงท้ายด้วย er',art:'teacher'},
+    {q:'Which word ends with <span class="focus-word">or</span>?',a:['doctor','girl','purple','farm'],c:0,e:'doctor ลงท้ายด้วย or',art:'doctor'},
+    {q:'Choose the correct spelling.',a:['fam','farm','farn','firm'],c:1,e:'คำที่ถูกต้องคือ farm',art:'farm'},
+    {q:'Choose the correct spelling.',a:['burd','bird','berd','bard'],c:1,e:'คำที่ถูกต้องคือ bird',art:'bird'},
+    {q:'Which pair has the same sound pattern?',a:['car – star','bird – car','nurse – farm','doctor – girl'],c:0,e:'car และ star มี ar เหมือนกัน',art:'star'},
+    {q:'Which word is NOT in the <span class="focus-word">ar</span> group?',a:['park','farm','star','girl'],c:3,e:'girl อยู่ในกลุ่ม ir',art:'book'},
+    {q:'Find the word with <span class="focus-word">ur</span>.',a:['purple','teacher','doctor','car'],c:0,e:'purple มี ur',art:'purple'},
+    {q:'Find the word with <span class="focus-word">er</span>.',a:['sister','bird','park','nurse'],c:0,e:'sister ลงท้ายด้วย er',art:'teacher'},
+    {q:'Which word belongs to the <span class="focus-word">or</span> group?',a:['tractor','girl','farm','purple'],c:0,e:'tractor ลงท้ายด้วย or',art:'doctor'}
+  ],
+  2: [
+    {q:'Which word has <span class="focus-word">ou</span>?',a:['mouse','cow','coin','toy'],c:0,e:'mouse มี ou',art:'mouse'},
+    {q:'Complete the word: h__se',a:['ou','ow','oi','oy'],c:0,e:'h + ou + se = house',art:'house'},
+    {q:'Which word has <span class="focus-word">ow</span>?',a:['brown','mouse','soil','book'],c:0,e:'brown มี ow',art:'cow'},
+    {q:'Complete the word: c__',a:['ou','ow','oi','oy'],c:1,e:'c + ow = cow',art:'cow'},
+    {q:'Which word has <span class="focus-word">oi</span>?',a:['coin','boy','book','house'],c:0,e:'coin มี oi',art:'coin'},
+    {q:'Complete the word: s__l',a:['ou','ow','oi','oy'],c:2,e:'s + oi + l = soil',art:'plant'},
+    {q:'Which word has <span class="focus-word">oy</span>?',a:['toy','coin','brown','mouse'],c:0,e:'toy มี oy',art:'toy'},
+    {q:'Complete the word: b__',a:['ou','ow','oi','oy'],c:3,e:'b + oy = boy',art:'toy'},
+    {q:'Which word has <span class="focus-word">oo</span>?',a:['book','cow','house','toy'],c:0,e:'book มี oo',art:'book'},
+    {q:'Complete the word: f__t',a:['ou','ow','oi','oo'],c:3,e:'f + oo + t = foot',art:'foot'},
+    {q:'Which word is in the <span class="focus-word">u</span> group?',a:['pull','coin','brown','boy'],c:0,e:'pull อยู่ในกลุ่ม u',art:'rope'},
+    {q:'Which pair has the same sound pattern?',a:['coin – soil','mouse – cow','book – boy','pull – house'],c:0,e:'coin และ soil มี oi เหมือนกัน',art:'coin'},
+    {q:'Which word is NOT in the ou/ow groups?',a:['mouse','house','cow','coin'],c:3,e:'coin อยู่ในกลุ่ม oi',art:'mouse'},
+    {q:'Choose the correct spelling.',a:['mous','mouse','mowse','mause'],c:1,e:'คำที่ถูกต้องคือ mouse',art:'mouse'},
+    {q:'Choose the correct spelling.',a:['brun','brawn','brown','broon'],c:2,e:'คำที่ถูกต้องคือ brown',art:'cow'}
+  ],
+  3: [
+    {q:'Which word has <span class="focus-word">au</span>?',a:['sauce','draw','ball','board'],c:0,e:'sauce มี au',art:'sauce'},
+    {q:'Complete the word: __gust',a:['Au','Aw','All','Or'],c:0,e:'Au + gust = August',art:'sun'},
+    {q:'Which word has <span class="focus-word">aw</span>?',a:['prawn','sauce','water','horse'],c:0,e:'prawn มี aw',art:'prawn'},
+    {q:'Complete the word: dr__',a:['au','aw','all','oar'],c:1,e:'dr + aw = draw',art:'pencil'},
+    {q:'Which word has <span class="focus-word">all</span>?',a:['ball','board','fork','sauce'],c:0,e:'ball มี all',art:'ball'},
+    {q:'Complete the word: t__',a:['au','aw','all','or'],c:2,e:'t + all = tall',art:'tree'},
+    {q:'Which word begins with <span class="focus-word">wa</span>?',a:['water','board','fork','horse'],c:0,e:'water เริ่มด้วย wa',art:'water'},
+    {q:'Complete the word: w__k',a:['au','aw','al','or'],c:2,e:'w + al + k = walk',art:'shoe'},
+    {q:'Which word has <span class="focus-word">or</span>?',a:['fork','ball','draw','August'],c:0,e:'fork มี or',art:'fork'},
+    {q:'Which word has <span class="focus-word">oar</span>?',a:['board','walk','horse','prawn'],c:0,e:'board มี oar',art:'board'},
+    {q:'Which pair has the same sound pattern?',a:['ball – tall','horse – sauce','draw – board','water – fork'],c:0,e:'ball และ tall มี all เหมือนกัน',art:'ball'},
+    {q:'Which word is NOT in the <span class="focus-word">or</span> group?',a:['horse','fork','ball','or'],c:2,e:'ball อยู่ในกลุ่ม all',art:'horse'},
+    {q:'Choose the correct spelling.',a:['sos','sauce','sawce','sorse'],c:1,e:'คำที่ถูกต้องคือ sauce',art:'sauce'},
+    {q:'Choose the correct spelling.',a:['bored','board','bord','boad'],c:1,e:'คำที่ถูกต้องคือ board',art:'board'},
+    {q:'Which word belongs to the <span class="focus-word">oar</span> group?',a:['roar','walk','August','tall'],c:0,e:'roar มี oar',art:'lion'}
+  ]
+};
+
+const artMap = {
+  book:`<svg viewBox="0 0 150 130"><path d="M26 35 Q55 20 75 38 V105 Q55 90 26 100Z" fill="#8f75d6"/><path d="M124 35 Q95 20 75 38 V105 Q95 90 124 100Z" fill="#b8a7ea"/><circle cx="61" cy="61" r="4" fill="#fff"/><circle cx="89" cy="61" r="4" fill="#fff"/><path d="M62 77 Q75 87 88 77" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>`,
+  farm:`<svg viewBox="0 0 150 130"><rect x="38" y="54" width="74" height="50" rx="6" fill="#ef8fac"/><path d="M28 56 L75 22 L122 56Z" fill="#8f75d6"/><rect x="67" y="72" width="18" height="32" fill="#fff4df"/><circle cx="118" cy="30" r="14" fill="#f5cf59"/></svg>`,
+  star:`<svg viewBox="0 0 150 130"><path d="M75 18 89 52 126 55 97 79 106 115 75 94 44 115 53 79 24 55 61 52Z" fill="#f5cf59"/><circle cx="63" cy="65" r="5" fill="#3f4054"/><circle cx="87" cy="65" r="5" fill="#3f4054"/><path d="M62 82 Q75 92 88 82" fill="none" stroke="#3f4054" stroke-width="4" stroke-linecap="round"/></svg>`,
+  bird:`<svg viewBox="0 0 150 130"><ellipse cx="75" cy="74" rx="42" ry="31" fill="#76b7ea"/><circle cx="61" cy="67" r="5" fill="#3f4054"/><path d="M102 67 l18 9 -18 9z" fill="#f5cf59"/><path d="M50 94 q25 17 48 0" fill="#8f75d6"/><path d="M54 47 q20-22 42 0" fill="#ef8fac"/></svg>`,
+  nurse:`<svg viewBox="0 0 150 130"><circle cx="75" cy="72" r="38" fill="#ffe0c6"/><rect x="48" y="24" width="54" height="25" rx="8" fill="#fff"/><path d="M75 29v15M68 36h14" stroke="#ef8fac" stroke-width="5" stroke-linecap="round"/><circle cx="63" cy="70" r="5" fill="#3f4054"/><circle cx="87" cy="70" r="5" fill="#3f4054"/><path d="M64 88 Q75 97 86 88" fill="none" stroke="#3f4054" stroke-width="4" stroke-linecap="round"/></svg>`,
+  purple:`<svg viewBox="0 0 150 130"><circle cx="75" cy="70" r="42" fill="#8f75d6"/><circle cx="61" cy="67" r="5" fill="#fff"/><circle cx="89" cy="67" r="5" fill="#fff"/><path d="M61 84 Q75 95 89 84" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>`,
+  teacher:`<svg viewBox="0 0 150 130"><circle cx="75" cy="72" r="38" fill="#ffd9bb"/><path d="M40 61 Q75 25 110 61 V42 Q75 18 40 42Z" fill="#6e5b49"/><circle cx="62" cy="72" r="5" fill="#3f4054"/><circle cx="88" cy="72" r="5" fill="#3f4054"/><path d="M62 90 Q75 99 88 90" fill="none" stroke="#3f4054" stroke-width="4" stroke-linecap="round"/></svg>`,
+  doctor:`<svg viewBox="0 0 150 130"><circle cx="75" cy="68" r="37" fill="#ffd9bb"/><circle cx="61" cy="68" r="10" fill="none" stroke="#76b7ea" stroke-width="4"/><circle cx="89" cy="68" r="10" fill="none" stroke="#76b7ea" stroke-width="4"/><path d="M71 68h8" stroke="#76b7ea" stroke-width="4"/><path d="M62 89 Q75 98 88 89" fill="none" stroke="#3f4054" stroke-width="4" stroke-linecap="round"/></svg>`,
+  mouse:`<svg viewBox="0 0 150 130"><circle cx="52" cy="44" r="18" fill="#b7b9c8"/><circle cx="98" cy="44" r="18" fill="#b7b9c8"/><ellipse cx="75" cy="77" rx="39" ry="33" fill="#d7d8e1"/><circle cx="61" cy="73" r="5" fill="#3f4054"/><circle cx="89" cy="73" r="5" fill="#3f4054"/><circle cx="75" cy="87" r="6" fill="#ef8fac"/></svg>`,
+  house:`<svg viewBox="0 0 150 130"><rect x="38" y="58" width="74" height="48" rx="5" fill="#ffb47a"/><path d="M25 60 L75 24 L125 60Z" fill="#8f75d6"/><rect x="66" y="78" width="18" height="28" fill="#fff"/></svg>`,
+  cow:`<svg viewBox="0 0 150 130"><ellipse cx="75" cy="72" rx="43" ry="34" fill="#fff"/><path d="M45 45 28 28M105 45l17-17" stroke="#8f75d6" stroke-width="8" stroke-linecap="round"/><circle cx="61" cy="68" r="5" fill="#3f4054"/><circle cx="89" cy="68" r="5" fill="#3f4054"/><ellipse cx="75" cy="89" rx="18" ry="11" fill="#efb7c7"/></svg>`,
+  coin:`<svg viewBox="0 0 150 130"><circle cx="75" cy="68" r="42" fill="#f5cf59"/><circle cx="75" cy="68" r="31" fill="none" stroke="#e0b53a" stroke-width="5"/><text x="75" y="80" text-anchor="middle" font-size="34" fill="#a77f16">$</text></svg>`,
+  plant:`<svg viewBox="0 0 150 130"><rect x="57" y="82" width="36" height="28" rx="7" fill="#ffb47a"/><path d="M75 82V45M75 60Q50 45 43 58Q58 74 75 68M75 55Q98 38 108 54Q94 69 75 64" fill="none" stroke="#75c9ad" stroke-width="10" stroke-linecap="round"/></svg>`,
+  toy:`<svg viewBox="0 0 150 130"><rect x="40" y="48" width="70" height="48" rx="16" fill="#76b7ea"/><circle cx="59" cy="96" r="12" fill="#8f75d6"/><circle cx="95" cy="96" r="12" fill="#8f75d6"/><circle cx="62" cy="70" r="5" fill="#fff"/><circle cx="88" cy="70" r="5" fill="#fff"/></svg>`,
+  foot:`<svg viewBox="0 0 150 130"><path d="M67 25 Q88 31 90 58 Q92 79 110 95 Q98 118 72 105 Q48 93 52 65 Q55 42 67 25Z" fill="#ffd0b0"/><circle cx="62" cy="25" r="7" fill="#ffd0b0"/><circle cx="76" cy="20" r="7" fill="#ffd0b0"/><circle cx="90" cy="23" r="7" fill="#ffd0b0"/></svg>`,
+  rope:`<svg viewBox="0 0 150 130"><path d="M30 85 Q45 35 75 70 Q105 105 120 45" fill="none" stroke="#ffb47a" stroke-width="12" stroke-linecap="round"/><circle cx="30" cy="85" r="8" fill="#8f75d6"/><circle cx="120" cy="45" r="8" fill="#8f75d6"/></svg>`,
+  sauce:`<svg viewBox="0 0 150 130"><rect x="52" y="35" width="46" height="70" rx="14" fill="#ef8fac"/><rect x="62" y="22" width="26" height="18" rx="6" fill="#8f75d6"/><circle cx="67" cy="68" r="5" fill="#fff"/><circle cx="83" cy="68" r="5" fill="#fff"/><path d="M66 83 Q75 91 84 83" fill="none" stroke="#fff" stroke-width="4"/></svg>`,
+  sun:`<svg viewBox="0 0 150 130"><circle cx="75" cy="65" r="31" fill="#f5cf59"/><path d="M75 18V5M75 125v-13M28 65H15M135 65h-13M42 32 30 20M120 110l-12-12M108 32l12-12M42 98l-12 12" stroke="#f5cf59" stroke-width="8" stroke-linecap="round"/></svg>`,
+  prawn:`<svg viewBox="0 0 150 130"><path d="M105 38 Q55 35 42 70 Q35 95 72 103 Q100 110 113 83" fill="none" stroke="#ef8fac" stroke-width="18" stroke-linecap="round"/><circle cx="104" cy="38" r="5" fill="#3f4054"/><path d="M40 68 20 56M40 78 18 82" stroke="#ef8fac" stroke-width="6" stroke-linecap="round"/></svg>`,
+  pencil:`<svg viewBox="0 0 150 130"><path d="M35 95 98 32 118 52 55 115 28 122Z" fill="#f5cf59"/><path d="M98 32 108 22 128 42 118 52Z" fill="#ef8fac"/><path d="M28 122 35 95 55 115Z" fill="#8f75d6"/></svg>`,
+  ball:`<svg viewBox="0 0 150 130"><circle cx="75" cy="68" r="42" fill="#76b7ea"/><path d="M75 26V110M33 68H117M45 39Q75 68 105 39M45 97Q75 68 105 97" fill="none" stroke="#fff" stroke-width="5"/></svg>`,
+  tree:`<svg viewBox="0 0 150 130"><rect x="68" y="72" width="14" height="38" fill="#9a6a47"/><circle cx="75" cy="54" r="36" fill="#75c9ad"/><circle cx="51" cy="63" r="19" fill="#75c9ad"/><circle cx="99" cy="63" r="19" fill="#75c9ad"/></svg>`,
+  water:`<svg viewBox="0 0 150 130"><path d="M75 20 Q112 65 75 108 Q38 65 75 20Z" fill="#76b7ea"/><circle cx="63" cy="70" r="5" fill="#fff"/><circle cx="87" cy="70" r="5" fill="#fff"/><path d="M63 86 Q75 95 87 86" fill="none" stroke="#fff" stroke-width="4"/></svg>`,
+  shoe:`<svg viewBox="0 0 150 130"><path d="M32 82 Q58 85 72 62 Q84 90 120 88 Q128 105 112 112 H44 Q28 108 32 82Z" fill="#8f75d6"/><path d="M64 76 88 95" stroke="#fff" stroke-width="5"/></svg>`,
+  fork:`<svg viewBox="0 0 150 130"><path d="M60 20v35M72 20v35M84 20v35M96 20v35M60 55q18 18 36 0V112" fill="none" stroke="#8f75d6" stroke-width="7" stroke-linecap="round"/></svg>`,
+  board:`<svg viewBox="0 0 150 130"><rect x="30" y="32" width="90" height="66" rx="10" fill="#9f774d"/><path d="M45 48H105M45 65H105M45 82H90" stroke="#fff4df" stroke-width="6" stroke-linecap="round"/></svg>`,
+  horse:`<svg viewBox="0 0 150 130"><path d="M48 92 Q50 40 82 35 Q104 35 112 55 Q115 78 93 90Z" fill="#b98258"/><circle cx="91" cy="55" r="5" fill="#3f4054"/><path d="M53 43Q30 52 45 72" fill="none" stroke="#6e4c37" stroke-width="10" stroke-linecap="round"/></svg>`,
+  lion:`<svg viewBox="0 0 150 130"><circle cx="75" cy="68" r="43" fill="#f5cf59"/><circle cx="75" cy="68" r="29" fill="#ffd98c"/><circle cx="64" cy="64" r="5" fill="#3f4054"/><circle cx="86" cy="64" r="5" fill="#3f4054"/><path d="M64 82 Q75 91 86 82" fill="none" stroke="#3f4054" stroke-width="4"/></svg>`
+};
+
+let unit=1,index=0,score=0,answered=false;
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function startQuiz(selectedUnit){
+  unit=selectedUnit;index=0;score=0;answered=false;showScreen('quiz');renderQuestion();
+}
+function renderQuestion(){
+  const item=banks[unit][index];
+  document.getElementById('qMeta').textContent=`ชุดที่ ${unit} • ข้อ ${index+1} จาก ${banks[unit].length}`;
+  document.getElementById('question').innerHTML=item.q;
+  document.getElementById('questionArt').innerHTML=artMap[item.art]||artMap.book;
+  document.getElementById('scorePill').textContent=`${score} / 15`;
+  document.getElementById('progressBar').style.width=`${(index/banks[unit].length)*100}%`;
+
+  const choicesBox=document.getElementById('choices');
+  choicesBox.innerHTML='';
+  item.a.forEach((text,i)=>{
+    const button=document.createElement('button');
+    button.className='choice';
+    button.textContent=text;
+    button.onclick=()=>chooseAnswer(i,button);
+    choicesBox.appendChild(button);
+  });
+
+  const feedback=document.getElementById('feedback');
+  feedback.className='feedback';
+  feedback.textContent='';
+  document.getElementById('nextBtn').style.display='none';
+  answered=false;
+}
+function chooseAnswer(selectedIndex,selectedButton){
+  if(answered)return;
+  answered=true;
+  const item=banks[unit][index];
+  const buttons=[...document.querySelectorAll('.choice')];
+  const feedback=document.getElementById('feedback');
+
+  buttons.forEach((button,i)=>{
+    button.disabled=true;
+    if(i===item.c)button.classList.add('correct');
+  });
+
+  if(selectedIndex===item.c){
+    score++;
+    selectedButton.classList.add('correct');
+    feedback.className='feedback show good';
+    feedback.textContent='ถูกต้อง เก่งมาก';
+  }else{
+    selectedButton.classList.add('wrong');
+    feedback.className='feedback show bad';
+    feedback.textContent=`ยังไม่ถูกนะ คำตอบคือ ${item.a[item.c]} — ${item.e}`;
+  }
+  document.getElementById('scorePill').textContent=`${score} / 15`;
+  document.getElementById('nextBtn').style.display='inline-block';
+}
+function nextQuestion(){
+  index++;
+  if(index>=banks[unit].length){finishQuiz();return;}
+  renderQuestion();
+}
+function finishQuiz(){
+  showScreen('result');
+  document.getElementById('bigScore').textContent=`${score}/15`;
+  let message='';
+  if(score===15)message='ยอดเยี่ยมมาก ตอบถูกทุกข้อเลย';
+  else if(score>=12)message='ทำได้ดีมาก ทบทวนอีกนิดก็เกือบเต็มแล้ว';
+  else if(score>=9)message='ทำได้ดี ลองกลับไปดูคำที่ยังสับสนอีกครั้ง';
+  else message='ไม่เป็นไร ลองทบทวนเสียงแต่ละกลุ่มแล้วทำใหม่อีกครั้ง';
+  document.getElementById('resultText').textContent=message;
+}
+function retryQuiz(){startQuiz(unit)}
+function goHome(){showScreen('home')}
+</script>
+</body>
+</html>
