@@ -1,0 +1,3473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quantifier Mastery — Learn it. Practise it. Ace the test.</title>
+<meta name="description" content="Quantifier Mastery: an interactive English quantifiers learning and exam-practice app for Thai students (CEFR A1-A2)." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ivory: #FBF7F1;
+  --ivory-soft: #F3ECE1;
+  --ivory-card: #FFFFFF;
+  --apricot-50: #FDF1E7;
+  --apricot-100: #FBE4D3;
+  --apricot-300: #F0B588;
+  --apricot-400: #EAA372;
+  --apricot-500: #E8935C;
+  --apricot-600: #D97D40;
+  --apricot-700: #B4632F;
+  --navy: #233044;
+  --navy-muted: #5B6B84;
+  --navy-10: rgba(35,48,68,0.1);
+  --navy-20: rgba(35,48,68,0.2);
+  --sage-50: #EFF6F1;
+  --sage-100: #DCEBE0;
+  --sage-400: #9DC9AA;
+  --sage-500: #8FBC9B;
+  --sage-600: #6FA080;
+  --sage-700: #4F7D5E;
+  --rose-50: #FBF0EE;
+  --rose-100: #F5DEDA;
+  --rose-400: #EDB3AB;
+  --rose-500: #E8A7A0;
+  --rose-600: #D97D72;
+  --rose-700: #B85B50;
+  --shadow-soft: 0 2px 10px rgba(35,48,68,0.06);
+  --shadow-card: 0 8px 24px rgba(35,48,68,0.08);
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --font-heading: 'Baloo 2', 'Noto Sans Thai', sans-serif;
+  --font-body: 'Inter', 'Noto Sans Thai', sans-serif;
+  --font-thai: 'Noto Sans Thai', 'Inter', sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--navy);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--navy); margin: 0; line-height: 1.2; }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+button { font-family: inherit; }
+a { color: inherit; text-decoration: none; }
+input { font-family: inherit; }
+
+.font-thai, [lang="th"] { font-family: var(--font-thai); }
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--navy);
+  color: #fff;
+  padding: 10px 16px;
+  z-index: 200;
+  border-radius: 0 0 8px 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--apricot-500);
+  outline-offset: 2px;
+}
+
+/* ---------- Top nav ---------- */
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(251,247,241,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--navy-10);
+}
+.topnav-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 19px;
+  color: var(--navy);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--apricot-500);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 2px;
+}
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--navy-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.nav-link:hover { background: var(--apricot-50); color: var(--navy); }
+.nav-link.active { background: var(--apricot-100); color: var(--apricot-700); }
+.hamburger {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 2px solid var(--navy-10);
+  background: #fff;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.hamburger span, .hamburger span::before, .hamburger span::after {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--navy);
+  position: relative;
+  transition: transform 0.2s;
+}
+.hamburger span::before { position: absolute; top: -6px; }
+.hamburger span::after { position: absolute; top: 6px; }
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 20px 16px;
+  border-bottom: 1px solid var(--navy-10);
+  background: var(--ivory);
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu .nav-link { justify-content: flex-start; width: 100%; text-align: left; padding: 12px 14px; font-size: 15px; }
+
+@media (max-width: 1180px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+}
+
+/* ---------- Layout ---------- */
+main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+  min-height: 60vh;
+}
+.site-footer {
+  text-align: center;
+  padding: 22px 20px 34px;
+  color: var(--navy-muted);
+  font-size: 12.5px;
+  border-top: 1px solid var(--navy-10);
+}
+
+/* ---------- Reusable components ---------- */
+.card {
+  background: var(--ivory-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(35,48,68,0.05);
+}
+.section-heading {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 26px;
+  color: var(--navy);
+}
+@media (min-width: 640px) { .section-heading { font-size: 30px; } }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.btn-primary, .btn-secondary, .btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.12s, box-shadow 0.12s, background 0.15s, border-color 0.15s;
+  font-family: var(--font-body);
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--apricot-500);
+  color: #fff;
+  padding: 12px 22px;
+  box-shadow: 0 4px 14px rgba(232,147,92,0.35);
+}
+.btn-primary:hover { background: var(--apricot-600); transform: translateY(-1px); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.btn-secondary {
+  background: #fff;
+  color: var(--navy);
+  padding: 11px 20px;
+  border: 2px solid var(--navy-10);
+}
+.btn-secondary:hover { border-color: var(--apricot-400); }
+.btn-ghost {
+  background: none;
+  color: var(--navy-muted);
+  padding: 9px 14px;
+}
+.btn-ghost:hover { color: var(--navy); background: var(--apricot-50); }
+.btn-block { width: 100%; }
+.btn-danger-outline {
+  border-color: var(--rose-400);
+  color: var(--rose-700);
+}
+.btn-danger-outline:hover { border-color: var(--rose-600); background: var(--rose-50); }
+
+/* progress bar */
+.progressbar-wrap { display: flex; flex-direction: column; gap: 6px; }
+.progressbar-label { display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 600; color: var(--navy-muted); }
+.progressbar-track { height: 9px; width: 100%; background: var(--ivory-soft); border-radius: 999px; overflow: hidden; }
+.progressbar-fill { height: 100%; background: linear-gradient(90deg, var(--apricot-400), var(--apricot-500)); border-radius: 999px; transition: width 0.5s ease; }
+
+/* answer options */
+.answer-option {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--navy-10);
+  background: #fff;
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--navy);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.answer-option:hover:not(:disabled) { border-color: var(--apricot-300); background: var(--apricot-50); }
+.answer-option:disabled { cursor: default; }
+.answer-option.selected { border-color: var(--apricot-400); background: var(--apricot-50); }
+.answer-option.correct { border-color: var(--sage-400); background: var(--sage-50); }
+.answer-option.incorrect { border-color: var(--rose-400); background: var(--rose-50); animation: shake 0.4s; }
+.answer-option.correct-answer { border-color: var(--sage-400); background: rgba(239,246,241,0.6); }
+.answer-icon { flex-shrink: 0; font-weight: 800; }
+.answer-icon.correct { color: var(--sage-600); }
+.answer-icon.incorrect { color: var(--rose-600); }
+
+.text-answer-input {
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--navy-10);
+  background: #fff;
+  padding: 14px 16px;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--navy);
+  outline: none;
+}
+.text-answer-input:focus { border-color: var(--apricot-400); }
+.text-answer-input.correct { border-color: var(--sage-400); background: var(--sage-50); }
+.text-answer-input.incorrect { border-color: var(--rose-400); background: var(--rose-50); animation: shake 0.4s; }
+
+/* feedback panel */
+.feedback-panel { border-radius: var(--radius-lg); border: 2px solid; padding: 18px; animation: fadeInUp 0.35s ease; }
+.feedback-panel.correct { border-color: var(--sage-100); background: var(--sage-50); }
+.feedback-panel.incorrect { border-color: var(--rose-100); background: var(--rose-50); }
+.feedback-head { display: flex; align-items: flex-start; gap: 12px; }
+.feedback-icon { flex-shrink: 0; width: 36px; height: 36px; border-radius: 999px; display: grid; place-items: center; color: #fff; font-weight: 800; }
+.feedback-icon.correct { background: var(--sage-500); }
+.feedback-icon.incorrect { background: var(--rose-500); }
+.feedback-title { font-family: var(--font-heading); font-weight: 700; font-size: 16px; }
+.feedback-title.correct { color: var(--sage-700); }
+.feedback-title.incorrect { color: var(--rose-700); }
+.feedback-body-grid { margin-top: 10px; display: grid; gap: 8px; }
+@media (min-width: 640px) { .feedback-body-grid.two-col { grid-template-columns: 1fr 1fr; } }
+.feedback-box { border-radius: var(--radius-sm); background: rgba(255,255,255,0.7); padding: 10px 12px; }
+.feedback-box-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--navy-muted); }
+.feedback-box-value { margin-top: 3px; font-weight: 600; }
+
+/* quiz card */
+.question-card { padding: 22px; }
+.question-type-pill { background: var(--apricot-100); color: var(--apricot-700); }
+.question-context {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+  border-radius: var(--radius-md);
+  background: var(--ivory-soft);
+  padding: 14px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--navy-muted);
+  white-space: pre-line;
+}
+.question-prompt { margin-top: 16px; font-size: 19px; font-weight: 700; line-height: 1.4; color: var(--navy); }
+.question-options { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+.question-form { margin-top: 18px; }
+
+/* cards animations */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes popIn { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: scale(1); } }
+@keyframes shake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
+@keyframes sparkle { 0%,100% { opacity: 1; transform: scale(1) rotate(0deg); } 50% { opacity: 0.5; transform: scale(1.3) rotate(20deg); } }
+.animate-fade-in-up { animation: fadeInUp 0.35s ease; }
+.animate-pop-in { animation: popIn 0.3s ease; }
+.sparkle { display: inline-block; animation: sparkle 1.4s ease infinite; }
+
+/* Hero */
+.hero { text-align: center; padding: 10px 0 4px; }
+@media (min-width: 640px) { .hero { padding: 34px 0 4px; } }
+.hero h1 { font-size: 34px; font-weight: 800; letter-spacing: -0.01em; }
+@media (min-width: 640px) { .hero h1 { font-size: 44px; } }
+.hero .tagline { margin-top: 8px; font-family: var(--font-heading); font-weight: 600; font-size: 18px; color: var(--apricot-600); }
+@media (min-width: 640px) { .hero .tagline { font-size: 21px; } }
+.hero .lede { max-width: 640px; margin: 16px auto 0; font-size: 16px; line-height: 1.7; color: var(--navy-muted); }
+@media (min-width: 640px) { .hero .lede { font-size: 17px; } }
+.hero-actions { margin-top: 26px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; }
+
+.stack-14 { display: flex; flex-direction: column; gap: 56px; }
+.stack-10 { display: flex; flex-direction: column; gap: 40px; }
+.stack-6 { display: flex; flex-direction: column; gap: 24px; }
+.stack-5 { display: flex; flex-direction: column; gap: 20px; }
+.stack-4 { display: flex; flex-direction: column; gap: 16px; }
+.stack-3 { display: flex; flex-direction: column; gap: 12px; }
+.stack-2 { display: flex; flex-direction: column; gap: 8px; }
+
+.max-2xl { max-width: 680px; margin: 0 auto; }
+.max-3xl { max-width: 820px; margin: 0 auto; }
+
+.stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 18px; }
+@media (min-width: 640px) { .stat-grid { grid-template-columns: repeat(4, 1fr); } }
+.stat-box { border-radius: var(--radius-md); background: var(--ivory-soft); padding: 14px; text-align: center; }
+.stat-box .num { font-size: 21px; font-weight: 800; color: var(--navy); }
+.stat-box .lbl { font-size: 12px; color: var(--navy-muted); margin-top: 2px; }
+
+.quantifier-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 22px; }
+@media (min-width: 640px) { .quantifier-grid { grid-template-columns: repeat(5, 1fr); } }
+.quantifier-card {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 16px 10px; text-align: center; cursor: pointer; border: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.quantifier-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card); }
+.quantifier-card .q-name { font-family: var(--font-heading); font-weight: 800; font-size: 16px; color: var(--apricot-600); }
+.quantifier-card .q-type { font-size: 11px; color: var(--navy-muted); line-height: 1.35; }
+
+.cu-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 4px; }
+@media (min-width: 640px) { .cu-grid { grid-template-columns: 1fr 1fr; } }
+.cu-card { padding: 20px; }
+.cu-head { display: flex; align-items: center; gap: 10px; }
+.cu-icon { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font-size: 18px; }
+.cu-icon.countable { background: var(--apricot-100); color: var(--apricot-600); }
+.cu-icon.uncountable { background: var(--sage-100); color: var(--sage-600); }
+.cu-examples { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+.cu-chip { border-radius: 999px; padding: 6px 12px; font-size: 13.5px; }
+.cu-chip.countable { background: var(--apricot-50); }
+.cu-chip.uncountable { background: var(--sage-50); }
+
+/* Learn page */
+.learn-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 6px; }
+@media (min-width: 980px) { .learn-grid { grid-template-columns: 280px 1fr; } }
+.lesson-nav { display: flex; flex-direction: column; gap: 10px; }
+.lesson-card {
+  display: flex; width: 100%; align-items: center; gap: 14px;
+  padding: 16px; text-align: left; cursor: pointer; border: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.lesson-card:hover { transform: translateY(-1px); box-shadow: var(--shadow-card); }
+.lesson-card.active { box-shadow: 0 0 0 2px var(--apricot-400); }
+.lesson-icon { width: 46px; height: 46px; border-radius: 12px; background: var(--apricot-100); color: var(--apricot-600); display: grid; place-items: center; flex-shrink: 0; }
+.lesson-meta-row { display: flex; align-items: center; gap: 8px; }
+.lesson-order { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: var(--navy-muted); }
+.lesson-title-txt { display: block; margin-top: 2px; font-family: var(--font-heading); font-weight: 700; font-size: 16px; color: var(--navy); }
+.lesson-sub-txt { display: block; margin-top: 2px; font-size: 13.5px; color: var(--navy-muted); }
+.lesson-chevron { margin-left: auto; flex-shrink: 0; color: var(--navy-muted); }
+
+.lesson-detail-card { padding: 22px; }
+.lesson-badge-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.lesson-eyebrow { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: var(--apricot-600); }
+.lesson-detail-title { margin-top: 4px; font-size: 26px; }
+.lesson-detail-sub { margin-top: 4px; font-size: 15px; color: var(--navy-muted); }
+.lesson-detail-intro { margin-top: 12px; font-size: 15.5px; line-height: 1.7; }
+.point-block { margin-top: 14px; border-radius: var(--radius-md); background: var(--ivory-soft); padding: 16px; }
+.point-heading { font-size: 15px; font-weight: 700; }
+.point-body { margin-top: 4px; font-size: 14.5px; line-height: 1.6; color: var(--navy-muted); }
+.point-examples { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+.point-example { display: flex; gap: 7px; font-size: 14.5px; align-items: flex-start; }
+.point-example .arrow { color: var(--apricot-400); flex-shrink: 0; margin-top: 3px; }
+.point-example .txt { font-style: italic; }
+
+.mistakes-block { margin-top: 18px; border-radius: var(--radius-md); border: 2px solid var(--rose-100); background: rgba(251,240,238,0.6); padding: 16px; }
+.mistakes-block h3 { font-size: 15px; color: var(--rose-700); display: flex; align-items: center; gap: 6px; }
+.mistake-row { margin-top: 8px; font-size: 14.5px; }
+.mistake-wrong { color: var(--rose-600); text-decoration: line-through; }
+.mistake-arrow { margin: 0 6px; color: var(--navy-muted); }
+.mistake-right { font-weight: 700; color: var(--sage-700); }
+
+.mini-practice-card { padding: 22px; }
+
+/* comparison table */
+.comparison-table-wrap { overflow-x: auto; }
+table.comparison-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-soft); }
+table.comparison-table th { text-align: left; background: var(--apricot-100); color: var(--apricot-700); padding: 12px 14px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em; }
+table.comparison-table td { padding: 13px 14px; border-top: 1px solid var(--navy-10); font-size: 14.5px; vertical-align: top; }
+table.comparison-table tr:nth-child(even) td { background: var(--ivory-soft); }
+.comparison-cards { display: none; flex-direction: column; gap: 10px; }
+.comparison-card-item { padding: 14px 16px; }
+.comparison-card-item .q { font-family: var(--font-heading); font-weight: 800; color: var(--apricot-600); font-size: 17px; }
+.comparison-card-item dl { margin-top: 6px; display: flex; flex-direction: column; gap: 4px; }
+.comparison-card-item dt { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--navy-muted); }
+.comparison-card-item dd { margin: 0 0 4px; font-size: 14px; }
+@media (max-width: 640px) {
+  .comparison-table-wrap { display: none; }
+  .comparison-cards { display: flex; }
+}
+
+/* memory tips */
+.tips-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 20px auto 0; max-width: 780px; }
+@media (min-width: 640px) { .tips-grid { grid-template-columns: 1fr 1fr; } }
+.tip-item { display: flex; align-items: flex-start; gap: 10px; padding: 14px 16px; font-size: 14.5px; }
+.tip-bulb { flex-shrink: 0; color: var(--apricot-500); }
+
+/* progress bar sticky quiz header */
+.quiz-header { position: sticky; top: 57px; z-index: 20; background: rgba(251,247,241,0.95); backdrop-filter: blur(6px); padding: 10px 0 12px; }
+.quiz-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.quiz-title { font-size: 19px; font-weight: 700; }
+
+/* topic performance */
+.topic-perf-item { margin-bottom: 12px; }
+.topic-perf-row { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 4px; }
+.topic-perf-row .name { font-weight: 600; }
+.topic-perf-row .val { color: var(--navy-muted); }
+.topic-perf-track { height: 8px; background: var(--ivory-soft); border-radius: 999px; overflow: hidden; }
+.topic-perf-fill { height: 100%; border-radius: 999px; transition: width 0.5s; }
+.topic-perf-fill.high { background: var(--sage-500); }
+.topic-perf-fill.mid { background: var(--apricot-500); }
+.topic-perf-fill.low { background: var(--rose-500); }
+
+/* results */
+.results-hero { padding: 28px; text-align: center; }
+.results-hero .eyebrow { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--navy-muted); }
+.results-hero .pct { margin-top: 8px; font-size: 48px; font-weight: 800; }
+.results-hero .fraction { margin-top: 2px; font-size: 14px; color: var(--navy-muted); }
+.perf-pill { margin-top: 14px; display: inline-flex; }
+.results-hero .desc { max-width: 460px; margin: 12px auto 0; font-size: 14.5px; line-height: 1.6; color: var(--navy-muted); }
+.results-stat-grid { margin-top: 24px; display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; text-align: center; }
+.results-stat-box { border-radius: var(--radius-md); padding: 14px 8px; }
+.results-stat-box.correct { background: var(--sage-50); }
+.results-stat-box.incorrect { background: var(--rose-50); }
+.results-stat-box.unanswered { background: var(--ivory-soft); }
+.results-stat-box .num { font-size: 19px; font-weight: 800; margin-top: 4px; }
+.results-stat-box .lbl { font-size: 12px; color: var(--navy-muted); }
+.strength-grid { margin-top: 20px; display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 640px) { .strength-grid { grid-template-columns: 1fr 1fr; } }
+.strength-box { border-radius: var(--radius-md); padding: 14px; }
+.strength-box.strong { background: var(--sage-50); }
+.strength-box.weak { background: var(--rose-50); }
+.strength-box .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; }
+.strength-box.strong .lbl { color: var(--sage-700); }
+.strength-box.weak .lbl { color: var(--rose-700); }
+.strength-box .val { margin-top: 3px; font-weight: 700; }
+.recommend-box { margin-top: 16px; display: flex; align-items: center; gap: 12px; border-radius: var(--radius-md); border: 2px dashed var(--apricot-300); padding: 14px; }
+
+.results-level-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 24px; }
+@media (min-width: 640px) { .results-level-grid { grid-template-columns: repeat(3,1fr); } }
+.results-level-card { padding: 20px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.trophy-badge { width: 44px; height: 44px; border-radius: 999px; background: var(--apricot-100); color: var(--apricot-600); display: grid; place-items: center; }
+
+/* mistake review */
+.mistake-card { padding: 20px; }
+.mistake-answer-grid { margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mistake-answer-box { border-radius: var(--radius-sm); padding: 10px 12px; }
+.mistake-answer-box.wrong { background: var(--rose-50); }
+.mistake-answer-box.right { background: var(--sage-50); }
+.explanation-box { margin-top: 10px; border-radius: var(--radius-sm); background: var(--ivory-soft); padding: 10px 12px; }
+
+/* progress page */
+.progress-list-item { display: flex; align-items: center; justify-content: space-between; border-radius: var(--radius-md); background: var(--ivory-soft); padding: 12px 15px; margin-bottom: 8px; }
+.progress-check { width: 18px; height: 18px; border-radius: 999px; border: 2px solid var(--navy-20); flex-shrink: 0; }
+.progress-check.done { border: none; background: var(--sage-600); color: #fff; display: grid; place-items: center; font-size: 11px; }
+
+.score-box { border-radius: var(--radius-md); background: var(--ivory-soft); padding: 14px; text-align: center; }
+.score-box .lvl { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; color: var(--navy-muted); }
+.score-box .pct { font-size: 22px; font-weight: 800; margin-top: 4px; }
+.score-box .meta { font-size: 11px; color: var(--navy-muted); }
+
+/* modal */
+.modal-overlay { position: fixed; inset: 0; background: rgba(35,48,68,0.45); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 20px; }
+.modal-box { background: #fff; border-radius: var(--radius-lg); padding: 24px; max-width: 420px; width: 100%; box-shadow: var(--shadow-card); }
+.modal-box h3 { font-size: 18px; }
+.modal-box p { margin-top: 8px; font-size: 14.5px; color: var(--navy-muted); line-height: 1.6; }
+.modal-actions { margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
+
+/* about */
+.about-mark { width: 56px; height: 56px; border-radius: 18px; background: var(--apricot-500); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: 22px; margin: 0 auto; box-shadow: var(--shadow-soft); }
+.about-section { padding: 20px; display: flex; gap: 14px; align-items: flex-start; }
+.about-icon { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; flex-shrink: 0; }
+.about-icon.a { background: var(--apricot-100); color: var(--apricot-600); }
+.about-icon.b { background: var(--sage-100); color: var(--sage-600); }
+
+.text-center { text-align: center; }
+.muted { color: var(--navy-muted); }
+.small { font-size: 13px; }
+
+.empty-state { text-align: center; padding: 40px 20px; color: var(--navy-muted); }
+
+.mode-note { display: flex; align-items: center; justify-content: center; gap: 8px; text-align: center; margin-bottom: 10px; color: var(--navy-muted); font-size: 14px; }
+
+/* utility icon svg sizing */
+.icon { display: inline-block; vertical-align: middle; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="topnav">
+  <div class="topnav-inner">
+    <button class="brand" data-nav="home" aria-label="Quantifier Mastery — Home">
+      <span class="brand-mark">Q</span>
+      <span>Quantifier Mastery</span>
+    </button>
+    <nav class="nav-links" aria-label="Primary">
+      <button class="nav-link" data-nav="home">Home</button>
+      <button class="nav-link" data-nav="learn">Learn</button>
+      <button class="nav-link" data-nav="practice">Quick Practice</button>
+      <button class="nav-link" data-nav="test/easy">Easy</button>
+      <button class="nav-link" data-nav="test/medium">Medium</button>
+      <button class="nav-link" data-nav="test/challenge">Challenge</button>
+      <button class="nav-link" data-nav="mistakes">Mistakes</button>
+      <button class="nav-link" data-nav="results">Results</button>
+      <button class="nav-link" data-nav="progress">Progress</button>
+      <button class="nav-link" data-nav="about">About</button>
+    </nav>
+    <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="nav-link" data-nav="home">Home</button>
+    <button class="nav-link" data-nav="learn">Learn</button>
+    <button class="nav-link" data-nav="practice">Quick Practice</button>
+    <button class="nav-link" data-nav="test/easy">Easy Test</button>
+    <button class="nav-link" data-nav="test/medium">Medium Test</button>
+    <button class="nav-link" data-nav="test/challenge">Challenge Test</button>
+    <button class="nav-link" data-nav="mistakes">Mistake Review</button>
+    <button class="nav-link" data-nav="results">Final Results</button>
+    <button class="nav-link" data-nav="progress">Progress</button>
+    <button class="nav-link" data-nav="about">About</button>
+  </div>
+</header>
+
+<main id="main" tabindex="-1"></main>
+
+<footer class="site-footer">
+  <p>Quantifier Mastery — CEFR A1&ndash;A2 English grammar practice for Thai students. &middot; Cr. Bright EngMath</p>
+</footer>
+
+<div id="modal-root"></div>
+
+<script>
+// Auto-extracted data for vanilla HTML build
+
+// ---------------------------------------------------------------------------
+// Mini practice question banks (3–5 original interactive questions per lesson)
+// ---------------------------------------------------------------------------
+
+const countableUncountableMini = [
+  {
+    id: 'mini-cu-1',
+    type: 'classify',
+    quizMode: 'mini',
+    lessonId: 'countable-uncountable',
+    category: 'Countable/Uncountable',
+    prompt: 'Which word is UNCOUNTABLE?',
+    options: [
+      { id: 'a', label: 'book' },
+      { id: 'b', label: 'water' },
+      { id: 'c', label: 'student' },
+      { id: 'd', label: 'apple' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"Water" cannot be counted one by one, so it has no plural form.',
+    explanationThai: '"water" เป็นคำนามนับไม่ได้ ไม่สามารถนับเป็นชิ้นๆ ได้ และไม่มีรูปพหูพจน์ ส่วน book, student, apple นับได้และเติม -s ได้',
+    grammarRule: 'Uncountable nouns (water, milk, rice, money, information) have no plural -s form.',
+    additionalExample: 'She needs some water, not "two waters".',
+  },
+  {
+    id: 'mini-cu-2',
+    type: 'true-false',
+    quizMode: 'mini',
+    lessonId: 'countable-uncountable',
+    category: 'Countable/Uncountable',
+    prompt: '"Homework" is a countable noun, so we can say "two homeworks".',
+    options: [
+      { id: 'true', label: 'True' },
+      { id: 'false', label: 'False' },
+    ],
+    correctAnswer: 'false',
+    explanationEnglish: '"Homework" is uncountable — it never takes a plural -s.',
+    explanationThai: '"homework" เป็นคำนามนับไม่ได้ จึงไม่มีรูปพหูพจน์ ห้ามพูดว่า "two homeworks" ให้พูดว่า "a lot of homework" หรือ "much homework" แทน',
+    grammarRule: 'Uncountable nouns never take a plural -s, even when the quantity feels large.',
+    additionalExample: 'I have a lot of homework this week.',
+  },
+  {
+    id: 'mini-cu-3',
+    type: 'fill-blank',
+    quizMode: 'mini',
+    lessonId: 'countable-uncountable',
+    category: 'Countable/Uncountable',
+    prompt: 'Complete the sentence with the correct plural form: There are three ___ (book) on the desk.',
+    correctAnswer: 'books',
+    acceptableAnswers: ['books'],
+    explanationEnglish: '"Book" is countable, so after the number three it becomes plural: books.',
+    explanationThai: '"book" เป็นคำนามนับได้ เมื่อมีจำนวนมากกว่าหนึ่ง (three) ต้องเติม -s เป็น "books"',
+    grammarRule: 'Countable nouns add -s / -es to form the plural after numbers greater than one.',
+    additionalExample: 'I bought five books yesterday.',
+  },
+  {
+    id: 'mini-cu-4',
+    type: 'sort',
+    quizMode: 'mini',
+    lessonId: 'countable-uncountable',
+    category: 'Countable/Uncountable',
+    prompt: 'Which group contains ONLY uncountable nouns?',
+    options: [
+      { id: 'a', label: 'rice, sugar, information' },
+      { id: 'b', label: 'apple, rice, student' },
+      { id: 'c', label: 'money, book, water' },
+      { id: 'd', label: 'sugar, pencil, milk' },
+    ],
+    correctAnswer: 'a',
+    explanationEnglish: 'Rice, sugar and information are all uncountable — none of them can take a plural -s.',
+    explanationThai: 'rice, sugar และ information ล้วนเป็นคำนามนับไม่ได้ทั้งหมด ไม่มีคำใดเติม -s ได้ ส่วนตัวเลือกอื่นมีคำนามนับได้ปนอยู่ เช่น apple, student, book, pencil',
+    grammarRule: 'Common uncountable nouns include water, milk, rice, sugar, money, information, and homework.',
+    additionalExample: 'We need more information before we decide.',
+  },
+];
+
+const manyMuchMini = [
+  {
+    id: 'mini-mm-1',
+    type: 'multiple-choice',
+    quizMode: 'mini',
+    lessonId: 'many-much',
+    category: 'Many/Much',
+    prompt: 'There are ___ students in the classroom.',
+    options: [
+      { id: 'a', label: 'many' },
+      { id: 'b', label: 'much' },
+      { id: 'c', label: 'a little' },
+      { id: 'd', label: 'little' },
+    ],
+    correctAnswer: 'a',
+    explanationEnglish: '"Students" is a plural countable noun, so it needs "many".',
+    explanationThai: '"students" เป็นคำนามนับได้พหูพจน์ จึงต้องใช้ "many" ส่วน "much" ใช้กับคำนามนับไม่ได้',
+    grammarRule: 'many + plural countable noun.',
+    additionalExample: 'Many teachers work at this school.',
+  },
+  {
+    id: 'mini-mm-2',
+    type: 'error-identification',
+    quizMode: 'mini',
+    lessonId: 'many-much',
+    category: 'Many/Much',
+    prompt: 'Find the mistake: "There are much books on the shelf."',
+    options: [
+      { id: 'a', label: 'There are' },
+      { id: 'b', label: 'much' },
+      { id: 'c', label: 'books' },
+      { id: 'd', label: 'on the shelf' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: 'The mistake is "much". Since "books" is plural countable, it should be "many books".',
+    explanationThai: 'จุดผิดคือคำว่า "much" เพราะ "books" เป็นคำนามนับได้พหูพจน์ ต้องใช้ "many books" ไม่ใช่ "much books"',
+    grammarRule: 'Use many, not much, before plural countable nouns.',
+    additionalExample: 'There are many books on the shelf.',
+  },
+  {
+    id: 'mini-mm-3',
+    type: 'sentence-correction',
+    quizMode: 'mini',
+    lessonId: 'many-much',
+    category: 'Many/Much',
+    prompt: 'Correct this sentence: "We do not have many time."',
+    correctAnswer: 'We do not have much time.',
+    acceptableAnswers: ['we do not have much time', 'we do not have much time.'],
+    explanationEnglish: '"Time" is uncountable, so it needs "much", not "many".',
+    explanationThai: '"time" เป็นคำนามนับไม่ได้ จึงต้องใช้ "much" ไม่ใช่ "many" ประโยคที่ถูกต้องคือ "We do not have much time."',
+    grammarRule: 'much + uncountable noun, especially in negative sentences and questions.',
+    additionalExample: 'How much time do we have left?',
+  },
+  {
+    id: 'mini-mm-4',
+    type: 'closest-meaning',
+    quizMode: 'mini',
+    lessonId: 'many-much',
+    category: 'Many/Much',
+    prompt: 'Which sentence is grammatically correct?',
+    options: [
+      { id: 'a', label: 'I do not have many money.' },
+      { id: 'b', label: 'I do not have much money.' },
+      { id: 'c', label: 'I do not have much friends.' },
+      { id: 'd', label: 'I do not have many money left.' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"Money" is uncountable, so "much money" is correct.',
+    explanationThai: '"money" เป็นคำนามนับไม่ได้ จึงต้องใช้ "much money" ประโยค "I do not have much money." จึงถูกต้อง',
+    grammarRule: 'much + uncountable noun (money, time, water, information).',
+    additionalExample: 'She does not have much money this month.',
+  },
+];
+
+const someAnyMini = [
+  {
+    id: 'mini-sa-1',
+    type: 'multiple-choice',
+    quizMode: 'mini',
+    lessonId: 'some-any',
+    category: 'Some/Any',
+    prompt: 'I have ___ pencils in my bag.',
+    options: [
+      { id: 'a', label: 'some' },
+      { id: 'b', label: 'any' },
+      { id: 'c', label: 'much' },
+      { id: 'd', label: 'every' },
+    ],
+    correctAnswer: 'a',
+    explanationEnglish: 'This is an affirmative (positive) sentence, so we use "some".',
+    explanationThai: 'ประโยคนี้เป็นประโยคบอกเล่า (affirmative) จึงใช้ "some" ส่วน "any" ใช้กับประโยคคำถามและปฏิเสธ',
+    grammarRule: 'some is normally used in affirmative sentences.',
+    additionalExample: 'There is some milk in the fridge.',
+  },
+  {
+    id: 'mini-sa-2',
+    type: 'true-false',
+    quizMode: 'mini',
+    lessonId: 'some-any',
+    category: 'Some/Any',
+    prompt: '"Would you like some juice?" is a correct and natural offer.',
+    options: [
+      { id: 'true', label: 'True' },
+      { id: 'false', label: 'False' },
+    ],
+    correctAnswer: 'true',
+    explanationEnglish: 'Offers and requests that expect "yes" use "some", even in question form.',
+    explanationThai: 'ประโยคนี้ถูกต้อง เพราะเป็นประโยคชักชวน/เสนอของ (offer) ที่คาดหวังคำตอบว่า "yes" จึงใช้ "some" ได้แม้จะอยู่ในรูปคำถาม',
+    grammarRule: 'some is used in offers and requests, even though they are questions (e.g. Would you like some...? Can I have some...?).',
+    additionalExample: 'Can I have some water, please?',
+  },
+  {
+    id: 'mini-sa-3',
+    type: 'fill-blank',
+    quizMode: 'mini',
+    lessonId: 'some-any',
+    category: 'Some/Any',
+    prompt: 'Complete: "I do not have ___ homework tonight."',
+    correctAnswer: 'any',
+    acceptableAnswers: ['any'],
+    explanationEnglish: 'Negative sentences normally use "any", not "some".',
+    explanationThai: 'ประโยคปฏิเสธ (negative) ใช้ "any" ไม่ใช่ "some" ประโยคที่ถูกต้องคือ "I do not have any homework tonight."',
+    grammarRule: 'any is used in negative sentences.',
+    additionalExample: 'There is not any sugar in the jar.',
+  },
+  {
+    id: 'mini-sa-4',
+    type: 'match',
+    quizMode: 'mini',
+    lessonId: 'some-any',
+    category: 'Some/Any',
+    prompt: '"You can choose ___ book you like." Which word fits, and why?',
+    options: [
+      { id: 'a', label: 'any — it does not matter which one' },
+      { id: 'b', label: 'some — it does not matter which one' },
+      { id: 'c', label: 'much — it does not matter which one' },
+      { id: 'd', label: 'every — it does not matter which one' },
+    ],
+    correctAnswer: 'a',
+    explanationEnglish: '"Any" can mean "it doesn\'t matter which one", used in affirmative sentences too.',
+    explanationThai: '"any" มีความหมายว่า "อันไหนก็ได้ ไม่จำกัด" ใช้ได้แม้ในประโยคบอกเล่า ต่างจาก "some" ที่หมายถึงจำนวนหนึ่งที่ไม่ระบุแน่ชัด',
+    grammarRule: 'any can also mean "it doesn\'t matter which one" in affirmative sentences.',
+    additionalExample: 'You can sit in any seat you like.',
+  },
+];
+
+const aFewFewMini = [
+  {
+    id: 'mini-af-1',
+    type: 'multiple-choice',
+    quizMode: 'mini',
+    lessonId: 'a-few-few',
+    category: 'A Few/Few',
+    prompt: 'I have ___ friends at school, so I am not lonely.',
+    options: [
+      { id: 'a', label: 'a few' },
+      { id: 'b', label: 'few' },
+      { id: 'c', label: 'much' },
+      { id: 'd', label: 'a little' },
+    ],
+    correctAnswer: 'a',
+    explanationEnglish: 'The meaning is positive (I am not lonely), so we use "a few" = enough friends.',
+    explanationThai: 'ความหมายเป็นเชิงบวก (ไม่เหงา) จึงใช้ "a few" ที่แปลว่ามีเพื่อนจำนวนหนึ่งซึ่งเพียงพอ ไม่ใช่ "few" ที่แปลว่าแทบไม่มีเลย',
+    grammarRule: 'a few + plural countable noun = a small number, but enough (positive).',
+    additionalExample: 'She has a few close friends she trusts.',
+  },
+  {
+    id: 'mini-af-2',
+    type: 'true-false',
+    quizMode: 'mini',
+    lessonId: 'a-few-few',
+    category: 'A Few/Few',
+    prompt: '"Few students understood the lesson" means most students DID understand.',
+    options: [
+      { id: 'true', label: 'True' },
+      { id: 'false', label: 'False' },
+    ],
+    correctAnswer: 'false',
+    explanationEnglish: '"Few" (without "a") has a negative meaning: almost no students understood.',
+    explanationThai: '"few" (ไม่มี "a") มีความหมายเชิงลบ คือแทบไม่มีนักเรียนคนไหนเข้าใจบทเรียนเลย ตรงข้ามกับ "a few" ที่หมายถึงมีจำนวนหนึ่งที่เพียงพอ',
+    grammarRule: 'few + plural countable noun = almost none, not enough (negative).',
+    additionalExample: 'Few students answered the difficult question correctly.',
+  },
+  {
+    id: 'mini-af-3',
+    type: 'tap-word',
+    quizMode: 'mini',
+    lessonId: 'a-few-few',
+    category: 'A Few/Few',
+    prompt: 'Choose the word that matches this picture idea: "five apples in a basket — that is a good, small amount."',
+    options: [
+      { id: 'a', label: 'a few' },
+      { id: 'b', label: 'few' },
+      { id: 'c', label: 'much' },
+      { id: 'd', label: 'every' },
+    ],
+    correctAnswer: 'a',
+    explanationEnglish: 'Five apples is a small but positive, sufficient number — that matches "a few".',
+    explanationThai: 'แอปเปิ้ล 5 ผลถือเป็นจำนวนน้อยแต่เพียงพอในเชิงบวก จึงตรงกับความหมายของ "a few" ไม่ใช่ "few" ที่สื่อถึงจำนวนน้อยจนไม่พอ',
+    grammarRule: 'a few = a small but sufficient/positive number of countable things.',
+    additionalExample: 'We have a few eggs left — enough for breakfast.',
+  },
+];
+
+const aLittleLittleMini = [
+  {
+    id: 'mini-al-1',
+    type: 'multiple-choice',
+    quizMode: 'mini',
+    lessonId: 'a-little-little',
+    category: 'A Little/Little',
+    prompt: 'We have ___ time before class, so let\'s review quickly.',
+    options: [
+      { id: 'a', label: 'a little' },
+      { id: 'b', label: 'little' },
+      { id: 'c', label: 'many' },
+      { id: 'd', label: 'a few' },
+    ],
+    correctAnswer: 'a',
+    explanationEnglish: '"Time" is uncountable, and the meaning is positive (enough time to review), so we use "a little".',
+    explanationThai: '"time" เป็นคำนามนับไม่ได้ และความหมายเป็นเชิงบวก (มีเวลาพอทบทวน) จึงใช้ "a little" ไม่ใช่ "little" ที่สื่อว่าแทบไม่มีเวลาเลย',
+    grammarRule: 'a little + uncountable noun = a small amount, but enough (positive).',
+    additionalExample: 'Could I have a little sugar in my tea?',
+  },
+  {
+    id: 'mini-al-2',
+    type: 'sentence-correction',
+    quizMode: 'mini',
+    lessonId: 'a-little-little',
+    category: 'A Little/Little',
+    prompt: 'Correct this sentence: "I have a few money."',
+    correctAnswer: 'I have a little money.',
+    acceptableAnswers: ['i have a little money', 'i have a little money.'],
+    explanationEnglish: '"Money" is uncountable, so it takes "a little", not "a few" (which is for plural countable nouns).',
+    explanationThai: '"money" เป็นคำนามนับไม่ได้ จึงต้องใช้ "a little" ไม่ใช่ "a few" ซึ่งใช้กับคำนามนับได้พหูพจน์เท่านั้น',
+    grammarRule: 'a little / little are used with uncountable nouns; a few / few are used with plural countable nouns.',
+    additionalExample: 'I have a little money saved for a new bike.',
+  },
+  {
+    id: 'mini-al-3',
+    type: 'true-false',
+    quizMode: 'mini',
+    lessonId: 'a-little-little',
+    category: 'A Little/Little',
+    prompt: '"There is little water left" means there is enough water.',
+    options: [
+      { id: 'true', label: 'True' },
+      { id: 'false', label: 'False' },
+    ],
+    correctAnswer: 'false',
+    explanationEnglish: '"Little" (without "a") means almost none — not enough.',
+    explanationThai: '"little" (ไม่มี "a") มีความหมายเชิงลบ คือมีน้ำเหลืออยู่น้อยมากจนแทบไม่พอใช้ ตรงข้ามกับ "a little" ที่หมายถึงมีพอประมาณ',
+    grammarRule: 'little + uncountable noun = almost none, not enough (negative).',
+    additionalExample: 'There is little water left in the bottle — we need more.',
+  },
+];
+
+const eachEveryMini = [
+  {
+    id: 'mini-ee-1',
+    type: 'multiple-choice',
+    quizMode: 'mini',
+    lessonId: 'each-every',
+    category: 'Each/Every',
+    prompt: '___ student must complete the test.',
+    options: [
+      { id: 'a', label: 'Every' },
+      { id: 'b', label: 'All' },
+      { id: 'c', label: 'Many' },
+      { id: 'd', label: 'Some' },
+    ],
+    correctAnswer: 'a',
+    explanationEnglish: '"Every" refers to all members of a group together, followed by a singular noun.',
+    explanationThai: '"every" หมายถึงสมาชิกทุกคนในกลุ่มโดยรวม ตามด้วยคำนามเอกพจน์ ("student" ไม่ใช่ "students")',
+    grammarRule: 'every + singular countable noun + singular verb.',
+    additionalExample: 'Every child has a pencil.',
+  },
+  {
+    id: 'mini-ee-2',
+    type: 'error-identification',
+    quizMode: 'mini',
+    lessonId: 'each-every',
+    category: 'Subject-Verb Agreement',
+    prompt: 'Find the mistake: "Every students are ready."',
+    options: [
+      { id: 'a', label: 'Every' },
+      { id: 'b', label: 'students' },
+      { id: 'c', label: 'are' },
+      { id: 'd', label: 'ready' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: 'The mistake is "students" — after "every" the noun and verb must be singular: "Every student is ready."',
+    explanationThai: 'จุดผิดคือคำว่า "students" เพราะหลัง "every" ต้องตามด้วยคำนามและกริยารูปเอกพจน์ ประโยคที่ถูกต้องคือ "Every student is ready."',
+    grammarRule: 'every and each are followed by a singular noun and a singular verb.',
+    additionalExample: 'Every student is ready for the exam.',
+  },
+  {
+    id: 'mini-ee-3',
+    type: 'sentence-correction',
+    quizMode: 'mini',
+    lessonId: 'each-every',
+    category: 'Each/Every',
+    prompt: 'Correct this sentence: "Each children have a book."',
+    correctAnswer: 'Each child has a book.',
+    acceptableAnswers: ['each child has a book', 'each child has a book.'],
+    explanationEnglish: '"Each" is followed by a singular noun (child, not children) and a singular verb (has, not have).',
+    explanationThai: '"each" ตามด้วยคำนามเอกพจน์ (child ไม่ใช่ children) และกริยารูปเอกพจน์ (has ไม่ใช่ have) ประโยคที่ถูกต้องคือ "Each child has a book."',
+    grammarRule: 'each + singular countable noun + singular verb, even though "each" refers to two or more individuals.',
+    additionalExample: 'Each player received a medal.',
+  },
+  {
+    id: 'mini-ee-4',
+    type: 'closest-meaning',
+    quizMode: 'mini',
+    lessonId: 'each-every',
+    category: 'Each/Every',
+    prompt: '"Each of the players received a medal." This sentence focuses on...',
+    options: [
+      { id: 'a', label: 'the players as individuals, one by one' },
+      { id: 'b', label: 'the players as a single large group' },
+      { id: 'c', label: 'only the best player' },
+      { id: 'd', label: 'the coach, not the players' },
+    ],
+    correctAnswer: 'a',
+    explanationEnglish: '"Each" emphasises individuals separately, while "every" emphasises the whole group together.',
+    explanationThai: '"each" เน้นความหมายที่สมาชิกแต่ละคนแยกกัน ทีละคน ส่วน "every" เน้นสมาชิกทั้งหมดในกลุ่มโดยรวมเป็นหนึ่งเดียว',
+    grammarRule: 'each = individually; every = all members of a group together.',
+    additionalExample: 'Each of the students gave a different answer.',
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Lessons
+// ---------------------------------------------------------------------------
+
+const lessons = [
+  {
+    id: 'countable-uncountable',
+    order: 1,
+    title: 'Countable & Uncountable Nouns',
+    subtitle: 'The foundation every quantifier is built on',
+    icon: 'Boxes',
+    accentQuantifiers: [],
+    intro:
+      'Before you can choose the right quantifier, you need to know whether a noun is countable or uncountable. This is the single most important rule in this whole topic.',
+    points: [
+      {
+        heading: 'Countable nouns',
+        body: 'Countable nouns can be counted one by one. They have a singular form and a plural form (usually + -s).',
+        examples: ['one apple, two apples', 'one book, three books', 'one student, five students'],
+      },
+      {
+        heading: 'Uncountable nouns',
+        body: 'Uncountable nouns are not normally counted individually. They do NOT have a plural -s form — you cannot say "waters" or "moneys" in everyday use.',
+        examples: ['water, milk, rice, sugar', 'money, information', 'homework'],
+      },
+      {
+        heading: 'Why this matters',
+        body: 'Every quantifier in this app pairs with either countable or uncountable nouns (or both). Get this rule right first, and the rest becomes easy.',
+        examples: ['many books (countable) vs. much water (uncountable)', 'a few chairs (countable) vs. a little rice (uncountable)'],
+      },
+    ],
+    commonMistakes: [
+      { wrong: 'I need two informations.', right: 'I need some information.' },
+      { wrong: 'She has three homeworks.', right: 'She has a lot of homework.' },
+    ],
+    miniPractice: countableUncountableMini,
+  },
+  {
+    id: 'many-much',
+    order: 2,
+    title: 'Many vs Much',
+    subtitle: 'Talking about large quantities',
+    icon: 'Scale',
+    accentQuantifiers: ['many', 'much'],
+    intro:
+      '"Many" and "much" both describe a large quantity — the difference is simply whether the noun is countable or uncountable.',
+    points: [
+      {
+        heading: 'Many + plural countable noun',
+        body: '"Many" is used with countable nouns in their plural form.',
+        examples: ['many books', 'many students', 'many questions', 'There are many students in the classroom.'],
+      },
+      {
+        heading: 'Much + uncountable noun',
+        body: '"Much" is used with uncountable nouns.',
+        examples: ['much water', 'much time', 'much money', 'We do not have much time.'],
+      },
+      {
+        heading: 'A useful note',
+        body: '"Much" is more common in questions and negative sentences than in positive statements. In positive statements, "a lot of" is often more natural than "much".',
+        examples: ['How much water is left?', 'We don\'t have much money.', 'We have a lot of money. (more natural than "We have much money.")'],
+      },
+    ],
+    commonMistakes: [
+      { wrong: 'There are much books.', right: 'There are many books.' },
+      { wrong: 'I do not have many money.', right: 'I do not have much money.' },
+    ],
+    miniPractice: manyMuchMini,
+  },
+  {
+    id: 'some-any',
+    order: 3,
+    title: 'Some vs Any',
+    subtitle: 'Positive sentences, questions, and offers',
+    icon: 'HelpCircle',
+    accentQuantifiers: ['some', 'any'],
+    intro:
+      '"Some" and "any" both mean "an unspecified amount". The key is knowing which type of sentence you are in.',
+    points: [
+      {
+        heading: 'Some — affirmative sentences',
+        body: 'Use "some" in positive (affirmative) statements, with both countable and uncountable nouns.',
+        examples: ['I have some pencils.', 'There is some milk in the fridge.'],
+      },
+      {
+        heading: 'Some — offers and requests',
+        body: 'Use "some" in questions that are offers or requests, where you expect the answer "yes".',
+        examples: ['Would you like some juice?', 'Can I have some water?'],
+      },
+      {
+        heading: 'Any — questions and negatives',
+        body: 'Use "any" in ordinary questions and in negative sentences.',
+        examples: ['Do you have any brothers?', 'There is not any sugar.', 'I do not have any homework.'],
+      },
+      {
+        heading: 'Any — "it doesn\'t matter which one"',
+        body: '"Any" can also appear in positive sentences when it means "it doesn\'t matter which one".',
+        examples: ['You can choose any book.', 'Come and visit any time.'],
+      },
+    ],
+    commonMistakes: [
+      { wrong: 'I have any pencils.', right: 'I have some pencils.' },
+      { wrong: 'Do you have some brothers?', right: 'Do you have any brothers?' },
+    ],
+    miniPractice: someAnyMini,
+  },
+  {
+    id: 'a-few-few',
+    order: 4,
+    title: 'A Few vs Few',
+    subtitle: 'Small numbers — positive or negative?',
+    icon: 'Apple',
+    accentQuantifiers: ['a-few', 'few'],
+    intro:
+      'Both "a few" and "few" go with plural countable nouns, but the small word "a" changes the whole feeling of the sentence.',
+    points: [
+      {
+        heading: 'A few — positive',
+        body: '"A few" means a small number, but enough. It has a positive feeling.',
+        examples: ['I have a few friends at school.', 'She has a few good ideas.'],
+      },
+      {
+        heading: 'Few — negative',
+        body: '"Few" (without "a") means almost none, not enough. It has a negative feeling.',
+        examples: ['Few students understood the lesson.', 'Few people came to the meeting.'],
+      },
+      {
+        heading: 'Picture it',
+        body: 'Think of "a few" as five apples in a basket (a nice, useful amount), and "few" as just one lonely apple (not enough).',
+        examples: ['a few apples = five apples, enough for the class', 'few apples = one apple, not enough to share'],
+      },
+    ],
+    commonMistakes: [
+      { wrong: 'Few friends came to my party, so it was great!', right: 'A few friends came to my party, so it was great!' },
+    ],
+    miniPractice: aFewFewMini,
+  },
+  {
+    id: 'a-little-little',
+    order: 5,
+    title: 'A Little vs Little',
+    subtitle: 'Small amounts — positive or negative?',
+    icon: 'Droplet',
+    accentQuantifiers: ['a-little', 'little'],
+    intro:
+      '"A little" and "little" work exactly like "a few" and "few", but with uncountable nouns instead of plural countable nouns.',
+    points: [
+      {
+        heading: 'A little — positive',
+        body: '"A little" means a small amount, but enough. It has a positive feeling.',
+        examples: ['We have a little time before class.', 'There is a little sugar left — enough for one cup.'],
+      },
+      {
+        heading: 'Little — negative',
+        body: '"Little" (without "a") means almost none, not enough. It has a negative feeling.',
+        examples: ['We have little time left.', 'There is little hope of finishing today.'],
+      },
+    ],
+    commonMistakes: [
+      { wrong: 'I have a few money.', right: 'I have a little money.' },
+      { wrong: 'There is few water.', right: 'There is little water.' },
+    ],
+    miniPractice: aLittleLittleMini,
+  },
+  {
+    id: 'each-every',
+    order: 6,
+    title: 'Each vs Every',
+    subtitle: 'Individually, or all together?',
+    icon: 'Users',
+    accentQuantifiers: ['each', 'every'],
+    intro:
+      '"Each" and "every" are both followed by a singular noun and a singular verb, but they focus on the group in different ways.',
+    points: [
+      {
+        heading: 'Each — individually',
+        body: '"Each" focuses on members of a group one by one, individually. It can be used with just two or more.',
+        examples: ['Each student has a book.', 'Each of the players received a medal.'],
+      },
+      {
+        heading: 'Every — all together',
+        body: '"Every" focuses on all members of a group together as a whole, normally three or more.',
+        examples: ['Every student must complete the test.', 'I go to school every day.'],
+      },
+      {
+        heading: 'Singular noun + singular verb',
+        body: 'Both "each" and "every" are always followed by a singular countable noun and a singular verb — never a plural one.',
+        examples: ['Each student is ready.', 'Every child has a pencil.'],
+      },
+    ],
+    commonMistakes: [
+      { wrong: 'Every students are ready.', right: 'Every student is ready.' },
+      { wrong: 'Each children have a book.', right: 'Each child has a book.' },
+    ],
+    miniPractice: eachEveryMini,
+  },
+];
+
+
+const allMiniPracticeQuestions = lessons.flatMap((lesson) => lesson.miniPractice);
+
+// The full "Quick Comparison" table covering all 10 quantifiers taught in this app.
+const comparisonData = [
+  {
+    quantifier: 'many',
+    nounType: 'Plural countable',
+    meaning: 'A large number',
+    example: 'There are many students in the classroom.',
+  },
+  {
+    quantifier: 'much',
+    nounType: 'Uncountable',
+    meaning: 'A large amount',
+    example: 'We do not have much time.',
+  },
+  {
+    quantifier: 'some',
+    nounType: 'Countable & uncountable',
+    meaning: 'An unspecified amount (usually positive sentences)',
+    example: 'I have some pencils. There is some milk in the fridge.',
+  },
+  {
+    quantifier: 'any',
+    nounType: 'Countable & uncountable',
+    meaning: 'Questions, negatives, or "no restriction"',
+    example: 'Do you have any brothers? I do not have any homework.',
+  },
+  {
+    quantifier: 'a few',
+    nounType: 'Plural countable',
+    meaning: 'Some, and enough (positive)',
+    example: 'I have a few friends at school.',
+  },
+  {
+    quantifier: 'few',
+    nounType: 'Plural countable',
+    meaning: 'Almost none, not enough (negative)',
+    example: 'Few students understood the lesson.',
+  },
+  {
+    quantifier: 'a little',
+    nounType: 'Uncountable',
+    meaning: 'Some, and enough (positive)',
+    example: 'We have a little time before class.',
+  },
+  {
+    quantifier: 'little',
+    nounType: 'Uncountable',
+    meaning: 'Almost none, not enough (negative)',
+    example: 'We have little time left.',
+  },
+  {
+    quantifier: 'each',
+    nounType: 'Singular countable',
+    meaning: 'Individually, one by one (2 or more)',
+    example: 'Each student has a book.',
+  },
+  {
+    quantifier: 'every',
+    nounType: 'Singular countable',
+    meaning: 'All members of a group together (usually 3+)',
+    example: 'Every student must complete the test.',
+  },
+];
+
+// "Remember This" — short, skimmable memory tips shown at the end of the Learn section.
+const memoryTips = [
+  { id: 'tip-many', text: 'many + plural countable noun (many books, many students)' },
+  { id: 'tip-much', text: 'much + uncountable noun (much water, much time)' },
+  { id: 'tip-few-family', text: 'a few / few + plural countable noun (a few apples, few apples)' },
+  { id: 'tip-little-family', text: 'a little / little + uncountable noun (a little water, little water)' },
+  { id: 'tip-some', text: 'some is most common in affirmative (positive) sentences' },
+  { id: 'tip-any', text: 'any is most common in questions and negative sentences' },
+  { id: 'tip-each-every', text: 'each and every are both followed by a singular noun + singular verb' },
+  { id: 'tip-a-positive', text: 'the little word "a" makes a few / a little feel positive — "enough"' },
+  { id: 'tip-no-a-negative', text: 'without "a", few / little feel negative — "not enough", "almost none"' },
+];
+
+// ---------------------------------------------------------------------------
+// EASY TEST — 15 original questions
+// Basic countable/uncountable, many vs much, some vs any, basic recognition
+// of a few/few/a little/little, basic each/every.
+// ---------------------------------------------------------------------------
+
+const easyQuestions = [
+  {
+    id: 'easy-1',
+    type: 'classify',
+    quizMode: 'easy',
+    category: 'Countable/Uncountable',
+    prompt: 'Which noun is COUNTABLE?',
+    options: [
+      { id: 'a', label: 'rice' },
+      { id: 'b', label: 'pencil' },
+      { id: 'c', label: 'money' },
+      { id: 'd', label: 'information' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"Pencil" can be counted one by one (one pencil, two pencils), so it is countable.',
+    explanationThai: '"pencil" สามารถนับเป็นชิ้นได้ (หนึ่งแท่ง สองแท่ง) จึงเป็นคำนามนับได้ ส่วน rice, money, information เป็นคำนามนับไม่ได้',
+    grammarRule: 'Countable nouns can be counted one by one and have a plural form.',
+    additionalExample: 'I bought two pencils and a notebook.',
+  },
+  {
+    id: 'easy-2',
+    type: 'multiple-choice',
+    quizMode: 'easy',
+    category: 'Many/Much',
+    prompt: 'There are ___ chairs in this room.',
+    options: [
+      { id: 'a', label: 'much' },
+      { id: 'b', label: 'many' },
+      { id: 'c', label: 'a little' },
+      { id: 'd', label: 'little' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"Chairs" is plural countable, so we use "many".',
+    explanationThai: '"chairs" เป็นคำนามนับได้พหูพจน์ จึงต้องใช้ "many" ส่วน "much" ใช้กับคำนามนับไม่ได้เท่านั้น',
+    grammarRule: 'many + plural countable noun.',
+    additionalExample: 'There are many chairs around the table.',
+  },
+  {
+    id: 'easy-3',
+    type: 'multiple-choice',
+    quizMode: 'easy',
+    category: 'Many/Much',
+    prompt: 'We do not have ___ time to finish this.',
+    options: [
+      { id: 'a', label: 'many' },
+      { id: 'b', label: 'much' },
+      { id: 'c', label: 'a few' },
+      { id: 'd', label: 'every' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"Time" is uncountable, so we use "much" in this negative sentence.',
+    explanationThai: '"time" เป็นคำนามนับไม่ได้ จึงใช้ "much" โดยเฉพาะในประโยคปฏิเสธเช่นนี้',
+    grammarRule: 'much + uncountable noun, common in negatives and questions.',
+    additionalExample: 'How much time do we have before the bus leaves?',
+  },
+  {
+    id: 'easy-4',
+    type: 'fill-blank',
+    quizMode: 'easy',
+    category: 'Many/Much',
+    prompt: 'Complete the sentence: "How ___ water do you drink every day?"',
+    correctAnswer: 'much',
+    acceptableAnswers: ['much'],
+    explanationEnglish: '"Water" is uncountable, so questions about quantity use "much".',
+    explanationThai: '"water" เป็นคำนามนับไม่ได้ คำถามเกี่ยวกับปริมาณจึงใช้ "much" เช่น "How much water...?"',
+    grammarRule: 'much + uncountable noun in questions with "How much...?"',
+    additionalExample: 'How much milk is left in the bottle?',
+  },
+  {
+    id: 'easy-5',
+    type: 'multiple-choice',
+    quizMode: 'easy',
+    category: 'Some/Any',
+    prompt: 'I have ___ good news for you today.',
+    options: [
+      { id: 'a', label: 'any' },
+      { id: 'b', label: 'some' },
+      { id: 'c', label: 'every' },
+      { id: 'd', label: 'few' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: 'This is an affirmative sentence, so "some" is the natural choice.',
+    explanationThai: 'ประโยคนี้เป็นประโยคบอกเล่า (affirmative) จึงใช้ "some" เป็นคำที่เหมาะสมที่สุด',
+    grammarRule: 'some is normally used in affirmative (positive) sentences.',
+    additionalExample: 'I bought some new shoes yesterday.',
+  },
+  {
+    id: 'easy-6',
+    type: 'multiple-choice',
+    quizMode: 'easy',
+    category: 'Some/Any',
+    prompt: 'There is not ___ sugar left in the jar.',
+    options: [
+      { id: 'a', label: 'some' },
+      { id: 'b', label: 'any' },
+      { id: 'c', label: 'many' },
+      { id: 'd', label: 'each' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: 'Negative sentences use "any", not "some".',
+    explanationThai: 'ประโยคปฏิเสธใช้ "any" ไม่ใช่ "some" ประโยคที่ถูกต้องคือ "There is not any sugar left."',
+    grammarRule: 'any is used in negative sentences.',
+    additionalExample: 'I do not have any brothers or sisters.',
+  },
+  {
+    id: 'easy-7',
+    type: 'multiple-choice',
+    quizMode: 'easy',
+    category: 'Some/Any',
+    prompt: 'Do you have ___ questions about the homework?',
+    options: [
+      { id: 'a', label: 'some' },
+      { id: 'b', label: 'any' },
+      { id: 'c', label: 'much' },
+      { id: 'd', label: 'little' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: 'This is an ordinary question (not an offer), so we use "any".',
+    explanationThai: 'ประโยคนี้เป็นคำถามทั่วไป ไม่ใช่การเสนอสิ่งของ (offer) จึงใช้ "any" ไม่ใช่ "some"',
+    grammarRule: 'any is used in ordinary questions.',
+    additionalExample: 'Do you have any pets at home?',
+  },
+  {
+    id: 'easy-8',
+    type: 'classify',
+    quizMode: 'easy',
+    category: 'A Few/Few',
+    prompt: 'Choose the phrase with a POSITIVE meaning (enough).',
+    options: [
+      { id: 'a', label: 'few friends' },
+      { id: 'b', label: 'a few friends' },
+      { id: 'c', label: 'no friends' },
+      { id: 'd', label: 'little friends' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"A few" means a small number, but enough — a positive feeling.',
+    explanationThai: '"a few" หมายถึงมีจำนวนหนึ่งซึ่งเพียงพอ ให้ความรู้สึกเชิงบวก ต่างจาก "few" ที่ให้ความรู้สึกเชิงลบว่ามีน้อยเกินไป',
+    grammarRule: 'a few + plural countable noun = a small number, but enough (positive).',
+    additionalExample: 'I have a few coins in my pocket — enough for the bus.',
+  },
+  {
+    id: 'easy-9',
+    type: 'classify',
+    quizMode: 'easy',
+    category: 'A Little/Little',
+    prompt: 'Choose the phrase with a NEGATIVE meaning (not enough).',
+    options: [
+      { id: 'a', label: 'a little water' },
+      { id: 'b', label: 'much water' },
+      { id: 'c', label: 'little water' },
+      { id: 'd', label: 'some water' },
+    ],
+    correctAnswer: 'c',
+    explanationEnglish: '"Little" (without "a") means almost none — not enough.',
+    explanationThai: '"little" (ไม่มี "a") ให้ความหมายเชิงลบว่ามีน้อยมากจนแทบไม่พอใช้ ต่างจาก "a little" ที่หมายถึงมีพอประมาณ',
+    grammarRule: 'little + uncountable noun = almost none, not enough (negative).',
+    additionalExample: 'There is little water in the bottle — we should buy more.',
+  },
+  {
+    id: 'easy-10',
+    type: 'multiple-choice',
+    quizMode: 'easy',
+    category: 'Each/Every',
+    prompt: '___ student has a name tag.',
+    options: [
+      { id: 'a', label: 'Each' },
+      { id: 'b', label: 'Every' },
+      { id: 'c', label: 'Many' },
+      { id: 'd', label: 'A few' },
+    ],
+    correctAnswer: 'a',
+    explanationEnglish: 'Either "each" or "every" could fit grammatically, but "each" pairs naturally with "has" here to emphasise individuals, and both are correct with singular nouns. In this basic sentence, "each" is the best match with the individual focus implied by "a name tag".',
+    explanationThai: 'ทั้ง "each" และ "every" ตามด้วยคำนามเอกพจน์ได้ถูกต้องตามหลักไวยากรณ์ แต่ "each" เน้นความหมายที่นักเรียนแต่ละคนมีป้ายชื่อของตัวเอง (individually) จึงเหมาะกับบริบทนี้มากที่สุด',
+    grammarRule: 'each / every + singular countable noun + singular verb.',
+    additionalExample: 'Each student has a name tag with their own number.',
+  },
+  {
+    id: 'easy-11',
+    type: 'multiple-choice',
+    quizMode: 'easy',
+    category: 'Each/Every',
+    prompt: 'I brush my teeth ___ day.',
+    options: [
+      { id: 'a', label: 'each' },
+      { id: 'b', label: 'every' },
+      { id: 'c', label: 'much' },
+      { id: 'd', label: 'few' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"Every day" is a fixed, common expression meaning "all days, repeatedly".',
+    explanationThai: '"every day" เป็นวลีที่ใช้บ่อยและเป็นธรรมชาติที่สุด หมายถึงทำเป็นประจำทุกวัน',
+    grammarRule: 'every is common in time expressions like every day, every week, every year.',
+    additionalExample: 'She drinks a glass of milk every morning.',
+  },
+  {
+    id: 'easy-12',
+    type: 'true-false',
+    quizMode: 'easy',
+    category: 'Countable/Uncountable',
+    prompt: '"Information" has a plural form: "informations".',
+    options: [
+      { id: 'true', label: 'True' },
+      { id: 'false', label: 'False' },
+    ],
+    correctAnswer: 'false',
+    explanationEnglish: '"Information" is uncountable and never takes a plural -s.',
+    explanationThai: '"information" เป็นคำนามนับไม่ได้ ไม่มีรูปพหูพจน์ ห้ามเติม -s เป็น "informations"',
+    grammarRule: 'Uncountable nouns do not take a plural -s.',
+    additionalExample: 'Please give me some information about the trip.',
+  },
+  {
+    id: 'easy-13',
+    type: 'fill-blank',
+    quizMode: 'easy',
+    category: 'Some/Any',
+    prompt: 'Complete: "Would you like ___ tea?" (an offer)',
+    correctAnswer: 'some',
+    acceptableAnswers: ['some'],
+    explanationEnglish: 'Offers that expect a "yes" answer use "some", even though the sentence is a question.',
+    explanationThai: 'ประโยคเสนอของ (offer) ที่คาดหวังคำตอบว่า "yes" ใช้ "some" แม้จะอยู่ในรูปประโยคคำถามก็ตาม',
+    grammarRule: 'some is used in offers and requests.',
+    additionalExample: 'Would you like some cake?',
+  },
+  {
+    id: 'easy-14',
+    type: 'multiple-choice',
+    quizMode: 'easy',
+    category: 'A Few/Few',
+    prompt: 'She has ___ apples in her bag — one, two, three.',
+    options: [
+      { id: 'a', label: 'a few' },
+      { id: 'b', label: 'much' },
+      { id: 'c', label: 'a little' },
+      { id: 'd', label: 'every' },
+    ],
+    correctAnswer: 'a',
+    explanationEnglish: '"Apples" is plural countable, and the small positive number matches "a few".',
+    explanationThai: '"apples" เป็นคำนามนับได้พหูพจน์ และจำนวนน้อยแต่เพียงพอ (สาม) จึงตรงกับ "a few"',
+    grammarRule: 'a few + plural countable noun.',
+    additionalExample: 'He packed a few apples for the trip.',
+  },
+  {
+    id: 'easy-15',
+    type: 'multiple-choice',
+    quizMode: 'easy',
+    category: 'A Little/Little',
+    prompt: 'Can I have ___ milk in my coffee, please?',
+    options: [
+      { id: 'a', label: 'a little' },
+      { id: 'b', label: 'a few' },
+      { id: 'c', label: 'many' },
+      { id: 'd', label: 'every' },
+    ],
+    correctAnswer: 'a',
+    explanationEnglish: '"Milk" is uncountable, so we use "a little" for a small, positive amount.',
+    explanationThai: '"milk" เป็นคำนามนับไม่ได้ จึงใช้ "a little" สำหรับปริมาณเล็กน้อยในเชิงบวก (พอดี)',
+    grammarRule: 'a little + uncountable noun.',
+    additionalExample: 'I would like a little milk in my tea, please.',
+  },
+];
+
+// ---------------------------------------------------------------------------
+// MEDIUM TEST — 15 original questions
+// Sentence context, affirmative/negative/question forms, offers/requests,
+// a few vs few, a little vs little, subject-verb agreement, distractors.
+// ---------------------------------------------------------------------------
+
+const mediumQuestions = [
+  {
+    id: 'medium-1',
+    type: 'dialogue',
+    quizMode: 'medium',
+    category: 'Some/Any',
+    context: 'A: "Excuse me, do you have ___ notebooks left?"\nB: "Yes, we have ___ on the top shelf."',
+    prompt: 'Choose the pair that correctly completes both blanks, in order.',
+    options: [
+      { id: 'a', label: 'some / any' },
+      { id: 'b', label: 'any / some' },
+      { id: 'c', label: 'some / some' },
+      { id: 'd', label: 'any / any' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: 'A asks a plain question, so "any" is used. B replies with an affirmative statement, so "some" is used.',
+    explanationThai: 'ประโยคของ A เป็นคำถามทั่วไป จึงใช้ "any" ส่วนประโยคของ B เป็นประโยคบอกเล่าตอบยืนยัน จึงใช้ "some"',
+    grammarRule: 'any in questions, some in affirmative statements.',
+    additionalExample: 'A: Do you have any pens? B: Yes, I have some in my bag.',
+  },
+  {
+    id: 'medium-2',
+    type: 'context',
+    quizMode: 'medium',
+    category: 'Many/Much',
+    context: 'Nid is packing for a school trip. Her bag is already very heavy.',
+    prompt: '"You have brought too ___ clothes, Nid! You only need a few shirts." Which word fits best?',
+    options: [
+      { id: 'a', label: 'much' },
+      { id: 'b', label: 'many' },
+      { id: 'c', label: 'little' },
+      { id: 'd', label: 'every' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"Clothes" is a plural countable noun in English, so "many" is correct.',
+    explanationThai: '"clothes" เป็นคำนามนับได้พหูพจน์ในภาษาอังกฤษ (แม้จะแปลว่าเสื้อผ้าซึ่งฟังดูนับไม่ได้ในภาษาไทย) จึงใช้ "many" ไม่ใช่ "much"',
+    grammarRule: 'many + plural countable noun.',
+    additionalExample: 'She has too many clothes in her small closet.',
+  },
+  {
+    id: 'medium-3',
+    type: 'sentence-correction',
+    quizMode: 'medium',
+    category: 'A Few/Few',
+    prompt: 'Correct this sentence: "Unfortunately, few people came to my birthday party, but it was still a great day."',
+    correctAnswer: 'Unfortunately, a few people came to my birthday party, but it was still a great day.',
+    acceptableAnswers: [
+      'unfortunately, a few people came to my birthday party, but it was still a great day',
+      'unfortunately, a few people came to my birthday party, but it was still a great day.',
+    ],
+    explanationEnglish: 'The sentence describes a positive result ("still a great day"), so "a few" (enough, positive) fits better than "few" (almost none, negative).',
+    explanationThai: 'ประโยคนี้สื่อความหมายเชิงบวก (ยังเป็นวันที่ดี) จึงควรใช้ "a few" ที่หมายถึงมีจำนวนหนึ่งซึ่งเพียงพอ ไม่ใช่ "few" ที่หมายถึงมีน้อยเกินไปซึ่งขัดแย้งกับความหมายทั้งประโยค',
+    grammarRule: 'a few carries a positive meaning; few carries a negative meaning, even with the same plural countable noun.',
+    additionalExample: 'A few close friends came, and we had a wonderful time.',
+  },
+  {
+    id: 'medium-4',
+    type: 'multiple-choice',
+    quizMode: 'medium',
+    category: 'Some/Any',
+    prompt: 'Which sentence is the most natural OFFER?',
+    options: [
+      { id: 'a', label: 'Do you want any coffee?' },
+      { id: 'b', label: 'Would you like some coffee?' },
+      { id: 'c', label: 'Have you got much coffee?' },
+      { id: 'd', label: 'Is there every coffee left?' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"Would you like some...?" is the standard polite way to offer something in English.',
+    explanationThai: '"Would you like some...?" เป็นรูปแบบมาตรฐานและสุภาพที่สุดในการเสนอสิ่งของให้ผู้อื่นในภาษาอังกฤษ',
+    grammarRule: 'some is used in polite offers, even in question form.',
+    additionalExample: 'Would you like some more rice?',
+  },
+  {
+    id: 'medium-5',
+    type: 'error-identification',
+    quizMode: 'medium',
+    category: 'Subject-Verb Agreement',
+    prompt: 'Find the mistake: "Every teacher in this school work very hard."',
+    options: [
+      { id: 'a', label: 'Every' },
+      { id: 'b', label: 'teacher' },
+      { id: 'c', label: 'work' },
+      { id: 'd', label: 'very hard' },
+    ],
+    correctAnswer: 'c',
+    explanationEnglish: 'After "every + singular noun", the verb must also be singular: "works", not "work".',
+    explanationThai: 'หลัง "every + คำนามเอกพจน์" กริยาต้องเป็นรูปเอกพจน์ด้วย คือ "works" ไม่ใช่ "work"',
+    grammarRule: 'every + singular noun + singular verb (add -s/-es to the verb).',
+    additionalExample: 'Every teacher in this school works very hard.',
+  },
+  {
+    id: 'medium-6',
+    type: 'multiple-choice',
+    quizMode: 'medium',
+    category: 'A Little/Little',
+    prompt: 'The exam is tomorrow, and I still have ___ preparation to do — I am worried.',
+    options: [
+      { id: 'a', label: 'a little' },
+      { id: 'b', label: 'little' },
+      { id: 'c', label: 'a few' },
+      { id: 'd', label: 'many' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: 'The speaker is worried, which signals a negative meaning: "little" (almost no preparation done, not enough time).',
+    explanationThai: 'ผู้พูดรู้สึกกังวล ซึ่งสื่อถึงความหมายเชิงลบ คือเตรียมตัวได้น้อยมากและไม่เพียงพอ จึงใช้ "little" ไม่ใช่ "a little" ที่ให้ความรู้สึกเชิงบวกว่าเพียงพอ',
+    grammarRule: 'little (negative, not enough) vs. a little (positive, enough) — context and feeling decide which to use.',
+    additionalExample: 'There is little time left before the exam, so I need to hurry.',
+  },
+  {
+    id: 'medium-7',
+    type: 'dialogue',
+    quizMode: 'medium',
+    category: 'A Few/Few',
+    context: 'A: "How was the quiz? Did everyone pass?"\nB: "Not really. ___ students passed — most of the class needs to study more."',
+    prompt: 'Choose the best word to complete B\'s sentence.',
+    options: [
+      { id: 'a', label: 'A few' },
+      { id: 'b', label: 'Few' },
+      { id: 'c', label: 'Much' },
+      { id: 'd', label: 'Every' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: 'B says most of the class needs more study — a negative result — so "Few" (almost none) fits.',
+    explanationThai: 'คำตอบของ B บอกว่านักเรียนส่วนใหญ่ต้องเรียนเพิ่ม ซึ่งเป็นผลลัพธ์เชิงลบ จึงใช้ "Few" ที่หมายถึงมีน้อยมากจนไม่น่าพอใจ',
+    grammarRule: 'few = a negative, disappointing small number.',
+    additionalExample: 'Few players scored well in the final match.',
+  },
+  {
+    id: 'medium-8',
+    type: 'fill-blank',
+    quizMode: 'medium',
+    category: 'Subject-Verb Agreement',
+    prompt: 'Complete: "Each of the players ___ (receive) a certificate at the end of the tournament."',
+    correctAnswer: 'receives',
+    acceptableAnswers: ['receives'],
+    explanationEnglish: '"Each of the players" is treated as singular, so the verb takes -s: "receives".',
+    explanationThai: '"each of the players" ถูกมองว่าเป็นเอกพจน์ กริยาจึงต้องเติม -s เป็น "receives" แม้ว่า players จะเป็นพหูพจน์ก็ตาม',
+    grammarRule: '"Each of + plural noun" still takes a singular verb.',
+    additionalExample: 'Each of the students receives a report card.',
+  },
+  {
+    id: 'medium-9',
+    type: 'sentence-correction',
+    quizMode: 'medium',
+    category: 'Many/Much',
+    prompt: 'Correct this sentence: "How many milk do we need for the recipe?"',
+    correctAnswer: 'How much milk do we need for the recipe?',
+    acceptableAnswers: ['how much milk do we need for the recipe', 'how much milk do we need for the recipe?'],
+    explanationEnglish: '"Milk" is uncountable, so questions about its quantity use "how much", not "how many".',
+    explanationThai: '"milk" เป็นคำนามนับไม่ได้ คำถามเรื่องปริมาณจึงใช้ "how much" ไม่ใช่ "how many"',
+    grammarRule: 'How much + uncountable noun; How many + plural countable noun.',
+    additionalExample: 'How much milk is left in the fridge?',
+  },
+  {
+    id: 'medium-10',
+    type: 'context',
+    quizMode: 'medium',
+    category: 'Some/Any',
+    context: 'A shop sign reads: "Sorry, we don\'t have ___ fresh bread today. Please come back tomorrow."',
+    prompt: 'Which word correctly completes the shop sign?',
+    options: [
+      { id: 'a', label: 'some' },
+      { id: 'b', label: 'any' },
+      { id: 'c', label: 'much' },
+      { id: 'd', label: 'a few' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: 'This is a negative sentence ("don\'t have"), so "any" is correct.',
+    explanationThai: 'ประโยคนี้เป็นประโยคปฏิเสธ ("don\'t have") จึงต้องใช้ "any" ไม่ใช่ "some"',
+    grammarRule: 'any is used with negative verbs (don\'t, doesn\'t, isn\'t, aren\'t, etc.).',
+    additionalExample: 'We don\'t have any tickets left for tonight\'s show.',
+  },
+  {
+    id: 'medium-11',
+    type: 'multiple-choice',
+    quizMode: 'medium',
+    category: 'Each/Every',
+    prompt: 'Choose the sentence that is grammatically correct.',
+    options: [
+      { id: 'a', label: 'Every students have their own locker.' },
+      { id: 'b', label: 'Each student have their own locker.' },
+      { id: 'c', label: 'Every student has their own locker.' },
+      { id: 'd', label: 'Each students has their own locker.' },
+    ],
+    correctAnswer: 'c',
+    explanationEnglish: 'Only option C keeps a singular noun (student) with a singular verb (has) after "every".',
+    explanationThai: 'มีเพียงตัวเลือก C เท่านั้นที่ใช้คำนามเอกพจน์ (student) คู่กับกริยาเอกพจน์ (has) หลัง "every" ได้ถูกต้อง ตัวเลือกอื่นผสมพหูพจน์กับเอกพจน์ผิดหลัก',
+    grammarRule: 'every / each + singular noun + singular verb — never mix with plural forms.',
+    additionalExample: 'Every student has her own textbook.',
+  },
+  {
+    id: 'medium-12',
+    type: 'classify',
+    quizMode: 'medium',
+    category: 'A Little/Little',
+    prompt: 'Which sentence expresses a POSITIVE, "just enough" feeling?',
+    options: [
+      { id: 'a', label: 'We have little money for the trip.' },
+      { id: 'b', label: 'We have a little money for the trip — enough for the bus fare.' },
+      { id: 'c', label: 'We have no money for the trip.' },
+      { id: 'd', label: 'We have much money for the trip.' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"A little" plus the phrase "enough for the bus fare" both signal a small but sufficient, positive amount.',
+    explanationThai: '"a little" ร่วมกับวลี "enough for the bus fare" สื่อถึงปริมาณน้อยแต่เพียงพอในเชิงบวก ต่างจาก "little" ที่ให้ความรู้สึกว่าไม่พอ',
+    grammarRule: 'a little + uncountable noun = a small but sufficient amount (positive).',
+    additionalExample: 'I have a little time — enough to help you now.',
+  },
+  {
+    id: 'medium-13',
+    type: 'dialogue',
+    quizMode: 'medium',
+    category: 'Some/Any',
+    context: 'A: "Can I have ___ more time to finish the test?"\nB: "I\'m sorry, there isn\'t ___ time left."',
+    prompt: 'Choose the pair that correctly completes both blanks, in order.',
+    options: [
+      { id: 'a', label: 'some / any' },
+      { id: 'b', label: 'any / some' },
+      { id: 'c', label: 'some / some' },
+      { id: 'd', label: 'any / any' },
+    ],
+    correctAnswer: 'a',
+    explanationEnglish: 'A makes a polite request, so "some" is used. B\'s reply is negative ("isn\'t"), so "any" is used.',
+    explanationThai: 'ประโยคของ A เป็นการขอร้องอย่างสุภาพ (request) จึงใช้ "some" ส่วนประโยคของ B เป็นประโยคปฏิเสธ ("isn\'t") จึงใช้ "any"',
+    grammarRule: 'some in polite requests; any in negative sentences.',
+    additionalExample: 'Can I have some water? — I\'m afraid there isn\'t any left.',
+  },
+  {
+    id: 'medium-14',
+    type: 'reading',
+    quizMode: 'medium',
+    category: 'Countable/Uncountable',
+    context:
+      'Ploy is making fruit salad for the class party. She needs a few oranges, some sugar, and a little lemon juice. She does not need much time to make it — only fifteen minutes!',
+    prompt: 'According to the passage, which noun is UNCOUNTABLE?',
+    options: [
+      { id: 'a', label: 'oranges' },
+      { id: 'b', label: 'sugar' },
+      { id: 'c', label: 'minutes' },
+      { id: 'd', label: 'students' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"Sugar" cannot be counted individually and has no plural form, so it is uncountable.',
+    explanationThai: '"sugar" ไม่สามารถนับเป็นชิ้นได้และไม่มีรูปพหูพจน์ จึงเป็นคำนามนับไม่ได้ ส่วน oranges, minutes, students นับได้',
+    grammarRule: 'Uncountable nouns like sugar, juice, and time are paired with much / a little / little, not many / a few / few.',
+    additionalExample: 'She added a little sugar to make the tea sweeter.',
+  },
+  {
+    id: 'medium-15',
+    type: 'closest-meaning',
+    quizMode: 'medium',
+    category: 'Sentence Meaning',
+    prompt: 'Which sentence has the CLOSEST meaning to: "There isn\'t much rice left."',
+    options: [
+      { id: 'a', label: 'There is a lot of rice left.' },
+      { id: 'b', label: 'There is little rice left.' },
+      { id: 'c', label: 'There are a few rice left.' },
+      { id: 'd', label: 'There is no problem with the rice.' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"Not much rice left" and "little rice left" both mean a small, insufficient amount remains.',
+    explanationThai: '"There isn\'t much rice left" และ "There is little rice left" ต่างสื่อความหมายเดียวกันคือเหลือข้าวอยู่น้อยมากและไม่เพียงพอ',
+    grammarRule: 'not much + uncountable noun has a similar negative meaning to little + uncountable noun.',
+    additionalExample: 'We don\'t have much fuel left. = We have little fuel left.',
+  },
+];
+
+// ---------------------------------------------------------------------------
+// CHALLENGE TEST — 15 original questions
+// Context-based meaning, dialogues, error identification, correction,
+// mixed quantifiers, subtle meaning, most-natural-answer, short readings.
+// ---------------------------------------------------------------------------
+
+const challengeQuestions = [
+  {
+    id: 'challenge-1',
+    type: 'reading',
+    quizMode: 'challenge',
+    category: 'Sentence Meaning',
+    context:
+      'Our school trip to the science museum was almost cancelled. Only a few teachers volunteered to come with us, and there was very little time left to plan everything. In the end, every student who wanted to go was able to join, and we all had a wonderful day.',
+    prompt: 'Based on the passage, how did the teachers likely feel about the amount of planning time?',
+    options: [
+      { id: 'a', label: 'They felt there was plenty of time.' },
+      { id: 'b', label: 'They felt there was not enough time.' },
+      { id: 'c', label: 'They did not think about time at all.' },
+      { id: 'd', label: 'They felt every student had too much time.' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"Very little time left" signals a negative meaning — the teachers felt they did not have enough time to plan.',
+    explanationThai: '"very little time left" สื่อความหมายเชิงลบ คือครูรู้สึกว่ามีเวลาเตรียมงานน้อยเกินไป ไม่เพียงพอ',
+    grammarRule: 'little + uncountable noun expresses a negative, "not enough" feeling.',
+    additionalExample: 'There was little time to prepare, so the teachers worked quickly.',
+  },
+  {
+    id: 'challenge-2',
+    type: 'error-identification',
+    quizMode: 'challenge',
+    category: 'Subject-Verb Agreement',
+    prompt: 'Find the mistake: "Each of the members of the club are responsible for bringing their own equipment."',
+    options: [
+      { id: 'a', label: 'Each of the members' },
+      { id: 'b', label: 'are' },
+      { id: 'c', label: 'responsible' },
+      { id: 'd', label: 'their own equipment' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"Each of the members" is grammatically singular, so the verb should be "is", not "are".',
+    explanationThai: '"each of the members" ถือเป็นประธานเอกพจน์ทางไวยากรณ์ กริยาจึงต้องเป็น "is" ไม่ใช่ "are" แม้ว่า members จะเป็นพหูพจน์ก็ตาม',
+    grammarRule: '"Each of + plural noun" always takes a singular verb.',
+    additionalExample: 'Each of the members is responsible for bringing their own equipment.',
+  },
+  {
+    id: 'challenge-3',
+    type: 'dialogue',
+    quizMode: 'challenge',
+    category: 'Some/Any',
+    context:
+      'A: "We\'re out of snacks for the party. Is there ___ food left in the kitchen?"\nB: "There\'s ___ fruit, but I don\'t think there\'s ___ left of the cookies — the kids ate them all!"',
+    prompt: 'Choose the set that correctly completes all three blanks, in order.',
+    options: [
+      { id: 'a', label: 'any / some / any' },
+      { id: 'b', label: 'some / any / some' },
+      { id: 'c', label: 'any / any / some' },
+      { id: 'd', label: 'some / some / any' },
+    ],
+    correctAnswer: 'a',
+    explanationEnglish: 'A asks a question, so "any". B\'s first clause is affirmative, so "some". B\'s second clause is negative ("don\'t think there\'s ... left"), so "any".',
+    explanationThai: 'A ถามคำถาม จึงใช้ "any" ประโยคแรกของ B เป็นประโยคบอกเล่า จึงใช้ "some" ส่วนประโยคหลังของ B เป็นเชิงปฏิเสธ ("don\'t think there\'s...left") จึงใช้ "any"',
+    grammarRule: 'any in questions and negatives; some in affirmative statements.',
+    additionalExample: 'Is there any coffee? There\'s some in the pot, but there isn\'t any sugar left.',
+  },
+  {
+    id: 'challenge-4',
+    type: 'sentence-correction',
+    quizMode: 'challenge',
+    category: 'A Few/Few',
+    prompt:
+      'Correct this sentence so its meaning matches the context: "The exam was extremely difficult, so a few students passed it — the teacher was worried about the class."',
+    correctAnswer: 'The exam was extremely difficult, so few students passed it — the teacher was worried about the class.',
+    acceptableAnswers: [
+      'the exam was extremely difficult, so few students passed it — the teacher was worried about the class',
+      'the exam was extremely difficult, so few students passed it the teacher was worried about the class',
+      'the exam was extremely difficult, so few students passed it, the teacher was worried about the class',
+    ],
+    explanationEnglish: 'The teacher\'s worry signals a negative outcome, so "few" (almost none, not enough) fits, not "a few" (a positive, sufficient number).',
+    explanationThai: 'ความกังวลของครูสื่อถึงผลลัพธ์เชิงลบ จึงควรใช้ "few" ที่หมายถึงมีน้อยมากจนน่ากังวล ไม่ใช่ "a few" ที่ให้ความรู้สึกเชิงบวกว่ามีเพียงพอ ซึ่งขัดแย้งกับบริบท',
+    grammarRule: 'few carries a negative meaning; context clues (like "worried") reveal which form the writer intends.',
+    additionalExample: 'Few students passed the difficult exam, which worried the teacher.',
+  },
+  {
+    id: 'challenge-5',
+    type: 'closest-meaning',
+    quizMode: 'challenge',
+    category: 'Sentence Meaning',
+    prompt: 'Which sentence is closest in meaning to: "Every player on the team trained hard together this week"?',
+    options: [
+      { id: 'a', label: 'Each player trained alone this week, separately from the others.' },
+      { id: 'b', label: 'All the players, as a group, trained hard this week.' },
+      { id: 'c', label: 'Only one player trained hard this week.' },
+      { id: 'd', label: 'A few players trained hard this week.' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"Every" emphasises all members of the group together, matching "as a group".',
+    explanationThai: '"every" เน้นความหมายถึงสมาชิกทุกคนในกลุ่มโดยรวมเป็นหนึ่งเดียว จึงตรงกับ "all the players, as a group"',
+    grammarRule: 'every = all members of a group considered together.',
+    additionalExample: 'Every student in the class passed the exam this year.',
+  },
+  {
+    id: 'challenge-6',
+    type: 'context',
+    quizMode: 'challenge',
+    category: 'Many/Much',
+    context:
+      'A weather report says: "There has been very ___ rain this month, and the reservoirs are almost empty. Farmers are worried about their crops."',
+    prompt: 'Which word best completes the weather report?',
+    options: [
+      { id: 'a', label: 'many' },
+      { id: 'b', label: 'little' },
+      { id: 'c', label: 'a few' },
+      { id: 'd', label: 'every' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"Rain" is uncountable, and the empty reservoirs show a negative meaning — "little" (almost none).',
+    explanationThai: '"rain" เป็นคำนามนับไม่ได้ และอ่างเก็บน้ำที่เกือบว่างเปล่าสื่อถึงความหมายเชิงลบ คือมีฝนตกน้อยมาก จึงใช้ "little"',
+    grammarRule: 'little + uncountable noun = almost none (negative), matching the context of a problem or shortage.',
+    additionalExample: 'There has been little rain this year, so the farmers are worried.',
+  },
+  {
+    id: 'challenge-7',
+    type: 'multiple-choice',
+    quizMode: 'challenge',
+    category: 'Sentence Meaning',
+    prompt: 'Choose the MOST NATURAL sentence for a shop assistant to say to a customer.',
+    options: [
+      { id: 'a', label: 'Would you like any help with that?' },
+      { id: 'b', label: 'Would you like some help with that?' },
+      { id: 'c', label: 'Do you want much help with that?' },
+      { id: 'd', label: 'Is there every help you need?' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: 'Polite offers in English naturally use "some", even in question form.',
+    explanationThai: 'ประโยคเสนอความช่วยเหลืออย่างสุภาพในภาษาอังกฤษมักใช้ "some" แม้จะอยู่ในรูปคำถามก็ตาม จึงเป็นธรรมชาติที่สุด',
+    grammarRule: 'some is the natural choice in polite offers.',
+    additionalExample: 'Would you like some assistance finding your size?',
+  },
+  {
+    id: 'challenge-8',
+    type: 'error-identification',
+    quizMode: 'challenge',
+    category: 'A Little/Little',
+    prompt:
+      'Find the mistake: "Please add a few salt to the soup — it needs more flavour."',
+    options: [
+      { id: 'a', label: 'Please add' },
+      { id: 'b', label: 'a few' },
+      { id: 'c', label: 'salt' },
+      { id: 'd', label: 'needs more flavour' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"Salt" is uncountable, so it should be "a little salt", not "a few salt".',
+    explanationThai: '"salt" เป็นคำนามนับไม่ได้ จึงต้องใช้ "a little salt" ไม่ใช่ "a few salt" ซึ่งใช้กับคำนามนับได้พหูพจน์เท่านั้น',
+    grammarRule: 'a little + uncountable noun; a few + plural countable noun — never mix them.',
+    additionalExample: 'Please add a little salt to the soup.',
+  },
+  {
+    id: 'challenge-9',
+    type: 'reading',
+    quizMode: 'challenge',
+    category: 'Each/Every',
+    context:
+      'At the graduation ceremony, each student walked across the stage individually to receive a certificate from the principal. Every student in the school attended the ceremony to support their classmates.',
+    prompt: 'Why does the passage use "each" in the first sentence but "every" in the second?',
+    options: [
+      { id: 'a', label: 'Because "each" and "every" always mean exactly the same thing.' },
+      { id: 'b', label: '"Each" highlights students walking one by one; "every" highlights the whole school attending together.' },
+      { id: 'c', label: 'Because "each" is only used with plural nouns.' },
+      { id: 'd', label: 'Because "every" is only correct in negative sentences.' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"Each" focuses on individuals acting one at a time; "every" focuses on the whole group acting together.',
+    explanationThai: '"each" เน้นการกระทำของแต่ละบุคคลทีละคน ส่วน "every" เน้นสมาชิกทั้งหมดในกลุ่มที่ทำร่วมกันในภาพรวม',
+    grammarRule: 'each = individually, one by one; every = all members of the group together.',
+    additionalExample: 'Each runner crossed the finish line at a different time, but every runner finished the race.',
+  },
+  {
+    id: 'challenge-10',
+    type: 'sentence-correction',
+    quizMode: 'challenge',
+    category: 'Countable/Uncountable',
+    prompt: 'Correct this sentence: "We need many advices before we start the project."',
+    correctAnswer: 'We need some advice before we start the project.',
+    acceptableAnswers: [
+      'we need some advice before we start the project',
+      'we need some advice before we start the project.',
+      'we need a lot of advice before we start the project',
+      'we need a lot of advice before we start the project.',
+    ],
+    explanationEnglish: '"Advice" is uncountable and has no plural form, so it cannot follow "many" or add "-s".',
+    explanationThai: '"advice" เป็นคำนามนับไม่ได้และไม่มีรูปพหูพจน์ จึงตามหลัง "many" ไม่ได้และห้ามเติม -s',
+    grammarRule: 'Uncountable nouns (advice, information, homework, news) never take -s and cannot follow many.',
+    additionalExample: 'She gave me some useful advice about studying.',
+  },
+  {
+    id: 'challenge-11',
+    type: 'context',
+    quizMode: 'challenge',
+    category: 'A Few/Few',
+    context:
+      'Two friends are talking about a football match.\nA: "Did our team play well?"\nB: "Not really. We only scored ___ goals — the other team was much stronger."',
+    prompt: 'Which word best fits B\'s reply, showing disappointment?',
+    options: [
+      { id: 'a', label: 'a few' },
+      { id: 'b', label: 'few' },
+      { id: 'c', label: 'much' },
+      { id: 'd', label: 'every' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: 'B sounds disappointed ("Not really", "much stronger"), so the negative "few" (not enough goals) fits best.',
+    explanationThai: 'คำพูดของ B แสดงความผิดหวัง ("Not really", "much stronger") จึงควรใช้ "few" ที่สื่อความหมายเชิงลบว่าทำประตูได้น้อยเกินไป',
+    grammarRule: 'few = a disappointing, insufficient number; tone and context reveal the intended meaning.',
+    additionalExample: 'We scored few goals this season — the fans were disappointed.',
+  },
+  {
+    id: 'challenge-12',
+    type: 'multiple-choice',
+    quizMode: 'challenge',
+    category: 'Sentence Meaning',
+    prompt: 'Choose the sentence that is grammatically correct AND has a natural, positive meaning.',
+    options: [
+      { id: 'a', label: 'Few tourists visit this hidden beach, so it stays peaceful and clean.' },
+      { id: 'b', label: 'A few tourists visits this hidden beach, so it stay peaceful and clean.' },
+      { id: 'c', label: 'A little tourists visit this hidden beach, so it stays peaceful and clean.' },
+      { id: 'd', label: 'Every tourists visit this hidden beach, so it stays peaceful and clean.' },
+    ],
+    correctAnswer: 'a',
+    explanationEnglish: 'Option A is correct: "few" + plural noun + plural verb, and the small number of visitors naturally explains why the beach stays peaceful.',
+    explanationThai: 'ตัวเลือก A ถูกต้องที่สุด: "few" ตามด้วยคำนามพหูพจน์และกริยาพหูพจน์ (visit) และความหมายที่มีนักท่องเที่ยวน้อยก็อธิบายได้อย่างเป็นธรรมชาติว่าทำไมหาดจึงยังคงสงบและสะอาด',
+    grammarRule: 'few + plural countable noun + plural verb; option A both fits the grammar and matches the logical meaning.',
+    additionalExample: 'Few visitors come here in winter, so the town feels very quiet.',
+  },
+  {
+    id: 'challenge-13',
+    type: 'reading',
+    quizMode: 'challenge',
+    category: 'Many/Much',
+    context:
+      'Our science teacher gave us a big project this term. There is so much work to do that many students have started staying after school to finish it. A few classmates have even asked their parents for extra help at home.',
+    prompt: 'Which statement is TRUE according to the passage?',
+    options: [
+      { id: 'a', label: 'Only one student is doing the project.' },
+      { id: 'b', label: 'The project involves a large amount of work.' },
+      { id: 'c', label: 'No students need extra help.' },
+      { id: 'd', label: 'The teacher cancelled the project.' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"So much work" tells us the project involves a large, uncountable amount of work.',
+    explanationThai: '"so much work" บอกให้รู้ว่าโปรเจกต์นี้มีปริมาณงานมากซึ่งเป็นคำนามนับไม่ได้ (work)',
+    grammarRule: 'much + uncountable noun expresses a large amount.',
+    additionalExample: 'There is much work left before the deadline.',
+  },
+  {
+    id: 'challenge-14',
+    type: 'error-identification',
+    quizMode: 'challenge',
+    category: 'Some/Any',
+    prompt: 'Find the mistake: "If you need some help, please tell me — I am here for you, but I don\'t have some free time until Friday."',
+    options: [
+      { id: 'a', label: 'If you need some help' },
+      { id: 'b', label: 'please tell me' },
+      { id: 'c', label: "I don't have some free time" },
+      { id: 'd', label: 'until Friday' },
+    ],
+    correctAnswer: 'c',
+    explanationEnglish: 'The clause is negative ("don\'t have"), so it should use "any", not "some": "I don\'t have any free time".',
+    explanationThai: 'ประโยคนี้เป็นประโยคปฏิเสธ ("don\'t have") จึงต้องใช้ "any" ไม่ใช่ "some" ประโยคที่ถูกต้องคือ "I don\'t have any free time until Friday."',
+    grammarRule: 'any is used after negative verbs, even when "some" appears correctly earlier in the same sentence.',
+    additionalExample: 'I don\'t have any free time until Friday, sorry!',
+  },
+  {
+    id: 'challenge-15',
+    type: 'closest-meaning',
+    quizMode: 'challenge',
+    category: 'Sentence Meaning',
+    prompt: 'Which sentence is closest in meaning to: "She has a little experience in teaching, so she can manage the class alone."',
+    options: [
+      { id: 'a', label: 'She has no experience in teaching at all.' },
+      { id: 'b', label: 'She has enough experience to handle the class by herself.' },
+      { id: 'c', label: 'She has too much experience for this class.' },
+      { id: 'd', label: 'She refuses to teach the class alone.' },
+    ],
+    correctAnswer: 'b',
+    explanationEnglish: '"A little experience" plus "so she can manage" shows the small amount is enough for the task.',
+    explanationThai: '"a little experience" ร่วมกับ "so she can manage" แสดงว่าประสบการณ์ที่มีแม้จะน้อยแต่ก็เพียงพอสำหรับงานนี้',
+    grammarRule: 'a little + uncountable noun = a small but sufficient amount (positive meaning).',
+    additionalExample: 'He has a little money saved, so he can buy the book.',
+  },
+];
+
+const quizData = {
+  easy: easyQuestions,
+  medium: mediumQuestions,
+  challenge: challengeQuestions,
+};
+
+const allTestQuestions = [...easyQuestions, ...mediumQuestions, ...challengeQuestions];
+
+(function () {
+  'use strict';
+
+  /* ================================================================
+     ICONS — minimal hand-drawn inline SVG set (feather-style)
+     ================================================================ */
+  function ic(name, size, cls) {
+    size = size || 18;
+    var attrs = 'width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon ' + (cls || '') + '" aria-hidden="true"';
+    switch (name) {
+      case 'home': return '<svg ' + attrs + '><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1v-9"/></svg>';
+      case 'book': return '<svg ' + attrs + '><path d="M4 5.5c2-1.4 5.5-1.4 8 0 2.5-1.4 6-1.4 8 0v13c-2-1.4-5.5-1.4-8 0-2.5-1.4-6-1.4-8 0Z"/><path d="M12 5.5v13"/></svg>';
+      case 'zap': return '<svg ' + attrs + '><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>';
+      case 'clipboard': return '<svg ' + attrs + '><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="m9 13 2 2 4-4"/></svg>';
+      case 'check-circle': return '<svg ' + attrs + '><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.3 2.3L16 10"/></svg>';
+      case 'x-circle': return '<svg ' + attrs + '><circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/></svg>';
+      case 'rotate': return '<svg ' + attrs + '><path d="M4 10a8 8 0 0 1 14.5-4.5M20 14a8 8 0 0 1-14.5 4.5"/><path d="M18 3v4h-4M6 21v-4h4"/></svg>';
+      case 'arrow-right': return '<svg ' + attrs + '><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+      case 'chevron-right': return '<svg ' + attrs + '><path d="m9 6 6 6-6 6"/></svg>';
+      case 'trophy': return '<svg ' + attrs + '><path d="M8 4h8v5a4 4 0 0 1-8 0V4Z"/><path d="M8 5H5a3 3 0 0 0 3 5M16 5h3a3 3 0 0 1-3 5"/><path d="M12 13v3M9 21h6M10 17h4v4h-4z"/></svg>';
+      case 'award': return '<svg ' + attrs + '><circle cx="12" cy="8" r="5"/><path d="m8.5 12.5-1.5 7 5-2.5 5 2.5-1.5-7"/></svg>';
+      case 'target': return '<svg ' + attrs + '><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg>';
+      case 'lightbulb': return '<svg ' + attrs + '><path d="M9 18h6M10 21h4M8 14a4.7 4.7 0 0 1-1.7-6.5A5 5 0 0 1 17 9.5c0 2-1 3.3-2 4.5-.5.6-1 1.2-1 2H10c0-.8-.5-1.4-1-2Z"/></svg>';
+      case 'alert-circle': return '<svg ' + attrs + '><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16" r="0.6" fill="currentColor"/></svg>';
+      case 'sparkles': return '<svg ' + attrs + '><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2"/></svg>';
+      case 'quote': return '<svg ' + attrs + '><path d="M7 8h4v4a3 3 0 0 1-3 3H7"/><path d="M15 8h4v4a3 3 0 0 1-3 3h-1"/></svg>';
+      case 'check': return '<svg ' + attrs + '><path d="m5 12 5 5L20 7"/></svg>';
+      case 'x': return '<svg ' + attrs + '><path d="m6 6 12 12M18 6 6 18"/></svg>';
+      case 'trash': return '<svg ' + attrs + '><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>';
+      case 'party': return '<svg ' + attrs + '><path d="M4 20 15 9M10 4l1.5 1.5M14 3l1 2M18 7l2 1M3 14l2 1"/><circle cx="18" cy="16" r="1" fill="currentColor"/><circle cx="14" cy="19" r="1" fill="currentColor"/></svg>';
+      case 'grad-cap': return '<svg ' + attrs + '><path d="M12 4 2 9l10 5 10-5-10-5Z"/><path d="M6 11.5V17c0 1.5 2.5 3 6 3s6-1.5 6-3v-5.5"/></svg>';
+      case 'shield': return '<svg ' + attrs + '><path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6Z"/><path d="m9 12 2 2 4-4"/></svg>';
+      case 'boxes': return '<svg ' + attrs + '><path d="M3 8 8 5l5 3-5 3-5-3Z"/><path d="M3 8v6l5 3M8 11v6M13 8l5-3 5 3-5 3-5-3Z"/><path d="M13 8v6l5 3v-6M18 11v6"/></svg>';
+      case 'scale': return '<svg ' + attrs + '><path d="M12 3v18M7 21h10M5 7h4l-2 6a2.3 2.3 0 0 1-2 1 2.3 2.3 0 0 1-2-1L5 7ZM15 7h4l-2 6a2.3 2.3 0 0 1-2 1 2.3 2.3 0 0 1-2-1L15 7ZM5 7l7-3 7 3"/></svg>';
+      case 'help-circle': return '<svg ' + attrs + '><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.1.9-1.1 1.9"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/></svg>';
+      case 'apple': return '<svg ' + attrs + '><path d="M12 8c-3-3-8-1-8 4.5C4 17 8 21 11 21c.7 0 1.3-.2 2-.2s1.3.2 2 .2c3 0 7-4 7-8.5C22 8 19 5 16 6c-1 .3-1.8 1-2 2 -.5-1.8-1.5-2.8-2-2Z"/><path d="M12 6c0-1.5 1-3 3-3"/></svg>';
+      case 'droplet': return '<svg ' + attrs + '><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11Z"/></svg>';
+      case 'droplets': return '<svg ' + attrs + '><path d="M9 3s4 4.5 4 7.5a4 4 0 0 1-8 0C5 7.5 9 3 9 3Z"/><path d="M16.5 9s3 3.2 3 5.5a3 3 0 1 1-6 0c0-2.3 3-5.5 3-5.5Z"/></svg>';
+      case 'users': return '<svg ' + attrs + '><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.7c2.5.4 4.5 2.3 4.5 5.3"/></svg>';
+      default: return '<svg ' + attrs + '><circle cx="12" cy="12" r="9"/></svg>';
+    }
+  }
+
+  var QUESTION_TYPE_LABELS = {
+    'multiple-choice': 'Multiple choice',
+    'true-false': 'True or false',
+    'fill-blank': 'Fill in the blank',
+    'error-identification': 'Find the mistake',
+    'sentence-correction': 'Sentence correction',
+    dialogue: 'Conversation',
+    context: 'Context',
+    classify: 'Classify',
+    match: 'Match the meaning',
+    reading: 'Reading comprehension',
+    'closest-meaning': 'Closest meaning',
+    sort: 'Sort it out',
+    'tap-word': 'Choose the word',
+  };
+
+  var TEST_LEVELS = ['easy', 'medium', 'challenge'];
+  var CATEGORY_ORDER = [
+    'Countable/Uncountable', 'Many/Much', 'Some/Any', 'A Few/Few',
+    'A Little/Little', 'Each/Every', 'Subject-Verb Agreement', 'Sentence Meaning',
+  ];
+  var CATEGORY_TO_LESSON = {
+    'Countable/Uncountable': 'countable-uncountable',
+    'Many/Much': 'many-much',
+    'Some/Any': 'some-any',
+    'A Few/Few': 'a-few-few',
+    'A Little/Little': 'a-little-little',
+    'Each/Every': 'each-every',
+    'Subject-Verb Agreement': 'each-every',
+    'Sentence Meaning': 'many-much',
+  };
+  var LEVEL_META = {
+    easy: { label: 'Easy Test', path: 'test/easy' },
+    medium: { label: 'Medium Test', path: 'test/medium' },
+    challenge: { label: 'Challenge Test', path: 'test/challenge' },
+  };
+  var POSITIVE_MESSAGES = ['Correct!', 'Great job!', 'Exactly right!', 'Nice work!', 'Well done!', 'Perfect!'];
+  var performanceLevelCopy = {
+    'Quantifier Expert': 'Outstanding! You have a strong, reliable grasp of English quantifiers. Keep challenging yourself.',
+    'Almost Exam Ready': 'Great work! You understand most quantifier rules. A little more review and you will be exam-ready.',
+    'Good Progress': 'You are making solid progress. Review your weaker topics and try the test again to improve your score.',
+    'Keep Practising': 'This topic still needs work. Go back to the Learn section and try the mini practice questions before retaking the test.',
+  };
+
+  /* ================================================================
+     STATE / PERSISTENCE  (mirrors src/context/ProgressContext.tsx)
+     ================================================================ */
+  var STORAGE_KEY = 'quantifier-mastery:progress:v1';
+
+  function emptyTestScores() {
+    var o = {};
+    TEST_LEVELS.forEach(function (l) { o[l] = { best: null, latest: null }; });
+    return o;
+  }
+  function emptyMiniProgress() {
+    var o = {};
+    lessons.forEach(function (l) { o[l.id] = { completedQuestionIds: [], correctQuestionIds: [] }; });
+    return o;
+  }
+  function createDefaultState() {
+    return {
+      completedLessons: [],
+      miniPracticeProgress: emptyMiniProgress(),
+      testScores: emptyTestScores(),
+      mistakes: [],
+      improvedQuestionIds: [],
+      inProgressQuiz: null,
+      lastVisitedAt: new Date().toISOString(),
+    };
+  }
+  function loadState() {
+    try {
+      var raw = window.localStorage.getItem(STORAGE_KEY);
+      if (!raw) return createDefaultState();
+      var parsed = JSON.parse(raw);
+      var d = createDefaultState();
+      return {
+        completedLessons: parsed.completedLessons || d.completedLessons,
+        miniPracticeProgress: Object.assign({}, d.miniPracticeProgress, parsed.miniPracticeProgress || {}),
+        testScores: Object.assign({}, d.testScores, parsed.testScores || {}),
+        mistakes: parsed.mistakes || d.mistakes,
+        improvedQuestionIds: parsed.improvedQuestionIds || d.improvedQuestionIds,
+        inProgressQuiz: parsed.inProgressQuiz || null,
+        lastVisitedAt: parsed.lastVisitedAt || d.lastVisitedAt,
+      };
+    } catch (e) { return createDefaultState(); }
+  }
+  function saveState() {
+    try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE)); } catch (e) { /* ignore quota errors */ }
+  }
+
+  var STATE = loadState();
+  STATE.lastVisitedAt = new Date().toISOString();
+  saveState();
+
+  function markLessonCompleted(lessonId) {
+    if (STATE.completedLessons.indexOf(lessonId) !== -1) return;
+    STATE.completedLessons.push(lessonId);
+    saveState();
+  }
+  function recordMiniPracticeAnswer(lessonId, questionId, isCorrect) {
+    var existing = STATE.miniPracticeProgress[lessonId] || { completedQuestionIds: [], correctQuestionIds: [] };
+    if (existing.completedQuestionIds.indexOf(questionId) === -1) existing.completedQuestionIds.push(questionId);
+    if (isCorrect) {
+      if (existing.correctQuestionIds.indexOf(questionId) === -1) existing.correctQuestionIds.push(questionId);
+    } else {
+      existing.correctQuestionIds = existing.correctQuestionIds.filter(function (id) { return id !== questionId; });
+    }
+    STATE.miniPracticeProgress[lessonId] = existing;
+    saveState();
+  }
+  function recordMistake(question, studentAnswer, quizMode) {
+    var entry = {
+      questionId: question.id, question: question, studentAnswer: studentAnswer,
+      correctAnswer: question.correctAnswer, quizMode: quizMode, category: question.category,
+      timestamp: new Date().toISOString(), improved: false,
+    };
+    STATE.mistakes = STATE.mistakes.filter(function (m) { return m.questionId !== question.id; });
+    STATE.mistakes.push(entry);
+    STATE.improvedQuestionIds = STATE.improvedQuestionIds.filter(function (id) { return id !== question.id; });
+    saveState();
+  }
+  function markImproved(questionId) {
+    if (STATE.improvedQuestionIds.indexOf(questionId) === -1) STATE.improvedQuestionIds.push(questionId);
+    STATE.mistakes = STATE.mistakes.map(function (m) {
+      return m.questionId === questionId ? Object.assign({}, m, { improved: true }) : m;
+    });
+    saveState();
+  }
+  function saveTestResult(testLevel, result) {
+    var prevBest = (STATE.testScores[testLevel] || {}).best || null;
+    var isNewBest = !prevBest || result.percentage >= prevBest.percentage;
+    STATE.testScores[testLevel] = { best: isNewBest ? result : prevBest, latest: result };
+    saveState();
+  }
+  function saveInProgressQuiz(quiz) { STATE.inProgressQuiz = quiz; saveState(); }
+  function resetProgress() { STATE = createDefaultState(); saveState(); }
+
+  function overallProgressPercent() {
+    var totalLessons = lessons.length;
+    var lessonScore = totalLessons > 0 ? STATE.completedLessons.length / totalLessons : 0;
+    var testsTaken = TEST_LEVELS.filter(function (l) { return STATE.testScores[l] && STATE.testScores[l].best; }).length;
+    var testScore = testsTaken / TEST_LEVELS.length;
+    return Math.round((lessonScore * 0.5 + testScore * 0.5) * 100);
+  }
+  function categoryStats() {
+    var stats = {};
+    CATEGORY_ORDER.forEach(function (c) { stats[c] = { correct: 0, total: 0 }; });
+    TEST_LEVELS.forEach(function (level) {
+      var r = STATE.testScores[level] && STATE.testScores[level].latest;
+      if (!r) return;
+      Object.keys(r.categoryBreakdown || {}).forEach(function (cat) {
+        var b = r.categoryBreakdown[cat];
+        if (!b) return;
+        if (!stats[cat]) stats[cat] = { correct: 0, total: 0 };
+        stats[cat].correct += b.correct;
+        stats[cat].total += b.total;
+      });
+    });
+    return stats;
+  }
+
+  /* ================================================================
+     QUIZ UTILS  (mirrors src/utils/quiz.ts)
+     ================================================================ */
+  function normalizeAnswer(v) {
+    return String(v).trim().toLowerCase().replace(/[.!?,'"]+$/g, '').replace(/\s+/g, ' ');
+  }
+  function isAnswerCorrect(question, studentAnswer) {
+    if (!studentAnswer) return false;
+    var norm = normalizeAnswer(studentAnswer);
+    if (norm === normalizeAnswer(question.correctAnswer)) return true;
+    if (question.acceptableAnswers) {
+      return question.acceptableAnswers.some(function (alt) { return normalizeAnswer(alt) === norm; });
+    }
+    return false;
+  }
+  function getCorrectAnswerLabel(q) {
+    if (q.options) {
+      var o = q.options.filter(function (opt) { return opt.id === q.correctAnswer; })[0];
+      if (o) return o.label;
+    }
+    return q.correctAnswer;
+  }
+  function getAnswerLabel(q, answer) {
+    if (!answer) return '';
+    if (q.options) {
+      var o = q.options.filter(function (opt) { return opt.id === answer; })[0];
+      if (o) return o.label;
+    }
+    return answer;
+  }
+  function buildTestResult(quizMode, questions, answers) {
+    var categoryBreakdown = {};
+    var answerRecords = [];
+    var correctCount = 0, incorrectCount = 0, unansweredCount = 0;
+    questions.forEach(function (q) {
+      var studentAnswer = answers[q.id] || '';
+      var wasAnswered = studentAnswer.trim().length > 0;
+      var correct = wasAnswered && isAnswerCorrect(q, studentAnswer);
+      if (!wasAnswered) unansweredCount++; else if (correct) correctCount++; else incorrectCount++;
+      answerRecords.push({ questionId: q.id, studentAnswer: studentAnswer, isCorrect: correct, wasAnswered: wasAnswered });
+      var bucket = categoryBreakdown[q.category] || { correct: 0, total: 0 };
+      bucket.total++;
+      if (correct) bucket.correct++;
+      categoryBreakdown[q.category] = bucket;
+    });
+    var total = questions.length;
+    var percentage = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+    return {
+      testLevel: quizMode, score: correctCount, total: total, percentage: percentage,
+      correctCount: correctCount, incorrectCount: incorrectCount, unansweredCount: unansweredCount,
+      dateTaken: new Date().toISOString(), answers: answerRecords, categoryBreakdown: categoryBreakdown,
+    };
+  }
+  function getPerformanceLevel(pct) {
+    if (pct >= 90) return 'Quantifier Expert';
+    if (pct >= 75) return 'Almost Exam Ready';
+    if (pct >= 60) return 'Good Progress';
+    return 'Keep Practising';
+  }
+  function findStrongestAndWeakest(categoryBreakdown) {
+    var strongest = null, weakest = null, bestRatio = -1, worstRatio = 2;
+    Object.keys(categoryBreakdown).forEach(function (cat) {
+      var stat = categoryBreakdown[cat];
+      if (!stat || stat.total === 0) return;
+      var ratio = stat.correct / stat.total;
+      if (ratio > bestRatio) { bestRatio = ratio; strongest = cat; }
+      if (ratio < worstRatio) { worstRatio = ratio; weakest = cat; }
+    });
+    return { strongest: strongest, weakest: weakest };
+  }
+  function shuffleArray(arr) {
+    var copy = arr.slice();
+    for (var i = copy.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = copy[i]; copy[i] = copy[j]; copy[j] = t;
+    }
+    return copy;
+  }
+  function formatDate(iso) {
+    try {
+      return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    } catch (e) { return iso; }
+  }
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function getLessonById(id) { return lessons.filter(function (l) { return l.id === id; })[0]; }
+  function lessonIconMap(name) {
+    var map = { Boxes: 'boxes', Scale: 'scale', HelpCircle: 'help-circle', Apple: 'apple', Droplet: 'droplet', Users: 'users' };
+    return map[name] || 'book';
+  }
+  function lessonIdForQuantifier(q) {
+    var map = {
+      many: 'many-much', much: 'many-much', some: 'some-any', any: 'some-any',
+      'a few': 'a-few-few', few: 'a-few-few', 'a little': 'a-little-little', little: 'a-little-little',
+      each: 'each-every', every: 'each-every',
+    };
+    return map[q] || 'countable-uncountable';
+  }
+
+  /* ================================================================
+     SHARED UI BUILDERS
+     ================================================================ */
+  function progressBar(current, total, label) {
+    var pct = total > 0 ? Math.min(100, Math.round((current / total) * 100)) : 0;
+    return '<div class="progressbar-wrap">' +
+      (label ? '<div class="progressbar-label"><span>' + escapeHtml(label) + '</span><span>' + current + '/' + total + '</span></div>' : '') +
+      '<div class="progressbar-track" role="progressbar" aria-valuenow="' + pct + '" aria-valuemin="0" aria-valuemax="100" aria-label="' + escapeHtml(label || 'Progress') + '"><div class="progressbar-fill" style="width:' + pct + '%"></div></div></div>';
+  }
+
+  function buildQuestionCard(q, value, isSub, isCorrect, handlers) {
+    var card = document.createElement('div');
+    card.className = 'card question-card animate-fade-in-up';
+    var html = '<span class="pill question-type-pill">' + (QUESTION_TYPE_LABELS[q.type] || q.type) + '</span>';
+    if (q.context) {
+      html += '<div class="question-context">' + ic('quote', 18) + '<p style="margin:0;white-space:pre-line;">' + escapeHtml(q.context) + '</p></div>';
+    }
+    html += '<p class="question-prompt">' + escapeHtml(q.prompt) + '</p>';
+    card.innerHTML = html;
+
+    if (q.options && q.options.length) {
+      var optWrap = document.createElement('div');
+      optWrap.className = 'question-options';
+      optWrap.setAttribute('role', 'radiogroup');
+      optWrap.setAttribute('aria-label', 'Answer choices');
+      q.options.forEach(function (opt) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        var stateClass = '';
+        var iconHtml = '';
+        if (isSub) {
+          var isThisCorrect = opt.id === q.correctAnswer;
+          var isSelected = opt.id === value;
+          if (isSelected && isCorrect) { stateClass = 'correct'; iconHtml = ic('check', 20); }
+          else if (isSelected && !isCorrect) { stateClass = 'incorrect'; iconHtml = ic('x', 20); }
+          else if (!isSelected && isThisCorrect && !isCorrect) { stateClass = 'correct-answer'; iconHtml = ic('check', 20); }
+        } else if (value === opt.id) { stateClass = 'selected'; }
+        btn.className = 'answer-option' + (stateClass ? ' ' + stateClass : '');
+        btn.disabled = isSub;
+        btn.setAttribute('aria-pressed', value === opt.id ? 'true' : 'false');
+        btn.innerHTML = '<span>' + escapeHtml(opt.label) + '</span><span class="answer-icon">' + iconHtml + '</span>';
+        btn.addEventListener('click', function () {
+          if (isSub) return;
+          handlers.onSelect(opt.id);
+        });
+        optWrap.appendChild(btn);
+      });
+      card.appendChild(optWrap);
+    } else {
+      var form = document.createElement('form');
+      form.className = 'question-form';
+      var label = document.createElement('label');
+      label.className = 'sr-only';
+      label.setAttribute('for', 'answer-' + q.id);
+      label.textContent = 'Your answer';
+      form.appendChild(label);
+      var input = document.createElement('input');
+      input.type = 'text';
+      input.id = 'answer-' + q.id;
+      input.className = 'text-answer-input' + (isSub ? (isCorrect ? ' correct' : ' incorrect') : '');
+      input.value = value || '';
+      input.disabled = isSub;
+      input.autocomplete = 'off';
+      input.spellcheck = false;
+      input.placeholder = 'Type your answer here...';
+      form.appendChild(input);
+      var submitBtn = null;
+      if (!isSub) {
+        submitBtn = document.createElement('button');
+        submitBtn.type = 'submit';
+        submitBtn.className = 'btn-primary';
+        submitBtn.style.marginTop = '12px';
+        submitBtn.textContent = 'Check answer';
+        submitBtn.disabled = !(value || '').trim();
+        form.appendChild(submitBtn);
+      }
+      input.addEventListener('input', function (e) {
+        handlers.onChange(e.target.value);
+        if (submitBtn) submitBtn.disabled = !e.target.value.trim();
+      });
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!isSub && input.value.trim()) handlers.onSubmit();
+      });
+      card.appendChild(form);
+    }
+    return card;
+  }
+
+  function buildFeedbackPanel(q, studentAnswer, isCorrect) {
+    var div = document.createElement('div');
+    div.setAttribute('role', 'status');
+    div.setAttribute('aria-live', 'polite');
+    if (isCorrect) {
+      div.className = 'feedback-panel correct';
+      var msg = POSITIVE_MESSAGES[Math.floor(Math.random() * POSITIVE_MESSAGES.length)];
+      div.innerHTML =
+        '<div class="feedback-head">' +
+          '<span class="feedback-icon correct">' + ic('check-circle', 20) + '<span class="sparkle" style="margin-left:2px;">' + ic('sparkles', 12) + '</span></span>' +
+          '<div><p class="feedback-title correct">' + escapeHtml(msg) + '</p>' +
+          '<p class="muted" style="margin-top:4px;font-size:14px;">' + escapeHtml(q.explanationEnglish) + '</p></div>' +
+        '</div>';
+    } else {
+      div.className = 'feedback-panel incorrect';
+      div.innerHTML =
+        '<div class="feedback-head">' +
+          '<span class="feedback-icon incorrect">' + ic('x-circle', 20) + '</span>' +
+          '<div style="flex:1;min-width:0;">' +
+            '<p class="feedback-title incorrect">Not quite &mdash; let\'s learn from this one.</p>' +
+            '<div class="feedback-body-grid two-col">' +
+              '<div class="feedback-box"><p class="feedback-box-label">Your answer</p><p class="feedback-box-value" style="color:var(--rose-700);">' + escapeHtml(getAnswerLabel(q, studentAnswer) || 'No answer given') + '</p></div>' +
+              '<div class="feedback-box"><p class="feedback-box-label">Correct answer</p><p class="feedback-box-value" style="color:var(--sage-700);">' + escapeHtml(getCorrectAnswerLabel(q)) + '</p></div>' +
+            '</div>' +
+            '<div class="feedback-box" style="margin-top:8px;"><p class="feedback-box-label">' + ic('lightbulb', 14) + ' &nbsp;&#3588;&#3635;&#3629;&#3608;&#3636;&#3610;&#3634;&#3618; (Thai explanation)</p><p class="font-thai" lang="th" style="margin-top:4px;font-size:15px;line-height:1.7;">' + escapeHtml(q.explanationThai) + '</p></div>' +
+            '<div class="feedback-box" style="margin-top:8px;"><p class="feedback-box-label">' + ic('book', 14) + ' &nbsp;Grammar rule</p><p style="margin-top:4px;font-size:14px;line-height:1.6;">' + escapeHtml(q.grammarRule) + '</p></div>' +
+            '<div class="feedback-box" style="margin-top:8px;"><p class="feedback-box-label">One more example</p><p style="margin-top:4px;font-size:14px;font-style:italic;">' + escapeHtml(q.additionalExample) + '</p></div>' +
+          '</div>' +
+        '</div>';
+    }
+    return div;
+  }
+
+  /* ================================================================
+     QUIZ ENGINE — shared by mini practice, quick practice & tests
+     ================================================================ */
+  function createQuizEngine(config) {
+    var mode = config.mode; // 'mini' | 'player'
+    var quizMode = config.quizMode;
+    var testLevel = config.testLevel;
+    var questions = config.questions;
+    var allowRetry = Boolean(config.allowRetry);
+    var lessonId = config.lessonId;
+    var title = config.title;
+    var onComplete = config.onComplete;
+
+    var wrap = document.createElement('div');
+    wrap.className = 'stack-4';
+
+    var restored = null;
+    if (mode === 'player' && STATE.inProgressQuiz) {
+      var saved = STATE.inProgressQuiz;
+      var ids = questions.map(function (q) { return q.id; }).join(',');
+      if (saved.quizMode === quizMode && saved.questionIds.join(',') === ids) restored = saved;
+    }
+
+    var currentIndex = restored ? restored.currentIndex : 0;
+    var answers = restored ? Object.assign({}, restored.answers) : {};
+    var submitted = restored ? Object.assign({}, restored.submitted) : {};
+    var retryUsed = {};
+    var startedAt = restored ? restored.startedAt : new Date().toISOString();
+    var finished = false;
+
+    if (mode === 'mini') {
+      var savedProgress = STATE.miniPracticeProgress[lessonId] || { completedQuestionIds: [], correctQuestionIds: [] };
+      var alreadyDone = savedProgress.completedQuestionIds.length;
+      currentIndex = alreadyDone < questions.length ? alreadyDone : 0;
+      finished = alreadyDone >= questions.length && questions.length > 0;
+    }
+
+    function persistPlayerProgress() {
+      if (mode !== 'player') return;
+      saveInProgressQuiz({
+        quizMode: quizMode, questionIds: questions.map(function (q) { return q.id; }),
+        currentIndex: currentIndex, answers: answers, submitted: submitted, startedAt: startedAt,
+      });
+    }
+    function currentQuestion() { return questions[currentIndex]; }
+
+    function paint() {
+      wrap.innerHTML = '';
+      if (mode === 'mini' && finished) { wrap.appendChild(renderMiniFinished()); return; }
+      if (!questions.length) return;
+
+      var q = currentQuestion();
+      var isSub = Boolean(submitted[q.id]);
+      var val = answers[q.id] || '';
+      var correct = isSub ? isAnswerCorrect(q, val) : null;
+
+      if (mode === 'player') {
+        var header = document.createElement('div');
+        header.className = 'quiz-header';
+        var homeBtn = document.createElement('div');
+        homeBtn.className = 'quiz-header-row';
+        homeBtn.innerHTML = '<h1 class="quiz-title">' + escapeHtml(title) + '</h1>';
+        var hb = document.createElement('button');
+        hb.className = 'btn-ghost'; hb.type = 'button'; hb.setAttribute('aria-label', 'Return to Home');
+        hb.innerHTML = ic('home', 16) + '<span>Home</span>';
+        hb.addEventListener('click', function () { navigate('home'); });
+        homeBtn.appendChild(hb);
+        header.appendChild(homeBtn);
+        var pbHost = document.createElement('div');
+        pbHost.innerHTML = progressBar(currentIndex + (isSub ? 1 : 0), questions.length, testLevel ? testLevel + ' test' : quizMode);
+        header.appendChild(pbHost);
+        wrap.appendChild(header);
+      } else {
+        var pbHost2 = document.createElement('div');
+        pbHost2.innerHTML = progressBar(currentIndex + (isSub ? 1 : 0), questions.length, 'Mini practice');
+        wrap.appendChild(pbHost2);
+      }
+
+      var body = document.createElement('div');
+      body.className = 'stack-4';
+      body.appendChild(buildQuestionCard(q, val, isSub, correct, {
+        onSelect: function (optId) { answers[q.id] = optId; handleSubmit(); },
+        onChange: function (v) { answers[q.id] = v; if (mode === 'player') persistPlayerProgress(); },
+        onSubmit: function () { handleSubmit(); },
+      }));
+
+      if (isSub) {
+        body.appendChild(buildFeedbackPanel(q, val, Boolean(correct)));
+        var actions = document.createElement('div');
+        actions.style.cssText = 'display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;';
+        var canRetry = !correct && ((mode === 'player' && allowRetry && !retryUsed[q.id]) || mode === 'mini');
+        if (canRetry) {
+          var retryBtn = document.createElement('button');
+          retryBtn.type = 'button'; retryBtn.className = 'btn-secondary';
+          retryBtn.innerHTML = ic('rotate', 16) + ' Try Again';
+          retryBtn.addEventListener('click', function () {
+            submitted[q.id] = false; answers[q.id] = ''; retryUsed[q.id] = true;
+            if (mode === 'player') persistPlayerProgress();
+            paint();
+          });
+          actions.appendChild(retryBtn);
+        }
+        var isLast = currentIndex === questions.length - 1;
+        var nextBtn = document.createElement('button');
+        nextBtn.type = 'button'; nextBtn.className = 'btn-primary';
+        var nextLabel = mode === 'mini' ? (isLast ? 'Finish mini practice' : 'Next question') : (isLast ? 'See my results' : 'Next question');
+        nextBtn.innerHTML = escapeHtml(nextLabel) + ' ' + ic('arrow-right', 16);
+        nextBtn.addEventListener('click', function () {
+          if (mode === 'mini') {
+            if (isLast) { markLessonCompleted(lessonId); finished = true; paint(); return; }
+            currentIndex++; paint();
+          } else {
+            if (isLast) {
+              var result = buildTestResult(quizMode, questions, answers);
+              saveInProgressQuiz(null);
+              onComplete(result);
+              return;
+            }
+            currentIndex++; persistPlayerProgress(); paint();
+          }
+        });
+        actions.appendChild(nextBtn);
+        body.appendChild(actions);
+      }
+      wrap.appendChild(body);
+    }
+
+    function renderMiniFinished() {
+      var savedProgress = STATE.miniPracticeProgress[lessonId] || { correctQuestionIds: [] };
+      var box = document.createElement('div');
+      box.className = 'card animate-pop-in text-center';
+      box.style.padding = '30px 20px';
+      box.innerHTML =
+        '<div style="width:48px;height:48px;border-radius:999px;background:var(--sage-100);color:var(--sage-600);display:grid;place-items:center;margin:0 auto;">' + ic('party', 22) + '</div>' +
+        '<p style="margin-top:12px;font-family:var(--font-heading);font-weight:700;font-size:18px;">Mini practice complete!</p>' +
+        '<p class="muted" style="margin-top:6px;font-size:14px;">You got ' + savedProgress.correctQuestionIds.length + ' out of ' + questions.length + ' correct on your latest attempt.</p>';
+      var btn = document.createElement('button');
+      btn.className = 'btn-secondary'; btn.style.marginTop = '16px';
+      btn.innerHTML = ic('rotate', 16) + ' Practise this lesson again';
+      btn.addEventListener('click', function () { currentIndex = 0; answers = {}; submitted = {}; finished = false; paint(); });
+      box.appendChild(btn);
+      return box;
+    }
+
+    function handleSubmit() {
+      var q = currentQuestion();
+      submitted[q.id] = true;
+      var correct = isAnswerCorrect(q, answers[q.id] || '');
+      if (mode === 'mini') {
+        recordMiniPracticeAnswer(lessonId, q.id, correct);
+      } else {
+        if (!correct) recordMistake(q, answers[q.id] || '', quizMode);
+        else if (retryUsed[q.id]) markImproved(q.id);
+        persistPlayerProgress();
+      }
+      paint();
+    }
+
+    paint();
+    return wrap;
+  }
+
+  /* ================================================================
+     RESULTS SUMMARY / TOPIC PERFORMANCE
+     ================================================================ */
+  function renderTopicPerformance(categoryBreakdown) {
+    var entries = CATEGORY_ORDER.map(function (cat) { return { category: cat, stat: categoryBreakdown[cat] }; })
+      .filter(function (e) { return e.stat && e.stat.total > 0; });
+    var wrap = document.createElement('div');
+    if (!entries.length) {
+      wrap.innerHTML = '<p class="muted small">No topic data yet &mdash; complete a test to see your breakdown here.</p>';
+      return wrap;
+    }
+    entries.forEach(function (e) {
+      var pct = Math.round((e.stat.correct / e.stat.total) * 100);
+      var cls = pct >= 75 ? 'high' : pct >= 50 ? 'mid' : 'low';
+      var item = document.createElement('div');
+      item.className = 'topic-perf-item';
+      item.innerHTML = '<div class="topic-perf-row"><span class="name">' + escapeHtml(e.category) + '</span><span class="val">' + e.stat.correct + '/' + e.stat.total + ' (' + pct + '%)</span></div>' +
+        '<div class="topic-perf-track"><div class="topic-perf-fill ' + cls + '" style="width:' + pct + '%"></div></div>';
+      wrap.appendChild(item);
+    });
+    return wrap;
+  }
+
+  function renderResultsSummary(result) {
+    var performanceLevel = getPerformanceLevel(result.percentage);
+    var sw = findStrongestAndWeakest(result.categoryBreakdown);
+    var recommendedLesson = sw.weakest ? getLessonById(CATEGORY_TO_LESSON[sw.weakest]) : null;
+    var levelColors = {
+      'Quantifier Expert': { bg: 'var(--sage-100)', fg: 'var(--sage-700)' },
+      'Almost Exam Ready': { bg: 'var(--apricot-100)', fg: 'var(--apricot-700)' },
+      'Good Progress': { bg: 'var(--apricot-100)', fg: 'var(--apricot-700)' },
+      'Keep Practising': { bg: 'var(--rose-100)', fg: 'var(--rose-700)' },
+    };
+    var colors = levelColors[performanceLevel];
+    var wrap = document.createElement('div');
+    wrap.className = 'stack-5';
+
+    var hero = document.createElement('div');
+    hero.className = 'card results-hero';
+    hero.innerHTML =
+      '<p class="eyebrow">Completed ' + escapeHtml(formatDate(result.dateTaken)) + '</p>' +
+      '<p class="pct">' + result.percentage + '%</p>' +
+      '<p class="fraction">' + result.score + ' / ' + result.total + ' correct</p>' +
+      '<span class="pill perf-pill" style="background:' + colors.bg + ';color:' + colors.fg + ';">' + ic('award', 14) + ' ' + escapeHtml(performanceLevel) + '</span>' +
+      '<p class="desc">' + escapeHtml(performanceLevelCopy[performanceLevel]) + '</p>' +
+      '<div class="results-stat-grid">' +
+        '<div class="results-stat-box correct">' + ic('check-circle', 18) + '<p class="num">' + result.correctCount + '</p><p class="lbl">Correct</p></div>' +
+        '<div class="results-stat-box incorrect">' + ic('x-circle', 18) + '<p class="num">' + result.incorrectCount + '</p><p class="lbl">Incorrect</p></div>' +
+        '<div class="results-stat-box unanswered">' + ic('help-circle', 18) + '<p class="num">' + result.unansweredCount + '</p><p class="lbl">Unanswered</p></div>' +
+      '</div>';
+    wrap.appendChild(hero);
+
+    var breakdown = document.createElement('div');
+    breakdown.className = 'card';
+    breakdown.style.padding = '22px';
+    breakdown.innerHTML = '<h3 style="font-size:17px;">Topic breakdown</h3>';
+    var tpHost = document.createElement('div'); tpHost.style.marginTop = '12px';
+    tpHost.appendChild(renderTopicPerformance(result.categoryBreakdown));
+    breakdown.appendChild(tpHost);
+
+    if (sw.strongest || sw.weakest) {
+      var sg = document.createElement('div'); sg.className = 'strength-grid';
+      if (sw.strongest) sg.innerHTML += '<div class="strength-box strong"><p class="lbl">Strongest topic</p><p class="val">' + escapeHtml(sw.strongest) + '</p></div>';
+      if (sw.weakest) sg.innerHTML += '<div class="strength-box weak"><p class="lbl">Needs more practice</p><p class="val">' + escapeHtml(sw.weakest) + '</p></div>';
+      breakdown.appendChild(sg);
+    }
+    if (recommendedLesson) {
+      var rec = document.createElement('div'); rec.className = 'recommend-box';
+      rec.innerHTML = ic('target', 20) + '<p style="font-size:14px;">Recommended review: <strong>' + escapeHtml(recommendedLesson.title) + '</strong></p>';
+      breakdown.appendChild(rec);
+    }
+    wrap.appendChild(breakdown);
+    return wrap;
+  }
+
+  /* ================================================================
+     CONFIRM MODAL
+     ================================================================ */
+  function showConfirmModal(opts) {
+    var root = document.getElementById('modal-root');
+    root.innerHTML = '';
+    var overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-labelledby', 'confirm-title');
+    var box = document.createElement('div');
+    box.className = 'modal-box animate-pop-in';
+    box.innerHTML = '<h3 id="confirm-title">' + escapeHtml(opts.title) + '</h3><p>' + escapeHtml(opts.description) + '</p>';
+    var actions = document.createElement('div');
+    actions.className = 'modal-actions';
+    var cancelBtn = document.createElement('button');
+    cancelBtn.className = 'btn-secondary'; cancelBtn.textContent = opts.cancelLabel || 'Cancel';
+    var confirmBtn = document.createElement('button');
+    confirmBtn.className = 'btn-primary'; confirmBtn.style.background = 'var(--rose-500)';
+    confirmBtn.textContent = opts.confirmLabel || 'Confirm';
+    function close() { root.innerHTML = ''; document.removeEventListener('keydown', onKey); }
+    function onKey(e) { if (e.key === 'Escape') close(); }
+    cancelBtn.addEventListener('click', close);
+    confirmBtn.addEventListener('click', function () { close(); if (opts.onConfirm) opts.onConfirm(); });
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+    document.addEventListener('keydown', onKey);
+    actions.appendChild(cancelBtn); actions.appendChild(confirmBtn);
+    box.appendChild(actions);
+    overlay.appendChild(box);
+    root.appendChild(overlay);
+    confirmBtn.focus();
+  }
+
+  /* ================================================================
+     COMPARISON TABLE
+     ================================================================ */
+  function renderComparisonTable() {
+    var wrap = document.createElement('div');
+    var tableHtml = '<div class="comparison-table-wrap card" style="padding:0;">' +
+      '<table class="comparison-table"><thead><tr><th>Quantifier</th><th>Noun type</th><th>Meaning</th><th>Example</th></tr></thead><tbody>' +
+      comparisonData.map(function (row) {
+        return '<tr><td style="font-family:var(--font-heading);font-weight:800;color:var(--apricot-700);">' + escapeHtml(row.quantifier) + '</td>' +
+          '<td>' + escapeHtml(row.nounType) + '</td><td>' + escapeHtml(row.meaning) + '</td>' +
+          '<td style="font-style:italic;">' + escapeHtml(row.example) + '</td></tr>';
+      }).join('') +
+      '</tbody></table></div>';
+    var cardsHtml = '<div class="comparison-cards">' +
+      comparisonData.map(function (row) {
+        return '<div class="card comparison-card-item"><p class="q">' + escapeHtml(row.quantifier) + '</p><dl>' +
+          '<dt>Noun type</dt><dd>' + escapeHtml(row.nounType) + '</dd>' +
+          '<dt>Meaning</dt><dd>' + escapeHtml(row.meaning) + '</dd>' +
+          '<dt>Example</dt><dd style="font-style:italic;">' + escapeHtml(row.example) + '</dd></dl></div>';
+      }).join('') +
+      '</div>';
+    wrap.innerHTML = tableHtml + cardsHtml;
+    return wrap;
+  }
+
+  /* ================================================================
+     PAGE RENDERERS
+     ================================================================ */
+  function renderHome() {
+    var wrap = document.createElement('div');
+    wrap.className = 'stack-14';
+    var pct = overallProgressPercent();
+    var testLevelsMeta = [{ key: 'easy', label: 'Easy' }, { key: 'medium', label: 'Medium' }, { key: 'challenge', label: 'Challenge' }];
+
+    var statBoxes = '<div class="stat-box"><p class="num">' + STATE.completedLessons.length + '/' + lessons.length + '</p><p class="lbl">Lessons done</p></div>' +
+      testLevelsMeta.map(function (t) {
+        var best = STATE.testScores[t.key] && STATE.testScores[t.key].best;
+        return '<div class="stat-box"><p class="num">' + (best ? best.percentage + '%' : '&mdash;') + '</p><p class="lbl">' + t.label + ' best</p></div>';
+      }).join('');
+
+    wrap.innerHTML =
+      '<section class="hero">' +
+        '<span class="pill" style="background:var(--apricot-100);color:var(--apricot-700);">' + ic('sparkles', 14) + ' CEFR A1&ndash;A2 English Grammar</span>' +
+        '<h1>Quantifier Mastery</h1>' +
+        '<p class="tagline">Learn it. Practise it. Ace the test.</p>' +
+        '<p class="lede">Master <strong>many, much, some, any, a few, few, a little, little, each</strong> and <strong>every</strong> through short interactive lessons, bite-sized practice, and three levels of exam-style tests &mdash; built for Thai students preparing for real school exams.</p>' +
+        '<div class="hero-actions">' +
+          '<button class="btn-primary" data-nav="learn">' + ic('book', 18) + ' Start Learning</button>' +
+          '<button class="btn-secondary" data-nav="practice">' + ic('zap', 18) + ' Practise Now</button>' +
+          '<button class="btn-secondary" data-nav="test/easy">' + ic('clipboard', 18) + ' Take the Test</button>' +
+        '</div>' +
+      '</section>' +
+      '<section class="card" style="padding:24px;">' +
+        '<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;">' +
+          '<h2 style="font-size:19px;">Your progress</h2>' +
+          '<button class="btn-ghost" data-nav="progress">View full progress</button>' +
+        '</div>' +
+        '<div style="margin-top:16px;">' + progressBar(pct, 100, 'Overall completion') + '</div>' +
+        '<div class="stat-grid">' + statBoxes + '</div>' +
+      '</section>' +
+      '<section>' +
+        '<h2 class="section-heading text-center">Ten quantifiers, one clear system</h2>' +
+        '<p class="muted text-center" style="max-width:560px;margin:8px auto 0;font-size:14.5px;">Tap a quantifier below to jump straight into its lesson, or head to the full Learn section for the complete guide.</p>' +
+        '<div class="quantifier-grid">' +
+          comparisonData.map(function (row) {
+            return '<button class="card quantifier-card" data-nav="learn?lesson=' + lessonIdForQuantifier(row.quantifier) + '"><span class="q-name">' + escapeHtml(row.quantifier) + '</span><span class="q-type">' + escapeHtml(row.nounType) + '</span></button>';
+          }).join('') +
+        '</div>' +
+      '</section>' +
+      '<section class="cu-grid">' +
+        '<div class="card cu-card">' +
+          '<div class="cu-head"><span class="cu-icon countable">' + ic('boxes', 20) + '</span><h3>Countable</h3></div>' +
+          '<p class="muted" style="margin-top:8px;font-size:14px;">Can be counted one by one. Has a plural form.</p>' +
+          '<div class="cu-examples">' + ['1 apple / 2 apples', '1 book / 3 books', '1 student / 5 students'].map(function (x) { return '<span class="cu-chip countable">' + x + '</span>'; }).join('') + '</div>' +
+        '</div>' +
+        '<div class="card cu-card">' +
+          '<div class="cu-head"><span class="cu-icon uncountable">' + ic('droplets', 20) + '</span><h3>Uncountable</h3></div>' +
+          '<p class="muted" style="margin-top:8px;font-size:14px;">Not counted individually. No plural -s form.</p>' +
+          '<div class="cu-examples">' + ['water', 'milk', 'rice', 'sugar', 'money', 'information', 'homework'].map(function (x) { return '<span class="cu-chip uncountable">' + x + '</span>'; }).join('') + '</div>' +
+        '</div>' +
+      '</section>';
+    return wrap;
+  }
+
+  function renderLearn(params) {
+    var wrap = document.createElement('div');
+    wrap.className = 'stack-10';
+
+    var requested = params.lesson;
+    var selectedId = (requested && lessons.some(function (l) { return l.id === requested; })) ? requested : lessons[0].id;
+
+    var header = document.createElement('header');
+    header.className = 'text-center';
+    header.innerHTML = '<h1 class="section-heading">Learn the 10 quantifiers in 6 short lessons</h1><p class="muted" style="max-width:640px;margin:10px auto 0;font-size:15px;">Work through each lesson at your own pace. Every lesson ends with a short mini practice so you can check your understanding right away.</p>';
+    wrap.appendChild(header);
+
+    var grid = document.createElement('div');
+    grid.className = 'learn-grid';
+    var nav = document.createElement('nav');
+    nav.className = 'lesson-nav';
+    nav.setAttribute('aria-label', 'Lesson list');
+    var detailContainer = document.createElement('div');
+    detailContainer.className = 'stack-6';
+    detailContainer.id = 'lesson-detail';
+
+    function paintNav() {
+      nav.innerHTML = '';
+      lessons.forEach(function (lesson) {
+        var done = STATE.completedLessons.indexOf(lesson.id) !== -1;
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'card lesson-card' + (lesson.id === selectedId ? ' active' : '');
+        if (lesson.id === selectedId) btn.setAttribute('aria-current', 'true');
+        btn.innerHTML =
+          '<span class="lesson-icon">' + ic(lessonIconMap(lesson.icon), 22) + '</span>' +
+          '<span style="min-width:0;flex:1;">' +
+            '<span class="lesson-meta-row"><span class="lesson-order">Lesson ' + lesson.order + '</span>' +
+            (done ? '<span class="pill" style="background:var(--sage-100);color:var(--sage-700);">' + ic('check-circle', 12) + ' Done</span>' : '') + '</span>' +
+            '<span class="lesson-title-txt">' + escapeHtml(lesson.title) + '</span>' +
+            '<span class="lesson-sub-txt">' + escapeHtml(lesson.subtitle) + '</span>' +
+          '</span>' +
+          '<span class="lesson-chevron">' + ic('chevron-right', 20) + '</span>';
+        btn.addEventListener('click', function () {
+          selectedId = lesson.id;
+          paintNav();
+          paintDetail();
+          detailContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        nav.appendChild(btn);
+      });
+    }
+
+    function paintDetail() {
+      detailContainer.innerHTML = '';
+      var lesson = lessons.filter(function (l) { return l.id === selectedId; })[0] || lessons[0];
+      var article = document.createElement('article');
+      article.className = 'card lesson-detail-card animate-fade-in-up';
+      var html = '<div class="lesson-badge-row"><span class="lesson-eyebrow">Lesson ' + lesson.order + ' of ' + lessons.length + '</span>' +
+        (STATE.completedLessons.indexOf(lesson.id) !== -1 ? '<span class="pill" style="background:var(--sage-100);color:var(--sage-700);">' + ic('check-circle', 12) + ' Completed</span>' : '') + '</div>' +
+        '<h2 class="lesson-detail-title">' + escapeHtml(lesson.title) + '</h2>' +
+        '<p class="lesson-detail-sub">' + escapeHtml(lesson.subtitle) + '</p>' +
+        '<p class="lesson-detail-intro">' + escapeHtml(lesson.intro) + '</p>';
+      lesson.points.forEach(function (point) {
+        html += '<div class="point-block"><h3 class="point-heading">' + escapeHtml(point.heading) + '</h3>' +
+          '<p class="point-body">' + escapeHtml(point.body) + '</p>' +
+          '<div class="point-examples">' + point.examples.map(function (ex) {
+            return '<div class="point-example"><span class="arrow">' + ic('arrow-right', 14) + '</span><span class="txt">' + escapeHtml(ex) + '</span></div>';
+          }).join('') + '</div></div>';
+      });
+      if (lesson.commonMistakes.length) {
+        html += '<div class="mistakes-block"><h3>' + ic('alert-circle', 16) + ' Common mistakes</h3>';
+        lesson.commonMistakes.forEach(function (m) {
+          html += '<div class="mistake-row"><span class="mistake-wrong">' + escapeHtml(m.wrong) + '</span><span class="mistake-arrow">&rarr;</span><span class="mistake-right">' + escapeHtml(m.right) + '</span></div>';
+        });
+        html += '</div>';
+      }
+      article.innerHTML = html;
+      detailContainer.appendChild(article);
+
+      var miniSection = document.createElement('section');
+      miniSection.className = 'card mini-practice-card';
+      miniSection.setAttribute('aria-labelledby', 'mini-practice-heading');
+      miniSection.innerHTML = '<h2 id="mini-practice-heading" style="font-size:18px;">Mini practice</h2><p class="muted" style="margin-top:4px;font-size:14px;">' + lesson.miniPractice.length + ' quick questions to check what you just learned.</p>';
+      var engineHost = document.createElement('div');
+      engineHost.style.marginTop = '16px';
+      if (lesson.miniPractice.length) {
+        engineHost.appendChild(createQuizEngine({ mode: 'mini', quizMode: 'mini', questions: lesson.miniPractice, lessonId: lesson.id }));
+      }
+      miniSection.appendChild(engineHost);
+      detailContainer.appendChild(miniSection);
+    }
+
+    paintNav();
+    paintDetail();
+    grid.appendChild(nav);
+    grid.appendChild(detailContainer);
+    wrap.appendChild(grid);
+
+    var compSection = document.createElement('section');
+    compSection.setAttribute('aria-labelledby', 'comparison-heading');
+    compSection.innerHTML = '<h2 id="comparison-heading" class="section-heading text-center">Quick Comparison</h2><p class="muted text-center" style="max-width:560px;margin:8px auto 0;font-size:14.5px;">All 10 quantifiers side by side &mdash; a handy reference before your test.</p>';
+    var compBody = document.createElement('div');
+    compBody.style.marginTop = '18px';
+    compBody.appendChild(renderComparisonTable());
+    compSection.appendChild(compBody);
+    wrap.appendChild(compSection);
+
+    var tipsSection = document.createElement('section');
+    tipsSection.setAttribute('aria-labelledby', 'memory-tips-heading');
+    tipsSection.innerHTML = '<h2 id="memory-tips-heading" class="section-heading text-center">Remember This</h2>';
+    var tipsGrid = document.createElement('div');
+    tipsGrid.className = 'tips-grid';
+    memoryTips.forEach(function (tip) {
+      var item = document.createElement('div');
+      item.className = 'card tip-item';
+      item.innerHTML = '<span class="tip-bulb">' + ic('lightbulb', 18) + '</span><span>' + escapeHtml(tip.text) + '</span>';
+      tipsGrid.appendChild(item);
+    });
+    tipsSection.appendChild(tipsGrid);
+    wrap.appendChild(tipsSection);
+
+    return wrap;
+  }
+
+  function renderPractice() {
+    var wrap = document.createElement('div');
+    var SESSION_SIZE = 10;
+    var note = document.createElement('div');
+    note.className = 'mode-note';
+    note.innerHTML = ic('zap', 18) + '<span>A quick, mixed round of ' + SESSION_SIZE + ' questions pulled from every lesson. Retries are allowed &mdash; this is just for practice!</span>';
+    wrap.appendChild(note);
+
+    var host = document.createElement('div');
+    wrap.appendChild(host);
+
+    function startSession() {
+      host.innerHTML = '';
+      var questions = shuffleArray(allMiniPracticeQuestions).slice(0, SESSION_SIZE);
+      host.appendChild(createQuizEngine({
+        mode: 'player', quizMode: 'quick', questions: questions, allowRetry: true, title: 'Quick Practice',
+        onComplete: function (result) { showCompletion(result); },
+      }));
+    }
+    function showCompletion(result) {
+      host.innerHTML = '';
+      var box = document.createElement('div');
+      box.className = 'max-2xl stack-5';
+      var h = document.createElement('h1'); h.className = 'section-heading text-center'; h.textContent = 'Quick Practice — session complete';
+      box.appendChild(h);
+      box.appendChild(renderResultsSummary(result));
+      var actions = document.createElement('div');
+      actions.style.cssText = 'display:flex;justify-content:center;gap:10px;flex-wrap:wrap;';
+      var again = document.createElement('button'); again.className = 'btn-primary'; again.innerHTML = ic('rotate', 16) + ' Practise again';
+      again.addEventListener('click', startSession);
+      var home = document.createElement('button'); home.className = 'btn-secondary'; home.textContent = 'Return Home';
+      home.addEventListener('click', function () { navigate('home'); });
+      actions.appendChild(again); actions.appendChild(home);
+      box.appendChild(actions);
+      host.appendChild(box);
+    }
+    startSession();
+    return wrap;
+  }
+
+  function renderTest(level) {
+    if (TEST_LEVELS.indexOf(level) === -1) { navigate('home'); return document.createElement('div'); }
+    var wrap = document.createElement('div');
+    wrap.className = 'max-2xl';
+    var questions = quizData[level];
+    var title = level.charAt(0).toUpperCase() + level.slice(1) + ' Test';
+    wrap.appendChild(createQuizEngine({
+      mode: 'player', quizMode: level, testLevel: level, questions: questions, allowRetry: false, title: title,
+      onComplete: function (result) { saveTestResult(level, result); navigate('results?level=' + level); },
+    }));
+    return wrap;
+  }
+
+  function renderResults(params) {
+    var levelParam = params.level;
+    if (levelParam && LEVEL_META[levelParam]) {
+      var result = STATE.testScores[levelParam] && STATE.testScores[levelParam].latest;
+      if (result) {
+        var wrap = document.createElement('div');
+        wrap.className = 'max-2xl stack-5';
+        var h = document.createElement('h1'); h.className = 'section-heading text-center'; h.textContent = LEVEL_META[levelParam].label + ' results';
+        wrap.appendChild(h);
+        wrap.appendChild(renderResultsSummary(result));
+        var actions = document.createElement('div');
+        actions.style.cssText = 'display:flex;justify-content:center;gap:10px;flex-wrap:wrap;';
+        var reviewBtn = document.createElement('button'); reviewBtn.className = 'btn-secondary'; reviewBtn.innerHTML = ic('rotate', 16) + ' Review Mistakes';
+        reviewBtn.addEventListener('click', function () { navigate('mistakes'); });
+        var retryBtn = document.createElement('button'); retryBtn.className = 'btn-secondary'; retryBtn.innerHTML = ic('clipboard', 16) + ' Retry Test';
+        retryBtn.addEventListener('click', function () { navigate(LEVEL_META[levelParam].path); });
+        var homeBtn = document.createElement('button'); homeBtn.className = 'btn-primary'; homeBtn.innerHTML = ic('home', 16) + ' Return Home';
+        homeBtn.addEventListener('click', function () { navigate('home'); });
+        actions.appendChild(reviewBtn); actions.appendChild(retryBtn); actions.appendChild(homeBtn);
+        wrap.appendChild(actions);
+        return wrap;
+      }
+    }
+    var wrap2 = document.createElement('div');
+    wrap2.className = 'max-3xl stack-6';
+    wrap2.innerHTML = '<header class="text-center"><h1 class="section-heading">Final Results</h1><p class="muted" style="max-width:520px;margin:8px auto 0;font-size:14.5px;">Your best and most recent score for each test level.</p></header>';
+    var grid = document.createElement('div');
+    grid.className = 'results-level-grid';
+    TEST_LEVELS.forEach(function (level) {
+      var entry = STATE.testScores[level];
+      var card = document.createElement('div');
+      card.className = 'card results-level-card';
+      var inner = '<span class="trophy-badge">' + ic('trophy', 20) + '</span><p style="font-family:var(--font-heading);font-weight:700;text-transform:capitalize;">' + level + ' test</p>';
+      if (entry && entry.best) {
+        inner += '<p style="font-size:30px;font-weight:800;">' + entry.best.percentage + '%</p><p class="muted" style="font-size:12px;">Best &middot; ' + formatDate(entry.best.dateTaken) + '</p>';
+        if (entry.latest && entry.latest.dateTaken !== entry.best.dateTaken) inner += '<p class="muted" style="font-size:12px;">Latest: ' + entry.latest.percentage + '%</p>';
+      } else {
+        inner += '<p class="muted" style="font-size:14px;">Not attempted yet</p>';
+      }
+      card.innerHTML = inner;
+      if (entry && entry.best) {
+        var viewBtn = document.createElement('button'); viewBtn.className = 'btn-secondary btn-block'; viewBtn.style.marginTop = '4px'; viewBtn.textContent = 'View details';
+        viewBtn.addEventListener('click', function () { navigate('results?level=' + level); });
+        card.appendChild(viewBtn);
+      }
+      var takeBtn = document.createElement('button'); takeBtn.className = 'btn-primary btn-block'; takeBtn.style.marginTop = '4px';
+      takeBtn.textContent = entry && entry.best ? 'Retry Test' : 'Take Test';
+      takeBtn.addEventListener('click', function () { navigate(LEVEL_META[level].path); });
+      card.appendChild(takeBtn);
+      grid.appendChild(card);
+    });
+    wrap2.appendChild(grid);
+    return wrap2;
+  }
+
+  function renderMistakeCard(entry, onImproved) {
+    var card = document.createElement('div');
+    card.className = 'card mistake-card';
+    var retrying = false;
+    var answer = '';
+    var submitted = false;
+
+    function paint() {
+      card.innerHTML = '';
+      var badgeRow = document.createElement('div');
+      badgeRow.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px;align-items:center;';
+      badgeRow.innerHTML = '<span class="pill" style="background:var(--apricot-100);color:var(--apricot-700);">' + escapeHtml(entry.category) + '</span>' +
+        (entry.improved ? '<span class="pill" style="background:var(--sage-100);color:var(--sage-700);">' + ic('check-circle', 12) + ' Improved</span>' : '');
+      card.appendChild(badgeRow);
+
+      if (!retrying) {
+        var body = document.createElement('div');
+        var html = '<p style="margin-top:12px;font-size:16px;font-weight:700;">' + escapeHtml(entry.question.prompt) + '</p>';
+        if (entry.question.context) html += '<p class="muted" style="margin-top:8px;white-space:pre-line;background:var(--ivory-soft);border-radius:10px;padding:10px 12px;font-size:14px;">' + escapeHtml(entry.question.context) + '</p>';
+        html += '<div class="mistake-answer-grid">' +
+          '<div class="mistake-answer-box wrong"><p class="feedback-box-label">Your answer</p><p style="margin-top:3px;font-weight:600;color:var(--rose-700);">' + escapeHtml(getAnswerLabel(entry.question, entry.studentAnswer) || 'No answer given') + '</p></div>' +
+          '<div class="mistake-answer-box right"><p class="feedback-box-label">Correct answer</p><p style="margin-top:3px;font-weight:600;color:var(--sage-700);">' + escapeHtml(getCorrectAnswerLabel(entry.question)) + '</p></div>' +
+        '</div>' +
+        '<div class="explanation-box"><p class="feedback-box-label">' + ic('lightbulb', 14) + ' &nbsp;&#3588;&#3635;&#3629;&#3608;&#3636;&#3610;&#3634;&#3618;</p><p class="font-thai" lang="th" style="margin-top:4px;font-size:14.5px;line-height:1.7;">' + escapeHtml(entry.question.explanationThai) + '</p></div>' +
+        '<p class="muted" style="margin-top:8px;font-size:13.5px;"><strong style="color:var(--navy);">Rule: </strong>' + escapeHtml(entry.question.grammarRule) + '</p>' +
+        '<p class="muted" style="margin-top:4px;font-size:13.5px;font-style:italic;"><strong style="color:var(--navy);font-style:normal;">Example: </strong>' + escapeHtml(entry.question.additionalExample) + '</p>';
+        body.innerHTML = html;
+        card.appendChild(body);
+
+        var retryBtn = document.createElement('button');
+        retryBtn.className = 'btn-secondary'; retryBtn.style.marginTop = '14px';
+        retryBtn.innerHTML = ic('rotate', 16) + ' Try Again';
+        retryBtn.addEventListener('click', function () { retrying = true; submitted = false; answer = ''; paint(); });
+        card.appendChild(retryBtn);
+      } else {
+        var q = entry.question;
+        var isCorrect = submitted ? isAnswerCorrect(q, answer) : null;
+        var qcHost = document.createElement('div'); qcHost.style.marginTop = '12px';
+        qcHost.appendChild(buildQuestionCard(q, answer, submitted, isCorrect, {
+          onSelect: function (optId) {
+            answer = optId; submitted = true;
+            if (isAnswerCorrect(q, answer)) markImproved(entry.questionId);
+            paint();
+          },
+          onChange: function (v) { answer = v; },
+          onSubmit: function () {
+            submitted = true;
+            if (isAnswerCorrect(q, answer)) markImproved(entry.questionId);
+            paint();
+          },
+        }));
+        card.appendChild(qcHost);
+        if (submitted) {
+          var justSucceeded = isAnswerCorrect(q, answer);
+          var msg = document.createElement('div');
+          msg.style.cssText = 'margin-top:10px;border-radius:12px;padding:12px;font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;' + (justSucceeded ? 'background:var(--sage-50);color:var(--sage-700);' : 'background:var(--rose-50);color:var(--rose-700);');
+          msg.innerHTML = justSucceeded ? (ic('sparkles', 16) + ' Improved! Great work fixing this one.') : ('Still not quite &mdash; the correct answer is &ldquo;' + escapeHtml(getCorrectAnswerLabel(q)) + '&rdquo;.');
+          card.appendChild(msg);
+          if (justSucceeded && onImproved) setTimeout(onImproved, 900);
+        }
+        var backBtn = document.createElement('button'); backBtn.className = 'btn-ghost'; backBtn.style.marginTop = '10px'; backBtn.textContent = 'Back to explanation';
+        backBtn.addEventListener('click', function () { retrying = false; paint(); });
+        card.appendChild(backBtn);
+      }
+    }
+    paint();
+    return card;
+  }
+
+  function renderMistakes() {
+    var wrap = document.createElement('div');
+    wrap.className = 'max-2xl stack-5';
+    var header = document.createElement('header'); header.className = 'text-center';
+    header.innerHTML = '<h1 class="section-heading">Mistake Review</h1><p class="muted" style="max-width:520px;margin:8px auto 0;font-size:14.5px;">Every question you have gotten wrong, with the correct answer and a Thai explanation. Answer correctly to mark it improved.</p>';
+    wrap.appendChild(header);
+
+    var list = document.createElement('div'); list.className = 'stack-4';
+    function paintList() {
+      list.innerHTML = '';
+      var active = STATE.mistakes.filter(function (m) { return !m.improved; });
+      if (!active.length) {
+        var empty = document.createElement('div'); empty.className = 'card empty-state';
+        empty.innerHTML = '<p style="font-family:var(--font-heading);font-weight:700;font-size:17px;color:var(--navy);">No outstanding mistakes</p><p class="muted" style="margin-top:6px;font-size:14px;">Great work &mdash; take a test or practice session to keep building your skills.</p>';
+        var btn = document.createElement('button'); btn.className = 'btn-primary'; btn.style.marginTop = '14px'; btn.textContent = 'Return Home';
+        btn.addEventListener('click', function () { navigate('home'); });
+        empty.appendChild(btn);
+        list.appendChild(empty);
+        return;
+      }
+      active.slice().reverse().forEach(function (entry) {
+        list.appendChild(renderMistakeCard(entry, paintList));
+      });
+    }
+    paintList();
+    wrap.appendChild(list);
+    return wrap;
+  }
+
+  function renderProgress() {
+    var wrap = document.createElement('div');
+    wrap.className = 'max-3xl stack-6';
+    wrap.innerHTML = '<header class="text-center"><h1 class="section-heading">Your Progress</h1><p class="muted" style="max-width:520px;margin:8px auto 0;font-size:14.5px;">Everything here is saved automatically on this device, so you can close the app and pick up right where you left off.</p></header>';
+
+    var overallCard = document.createElement('section'); overallCard.className = 'card'; overallCard.style.padding = '20px';
+    var op = overallProgressPercent();
+    overallCard.innerHTML = '<h2 style="font-size:16px;">Overall completion</h2>';
+    var pbHost = document.createElement('div'); pbHost.style.marginTop = '12px';
+    pbHost.innerHTML = progressBar(op, 100, op + '% complete');
+    overallCard.appendChild(pbHost);
+    wrap.appendChild(overallCard);
+
+    var lessonsCard = document.createElement('section'); lessonsCard.className = 'card'; lessonsCard.style.padding = '20px';
+    lessonsCard.innerHTML = '<h2 style="font-size:16px;">Lessons</h2>';
+    var listHost = document.createElement('div'); listHost.style.marginTop = '12px';
+    var totalMini = 0, completedMini = 0;
+    lessons.forEach(function (lesson) {
+      totalMini += lesson.miniPractice.length;
+      var mp = STATE.miniPracticeProgress[lesson.id] || { completedQuestionIds: [], correctQuestionIds: [] };
+      completedMini += mp.completedQuestionIds.length;
+      var done = STATE.completedLessons.indexOf(lesson.id) !== -1;
+      var row = document.createElement('div'); row.className = 'progress-list-item';
+      row.innerHTML = '<div style="display:flex;align-items:center;gap:8px;"><span class="progress-check' + (done ? ' done' : '') + '">' + (done ? ic('check', 11) : '') + '</span><span style="font-size:14px;font-weight:600;">' + escapeHtml(lesson.title) + '</span></div><span class="muted" style="font-size:12.5px;">' + mp.correctQuestionIds.length + '/' + lesson.miniPractice.length + ' correct</span>';
+      listHost.appendChild(row);
+    });
+    lessonsCard.appendChild(listHost);
+    var miniSummary = document.createElement('p'); miniSummary.className = 'muted small'; miniSummary.style.marginTop = '8px';
+    miniSummary.textContent = completedMini + '/' + totalMini + ' mini practice questions attempted in total.';
+    lessonsCard.appendChild(miniSummary);
+    wrap.appendChild(lessonsCard);
+
+    var scoresCard = document.createElement('section'); scoresCard.className = 'card'; scoresCard.style.padding = '20px';
+    scoresCard.innerHTML = '<h2 style="font-size:16px;">Test scores</h2>';
+    var scoreGrid = document.createElement('div'); scoreGrid.style.cssText = 'margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;';
+    TEST_LEVELS.forEach(function (level) {
+      var entry = STATE.testScores[level];
+      var box = document.createElement('div'); box.className = 'score-box';
+      var inner = '<p class="lvl">' + level + '</p>';
+      if (entry && entry.best) {
+        inner += '<p class="pct">' + entry.best.percentage + '%</p><p class="meta">Best &middot; ' + formatDate(entry.best.dateTaken) + '</p>';
+        if (entry.latest) inner += '<p class="meta">Latest: ' + entry.latest.percentage + '%</p>';
+      } else {
+        inner += '<p class="pct">&mdash;</p><p class="meta">Not attempted</p>';
+      }
+      box.innerHTML = inner;
+      scoreGrid.appendChild(box);
+    });
+    scoresCard.appendChild(scoreGrid);
+    wrap.appendChild(scoresCard);
+
+    var topicCard = document.createElement('section'); topicCard.className = 'card'; topicCard.style.padding = '20px';
+    topicCard.innerHTML = '<h2 style="font-size:16px;">Topic performance (latest tests)</h2>';
+    var tpHost = document.createElement('div'); tpHost.style.marginTop = '12px';
+    tpHost.appendChild(renderTopicPerformance(categoryStats()));
+    topicCard.appendChild(tpHost);
+    wrap.appendChild(topicCard);
+
+    var mistakesCard = document.createElement('section'); mistakesCard.className = 'card'; mistakesCard.style.padding = '20px';
+    var outstanding = STATE.mistakes.filter(function (m) { return !m.improved; }).length;
+    var improved = STATE.improvedQuestionIds.length;
+    mistakesCard.innerHTML = '<h2 style="font-size:16px;">Mistakes</h2>' +
+      '<div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:center;">' +
+        '<div style="border-radius:12px;background:var(--rose-50);padding:12px;"><p style="font-size:19px;font-weight:800;">' + outstanding + '</p><p class="muted small">Still to review</p></div>' +
+        '<div style="border-radius:12px;background:var(--sage-50);padding:12px;"><p style="font-size:19px;font-weight:800;">' + improved + '</p><p class="muted small">Improved</p></div>' +
+      '</div>';
+    var goBtn = document.createElement('button'); goBtn.className = 'btn-secondary btn-block'; goBtn.style.marginTop = '14px'; goBtn.innerHTML = ic('rotate', 16) + ' Go to Mistake Review';
+    goBtn.addEventListener('click', function () { navigate('mistakes'); });
+    mistakesCard.appendChild(goBtn);
+    wrap.appendChild(mistakesCard);
+
+    var resetCard = document.createElement('section'); resetCard.className = 'card'; resetCard.style.padding = '20px';
+    resetCard.innerHTML = '<h2 style="font-size:16px;">Reset</h2><p class="muted small" style="margin-top:4px;">This clears every saved lesson, score, and mistake on this device. This cannot be undone.</p>';
+    var resetBtn = document.createElement('button'); resetBtn.className = 'btn-secondary btn-danger-outline'; resetBtn.style.marginTop = '12px'; resetBtn.innerHTML = ic('trash', 16) + ' Reset Progress';
+    resetBtn.addEventListener('click', function () {
+      showConfirmModal({
+        title: 'Reset all progress?',
+        description: 'This will permanently delete all completed lessons, test scores, and mistake history saved on this device.',
+        confirmLabel: 'Yes, reset everything',
+        cancelLabel: 'Cancel',
+        onConfirm: function () { resetProgress(); render(); },
+      });
+    });
+    resetCard.appendChild(resetBtn);
+    wrap.appendChild(resetCard);
+
+    return wrap;
+  }
+
+  function renderAbout() {
+    var wrap = document.createElement('div');
+    wrap.className = 'max-2xl stack-6';
+    wrap.innerHTML =
+      '<header class="text-center">' +
+        '<span class="about-mark">Q</span>' +
+        '<h1 class="section-heading" style="margin-top:14px;">About Quantifier Mastery</h1>' +
+        '<p class="muted" style="max-width:520px;margin:8px auto 0;font-size:14.5px;">A focused, interactive way to learn one of the trickiest topics in English grammar for CEFR A1&ndash;A2 learners.</p>' +
+      '</header>' +
+      '<section class="card about-section">' +
+        '<span class="about-icon a">' + ic('book', 20) + '</span>' +
+        '<div><h2 style="font-size:16px;">What you\'ll learn</h2><p class="muted" style="margin-top:4px;font-size:14px;line-height:1.6;">Ten quantifiers &mdash; many, much, some, any, a few, few, a little, little, each, and every &mdash; taught through six short lessons, interactive mini practice, and three full exam-style tests (Easy, Medium, and Challenge), each with 15 original questions.</p></div>' +
+      '</section>' +
+      '<section class="card about-section">' +
+        '<span class="about-icon b">' + ic('grad-cap', 20) + '</span>' +
+        '<div><h2 style="font-size:16px;">Who it\'s for</h2><p class="muted" style="margin-top:4px;font-size:14px;line-height:1.6;">Designed for upper primary and lower secondary students in Thailand studying at a CEFR A1&ndash;A2 level, and for anyone preparing for school English exams that test quantifiers.</p></div>' +
+      '</section>' +
+      '<section class="card about-section">' +
+        '<span class="about-icon a">' + ic('shield', 20) + '</span>' +
+        '<div><h2 style="font-size:16px;">Your data</h2><p class="muted" style="margin-top:4px;font-size:14px;line-height:1.6;">This app has no login and no server &mdash; all of your progress, scores, and mistake history are saved privately in your browser\'s local storage on this device only.</p></div>' +
+      '</section>' +
+      '<section class="card text-center" style="padding:22px;">' +
+        '<div style="color:var(--apricot-500);">' + ic('sparkles', 20) + '</div>' +
+        '<p class="muted" style="margin-top:6px;font-size:14px;">Ready to start?</p>' +
+        '<div style="margin-top:10px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">' +
+          '<button class="btn-primary" data-nav="learn">Start Learning</button>' +
+          '<button class="btn-secondary" data-nav="home">Return Home</button>' +
+        '</div>' +
+      '</section>' +
+      '<p class="text-center muted small">Cr. Bright EngMath</p>';
+    return wrap;
+  }
+
+  /* ================================================================
+     ROUTER
+     ================================================================ */
+  var main = document.getElementById('main');
+
+  function parseHash() {
+    var hash = window.location.hash || '#/home';
+    hash = hash.replace(/^#\/?/, '');
+    var parts = hash.split('?');
+    var path = parts[0] || 'home';
+    var params = {};
+    if (parts[1]) {
+      parts[1].split('&').forEach(function (kv) {
+        var pair = kv.split('=');
+        if (pair[0]) params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
+      });
+    }
+    return { path: path, params: params };
+  }
+  function navigate(path) { window.location.hash = '#/' + path; }
+  window.__qmNavigate = navigate;
+
+  function setActiveNav(path) {
+    var top = path.split('/')[0];
+    var links = document.querySelectorAll('[data-nav]');
+    for (var i = 0; i < links.length; i++) {
+      var target = links[i].getAttribute('data-nav').split('?')[0];
+      var targetTop = target.split('/')[0];
+      var active = target === path || (targetTop === 'test' && top === 'test' && target === path);
+      links[i].classList.toggle('active', active);
+    }
+  }
+
+  document.addEventListener('click', function (e) {
+    var navBtn = e.target.closest ? e.target.closest('[data-nav]') : null;
+    if (navBtn) {
+      navigate(navBtn.getAttribute('data-nav'));
+      closeMobileMenu();
+    }
+  });
+
+  var hamburgerBtn = document.getElementById('hamburger-btn');
+  var mobileMenu = document.getElementById('mobile-menu');
+  hamburgerBtn.addEventListener('click', function () {
+    var open = mobileMenu.classList.toggle('open');
+    hamburgerBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  function closeMobileMenu() { mobileMenu.classList.remove('open'); hamburgerBtn.setAttribute('aria-expanded', 'false'); }
+
+  function render() {
+    var parsed = parseHash();
+    var path = parsed.path;
+    var params = parsed.params;
+    setActiveNav(path);
+    main.innerHTML = '';
+    var node;
+    if (path === 'home') node = renderHome();
+    else if (path === 'learn') node = renderLearn(params);
+    else if (path === 'practice') node = renderPractice();
+    else if (path.indexOf('test/') === 0) node = renderTest(path.split('/')[1]);
+    else if (path === 'mistakes') node = renderMistakes();
+    else if (path === 'results') node = renderResults(params);
+    else if (path === 'progress') node = renderProgress();
+    else if (path === 'about') node = renderAbout();
+    else node = renderHome();
+    main.appendChild(node);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
+  window.addEventListener('hashchange', render);
+  window.addEventListener('DOMContentLoaded', function () {
+    if (!window.location.hash) window.location.hash = '#/home';
+    render();
+  });
+  // In case DOMContentLoaded already fired before this script executed:
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    if (!window.location.hash) window.location.hash = '#/home';
+    render();
+  }
+})();
+</script>
+</body>
+</html>
