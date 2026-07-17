@@ -1,0 +1,2010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Months Adventure: Learn the 12 Months</title>
+<meta name="description" content="A bilingual English–Thai learning adventure for Grades 2–3: learn, practice, and master the 12 months of the year.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   MONTHS ADVENTURE — Design System
+   Palette: sky blue, sunny yellow, coral, mint, soft purple, cream
+   ============================================================ */
+:root{
+  --cream:#FDF9F0;
+  --cream-2:#FBF3E2;
+  --sky:#4FA8D8;
+  --sky-soft:#D6EEFB;
+  --sky-deep:#2D7FB0;
+  --sun:#FFC94D;
+  --sun-soft:#FFF1CC;
+  --sun-deep:#C98A00;
+  --coral:#FF8A70;
+  --coral-soft:#FFE0D8;
+  --coral-deep:#D04A2E;
+  --mint:#5EC9A2;
+  --mint-soft:#D9F4E9;
+  --mint-deep:#1E7A5A;
+  --purple:#9B7FD4;
+  --purple-soft:#E9E1F8;
+  --purple-deep:#6A4DA8;
+  --ink:#3B3F54;
+  --ink-soft:#6B7088;
+  --white:#FFFFFF;
+  --line:#EADFC8;
+  --shadow:0 6px 18px rgba(91,84,60,.10);
+  --shadow-lg:0 14px 34px rgba(91,84,60,.14);
+  --radius:20px;
+  --radius-sm:14px;
+  --font-head:'Fredoka','Noto Sans Thai',sans-serif;
+  --font-body:'Nunito','Noto Sans Thai',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--cream);
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(214,238,251,.55) 0 180px, transparent 200px),
+    radial-gradient(circle at 88% 4%, rgba(255,241,204,.6) 0 150px, transparent 170px),
+    radial-gradient(circle at 92% 90%, rgba(217,244,233,.5) 0 170px, transparent 190px),
+    radial-gradient(circle at 6% 92%, rgba(233,225,248,.5) 0 150px, transparent 170px);
+  background-attachment:fixed;
+  min-height:100vh;
+  line-height:1.55;
+  overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer;color:inherit}
+h1,h2,h3,h4{font-family:var(--font-head);font-weight:600;line-height:1.25}
+.thai{font-family:'Noto Sans Thai',var(--font-body)}
+
+/* Focus visibility (accessibility) */
+:focus-visible{outline:3px solid var(--sky-deep);outline-offset:2px;border-radius:6px}
+button:focus-visible{outline:3px solid var(--sky-deep);outline-offset:2px}
+
+.app{max-width:1080px;margin:0 auto;padding:14px 18px 30px;position:relative}
+
+/* ---------- Top bar ---------- */
+.topbar{
+  position:sticky;top:10px;z-index:50;
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(6px);
+  border:1px solid var(--line);border-radius:999px;
+  padding:8px 14px;box-shadow:var(--shadow);
+}
+.brand{display:flex;align-items:center;gap:10px;border:none;background:none;padding:4px 6px;border-radius:12px}
+.brand:hover{background:var(--sun-soft)}
+.brand-logo{width:38px;height:38px;flex:none}
+.brand-name{font-family:var(--font-head);font-weight:600;font-size:1.12rem;color:var(--ink);white-space:nowrap}
+.brand-name small{display:block;font-family:var(--font-body);font-weight:600;font-size:.68rem;color:var(--ink-soft);letter-spacing:.4px}
+.topbar-spacer{flex:1}
+.top-btn{
+  display:flex;align-items:center;gap:6px;border:2px solid transparent;
+  background:var(--cream-2);border-radius:999px;padding:8px 14px;
+  font-weight:700;font-size:.9rem;color:var(--ink);transition:transform .15s,background .15s;
+}
+.top-btn:hover{background:var(--sky-soft);transform:translateY(-1px)}
+.top-btn:active{transform:scale(.96)}
+.top-btn svg{width:19px;height:19px;flex:none}
+.top-btn.active{background:var(--sky);color:#fff}
+.top-btn .lbl{display:inline}
+
+/* ---------- Screens ---------- */
+main{padding-top:22px}
+.screen{display:none;animation:screenIn .35s ease both}
+.screen.on{display:block}
+@keyframes screenIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.screen-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.back-btn{
+  display:inline-flex;align-items:center;gap:6px;background:var(--white);
+  border:2px solid var(--line);border-radius:999px;padding:8px 16px;
+  font-weight:800;font-size:.9rem;color:var(--ink-soft);transition:all .15s;
+}
+.back-btn:hover{border-color:var(--sky);color:var(--sky-deep)}
+.screen-title{font-size:1.7rem;color:var(--ink)}
+.screen-title .thai{display:block;font-size:1rem;font-weight:500;color:var(--ink-soft)}
+.screen-intro{color:var(--ink-soft);font-weight:600;max-width:640px;margin:6px 0 20px}
+
+/* ---------- Home ---------- */
+.hero{position:relative;text-align:center;padding:34px 12px 20px}
+.hero h1{font-size:clamp(2rem,5.5vw,3.1rem);color:var(--ink);font-weight:700}
+.hero h1 .hl{color:var(--sky-deep)}
+.hero .sub-thai{font-size:1.15rem;color:var(--ink-soft);font-weight:600;margin-top:6px}
+.hero .sub-en{font-size:1rem;color:var(--ink-soft);margin-top:2px;font-weight:600}
+.hero-art{display:flex;justify-content:center;margin:8px auto 2px;max-width:430px}
+.float-a{animation:floaty 5s ease-in-out infinite}
+.float-b{animation:floaty 6.5s ease-in-out infinite reverse}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:18px;margin-top:24px}
+.menu-card{
+  position:relative;text-align:left;background:var(--white);border:2px solid var(--line);
+  border-radius:var(--radius);padding:22px 20px 20px;box-shadow:var(--shadow);
+  transition:transform .18s,box-shadow .18s,border-color .18s;
+  display:flex;flex-direction:column;gap:8px;min-height:158px;
+}
+.menu-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.menu-card:active{transform:scale(.98)}
+.menu-card .mc-icon{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;margin-bottom:2px}
+.menu-card .mc-icon svg{width:28px;height:28px}
+.menu-card h3{font-size:1.22rem}
+.menu-card .mc-thai{font-size:.92rem;color:var(--ink-soft);font-weight:600;margin-top:-6px}
+.menu-card p{font-size:.88rem;color:var(--ink-soft);font-weight:600}
+.menu-card .mc-go{position:absolute;right:16px;top:20px;color:var(--ink-soft);transition:transform .18s}
+.menu-card:hover .mc-go{transform:translateX(4px);color:var(--sky-deep)}
+.mc-sky{background:var(--sky-soft);color:var(--sky-deep)}
+.mc-sun{background:var(--sun-soft);color:var(--sun-deep)}
+.mc-coral{background:var(--coral-soft);color:var(--coral-deep)}
+.mc-mint{background:var(--mint-soft);color:var(--mint-deep)}
+.mc-purple{background:var(--purple-soft);color:var(--purple-deep)}
+.menu-card:hover.b-sky{border-color:var(--sky)}
+.menu-card:hover.b-sun{border-color:var(--sun)}
+.menu-card:hover.b-coral{border-color:var(--coral)}
+.menu-card:hover.b-mint{border-color:var(--mint)}
+.menu-card:hover.b-purple{border-color:var(--purple)}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border:none;border-radius:16px;padding:13px 26px;font-size:1rem;font-weight:800;
+  background:var(--sky);color:#fff;box-shadow:0 4px 0 var(--sky-deep);
+  transition:transform .12s,box-shadow .12s,filter .15s;min-height:48px;
+}
+.btn:hover{filter:brightness(1.06)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--sky-deep)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn.mint{background:var(--mint);box-shadow:0 4px 0 var(--mint-deep)}
+.btn.mint:active{box-shadow:0 1px 0 var(--mint-deep)}
+.btn.coral{background:var(--coral);box-shadow:0 4px 0 var(--coral-deep)}
+.btn.coral:active{box-shadow:0 1px 0 var(--coral-deep)}
+.btn.sun{background:var(--sun);color:#5d4300;box-shadow:0 4px 0 var(--sun-deep)}
+.btn.sun:active{box-shadow:0 1px 0 var(--sun-deep)}
+.btn.purple{background:var(--purple);box-shadow:0 4px 0 var(--purple-deep)}
+.btn.purple:active{box-shadow:0 1px 0 var(--purple-deep)}
+.btn.ghost{background:var(--white);color:var(--ink);border:2px solid var(--line);box-shadow:none}
+.btn.ghost:hover{border-color:var(--sky)}
+.btn.small{padding:9px 18px;font-size:.9rem;min-height:42px;border-radius:13px}
+.btn svg{width:19px;height:19px}
+
+/* ---------- Learn flip cards ---------- */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:18px}
+.flip-wrap{perspective:1200px;min-height:330px;animation:cardPop .45s ease both}
+.flip-wrap:nth-child(n){animation-delay:calc(var(--i,0)*55ms)}
+@keyframes cardPop{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:none}}
+.flip-card{
+  position:relative;width:100%;height:100%;min-height:330px;border:none;background:none;
+  transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,.1,.2,1);
+  text-align:center;border-radius:var(--radius);
+}
+.flip-card.flipped{transform:rotateY(180deg)}
+.face{
+  position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  background:var(--white);border-radius:var(--radius);border:2px solid var(--line);
+  box-shadow:var(--shadow);padding:18px 16px;display:flex;flex-direction:column;
+  align-items:center;justify-content:flex-start;gap:6px;overflow:hidden;
+}
+.face.back{transform:rotateY(180deg);justify-content:center;gap:10px}
+.face .ribbon{position:absolute;top:0;left:0;right:0;height:10px}
+.m-num{
+  margin-top:8px;font-family:var(--font-head);font-weight:600;font-size:.78rem;
+  background:var(--cream-2);color:var(--ink-soft);border-radius:999px;padding:3px 12px;
+}
+.m-illus{width:92px;height:92px;margin:4px 0 2px}
+.m-illus svg{width:100%;height:100%}
+.m-en{font-family:var(--font-head);font-weight:700;font-size:1.5rem;color:var(--ink);display:flex;align-items:center;gap:8px}
+.m-th{font-size:1.12rem;font-weight:600;color:var(--ink-soft)}
+.speak-btn{
+  width:38px;height:38px;border-radius:50%;border:2px solid var(--sky-soft);
+  background:var(--sky-soft);color:var(--sky-deep);display:grid;place-items:center;
+  transition:transform .15s,background .15s;flex:none;
+}
+.speak-btn:hover{background:var(--sky);color:#fff;transform:scale(1.08)}
+.speak-btn svg{width:19px;height:19px}
+.flip-hint{margin-top:auto;font-size:.78rem;font-weight:700;color:var(--ink-soft);display:flex;align-items:center;gap:5px;padding-bottom:2px}
+.flip-hint svg{width:15px;height:15px}
+.back .b-row{font-size:.95rem;font-weight:700;color:var(--ink)}
+.back .b-lab{display:block;font-size:.72rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--ink-soft)}
+.back .b-pron{font-size:1.2rem;color:var(--sky-deep);font-weight:600}
+.back .b-days{font-family:var(--font-head);font-size:1.35rem;color:var(--coral-deep)}
+.back .b-sent{background:var(--cream-2);border-radius:12px;padding:10px 12px;font-size:.88rem;font-weight:600;line-height:1.5}
+.back .b-sent .thai{color:var(--ink-soft);font-size:.84rem}
+
+/* ---------- Calendar explorer ---------- */
+.cal-layout{display:grid;grid-template-columns:1.35fr 1fr;gap:20px;align-items:start}
+.cal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.cal-tile{
+  position:relative;border-radius:16px;border:2px solid var(--line);background:var(--white);
+  padding:12px 8px 10px;text-align:center;transition:transform .18s,box-shadow .18s,border-color .18s;
+  display:flex;flex-direction:column;align-items:center;gap:2px;min-height:96px;
+}
+.cal-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.cal-tile .ct-num{font-size:.68rem;font-weight:800;color:var(--ink-soft)}
+.cal-tile .ct-en{font-family:var(--font-head);font-weight:600;font-size:.98rem}
+.cal-tile .ct-days{
+  margin-top:3px;font-size:.72rem;font-weight:800;border-radius:999px;padding:2px 10px;
+  display:inline-flex;align-items:center;gap:4px;
+}
+.cal-tile .ct-days svg{width:11px;height:11px}
+.cal-tile.d31 .ct-days{background:var(--coral-soft);color:var(--coral-deep)}
+.cal-tile.d30 .ct-days{background:var(--mint-soft);color:var(--mint-deep)}
+.cal-tile.dfeb .ct-days{background:var(--purple-soft);color:var(--purple-deep)}
+.cal-tile.d31{border-bottom:5px solid var(--coral)}
+.cal-tile.d30{border-bottom:5px solid var(--mint)}
+.cal-tile.dfeb{border-bottom:5px solid var(--purple)}
+.cal-tile.sel{border-color:var(--sky);box-shadow:0 0 0 4px var(--sky-soft);transform:scale(1.05)}
+.cal-legend{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+.leg{display:inline-flex;align-items:center;gap:7px;background:var(--white);border:2px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.8rem;font-weight:800}
+.leg .dot{width:12px;height:12px;border-radius:4px;flex:none}
+.cal-detail{
+  background:var(--white);border:2px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:22px;position:sticky;top:84px;text-align:center;
+  animation:screenIn .3s ease;
+}
+.cal-detail .m-illus{margin:0 auto}
+.cd-days{font-family:var(--font-head);font-size:1.1rem;margin:4px 0;padding:6px 16px;border-radius:12px;display:inline-block}
+.cd-nav{display:flex;gap:10px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.cd-chip{
+  border:2px solid var(--line);background:var(--cream-2);border-radius:12px;
+  padding:8px 12px;font-size:.8rem;font-weight:800;color:var(--ink);transition:all .15s;
+}
+.cd-chip:hover{border-color:var(--sky);background:var(--sky-soft)}
+.cd-chip small{display:block;font-size:.66rem;color:var(--ink-soft);letter-spacing:.4px;text-transform:uppercase}
+.mem-tip{
+  margin-top:20px;background:var(--sun-soft);border:2px dashed var(--sun);
+  border-radius:var(--radius-sm);padding:14px 16px;font-size:.9rem;font-weight:600;text-align:left;
+}
+.mem-tip b{color:var(--sun-deep)}
+
+/* ---------- Practice: matching ---------- */
+.match-board{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:720px;margin:0 auto}
+.match-col{display:flex;flex-direction:column;gap:10px}
+.match-col h4{text-align:center;font-size:.95rem;color:var(--ink-soft)}
+.match-item{
+  border:2px solid var(--line);background:var(--white);border-radius:14px;
+  padding:12px 10px;font-weight:800;font-size:1rem;min-height:52px;
+  transition:all .18s;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;
+}
+.match-item:hover{border-color:var(--sky);transform:translateY(-2px)}
+.match-item.picked{border-color:var(--sky);background:var(--sky-soft);box-shadow:0 0 0 3px var(--sky-soft)}
+.match-item.done{border-color:var(--mint);background:var(--mint-soft);color:var(--mint-deep);cursor:default;transform:none}
+.match-item.done svg{width:17px;height:17px;flex:none}
+.match-item.miss{animation:shake .4s}
+.match-status{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin:0 0 18px;font-weight:800}
+.pill{background:var(--white);border:2px solid var(--line);border-radius:999px;padding:7px 16px;font-size:.88rem}
+.pill.good{border-color:var(--mint);color:var(--mint-deep)}
+
+/* ---------- Practice: ordering ---------- */
+.order-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tab-btn{
+  border:2px solid var(--line);background:var(--white);border-radius:999px;
+  padding:9px 18px;font-weight:800;font-size:.88rem;color:var(--ink-soft);transition:all .15s;
+}
+.tab-btn:hover{border-color:var(--sky)}
+.tab-btn.on{background:var(--sky);border-color:var(--sky);color:#fff}
+.slotline{
+  display:flex;flex-wrap:wrap;gap:9px;padding:16px;border-radius:var(--radius-sm);
+  background:var(--white);border:2px dashed var(--sky);min-height:76px;margin-bottom:16px;
+}
+.slot-chip{
+  position:relative;border:2px solid var(--sky);background:var(--sky-soft);border-radius:12px;
+  padding:9px 13px;font-weight:800;font-size:.9rem;color:var(--ink);cursor:grab;
+  display:inline-flex;align-items:center;gap:7px;transition:transform .15s;
+}
+.slot-chip:hover{transform:translateY(-2px)}
+.slot-chip .x{font-weight:900;color:var(--coral-deep)}
+.slot-chip.ok{border-color:var(--mint);background:var(--mint-soft);color:var(--mint-deep)}
+.slot-chip.bad{border-color:var(--coral);background:var(--coral-soft);color:var(--coral-deep);animation:shake .4s}
+.slot-chip.dragging{opacity:.4}
+.pool{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:18px}
+.pool-chip{
+  border:2px solid var(--line);background:var(--white);border-radius:12px;
+  padding:10px 14px;font-weight:800;font-size:.9rem;transition:all .15s;min-height:44px;
+}
+.pool-chip:hover{border-color:var(--sun);background:var(--sun-soft);transform:translateY(-2px)}
+.pool-chip:disabled{opacity:.3;cursor:not-allowed;transform:none}
+.order-help{font-size:.85rem;font-weight:700;color:var(--ink-soft);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.order-help svg{width:16px;height:16px;flex:none}
+
+/* ---------- Play (quiz/practice questions) ---------- */
+.play-shell{max-width:680px;margin:0 auto}
+.play-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.play-top .pill{font-size:.85rem}
+.prog-track{flex:1 1 160px;height:12px;background:var(--white);border:2px solid var(--line);border-radius:999px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--sky),var(--mint));border-radius:999px;transition:width .4s ease;width:0%}
+.q-card{
+  background:var(--white);border:2px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:26px 24px;animation:screenIn .3s ease;
+}
+.q-text{font-family:var(--font-head);font-weight:600;font-size:1.3rem;line-height:1.45;text-align:center}
+.q-thai{text-align:center;color:var(--ink-soft);font-weight:600;font-size:.95rem;margin-top:4px}
+.ans-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.ans-btn{
+  position:relative;border:2px solid var(--line);background:var(--cream-2);border-radius:14px;
+  padding:14px 12px;font-weight:800;font-size:1.02rem;min-height:58px;color:var(--ink);
+  transition:all .15s;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;
+}
+.ans-btn:hover:not(:disabled){border-color:var(--sky);background:var(--sky-soft);transform:translateY(-2px)}
+.ans-btn.selected{border-color:var(--sky);background:var(--sky-soft);box-shadow:0 0 0 3px var(--sky-soft)}
+.ans-btn.correct{border-color:var(--mint);background:var(--mint-soft);color:var(--mint-deep)}
+.ans-btn.wrong{border-color:var(--coral);background:var(--coral-soft);color:var(--coral-deep);animation:shake .45s}
+.ans-btn:disabled{cursor:default}
+.ans-btn .mark{position:absolute;top:-9px;right:-7px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;color:#fff}
+.ans-btn.correct .mark{background:var(--mint)}
+.ans-btn.wrong .mark{background:var(--coral)}
+.ans-btn .mark svg{width:13px;height:13px}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.feedback{
+  margin-top:18px;border-radius:var(--radius-sm);padding:14px 16px;font-weight:700;
+  display:none;align-items:flex-start;gap:10px;font-size:.95rem;line-height:1.5;
+  animation:screenIn .25s ease;
+}
+.feedback.show{display:flex}
+.feedback.good{background:var(--mint-soft);border:2px solid var(--mint);color:var(--mint-deep)}
+.feedback.bad{background:var(--coral-soft);border:2px solid var(--coral);color:var(--coral-deep)}
+.feedback svg{width:22px;height:22px;flex:none;margin-top:1px}
+.feedback .fb-main{color:inherit}
+.feedback .fb-explain{display:block;color:var(--ink);font-weight:600;margin-top:3px;font-size:.9rem}
+.play-actions{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.sparkle-zone{position:relative}
+.spark{position:absolute;pointer-events:none;font-size:0;animation:sparkFly .8s ease-out forwards}
+.spark svg{width:16px;height:16px}
+@keyframes sparkFly{
+  0%{opacity:1;transform:translate(0,0) scale(.5) rotate(0)}
+  100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.25) rotate(160deg)}
+}
+
+/* ---------- Results ---------- */
+.result-card{
+  max-width:560px;margin:0 auto;background:var(--white);border:2px solid var(--line);
+  border-radius:var(--radius);box-shadow:var(--shadow-lg);padding:32px 26px;text-align:center;
+  position:relative;overflow:hidden;animation:screenIn .4s ease;
+}
+.result-badge{width:110px;height:110px;margin:0 auto 8px;animation:badgePop .6s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes badgePop{from{transform:scale(0) rotate(-16deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+.result-title{font-size:1.7rem;margin-bottom:2px}
+.result-thai{color:var(--ink-soft);font-weight:600;margin-bottom:14px}
+.score-big{font-family:var(--font-head);font-weight:700;font-size:3rem;color:var(--sky-deep);line-height:1}
+.score-pct{font-weight:800;color:var(--ink-soft);margin:4px 0 16px}
+.stat-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.stat-box{background:var(--cream-2);border-radius:12px;padding:10px 18px;font-weight:800;font-size:.9rem}
+.stat-box b{display:block;font-family:var(--font-head);font-size:1.3rem}
+.stat-box.good b{color:var(--mint-deep)}
+.stat-box.bad b{color:var(--coral-deep)}
+.review-box{background:var(--purple-soft);border-radius:var(--radius-sm);padding:14px 16px;font-size:.9rem;font-weight:700;text-align:left;margin-bottom:20px}
+.review-box ul{margin:6px 0 0 20px;font-weight:600}
+.confetti-piece{position:fixed;top:-16px;z-index:200;pointer-events:none;border-radius:3px;animation:confFall linear forwards}
+@keyframes confFall{
+  0%{transform:translateY(0) rotate(0);opacity:1}
+  90%{opacity:1}
+  100%{transform:translateY(105vh) rotate(660deg);opacity:0}
+}
+
+/* ---------- Progress ---------- */
+.prog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:26px}
+.prog-card{background:var(--white);border:2px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.prog-card h4{font-size:1rem;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.prog-card h4 svg{width:20px;height:20px}
+.prog-card .big{font-family:var(--font-head);font-weight:700;font-size:1.9rem}
+.prog-card .sub{font-size:.82rem;font-weight:700;color:var(--ink-soft)}
+.badge-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.badge-card{
+  background:var(--white);border:2px solid var(--line);border-radius:var(--radius-sm);
+  padding:16px 12px;text-align:center;transition:transform .18s;
+}
+.badge-card.earned{border-color:var(--sun);background:linear-gradient(180deg,#fff, var(--sun-soft))}
+.badge-card.earned:hover{transform:translateY(-3px)}
+.badge-card .b-icon{width:56px;height:56px;margin:0 auto 8px}
+.badge-card.locked .b-icon{filter:grayscale(1);opacity:.4}
+.badge-card h5{font-family:var(--font-head);font-weight:600;font-size:.92rem}
+.badge-card p{font-size:.74rem;font-weight:700;color:var(--ink-soft);margin-top:3px}
+.badge-card .b-state{margin-top:6px;font-size:.7rem;font-weight:900;letter-spacing:.5px;text-transform:uppercase}
+.badge-card.earned .b-state{color:var(--sun-deep)}
+.badge-card.locked .b-state{color:var(--ink-soft)}
+
+/* ---------- Teacher guide ---------- */
+.guide{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+.guide-block{background:var(--white);border:2px solid var(--line);border-radius:var(--radius);padding:22px 24px;box-shadow:var(--shadow)}
+.guide-block h3{font-size:1.15rem;margin-bottom:8px;display:flex;align-items:center;gap:9px;color:var(--sky-deep)}
+.guide-block h3 svg{width:21px;height:21px;flex:none}
+.guide-block p,.guide-block li{font-size:.94rem;font-weight:600;color:var(--ink)}
+.guide-block ul,.guide-block ol{margin:4px 0 0 22px;display:flex;flex-direction:column;gap:5px}
+.guide-block .thai{color:var(--ink-soft);font-size:.88rem}
+
+/* ---------- Modal ---------- */
+.overlay{
+  position:fixed;inset:0;background:rgba(59,63,84,.45);z-index:100;
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+.overlay.show{display:flex;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{
+  background:var(--white);border-radius:var(--radius);max-width:420px;width:100%;
+  padding:28px 24px;text-align:center;box-shadow:var(--shadow-lg);animation:modalIn .25s ease;
+}
+@keyframes modalIn{from{transform:scale(.9) translateY(10px);opacity:0}to{transform:none;opacity:1}}
+.modal h3{font-size:1.3rem;margin-bottom:8px}
+.modal p{color:var(--ink-soft);font-weight:600;font-size:.95rem;margin-bottom:20px}
+.modal .m-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ---------- Footer ---------- */
+footer{
+  margin-top:44px;text-align:center;color:var(--ink-soft);font-size:.82rem;font-weight:700;
+  border-top:2px solid var(--line);padding-top:16px;
+}
+footer .brandline{display:inline-flex;align-items:center;gap:7px}
+footer svg{width:15px;height:15px}
+
+/* ---------- Screen-reader only ---------- */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---------- Responsive ---------- */
+@media (max-width:860px){
+  .cal-layout{grid-template-columns:1fr}
+  .cal-detail{position:static}
+}
+@media (max-width:640px){
+  .app{padding:10px 12px 24px}
+  .top-btn .lbl{display:none}
+  .top-btn{padding:9px 11px}
+  .brand-name{font-size:1rem}
+  .ans-grid{grid-template-columns:1fr}
+  .cal-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+  .cal-tile .ct-en{font-size:.82rem}
+  .cal-tile .ct-days{font-size:.64rem;padding:2px 7px}
+  .match-board{grid-template-columns:1fr 1fr;gap:8px}
+  .match-item{font-size:.86rem;padding:10px 6px}
+  .q-card{padding:20px 16px}
+  .q-text{font-size:1.12rem}
+  .screen-title{font-size:1.4rem}
+  .menu-grid{grid-template-columns:1fr}
+  .flip-wrap,.flip-card{min-height:315px}
+}
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important}
+  .float-a,.float-b{animation:none}
+  .confetti-piece,.spark{display:none}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ===================== TOP BAR ===================== -->
+  <header class="topbar">
+    <button class="brand" data-go="home" aria-label="Months Adventure — go to home screen">
+      <svg class="brand-logo" viewBox="0 0 48 48" aria-hidden="true">
+        <rect x="6" y="10" width="36" height="32" rx="7" fill="#4FA8D8"/>
+        <rect x="6" y="18" width="36" height="24" rx="7" fill="#FFFFFF"/>
+        <rect x="6" y="18" width="36" height="24" rx="7" fill="none" stroke="#4FA8D8" stroke-width="2.5"/>
+        <rect x="13" y="5" width="5" height="9" rx="2.5" fill="#FF8A70"/>
+        <rect x="30" y="5" width="5" height="9" rx="2.5" fill="#FF8A70"/>
+        <circle cx="16" cy="27" r="2.6" fill="#FFC94D"/>
+        <circle cx="24" cy="27" r="2.6" fill="#5EC9A2"/>
+        <circle cx="32" cy="27" r="2.6" fill="#9B7FD4"/>
+        <circle cx="16" cy="35" r="2.6" fill="#5EC9A2"/>
+        <circle cx="24" cy="35" r="2.6" fill="#FF8A70"/>
+        <path d="M30 33.5l2 2 3.6-4" stroke="#4FA8D8" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-name">Months Adventure<small class="thai">ผจญภัย 12 เดือน</small></span>
+    </button>
+    <span class="topbar-spacer"></span>
+    <button class="top-btn" data-go="home" id="nav-home" aria-label="Home — หน้าหลัก">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg>
+      <span class="lbl">Home</span>
+    </button>
+    <button class="top-btn" data-go="progress" id="nav-progress" aria-label="My Progress — ความคืบหน้าของฉัน">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M22 20H2"/></svg>
+      <span class="lbl">Progress</span>
+    </button>
+    <button class="top-btn" id="sound-btn" aria-label="Sound on — เสียงเปิดอยู่ กดเพื่อปิดเสียง" aria-pressed="true">
+      <svg id="icon-sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9.5 9.5 0 0 1 0 13"/></svg>
+      <svg id="icon-sound-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none"><path d="M11 5 6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none"/><path d="m16 9 6 6"/><path d="m22 9-6 6"/></svg>
+      <span class="lbl" id="sound-lbl">Sound</span>
+    </button>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== HOME ===================== -->
+    <section class="screen on" id="scr-home" aria-label="Home">
+      <div class="hero">
+        <div class="hero-art" aria-hidden="true">
+          <svg viewBox="0 0 420 130" width="420" height="130">
+            <g class="float-b"><circle cx="52" cy="42" r="20" fill="#FFC94D"/><g stroke="#FFC94D" stroke-width="4" stroke-linecap="round"><line x1="52" y1="10" x2="52" y2="18"/><line x1="52" y1="66" x2="52" y2="74"/><line x1="20" y1="42" x2="28" y2="42"/><line x1="76" y1="42" x2="84" y2="42"/><line x1="29" y1="19" x2="35" y2="25"/><line x1="69" y1="59" x2="75" y2="65"/><line x1="29" y1="65" x2="35" y2="59"/><line x1="69" y1="25" x2="75" y2="19"/></g></g>
+            <g class="float-a"><ellipse cx="350" cy="38" rx="34" ry="16" fill="#FFFFFF"/><ellipse cx="325" cy="46" rx="24" ry="13" fill="#FFFFFF"/><ellipse cx="374" cy="47" rx="22" ry="12" fill="#FFFFFF"/></g>
+            <g class="float-a">
+              <rect x="165" y="22" width="92" height="86" rx="12" fill="#FFFFFF" stroke="#4FA8D8" stroke-width="3"/>
+              <rect x="165" y="22" width="92" height="24" rx="12" fill="#4FA8D8"/>
+              <rect x="165" y="34" width="92" height="12" fill="#4FA8D8"/>
+              <rect x="182" y="14" width="7" height="14" rx="3.5" fill="#FF8A70"/>
+              <rect x="233" y="14" width="7" height="14" rx="3.5" fill="#FF8A70"/>
+              <text x="211" y="82" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="30" font-weight="700" fill="#FF8A70">12</text>
+              <text x="211" y="99" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="10" font-weight="600" fill="#6B7088">MONTHS</text>
+            </g>
+            <g class="float-b" fill="#FFC94D"><path d="M120 95l2.8 6 6.2.8-4.6 4.3 1.2 6.2-5.6-3-5.6 3 1.2-6.2-4.6-4.3 6.2-.8z"/></g>
+            <g class="float-a" fill="#9B7FD4"><path d="M300 88l2.2 4.8 5 .6-3.7 3.5 1 5-4.5-2.4-4.5 2.4 1-5-3.7-3.5 5-.6z"/></g>
+          </svg>
+        </div>
+        <h1>Months <span class="hl">Adventure</span></h1>
+        <p class="sub-thai thai">มาเรียนรู้ 12 เดือนภาษาอังกฤษกันเถอะ!</p>
+        <p class="sub-en">Learn, practice, and master the 12 months of the year.</p>
+      </div>
+      <nav class="menu-grid" aria-label="Main menu">
+        <button class="menu-card b-sky" data-go="learn">
+          <span class="mc-icon mc-sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+          <span class="mc-go" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+          <h3>Learn</h3>
+          <span class="mc-thai thai">การ์ดเรียนรู้ 12 เดือน</span>
+          <p>Flip the month cards. Listen, read, and remember each month.</p>
+        </button>
+        <button class="menu-card b-sun" data-go="calendar">
+          <span class="mc-icon mc-sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/><circle cx="9" cy="15" r="1" fill="currentColor"/><circle cx="15" cy="15" r="1" fill="currentColor"/></svg></span>
+          <span class="mc-go" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+          <h3>Explore the Calendar</h3>
+          <span class="mc-thai thai">สำรวจปฏิทินทั้งปี</span>
+          <p>Tap each month to see its order, days, and neighbours.</p>
+        </button>
+        <button class="menu-card b-mint" data-go="practice">
+          <span class="mc-icon mc-mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span>
+          <span class="mc-go" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+          <h3>Practice</h3>
+          <span class="mc-thai thai">กิจกรรมฝึกฝน 5 แบบ</span>
+          <p>Matching, ordering, days, clues, and real-life calendar fun.</p>
+        </button>
+        <button class="menu-card b-coral" data-go="quiz">
+          <span class="mc-icon mc-coral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M6 4h12v5a6 6 0 0 1-12 0Z"/><path d="M12 15v3"/><path d="M8 21h8"/><path d="M10 18h4v3h-4z"/></svg></span>
+          <span class="mc-go" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+          <h3>Quiz Challenge</h3>
+          <span class="mc-thai thai">แบบทดสอบ 3 ระดับ</span>
+          <p>Three levels: Explorer, Calendar Master, and Month Champion.</p>
+        </button>
+        <button class="menu-card b-purple" data-go="progress">
+          <span class="mc-icon mc-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg></span>
+          <span class="mc-go" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+          <h3>My Progress</h3>
+          <span class="mc-thai thai">คะแนนและเหรียญรางวัล</span>
+          <p>See your best scores, badges, and what to practice next.</p>
+        </button>
+        <button class="menu-card b-sky" data-go="teacher">
+          <span class="mc-icon mc-sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5v6"/><path d="M6 12.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-3.5"/></svg></span>
+          <span class="mc-go" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+          <h3>Teacher Guide</h3>
+          <span class="mc-thai thai">คู่มือสำหรับครูและผู้ปกครอง</span>
+          <p>Objectives, lesson flow, and tips for teachers and parents.</p>
+        </button>
+      </nav>
+    </section>
+
+    <!-- ===================== LEARN ===================== -->
+    <section class="screen" id="scr-learn" aria-label="Learn the months">
+      <div class="screen-head">
+        <button class="back-btn" data-go="home"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>Back <span class="thai">กลับ</span></button>
+        <h2 class="screen-title">Learn the 12 Months <span class="thai">การ์ดเรียนรู้ 12 เดือน</span></h2>
+      </div>
+      <p class="screen-intro">Tap a card to flip it. Press the speaker to hear the month. <span class="thai">แตะการ์ดเพื่อพลิกดูข้อมูล และกดปุ่มลำโพงเพื่อฟังเสียง</span></p>
+      <div class="cards-grid" id="learn-grid"></div>
+    </section>
+
+    <!-- ===================== CALENDAR ===================== -->
+    <section class="screen" id="scr-calendar" aria-label="Explore the calendar">
+      <div class="screen-head">
+        <button class="back-btn" data-go="home"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>Back <span class="thai">กลับ</span></button>
+        <h2 class="screen-title">Explore the Calendar <span class="thai">สำรวจปฏิทินทั้งปี</span></h2>
+      </div>
+      <p class="screen-intro">Tap a month to explore it. <span class="thai">แตะเดือนที่ต้องการเพื่อดูรายละเอียด</span></p>
+      <div class="cal-legend" role="list" aria-label="Day pattern legend">
+        <span class="leg" role="listitem"><span class="dot" style="background:var(--coral)"></span>31 days · 31 วัน</span>
+        <span class="leg" role="listitem"><span class="dot" style="background:var(--mint)"></span>30 days · 30 วัน</span>
+        <span class="leg" role="listitem"><span class="dot" style="background:var(--purple)"></span>February: 28/29 days</span>
+      </div>
+      <div class="cal-layout">
+        <div>
+          <div class="cal-grid" id="cal-grid" role="list" aria-label="The twelve months in order"></div>
+          <div class="mem-tip">
+            <b>Memory tip · เคล็ดลับช่วยจำ:</b> Only 4 months have 30 days —
+            <b>April, June, September, November</b>. February is special (28 or 29).
+            All the other months have 31 days!
+            <span class="thai">มีแค่ 4 เดือนที่มี 30 วัน คือ เมษายน มิถุนายน กันยายน และพฤศจิกายน ส่วนกุมภาพันธ์พิเศษสุด (28 หรือ 29 วัน) เดือนที่เหลือมี 31 วันทั้งหมด</span>
+          </div>
+        </div>
+        <div class="cal-detail" id="cal-detail" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ===================== PRACTICE MENU ===================== -->
+    <section class="screen" id="scr-practice" aria-label="Practice activities">
+      <div class="screen-head">
+        <button class="back-btn" data-go="home"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>Back <span class="thai">กลับ</span></button>
+        <h2 class="screen-title">Practice <span class="thai">กิจกรรมฝึกฝน</span></h2>
+      </div>
+      <p class="screen-intro">Choose an activity. <span class="thai">เลือกกิจกรรมที่อยากฝึก</span></p>
+      <div class="menu-grid" id="practice-menu"></div>
+    </section>
+
+    <!-- ===================== PRACTICE A: MATCHING ===================== -->
+    <section class="screen" id="scr-match" aria-label="Matching practice">
+      <div class="screen-head">
+        <button class="back-btn" data-go="practice"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>Back <span class="thai">กลับ</span></button>
+        <h2 class="screen-title">Match English &amp; Thai <span class="thai">จับคู่ชื่อเดือนอังกฤษ–ไทย</span></h2>
+      </div>
+      <p class="screen-intro">Tap one English month, then tap its Thai name. Match all 12 pairs! <span class="thai">แตะชื่อเดือนภาษาอังกฤษ แล้วแตะชื่อภาษาไทยที่เป็นคู่กัน</span></p>
+      <div class="match-status">
+        <span class="pill" id="match-count">Matched: 0 / 12</span>
+        <span class="pill" id="match-tries">Tries: 0</span>
+        <button class="btn ghost small" id="match-reset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset · เริ่มใหม่</button>
+      </div>
+      <div class="match-board">
+        <div class="match-col" id="match-en"><h4>English</h4></div>
+        <div class="match-col" id="match-th"><h4 class="thai">ภาษาไทย</h4></div>
+      </div>
+      <div class="feedback" id="match-feedback" aria-live="polite" role="status"></div>
+    </section>
+
+    <!-- ===================== PRACTICE B: ORDERING ===================== -->
+    <section class="screen" id="scr-order" aria-label="Ordering practice">
+      <div class="screen-head">
+        <button class="back-btn" data-go="practice"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>Back <span class="thai">กลับ</span></button>
+        <h2 class="screen-title">Months in Order <span class="thai">เรียงลำดับเดือน</span></h2>
+      </div>
+      <div class="order-tabs" role="tablist" aria-label="Ordering activity types">
+        <button class="tab-btn on" id="tab-arr12" role="tab" aria-selected="true">Arrange all 12 · เรียง 12 เดือน</button>
+        <button class="tab-btn" id="tab-arr5" role="tab" aria-selected="false">Arrange 5 · เรียง 5 เดือน</button>
+        <button class="tab-btn" id="tab-ordq" role="tab" aria-selected="false">Order Questions · คำถามลำดับเดือน</button>
+      </div>
+      <div id="order-area"></div>
+    </section>
+
+    <!-- ===================== PLAY (question engine) ===================== -->
+    <section class="screen" id="scr-play" aria-label="Questions">
+      <div class="screen-head">
+        <button class="back-btn" id="play-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>Back <span class="thai">กลับ</span></button>
+        <h2 class="screen-title" id="play-title"></h2>
+      </div>
+      <div class="play-shell" id="play-area"></div>
+    </section>
+
+    <!-- ===================== QUIZ MENU ===================== -->
+    <section class="screen" id="scr-quiz" aria-label="Quiz Challenge">
+      <div class="screen-head">
+        <button class="back-btn" data-go="home"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>Back <span class="thai">กลับ</span></button>
+        <h2 class="screen-title">Quiz Challenge <span class="thai">แบบทดสอบท้าทาย 3 ระดับ</span></h2>
+      </div>
+      <p class="screen-intro">Pick a level and show your calendar skills! <span class="thai">เลือกระดับแล้วมาโชว์ความเก่งกันเลย</span></p>
+      <div class="menu-grid" id="quiz-menu"></div>
+    </section>
+
+    <!-- ===================== PROGRESS ===================== -->
+    <section class="screen" id="scr-progress" aria-label="My progress">
+      <div class="screen-head">
+        <button class="back-btn" data-go="home"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>Back <span class="thai">กลับ</span></button>
+        <h2 class="screen-title">My Progress <span class="thai">ความคืบหน้าของฉัน</span></h2>
+      </div>
+      <div id="progress-area"></div>
+    </section>
+
+    <!-- ===================== TEACHER GUIDE ===================== -->
+    <section class="screen" id="scr-teacher" aria-label="Teacher guide">
+      <div class="screen-head">
+        <button class="back-btn" data-go="home"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>Back <span class="thai">กลับ</span></button>
+        <h2 class="screen-title">Teacher &amp; Parent Guide <span class="thai">คู่มือสำหรับครูและผู้ปกครอง</span></h2>
+      </div>
+      <div class="guide" id="teacher-guide"></div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER (editable branding) ===================== -->
+  <!-- ✏️ EDIT YOUR BRAND NAME HERE -->
+  <footer>
+    <span class="brandline">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6-5-2.8-5 2.8 1.1-5.6L4 7.9l5.6-.7z"/></svg>
+      Created by <strong>&nbsp;Bright EngMath</strong>
+    </span>
+  </footer>
+</div>
+
+<!-- ===================== CONFIRM MODAL ===================== -->
+<div class="overlay" id="modal-overlay" role="presentation">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-body">
+    <h3 id="modal-title"></h3>
+    <p id="modal-body"></p>
+    <div class="m-actions">
+      <button class="btn ghost" id="modal-cancel">Cancel · ยกเลิก</button>
+      <button class="btn coral" id="modal-ok"></button>
+    </div>
+  </div>
+</div>
+<script id="ma-data">
+/* ============================================================
+   MONTHS ADVENTURE — Data layer (single source of truth)
+   ============================================================ */
+'use strict';
+
+const MONTHS = [
+  {n:1,  en:'January',   th:'มกราคม',     pron:'แจน-ยู-แอ-รี',   days:31, dayText:'31',    sent:'My birthday is in January.',        sentTh:'วันเกิดของฉันอยู่ในเดือนมกราคม'},
+  {n:2,  en:'February',  th:'กุมภาพันธ์',  pron:'เฟบ-รู-แอ-รี',   days:28, dayText:'28/29', sent:'February is the shortest month.',   sentTh:'กุมภาพันธ์เป็นเดือนที่สั้นที่สุด', leap:true},
+  {n:3,  en:'March',     th:'มีนาคม',     pron:'มาร์ช',          days:31, dayText:'31',    sent:'March is very hot in Thailand.',    sentTh:'เดือนมีนาคมอากาศร้อนมากในประเทศไทย'},
+  {n:4,  en:'April',     th:'เมษายน',     pron:'เอ-พริล',        days:30, dayText:'30',    sent:'Songkran Festival is in April.',    sentTh:'เทศกาลสงกรานต์อยู่ในเดือนเมษายน'},
+  {n:5,  en:'May',       th:'พฤษภาคม',    pron:'เมย์',           days:31, dayText:'31',    sent:'School starts in May.',             sentTh:'โรงเรียนเปิดเทอมในเดือนพฤษภาคม'},
+  {n:6,  en:'June',      th:'มิถุนายน',    pron:'จูน',            days:30, dayText:'30',    sent:'It rains a lot in June.',           sentTh:'เดือนมิถุนายนฝนตกบ่อย'},
+  {n:7,  en:'July',      th:'กรกฎาคม',    pron:'จู-ลาย',         days:31, dayText:'31',    sent:'July is the seventh month.',        sentTh:'กรกฎาคมคือเดือนที่เจ็ด'},
+  {n:8,  en:'August',    th:'สิงหาคม',    pron:'ออ-กัสท์',        days:31, dayText:'31',    sent:"Mother's Day is in August.",        sentTh:'วันแม่อยู่ในเดือนสิงหาคม'},
+  {n:9,  en:'September', th:'กันยายน',    pron:'เซพ-เทม-เบอร์',  days:30, dayText:'30',    sent:'September has thirty days.',        sentTh:'เดือนกันยายนมีสามสิบวัน'},
+  {n:10, en:'October',   th:'ตุลาคม',     pron:'ออค-โท-เบอร์',   days:31, dayText:'31',    sent:'School break is in October.',       sentTh:'ปิดเทอมอยู่ในเดือนตุลาคม'},
+  {n:11, en:'November',  th:'พฤศจิกายน',  pron:'โน-เวม-เบอร์',   days:30, dayText:'30',    sent:'Loy Krathong is in November.',      sentTh:'ลอยกระทงอยู่ในเดือนพฤศจิกายน'},
+  {n:12, en:'December',  th:'ธันวาคม',    pron:'ดี-เซม-เบอร์',   days:31, dayText:'31',    sent:'Christmas is in December.',         sentTh:'คริสต์มาสอยู่ในเดือนธันวาคม'}
+];
+
+const TOPICS = {
+  match:    {en:'English–Thai month names', th:'ชื่อเดือนอังกฤษ–ไทย'},
+  number:   {en:'Month numbers',            th:'ลำดับที่ของเดือน'},
+  order:    {en:'Month order (before / after)', th:'ลำดับก่อน–หลังของเดือน'},
+  days:     {en:'Days in each month',       th:'จำนวนวันในแต่ละเดือน'},
+  clue:     {en:'Month clues',              th:'คำใบ้เกี่ยวกับเดือน'},
+  situation:{en:'Calendar situations',      th:'สถานการณ์ในชีวิตจริง'}
+};
+
+/* ---------- small utilities (pure) ---------- */
+function shuffle(arr){
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function pickN(arr, n){ return shuffle(arr).slice(0, n); }
+function monthByEn(en){ return MONTHS.find(m => m.en === en); }
+function monthAt(idx){ return MONTHS[((idx % 12) + 12) % 12]; } // wrap-safe
+function nextOf(m){ return monthAt(m.n); }        // m.n is 1-based; index n = next
+function prevOf(m){ return monthAt(m.n - 2); }
+function otherEn(exclude, count){
+  const pool = MONTHS.map(m => m.en).filter(e => !exclude.includes(e));
+  return pickN(pool, count);
+}
+function otherTh(exclude, count){
+  const pool = MONTHS.map(m => m.th).filter(t => !exclude.includes(t));
+  return pickN(pool, count);
+}
+/* build one multiple-choice question */
+function mcq(topic, q, correct, wrongs, explain, qTh){
+  const choices = shuffle([correct, ...wrongs]);
+  return {topic, q, qTh: qTh || '', choices, answer: correct, explain};
+}
+
+/* ============================================================
+   QUESTION BANKS — every builder returns freshly shuffled items
+   ============================================================ */
+
+/* --- Matching: English <-> Thai (24 questions) --- */
+function buildMatchBank(){
+  const bank = [];
+  MONTHS.forEach(m => {
+    bank.push(mcq('match',
+      'Which Thai name matches “' + m.en + '”?',
+      m.th, otherTh([m.th], 3),
+      m.en + ' = ' + m.th + ' (Month ' + m.n + ').',
+      'ชื่อภาษาไทยของเดือนนี้คืออะไร'));
+    bank.push(mcq('match',
+      'Which English month is “' + m.th + '”?',
+      m.en, otherEn([m.en], 3),
+      m.th + ' = ' + m.en + ' (Month ' + m.n + ').',
+      'เดือนนี้ภาษาอังกฤษคืออะไร'));
+  });
+  return bank;
+}
+
+/* --- Month numbers (24 questions) --- */
+function buildNumberBank(){
+  const bank = [];
+  MONTHS.forEach(m => {
+    bank.push(mcq('number',
+      'Which month is Month ' + m.n + '?',
+      m.en, otherEn([m.en], 3),
+      'Month ' + m.n + ' is ' + m.en + ' (' + m.th + ').',
+      'เดือนที่ ' + m.n + ' คือเดือนอะไร'));
+    const wrongNums = pickN([1,2,3,4,5,6,7,8,9,10,11,12].filter(x => x !== m.n), 3).map(String);
+    bank.push(mcq('number',
+      'What number month is ' + m.en + '?',
+      String(m.n), wrongNums,
+      m.en + ' (' + m.th + ') is Month ' + m.n + '.',
+      m.en + ' เป็นเดือนที่เท่าไรของปี'));
+  });
+  return bank;
+}
+
+/* --- Order: after / before / missing / two-step (60+ questions) --- */
+function buildOrderBank(){
+  const bank = [];
+  MONTHS.forEach(m => {
+    const nx = nextOf(m), pv = prevOf(m);
+    const extraAfter = m.en === 'December'
+      ? ' After December, a new year begins with January.'
+      : '';
+    bank.push(mcq('order',
+      'Which month comes after ' + m.en + '?',
+      nx.en, otherEn([nx.en, m.en], 3),
+      'The month after ' + m.en + ' is ' + nx.en + ' (' + nx.th + ').' + extraAfter,
+      'เดือนอะไรมาหลัง ' + m.th));
+    const extraBefore = m.en === 'January'
+      ? ' Before January comes December — the last month of the year before.'
+      : '';
+    bank.push(mcq('order',
+      'Which month comes before ' + m.en + '?',
+      pv.en, otherEn([pv.en, m.en], 3),
+      'The month before ' + m.en + ' is ' + pv.en + ' (' + pv.th + ').' + extraBefore,
+      'เดือนอะไรมาก่อน ' + m.th));
+  });
+  /* missing month in a sequence of four (blank in position 2 or 3) */
+  for (let i = 0; i <= 8; i++){
+    [1, 2].forEach(blank => {
+      const seq = [monthAt(i), monthAt(i+1), monthAt(i+2), monthAt(i+3)];
+      const shown = seq.map((m, idx) => idx === blank ? '___' : m.en).join(', ');
+      const missing = seq[blank];
+      bank.push(mcq('order',
+        'Which month is missing?  ' + shown,
+        missing.en, otherEn(seq.map(s => s.en), 3),
+        'The order is ' + seq.map(s => s.en).join(' → ') + '. The missing month is ' + missing.en + ' (' + missing.th + ').',
+        'เดือนไหนหายไปจากลำดับ'));
+    });
+  }
+  /* two months after / before (harder) */
+  MONTHS.forEach(m => {
+    const t2 = monthAt(m.n + 1); // two after
+    bank.push(mcq('order2',
+      'Which month comes two months after ' + m.en + '?',
+      t2.en, otherEn([t2.en, m.en, nextOf(m).en], 3),
+      'Count forward: ' + m.en + ' → ' + nextOf(m).en + ' → ' + t2.en + '.',
+      'เดือนอะไรอยู่ถัดไปอีก 2 เดือนจาก ' + m.th));
+    const b2 = monthAt(m.n - 3); // two before
+    bank.push(mcq('order2',
+      'Which month comes two months before ' + m.en + '?',
+      b2.en, otherEn([b2.en, m.en, prevOf(m).en], 3),
+      'Count back: ' + m.en + ' → ' + prevOf(m).en + ' → ' + b2.en + '.',
+      'เดือนอะไรอยู่ก่อนหน้า 2 เดือนจาก ' + m.th));
+  });
+  return bank;
+}
+
+/* --- Days in each month (30+ questions) --- */
+function buildDaysBank(){
+  const bank = [];
+  const rule30 = 'Remember: April, June, September, and November have 30 days.';
+  MONTHS.forEach(m => {
+    if (m.leap){
+      bank.push(mcq('days',
+        'How many days does February have in a normal year?',
+        '28', ['29','30','31'],
+        'February has 28 days in a normal year, and 29 days in a leap year.',
+        'ปกติเดือนกุมภาพันธ์มีกี่วัน'));
+    } else {
+      const wrong = m.days === 30 ? ['31','28','29'] : ['30','28','29'];
+      bank.push(mcq('days',
+        'How many days are in ' + m.en + '?',
+        String(m.days), wrong,
+        m.en + ' (' + m.th + ') has ' + m.days + ' days. ' + (m.days === 30 ? rule30 : ''),
+        m.th + ' มีกี่วัน'));
+    }
+  });
+  bank.push(mcq('days','In a leap year, how many days does February have?',
+    '29', ['28','30','31'],
+    'In a leap year, February has 29 days. A leap year comes every 4 years.',
+    'ปีอธิกสุรทิน (leap year) กุมภาพันธ์มีกี่วัน'));
+  bank.push(mcq('days','Which month has 28 or 29 days?',
+    'February', ['January','April','June'],
+    'February (กุมภาพันธ์) has 28 days — or 29 in a leap year.',
+    'เดือนไหนมี 28 หรือ 29 วัน'));
+  bank.push(mcq('days','Which month is the shortest month of the year?',
+    'February', ['November','April','September'],
+    'February is the shortest month — only 28 or 29 days.',
+    'เดือนไหนสั้นที่สุดในปี'));
+  bank.push(mcq('days','Which month can have 29 days?',
+    'February', ['March','June','December'],
+    'Only February can have 29 days, in a leap year.',
+    'เดือนไหนอาจมี 29 วันได้'));
+  /* which of these has 30 days */
+  bank.push(mcq('days','Which of these spring months has 30 days?','April',['January','March','May'],'April has 30 days. ' + rule30,'เดือนไหนมี 30 วัน'));
+  bank.push(mcq('days','Which of these months has 30 days?','June',['July','August','October'],'June has 30 days. ' + rule30,'เดือนไหนมี 30 วัน'));
+  bank.push(mcq('days','Find the month with 30 days.','September',['October','December','August'],'September has 30 days. ' + rule30,'หาเดือนที่มี 30 วัน'));
+  bank.push(mcq('days','Which one is a 30-day month?','November',['December','January','March'],'November has 30 days. ' + rule30,'เดือนไหนเป็นเดือนที่มี 30 วัน'));
+  /* which of these has 31 days */
+  bank.push(mcq('days','Which of these months has 31 days?','January',['April','June','September'],'January has 31 days. The other three are 30-day months.','เดือนไหนมี 31 วัน'));
+  bank.push(mcq('days','Which month in this list has 31 days?','July',['June','September','November'],'July has 31 days. June, September, and November have 30.','เดือนในรายการนี้เดือนไหนมี 31 วัน'));
+  bank.push(mcq('days','Find the month with 31 days.','August',['April','November','February'],'August has 31 days. July and August are both 31-day months!','หาเดือนที่มี 31 วัน'));
+  bank.push(mcq('days','Which one is a 31-day month?','December',['November','September','April'],'December has 31 days — the year ends with a long month.','เดือนไหนเป็นเดือนที่มี 31 วัน'));
+  /* groups */
+  bank.push(mcq('days','Which group has ONLY 30-day months?',
+    'April, June, September', ['April, May, June','June, July, August','September, October, November'],
+    'April, June, and September all have 30 days. ' + rule30,
+    'กลุ่มไหนมีเฉพาะเดือนที่มี 30 วัน'));
+  bank.push(mcq('days','Which group has ONLY 31-day months?',
+    'July, August, December', ['June, July, August','January, February, March','August, September, October'],
+    'July, August, and December all have 31 days.',
+    'กลุ่มไหนมีเฉพาะเดือนที่มี 31 วัน'));
+  bank.push(mcq('days','How many months have 31 days?',
+    '7', ['5','6','8'],
+    'Seven months have 31 days: January, March, May, July, August, October, December.',
+    'มีกี่เดือนที่มี 31 วัน'));
+  bank.push(mcq('days','How many months have exactly 30 days?',
+    '4', ['3','5','6'],
+    'Four months have 30 days: April, June, September, November.',
+    'มีกี่เดือนที่มี 30 วันพอดี'));
+  return bank;
+}
+
+/* --- Clue questions (22 hand-written) --- */
+function buildClueBank(){
+  const C = [
+    ['It is the first month of the year.','January',['December','February','March'],'January (มกราคม) is Month 1 — the year starts here!','เดือนแรกของปี'],
+    ['It comes right after March.','April',['May','February','June'],'March → April. April (เมษายน) is Month 4.','เดือนที่มาหลังมีนาคม'],
+    ['It comes just before December.','November',['October','January','September'],'November → December. November (พฤศจิกายน) is Month 11.','เดือนที่มาก่อนธันวาคม'],
+    ['It has 30 days and comes after August.','September',['October','July','November'],'September (กันยายน) comes after August and has 30 days.','มี 30 วัน และมาหลังสิงหาคม'],
+    ['It is Month 7.','July',['June','August','September'],'Month 7 is July (กรกฎาคม).','เดือนที่ 7'],
+    ['The year ends in this month.','December',['November','January','October'],'December (ธันวาคม) is Month 12 — the last month of the year.','เดือนสุดท้ายของปี'],
+    ['It is the shortest month.','February',['January','April','November'],'February (กุมภาพันธ์) has only 28 or 29 days.','เดือนที่สั้นที่สุด'],
+    ['It comes between June and August.','July',['May','September','June'],'June → July → August. July is in the middle.','เดือนที่อยู่ระหว่างมิถุนายนและสิงหาคม'],
+    ['It is Month 10.','October',['September','November','August'],'Month 10 is October (ตุลาคม).','เดือนที่ 10'],
+    ['It comes right after the first month.','February',['March','January','December'],'The first month is January, so the next one is February.','เดือนที่มาหลังเดือนแรก'],
+    ['Songkran Festival happens in this month.','April',['March','May','January'],'Songkran (สงกรานต์) is the Thai New Year in April!','เทศกาลสงกรานต์อยู่เดือนไหน'],
+    ['It has 31 days and comes just before September.','August',['July','October','June'],'August (สิงหาคม) has 31 days and comes before September.','มี 31 วัน และมาก่อนกันยายน'],
+    ['It is two months after January.','March',['February','April','May'],'January → February → March.','สองเดือนหลังมกราคม'],
+    ['It is the fifth month of the year.','May',['April','June','March'],'Month 5 is May (พฤษภาคม).','เดือนที่ 5'],
+    ['It comes before February.','January',['March','December','April'],'January → February. January comes first.','เดือนที่มาก่อนกุมภาพันธ์'],
+    ['It has 30 days and it is Month 6.','June',['July','April','September'],'Month 6 is June (มิถุนายน), and it has 30 days.','มี 30 วัน และเป็นเดือนที่ 6'],
+    ['It comes between September and November.','October',['August','December','September'],'September → October → November.','เดือนระหว่างกันยายนและพฤศจิกายน'],
+    ['It is one month before May.','April',['March','June','May'],'April → May. April is one month before May.','หนึ่งเดือนก่อนพฤษภาคม'],
+    ['It has 31 days and it is the last month.','December',['November','October','January'],'December is Month 12 and has 31 days.','มี 31 วัน และเป็นเดือนสุดท้าย'],
+    ['It is Month 11.','November',['October','December','September'],'Month 11 is November (พฤศจิกายน).','เดือนที่ 11'],
+    ["New Year's Day is in this month.",'January',['December','February','April'],"New Year's Day (วันปีใหม่) is January 1.",'วันปีใหม่อยู่เดือนไหน'],
+    ['It is two months before December.','October',['November','September','August'],'October → November → December. Count back two from December.','สองเดือนก่อนธันวาคม']
+  ];
+  return C.map(c => mcq('clue', 'Clue: ' + c[0], c[1], c[2], c[3], 'คำใบ้: ' + c[4]));
+}
+
+/* --- Real-life calendar situations (22 hand-written) --- */
+function buildSituationBank(){
+  const S = [
+    ['School starts in May. What number month is May?','5',['4','6','7'],'May (พฤษภาคม) is Month 5.','พฤษภาคมเป็นเดือนที่เท่าไร'],
+    ["Tina's birthday is in the month after June. Which month is it?",'July',['August','May','June'],'The month after June is July.','เดือนหลังมิถุนายนคือเดือนอะไร'],
+    ['Christmas is in December. What number month is December?','12',['11','10','9'],'December (ธันวาคม) is Month 12 — the last month.','ธันวาคมเป็นเดือนที่เท่าไร'],
+    ['Today is in August. What month comes next?','September',['October','July','November'],'After August comes September.','เดือนถัดจากสิงหาคมคืออะไร'],
+    ['Sports day is two months after January. Which month is it?','March',['February','April','May'],'January → February → March.','สองเดือนหลังมกราคมคือเดือนอะไร'],
+    ['The big test is in the month before October. Which month is it?','September',['August','November','October'],'The month before October is September.','เดือนก่อนตุลาคมคือเดือนอะไร'],
+    ["Ben's birthday is in Month 3. Which month is it?",'March',['May','April','February'],'Month 3 is March (มีนาคม).','เดือนที่ 3 คือเดือนอะไร'],
+    ['Songkran is in April. What month comes after the Songkran month?','May',['March','June','April'],'After April comes May.','เดือนหลังสงกรานต์คือเดือนอะไร'],
+    ["Mother's Day in Thailand is in August. What number month is August?",'8',['7','9','10'],'August (สิงหาคม) is Month 8.','สิงหาคมเป็นเดือนที่เท่าไร'],
+    ['The school trip is one month before July. Which month is it?','June',['May','August','July'],'One month before July is June.','หนึ่งเดือนก่อนกรกฎาคมคือเดือนอะไร'],
+    ['Loy Krathong is in November. What month comes next?','December',['October','January','September'],'After November comes December.','เดือนหลังพฤศจิกายนคือเดือนอะไร'],
+    ["Mia's birthday is in the second month of the year. Which month is it?",'February',['January','March','April'],'The second month is February (กุมภาพันธ์).','เดือนที่สองของปีคือเดือนอะไร'],
+    ['Summer camp is two months after March. Which month is it?','May',['April','June','July'],'March → April → May.','สองเดือนหลังมีนาคมคือเดือนอะไร'],
+    ['The art fair is in the month between April and June. Which month is it?','May',['April','June','July'],'April → May → June. May is in the middle.','เดือนระหว่างเมษายนและมิถุนายนคืออะไร'],
+    ['The New Year party is in Month 1. Which month is it?','January',['December','February','March'],'Month 1 is January (มกราคม).','เดือนที่ 1 คือเดือนอะไร'],
+    ["Dad's birthday is three months after January. Which month is it?",'April',['March','May','February'],'January → February → March → April.','สามเดือนหลังมกราคมคือเดือนอะไร'],
+    ['The book fair is in the month before March. Which month is it?','February',['January','April','May'],'The month before March is February.','เดือนก่อนมีนาคมคือเดือนอะไร'],
+    ['School break starts in October. What number month is October?','10',['9','11','12'],'October (ตุลาคม) is Month 10.','ตุลาคมเป็นเดือนที่เท่าไร'],
+    ['The music show is two months before June. Which month is it?','April',['May','March','July'],'Count back: June → May → April.','สองเดือนก่อนมิถุนายนคือเดือนอะไร'],
+    ['Grandma visits in the month after September. Which month is it?','October',['November','August','September'],'After September comes October.','เดือนหลังกันยายนคือเดือนอะไร'],
+    ['The fun run is in the seventh month. Which month is it?','July',['June','August','September'],'The seventh month is July (กรกฎาคม).','เดือนที่เจ็ดคือเดือนอะไร'],
+    ["Children's Day in Thailand is in January. What month comes after it?",'February',['March','December','January'],'After January comes February.','เดือนหลังมกราคมคือเดือนอะไร']
+  ];
+  return S.map(s => mcq('situation', s[0], s[1], s[2], s[3], s[4]));
+}
+
+/* ============================================================
+   QUIZ LEVEL BUILDERS
+   ============================================================ */
+function byTopic(bank, t){ return bank.filter(q => q.topic === t); }
+
+function buildLevel1(){ // Month Explorer — 15 questions
+  const match = buildMatchBank();
+  const nums  = buildNumberBank();
+  return shuffle([
+    ...pickN(match.filter(q => q.q.startsWith('Which Thai')), 5),
+    ...pickN(match.filter(q => q.q.startsWith('Which English')), 5),
+    ...pickN(nums.filter(q => q.q.startsWith('Which month is Month')), 3),
+    ...pickN(nums.filter(q => q.q.startsWith('What number month')), 2)
+  ]);
+}
+function buildLevel2(){ // Calendar Master — 20 questions
+  const order = buildOrderBank();
+  const days  = buildDaysBank();
+  const nums  = buildNumberBank();
+  return shuffle([
+    ...pickN(order.filter(q => q.topic === 'order' && q.q.startsWith('Which month comes after')), 4),
+    ...pickN(order.filter(q => q.topic === 'order' && q.q.startsWith('Which month comes before')), 3),
+    ...pickN(order.filter(q => q.q.startsWith('Which month is missing')), 4),
+    ...pickN(days.filter(q => q.q.startsWith('How many days')), 4),
+    ...pickN(days.filter(q => /^(Which of these|Find the month|Which one is a|Which month in this list)/.test(q.q)), 2),
+    ...pickN(nums, 3)
+  ]);
+}
+function buildLevel3(){ // Month Champion — 20 questions
+  const order = buildOrderBank();
+  const days  = buildDaysBank();
+  const clues = buildClueBank();
+  const sits  = buildSituationBank();
+  return shuffle([
+    ...pickN(sits, 5),
+    ...pickN(clues, 5),
+    ...pickN(order.filter(q => q.topic === 'order2'), 5),
+    ...pickN(order.filter(q => q.q.startsWith('Which month is missing')), 2),
+    ...pickN(days.filter(q => q.q.startsWith('Which group') || q.q.startsWith('How many months') || q.q.indexOf('leap year') >= 0), 3)
+  ]);
+}
+
+const QUIZ_LEVELS = [
+  {id:1, name:'Month Explorer',  th:'นักสำรวจเดือน',  count:15, color:'mint',
+   desc:'Month names in English and Thai, and month numbers.',
+   descTh:'จับคู่ชื่อเดือนอังกฤษ–ไทย และลำดับที่ของเดือน', build:buildLevel1},
+  {id:2, name:'Calendar Master', th:'เซียนปฏิทิน',    count:20, color:'sun',
+   desc:'Month order, before and after, missing months, and days.',
+   descTh:'ลำดับเดือน ก่อน–หลัง เดือนที่หายไป และจำนวนวัน', build:buildLevel2},
+  {id:3, name:'Month Champion',  th:'แชมป์ 12 เดือน', count:20, color:'coral',
+   desc:'Mixed challenges: clues, situations, and two-step thinking.',
+   descTh:'โจทย์ผสม คำใบ้ สถานการณ์จริง และคิดหลายขั้น', build:buildLevel3}
+];
+
+/* ---------- badges ---------- */
+const BADGES = [
+  {id:'starter',  name:'January Starter', th:'ก้าวแรกมกราคม',  desc:'Finish your first quiz', descTh:'ทำแบบทดสอบครบ 1 ครั้ง'},
+  {id:'matcher',  name:'Month Matcher',   th:'นักจับคู่เดือน',  desc:'Match all 12 pairs',     descTh:'จับคู่เดือนครบ 12 คู่'},
+  {id:'orderer',  name:'Order Expert',    th:'เซียนเรียงเดือน', desc:'Arrange all 12 months correctly', descTh:'เรียง 12 เดือนถูกต้อง'},
+  {id:'days',     name:'Days Detective',  th:'นักสืบจำนวนวัน',  desc:'Score 80%+ in Days practice', descTh:'ได้ 80%+ ในโหมดจำนวนวัน'},
+  {id:'calmaster',name:'Calendar Master', th:'เซียนปฏิทิน',    desc:'Score 75%+ on Level 2',  descTh:'ได้ 75%+ ในระดับ 2'},
+  {id:'champion', name:'Month Champion',  th:'แชมป์ 12 เดือน', desc:'Score 90%+ on Level 3',  descTh:'ได้ 90%+ ในระดับ 3'}
+];
+
+/* ---------- feedback message pools ---------- */
+const PRAISE = [
+  'Great job!', 'Correct!', 'You remembered it!', 'Amazing calendar skills!',
+  'Wonderful!', 'You got it!', 'Super smart!', 'Excellent work!', 'Fantastic!', 'Brilliant!'
+];
+const PRAISE_TH = ['เก่งมาก!', 'ถูกต้อง!', 'จำได้ด้วย เยี่ยมเลย!', 'สุดยอดไปเลย!', 'ยอดเยี่ยม!', 'เก่งจังเลย!'];
+const ENCOURAGE = [
+  'Not quite.', 'Almost!', 'Good try!', 'Keep going!', 'Nice try!'
+];
+const ENCOURAGE_TH = ['เกือบแล้ว!', 'ไม่เป็นไร ลองใหม่นะ', 'พยายามได้ดีมาก!', 'สู้ๆ นะ!'];
+
+function randomOf(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+</script>
+<script>
+/* ============================================================
+   MONTHS ADVENTURE — App logic
+   ============================================================ */
+'use strict';
+
+/* ---------- tiny DOM helpers ---------- */
+const $  = sel => document.querySelector(sel);
+const $$ = sel => Array.from(document.querySelectorAll(sel));
+function el(tag, cls, html){
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (html !== undefined) e.innerHTML = html;
+  return e;
+}
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+/* ---------- icons (inline SVG, stroke = currentColor) ---------- */
+const ICON = {
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>',
+  cross:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>',
+  star:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6-5-2.8-5 2.8 1.1-5.6L4 7.9l5.6-.7z"/></svg>',
+  speaker:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>',
+  flip:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>',
+  smile:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5s1.2 2 3.5 2 3.5-2 3.5-2"/><circle cx="9" cy="10" r=".8" fill="currentColor"/><circle cx="15" cy="10" r=".8" fill="currentColor"/></svg>',
+  bulb:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 1 3.7 10.7c-.6.5-.7 1.3-.7 2.3h-6c0-1-.1-1.8-.7-2.3A6 6 0 0 1 12 3z"/></svg>',
+  hand:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11.5V4.8a1.8 1.8 0 0 1 3.6 0v5.7"/><path d="M12.6 10.5V3.8a1.8 1.8 0 0 1 3.6 0v7.7"/><path d="M16.2 11.5v-4a1.8 1.8 0 0 1 3.6 0v6.5c0 4.4-3 7-7 7-3.5 0-5-1.6-6.6-4.4L4 12.9a1.7 1.7 0 0 1 2.9-1.7L9 14"/></svg>'
+};
+
+/* ============================================================
+   Month illustrations — original SVG art per month
+   ============================================================ */
+function illus(n){
+  const arts = {
+    1:'<circle cx="50" cy="52" r="26" fill="#D6EEFB"/><path d="M50 20v-8M50 26l-7-9M50 26l7-9" stroke="#FFC94D" stroke-width="3" stroke-linecap="round"/><path d="M35 34l-5-5M65 34l5-5" stroke="#FF8A70" stroke-width="3" stroke-linecap="round"/><text x="50" y="60" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="20" font-weight="700" fill="#2D7FB0">1</text><path d="M24 78h52" stroke="#5EC9A2" stroke-width="4" stroke-linecap="round"/><path d="M72 16l1.5 3.4 3.6.4-2.7 2.5.7 3.6-3.1-1.8-3.2 1.8.7-3.6-2.6-2.5 3.6-.4z" fill="#FFC94D"/>',
+    2:'<path d="M50 76C36 66 24 56 24 44c0-8 6-14 13-14 5 0 9 2 13 7 4-5 8-7 13-7 7 0 13 6 13 14 0 12-12 22-26 32z" fill="#FF8A70"/><path d="M40 42c-2-3-1-7 2-8" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"/><path d="M20 22l1.3 2.8 3 .3-2.2 2 .5 3-2.6-1.5-2.6 1.5.5-3-2.2-2 3-.3z" fill="#9B7FD4"/><path d="M80 24l1.3 2.8 3 .3-2.2 2 .5 3-2.6-1.5-2.6 1.5.5-3-2.2-2 3-.3z" fill="#FFC94D"/>',
+    3:'<circle cx="50" cy="46" r="18" fill="#FFC94D"/><g stroke="#FFC94D" stroke-width="4" stroke-linecap="round"><line x1="50" y1="18" x2="50" y2="10"/><line x1="50" y1="74" x2="50" y2="82"/><line x1="22" y1="46" x2="14" y2="46"/><line x1="78" y1="46" x2="86" y2="46"/><line x1="30" y1="26" x2="24" y2="20"/><line x1="70" y1="66" x2="76" y2="72"/><line x1="30" y1="66" x2="24" y2="72"/><line x1="70" y1="26" x2="76" y2="20"/></g><circle cx="44" cy="42" r="2.4" fill="#C98A00"/><circle cx="56" cy="42" r="2.4" fill="#C98A00"/><path d="M44 52c2 3 10 3 12 0" stroke="#C98A00" stroke-width="2.6" stroke-linecap="round" fill="none"/>',
+    4:'<path d="M50 14C38 30 30 42 30 54a20 20 0 0 0 40 0c0-12-8-24-20-40z" fill="#4FA8D8"/><path d="M42 56a8 8 0 0 0 8 8" stroke="#fff" stroke-width="3.5" stroke-linecap="round" fill="none"/><circle cx="24" cy="30" r="4" fill="#A8DCF5"/><circle cx="78" cy="26" r="3" fill="#A8DCF5"/><circle cx="80" cy="60" r="4.5" fill="#A8DCF5"/><circle cx="18" cy="64" r="3" fill="#A8DCF5"/>',
+    5:'<rect x="24" y="34" width="52" height="38" rx="7" fill="#FF8A70"/><rect x="24" y="34" width="52" height="12" rx="6" fill="#D04A2E"/><path d="M38 34v-6a12 12 0 0 1 24 0v6" stroke="#D04A2E" stroke-width="5" fill="none"/><rect x="43" y="48" width="14" height="10" rx="3" fill="#FFC94D"/><path d="M20 20l1.5 3.2 3.4.4-2.5 2.3.6 3.4-3-1.7-3 1.7.6-3.4-2.5-2.3 3.4-.4z" fill="#5EC9A2"/><path d="M80 18l1.5 3.2 3.4.4-2.5 2.3.6 3.4-3-1.7-3 1.7.6-3.4-2.5-2.3 3.4-.4z" fill="#FFC94D"/>',
+    6:'<ellipse cx="46" cy="38" rx="22" ry="14" fill="#A8DCF5"/><ellipse cx="62" cy="42" rx="16" ry="11" fill="#D6EEFB"/><g stroke="#4FA8D8" stroke-width="3.5" stroke-linecap="round"><line x1="36" y1="58" x2="32" y2="68"/><line x1="48" y1="58" x2="44" y2="68"/><line x1="60" y1="58" x2="56" y2="68"/><line x1="70" y1="58" x2="66" y2="68"/></g><path d="M28 76c3-3 8-3 11 0M55 76c3-3 8-3 11 0" stroke="#5EC9A2" stroke-width="3" stroke-linecap="round" fill="none"/>',
+    7:'<path d="M50 16 20 52h14l-6 16 32-38H46l4-14z" fill="#FFC94D" stroke="#C98A00" stroke-width="2" stroke-linejoin="round"/><circle cx="76" cy="24" r="3.5" fill="#9B7FD4"/><circle cx="22" cy="22" r="3" fill="#5EC9A2"/><circle cx="80" cy="66" r="3" fill="#FF8A70"/>',
+    8:'<circle cx="50" cy="48" r="11" fill="#FFC94D"/><g fill="#fff" stroke="#EADFC8" stroke-width="1.5"><ellipse cx="50" cy="26" rx="8.5" ry="12"/><ellipse cx="50" cy="70" rx="8.5" ry="12"/><ellipse cx="28" cy="48" rx="12" ry="8.5"/><ellipse cx="72" cy="48" rx="12" ry="8.5"/><ellipse cx="34" cy="32" rx="9" ry="9"/><ellipse cx="66" cy="32" rx="9" ry="9"/><ellipse cx="34" cy="64" rx="9" ry="9"/><ellipse cx="66" cy="64" rx="9" ry="9"/></g><circle cx="50" cy="48" r="10" fill="#FFC94D"/><path d="M50 86c0-5 4-8 8-9" stroke="#5EC9A2" stroke-width="3.5" stroke-linecap="round" fill="none"/>',
+    9:'<rect x="26" y="58" width="48" height="10" rx="3" fill="#FF8A70"/><rect x="30" y="46" width="40" height="10" rx="3" fill="#5EC9A2"/><rect x="34" y="34" width="32" height="10" rx="3" fill="#FFC94D"/><rect x="42" y="22" width="16" height="10" rx="3" fill="#9B7FD4"/><path d="M24 76h52" stroke="#4FA8D8" stroke-width="4" stroke-linecap="round"/>',
+    10:'<path d="M50 14 74 42 50 70 26 42z" fill="#FF8A70" stroke="#D04A2E" stroke-width="2" stroke-linejoin="round"/><path d="M50 14v56M26 42h48" stroke="#D04A2E" stroke-width="2"/><path d="M50 70c-2 8-8 10-12 14" stroke="#6B7088" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M42 78l4-1M36 84l4-1" stroke="#FFC94D" stroke-width="3" stroke-linecap="round"/><circle cx="76" cy="20" r="3" fill="#FFC94D"/>',
+    11:'<path d="M22 66c6 4 12 4 18 0s12-4 18 0 12 4 18 0" stroke="#4FA8D8" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M30 58c2-8 9-13 20-13s18 5 20 13c-6 3-12 4-20 4s-14-1-20-4z" fill="#5EC9A2"/><rect x="46" y="34" width="8" height="14" rx="3" fill="#FFF1CC" stroke="#C98A00" stroke-width="1.5"/><path d="M50 34c-3-4-1-7 0-9 1 2 3 5 0 9z" fill="#FFC94D"/><path d="M32 52l-4-6M68 52l4-6" stroke="#1E7A5A" stroke-width="3" stroke-linecap="round"/>',
+    12:'<rect x="28" y="42" width="44" height="34" rx="6" fill="#FF8A70"/><rect x="46" y="42" width="8" height="34" fill="#FFC94D"/><rect x="24" y="32" width="52" height="12" rx="5" fill="#D04A2E"/><rect x="46" y="32" width="8" height="12" fill="#FFC94D"/><path d="M50 32c-6-2-10-8-6-11 3-2 6 2 6 6 0-4 3-8 6-6 4 3 0 9-6 11z" fill="#C98A00"/><path d="M20 20l1.4 3 3.2.4-2.4 2.2.6 3.2-2.8-1.6-2.8 1.6.6-3.2-2.4-2.2 3.2-.4z" fill="#FFC94D"/><circle cx="80" cy="24" r="3" fill="#5EC9A2"/>'
+  };
+  return '<svg viewBox="0 0 100 100" role="img" aria-hidden="true">' + arts[n] + '</svg>';
+}
+
+/* ============================================================
+   State, storage, sound
+   ============================================================ */
+const STORE_KEY = 'monthsAdventureProgress.v1';
+function defaultProgress(){
+  return {best:{}, recent:null, completed:0, weak:{}, badges:{}, sound:true};
+}
+function loadProgress(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return defaultProgress();
+    const p = JSON.parse(raw);
+    return Object.assign(defaultProgress(), p);
+  }catch(e){ return defaultProgress(); }
+}
+function saveProgress(){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(P)); }catch(e){ /* storage unavailable — app still works */ }
+}
+let P = loadProgress();
+
+/* sound + speech */
+function speak(text){
+  if (!P.sound) return;
+  try{
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US';
+    u.rate = 0.85;
+    const voices = window.speechSynthesis.getVoices();
+    const v = voices.find(v => v.lang && v.lang.startsWith('en'));
+    if (v) u.voice = v;
+    window.speechSynthesis.speak(u);
+  }catch(e){ /* speech unavailable — ignore */ }
+}
+function updateSoundBtn(){
+  const on = P.sound;
+  $('#icon-sound-on').style.display  = on ? '' : 'none';
+  $('#icon-sound-off').style.display = on ? 'none' : '';
+  const b = $('#sound-btn');
+  b.setAttribute('aria-pressed', String(on));
+  b.setAttribute('aria-label', on ? 'Sound on — เสียงเปิดอยู่ กดเพื่อปิดเสียง' : 'Sound off — เสียงปิดอยู่ กดเพื่อเปิดเสียง');
+  b.classList.toggle('active', false);
+}
+
+/* ---------- modal ---------- */
+let modalOnOk = null;
+function openConfirm(title, body, okText, onOk, okClass){
+  $('#modal-title').textContent = title;
+  $('#modal-body').textContent = body;
+  const ok = $('#modal-ok');
+  ok.textContent = okText;
+  ok.className = 'btn ' + (okClass || 'coral');
+  modalOnOk = onOk;
+  $('#modal-overlay').classList.add('show');
+  ok.focus();
+}
+function closeModal(){ $('#modal-overlay').classList.remove('show'); modalOnOk = null; }
+
+/* ---------- navigation with quiz guard ---------- */
+let quizActive = false;   // set true while a quiz/practice round is unfinished
+let currentScreen = 'home';
+function reallyGo(name){
+  quizActive = false;
+  currentScreen = name;
+  $$('.screen').forEach(s => s.classList.remove('on'));
+  const scr = $('#scr-' + name);
+  if (scr) scr.classList.add('on');
+  window.scrollTo({top:0, behavior:'auto'});
+  if (name === 'progress') renderProgress();
+  if (name === 'quiz') renderQuizMenu();
+  if (name === 'order') setOrderTab('arr12');
+  try{ if ('speechSynthesis' in window) window.speechSynthesis.cancel(); }catch(e){}
+}
+function go(name){
+  if (name === currentScreen) { reallyGo(name); return; }
+  if (quizActive){
+    openConfirm(
+      'Leave this quiz? ออกจากแบบทดสอบ?',
+      'Your answers in this round will not be saved. คะแนนรอบนี้จะไม่ถูกบันทึกนะ',
+      'Leave · ออก',
+      () => { closeModal(); reallyGo(name); }
+    );
+    return;
+  }
+  reallyGo(name);
+}
+
+/* ============================================================
+   LEARN — flip cards
+   ============================================================ */
+function renderLearn(){
+  const grid = $('#learn-grid');
+  grid.innerHTML = '';
+  MONTHS.forEach((m, i) => {
+    const wrap = el('div', 'flip-wrap');
+    wrap.style.setProperty('--i', i);
+    const card = el('button', 'flip-card');
+    card.setAttribute('aria-label', m.en + ' — ' + m.th + ' — month ' + m.n + ' — tap to flip for details');
+    card.innerHTML =
+      '<span class="face front">' +
+        '<span class="ribbon" style="background:' + dayColor(m) + '"></span>' +
+        '<span class="m-num">Month ' + m.n + '</span>' +
+        '<span class="m-illus">' + illus(m.n) + '</span>' +
+        '<span class="m-en">' + m.en + '</span>' +
+        '<span class="m-th thai">' + m.th + '</span>' +
+        '<span class="flip-hint">' + ICON.flip + ' Tap to flip · แตะเพื่อพลิก</span>' +
+      '</span>' +
+      '<span class="face back">' +
+        '<span class="ribbon" style="background:' + dayColor(m) + '"></span>' +
+        '<span class="b-row"><span class="b-lab">Say it · อ่านว่า</span><span class="b-pron thai">' + m.pron + '</span></span>' +
+        '<span class="b-row"><span class="b-lab">Days · จำนวนวัน</span><span class="b-days">' + m.dayText + ' days</span>' +
+          (m.leap ? '<span style="display:block;font-size:.72rem;color:var(--purple-deep);font-weight:700">28 days — 29 in a leap year<br>ปกติ 28 วัน / ปีอธิกสุรทิน 29 วัน</span>' : '') +
+        '</span>' +
+        '<span class="b-sent">“' + m.sent + '”<br><span class="thai">' + m.sentTh + '</span></span>' +
+        '<span class="flip-hint" style="justify-content:center;margin-top:2px">' + ICON.flip + ' Flip back · พลิกกลับ</span>' +
+      '</span>';
+    card.addEventListener('click', () => card.classList.toggle('flipped'));
+
+    // speaker button sits on top of the front face
+    const sp = el('button', 'speak-btn', ICON.speaker);
+    sp.setAttribute('aria-label', 'Listen to the word ' + m.en);
+    sp.style.cssText = 'position:absolute;top:14px;right:12px;z-index:2';
+    sp.addEventListener('click', e => { e.stopPropagation(); speak(m.en); });
+
+    wrap.appendChild(card);
+    wrap.style.position = 'relative';
+    wrap.appendChild(sp);
+    grid.appendChild(wrap);
+  });
+}
+function dayColor(m){
+  if (m.leap) return 'var(--purple)';
+  return m.days === 30 ? 'var(--mint)' : 'var(--coral)';
+}
+
+/* ============================================================
+   CALENDAR explorer
+   ============================================================ */
+let calSel = 0;
+function renderCalendar(){
+  const grid = $('#cal-grid');
+  grid.innerHTML = '';
+  MONTHS.forEach((m, i) => {
+    const cls = m.leap ? 'dfeb' : (m.days === 30 ? 'd30' : 'd31');
+    const t = el('button', 'cal-tile ' + cls + (i === calSel ? ' sel' : ''));
+    t.setAttribute('role', 'listitem');
+    t.setAttribute('aria-label', m.en + ', ' + m.th + ', month ' + m.n + ', ' + m.dayText + ' days');
+    t.setAttribute('aria-pressed', String(i === calSel));
+    t.innerHTML =
+      '<span class="ct-num">' + m.n + '</span>' +
+      '<span class="ct-en">' + m.en + '</span>' +
+      '<span class="ct-days">' + (m.leap ? ICON.star : '') + m.dayText + ' days</span>';
+    t.addEventListener('click', () => { calSel = i; renderCalendar(); });
+    grid.appendChild(t);
+  });
+  renderCalDetail();
+}
+function renderCalDetail(){
+  const m = MONTHS[calSel];
+  const pv = prevOf(m), nx = nextOf(m);
+  const badgeBg = m.leap ? 'var(--purple-soft);color:var(--purple-deep)'
+    : m.days === 30 ? 'var(--mint-soft);color:var(--mint-deep)'
+    : 'var(--coral-soft);color:var(--coral-deep)';
+  const d = $('#cal-detail');
+  d.innerHTML =
+    '<span class="m-num">Month ' + m.n + ' of 12</span>' +
+    '<div class="m-illus">' + illus(m.n) + '</div>' +
+    '<div class="m-en" style="justify-content:center">' + m.en +
+      '<button class="speak-btn" id="cal-speak" aria-label="Listen to the word ' + m.en + '">' + ICON.speaker + '</button></div>' +
+    '<div class="m-th thai">' + m.th + '</div>' +
+    '<div class="thai" style="color:var(--sky-deep);font-weight:600">' + m.pron + '</div>' +
+    '<div class="cd-days" style="background:' + badgeBg + '">' + m.dayText + ' days · ' + m.dayText + ' วัน</div>' +
+    (m.leap ? '<div style="font-size:.8rem;font-weight:700;color:var(--purple-deep)">Normally 28 days — 29 in a leap year!<br><span class="thai">ปกติมี 28 วัน แต่ปีอธิกสุรทินมี 29 วัน</span></div>' : '') +
+    '<div class="cd-nav">' +
+      '<button class="cd-chip" id="cd-prev"><small>← Before · เดือนก่อน</small>' + pv.en + '</button>' +
+      '<button class="cd-chip" id="cd-next"><small>After · เดือนถัดไป →</small>' + nx.en + '</button>' +
+    '</div>';
+  $('#cal-speak').addEventListener('click', () => speak(m.en));
+  $('#cd-prev').addEventListener('click', () => { calSel = (calSel + 11) % 12; renderCalendar(); });
+  $('#cd-next').addEventListener('click', () => { calSel = (calSel + 1) % 12; renderCalendar(); });
+}
+</script>
+<script>
+'use strict';
+/* ============================================================
+   PRACTICE MENU
+   ============================================================ */
+const PRACTICES = [
+  {id:'match', title:'A · Match English & Thai', th:'จับคู่ชื่อเดือนอังกฤษ–ไทย', color:'sky',
+   desc:'Tap to match all 12 English months with their Thai names.',
+   icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="8" height="7" rx="2"/><rect x="13" y="13" width="8" height="7" rx="2"/><path d="M11 16.5H8a3 3 0 0 1-3-3V11M13 7.5h3a3 3 0 0 1 3 3V13"/></svg>'},
+  {id:'order', title:'B · Months in Order', th:'เรียงลำดับเดือน', color:'sun',
+   desc:'Arrange the months from January to December.',
+   icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h13M3 12h9M3 18h13"/><path d="m19 9 3 3-3 3"/></svg>'},
+  {id:'days', title:'C · How Many Days?', th:'เดือนนี้มีกี่วัน', color:'mint',
+   desc:'30 days? 31 days? What about February?',
+   icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 16h.01M13 16h.01M17 16h.01"/></svg>'},
+  {id:'clues', title:'D · Month Clues', th:'ทายเดือนจากคำใบ้', color:'purple',
+   desc:'Read the clue and find the mystery month.',
+   icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>'},
+  {id:'situations', title:'E · Calendar Situations', th:'สถานการณ์ในชีวิตจริง', color:'coral',
+   desc:'Birthdays, holidays, and school days — use months in real life!',
+   icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M8 5l1.5 2.5M16 5l-1.5 2.5"/><path d="M5 11h14v4a7 7 0 0 1-14 0z"/><path d="M5 13c2-1.5 4 1.5 7 0s5 1.5 7 0"/><path d="M8 22h8"/><path d="M12 18v4"/></svg>'}
+];
+function renderPracticeMenu(){
+  const menu = $('#practice-menu');
+  menu.innerHTML = '';
+  PRACTICES.forEach(p => {
+    const b = el('button', 'menu-card b-' + p.color);
+    b.innerHTML =
+      '<span class="mc-icon mc-' + p.color + '">' + p.icon + '</span>' +
+      '<span class="mc-go" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>' +
+      '<h3>' + p.title + '</h3><span class="mc-thai thai">' + p.th + '</span><p>' + p.desc + '</p>';
+    b.addEventListener('click', () => startPractice(p.id));
+    menu.appendChild(b);
+  });
+}
+function startPractice(id){
+  if (id === 'match'){ initMatch(); reallyGo('match'); return; }
+  if (id === 'order'){ setOrderTab('arr12'); reallyGo('order'); return; }
+  if (id === 'days'){
+    startPlay({key:'days', title:'How Many Days?', titleTh:'เดือนนี้มีกี่วัน', backTo:'practice',
+               questions:pickN(buildDaysBank(), 10)});
+  } else if (id === 'clues'){
+    startPlay({key:'clues', title:'Month Clues', titleTh:'ทายเดือนจากคำใบ้', backTo:'practice',
+               questions:pickN(buildClueBank(), 10)});
+  } else if (id === 'situations'){
+    startPlay({key:'situations', title:'Calendar Situations', titleTh:'สถานการณ์ในชีวิตจริง', backTo:'practice',
+               questions:pickN(buildSituationBank(), 10)});
+  }
+}
+
+/* ============================================================
+   PRACTICE A — tap-to-match
+   ============================================================ */
+let matchState = null;
+function initMatch(){
+  matchState = {pickedEn:null, pickedTh:null, done:0, tries:0};
+  const enCol = $('#match-en'), thCol = $('#match-th');
+  enCol.innerHTML = '<h4>English</h4>';
+  thCol.innerHTML = '<h4 class="thai">ภาษาไทย</h4>';
+  $('#match-feedback').className = 'feedback';
+  $('#match-feedback').innerHTML = '';
+  shuffle(MONTHS).forEach(m => {
+    const b = el('button', 'match-item', esc(m.en));
+    b.dataset.n = m.n; b.dataset.side = 'en';
+    b.setAttribute('aria-label', 'English month ' + m.en);
+    b.addEventListener('click', () => pickMatch(b));
+    enCol.appendChild(b);
+  });
+  shuffle(MONTHS).forEach(m => {
+    const b = el('button', 'match-item thai', esc(m.th));
+    b.dataset.n = m.n; b.dataset.side = 'th';
+    b.setAttribute('aria-label', 'Thai month ' + m.th);
+    b.addEventListener('click', () => pickMatch(b));
+    thCol.appendChild(b);
+  });
+  updateMatchStatus();
+}
+function updateMatchStatus(){
+  $('#match-count').textContent = 'Matched: ' + matchState.done + ' / 12';
+  $('#match-count').classList.toggle('good', matchState.done === 12);
+  $('#match-tries').textContent = 'Tries: ' + matchState.tries;
+}
+function pickMatch(btn){
+  if (btn.classList.contains('done')) return;
+  const side = btn.dataset.side;
+  const key = side === 'en' ? 'pickedEn' : 'pickedTh';
+  // toggle selection on same side
+  if (matchState[key] === btn){ btn.classList.remove('picked'); matchState[key] = null; return; }
+  if (matchState[key]) matchState[key].classList.remove('picked');
+  matchState[key] = btn;
+  btn.classList.add('picked');
+  const a = matchState.pickedEn, b = matchState.pickedTh;
+  if (a && b){
+    matchState.tries++;
+    if (a.dataset.n === b.dataset.n){
+      [a, b].forEach(x => {
+        x.classList.remove('picked'); x.classList.add('done');
+        x.innerHTML = '<span style="color:var(--mint-deep)">' + ICON.check + '</span>' + x.innerHTML;
+        x.disabled = true;
+      });
+      matchState.done++;
+      const m = MONTHS.find(mm => String(mm.n) === a.dataset.n);
+      flashMatchFeedback(true, randomOf(PRAISE) + ' ' + m.en + ' = ' + m.th + '  ·  ' + randomOf(PRAISE_TH));
+      if (matchState.done === 12){
+        earnBadge('matcher');
+        flashMatchFeedback(true, 'All 12 pairs matched! You are a Month Matcher! จับคู่ครบ 12 คู่ เก่งที่สุดเลย!');
+        sparkleAt($('#match-count'));
+      }
+    } else {
+      [a, b].forEach(x => { x.classList.add('miss'); setTimeout(() => x.classList.remove('miss'), 450); });
+      const mEn = MONTHS.find(mm => String(mm.n) === a.dataset.n);
+      flashMatchFeedback(false, randomOf(ENCOURAGE) + ' ' + mEn.en + ' is not “' + b.textContent + '”. ' + mEn.en + ' = ' + mEn.th + '. ' + randomOf(ENCOURAGE_TH));
+    }
+    [a, b].forEach(x => x.classList.remove('picked'));
+    matchState.pickedEn = matchState.pickedTh = null;
+    updateMatchStatus();
+  }
+}
+function flashMatchFeedback(good, msg){
+  const f = $('#match-feedback');
+  f.className = 'feedback show ' + (good ? 'good' : 'bad');
+  f.innerHTML = (good ? ICON.check : ICON.cross) + '<span class="fb-main">' + esc(msg) + '</span>';
+}
+
+/* ============================================================
+   PRACTICE B — ordering (tap + drag)
+   ============================================================ */
+let orderState = null;
+function setOrderTab(tab){
+  ['arr12','arr5','ordq'].forEach(t => {
+    const b = $('#tab-' + t);
+    b.classList.toggle('on', t === tab);
+    b.setAttribute('aria-selected', String(t === tab));
+  });
+  if (tab === 'ordq'){
+    const bank = buildOrderBank().filter(q => q.topic === 'order' || q.q.startsWith('Which month is missing'));
+    startPlay({key:'orderq', title:'Order Questions', titleTh:'คำถามลำดับเดือน', backTo:'order',
+               questions:pickN(bank, 10)});
+    return;
+  }
+  initArrange(tab === 'arr12' ? 12 : 5);
+}
+function initArrange(size){
+  let target;
+  if (size === 12){
+    target = MONTHS.map(m => m.en);
+  } else {
+    const start = Math.floor(Math.random() * 8); // 0..7 → window of 5 without wrap
+    target = MONTHS.slice(start, start + 5).map(m => m.en);
+  }
+  orderState = {target, placed:[], size, checked:false};
+  renderArrange();
+}
+function renderArrange(){
+  const area = $('#order-area');
+  const s = orderState;
+  area.innerHTML = '';
+  const help = el('p', 'order-help',
+    ICON.hand + (s.size === 12
+      ? ' Tap the months in order from January to December. Tap a card in the line to remove it. You can also drag cards in the line to reorder them. <span class="thai">แตะเดือนตามลำดับตั้งแต่มกราคมถึงธันวาคม</span>'
+      : ' Put these 5 months in the correct order (earliest first). <span class="thai">เรียง 5 เดือนนี้ให้ถูกลำดับ เริ่มจากเดือนที่มาก่อน</span>'));
+  area.appendChild(help);
+
+  const line = el('div', 'slotline');
+  line.setAttribute('aria-label', 'Your answer line — ' + s.placed.length + ' of ' + s.size + ' placed');
+  if (s.placed.length === 0){
+    line.appendChild(el('span', '', '<span style="color:var(--ink-soft);font-weight:700;font-size:.88rem;align-self:center">Place months here · วางเดือนตรงนี้</span>'));
+  }
+  s.placed.forEach((en, idx) => {
+    const chip = el('button', 'slot-chip', '<b>' + (idx + 1) + '.</b> ' + esc(en) + ' <span class="x" aria-hidden="true">×</span>');
+    chip.setAttribute('aria-label', 'Position ' + (idx + 1) + ': ' + en + '. Tap to remove.');
+    chip.draggable = true;
+    chip.addEventListener('click', () => { s.placed.splice(idx, 1); s.checked = false; renderArrange(); });
+    chip.addEventListener('dragstart', e => { chip.classList.add('dragging'); e.dataTransfer.setData('text/plain', String(idx)); });
+    chip.addEventListener('dragend', () => chip.classList.remove('dragging'));
+    chip.addEventListener('dragover', e => e.preventDefault());
+    chip.addEventListener('drop', e => {
+      e.preventDefault();
+      const from = parseInt(e.dataTransfer.getData('text/plain'), 10);
+      if (isNaN(from) || from === idx) return;
+      const [moved] = s.placed.splice(from, 1);
+      s.placed.splice(idx, 0, moved);
+      s.checked = false;
+      renderArrange();
+    });
+    line.appendChild(chip);
+  });
+  area.appendChild(line);
+
+  const pool = el('div', 'pool');
+  const poolMonths = shuffleStable(s.target, s.size);
+  poolMonths.forEach(en => {
+    const used = s.placed.includes(en);
+    const b = el('button', 'pool-chip', esc(en));
+    b.disabled = used;
+    b.setAttribute('aria-label', used ? en + ' (already placed)' : 'Place ' + en + ' next');
+    b.addEventListener('click', () => {
+      if (s.placed.length >= s.size) return;
+      s.placed.push(en); s.checked = false; renderArrange();
+    });
+    pool.appendChild(b);
+  });
+  area.appendChild(pool);
+
+  const actions = el('div', 'play-actions');
+  const checkBtn = el('button', 'btn mint', ICON.check + ' Check · ตรวจคำตอบ');
+  checkBtn.disabled = s.placed.length !== s.size;
+  checkBtn.addEventListener('click', checkArrange);
+  const resetBtn = el('button', 'btn ghost', ICON.flip + ' Reset · เริ่มใหม่');
+  resetBtn.addEventListener('click', () => initArrange(s.size));
+  actions.appendChild(checkBtn); actions.appendChild(resetBtn);
+  area.appendChild(actions);
+
+  const fb = el('div', 'feedback');
+  fb.id = 'order-feedback';
+  fb.setAttribute('aria-live', 'polite');
+  fb.setAttribute('role', 'status');
+  area.appendChild(fb);
+}
+/* stable per-round pool order so chips don't jump on each re-render */
+let poolCache = {key:'', list:[]};
+function shuffleStable(target, size){
+  const key = target.join('|') + '#' + size;
+  if (poolCache.key !== key){ poolCache = {key, list:shuffle(target)}; }
+  return poolCache.list;
+}
+function checkArrange(){
+  const s = orderState;
+  s.checked = true;
+  const chips = $$('#order-area .slot-chip');
+  let allOk = true;
+  chips.forEach((chip, idx) => {
+    const ok = s.placed[idx] === s.target[idx];
+    chip.classList.toggle('ok', ok);
+    chip.classList.toggle('bad', !ok);
+    if (!ok) allOk = false;
+  });
+  const fb = $('#order-feedback');
+  if (allOk){
+    fb.className = 'feedback show good';
+    fb.innerHTML = ICON.check + '<span class="fb-main">' + randomOf(PRAISE) + ' Perfect order! ' + randomOf(PRAISE_TH) +
+      (s.size === 12 ? '<span class="fb-explain">You arranged all 12 months — you earned the Order Expert badge!</span>' : '') + '</span>';
+    if (s.size === 12) earnBadge('orderer');
+    sparkleAt(fb);
+  } else {
+    trackWeak('order');
+    fb.className = 'feedback show bad';
+    fb.innerHTML = ICON.cross + '<span class="fb-main">' + randomOf(ENCOURAGE) + ' The red cards are in the wrong place. Tap them to remove and try again!' +
+      '<span class="fb-explain thai">การ์ดสีแดงยังอยู่ผิดที่ ลองแตะเอาออกแล้วจัดใหม่นะ</span></span>';
+  }
+}
+
+/* ============================================================
+   PLAY ENGINE — shared by practices C/D/E, order questions, quizzes
+   ============================================================ */
+let playCfg = null;
+let playState = null;
+/* read-only hook used by automated tests */
+window.__monthsAdventure = { get playCfg(){ return playCfg; }, get playState(){ return playState; } };
+function startPlay(cfg){
+  playCfg = cfg;
+  playState = {idx:0, score:0, wrongTopics:{}, selected:null, submitted:false, finished:false};
+  $('#play-title').innerHTML = esc(cfg.title) + ' <span class="thai">' + esc(cfg.titleTh) + '</span>';
+  quizActive = true;
+  currentScreen = 'play';
+  $$('.screen').forEach(sc => sc.classList.remove('on'));
+  $('#scr-play').classList.add('on');
+  window.scrollTo({top:0, behavior:'auto'});
+  renderQuestion();
+}
+function renderQuestion(){
+  const s = playState, cfg = playCfg;
+  const q = cfg.questions[s.idx];
+  const area = $('#play-area');
+  const total = cfg.questions.length;
+  area.innerHTML = '';
+
+  const top = el('div', 'play-top');
+  top.innerHTML =
+    '<span class="pill">Question ' + (s.idx + 1) + ' of ' + total + '</span>' +
+    '<div class="prog-track" role="progressbar" aria-valuemin="0" aria-valuemax="' + total + '" aria-valuenow="' + s.idx + '" aria-label="Quiz progress"><div class="prog-fill" style="width:' + Math.round(s.idx / total * 100) + '%"></div></div>' +
+    '<span class="pill good">Score: ' + s.score + '</span>';
+  area.appendChild(top);
+
+  const card = el('div', 'q-card sparkle-zone');
+  card.innerHTML = '<p class="q-text">' + esc(q.q) + '</p>' +
+    (q.qTh ? '<p class="q-thai thai">' + esc(q.qTh) + '</p>' : '');
+  const grid = el('div', 'ans-grid');
+  grid.setAttribute('role', 'group');
+  grid.setAttribute('aria-label', 'Answer choices');
+  q.choices.forEach(choice => {
+    const b = el('button', 'ans-btn' + (/[ก-๙]/.test(choice) ? ' thai' : ''), esc(choice));
+    b.addEventListener('click', () => {
+      if (s.submitted) return;
+      $$('#play-area .ans-btn').forEach(x => x.classList.remove('selected'));
+      b.classList.add('selected');
+      s.selected = choice;
+      $('#play-check').disabled = false;
+    });
+    grid.appendChild(b);
+  });
+  card.appendChild(grid);
+
+  const fb = el('div', 'feedback');
+  fb.id = 'play-feedback';
+  fb.setAttribute('aria-live', 'polite');
+  fb.setAttribute('role', 'status');
+  card.appendChild(fb);
+  area.appendChild(card);
+
+  const actions = el('div', 'play-actions');
+  const checkBtn = el('button', 'btn mint', ICON.check + ' Check Answer · ตรวจคำตอบ');
+  checkBtn.id = 'play-check';
+  checkBtn.disabled = true;
+  checkBtn.addEventListener('click', submitAnswer);
+  actions.appendChild(checkBtn);
+  area.appendChild(actions);
+}
+function submitAnswer(){
+  const s = playState, cfg = playCfg;
+  if (s.submitted || s.selected === null) return;   // prevents double submission
+  s.submitted = true;
+  const q = cfg.questions[s.idx];
+  const correct = s.selected === q.answer;
+  if (correct) s.score++;
+  else { s.wrongTopics[normTopic(q.topic)] = (s.wrongTopics[normTopic(q.topic)] || 0) + 1; trackWeak(normTopic(q.topic)); }
+
+  $$('#play-area .ans-btn').forEach(b => {
+    b.disabled = true;
+    const val = b.textContent;
+    if (val === q.answer){
+      b.classList.add('correct');
+      b.insertAdjacentHTML('beforeend', '<span class="mark">' + ICON.check + '</span>');
+    } else if (val === s.selected && !correct){
+      b.classList.add('wrong');
+      b.insertAdjacentHTML('beforeend', '<span class="mark">' + ICON.cross + '</span>');
+    }
+    b.classList.remove('selected');
+  });
+
+  const fb = $('#play-feedback');
+  if (correct){
+    fb.className = 'feedback show good';
+    fb.innerHTML = ICON.check + '<span class="fb-main">' + randomOf(PRAISE) + ' ' + randomOf(PRAISE_TH) + '</span>';
+    sparkleAt(fb);
+  } else {
+    fb.className = 'feedback show bad';
+    fb.innerHTML = ICON.cross + '<span class="fb-main">' + randomOf(ENCOURAGE) + ' The answer is <b>' + esc(q.answer) + '</b>.' +
+      '<span class="fb-explain">' + esc(q.explain) + '</span></span>';
+  }
+
+  const actions = $('#play-area .play-actions');
+  $('#play-check').style.display = 'none';
+  const last = s.idx === cfg.questions.length - 1;
+  const nextBtn = el('button', 'btn', (last ? 'See Results · ดูผลคะแนน' : 'Next · ข้อต่อไป') +
+    ' <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>');
+  nextBtn.addEventListener('click', () => {
+    if (last){ finishPlay(); return; }
+    s.idx++; s.selected = null; s.submitted = false;
+    renderQuestion();
+  });
+  actions.appendChild(nextBtn);
+  nextBtn.focus();
+}
+function normTopic(t){ return t === 'order2' ? 'order' : t; }
+
+/* sparkles on correct answers */
+function sparkleAt(node){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!node) return;
+  const colors = ['#FFC94D','#5EC9A2','#4FA8D8','#FF8A70','#9B7FD4'];
+  for (let i = 0; i < 7; i++){
+    const sp = el('span', 'spark',
+      '<svg viewBox="0 0 24 24" fill="' + colors[i % colors.length] + '"><path d="M12 2l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6-5-2.8-5 2.8 1.1-5.6L4 7.9l5.6-.7z"/></svg>');
+    sp.style.left = (35 + Math.random() * 30) + '%';
+    sp.style.top = '0';
+    sp.style.setProperty('--dx', (Math.random() * 120 - 60) + 'px');
+    sp.style.setProperty('--dy', (-40 - Math.random() * 60) + 'px');
+    node.style.position = 'relative';
+    node.appendChild(sp);
+    setTimeout(() => sp.remove(), 900);
+  }
+}
+</script>
+<script>
+'use strict';
+/* ============================================================
+   QUIZ MENU
+   ============================================================ */
+function renderQuizMenu(){
+  const menu = $('#quiz-menu');
+  menu.innerHTML = '';
+  QUIZ_LEVELS.forEach(lv => {
+    const best = P.best[lv.id];
+    const bestTxt = best
+      ? 'Best: ' + best.score + '/' + best.total + ' (' + best.pct + '%)'
+      : 'Not played yet · ยังไม่เคยเล่น';
+    const b = el('button', 'menu-card b-' + lv.color);
+    b.innerHTML =
+      '<span class="mc-icon mc-' + lv.color + '"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6-5-2.8-5 2.8 1.1-5.6L4 7.9l5.6-.7z"/></svg></span>' +
+      '<span class="mc-go" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>' +
+      '<h3>Level ' + lv.id + ' · ' + lv.name + '</h3>' +
+      '<span class="mc-thai thai">' + lv.th + ' · ' + lv.count + ' questions</span>' +
+      '<p>' + lv.desc + '</p>' +
+      '<p class="thai" style="font-size:.82rem">' + lv.descTh + '</p>' +
+      '<p style="color:var(--sun-deep);font-size:.82rem">★ ' + bestTxt + '</p>';
+    b.addEventListener('click', () => startQuizLevel(lv.id));
+    menu.appendChild(b);
+  });
+}
+function startQuizLevel(id){
+  const lv = QUIZ_LEVELS.find(l => l.id === id);
+  startPlay({
+    key:'quiz' + id, level:id,
+    title:'Level ' + id + ' · ' + lv.name,
+    titleTh:lv.th,
+    backTo:'quiz',
+    questions:lv.build()
+  });
+}
+
+/* ============================================================
+   RESULTS
+   ============================================================ */
+function perfMessage(pct){
+  if (pct >= 90) return {en:'Month Champion!', th:'สุดยอดแชมป์ 12 เดือน!', color:'#C98A00'};
+  if (pct >= 75) return {en:'Calendar Star!', th:'ดาวเด่นแห่งปฏิทิน!', color:'#2D7FB0'};
+  if (pct >= 60) return {en:'Great Progress!', th:'พัฒนาได้เยี่ยมมาก!', color:'#1E7A5A'};
+  return {en:'Keep Practising!', th:'ฝึกต่ออีกนิด เก่งแน่นอน!', color:'#D04A2E'};
+}
+function resultBadgeSVG(pct){
+  const star = '<path d="M60 30l7 15.2 16.6 2-12.3 11.4 3.3 16.4L60 66.8 45.4 75l3.3-16.4L36.4 47.2l16.6-2z" fill="#fff"/>';
+  if (pct >= 90) return '<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="46" fill="#FFC94D"/><circle cx="60" cy="60" r="38" fill="#FFB300"/>' + star + '<path d="M38 104l8-18M82 104l-8-18" stroke="#FF8A70" stroke-width="8" stroke-linecap="round"/></svg>';
+  if (pct >= 75) return '<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="46" fill="#4FA8D8"/><circle cx="60" cy="60" r="38" fill="#2D7FB0"/>' + star + '</svg>';
+  if (pct >= 60) return '<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="46" fill="#5EC9A2"/><circle cx="60" cy="60" r="38" fill="#1E7A5A"/>' + star + '</svg>';
+  return '<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="46" fill="#FF8A70"/><circle cx="60" cy="60" r="38" fill="#D04A2E"/><path d="M60 34a20 20 0 1 1-14 34" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/><path d="M40 58l6 12 12-6" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+}
+function finishPlay(){
+  const s = playState, cfg = playCfg;
+  quizActive = false;
+  s.finished = true;
+  const total = cfg.questions.length;
+  const pct = Math.round(s.score / total * 100);
+  const wrong = total - s.score;
+  const perf = perfMessage(pct);
+
+  /* --- record progress --- */
+  if (cfg.level){
+    P.completed++;
+    P.recent = {level:cfg.level, score:s.score, total, pct, date:new Date().toISOString().slice(0,10)};
+    const prev = P.best[cfg.level];
+    if (!prev || pct > prev.pct) P.best[cfg.level] = {score:s.score, total, pct};
+    earnBadge('starter');
+    if (cfg.level === 2 && pct >= 75) earnBadge('calmaster');
+    if (cfg.level === 3 && pct >= 90) earnBadge('champion');
+  }
+  if (cfg.key === 'days' && pct >= 80) earnBadge('days');
+  saveProgress();
+
+  /* --- review topics --- */
+  const weakList = Object.keys(s.wrongTopics)
+    .sort((a, b) => s.wrongTopics[b] - s.wrongTopics[a])
+    .map(t => TOPICS[t] ? (TOPICS[t].en + ' · ' + TOPICS[t].th) : t);
+
+  const area = $('#play-area');
+  area.innerHTML = '';
+  const card = el('div', 'result-card');
+  card.innerHTML =
+    '<div class="result-badge">' + resultBadgeSVG(pct) + '</div>' +
+    '<h3 class="result-title" style="color:' + perf.color + '">' + perf.en + '</h3>' +
+    '<p class="result-thai thai">' + perf.th + '</p>' +
+    '<div class="score-big">' + s.score + ' / ' + total + '</div>' +
+    '<p class="score-pct">' + pct + '%</p>' +
+    '<div class="stat-row">' +
+      '<div class="stat-box good"><b>' + s.score + '</b>Correct · ถูก</div>' +
+      '<div class="stat-box bad"><b>' + wrong + '</b>Incorrect · ผิด</div>' +
+    '</div>' +
+    (weakList.length
+      ? '<div class="review-box">' + ICON.bulb.replace('<svg','<svg style="width:18px;height:18px;display:inline;vertical-align:-3px"') +
+        ' <b>Good things to review · หัวข้อที่ควรทบทวน:</b><ul>' +
+        weakList.map(w => '<li>' + esc(w) + '</li>').join('') + '</ul></div>'
+      : '<div class="review-box" style="background:var(--mint-soft)">Perfect round — nothing to review. Amazing! <span class="thai">ไม่มีหัวข้อต้องทบทวนเลย เก่งมาก!</span></div>');
+
+  const actions = el('div', 'play-actions');
+  const againBtn = el('button', 'btn mint', ICON.flip + ' Play Again · เล่นอีกครั้ง');
+  againBtn.addEventListener('click', () => {
+    if (cfg.level){ startQuizLevel(cfg.level); }
+    else if (cfg.key === 'orderq'){ setOrderTab('ordq'); }
+    else { startPractice(cfg.key); }
+  });
+  actions.appendChild(againBtn);
+  if (cfg.level){
+    const otherBtn = el('button', 'btn purple', ICON.star + ' Try Another Level · ลองระดับอื่น');
+    otherBtn.addEventListener('click', () => reallyGo('quiz'));
+    actions.appendChild(otherBtn);
+  }
+  const homeBtn = el('button', 'btn ghost', 'Home · หน้าหลัก');
+  homeBtn.addEventListener('click', () => reallyGo('home'));
+  actions.appendChild(homeBtn);
+  card.appendChild(actions);
+  area.appendChild(card);
+
+  if (pct >= 75) launchConfetti();
+}
+
+/* confetti celebration */
+function launchConfetti(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const colors = ['#FFC94D','#5EC9A2','#4FA8D8','#FF8A70','#9B7FD4','#FFF1CC'];
+  for (let i = 0; i < 70; i++){
+    const c = el('div', 'confetti-piece');
+    const sz = 6 + Math.random() * 8;
+    c.style.cssText =
+      'left:' + Math.random() * 100 + 'vw;' +
+      'width:' + sz + 'px;height:' + (sz * 0.6) + 'px;' +
+      'background:' + colors[i % colors.length] + ';' +
+      'animation-duration:' + (2.2 + Math.random() * 1.8) + 's;' +
+      'animation-delay:' + Math.random() * 0.7 + 's;';
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 5200);
+  }
+}
+
+/* ============================================================
+   PROGRESS + BADGES
+   ============================================================ */
+function trackWeak(topic){
+  P.weak[topic] = (P.weak[topic] || 0) + 1;
+  saveProgress();
+}
+function earnBadge(id){
+  if (P.badges[id]) return;
+  P.badges[id] = true;
+  saveProgress();
+}
+function badgeSVG(i){
+  const cols = ['#4FA8D8','#5EC9A2','#FFC94D','#9B7FD4','#FF8A70','#FFB300'];
+  const c = cols[i % cols.length];
+  return '<svg viewBox="0 0 64 64"><circle cx="32" cy="30" r="22" fill="' + c + '"/><circle cx="32" cy="30" r="16.5" fill="#fff" opacity=".25"/><path d="M32 18l3.4 7.4 8 .9-6 5.6 1.7 8L32 36l-7.1 3.9 1.7-8-6-5.6 8-.9z" fill="#fff"/><path d="M22 50l6-9M42 50l-6-9" stroke="' + c + '" stroke-width="5" stroke-linecap="round"/></svg>';
+}
+function renderProgress(){
+  const area = $('#progress-area');
+  const bestCells = QUIZ_LEVELS.map(lv => {
+    const b = P.best[lv.id];
+    return '<div class="prog-card"><h4>' + ICON.star.replace('<svg','<svg style="color:var(--sun-deep)"') + ' Level ' + lv.id + ' · ' + lv.name + '</h4>' +
+      (b ? '<div class="big">' + b.score + '/' + b.total + '</div><div class="sub">Best score · ' + b.pct + '%</div>'
+         : '<div class="big" style="color:var(--ink-soft)">—</div><div class="sub">Not played yet · ยังไม่เคยเล่น</div>') +
+      '</div>';
+  }).join('');
+  const recent = P.recent
+    ? '<div class="prog-card"><h4>' + ICON.smile + ' Most Recent Quiz</h4><div class="big">' + P.recent.score + '/' + P.recent.total + '</div>' +
+      '<div class="sub">Level ' + P.recent.level + ' · ' + P.recent.pct + '% · ' + P.recent.date + '</div></div>'
+    : '<div class="prog-card"><h4>' + ICON.smile + ' Most Recent Quiz</h4><div class="big" style="color:var(--ink-soft)">—</div><div class="sub">Play a quiz to see your score here! ลองทำแบบทดสอบดูสิ</div></div>';
+  const weakKeys = Object.keys(P.weak).sort((a, b) => P.weak[b] - P.weak[a]).slice(0, 3);
+  const weakHtml = weakKeys.length
+    ? '<ul style="margin:4px 0 0 18px;font-weight:600;font-size:.88rem">' +
+      weakKeys.map(k => '<li>' + (TOPICS[k] ? TOPICS[k].en + ' · <span class="thai">' + TOPICS[k].th + '</span>' : esc(k)) + '</li>').join('') + '</ul>'
+    : '<div class="sub">No weak spots yet — keep playing! ยังไม่มีจุดอ่อนเลย</div>';
+
+  area.innerHTML =
+    '<div class="prog-grid">' +
+      recent +
+      '<div class="prog-card"><h4>' + ICON.check.replace('<svg','<svg style="color:var(--mint-deep)"') + ' Quizzes Completed</h4><div class="big">' + P.completed + '</div><div class="sub">แบบทดสอบที่ทำเสร็จแล้ว</div></div>' +
+      bestCells +
+      '<div class="prog-card"><h4>' + ICON.bulb.replace('<svg','<svg style="color:var(--sun-deep)"') + ' Practice These Next</h4>' + weakHtml + '</div>' +
+    '</div>' +
+    '<h3 style="margin-bottom:12px">Badges <span class="thai" style="font-weight:500;color:var(--ink-soft)">เหรียญรางวัลของฉัน</span></h3>' +
+    '<div class="badge-grid" id="badge-grid"></div>' +
+    '<div class="play-actions" style="margin-top:28px"><button class="btn coral" id="reset-progress">' + ICON.cross + ' Reset Progress · ล้างข้อมูล</button></div>';
+
+  const bg = $('#badge-grid');
+  BADGES.forEach((b, i) => {
+    const earned = !!P.badges[b.id];
+    const card = el('div', 'badge-card ' + (earned ? 'earned' : 'locked'));
+    card.innerHTML =
+      '<div class="b-icon">' + badgeSVG(i) + '</div>' +
+      '<h5>' + b.name + '</h5>' +
+      '<p class="thai">' + b.th + '</p>' +
+      '<p>' + b.desc + ' · <span class="thai">' + b.descTh + '</span></p>' +
+      '<div class="b-state">' + (earned ? '★ Earned · ได้รับแล้ว' : 'Locked · ยังไม่ปลดล็อก') + '</div>';
+    bg.appendChild(card);
+  });
+
+  $('#reset-progress').addEventListener('click', () => {
+    openConfirm(
+      'Reset all progress? ล้างข้อมูลทั้งหมด?',
+      'All scores and badges will be deleted. This cannot be undone. คะแนนและเหรียญรางวัลทั้งหมดจะถูกลบและกู้คืนไม่ได้นะ',
+      'Yes, reset · ยืนยันล้างข้อมูล',
+      () => {
+        const sound = P.sound;
+        P = defaultProgress();
+        P.sound = sound;
+        saveProgress();
+        closeModal();
+        renderProgress();
+      }
+    );
+  });
+}
+
+/* ============================================================
+   TEACHER GUIDE
+   ============================================================ */
+function renderTeacherGuide(){
+  const g = $('#teacher-guide');
+  const icoBook = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>';
+  const icoTarget = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>';
+  const icoFlow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h6v6H4zM14 13h6v6h-6z"/><path d="M10 8h6a2 2 0 0 1 2 2v3M14 16H8a2 2 0 0 1-2-2v-3"/></svg>';
+  const icoSkill = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6-5-2.8-5 2.8 1.1-5.6L4 7.9l5.6-.7z"/></svg>';
+  const icoNext = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>';
+  g.innerHTML =
+    '<div class="guide-block"><h3>' + icoTarget + 'Learning Objectives · จุดประสงค์การเรียนรู้</h3>' +
+      '<ul>' +
+      '<li>Recognise and read all 12 months in English, and match them with their Thai names.</li>' +
+      '<li>Remember the correct order of the months, including the month before and after any given month.</li>' +
+      '<li>Know how many days are in each month, including February (28 days, or 29 in a leap year).</li>' +
+      '<li>Use month names in everyday contexts: birthdays, holidays, school events, and calendar dates.</li>' +
+      '</ul><p class="thai" style="margin-top:8px">นักเรียนสามารถอ่านและจดจำชื่อเดือนภาษาอังกฤษทั้ง 12 เดือน จับคู่กับชื่อภาษาไทย เรียงลำดับเดือน บอกจำนวนวัน และใช้ชื่อเดือนในชีวิตประจำวันได้</p></div>' +
+
+    '<div class="guide-block"><h3>' + icoBook + 'Suggested Level &amp; Setting · ระดับชั้นที่เหมาะสม</h3>' +
+      '<p>Designed for <strong>Grades 2–3</strong> (Thai students, beginner to lower-intermediate English). ' +
+      'Works well for classroom teaching with a projector, online lessons, homework, self-study, and revision before a test. ' +
+      'No login, account, or internet database is needed — progress saves automatically on the device.</p></div>' +
+
+    '<div class="guide-block"><h3>' + icoFlow + 'Recommended Lesson Flow · ลำดับการสอนที่แนะนำ</h3>' +
+      '<ol>' +
+      '<li><strong>Warm up (5 min):</strong> Open <em>Learn</em>. Flip cards together, press the speaker, and have students repeat each month aloud.</li>' +
+      '<li><strong>Explore (5–10 min):</strong> Use <em>Explore the Calendar</em> to show month order and the 30/31-day colour patterns. Point out February.</li>' +
+      '<li><strong>Practice (10–15 min):</strong> Choose one or two activities from <em>Practice</em> — start with Matching, then Ordering.</li>' +
+      '<li><strong>Challenge (10 min):</strong> Students take <em>Quiz Level 1</em>. Stronger students continue to Levels 2–3.</li>' +
+      '<li><strong>Reflect (5 min):</strong> Open <em>My Progress</em> together and look at "Practice These Next".</li>' +
+      '</ol></div>' +
+
+    '<div class="guide-block"><h3>' + icoSkill + 'Skills &amp; Activity Categories · ทักษะที่ฝึก</h3>' +
+      '<ul>' +
+      '<li><strong>Vocabulary:</strong> English month names with Thai support and phonetic pronunciation guides.</li>' +
+      '<li><strong>Listening:</strong> speaker buttons use the device\'s text-to-speech for model pronunciation.</li>' +
+      '<li><strong>Sequencing &amp; logic:</strong> ordering activities, before/after questions, and two-step reasoning.</li>' +
+      '<li><strong>Numeracy link:</strong> month numbers (1–12) and days in each month (28/29, 30, 31).</li>' +
+      '<li><strong>Reading comprehension:</strong> clue questions and real-life calendar situations in simple English.</li>' +
+      '</ul>' +
+      '<p style="margin-top:8px"><strong>Approximate activity mix:</strong> 12 learning cards · 5 practice modes · 3 quiz levels · a question bank of 150+ generated and hand-written questions, shuffled on every round.</p></div>' +
+
+    '<div class="guide-block"><h3>' + icoNext + 'Follow-up Ideas · กิจกรรมต่อยอด</h3>' +
+      '<ul>' +
+      '<li>Make a class birthday chart: students write their names under their birthday month in English.</li>' +
+      '<li>Play "What month am I?" — one student gives clues (like Practice D), classmates guess.</li>' +
+      '<li>Teach the knuckle trick for 31-day months, then re-take Practice C to check mastery.</li>' +
+      '<li>Link to Thai festivals: ask students to say which month Songkran, Loy Krathong, and New Year fall in — in English.</li>' +
+      '<li>Dictation: teacher says a Thai month name, students write the English spelling.</li>' +
+      '</ul></div>';
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+function init(){
+  // navigation buttons (topbar, back buttons, home cards)
+  $$('[data-go]').forEach(b => b.addEventListener('click', () => go(b.dataset.go)));
+
+  // play screen back button follows the current activity's parent screen
+  $('#play-back').addEventListener('click', () => go(playCfg ? playCfg.backTo : 'home'));
+
+  // sound toggle
+  $('#sound-btn').addEventListener('click', () => {
+    P.sound = !P.sound;
+    saveProgress();
+    updateSoundBtn();
+    if (P.sound) speak('Sound on');
+  });
+
+  // modal
+  $('#modal-cancel').addEventListener('click', closeModal);
+  $('#modal-ok').addEventListener('click', () => { if (modalOnOk) modalOnOk(); else closeModal(); });
+  $('#modal-overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && $('#modal-overlay').classList.contains('show')) closeModal();
+  });
+
+  // matching reset
+  $('#match-reset').addEventListener('click', initMatch);
+
+  // ordering tabs
+  $('#tab-arr12').addEventListener('click', () => setOrderTab('arr12'));
+  $('#tab-arr5').addEventListener('click', () => setOrderTab('arr5'));
+  $('#tab-ordq').addEventListener('click', () => setOrderTab('ordq'));
+
+  // warm up speech voices (some browsers load them async)
+  try{ if ('speechSynthesis' in window) window.speechSynthesis.getVoices(); }catch(e){}
+
+  updateSoundBtn();
+  renderLearn();
+  renderCalendar();
+  renderPracticeMenu();
+  renderQuizMenu();
+  renderTeacherGuide();
+}
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
