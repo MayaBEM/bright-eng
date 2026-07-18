@@ -1,0 +1,94 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  border: none;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast), opacity var(--transition-fast);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn-md {
+  padding: 0.85rem 1.6rem;
+  font-size: var(--fs-base);
+}
+
+.btn-lg {
+  padding: 1.15rem 2rem;
+  font-size: var(--fs-md);
+}
+
+.btn-primary {
+  background: var(--color-sky);
+  color: #fff;
+  box-shadow: 0 4px 0 var(--color-sky-dark);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: var(--color-sky-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--color-sky-dark);
+}
+
+.btn-primary:not(:disabled):active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 0 var(--color-sky-dark);
+}
+
+.btn-secondary {
+  background: var(--color-green);
+  color: #fff;
+  box-shadow: 0 4px 0 var(--color-green-dark);
+}
+
+.btn-secondary:not(:disabled):hover {
+  background: var(--color-green-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--color-green-dark);
+}
+
+.btn-secondary:not(:disabled):active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 0 var(--color-green-dark);
+}
+
+.btn-accent {
+  background: var(--color-coral);
+  color: #fff;
+  box-shadow: 0 4px 0 var(--color-coral-dark);
+}
+
+.btn-accent:not(:disabled):hover {
+  background: var(--color-coral-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--color-coral-dark);
+}
+
+.btn-accent:not(:disabled):active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 0 var(--color-coral-dark);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-navy-soft);
+  border: 2px solid var(--color-border);
+  box-shadow: none;
+}
+
+.btn-ghost:not(:disabled):hover {
+  background: var(--color-cream-deep);
+  border-color: var(--color-navy-soft);
+}

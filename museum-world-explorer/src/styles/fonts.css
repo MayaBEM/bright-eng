@@ -1,0 +1,35 @@
+/* Self-hosted Nunito (Latin subset, woff2 only) — no Google Fonts CDN, so the
+   app has zero external network dependency at runtime. Only the 4 weights the
+   UI actually uses are included, to keep the standalone single-file build small. */
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url('../assets/fonts/nunito-latin-600-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url('../assets/fonts/nunito-latin-700-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 800;
+  src: url('../assets/fonts/nunito-latin-800-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 900;
+  src: url('../assets/fonts/nunito-latin-900-normal.woff2') format('woff2');
+}

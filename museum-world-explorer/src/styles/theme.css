@@ -1,0 +1,80 @@
+/* Bright EngMath — design tokens
+   Palette: warm cream bg, soft sky blue, turquoise, coral orange, muted yellow,
+   soft green, dark navy text. One primary (sky blue), one secondary (turquoise),
+   one accent (coral). Restrained, no gradients, no neon. */
+
+:root {
+  /* Core palette */
+  --color-cream: #fbf6ec;
+  --color-cream-deep: #f3ead9;
+  --color-card: #ffffff;
+
+  --color-sky: #4a90c9;       /* primary */
+  --color-sky-dark: #2f6d9e;
+  --color-sky-light: #e4f0fa;
+
+  --color-turquoise: #2fa89b; /* secondary */
+  --color-turquoise-dark: #1f8478;
+  --color-turquoise-light: #e1f5f2;
+
+  --color-coral: #ef7b52;     /* accent */
+  --color-coral-dark: #d1602f;
+  --color-coral-light: #fce6dc;
+
+  --color-yellow: #e8b23d;    /* muted yellow */
+  --color-yellow-dark: #c6942a;
+  --color-yellow-light: #fbf0d9;
+
+  --color-green: #6ea06a;     /* soft green */
+  --color-green-dark: #517c4e;
+  --color-green-light: #e7f1e5;
+
+  --color-navy: #22303f;      /* text */
+  --color-navy-soft: #4c5c6d;
+  --color-border: #e3d9c6;
+
+  --color-danger: #d1602f;
+  --color-success: #4f8f4a;
+
+  /* Typography */
+  --font-body: 'Nunito', 'Noto Sans Thai UI', system-ui, sans-serif;
+  --font-heading: 'Nunito', 'Noto Sans Thai UI', system-ui, sans-serif;
+
+  --fs-sm: 0.95rem;
+  --fs-base: 1.08rem;
+  --fs-md: 1.25rem;
+  --fs-lg: 1.6rem;
+  --fs-xl: 2.1rem;
+  --fs-xxl: 2.7rem;
+
+  /* Spacing scale */
+  --sp-1: 0.4rem;
+  --sp-2: 0.8rem;
+  --sp-3: 1.2rem;
+  --sp-4: 1.8rem;
+  --sp-5: 2.6rem;
+  --sp-6: 3.6rem;
+
+  /* Shape */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  /* Elevation */
+  --shadow-card: 0 6px 18px rgba(34, 48, 63, 0.08);
+  --shadow-card-hover: 0 10px 24px rgba(34, 48, 63, 0.12);
+  --shadow-button: 0 4px 0 rgba(0, 0, 0, 0.12);
+
+  --transition-fast: 0.15s ease;
+  --transition-med: 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

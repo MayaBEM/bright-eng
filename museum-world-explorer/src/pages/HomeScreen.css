@@ -1,0 +1,124 @@
+.home-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-5);
+  padding: var(--sp-5) var(--sp-3) var(--sp-6);
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+  animation: fadeIn var(--transition-med);
+}
+
+.home-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.home-eyebrow {
+  font-weight: 800;
+  color: var(--color-coral);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: var(--fs-sm);
+}
+
+.home-title {
+  font-size: var(--fs-xxl);
+  color: var(--color-navy);
+}
+
+.home-subtitle {
+  font-size: var(--fs-md);
+  color: var(--color-navy-soft);
+  font-weight: 600;
+}
+
+.unit-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-4);
+  width: 100%;
+}
+
+.unit-card {
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  transition: box-shadow var(--transition-med), transform var(--transition-med);
+  animation: cardIn 0.35s ease both;
+}
+
+.unit-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-3px);
+}
+
+.unit-card-title {
+  font-size: var(--fs-lg);
+  color: var(--color-navy);
+}
+
+.unit-card-blurb {
+  color: var(--color-navy-soft);
+  font-size: var(--fs-base);
+}
+
+.unit-card-score {
+  font-size: var(--fs-sm);
+  color: var(--color-turquoise-dark);
+  font-weight: 700;
+  background: var(--color-turquoise-light);
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-pill);
+}
+
+.unit-card .btn {
+  margin-top: auto;
+  width: 100%;
+}
+
+.home-footer {
+  display: flex;
+  justify-content: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 720px) {
+  .unit-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-title {
+    font-size: var(--fs-xl);
+  }
+}

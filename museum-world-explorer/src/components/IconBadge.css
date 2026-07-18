@@ -1,0 +1,40 @@
+.icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.icon-badge-md {
+  width: 2.6rem;
+  height: 2.6rem;
+  font-size: 1.35rem;
+}
+
+.icon-badge-lg {
+  width: 4.2rem;
+  height: 4.2rem;
+  font-size: 2.1rem;
+}
+
+.icon-badge-sky {
+  background: var(--color-sky-light);
+}
+
+.icon-badge-turquoise {
+  background: var(--color-turquoise-light);
+}
+
+.icon-badge-coral {
+  background: var(--color-coral-light);
+}
+
+.icon-badge-yellow {
+  background: var(--color-yellow-light);
+}
+
+.icon-badge-green {
+  background: var(--color-green-light);
+}
