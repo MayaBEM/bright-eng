@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Grammar Adventure — English Grammar Review</title>
+<meta name="description" content="A friendly English grammar review app for primary school students — learn, practise, and get ready for exams.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%AD%90%3C/text%3E%3C/svg%3E">
+<!-- No external fonts or assets: uses the device's own rounded/system fonts so the
+     app works fully offline, straight from a double-clicked index.html. -->
+<style>
+/* ==========================================================================
+   Grammar Adventure — Stylesheet
+   Warm cream + sky blue / orange / coral / soft green / warm yellow palette.
+   No purple, no neon, no heavy gradients or glow.
+   ========================================================================== */
+
+:root {
+  /* Palette */
+  --cream: #FBF4E7;
+  --cream-deep: #F4EAD6;
+  --paper: #FFFDF8;
+  --ink: #33302A;
+  --ink-soft: #5B564C;
+
+  --sky: #3F9FD6;
+  --sky-deep: #2A7FB0;
+  --sky-tint: #E4F3FB;
+
+  --orange: #F0913F;
+  --orange-deep: #D5741F;
+  --orange-tint: #FDEEDD;
+
+  --coral: #EF6F5E;
+  --coral-deep: #D24F3E;
+  --coral-tint: #FCE7E2;
+
+  --green: #5FB37C;
+  --green-deep: #3E9260;
+  --green-tint: #E6F4EA;
+
+  --yellow: #F1BD3D;
+  --yellow-deep: #C8931B;
+  --yellow-tint: #FDF3DA;
+
+  --border: #E7DBC3;
+  --shadow-sm: 0 2px 6px rgba(70, 55, 25, 0.08);
+  --shadow-md: 0 6px 18px rgba(70, 55, 25, 0.12);
+  --shadow-lg: 0 12px 28px rgba(70, 55, 25, 0.16);
+
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 26px;
+
+  /* System-font stacks only — no external font files or network requests,
+     so the app renders identically whether opened online or offline. */
+  --font-head: ui-rounded, 'SF Pro Rounded', -apple-system, 'Segoe UI', 'Noto Sans Thai UI',
+    'Noto Sans Thai', 'Leelawadee UI', Tahoma, Roboto, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans Thai UI',
+    'Noto Sans Thai', 'Leelawadee UI', Roboto, Tahoma, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(240,145,63,0.07), transparent 40%),
+    radial-gradient(circle at 92% 85%, rgba(63,159,214,0.08), transparent 45%),
+    var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 { font-family: var(--font-head); font-weight: 700; margin: 0 0 0.4em; color: var(--ink); }
+p { margin: 0 0 0.75em; }
+button { font-family: inherit; }
+img, svg { max-width: 100%; display: block; }
+
+.skip-link {
+  position: absolute; left: -999px; top: 0;
+  background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 0 0 8px 0; z-index: 1000;
+}
+.skip-link:focus { left: 0; }
+
+/* ==================== Header ==================== */
+.site-header {
+  position: sticky; top: 0; z-index: 40;
+  background: var(--paper);
+  border-bottom: 2px solid var(--border);
+}
+.header-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 20px;
+  gap: 12px;
+}
+.brand {
+  display: flex; align-items: center; gap: 8px;
+  background: none; border: none; cursor: pointer;
+  padding: 6px 4px; border-radius: var(--radius-sm);
+}
+.brand:hover { background: var(--cream-deep); }
+.brand-star { font-size: 1.5rem; }
+.brand-text {
+  font-family: var(--font-head); font-weight: 800; font-size: 1.25rem; color: var(--sky-deep);
+}
+.top-nav { display: flex; gap: 8px; }
+.nav-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--cream-deep); border: 2px solid transparent; color: var(--ink);
+  font-weight: 700; font-size: 0.95rem;
+  padding: 9px 14px; border-radius: 999px; cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+.nav-btn:hover { background: var(--sky-tint); border-color: var(--sky); transform: translateY(-1px); }
+.nav-btn:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid var(--sky-deep); outline-offset: 2px;
+}
+.nav-btn-reset { background: var(--coral-tint); }
+.nav-btn-reset:hover { background: var(--coral-tint); border-color: var(--coral); }
+.nav-btn span { display: inline; }
+
+/* ==================== Layout ==================== */
+main { max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
+.site-footer {
+  text-align: center; color: var(--ink-soft); font-size: 0.85rem;
+  padding: 18px 20px 34px;
+}
+
+.screen { animation: fadeIn 0.35s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* ==================== Buttons ==================== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font-weight: 800; font-size: 1rem; font-family: var(--font-head);
+  padding: 14px 22px; border-radius: var(--radius-md);
+  border: none; cursor: pointer; min-height: 48px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn:active { transform: translateY(0); box-shadow: var(--shadow-sm); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+.btn-primary { background: var(--sky); color: #fff; }
+.btn-primary:hover { background: var(--sky-deep); }
+.btn-accent { background: var(--orange); color: #fff; }
+.btn-accent:hover { background: var(--orange-deep); }
+.btn-green { background: var(--green); color: #fff; }
+.btn-green:hover { background: var(--green-deep); }
+.btn-ghost { background: var(--cream-deep); color: var(--ink); }
+.btn-ghost:hover { background: var(--border); }
+.btn-danger { background: var(--coral); color: #fff; }
+.btn-danger:hover { background: var(--coral-deep); }
+.btn-block { width: 100%; }
+.btn-lg { padding: 18px 28px; font-size: 1.1rem; }
+
+/* ==================== Cards (generic) ==================== */
+.card {
+  background: var(--paper);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 22px;
+}
+
+/* ==================== Home screen ==================== */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 30px 16px 10px;
+}
+.hero-deco { position: absolute; font-size: 1.8rem; opacity: 0.85; user-select: none; }
+.hero-deco.d1 { top: 4px; left: 6%; transform: rotate(-12deg); color: var(--yellow-deep); }
+.hero-deco.d2 { top: 14px; right: 8%; transform: rotate(10deg); color: var(--coral); }
+.hero-deco.d3 { bottom: 6px; left: 18%; transform: rotate(6deg); color: var(--green-deep); display: none; }
+.hero h1 { font-size: 2.3rem; color: var(--sky-deep); }
+.hero .subtitle { font-size: 1.1rem; color: var(--ink-soft); font-weight: 600; }
+
+.progress-summary {
+  max-width: 640px; margin: 18px auto 0;
+  background: var(--paper); border: 2px solid var(--border);
+  border-radius: var(--radius-lg); padding: 18px 22px;
+  box-shadow: var(--shadow-sm);
+}
+.progress-summary-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 8px; }
+.progress-summary-label { font-weight: 800; font-family: var(--font-head); color: var(--ink); }
+.progress-stars { color: var(--yellow-deep); font-weight: 800; }
+.progress-bar-track {
+  height: 16px; border-radius: 999px; background: var(--cream-deep);
+  overflow: hidden; border: 1px solid var(--border);
+}
+.progress-bar-fill {
+  height: 100%; border-radius: 999px;
+  background: linear-gradient(90deg, var(--green), var(--sky));
+  transition: width 0.5s ease;
+}
+
+.home-actions {
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+  margin: 20px 0 30px;
+}
+.home-actions .btn { min-width: 220px; }
+
+.section-title {
+  font-size: 1.35rem; margin: 30px 0 14px; color: var(--ink);
+  display: flex; align-items: center; gap: 8px;
+}
+
+.lesson-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+.lesson-card {
+  background: var(--paper); border: 2px solid var(--border); border-radius: var(--radius-lg);
+  padding: 18px; box-shadow: var(--shadow-sm);
+  display: flex; flex-direction: column; gap: 8px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.lesson-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.lesson-card-top { display: flex; align-items: center; gap: 10px; }
+.lesson-num {
+  flex: none; width: 42px; height: 42px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-weight: 800; font-size: 1.1rem; color: #fff;
+}
+.lesson-card h3 { font-size: 1.08rem; margin: 0; }
+.lesson-desc { color: var(--ink-soft); font-size: 0.92rem; flex-grow: 1; }
+.lesson-status-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 4px; }
+.status-pill {
+  font-size: 0.78rem; font-weight: 800; padding: 5px 11px; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.status-not-started { background: var(--cream-deep); color: var(--ink-soft); }
+.status-in-progress { background: var(--yellow-tint); color: var(--yellow-deep); }
+.status-complete { background: var(--green-tint); color: var(--green-deep); }
+.lesson-stars { font-size: 0.85rem; color: var(--yellow-deep); font-weight: 700; }
+.lesson-card .btn { margin-top: 4px; }
+
+/* Lesson theme colors applied via inline style variable --theme */
+.lesson-num { background: var(--theme, var(--sky)); }
+
+/* ==================== Lesson flow ==================== */
+.lesson-header {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  margin-bottom: 14px;
+}
+.lesson-header-title { display: flex; align-items: center; gap: 12px; }
+.lesson-header-badge {
+  width: 46px; height: 46px; border-radius: 14px; background: var(--theme, var(--sky));
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-weight: 800; font-size: 1.15rem; flex: none;
+}
+.lesson-header h2 { margin: 0; font-size: 1.4rem; }
+.back-link {
+  background: none; border: none; color: var(--sky-deep); font-weight: 700; cursor: pointer;
+  padding: 8px 6px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px;
+}
+.back-link:hover { background: var(--sky-tint); }
+
+.stage-tabs { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+.stage-tab {
+  flex: 1; min-width: 100px; text-align: center;
+  background: var(--cream-deep); border: 2px solid transparent; border-radius: var(--radius-md);
+  padding: 10px 8px; font-weight: 800; color: var(--ink-soft); font-size: 0.92rem;
+}
+.stage-tab.active { background: var(--sky-tint); border-color: var(--sky); color: var(--sky-deep); }
+.stage-tab.done { background: var(--green-tint); color: var(--green-deep); }
+
+/* Learn stage */
+.learn-pattern {
+  background: var(--sky-tint); border: 2px solid var(--sky); border-radius: var(--radius-lg);
+  padding: 18px 20px; margin-bottom: 16px; font-size: 1.05rem; font-weight: 700; color: var(--sky-deep);
+}
+.example-list { list-style: none; padding: 0; margin: 0 0 16px; display: flex; flex-direction: column; gap: 10px; }
+.example-item {
+  background: var(--paper); border: 2px solid var(--border); border-radius: var(--radius-md);
+  padding: 12px 16px; font-size: 1.02rem;
+}
+.example-item .hl { color: var(--orange-deep); font-weight: 800; }
+.example-item .hl2 { color: var(--coral-deep); font-weight: 800; }
+.tip-box {
+  background: var(--yellow-tint); border: 2px dashed var(--yellow-deep); border-radius: var(--radius-md);
+  padding: 14px 16px; font-weight: 700; color: var(--ink); display: flex; gap: 10px; align-items: flex-start;
+}
+.tip-box .tip-emoji { font-size: 1.3rem; }
+
+/* Scene illustration for prepositions */
+.scene-box {
+  position: relative; height: 150px; background: var(--green-tint);
+  border: 2px solid var(--border); border-radius: var(--radius-md); margin: 14px 0 18px;
+  overflow: hidden;
+}
+.scene-box .scene-anchor {
+  position: absolute; font-size: 2.6rem; left: 50%; top: 50%; transform: translate(-50%, -50%);
+}
+.scene-box .scene-mover { position: absolute; font-size: 2.3rem; }
+.scene-box .scene-floor { position: absolute; bottom: 0; left: 0; right: 0; height: 10px; background: var(--border); }
+
+/* Question card */
+.question-card {
+  background: var(--paper); border: 2px solid var(--border); border-radius: var(--radius-lg);
+  padding: 20px; box-shadow: var(--shadow-sm);
+}
+.question-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+.qtag {
+  font-size: 0.75rem; font-weight: 800; padding: 4px 10px; border-radius: 999px;
+  background: var(--orange-tint); color: var(--orange-deep);
+}
+.qdiff { font-size: 0.75rem; font-weight: 800; color: var(--ink-soft); }
+.question-progress { font-weight: 800; color: var(--ink-soft); font-size: 0.9rem; }
+.question-prompt { font-size: 1.15rem; font-weight: 700; margin-bottom: 16px; line-height: 1.5; }
+.question-prompt .blank { display: inline-block; min-width: 70px; border-bottom: 3px solid var(--sky); }
+
+.options-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 6px; }
+.option-btn {
+  display: flex; align-items: center; gap: 12px; text-align: left;
+  background: var(--cream-deep); border: 2px solid transparent; border-radius: var(--radius-md);
+  padding: 14px 16px; font-size: 1.02rem; font-weight: 700; cursor: pointer; min-height: 52px;
+  transition: background 0.12s ease, border-color 0.12s ease, transform 0.1s ease;
+}
+.option-btn:hover:not(:disabled) { background: var(--sky-tint); border-color: var(--sky); }
+.option-letter {
+  flex: none; width: 30px; height: 30px; border-radius: 50%;
+  background: var(--paper); border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 800;
+}
+.option-btn.selected { background: var(--sky-tint); border-color: var(--sky-deep); }
+.option-btn.selected .option-letter { background: var(--sky); border-color: var(--sky-deep); color: #fff; }
+.option-btn.correct { background: var(--green-tint); border-color: var(--green-deep); }
+.option-btn.correct .option-letter { background: var(--green); border-color: var(--green-deep); color: #fff; }
+.option-btn.incorrect { background: var(--coral-tint); border-color: var(--coral-deep); }
+.option-btn.incorrect .option-letter { background: var(--coral); border-color: var(--coral-deep); color: #fff; }
+.option-btn:disabled { cursor: default; }
+.option-icon { font-size: 1.3rem; }
+.result-mark { margin-left: auto; font-size: 1.2rem; }
+
+/* Fill-in-the-blank */
+.fill-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 10px; }
+.fill-input {
+  flex: 1; min-width: 160px; font-size: 1.05rem; font-weight: 700; font-family: var(--font-body);
+  padding: 12px 14px; border-radius: var(--radius-md); border: 2px solid var(--border);
+  background: var(--paper); color: var(--ink);
+}
+.fill-input:focus { outline: none; border-color: var(--sky); background: var(--sky-tint); }
+.fill-input.correct { border-color: var(--green-deep); background: var(--green-tint); }
+.fill-input.incorrect { border-color: var(--coral-deep); background: var(--coral-tint); }
+
+/* Sentence builder (order) */
+.word-bank, .answer-slots {
+  display: flex; flex-wrap: wrap; gap: 8px; min-height: 52px;
+  padding: 10px; border-radius: var(--radius-md);
+}
+.answer-slots { background: var(--cream-deep); border: 2px dashed var(--border); margin-bottom: 12px; }
+.word-bank { background: transparent; }
+.word-chip {
+  background: var(--sky-tint); border: 2px solid var(--sky); color: var(--sky-deep);
+  font-weight: 800; padding: 10px 14px; border-radius: 999px; cursor: pointer; font-size: 0.98rem;
+  transition: transform 0.1s ease;
+}
+.word-chip:hover { transform: translateY(-2px); }
+.word-chip.placed { opacity: 0.35; cursor: default; pointer-events: none; }
+.answer-slots .word-chip { background: var(--paper); border-color: var(--orange); color: var(--orange-deep); }
+
+/* Matching */
+.match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 10px; }
+.match-col { display: flex; flex-direction: column; gap: 10px; }
+.match-item {
+  background: var(--cream-deep); border: 2px solid transparent; border-radius: var(--radius-md);
+  padding: 12px 14px; font-weight: 700; cursor: pointer; text-align: left; min-height: 52px;
+}
+.match-item:hover { border-color: var(--sky); }
+.match-item.selected { border-color: var(--sky-deep); background: var(--sky-tint); }
+.match-item.matched-correct { border-color: var(--green-deep); background: var(--green-tint); cursor: default; }
+.match-item.matched-wrong { border-color: var(--coral-deep); background: var(--coral-tint); }
+@media (max-width: 560px) { .match-grid { grid-template-columns: 1fr; gap: 10px; } }
+
+/* Feedback panel */
+.feedback-panel {
+  margin-top: 14px; border-radius: var(--radius-md); padding: 14px 16px;
+  font-weight: 700; display: none; align-items: flex-start; gap: 10px;
+}
+.feedback-panel.show { display: flex; animation: popIn 0.28s ease; }
+.feedback-panel.correct { background: var(--green-tint); border: 2px solid var(--green-deep); color: var(--green-deep); }
+.feedback-panel.incorrect { background: var(--coral-tint); border: 2px solid var(--coral-deep); color: var(--coral-deep); }
+.feedback-panel .fb-icon { font-size: 1.4rem; flex: none; }
+.feedback-panel .fb-text { color: var(--ink); font-weight: 600; }
+.feedback-panel .fb-title { display: block; margin-bottom: 3px; }
+@keyframes popIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.question-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 16px; flex-wrap: wrap; }
+
+/* Check stage results / lesson summary */
+.summary-card { text-align: center; padding: 30px 20px; }
+.summary-score { font-family: var(--font-head); font-size: 3rem; color: var(--sky-deep); font-weight: 800; margin: 6px 0; }
+.summary-sub { color: var(--ink-soft); font-weight: 700; margin-bottom: 20px; }
+.summary-stats { display: flex; justify-content: center; gap: 24px; margin: 16px 0 24px; flex-wrap: wrap; }
+.stat-pill { background: var(--cream-deep); border-radius: var(--radius-md); padding: 12px 20px; min-width: 110px; }
+.stat-pill .num { font-family: var(--font-head); font-size: 1.5rem; font-weight: 800; }
+.stat-pill.ok .num { color: var(--green-deep); }
+.stat-pill.no .num { color: var(--coral-deep); }
+.stat-pill .lbl { font-size: 0.82rem; color: var(--ink-soft); font-weight: 700; }
+.stars-earned { font-size: 2rem; margin: 10px 0; letter-spacing: 4px; }
+.summary-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
+.mistake-list { text-align: left; margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+.mistake-item {
+  background: var(--coral-tint); border: 2px solid var(--coral); border-radius: var(--radius-md); padding: 12px 14px;
+}
+.mistake-item .mi-q { font-weight: 800; margin-bottom: 4px; }
+.mistake-item .mi-correct { color: var(--green-deep); font-weight: 700; }
+.mistake-item .mi-explain { color: var(--ink-soft); font-size: 0.92rem; margin-top: 4px; }
+
+/* Mixed challenge intro card */
+.challenge-intro { text-align: center; padding: 30px 20px; }
+.challenge-intro .big-emoji { font-size: 3rem; }
+
+/* Topic breakdown (results) */
+.topic-breakdown { display: flex; flex-direction: column; gap: 10px; margin: 14px 0 20px; }
+.topic-row { display: flex; align-items: center; gap: 10px; }
+.topic-row .topic-name { flex: 0 0 150px; font-weight: 700; font-size: 0.92rem; }
+.topic-row .topic-bar-track { flex: 1; height: 12px; border-radius: 999px; background: var(--cream-deep); overflow: hidden; }
+.topic-row .topic-bar-fill { height: 100%; border-radius: 999px; }
+.topic-row .topic-pct { flex: 0 0 42px; text-align: right; font-weight: 800; font-size: 0.85rem; }
+
+.recommend-box {
+  background: var(--yellow-tint); border: 2px solid var(--yellow-deep); border-radius: var(--radius-lg);
+  padding: 16px 18px; margin: 16px 0; font-weight: 700; text-align: left;
+}
+
+.thai-note { color: var(--ink-soft); font-weight: 600; font-size: 0.92rem; }
+
+/* ==================== Modal & toast ==================== */
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(51,48,42,0.45); z-index: 100;
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+}
+.modal-backdrop[hidden] { display: none; }
+.modal-card {
+  background: var(--paper); border-radius: var(--radius-lg); padding: 26px; max-width: 420px; width: 100%;
+  box-shadow: var(--shadow-lg); text-align: center;
+}
+.modal-actions { display: flex; gap: 12px; justify-content: center; margin-top: 18px; flex-wrap: wrap; }
+
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  background: var(--ink); color: #fff; padding: 14px 22px; border-radius: 999px;
+  font-weight: 700; box-shadow: var(--shadow-lg); z-index: 200;
+  display: flex; align-items: center; gap: 8px;
+}
+.toast[hidden] { display: none; }
+.toast.celebrate { animation: toastPop 0.4s ease; }
+@keyframes toastPop { 0% { transform: translateX(-50%) scale(0.8); opacity: 0; } 100% { transform: translateX(-50%) scale(1); opacity: 1; } }
+
+/* ==================== Responsive ==================== */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 1.7rem; }
+  .hero .subtitle { font-size: 0.98rem; }
+  .header-inner { padding: 10px 14px; }
+  .brand-text { font-size: 1.05rem; }
+  .nav-btn span { display: none; }
+  .nav-btn { padding: 10px 12px; }
+  main { padding: 16px 14px 50px; }
+  .home-actions .btn { min-width: 0; width: 100%; }
+  .lesson-grid { grid-template-columns: 1fr; }
+  .summary-score { font-size: 2.3rem; }
+  .summary-stats { gap: 12px; }
+  .topic-row .topic-name { flex-basis: 110px; font-size: 0.85rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#app-main">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <button class="brand" id="btn-home" type="button" aria-label="Go to Home">
+      <span class="brand-star" aria-hidden="true">⭐</span>
+      <span class="brand-text">Grammar Adventure</span>
+    </button>
+
+    <nav class="top-nav" aria-label="Main navigation">
+      <button class="nav-btn" data-nav="home" type="button">🏠 <span>Home</span></button>
+      <button class="nav-btn" data-nav="mixed" type="button">🎯 <span>Challenge</span></button>
+      <button class="nav-btn nav-btn-reset" id="btn-reset" type="button" title="Reset all progress">↺ <span>Reset</span></button>
+    </nav>
+  </div>
+</header>
+
+<main id="app-main">
+  <div id="app"></div>
+</main>
+
+<footer class="site-footer">
+  <p>Made for curious young learners · practise a little every day 🌟</p>
+</footer>
+
+<!-- Reset confirmation dialog -->
+<div class="modal-backdrop" id="reset-modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="reset-title">
+    <h2 id="reset-title">Reset all progress?</h2>
+    <p>This will clear every lesson score and star you've earned. This can't be undone.<br><span class="thai-note">ลบคะแนนและความคืบหน้าทั้งหมด — เริ่มต้นใหม่</span></p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="reset-cancel" type="button">Cancel</button>
+      <button class="btn btn-danger" id="reset-confirm" type="button">Yes, reset everything</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast / celebration -->
+<div class="toast" id="toast" hidden></div>
+
+<script>
+/* ==========================================================================
+   Grammar Adventure — Application Script
+   Vanilla JS, no build step, no external dependencies.
+   Sections:
+     1. Storage & state
+     2. Content data (intro + 8 lessons + mixed challenge)
+     3. Small utilities
+     4. Question engine (shared renderer for all question types)
+     5. Screen renderers (home, lesson stages, mixed challenge, results)
+     6. Navigation, gamification, modal/toast, init
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  /* ============================================================
+     1. STORAGE & STATE
+     ============================================================ */
+  const STORAGE_KEY = 'grammarAdventure.v1';
+
+  function defaultState() {
+    return {
+      progress: {},          // lessonId -> {status, stars, bestCorrect, bestTotal, completedAt}
+      mixed: { attempts: 0, lastResult: null }, // lastResult: {score,total,percent,byTopic,mistakes,date}
+      current: { view: 'home' }
+    };
+  }
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return defaultState();
+      const parsed = JSON.parse(raw);
+      const d = defaultState();
+      return Object.assign(d, parsed, {
+        progress: Object.assign({}, parsed.progress || {}),
+        mixed: Object.assign({}, d.mixed, parsed.mixed || {})
+      });
+    } catch (e) {
+      return defaultState();
+    }
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) { /* storage unavailable — app still works, just won't persist */ }
+  }
+
+  let state = loadState();
+
+  function getLessonProgress(lessonId) {
+    if (!state.progress[lessonId]) {
+      state.progress[lessonId] = { status: 'not-started', stars: 0, bestCorrect: 0, bestTotal: 0, completedAt: null };
+    }
+    return state.progress[lessonId];
+  }
+
+  /* ============================================================
+     2. CONTENT DATA
+     ============================================================ */
+
+  // ---- Scene helper data for preposition illustrations ----
+  // type: next-to | on | under | in-front-of | behind | between
+  function sceneHTML(scene) {
+    const P = {
+      'next-to':     [{c: 'a', l: '62%', t: '58%'}, {c: 'm', l: '32%', t: '58%'}],
+      'on':          [{c: 'a', l: '50%', t: '72%'}, {c: 'm', l: '50%', t: '26%'}],
+      'under':       [{c: 'a', l: '50%', t: '28%'}, {c: 'm', l: '50%', t: '76%'}],
+      'in-front-of': [{c: 'a', l: '50%', t: '38%', fade: true}, {c: 'm', l: '50%', t: '70%'}],
+      'behind':      [{c: 'a', l: '50%', t: '70%'}, {c: 'm', l: '50%', t: '38%', fade: true}],
+      'between':     [{c: 'a', l: '20%', t: '58%'}, {c: 'a2', l: '80%', t: '58%'}, {c: 'm', l: '50%', t: '58%'}]
+    };
+    const layout = P[scene.type] || [];
+    let inner = '<div class="scene-floor"></div>';
+    layout.forEach(function (pos) {
+      const emoji = pos.c === 'm' ? scene.mover : (pos.c === 'a2' ? (scene.anchor2 || scene.anchor) : scene.anchor);
+      const cls = pos.c === 'm' ? 'scene-mover' : 'scene-anchor';
+      const fadeStyle = pos.fade ? 'opacity:0.5;font-size:2rem;' : '';
+      inner += '<span class="' + cls + '" style="left:' + pos.l + ';top:' + pos.t + ';' + fadeStyle + '">' + emoji + '</span>';
+    });
+    return '<div class="scene-box">' + inner + '</div>';
+  }
+
+  // ---- LESSONS: intro + 8 numbered lessons ----
+  const LESSONS = [
+    {
+      id: 'intro', number: 0, isIntro: true, theme: 'sky', icon: '🧭',
+      title: 'Warm-Up: Where Is It? & What Are You Doing?',
+      desc: 'Prepositions of place and the Present Continuous tense.',
+      learn: {
+        pattern: 'Prepositions of place tell us WHERE something is. The Present Continuous (is/am/are + verb-ing) tells us what is happening RIGHT NOW.',
+        examples: [
+          'The doll is <span class="hl">next to</span> the ball.',
+          'The book is <span class="hl">on</span> the floor.',
+          'The bike is <span class="hl">in front of</span> the table.',
+          'The helicopter is <span class="hl">under</span> the table.',
+          'The game is <span class="hl">between</span> the doll and the camera.',
+          'The kite is <span class="hl">behind</span> the bike.',
+          'What are you doing? — I’m <span class="hl2">riding</span> my bike.',
+          'What’s Daisy doing? — She’s <span class="hl2">reading</span>.',
+          'Is Pete flying a kite? — Yes, he is. / No, he isn’t.'
+        ],
+        tip: 'จำง่าย ๆ: is/am/are + กริยาเติม -ing บอกสิ่งที่กำลังทำอยู่ตอนนี้!'
+      },
+      check: [
+        { id: 'intro-c1', type: 'mcq', topic: 'prepositions', difficulty: 'easy', prompt: 'The cat is sitting ___ the big cardboard box, hidden from view.', options: ['under', 'next to', 'between'], answer: 0, explanation: 'When one thing is hidden below another, we use "under".' },
+        { id: 'intro-c2', type: 'mcq', topic: 'present-continuous', difficulty: 'easy', prompt: '___ Daisy reading a book right now?', options: ['Is', 'Are', 'Do'], answer: 0, explanation: '"Daisy" is one person (he/she), so we use "Is" to ask a yes/no question.' }
+      ],
+      practice: [
+        { id: 'intro-p1', type: 'mcq', topic: 'prepositions', difficulty: 'easy', prompt: 'Where is the doll?', scene: { type: 'next-to', anchor: '⚽', mover: '🧸' }, options: ['It’s next to the ball.', 'It’s under the ball.', 'It’s behind the ball.'], answer: 0, explanation: 'The teddy bear is beside the ball, so we say "next to".' },
+        { id: 'intro-p2', type: 'mcq', topic: 'prepositions', difficulty: 'easy', prompt: 'The book is ___ the floor.', scene: { type: 'on', anchor: '▬▬▬', mover: '📕' }, options: ['in front of', 'on', 'between'], answer: 1, explanation: 'Something resting flat on a surface uses "on".' },
+        { id: 'intro-p3', type: 'mcq', topic: 'prepositions', difficulty: 'easy', prompt: 'The bike is ___ the table.', scene: { type: 'in-front-of', anchor: '🪑', mover: '🚲' }, options: ['in front of', 'behind', 'under'], answer: 0, explanation: 'The bike is closer to us, in front of the table.' },
+        { id: 'intro-p4', type: 'mcq', topic: 'prepositions', difficulty: 'easy', prompt: 'The helicopter is ___ the table.', scene: { type: 'under', anchor: '🪑', mover: '🚁' }, options: ['on', 'under', 'next to'], answer: 1, explanation: 'The helicopter is below the table, so we use "under".' },
+        { id: 'intro-p5', type: 'mcq', topic: 'prepositions', difficulty: 'medium', prompt: 'The game is ___ the doll and the camera.', scene: { type: 'between', anchor: '🧸', anchor2: '📷', mover: '🎲' }, options: ['between', 'behind', 'on'], answer: 0, explanation: 'When something has one thing on each side, we use "between".' },
+        { id: 'intro-p6', type: 'mcq', topic: 'prepositions', difficulty: 'easy', prompt: 'The kite is ___ the bike.', scene: { type: 'behind', anchor: '🚲', mover: '🪁' }, options: ['behind', 'in front of', 'under'], answer: 0, explanation: 'The kite is hidden behind the bike.' },
+        { id: 'intro-p7', type: 'fill', topic: 'present-continuous', difficulty: 'easy', prompt: 'What ___ you doing? — I’m riding my bike.', accept: ['are'], explanation: '"You" always takes "are" in the Present Continuous.' },
+        { id: 'intro-p8', type: 'mcq', topic: 'present-continuous', difficulty: 'medium', prompt: 'What’s Daisy doing?', options: ['She’s reading.', 'She reads.', 'She read.'], answer: 0, explanation: 'For actions happening now, we use is/am/are + verb-ing: "She’s reading."' },
+        { id: 'intro-p9', type: 'mcq', topic: 'present-continuous', difficulty: 'easy', prompt: 'What’s Peter doing?', options: ['He’s flying a kite.', 'He fly a kite.', 'He flying a kite.'], answer: 0, explanation: 'He/she needs "is" before the -ing verb: "He’s flying".' },
+        { id: 'intro-p10', type: 'mcq', topic: 'present-continuous', difficulty: 'medium', prompt: 'What are Paul and Sam doing?', options: ['They’re playing hockey.', 'He’s playing hockey.', 'They plays hockey.'], answer: 0, explanation: 'Paul and Sam = they, so we use "are": "They’re playing".' },
+        { id: 'intro-p11', type: 'mcq', topic: 'present-continuous', difficulty: 'easy', prompt: 'Is Pete flying a kite? Yes, he ___.', options: ['is', 'are', 'does'], answer: 0, explanation: 'Short answers match the question word: "Is he...?" → "Yes, he is."' },
+        { id: 'intro-p12', type: 'order', topic: 'present-continuous', difficulty: 'medium', prompt: 'Put the words in the correct order.', words: ['kite', 'flying', 'a', 'is', 'He'], answer: 'He is flying a kite', explanation: 'Word order: subject + is/am/are + verb-ing + object.' }
+      ]
+    },
+    {
+      id: 'l1', number: 1, theme: 'coral', icon: '👨‍👩‍👧‍👦',
+      title: 'People, Likes and Wants',
+      desc: 'Ask about family with who’s / who are, and talk about likes, loves, and things you want to do.',
+      learn: {
+        pattern: 'Use Who’s / Who are to ask about people, and ’s to show who someone belongs to (possession). Use like, love, enjoy to talk about things you (don’t) enjoy, and want to + verb to talk about things you want to do.',
+        examples: [
+          'Who’s Simon? — He’s Stella’s brother.',
+          'Who’s Suzy? — She’s Stella’s sister.',
+          'Who are Grandma and Grandpa Star? — They’re Stella’s grandparents.',
+          'I <span class="hl">like</span> / <span class="hl">love</span> / <span class="hl">enjoy</span> riding my bike.',
+          'He <span class="hl">likes</span> / <span class="hl">loves</span> / <span class="hl">enjoys</span> reading about science.',
+          'I don’t like reading. He <span class="hl2">doesn’t</span> like reading.',
+          'I want to ride my bike. He wants to read about science.',
+          'Does he like playing football? — Yes, he does. / No, he doesn’t.'
+        ],
+        tip: 'จำง่าย ๆ: He/She + likes, loves, enjoys, wants (เติม -s) ส่วน I/You/We/They ไม่เติม -s'
+      },
+      check: [
+        { id: 'l1-c1', type: 'mcq', topic: 'like-love-enjoy', difficulty: 'easy', prompt: 'She ___ ice cream very much.', options: ['like', 'likes', 'liking'], answer: 1, explanation: 'She = he/she, so the verb takes -s: "likes".' },
+        { id: 'l1-c2', type: 'mcq', topic: 'who-possessive', difficulty: 'easy', prompt: 'Who’s Simon? He’s Stella’s ___.', options: ['brother', 'sister', 'friend'], answer: 0, explanation: 'The text tells us Simon is Stella’s brother.' }
+      ],
+      practice: [
+        { id: 'l1-p1', type: 'mcq', topic: 'who-possessive', difficulty: 'easy', prompt: 'Who’s Suzy? She’s Stella’s ___.', options: ['sister', 'brother', 'cousin'], answer: 0, explanation: 'Suzy is Stella’s sister.' },
+        { id: 'l1-p2', type: 'match', topic: 'who-possessive', difficulty: 'medium', prompt: 'Match each question to its answer.', pairs: [
+            { left: 'Who’s Simon?', right: 'He’s Stella’s brother.' },
+            { left: 'Who’s Suzy?', right: 'She’s Stella’s sister.' },
+            { left: 'Who are Grandma and Grandpa Star?', right: 'They’re Stella’s grandparents.' }
+          ], explanation: 'We use He’s / She’s for one person and They’re for more than one person.' },
+        { id: 'l1-p3', type: 'mcq', topic: 'like-love-enjoy', difficulty: 'medium', prompt: 'Find the mistake: "She like reading."', options: ['She likes reading.', 'She liking reading.', 'She is like reading.'], answer: 0, explanation: 'With he/she, the verb "like" needs an -s: "likes".' },
+        { id: 'l1-p4', type: 'fill', topic: 'like-love-enjoy', difficulty: 'easy', prompt: 'He ___ (enjoy) playing football every weekend.', accept: ['enjoys'], explanation: 'He/she + enjoy → enjoys.' },
+        { id: 'l1-p5', type: 'mcq', topic: 'like-love-enjoy', difficulty: 'easy', prompt: 'I don’t like ___ in the rain.', options: ['walk', 'walking', 'walks'], answer: 1, explanation: 'After like/love/enjoy (and don’t like), we use verb + -ing.' },
+        { id: 'l1-p6', type: 'mcq', topic: 'like-love-enjoy', difficulty: 'medium', prompt: 'He ___ like broccoli at all.', options: ['don’t', 'doesn’t', 'isn’t'], answer: 1, explanation: 'He/she uses "doesn’t" in negative sentences.' },
+        { id: 'l1-p7', type: 'order', topic: 'want-to', difficulty: 'medium', prompt: 'Put the words in the correct order.', words: ['to', 'want', 'bike', 'I', 'my', 'ride'], answer: 'I want to ride my bike', explanation: 'Pattern: subject + want(s) + to + base verb + object.' },
+        { id: 'l1-p8', type: 'mcq', topic: 'want-to', difficulty: 'easy', prompt: 'Does he like playing football? Yes, he ___.', options: ['does', 'do', 'is'], answer: 0, explanation: 'Short answer for "Does he...?" is "Yes, he does."' },
+        { id: 'l1-p9', type: 'mcq', topic: 'want-to', difficulty: 'challenge', prompt: 'Does she want to play football? No, she ___.', options: ['doesn’t', 'don’t', 'isn’t'], answer: 0, explanation: 'Negative short answer for "Does she...?" is "No, she doesn’t."' }
+      ]
+    },
+    {
+      id: 'l2', number: 2, theme: 'green', icon: '🏠',
+      title: 'Have Got / Has Got',
+      desc: 'Describe your house, school things, toys, pets and family using have got and has got.',
+      learn: {
+        pattern: 'Use have got / has got to talk about what people, houses or things possess. I/You/We/They + have got. He/She/It + has got.',
+        examples: [
+          'Has your house got a basement? — Yes, it has. / No, it hasn’t.',
+          'My house <span class="hl2">hasn’t got</span> a basement.',
+          'My house <span class="hl">has got</span> three bedrooms.',
+          'I’ve got a dog. She’s got two brothers.',
+          'They <span class="hl2">haven’t got</span> a garden.',
+          'Has your school got a library? — Yes, it has.'
+        ],
+        tip: 'จำง่าย ๆ: I/You/We/They + have got, He/She/It + has got'
+      },
+      check: [
+        { id: 'l2-c1', type: 'mcq', topic: 'have-got', difficulty: 'easy', prompt: 'He ___ got a new bike.', options: ['have', 'has', 'is'], answer: 1, explanation: 'He/she/it uses "has got".' },
+        { id: 'l2-c2', type: 'mcq', topic: 'have-got', difficulty: 'easy', prompt: '___ your house got a garden?', options: ['Has', 'Have', 'Does'], answer: 0, explanation: '"Your house" = it, so the question starts with "Has".' }
+      ],
+      practice: [
+        { id: 'l2-p1', type: 'mcq', topic: 'have-got', difficulty: 'easy', prompt: 'My house ___ got three bedrooms.', options: ['have', 'has', 'is'], answer: 1, explanation: '"House" = it, so we use "has got".' },
+        { id: 'l2-p2', type: 'fill', topic: 'have-got', difficulty: 'easy', prompt: 'I ___ got a new pencil case.', accept: ['have', "'ve"], explanation: 'I/you/we/they use "have got".' },
+        { id: 'l2-p3', type: 'mcq', topic: 'have-got', difficulty: 'medium', prompt: 'My house ___ a basement.', options: ['hasn’t got', 'haven’t got', 'doesn’t got'], answer: 0, explanation: 'Negative for he/she/it is "hasn’t got".' },
+        { id: 'l2-p4', type: 'mcq', topic: 'have-got', difficulty: 'easy', prompt: '___ your school got a library?', options: ['Has', 'Have', 'Is'], answer: 0, explanation: 'Questions with it/he/she start with "Has".' },
+        { id: 'l2-p5', type: 'mcq', topic: 'have-got', difficulty: 'easy', prompt: 'Has your house got a basement? No, it ___.', options: ['hasn’t', 'haven’t', 'doesn’t'], answer: 0, explanation: 'Short negative answer: "No, it hasn’t."' },
+        { id: 'l2-p6', type: 'order', topic: 'have-got', difficulty: 'medium', prompt: 'Put the words in the correct order.', words: ['got', 'brothers', 'two', 'She’s'], answer: "She’s got two brothers", explanation: 'Pattern: subject + ’s/has got + object.' },
+        { id: 'l2-p7', type: 'mcq', topic: 'have-got', difficulty: 'medium', prompt: 'Find the mistake: "They has got a big garden."', options: ['They have got a big garden.', 'They haves got a big garden.', 'They having got a big garden.'], answer: 0, explanation: 'They is plural, so it needs "have got", not "has got".' },
+        { id: 'l2-p8', type: 'match', topic: 'have-got', difficulty: 'medium', prompt: 'Match each subject to the correct sentence.', pairs: [
+            { left: 'I', right: 'have got a dog.' },
+            { left: 'She', right: 'has got a cat.' },
+            { left: 'They', right: 'haven’t got a garden.' },
+            { left: 'It', right: 'hasn’t got a name yet.' }
+          ], explanation: 'I/They use have(n’t) got. She/It use has(n’t) got.' },
+        { id: 'l2-p9', type: 'mcq', topic: 'have-got', difficulty: 'challenge', prompt: 'Tom’s bag has a book and a pen, but no ruler. Which sentence is correct?', options: ['He hasn’t got a ruler.', 'He has got a ruler.', 'He haven’t got a ruler.'], answer: 0, explanation: 'Since there is no ruler, the correct negative form is "hasn’t got".' }
+      ]
+    },
+    {
+      id: 'l3', number: 3, theme: 'orange', icon: '⏰',
+      title: 'Routines and Frequency',
+      desc: 'Talk about daily routines and how often you do things: never, sometimes, always, every day.',
+      learn: {
+        pattern: 'Present Simple describes routines and habits. I/You/We/They use the base verb. He/She/It adds -s (or a special form like has). Adverbs of frequency (never, sometimes, always, every day) tell us how often.',
+        examples: [
+          'What do you do before school? — I have breakfast.',
+          'What does he do before school? — He <span class="hl">has</span> breakfast.',
+          'I <span class="hl2">never</span> play in the park. He <span class="hl2">never</span> plays in the park.',
+          'I <span class="hl2">sometimes</span> play in the park. She <span class="hl2">sometimes</span> plays in the park.',
+          'I <span class="hl2">always</span> play in the park. He <span class="hl2">always</span> plays in the park.',
+          'I play in the park <span class="hl2">every day</span>.',
+          'How often do you play in the park? How often does he play in the park?'
+        ],
+        tip: 'จำง่าย ๆ: He/She/It ในประโยค Present Simple ต้องเติม -s หรือเปลี่ยนเป็น has'
+      },
+      check: [
+        { id: 'l3-c1', type: 'mcq', topic: 'routines', difficulty: 'easy', prompt: 'He ___ breakfast every morning.', options: ['have', 'has', 'having'], answer: 1, explanation: 'He/she/it uses "has" (not "haves").' },
+        { id: 'l3-c2', type: 'mcq', topic: 'frequency', difficulty: 'easy', prompt: 'She always ___ in the park after school.', options: ['play', 'plays', 'playing'], answer: 1, explanation: 'He/she/it verbs add -s in the Present Simple, even after "always".' }
+      ],
+      practice: [
+        { id: 'l3-p1', type: 'mcq', topic: 'routines', difficulty: 'easy', prompt: 'What ___ you do before school?', options: ['do', 'does', 'is'], answer: 0, explanation: '"You" uses "do" in Present Simple questions.' },
+        { id: 'l3-p2', type: 'mcq', topic: 'routines', difficulty: 'easy', prompt: 'What does he do before school? He ___ breakfast.', options: ['have', 'has', 'haves'], answer: 1, explanation: '"Have" becomes "has" for he/she/it.' },
+        { id: 'l3-p3', type: 'fill', topic: 'routines', difficulty: 'easy', prompt: 'She ___ (have) a shower every morning.', accept: ['has'], explanation: 'He/she/it: have → has.' },
+        { id: 'l3-p4', type: 'mcq', topic: 'frequency', difficulty: 'easy', prompt: 'I ___ play in the park. (0% of the time — I am never there!)', options: ['never', 'always', 'every day'], answer: 0, explanation: '"Never" means 0% of the time.' },
+        { id: 'l3-p5', type: 'mcq', topic: 'frequency', difficulty: 'medium', prompt: 'Find the mistake: "She always play in the park."', options: ['She always plays in the park.', 'She always playing in the park.', 'She always played in the park.'], answer: 0, explanation: 'He/she/it needs the -s form: "plays", even with "always".' },
+        { id: 'l3-p6', type: 'mcq', topic: 'frequency', difficulty: 'easy', prompt: 'They play in the park ___. (this happens 100% of days)', options: ['every day', 'never', 'sometime'], answer: 0, explanation: '"Every day" usually goes at the end of the sentence.' },
+        { id: 'l3-p7', type: 'order', topic: 'frequency', difficulty: 'medium', prompt: 'Put the words in the correct order.', words: ['does', 'How', 'he', 'often', 'park', 'the', 'play', 'in'], answer: 'How often does he play in the park', explanation: 'Question pattern: How often + does/do + subject + base verb + ...?' },
+        { id: 'l3-p8', type: 'mcq', topic: 'frequency', difficulty: 'easy', prompt: 'How often do you play in the park? I play ___.', options: ['sometimes', 'plays sometimes', 'sometime'], answer: 0, explanation: '"Sometimes" (with an -s) is the adverb of frequency.' },
+        { id: 'l3-p9', type: 'mcq', topic: 'routines', difficulty: 'easy', prompt: 'Tom plays football every single day. How often does he play football?', options: ['Every day.', 'Never.', 'Sometimes.'], answer: 0, explanation: '"Every single day" means the answer is "Every day."' },
+        { id: 'l3-p10', type: 'mcq', topic: 'routines', difficulty: 'medium', prompt: '___ she do before school?', options: ['What does', 'What do', 'What is'], answer: 0, explanation: '"She" uses "does" in Present Simple questions.' }
+      ]
+    },
+    {
+      id: 'l4', number: 4, theme: 'yellow', icon: '📍',
+      title: 'Go to … to … and Must',
+      desc: 'Say where you go to do things, and use must for rules and obligations.',
+      learn: {
+        pattern: 'Use go to + place + to + verb to explain the purpose of going somewhere. Use must to talk about rules and things that are necessary — it stays the same for every subject.',
+        examples: [
+          'Where do you go to play basketball? — You go to the sports centre to play basketball.',
+          'Where do you go to read books? — You go to the library to read books.',
+          'Where do you go to swim? — You go to the swimming pool to swim.',
+          'Must I go to school? — Yes, you must.',
+          'Must Simon go to school? — Yes, he must.',
+          'You <span class="hl">must</span> listen to the teacher. Students <span class="hl">must</span> do their homework.'
+        ],
+        tip: 'จำง่าย ๆ: go to + สถานที่ + to + กริยา และ must ใช้เหมือนกันทุก subject ไม่ต้องเติม -s'
+      },
+      check: [
+        { id: 'l4-c1', type: 'mcq', topic: 'go-to-purpose', difficulty: 'easy', prompt: 'Where do you go to swim? You go to the ___.', options: ['swimming pool', 'library', 'sports centre'], answer: 0, explanation: 'We swim at the swimming pool.' },
+        { id: 'l4-c2', type: 'mcq', topic: 'must-rules', difficulty: 'easy', prompt: 'Students ___ do their homework.', options: ['must', 'musts', 'musting'], answer: 0, explanation: '"Must" never changes form, for any subject.' }
+      ],
+      practice: [
+        { id: 'l4-p1', type: 'mcq', topic: 'go-to-purpose', difficulty: 'easy', prompt: 'Where do you go to read books? You go to the ___.', options: ['library', 'sports centre', 'swimming pool'], answer: 0, explanation: 'We read books at the library.' },
+        { id: 'l4-p2', type: 'mcq', topic: 'go-to-purpose', difficulty: 'easy', prompt: 'You go to the sports centre ___ basketball.', options: ['to play', 'playing', 'play'], answer: 0, explanation: 'We use "to + base verb" to show purpose.' },
+        { id: 'l4-p3', type: 'fill', topic: 'go-to-purpose', difficulty: 'easy', prompt: 'Where do you go ___ swim?', accept: ['to'], explanation: 'Purpose pattern: go to + place + to + verb.' },
+        { id: 'l4-p4', type: 'mcq', topic: 'must-rules', difficulty: 'easy', prompt: 'Must Simon go to school? Yes, he ___.', options: ['must', 'musts', 'does'], answer: 0, explanation: 'Short answers with must just repeat "must".' },
+        { id: 'l4-p5', type: 'mcq', topic: 'must-rules', difficulty: 'easy', prompt: '___ I go to school?', options: ['Must', 'Do', 'Am'], answer: 0, explanation: '"Must" moves to the front to make a question.' },
+        { id: 'l4-p6', type: 'order', topic: 'must-rules', difficulty: 'medium', prompt: 'Put the words in the correct order.', words: ['teacher', 'must', 'to', 'You', 'listen', 'the'], answer: 'You must listen to the teacher', explanation: 'Pattern: subject + must + base verb + ...' },
+        { id: 'l4-p7', type: 'mcq', topic: 'must-rules', difficulty: 'medium', prompt: 'Find the mistake: "Students musts do their homework."', options: ['Students must do their homework.', 'Students must does their homework.', 'Students musting do their homework.'], answer: 0, explanation: '"Must" never takes an -s, even with "students".' },
+        { id: 'l4-p8', type: 'match', topic: 'go-to-purpose', difficulty: 'medium', prompt: 'Match each place to its purpose.', pairs: [
+            { left: 'library', right: 'read books' },
+            { left: 'swimming pool', right: 'swim' },
+            { left: 'sports centre', right: 'play basketball' }
+          ], explanation: 'Each place matches the activity we do there.' },
+        { id: 'l4-p9', type: 'mcq', topic: 'must-rules', difficulty: 'challenge', prompt: 'You are at school. Which sentence is correct?', options: ['We must listen to the teacher.', 'We must listens to the teacher.', 'We musts listen to the teacher.'], answer: 0, explanation: '"Must" is always followed by the base verb, with no -s anywhere.' }
+      ]
+    },
+    {
+      id: 'l5', number: 5, theme: 'sky', icon: '🩹',
+      title: 'Health Problems and Rules',
+      desc: 'Talk about aches and illnesses, and learn the difference between must (necessary) and mustn’t (not allowed).',
+      learn: {
+        pattern: 'Use have got / has got to say what health problem someone has. Must = something is necessary. Mustn’t = something is NOT allowed.',
+        examples: [
+          'What’s the matter? — I’ve got a headache. My head hurts.',
+          'You’ve got a headache. He’s got a headache. She’s got a headache.',
+          'We’ve got a headache. They’ve got a headache.',
+          'He <span class="hl">must</span> stay in bed. He <span class="hl2">mustn’t</span> go to the park.',
+          'We <span class="hl">must</span> be quiet in the library. We <span class="hl2">mustn’t</span> eat in the library.',
+          'Vocabulary: headache, stomachache, toothache, cold, sore throat, temperature.'
+        ],
+        tip: 'จำง่าย ๆ: must = ต้องทำ (necessary), mustn’t = ห้ามทำ (not allowed) — ไม่ใช่ “ไม่จำเป็นต้องทำ”!'
+      },
+      check: [
+        { id: 'l5-c1', type: 'mcq', topic: 'health', difficulty: 'easy', prompt: 'My head hurts. I’ve got a ___.', options: ['headache', 'toothache', 'cold'], answer: 0, explanation: 'A hurting head is a "headache".' },
+        { id: 'l5-c2', type: 'mcq', topic: 'must-mustnt', difficulty: 'easy', prompt: 'We ___ be quiet in the library. It’s a rule.', options: ['must', 'mustn’t', 'don’t'], answer: 0, explanation: 'Being quiet is necessary, so we use "must".' }
+      ],
+      practice: [
+        { id: 'l5-p1', type: 'mcq', topic: 'health', difficulty: 'easy', prompt: 'My tooth hurts. I’ve got a ___.', options: ['toothache', 'headache', 'cold'], answer: 0, explanation: 'A hurting tooth is a "toothache".' },
+        { id: 'l5-p2', type: 'mcq', topic: 'health', difficulty: 'easy', prompt: 'He ___ got a temperature today.', options: ['have', 'has', 'is'], answer: 1, explanation: 'He/she/it uses "has got".' },
+        { id: 'l5-p3', type: 'mcq', topic: 'health', difficulty: 'easy', prompt: 'They ___ got sore throats.', options: ['have', 'has', 'is'], answer: 0, explanation: 'They (plural) uses "have got".' },
+        { id: 'l5-p4', type: 'mcq', topic: 'must-mustnt', difficulty: 'medium', prompt: '"He must stay in bed." This means:', options: ['It’s necessary for him to stay in bed.', 'He is not allowed to stay in bed.', 'It’s just a suggestion.'], answer: 0, explanation: '"Must" shows something is necessary.' },
+        { id: 'l5-p5', type: 'mcq', topic: 'must-mustnt', difficulty: 'challenge', prompt: '"He mustn’t go to the park." This means:', options: ['He is not allowed to go to the park.', 'He doesn’t need to go to the park.', 'He wants to go to the park.'], answer: 0, explanation: 'Mustn’t means something is forbidden — not just "not necessary".' },
+        { id: 'l5-p6', type: 'mcq', topic: 'must-mustnt', difficulty: 'easy', prompt: 'We ___ eat in the library. It’s not allowed.', options: ['mustn’t', 'must', 'don’t must'], answer: 0, explanation: '"Mustn’t" shows something is forbidden.' },
+        { id: 'l5-p7', type: 'order', topic: 'must-mustnt', difficulty: 'medium', prompt: 'Put the words in the correct order.', words: ['quiet', 'must', 'library', 'We', 'in', 'be', 'the'], answer: 'We must be quiet in the library', explanation: 'Pattern: subject + must + be + adjective + place.' },
+        { id: 'l5-p8', type: 'mcq', topic: 'must-mustnt', difficulty: 'challenge', prompt: 'Find the mistake: "We must to be quiet."', options: ['We must be quiet.', 'We must being quiet.', 'We must is quiet.'], answer: 0, explanation: 'Must is followed directly by the base verb — never "to".' },
+        { id: 'l5-p9', type: 'match', topic: 'health', difficulty: 'medium', prompt: 'Match each health problem to the matching sentence.', pairs: [
+            { left: 'headache', right: 'My head hurts.' },
+            { left: 'toothache', right: 'My tooth hurts.' },
+            { left: 'stomachache', right: 'My stomach hurts.' }
+          ], explanation: 'Each "-ache" word matches the body part that hurts.' },
+        { id: 'l5-p10', type: 'mcq', topic: 'must-mustnt', difficulty: 'easy', prompt: 'You are in the library. Which sentence is correct?', options: ['We must be quiet.', 'We must shout.', 'We mustn’t be quiet.'], answer: 0, explanation: 'In a library, being quiet is the rule.' }
+      ]
+    },
+    {
+      id: 'l6', number: 6, theme: 'coral', icon: '🤝',
+      title: 'Shall for Offers and Suggestions',
+      desc: 'Use "Shall I …?" to kindly offer to help someone.',
+      learn: {
+        pattern: '"Shall I …?" is used when offering to do something for someone else.',
+        examples: [
+          'I’m hungry. — <span class="hl">Shall I</span> make breakfast?',
+          'I’m cold. — <span class="hl">Shall I</span> close the window?',
+          'I’m thirsty. — Shall I get some water?',
+          'It’s dark. — Shall I turn on the light?',
+          'The room is hot. — Shall I open the window?',
+          'The bag is heavy. — Shall I carry it?'
+        ],
+        tip: 'จำง่าย ๆ: Shall I…? ใช้เสนอตัวช่วยเหลือคนอื่น เหมือนพูดว่า “ให้ฉันช่วย…ไหม”'
+      },
+      check: [
+        { id: 'l6-c1', type: 'mcq', topic: 'shall-offers', difficulty: 'easy', prompt: 'I’m cold. ___ I close the window?', options: ['Shall', 'Must', 'Do'], answer: 0, explanation: '"Shall I...?" offers to help.' },
+        { id: 'l6-c2', type: 'mcq', topic: 'shall-offers', difficulty: 'easy', prompt: '"Shall I…?" is used to:', options: ['offer to help someone', 'ask for permission', 'give an order'], answer: 0, explanation: 'It is a friendly way to offer help.' }
+      ],
+      practice: [
+        { id: 'l6-p1', type: 'mcq', topic: 'shall-offers', difficulty: 'easy', prompt: 'I’m hungry. ___ I make breakfast?', options: ['Shall', 'Must', 'Do'], answer: 0, explanation: 'We offer help with "Shall I...?"' },
+        { id: 'l6-p2', type: 'mcq', topic: 'shall-offers', difficulty: 'easy', prompt: 'It’s dark. Shall I ___ the light?', options: ['turn on', 'turn off', 'open'], answer: 0, explanation: 'We turn on a light to make a dark room brighter.' },
+        { id: 'l6-p3', type: 'mcq', topic: 'shall-offers', difficulty: 'easy', prompt: 'The bag is heavy. Shall I ___ it?', options: ['carry', 'carrying', 'carries'], answer: 0, explanation: 'After "Shall I", we use the base verb: "carry".' },
+        { id: 'l6-p4', type: 'mcq', topic: 'shall-offers', difficulty: 'medium', prompt: '"I’m thirsty." What’s the best offer?', options: ['Shall I get some water?', 'Shall I close the window?', 'Shall I do my homework?'], answer: 0, explanation: 'Thirsty means you need a drink, like water.' },
+        { id: 'l6-p5', type: 'order', topic: 'shall-offers', difficulty: 'medium', prompt: 'Put the words in the correct order.', words: ['window', 'Shall', 'the', 'I', 'close'], answer: 'Shall I close the window', explanation: 'Pattern: Shall + I + base verb + object?' },
+        { id: 'l6-p6', type: 'mcq', topic: 'shall-offers', difficulty: 'easy', prompt: 'The room is hot. Shall I ___ the window?', options: ['open', 'close', 'carry'], answer: 0, explanation: 'Opening the window lets cool air in.' },
+        { id: 'l6-p7', type: 'match', topic: 'shall-offers', difficulty: 'medium', prompt: 'Match each situation to the best offer.', pairs: [
+            { left: 'I’m hungry.', right: 'Shall I make breakfast?' },
+            { left: 'I’m cold.', right: 'Shall I close the window?' },
+            { left: 'The bag is heavy.', right: 'Shall I carry it?' }
+          ], explanation: 'A good offer solves the exact problem someone has.' },
+        { id: 'l6-p8', type: 'mcq', topic: 'shall-offers', difficulty: 'challenge', prompt: 'Find the mistake: "Shall I to open the window?"', options: ['Shall I open the window?', 'Shall I opening the window?', 'Shall I opens the window?'], answer: 0, explanation: 'After "Shall I", never add "to" — just the base verb.' },
+        { id: 'l6-p9', type: 'mcq', topic: 'shall-offers', difficulty: 'medium', prompt: 'Your friend says, "The room is hot." What do you say?', options: ['Shall I open the window?', 'Shall I close the window?', 'Shall I turn on the light?'], answer: 0, explanation: 'Opening the window helps cool a hot room.' }
+      ]
+    },
+    {
+      id: 'l7', number: 7, theme: 'green', icon: '📏',
+      title: 'Comparatives',
+      desc: 'Compare two things using -er, and learn irregular forms like good → better.',
+      learn: {
+        pattern: 'Add -er to most short adjectives. Double the last letter if it’s a short vowel + consonant. Change y to i and add -er after a consonant + y. Good and bad are irregular.',
+        examples: [
+          'weak → <span class="hl">weaker</span> · thin → <span class="hl">thinner</span> · naughty → <span class="hl">naughtier</span>',
+          'good → <span class="hl2">better</span> · bad → <span class="hl2">worse</span> (irregular!)',
+          'Parrots are weaker than bears.',
+          'Dolphins are thinner than whales.',
+          'Monkeys are naughtier than lions.',
+          'Sharks are better at swimming than elephants.',
+          'Pandas are worse at jumping than kangaroos.'
+        ],
+        tip: 'จำง่าย ๆ: adjective สั้น + er, ลงท้าย y เปลี่ยนเป็น i + er, พยัญชนะซ้อนถ้าเสียงสั้น, ส่วน good/bad จำเป็นคำพิเศษ (better/worse)'
+      },
+      check: [
+        { id: 'l7-c1', type: 'mcq', topic: 'comparatives', difficulty: 'easy', prompt: 'tall → ___', options: ['taller', 'tallier', 'more tall'], answer: 0, explanation: 'Short adjectives just add -er.' },
+        { id: 'l7-c2', type: 'mcq', topic: 'comparatives', difficulty: 'easy', prompt: 'good → ___', options: ['gooder', 'better', 'more good'], answer: 1, explanation: '"Good" is irregular: good → better.' }
+      ],
+      practice: [
+        { id: 'l7-p1', type: 'mcq', topic: 'comparatives', difficulty: 'easy', prompt: 'big → ___', options: ['bigger', 'biger', 'bigest'], answer: 0, explanation: 'Short vowel + consonant: double the last letter, then add -er.' },
+        { id: 'l7-p2', type: 'mcq', topic: 'comparatives', difficulty: 'easy', prompt: 'happy → ___', options: ['happier', 'happyer', 'more happy'], answer: 0, explanation: 'Consonant + y: change y to i, then add -er.' },
+        { id: 'l7-p3', type: 'mcq', topic: 'comparatives', difficulty: 'easy', prompt: 'weak → ___', options: ['weaker', 'weakier', 'more weak'], answer: 0, explanation: 'Short adjectives just add -er.' },
+        { id: 'l7-p4', type: 'mcq', topic: 'comparatives', difficulty: 'medium', prompt: 'bad → ___', options: ['badder', 'worse', 'more bad'], answer: 1, explanation: '"Bad" is irregular: bad → worse.' },
+        { id: 'l7-p5', type: 'fill', topic: 'comparatives', difficulty: 'medium', prompt: 'Parrots are ___ (weak) than bears.', accept: ['weaker'], explanation: 'weak → weaker (just add -er).' },
+        { id: 'l7-p6', type: 'mcq', topic: 'comparatives', difficulty: 'easy', prompt: 'Dolphins are ___ than whales.', options: ['thinner', 'thiner', 'more thin'], answer: 0, explanation: 'thin → thinner (double the n).' },
+        { id: 'l7-p7', type: 'mcq', topic: 'comparatives', difficulty: 'medium', prompt: 'Monkeys are ___ than lions.', options: ['naughtier', 'naughtyer', 'more naughty'], answer: 0, explanation: 'naughty → naughtier (y becomes i).' },
+        { id: 'l7-p8', type: 'order', topic: 'comparatives', difficulty: 'challenge', prompt: 'Put the words in the correct order.', words: ['swimming', 'better', 'Sharks', 'at', 'are', 'elephants', 'than'], answer: 'Sharks are better at swimming than elephants', explanation: 'Pattern: subject + are + comparative + at + activity + than + object.' },
+        { id: 'l7-p9', type: 'mcq', topic: 'comparatives', difficulty: 'challenge', prompt: 'Find the mistake: "Pandas are more bad at jumping than kangaroos."', options: ['Pandas are worse at jumping than kangaroos.', 'Pandas are badder at jumping than kangaroos.', 'Pandas are more worse at jumping than kangaroos.'], answer: 0, explanation: 'Never say "more bad" — the irregular form is "worse".' },
+        { id: 'l7-p10', type: 'mcq', topic: 'comparatives', difficulty: 'easy', prompt: 'A mouse is ___ than an elephant.', options: ['smaller', 'smallest', 'more small'], answer: 0, explanation: 'small → smaller (just add -er).' }
+      ]
+    },
+    {
+      id: 'l8', number: 8, theme: 'orange', icon: '🌦️',
+      title: 'Past Simple: Was and Were',
+      desc: 'Talk about the past with was / were, ask where people were, and describe yesterday’s weather.',
+      learn: {
+        pattern: 'I/He/She/It + was (wasn’t). You/We/They + were (weren’t). Use There was for singular/uncountable nouns and There were for plural nouns.',
+        examples: [
+          'I was at the park yesterday. She <span class="hl2">wasn’t</span> at the park yesterday.',
+          'You were at the beach yesterday. We <span class="hl2">weren’t</span> at the beach yesterday.',
+          'Where were you on Saturday? Where was he on Sunday?',
+          'There <span class="hl">was</span> a lot of snow yesterday. There <span class="hl">were</span> a lot of children yesterday.',
+          'What was the weather like? It was sunny / cold / windy / rainy / snowy.'
+        ],
+        tip: 'จำง่าย ๆ: I/He/She/It + was, You/We/They + were และ There was ใช้กับคำนามเอกพจน์ There were ใช้กับคำนามพหูพจน์'
+      },
+      check: [
+        { id: 'l8-c1', type: 'mcq', topic: 'was-were', difficulty: 'easy', prompt: 'She ___ at the park yesterday.', options: ['was', 'were', 'is'], answer: 0, explanation: 'She = he/she/it, so we use "was".' },
+        { id: 'l8-c2', type: 'mcq', topic: 'was-were', difficulty: 'easy', prompt: 'There ___ a lot of children at the party.', options: ['was', 'were', 'is'], answer: 1, explanation: '"Children" is plural, so we use "were".' }
+      ],
+      practice: [
+        { id: 'l8-p1', type: 'mcq', topic: 'was-were', difficulty: 'easy', prompt: 'I ___ at the park yesterday.', options: ['was', 'were', 'am'], answer: 0, explanation: '"I" uses "was" in the past.' },
+        { id: 'l8-p2', type: 'mcq', topic: 'was-were', difficulty: 'easy', prompt: 'You ___ at the beach yesterday.', options: ['was', 'were', 'is'], answer: 1, explanation: '"You" always uses "were".' },
+        { id: 'l8-p3', type: 'mcq', topic: 'was-were', difficulty: 'easy', prompt: 'She ___ at the park yesterday. (She stayed home!)', options: ['wasn’t', 'weren’t', 'didn’t'], answer: 0, explanation: 'Negative for she/he/it is "wasn’t".' },
+        { id: 'l8-p4', type: 'mcq', topic: 'was-were', difficulty: 'easy', prompt: 'We ___ at the beach yesterday. (We stayed home!)', options: ['wasn’t', 'weren’t', 'aren’t'], answer: 1, explanation: 'Negative for we/you/they is "weren’t".' },
+        { id: 'l8-p5', type: 'mcq', topic: 'was-were', difficulty: 'easy', prompt: '___ was he on Sunday?', options: ['Where', 'What', 'Who'], answer: 0, explanation: '"Where" asks about a place.' },
+        { id: 'l8-p6', type: 'mcq', topic: 'was-were', difficulty: 'medium', prompt: 'There ___ a lot of snow yesterday.', options: ['was', 'were', 'is'], answer: 0, explanation: '"Snow" is uncountable, so we use "was".' },
+        { id: 'l8-p7', type: 'mcq', topic: 'was-were', difficulty: 'medium', prompt: 'There ___ a lot of children at the park yesterday.', options: ['was', 'were', 'is'], answer: 1, explanation: '"Children" is plural, so we use "were".' },
+        { id: 'l8-p8', type: 'mcq', topic: 'was-were', difficulty: 'easy', prompt: 'What was the weather like? It ___ sunny.', options: ['was', 'were', 'is'], answer: 0, explanation: '"It" (the weather) uses "was".' },
+        { id: 'l8-p9', type: 'order', topic: 'was-were', difficulty: 'medium', prompt: 'Put the words in the correct order.', words: ['windy', 'and', 'was', 'cold', 'It', 'yesterday'], answer: 'It was cold and windy yesterday', explanation: 'Pattern: It + was + adjective + and + adjective + time.' },
+        { id: 'l8-p10', type: 'mcq', topic: 'was-were', difficulty: 'challenge', prompt: 'Find the mistake: "There was a lot of children yesterday."', options: ['There were a lot of children yesterday.', 'There was a lot of childrens yesterday.', 'There is a lot of children yesterday.'], answer: 0, explanation: '"Children" is plural, so it needs "were", not "was".' }
+      ]
+    }
+  ];
+
+  const NUMBERED_LESSONS = LESSONS.filter(function (l) { return !l.isIntro; });
+
+  // ---- MIXED CHALLENGE: 30 questions across every topic (2 per topic) ----
+  const MIXED_CHALLENGE = [
+    { id: 'mc1', type: 'mcq', topic: 'prepositions', difficulty: 'easy', prompt: 'The teddy bear is sitting ___ the toy box and the ball.', options: ['between', 'behind', 'on'], answer: 0, explanation: 'One thing on each side means "between".' },
+    { id: 'mc2', type: 'mcq', topic: 'prepositions', difficulty: 'medium', prompt: 'The cat is sleeping ___ the table, not on top of it.', options: ['under', 'on', 'next to'], answer: 0, explanation: 'Below a surface means "under".' },
+    { id: 'mc3', type: 'mcq', topic: 'present-continuous', difficulty: 'easy', prompt: '___ is Mona doing? She’s drawing a picture.', options: ['What', 'Who', 'Where'], answer: 0, explanation: '"What" asks about an action.' },
+    { id: 'mc4', type: 'mcq', topic: 'present-continuous', difficulty: 'medium', prompt: 'Choose the correct sentence.', options: ['They are playing football.', 'They is playing football.', 'They playing football.'], answer: 0, explanation: 'They + are + verb-ing.' },
+    { id: 'mc5', type: 'mcq', topic: 'who-possessive', difficulty: 'easy', prompt: '___ Tom? He’s Amy’s cousin.', options: ['Who’s', 'Who’re', 'Whose'], answer: 0, explanation: '"Who’s" = "Who is", used to ask about one person.' },
+    { id: 'mc6', type: 'mcq', topic: 'who-possessive', difficulty: 'medium', prompt: 'Who are Ben and Leo? They’re Kim’s ___.', options: ['brothers', 'brother', 'sister'], answer: 0, explanation: 'Two boys, so we need the plural "brothers".' },
+    { id: 'mc7', type: 'mcq', topic: 'like-love-enjoy', difficulty: 'easy', prompt: 'She ___ painting pictures at the weekend.', options: ['enjoy', 'enjoys', 'enjoying'], answer: 1, explanation: 'He/she/it verbs add -s: "enjoys".' },
+    { id: 'mc8', type: 'mcq', topic: 'like-love-enjoy', difficulty: 'medium', prompt: 'Find the mistake: "He don’t like spinach."', options: ['He doesn’t like spinach.', 'He not like spinach.', 'He isn’t like spinach.'], answer: 0, explanation: 'He/she uses "doesn’t" in the negative.' },
+    { id: 'mc9', type: 'fill', topic: 'want-to', difficulty: 'easy', prompt: 'I want ___ ride my scooter after lunch.', accept: ['to'], explanation: 'Pattern: want + to + base verb.' },
+    { id: 'mc10', type: 'mcq', topic: 'want-to', difficulty: 'medium', prompt: 'Does she want to play tennis? Yes, she ___.', options: ['does', 'do', 'is'], answer: 0, explanation: 'Short answer for "Does she...?" is "Yes, she does."' },
+    { id: 'mc11', type: 'mcq', topic: 'have-got', difficulty: 'easy', prompt: 'My school ___ got a big playground.', options: ['have', 'has', 'is'], answer: 1, explanation: '"School" = it, so we use "has got".' },
+    { id: 'mc12', type: 'mcq', topic: 'have-got', difficulty: 'medium', prompt: 'They ___ got a car.', options: ['haven’t', 'hasn’t', 'don’t'], answer: 0, explanation: 'They (plural) uses "haven’t got" in the negative.' },
+    { id: 'mc13', type: 'mcq', topic: 'routines', difficulty: 'easy', prompt: 'What ___ she do before school? She has a shower.', options: ['does', 'do', 'is'], answer: 0, explanation: 'She uses "does" in Present Simple questions.' },
+    { id: 'mc14', type: 'fill', topic: 'routines', difficulty: 'medium', prompt: 'He ___ (brush) his teeth every morning.', accept: ['brushes'], explanation: 'He/she/it: brush → brushes.' },
+    { id: 'mc15', type: 'mcq', topic: 'frequency', difficulty: 'easy', prompt: 'I ___ walk to school. (I do this every single day!)', options: ['always', 'never', 'sometimes'], answer: 0, explanation: '"Always" means 100% of the time.' },
+    { id: 'mc16', type: 'mcq', topic: 'frequency', difficulty: 'medium', prompt: 'Find the mistake: "She sometimes play chess."', options: ['She sometimes plays chess.', 'She sometimes played chess.', 'She sometimes playing chess.'], answer: 0, explanation: 'He/she/it needs the -s form: "plays".' },
+    { id: 'mc17', type: 'mcq', topic: 'go-to-purpose', difficulty: 'easy', prompt: 'Where do you go to borrow books? You go to the ___.', options: ['library', 'sports centre', 'swimming pool'], answer: 0, explanation: 'We borrow books at the library.' },
+    { id: 'mc18', type: 'mcq', topic: 'go-to-purpose', difficulty: 'medium', prompt: 'You go to the swimming pool ___ swim.', options: ['to', 'for', 'at'], answer: 0, explanation: 'Purpose pattern: go to + place + to + verb.' },
+    { id: 'mc19', type: 'mcq', topic: 'must-rules', difficulty: 'easy', prompt: '___ students wear a uniform at your school?', options: ['Must', 'Do', 'Are'], answer: 0, explanation: '"Must" moves to the front to make a question about rules.' },
+    { id: 'mc20', type: 'order', topic: 'must-rules', difficulty: 'medium', prompt: 'Put the words in the correct order.', words: ['carefully', 'must', 'listen', 'Everyone', 'in', 'class'], answer: 'Everyone must listen carefully in class', explanation: 'Pattern: subject + must + base verb + ...' },
+    { id: 'mc21', type: 'mcq', topic: 'health', difficulty: 'easy', prompt: 'My throat hurts. I’ve got a ___.', options: ['sore throat', 'headache', 'cold'], answer: 0, explanation: 'A hurting throat is a "sore throat".' },
+    { id: 'mc22', type: 'mcq', topic: 'health', difficulty: 'medium', prompt: 'She ___ got a temperature, so she’s staying home.', options: ['have', 'has', 'is'], answer: 1, explanation: 'He/she/it uses "has got".' },
+    { id: 'mc23', type: 'mcq', topic: 'must-mustnt', difficulty: 'medium', prompt: 'We ___ run near the swimming pool. It’s dangerous.', options: ['mustn’t', 'must', 'don’t'], answer: 0, explanation: 'This is forbidden for safety, so we use "mustn’t".' },
+    { id: 'mc24', type: 'mcq', topic: 'must-mustnt', difficulty: 'challenge', prompt: '"You mustn’t shout in class" means:', options: ['It is not allowed.', 'It is not necessary.', 'It is a good idea.'], answer: 0, explanation: 'Mustn’t always means "not allowed", never "not necessary".' },
+    { id: 'mc25', type: 'mcq', topic: 'shall-offers', difficulty: 'easy', prompt: 'You look tired. ___ I get you a chair?', options: ['Shall', 'Must', 'Do'], answer: 0, explanation: '"Shall I...?" offers help.' },
+    { id: 'mc26', type: 'fill', topic: 'shall-offers', difficulty: 'medium', prompt: 'It’s raining. Shall I ___ (give) you an umbrella?', accept: ['give'], explanation: 'After "Shall I", we use the base verb: "give".' },
+    { id: 'mc27', type: 'mcq', topic: 'comparatives', difficulty: 'easy', prompt: 'A giraffe is ___ than a horse.', options: ['taller', 'tallest', 'more tall'], answer: 0, explanation: 'tall → taller (just add -er).' },
+    { id: 'mc28', type: 'mcq', topic: 'comparatives', difficulty: 'medium', prompt: 'hot → ___', options: ['hoter', 'hotter', 'more hot'], answer: 1, explanation: 'Short vowel + consonant: double the letter, then add -er.' },
+    { id: 'mc29', type: 'mcq', topic: 'was-were', difficulty: 'easy', prompt: '___ you at the party on Friday?', options: ['Were', 'Was', 'Are'], answer: 0, explanation: '"You" always uses "were".' },
+    { id: 'mc30', type: 'mcq', topic: 'was-were', difficulty: 'medium', prompt: 'There ___ a lot of rain last night.', options: ['was', 'were', 'is'], answer: 0, explanation: '"Rain" is uncountable, so we use "was".' }
+  ];
+
+  const TOPIC_LABELS = {
+    'prepositions': 'Prepositions of Place', 'present-continuous': 'Present Continuous',
+    'who-possessive': 'Who’s / Possessive ’s', 'like-love-enjoy': 'Like, Love, Enjoy',
+    'want-to': 'Want to', 'have-got': 'Have Got / Has Got', 'routines': 'Daily Routines',
+    'frequency': 'Adverbs of Frequency', 'go-to-purpose': 'Go to … to …', 'must-rules': 'Must (Rules)',
+    'health': 'Health Vocabulary', 'must-mustnt': 'Must / Mustn’t', 'shall-offers': 'Shall (Offers)',
+    'comparatives': 'Comparatives', 'was-were': 'Was / Were'
+  };
+
+  const ENCOURAGE_CORRECT = ['Great job! 🎉', 'Excellent work! ⭐', 'You’ve got it! 💪', 'Nailed it!', 'เก่งมาก! ทำถูกต้อง!', 'Awesome! 🌟'];
+  const ENCOURAGE_RETRY = ['One more try! 🙂', 'เกือบถูกแล้ว ลองอีกครั้งนะ', 'So close — look again!', 'ลองดูอีกครั้ง คุณทำได้!'];
+  const ENCOURAGE_REVEAL = ['Good try! Here’s the answer:', 'ไม่เป็นไร มาดูคำตอบที่ถูกต้องกันนะ:', 'Nice effort — let’s learn from this one:'];
+
+  /* ============================================================
+     3. SMALL UTILITIES
+     ============================================================ */
+  function $(sel, root) { return (root || document).querySelector(sel); }
+  function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+    });
+  }
+  function normalizeAnswer(str) {
+    return String(str).trim().toLowerCase().replace(/[.!?]+$/, '').replace(/\s+/g, ' ');
+  }
+  function findLesson(id) {
+    for (let i = 0; i < LESSONS.length; i++) { if (LESSONS[i].id === id) return LESSONS[i]; }
+    return null;
+  }
+  function app() { return $('#app'); }
+  function setCurrent(view) {
+    state.current = view;
+    saveState();
+  }
+  function showToast(message, celebrate) {
+    const t = $('#toast');
+    t.textContent = message;
+    t.hidden = false;
+    t.classList.toggle('celebrate', !!celebrate);
+    clearTimeout(showToast._timer);
+    showToast._timer = setTimeout(function () { t.hidden = true; }, 2600);
+  }
+
+  /* ============================================================
+     4. QUESTION ENGINE
+     Renders one question into a container and reports the result.
+     opts: { attemptsAllowed (default 2), showTag (default true) }
+     Calls opts.onResult(isCorrect) exactly once when the question
+     is finally resolved (correct, or attempts exhausted).
+     ============================================================ */
+  function renderQuestionInto(container, q, opts) {
+    opts = opts || {};
+    const attemptsAllowed = opts.attemptsAllowed || 2;
+    let attempts = 0;
+    let resolved = false;
+
+    const card = document.createElement('div');
+    card.className = 'question-card';
+
+    const diffLabel = { easy: 'Easy', medium: 'Medium', challenge: 'Challenge' }[q.difficulty] || '';
+    let metaHtml = '<div class="question-meta">';
+    if (opts.progressLabel) metaHtml += '<span class="question-progress">' + escapeHtml(opts.progressLabel) + '</span>';
+    metaHtml += '<span class="qtag">' + escapeHtml(TOPIC_LABELS[q.topic] || q.topic) + '</span>';
+    if (diffLabel) metaHtml += '<span class="qdiff">' + diffLabel + '</span>';
+    metaHtml += '</div>';
+
+    let bodyHtml = metaHtml;
+    bodyHtml += '<div class="question-prompt">' + q.prompt.replace(/___/g, '<span class="blank">&nbsp;</span>') + '</div>';
+    if (q.scene) bodyHtml += sceneHTML(q.scene);
+
+    card.innerHTML = bodyHtml;
+
+    const feedback = document.createElement('div');
+    feedback.className = 'feedback-panel';
+    feedback.innerHTML = '<span class="fb-icon"></span><span class="fb-text"></span>';
+
+    const actions = document.createElement('div');
+    actions.className = 'question-actions';
+
+    function finish(isCorrect) {
+      if (resolved) return;
+      resolved = true;
+      if (opts.onResult) opts.onResult(isCorrect);
+    }
+
+    function showFeedback(isCorrect, isFinal) {
+      feedback.classList.remove('correct', 'incorrect');
+      feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
+      const icon = feedback.querySelector('.fb-icon');
+      const text = feedback.querySelector('.fb-text');
+      if (isCorrect) {
+        icon.textContent = '✅';
+        text.innerHTML = '<span class="fb-title">' + escapeHtml(pick(ENCOURAGE_CORRECT)) + '</span>' + escapeHtml(q.explanation || '');
+      } else if (!isFinal) {
+        icon.textContent = '🤔';
+        text.innerHTML = '<span class="fb-title">' + escapeHtml(pick(ENCOURAGE_RETRY)) + '</span>';
+      } else {
+        icon.textContent = '💡';
+        text.innerHTML = '<span class="fb-title">' + escapeHtml(pick(ENCOURAGE_REVEAL)) + '</span>' + escapeHtml(q.explanation || '');
+      }
+    }
+
+    function addNextButton(isCorrect) {
+      actions.innerHTML = '';
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'btn btn-primary';
+      btn.textContent = opts.nextLabel || 'Next →';
+      btn.addEventListener('click', function () { finish(isCorrect); });
+      actions.appendChild(btn);
+    }
+
+    function addRetryButton(retryFn) {
+      actions.innerHTML = '';
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'btn btn-accent';
+      btn.textContent = 'Try Again';
+      btn.addEventListener('click', retryFn);
+      actions.appendChild(btn);
+    }
+
+    // ---- Type: MCQ ----
+    if (q.type === 'mcq') {
+      const letters = ['A', 'B', 'C', 'D'];
+      const order = shuffle(q.options.map(function (opt, i) { return i; }));
+      const list = document.createElement('div');
+      list.className = 'options-list';
+      order.forEach(function (origIdx, pos) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'option-btn';
+        btn.innerHTML = '<span class="option-letter">' + letters[pos] + '</span><span>' + escapeHtml(q.options[origIdx]) + '</span><span class="result-mark"></span>';
+        btn.addEventListener('click', function onClick() {
+          attempts++;
+          const isCorrect = origIdx === q.answer;
+          $all('.option-btn', list).forEach(function (b) { b.disabled = true; });
+          if (isCorrect) {
+            btn.classList.add('correct');
+            btn.querySelector('.result-mark').textContent = '✅';
+            showFeedback(true);
+            addNextButton(true);
+          } else if (attempts < attemptsAllowed) {
+            btn.classList.add('incorrect');
+            btn.querySelector('.result-mark').textContent = '❌';
+            showFeedback(false, false);
+            addRetryButton(function () {
+              feedback.classList.remove('show');
+              actions.innerHTML = '';
+              $all('.option-btn', list).forEach(function (b) {
+                b.disabled = false; b.classList.remove('incorrect', 'correct');
+                b.querySelector('.result-mark').textContent = '';
+              });
+            });
+          } else {
+            btn.classList.add('incorrect');
+            btn.querySelector('.result-mark').textContent = '❌';
+            const correctBtn = list.children[order.indexOf(q.answer)];
+            correctBtn.classList.add('correct');
+            correctBtn.querySelector('.result-mark').textContent = '✅';
+            showFeedback(false, true);
+            addNextButton(false);
+          }
+        });
+        list.appendChild(btn);
+      });
+      card.appendChild(list);
+    }
+
+    // ---- Type: FILL ----
+    else if (q.type === 'fill') {
+      const row = document.createElement('div');
+      row.className = 'fill-row';
+      row.innerHTML = '<input type="text" class="fill-input" autocomplete="off" spellcheck="false" placeholder="Type your answer…">' +
+        '<button type="button" class="btn btn-primary fill-submit">Check</button>';
+      card.appendChild(row);
+      const input = row.querySelector('.fill-input');
+      const submitBtn = row.querySelector('.fill-submit');
+
+      function submit() {
+        if (submitBtn.disabled) return;
+        attempts++;
+        const val = normalizeAnswer(input.value);
+        const isCorrect = q.accept.some(function (a) { return normalizeAnswer(a) === val; }) && val.length > 0;
+        if (isCorrect) {
+          input.classList.add('correct');
+          input.disabled = true; submitBtn.disabled = true;
+          showFeedback(true);
+          addNextButton(true);
+        } else if (attempts < attemptsAllowed) {
+          input.classList.add('incorrect');
+          input.disabled = true; submitBtn.disabled = true; // freeze until "Try Again"
+          showFeedback(false, false);
+          addRetryButton(function () {
+            feedback.classList.remove('show');
+            actions.innerHTML = '';
+            input.classList.remove('incorrect');
+            input.disabled = false; submitBtn.disabled = false;
+            input.value = '';
+            input.focus();
+          });
+        } else {
+          input.classList.add('incorrect');
+          input.disabled = true; submitBtn.disabled = true;
+          const correctAnswerText = q.accept[0];
+          feedback.classList.add('show', 'incorrect');
+          feedback.querySelector('.fb-icon').textContent = '💡';
+          feedback.querySelector('.fb-text').innerHTML = '<span class="fb-title">' + escapeHtml(pick(ENCOURAGE_REVEAL)) + ' “' + escapeHtml(correctAnswerText) + '”</span>' + escapeHtml(q.explanation || '');
+          addNextButton(false);
+        }
+      }
+      submitBtn.addEventListener('click', submit);
+      input.addEventListener('keydown', function (e) { if (e.key === 'Enter') submit(); });
+    }
+
+    // ---- Type: ORDER (sentence builder) ----
+    else if (q.type === 'order') {
+      const slots = document.createElement('div');
+      slots.className = 'answer-slots';
+      const bank = document.createElement('div');
+      bank.className = 'word-bank';
+      const shuffled = shuffle(q.words.map(function (w, i) { return { w: w, id: i }; }));
+      const placed = [];
+      let locked = false; // true only once the question is finally resolved
+
+      function renderBank() {
+        bank.innerHTML = '';
+        shuffled.forEach(function (item) {
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'word-chip' + (placed.indexOf(item.id) > -1 ? ' placed' : '');
+          chip.textContent = item.w;
+          chip.disabled = placed.indexOf(item.id) > -1 || locked;
+          chip.addEventListener('click', function () {
+            placed.push(item.id);
+            renderBank(); renderSlots();
+          });
+          bank.appendChild(chip);
+        });
+      }
+      function renderSlots() {
+        slots.innerHTML = '';
+        if (placed.length === 0) {
+          const hint = document.createElement('span');
+          hint.className = 'thai-note';
+          hint.textContent = 'Tap the words below to build the sentence — แตะคำด้านล่างเพื่อเรียงประโยค';
+          slots.appendChild(hint);
+        }
+        placed.forEach(function (id) {
+          const item = shuffled.filter(function (s) { return s.id === id; })[0];
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'word-chip';
+          chip.textContent = item.w;
+          chip.disabled = locked;
+          chip.addEventListener('click', function () {
+            placed.splice(placed.indexOf(id), 1);
+            renderBank(); renderSlots();
+          });
+          slots.appendChild(chip);
+        });
+        checkBtn.disabled = locked || placed.length !== q.words.length;
+      }
+
+      const checkRow = document.createElement('div');
+      checkRow.style.marginTop = '10px';
+      const checkBtn = document.createElement('button');
+      checkBtn.type = 'button';
+      checkBtn.className = 'btn btn-primary';
+      checkBtn.textContent = 'Check My Sentence';
+      checkBtn.disabled = true;
+      checkRow.appendChild(checkBtn);
+
+      checkBtn.addEventListener('click', function () {
+        if (checkBtn.disabled) return; // guard against double-submission
+        attempts++;
+        const sentence = placed.map(function (id) { return shuffled.filter(function (s) { return s.id === id; })[0].w; }).join(' ');
+        const isCorrect = normalizeAnswer(sentence) === normalizeAnswer(q.answer);
+        if (isCorrect) {
+          locked = true;
+          renderBank(); renderSlots();
+          showFeedback(true);
+          addNextButton(true);
+        } else if (attempts < attemptsAllowed) {
+          locked = true; // freeze the chips/button until "Try Again" is pressed
+          renderBank(); renderSlots();
+          showFeedback(false, false);
+          addRetryButton(function () {
+            feedback.classList.remove('show');
+            actions.innerHTML = '';
+            placed.length = 0;
+            locked = false;
+            renderBank(); renderSlots();
+          });
+        } else {
+          locked = true;
+          renderBank(); renderSlots();
+          feedback.classList.add('show', 'incorrect');
+          feedback.querySelector('.fb-icon').textContent = '💡';
+          feedback.querySelector('.fb-text').innerHTML = '<span class="fb-title">' + escapeHtml(pick(ENCOURAGE_REVEAL)) + ' “' + escapeHtml(q.answer) + '.”</span>' + escapeHtml(q.explanation || '');
+          addNextButton(false);
+        }
+      });
+
+      card.appendChild(slots);
+      card.appendChild(bank);
+      card.appendChild(checkRow);
+      renderBank(); renderSlots();
+    }
+
+    // ---- Type: MATCH ----
+    else if (q.type === 'match') {
+      const grid = document.createElement('div');
+      grid.className = 'match-grid';
+      const leftCol = document.createElement('div'); leftCol.className = 'match-col';
+      const rightCol = document.createElement('div'); rightCol.className = 'match-col';
+      const leftItems = q.pairs.map(function (p, i) { return { text: p.left, id: i }; });
+      const rightItems = shuffle(q.pairs.map(function (p, i) { return { text: p.right, id: i }; }));
+      let selectedLeft = null;
+      let matchedCount = 0;
+      let wrongAttempt = false;
+
+      function makeItem(item, col) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'match-item';
+        btn.textContent = item.text;
+        btn.dataset.id = item.id;
+        btn.addEventListener('click', function () {
+          if (btn.classList.contains('matched-correct')) return;
+          if (col === 'left') {
+            $all('.match-item', leftCol).forEach(function (b) { b.classList.remove('selected'); });
+            btn.classList.add('selected');
+            selectedLeft = item.id;
+          } else {
+            if (selectedLeft === null) return;
+            if (selectedLeft === item.id) {
+              btn.classList.add('matched-correct');
+              const leftBtn = leftCol.querySelector('[data-id="' + selectedLeft + '"]');
+              leftBtn.classList.remove('selected');
+              leftBtn.classList.add('matched-correct');
+              matchedCount++;
+              selectedLeft = null;
+              if (matchedCount === q.pairs.length) {
+                showFeedback(true);
+                addNextButton(true);
+              }
+            } else {
+              wrongAttempt = true;
+              btn.classList.add('matched-wrong');
+              setTimeout(function () { btn.classList.remove('matched-wrong'); }, 500);
+            }
+          }
+        });
+        return btn;
+      }
+      leftItems.forEach(function (item) { leftCol.appendChild(makeItem(item, 'left')); });
+      rightItems.forEach(function (item) { rightCol.appendChild(makeItem(item, 'right')); });
+      grid.appendChild(leftCol); grid.appendChild(rightCol);
+      card.appendChild(grid);
+      const hint = document.createElement('p');
+      hint.className = 'thai-note';
+      hint.textContent = 'Tap one card on the left, then its match on the right. — แตะซ้ายแล้วแตะขวาที่คู่กัน';
+      card.appendChild(hint);
+    }
+
+    card.appendChild(feedback);
+    card.appendChild(actions);
+    container.innerHTML = '';
+    container.appendChild(card);
+    return card;
+  }
+
+  /* ============================================================
+     5. SCREEN RENDERERS
+     ============================================================ */
+
+  // ---------- HOME ----------
+  function renderHome() {
+    setCurrent({ view: 'home' });
+    const completedCount = NUMBERED_LESSONS.filter(function (l) { return getLessonProgress(l.id).status === 'complete'; }).length;
+    const pct = Math.round((completedCount / NUMBERED_LESSONS.length) * 100);
+    const totalStars = NUMBERED_LESSONS.reduce(function (sum, l) { return sum + getLessonProgress(l.id).stars; }, 0);
+
+    let html = '<section class="screen">';
+    html += '<div class="hero">' +
+      '<span class="hero-deco d1">⭐</span><span class="hero-deco d2">🖊️</span>' +
+      '<h1>Grammar Adventure</h1>' +
+      '<p class="subtitle">ทบทวน Grammar ให้เข้าใจ ก่อนลงมือทำข้อสอบ</p>' +
+      '</div>';
+
+    html += '<div class="progress-summary">' +
+      '<div class="progress-summary-top"><span class="progress-summary-label">Completed ' + completedCount + ' of ' + NUMBERED_LESSONS.length + ' lessons</span>' +
+      '<span class="progress-stars">⭐ ' + totalStars + ' / ' + (NUMBERED_LESSONS.length * 3) + ' stars</span></div>' +
+      '<div class="progress-bar-track"><div class="progress-bar-fill" style="width:' + pct + '%"></div></div>' +
+      '</div>';
+
+    html += '<div class="home-actions">' +
+      '<button class="btn btn-primary btn-lg" id="btn-continue" type="button">▶️ Continue Learning</button>' +
+      '<button class="btn btn-accent btn-lg" id="btn-mixed-start" type="button">🎯 Start Mixed Challenge</button>' +
+      '</div>';
+
+    // Intro / warm-up card
+    const introLesson = findLesson('intro');
+    const introProg = getLessonProgress('intro');
+    html += '<h2 class="section-title">🧭 Warm-Up</h2>';
+    html += '<div class="lesson-grid">' + lessonCardHTML(introLesson, introProg) + '</div>';
+
+    html += '<h2 class="section-title">📚 Lessons</h2>';
+    html += '<div class="lesson-grid">';
+    NUMBERED_LESSONS.forEach(function (l) {
+      html += lessonCardHTML(l, getLessonProgress(l.id));
+    });
+    html += '</div>';
+    html += '</section>';
+
+    app().innerHTML = html;
+
+    $('#btn-continue').addEventListener('click', function () {
+      const target = pickContinueTarget();
+      goToLesson(target, 'learn');
+    });
+    $('#btn-mixed-start').addEventListener('click', renderMixedIntro);
+    $all('.lesson-start-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () { goToLesson(btn.dataset.lessonId, 'learn'); });
+    });
+  }
+
+  function lessonCardHTML(lesson, prog) {
+    const statusInfo = {
+      'not-started': { cls: 'status-not-started', label: 'Not started', btn: 'Start' },
+      'in-progress': { cls: 'status-in-progress', label: 'In progress', btn: 'Continue' },
+      'complete': { cls: 'status-complete', label: 'Complete', btn: 'Review' }
+    }[prog.status];
+    const numLabel = lesson.isIntro ? '★' : lesson.number;
+    let html = '<div class="lesson-card">' +
+      '<div class="lesson-card-top"><span class="lesson-num" style="--theme:var(--' + lesson.theme + ')">' + numLabel + '</span>' +
+      '<h3>' + escapeHtml(lesson.title) + '</h3></div>' +
+      '<p class="lesson-desc">' + escapeHtml(lesson.desc) + '</p>' +
+      '<div class="lesson-status-row"><span class="status-pill ' + statusInfo.cls + '">' + statusInfo.label + '</span>';
+    if (prog.stars > 0) html += '<span class="lesson-stars">' + '⭐'.repeat(prog.stars) + '</span>';
+    html += '</div>' +
+      '<button class="btn btn-primary lesson-start-btn" type="button" data-lesson-id="' + lesson.id + '">' + statusInfo.btn + '</button>' +
+      '</div>';
+    return html;
+  }
+
+  function pickContinueTarget() {
+    if (getLessonProgress('intro').status !== 'complete') return 'intro';
+    const next = NUMBERED_LESSONS.filter(function (l) { return getLessonProgress(l.id).status !== 'complete'; })[0];
+    return next ? next.id : NUMBERED_LESSONS[0].id;
+  }
+
+  // ---------- LESSON FLOW ----------
+  function goToLesson(lessonId, stage) {
+    setCurrent({ view: 'lesson', lessonId: lessonId, stage: stage });
+    const prog = getLessonProgress(lessonId);
+    if (prog.status === 'not-started') { prog.status = 'in-progress'; saveState(); }
+    renderLessonStage(lessonId, stage);
+  }
+
+  function lessonHeaderHTML(lesson, activeStage) {
+    let html = '<div class="lesson-header">' +
+      '<div class="lesson-header-title"><span class="lesson-header-badge" style="--theme:var(--' + lesson.theme + ')">' + (lesson.isIntro ? '★' : lesson.number) + '</span>' +
+      '<h2>' + escapeHtml(lesson.title) + '</h2></div>' +
+      '<button class="back-link" id="btn-back-home" type="button">← Home</button>' +
+      '</div>';
+    const stages = [['learn', '1. Learn'], ['check', '2. Check'], ['practice', '3. Practice']];
+    html += '<div class="stage-tabs">';
+    stages.forEach(function (s) {
+      const cls = s[0] === activeStage ? 'active' : '';
+      html += '<div class="stage-tab ' + cls + '">' + s[1] + '</div>';
+    });
+    html += '</div>';
+    return html;
+  }
+
+  function wireBackHome() {
+    const b = $('#btn-back-home');
+    if (b) b.addEventListener('click', renderHome);
+  }
+
+  function renderLessonStage(lessonId, stage) {
+    const lesson = findLesson(lessonId);
+    if (stage === 'learn') renderLearnStage(lesson);
+    else if (stage === 'check') renderCheckStage(lesson);
+    else if (stage === 'practice') renderPracticeStage(lesson);
+  }
+
+  function renderLearnStage(lesson) {
+    let html = '<section class="screen">' + lessonHeaderHTML(lesson, 'learn');
+    html += '<div class="learn-pattern">' + lesson.learn.pattern + '</div>';
+    html += '<ul class="example-list">';
+    lesson.learn.examples.forEach(function (ex) { html += '<li class="example-item">' + ex + '</li>'; });
+    html += '</ul>';
+    html += '<div class="tip-box"><span class="tip-emoji">💡</span><span>' + escapeHtml(lesson.learn.tip) + '</span></div>';
+    html += '<div class="question-actions" style="justify-content:center;margin-top:22px;">' +
+      '<button class="btn btn-primary btn-lg" id="btn-to-check" type="button">Let’s Check! →</button></div>';
+    html += '</section>';
+    app().innerHTML = html;
+    wireBackHome();
+    $('#btn-to-check').addEventListener('click', function () { goToLesson(lesson.id, 'check'); });
+  }
+
+  function renderCheckStage(lesson) {
+    let idx = 0;
+    let correctCount = 0;
+    const questions = lesson.check;
+
+    function renderQ() {
+      let html = '<section class="screen">' + lessonHeaderHTML(lesson, 'check');
+      html += '<p class="thai-note" style="margin-bottom:12px;">Quick check — 2 questions before you practise.</p>';
+      html += '<div id="q-slot"></div></section>';
+      app().innerHTML = html;
+      wireBackHome();
+      renderQuestionInto($('#q-slot'), questions[idx], {
+        progressLabel: 'Question ' + (idx + 1) + ' of ' + questions.length,
+        attemptsAllowed: 2,
+        nextLabel: idx === questions.length - 1 ? 'Continue to Practice →' : 'Next →',
+        onResult: function (isCorrect) {
+          if (isCorrect) correctCount++;
+          idx++;
+          if (idx < questions.length) renderQ();
+          else {
+            showToast('Nice! Ready for practice 📝');
+            goToLesson(lesson.id, 'practice');
+          }
+        }
+      });
+    }
+    renderQ();
+  }
+
+  function renderPracticeStage(lesson) {
+    const order = shuffle(lesson.practice);
+    let idx = 0;
+    const results = []; // {q, correct}
+
+    function renderQ() {
+      let html = '<section class="screen">' + lessonHeaderHTML(lesson, 'practice') + '<div id="q-slot"></div></section>';
+      app().innerHTML = html;
+      wireBackHome();
+      renderQuestionInto($('#q-slot'), order[idx], {
+        progressLabel: 'Question ' + (idx + 1) + ' of ' + order.length,
+        attemptsAllowed: 2,
+        nextLabel: idx === order.length - 1 ? 'See My Results 🏁' : 'Next →',
+        onResult: function (isCorrect) {
+          results.push({ q: order[idx], correct: isCorrect });
+          idx++;
+          if (idx < order.length) renderQ();
+          else finishPractice();
+        }
+      });
+    }
+
+    function finishPractice() {
+      const correct = results.filter(function (r) { return r.correct; }).length;
+      const total = results.length;
+      const pct = Math.round((correct / total) * 100);
+      const stars = pct === 100 ? 3 : pct >= 80 ? 2 : pct >= 50 ? 1 : 0;
+      const prog = getLessonProgress(lesson.id);
+      const improved = correct > prog.bestCorrect || prog.bestTotal === 0;
+      if (improved) { prog.bestCorrect = correct; prog.bestTotal = total; prog.stars = Math.max(prog.stars, stars); }
+      prog.status = 'complete';
+      prog.completedAt = Date.now ? Date.now() : 0;
+      saveState();
+      showToast('🎉 Lesson complete! ' + stars + ' star' + (stars === 1 ? '' : 's') + ' earned!', true);
+      renderLessonSummary(lesson, results, correct, total, stars);
+    }
+    renderQ();
+  }
+
+  function renderLessonSummary(lesson, results, correct, total, stars) {
+    const mistakes = results.filter(function (r) { return !r.correct; });
+    let html = '<section class="screen">' + lessonHeaderHTML(lesson, 'practice');
+    html += '<div class="card summary-card">';
+    html += '<div class="stars-earned">' + (stars > 0 ? '⭐'.repeat(stars) + '☆'.repeat(3 - stars) : '☆☆☆') + '</div>';
+    html += '<div class="summary-score">' + correct + ' / ' + total + '</div>';
+    html += '<p class="summary-sub">' + Math.round((correct / total) * 100) + '% correct — ' + escapeHtml(lesson.title) + '</p>';
+    html += '<div class="summary-stats">' +
+      '<div class="stat-pill ok"><div class="num">' + correct + '</div><div class="lbl">Correct</div></div>' +
+      '<div class="stat-pill no"><div class="num">' + mistakes.length + '</div><div class="lbl">Incorrect</div></div>' +
+      '</div>';
+    if (mistakes.length) {
+      html += '<div class="mistake-list">';
+      mistakes.forEach(function (m) {
+        html += '<div class="mistake-item"><div class="mi-q">' + m.q.prompt.replace(/___/g, '…') + '</div>' +
+          '<div class="mi-correct">' + correctAnswerText(m.q) + '</div>' +
+          '<div class="mi-explain">' + escapeHtml(m.q.explanation || '') + '</div></div>';
+      });
+      html += '</div>';
+    }
+    html += '<div class="summary-actions">';
+    if (mistakes.length) html += '<button class="btn btn-ghost" id="btn-retry-mistakes" type="button">Review Mistakes</button>';
+    const nextLesson = nextNumberedLesson(lesson.id);
+    if (nextLesson) html += '<button class="btn btn-primary" id="btn-next-lesson" type="button">Next Lesson →</button>';
+    html += '<button class="btn btn-accent" id="btn-back-home2" type="button">Back to Home</button>';
+    html += '</div></div></section>';
+    app().innerHTML = html;
+
+    const backBtn = $('#btn-back-home2');
+    if (backBtn) backBtn.addEventListener('click', renderHome);
+    const nextBtn = $('#btn-next-lesson');
+    if (nextBtn) nextBtn.addEventListener('click', function () { goToLesson(nextLesson.id, 'learn'); });
+    const retryBtn = $('#btn-retry-mistakes');
+    if (retryBtn) retryBtn.addEventListener('click', function () { renderMistakeReview(lesson, mistakes); });
+  }
+
+  function correctAnswerText(q) {
+    let text = '';
+    if (q.type === 'mcq') text = q.options[q.answer];
+    else if (q.type === 'fill') text = q.accept[0];
+    else if (q.type === 'order') text = q.answer + '.';
+    else if (q.type === 'match') text = q.pairs.map(function (p) { return p.left + ' → ' + p.right; }).join(' · ');
+    return '✅ ' + escapeHtml(text);
+  }
+
+  function renderMistakeReview(lesson, mistakes) {
+    let idx = 0;
+    function renderQ() {
+      let html = '<section class="screen">' + lessonHeaderHTML(lesson, 'practice');
+      html += '<p class="thai-note" style="margin-bottom:12px;">Review Mistakes — give it another go!</p>';
+      html += '<div id="q-slot"></div></section>';
+      app().innerHTML = html;
+      wireBackHome();
+      renderQuestionInto($('#q-slot'), mistakes[idx].q, {
+        progressLabel: 'Mistake ' + (idx + 1) + ' of ' + mistakes.length,
+        attemptsAllowed: 2,
+        nextLabel: idx === mistakes.length - 1 ? 'Done ✓' : 'Next →',
+        onResult: function () {
+          idx++;
+          if (idx < mistakes.length) renderQ();
+          else renderHome();
+        }
+      });
+    }
+    renderQ();
+  }
+
+  function nextNumberedLesson(currentId) {
+    if (currentId === 'intro') return NUMBERED_LESSONS[0];
+    const i = NUMBERED_LESSONS.findIndex(function (l) { return l.id === currentId; });
+    return i > -1 && i < NUMBERED_LESSONS.length - 1 ? NUMBERED_LESSONS[i + 1] : null;
+  }
+
+  // ---------- MIXED CHALLENGE ----------
+  function renderMixedIntro() {
+    setCurrent({ view: 'mixed-intro' });
+    const last = state.mixed.lastResult;
+    let html = '<section class="screen"><div class="card challenge-intro">' +
+      '<div class="big-emoji">🎯</div>' +
+      '<h2>Mixed Challenge</h2>' +
+      '<p>30 questions from every topic — a great way to check you’re ready for your exam!</p>';
+    if (last) {
+      html += '<p class="thai-note">Last score: ' + last.score + ' / ' + last.total + ' (' + last.percent + '%) — ' + last.levelLabel + '</p>';
+    }
+    html += '<div class="summary-actions">' +
+      '<button class="btn btn-primary btn-lg" id="btn-start-mixed" type="button">Start Challenge ▶️</button>' +
+      '<button class="btn btn-ghost" id="btn-back-home3" type="button">Back to Home</button>' +
+      '</div></div></section>';
+    app().innerHTML = html;
+    $('#btn-back-home3').addEventListener('click', renderHome);
+    $('#btn-start-mixed').addEventListener('click', startMixedChallenge);
+  }
+
+  function startMixedChallenge() {
+    const order = shuffle(MIXED_CHALLENGE);
+    const results = [];
+    let idx = 0;
+    setCurrent({ view: 'mixed-quiz' });
+
+    function renderQ() {
+      let html = '<section class="screen">';
+      html += '<div class="progress-bar-track" style="margin-bottom:16px;"><div class="progress-bar-fill" style="width:' + Math.round((idx / order.length) * 100) + '%"></div></div>';
+      html += '<div id="q-slot"></div></section>';
+      app().innerHTML = html;
+      renderQuestionInto($('#q-slot'), order[idx], {
+        progressLabel: 'Question ' + (idx + 1) + ' of ' + order.length,
+        attemptsAllowed: 1,
+        nextLabel: idx === order.length - 1 ? 'See My Score 🏁' : 'Continue →',
+        onResult: function (isCorrect) {
+          results.push({ q: order[idx], correct: isCorrect });
+          idx++;
+          if (idx < order.length) renderQ();
+          else finishMixed(results);
+        }
+      });
+    }
+    renderQ();
+  }
+
+  function finishMixed(results) {
+    const total = results.length;
+    const correct = results.filter(function (r) { return r.correct; }).length;
+    const percent = Math.round((correct / total) * 100);
+    let levelLabel, thaiMsg;
+    if (percent >= 90) { levelLabel = 'Grammar Star ⭐'; thaiMsg = 'สุดยอดมาก! เธอคือ Grammar Star ตัวจริง!'; }
+    else if (percent >= 75) { levelLabel = 'Great Progress 🌟'; thaiMsg = 'ทำได้ดีมาก! ลองทบทวนจุดที่ยังพลาดอีกนิดนะ'; }
+    else if (percent >= 60) { levelLabel = 'Keep Practising 💪'; thaiMsg = 'เก่งขึ้นแล้ว! ฝึกอีกหน่อยแล้วลองใหม่นะ'; }
+    else { levelLabel = 'Let’s Review Again 📖'; thaiMsg = 'ไม่เป็นไรนะ ลองกลับไปทบทวนบทเรียน แล้วค่อยทำ Challenge ใหม่'; }
+
+    // topic breakdown
+    const byTopic = {};
+    results.forEach(function (r) {
+      const t = r.q.topic;
+      if (!byTopic[t]) byTopic[t] = { correct: 0, total: 0 };
+      byTopic[t].total++;
+      if (r.correct) byTopic[t].correct++;
+    });
+    const topicRows = Object.keys(byTopic).map(function (t) {
+      return { topic: t, pct: Math.round((byTopic[t].correct / byTopic[t].total) * 100) };
+    }).sort(function (a, b) { return b.pct - a.pct; });
+    const strongest = topicRows.slice(0, 3).filter(function (t) { return t.pct >= 70; });
+    const weakest = topicRows.slice().sort(function (a, b) { return a.pct - b.pct; }).slice(0, 3).filter(function (t) { return t.pct < 70; });
+
+    const mistakes = results.filter(function (r) { return !r.correct; });
+
+    state.mixed.attempts++;
+    state.mixed.lastResult = {
+      score: correct, total: total, percent: percent, levelLabel: levelLabel,
+      date: Date.now ? Date.now() : 0,
+      mistakeTopics: mistakes.map(function (m) { return m.q.topic; })
+    };
+    saveState();
+    showToast(percent >= 75 ? '🎉 Amazing work!' : 'Challenge complete!', percent >= 75);
+
+    renderMixedResult({ correct: correct, total: total, percent: percent, levelLabel: levelLabel, thaiMsg: thaiMsg, topicRows: topicRows, strongest: strongest, weakest: weakest, mistakes: mistakes, results: results });
+  }
+
+  function topicBarColor(pct) {
+    if (pct >= 80) return 'var(--green)';
+    if (pct >= 50) return 'var(--yellow)';
+    return 'var(--coral)';
+  }
+
+  function renderMixedResult(data) {
+    setCurrent({ view: 'mixed-result' });
+    let html = '<section class="screen"><div class="card summary-card">';
+    html += '<h2>' + data.levelLabel + '</h2>';
+    html += '<div class="summary-score">' + data.correct + ' / ' + data.total + '</div>';
+    html += '<p class="summary-sub">' + data.percent + '% correct</p>';
+    html += '<div class="summary-stats">' +
+      '<div class="stat-pill ok"><div class="num">' + data.correct + '</div><div class="lbl">Correct</div></div>' +
+      '<div class="stat-pill no"><div class="num">' + data.mistakes.length + '</div><div class="lbl">Incorrect</div></div>' +
+      '</div>';
+    html += '<div class="recommend-box">' + escapeHtml(data.thaiMsg) + '</div>';
+
+    if (data.topicRows.length) {
+      html += '<h3 style="text-align:left;">Topic Breakdown</h3><div class="topic-breakdown">';
+      data.topicRows.forEach(function (t) {
+        html += '<div class="topic-row"><span class="topic-name">' + escapeHtml(TOPIC_LABELS[t.topic] || t.topic) + '</span>' +
+          '<span class="topic-bar-track"><span class="topic-bar-fill" style="width:' + t.pct + '%;background:' + topicBarColor(t.pct) + '"></span></span>' +
+          '<span class="topic-pct">' + t.pct + '%</span></div>';
+      });
+      html += '</div>';
+    }
+
+    if (data.mistakes.length) {
+      html += '<h3 style="text-align:left;">Questions to Review</h3><div class="mistake-list">';
+      data.mistakes.forEach(function (m) {
+        html += '<div class="mistake-item"><div class="mi-q">' + m.q.prompt.replace(/___/g, '…') + '</div>' +
+          '<div class="mi-correct">' + correctAnswerText(m.q) + '</div>' +
+          '<div class="mi-explain">' + escapeHtml(m.q.explanation || '') + '</div></div>';
+      });
+      html += '</div>';
+    }
+
+    html += '<div class="summary-actions">';
+    if (data.mistakes.length) html += '<button class="btn btn-ghost" id="btn-retry-incorrect" type="button">Retry Incorrect Questions</button>';
+    html += '<button class="btn btn-accent" id="btn-restart-challenge" type="button">Restart Challenge</button>';
+    html += '<button class="btn btn-primary" id="btn-back-lessons" type="button">Back to Lessons</button>';
+    html += '</div></div></section>';
+    app().innerHTML = html;
+
+    $('#btn-back-lessons').addEventListener('click', renderHome);
+    $('#btn-restart-challenge').addEventListener('click', startMixedChallenge);
+    const retryBtn = $('#btn-retry-incorrect');
+    if (retryBtn) retryBtn.addEventListener('click', function () { retryMixedMistakes(data.mistakes); });
+  }
+
+  function retryMixedMistakes(mistakes) {
+    let idx = 0;
+    const qs = mistakes.map(function (m) { return m.q; });
+    function renderQ() {
+      let html = '<section class="screen"><div id="q-slot"></div></section>';
+      app().innerHTML = html;
+      renderQuestionInto($('#q-slot'), qs[idx], {
+        progressLabel: 'Retry ' + (idx + 1) + ' of ' + qs.length,
+        attemptsAllowed: 2,
+        nextLabel: idx === qs.length - 1 ? 'Done ✓' : 'Next →',
+        onResult: function () {
+          idx++;
+          if (idx < qs.length) renderQ();
+          else renderHome();
+        }
+      });
+    }
+    renderQ();
+  }
+
+  /* ============================================================
+     6. NAVIGATION, MODAL, INIT
+     ============================================================ */
+  function wireGlobalNav() {
+    $('#btn-home').addEventListener('click', renderHome);
+    $all('.nav-btn').forEach(function (btn) {
+      const nav = btn.dataset.nav;
+      if (nav === 'home') btn.addEventListener('click', renderHome);
+      if (nav === 'mixed') btn.addEventListener('click', renderMixedIntro);
+    });
+    $('#btn-reset').addEventListener('click', function () { $('#reset-modal').hidden = false; });
+    $('#reset-cancel').addEventListener('click', function () { $('#reset-modal').hidden = true; });
+    $('#reset-confirm').addEventListener('click', function () {
+      localStorage.removeItem(STORAGE_KEY);
+      state = defaultState();
+      $('#reset-modal').hidden = true;
+      showToast('Progress reset. Fresh start! 🌱');
+      renderHome();
+    });
+  }
+
+  function resumeOrHome() {
+    const cur = state.current;
+    if (cur && cur.view === 'lesson' && findLesson(cur.lessonId)) {
+      renderLessonStage(cur.lessonId, cur.stage || 'learn');
+    } else if (cur && (cur.view === 'mixed-intro' || cur.view === 'mixed-quiz' || cur.view === 'mixed-result')) {
+      renderMixedIntro();
+    } else {
+      renderHome();
+    }
+  }
+
+  function init() {
+    wireGlobalNav();
+    resumeOrHome();
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+})();
+
+</script>
+</body>
+</html>
