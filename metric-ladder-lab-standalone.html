@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Metric Ladder Lab — mg, g, kg &amp; t</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --page-bg: #f2ebdd;
+    --ink: #241f18;
+    --ink-soft: #6b6355;
+    --ink-faint: #a49b89;
+    --paper: #ffffff;
+    --line: #e7dcc4;
+
+    --coral-1: #e2544c;
+    --coral-2: #e79a52;
+    --coral-ink: #fff3ea;
+
+    --cream: #fbf3de;
+    --cream-line: #ecdfb9;
+
+    --teal-1: #14615a;
+    --teal-2: #0c4640;
+
+    --purple-1: #efe7f7;
+    --purple-line: #ded0f0;
+    --purple-accent: #6c4ab6;
+
+    --dark-1: #221f1a;
+    --dark-2: #2d2922;
+
+    --good: #57c98a;
+    --good-ink: #1d6b41;
+    --bad: #e2544c;
+    --bad-ink: #9c2c22;
+
+    --radius-xl: 32px;
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 12px;
+    --shadow: 0 10px 30px -14px rgba(36, 31, 24, 0.35);
+
+    --font-display: 'Baloo 2', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--page-bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); margin: 0; }
+  p { margin: 0; }
+  button { font-family: inherit; }
+
+  .wrap { max-width: 900px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  .icon { width: 20px; height: 20px; flex-shrink: 0; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .icon-sm { width: 15px; height: 15px; stroke-width: 2; }
+  .icon-lg { width: 26px; height: 26px; stroke-width: 1.6; }
+
+  /* ---------- Header ---------- */
+  .topbar { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+  .brand-mark {
+    width: 52px; height: 52px; border-radius: 18px;
+    background: linear-gradient(160deg, var(--coral-1), var(--coral-2));
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 800; font-size: 18px;
+    box-shadow: var(--shadow); flex-shrink: 0;
+  }
+  .brand-title { font-size: 21px; font-weight: 700; }
+  .brand-sub { font-size: 13px; color: var(--ink-soft); margin-top: 2px; }
+
+  /* ---------- Card shell ---------- */
+  .card { border-radius: var(--radius-xl); padding: 28px; box-shadow: var(--shadow); margin-bottom: 22px; }
+  .card-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.85; margin-bottom: 6px; }
+  .card-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .card-sub { font-size: 14.5px; line-height: 1.55; }
+
+  /* ---------- Coral: The Ladder ---------- */
+  .card-coral { background: linear-gradient(165deg, var(--coral-1) 0%, var(--coral-2) 100%); color: var(--coral-ink); }
+  .card-coral .card-sub { color: rgba(255,255,255,0.9); margin-bottom: 22px; }
+  .ladder { max-width: 420px; margin: 0 auto; }
+  .rung {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    background: rgba(255,255,255,0.14); border: 2px solid rgba(255,255,255,0.3); border-radius: var(--radius-md);
+    padding: 14px 20px; transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .rung.active { background: rgba(255,255,255,0.28); border-color: #fff; }
+  .rung-symbol { font-family: var(--font-display); font-weight: 800; font-size: 22px; }
+  .rung-name { font-size: 12.5px; opacity: 0.85; }
+  .rung-example { font-size: 12px; background: rgba(255,255,255,0.18); padding: 4px 10px; border-radius: 999px; }
+  .connector { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 0; }
+  .connector-line { width: 2px; height: 16px; background: rgba(255,255,255,0.35); }
+  .connector-ops { display: flex; gap: 8px; }
+  .op-btn {
+    background: rgba(255,255,255,0.16); border: none; color: #fff; font-weight: 700; font-size: 12.5px;
+    padding: 6px 12px; border-radius: 999px; cursor: pointer; font-family: var(--font-body);
+  }
+  .op-btn.active { background: #fff; color: var(--coral-1); }
+  .ladder-note { text-align: center; margin-top: 18px; font-size: 14px; min-height: 22px; font-weight: 600; }
+
+  /* ---------- Cream: Why it works ---------- */
+  .card-cream { background: var(--cream); border: 1px solid var(--cream-line); }
+  .card-cream .card-sub { color: var(--ink-soft); margin-bottom: 20px; }
+  .pot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 600px) { .pot-grid { grid-template-columns: 1fr; } }
+  .pot-card { background: var(--paper); border: 1px solid var(--cream-line); border-radius: var(--radius-md); padding: 18px; text-align: center; }
+  .pot-power { font-family: var(--font-display); font-size: 26px; font-weight: 800; }
+  .pot-value { font-size: 14px; color: var(--ink-soft); margin-top: 6px; }
+  .pot-note { font-size: 12.5px; color: var(--ink-faint); margin-top: 4px; }
+
+  /* ---------- Teal: Calculator ---------- */
+  .card-teal { background: linear-gradient(180deg, var(--teal-1), var(--teal-2)); color: #eafaf3; }
+  .card-teal .card-sub { color: rgba(234,250,243,0.8); margin-bottom: 20px; }
+  .calc-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 18px; }
+  .calc-input {
+    flex: 1 1 140px; background: rgba(255,255,255,0.94); border: none; border-radius: 14px;
+    padding: 13px 16px; font-size: 18px; font-weight: 700; font-family: var(--font-display); color: var(--ink);
+  }
+  select.calc-select {
+    background: rgba(255,255,255,0.94); border: none; border-radius: 14px; padding: 13px 14px;
+    font-size: 15px; font-weight: 700; color: var(--ink); font-family: var(--font-body);
+  }
+  .calc-arrow { opacity: 0.7; }
+  .calc-btn {
+    background: #fff; color: var(--teal-2); border: none; border-radius: 999px; padding: 13px 24px;
+    font-weight: 800; font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .calc-steps { display: flex; flex-direction: column; gap: 10px; }
+  .calc-step {
+    background: rgba(255,255,255,0.1); border-radius: 14px; padding: 12px 16px; font-size: 14.5px;
+  }
+  .calc-step strong { font-family: var(--font-display); }
+  .calc-step.final { background: rgba(255,255,255,0.22); font-weight: 700; }
+
+  /* ---------- Purple: Practice ---------- */
+  .card-purple { background: var(--purple-1); border: 1px solid var(--purple-line); color: #2c2438; }
+  .card-purple .card-sub { color: #5c5268; margin-bottom: 20px; }
+  .quiz-progress-track { height: 8px; background: #ded0f0; border-radius: 999px; overflow: hidden; margin-bottom: 18px; }
+  .quiz-progress-fill { height: 100%; background: var(--purple-accent); border-radius: 999px; transition: width 0.25s ease; }
+  .quiz-meta { font-size: 12.5px; font-weight: 700; color: #6d6478; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+  .quiz-prompt { font-size: 19px; font-weight: 700; margin-bottom: 18px; }
+  .quiz-input-row { display: flex; gap: 10px; margin-bottom: 16px; }
+  .quiz-input {
+    flex: 1; border: 2px solid var(--purple-line); border-radius: 14px; padding: 13px 16px;
+    font-size: 18px; font-weight: 700; font-family: var(--font-display); background: #fff; color: #2c2438;
+  }
+  .quiz-input:focus { outline: none; border-color: var(--purple-accent); }
+  .quiz-unit { display: flex; align-items: center; font-weight: 700; color: #6d6478; padding: 0 6px; }
+  .quiz-btn {
+    background: var(--purple-accent); color: #fff; border: none; border-radius: 999px; padding: 13px 24px;
+    font-weight: 800; font-size: 14px; cursor: pointer; width: 100%;
+  }
+  .quiz-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .quiz-feedback { margin-top: 16px; border-radius: 14px; padding: 14px 16px; display: none; }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.correct { background: #e1f6e9; color: var(--good-ink); }
+  .quiz-feedback.incorrect { background: #fbe1dc; color: var(--bad-ink); }
+  .quiz-feedback-title { font-weight: 800; display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+  .quiz-feedback-explain { font-size: 13.5px; line-height: 1.5; }
+  .quiz-next-row { margin-top: 14px; }
+  .quiz-results { text-align: center; display: none; }
+  .quiz-results.show { display: block; }
+  .quiz-score-ring { width: 130px; height: 130px; border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; background: conic-gradient(var(--purple-accent) calc(var(--pct) * 1%), #ded0f0 0); }
+  .quiz-score-ring-inner { width: 104px; height: 104px; border-radius: 50%; background: var(--purple-1); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .quiz-score-pct { font-family: var(--font-display); font-size: 26px; font-weight: 800; }
+  .quiz-score-frac { font-size: 12px; color: #6d6478; }
+  .card-purple.hidden-live .quiz-live { display: none; }
+  .card-purple.hidden-results .quiz-results { display: none; }
+
+  /* ---------- Dark: Cheat sheet ---------- */
+  .card-dark { background: linear-gradient(165deg, var(--dark-1), var(--dark-2)); color: #f3ede2; }
+  .card-dark .card-sub { color: #cfc4b2; margin-bottom: 20px; }
+  .table-wrap { overflow-x: auto; margin-bottom: 20px; }
+  table.conv-table { width: 100%; border-collapse: collapse; }
+  table.conv-table th, table.conv-table td { text-align: left; padding: 10px 12px; font-size: 13.5px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  table.conv-table th { color: #a89e8d; font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.04em; }
+  .tricks-list { display: flex; flex-direction: column; gap: 10px; padding: 0; margin: 0; list-style: none; }
+  .tricks-list li { display: flex; gap: 10px; font-size: 13.5px; line-height: 1.5; background: rgba(255,255,255,0.06); border-radius: 12px; padding: 12px 14px; }
+  .tricks-list .icon { color: var(--coral-2); margin-top: 2px; }
+
+  .footnote { text-align: center; color: var(--ink-faint); font-size: 12.5px; margin-top: 20px; }
+  .footnote b { color: var(--ink-soft); }
+</style>
+</head>
+<body>
+
+<!-- Icon sprite: hand-drawn line icons, no emoji / icon fonts -->
+<svg style="position:absolute; width:0; height:0; overflow:hidden;" aria-hidden="true">
+  <defs>
+    <symbol id="icon-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke-linejoin="round" /></symbol>
+    <symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="4.5" /><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none" /></symbol>
+    <symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 5.5c3-1.2 6-1.2 8 .5 2-1.7 5-1.7 8-.5v13c-3-1.2-6-1.2-8 .5-2-1.7-5-1.7-8-.5Z" stroke-linejoin="round" /><path d="M12 6v13" /></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></symbol>
+    <symbol id="icon-x" viewBox="0 0 24 24"><path d="M6 6l12 12" /><path d="M18 6l-12 12" /></symbol>
+    <symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.7" /><path d="M20 4v5h-5" /><path d="M20 12a8 8 0 0 1-14 5.7" /><path d="M4 20v-5h5" /></symbol>
+    <symbol id="icon-scale" viewBox="0 0 24 24"><path d="M12 3v18" /><path d="M6 7h12" /><path d="M6 7 3 13a3 3 0 0 0 6 0Z" stroke-linejoin="round" /><path d="M18 7l-3 6a3 3 0 0 0 6 0Z" stroke-linejoin="round" /></symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand-mark">mg</div>
+    <div>
+      <div class="brand-title">Metric Ladder Lab</div>
+      <div class="brand-sub">Milligrams, grams, kilograms &amp; tonnes — one simple idea</div>
+    </div>
+  </div>
+
+  <!-- Coral: The Ladder -->
+  <div class="card card-coral">
+    <div class="card-eyebrow"><svg class="icon icon-sm"><use href="#icon-scale" /></svg> The metric ladder</div>
+    <h2 class="card-title">Every step is the same move</h2>
+    <p class="card-sub">Four units, one ladder. Click an arrow below — moving down multiplies by 1000, moving up divides by 1000. That's the whole trick.</p>
+
+    <div class="ladder" id="ladder">
+      <div class="rung" data-unit="t">
+        <div><div class="rung-symbol">t</div><div class="rung-name">tonne</div></div>
+        <span class="rung-example">a small car</span>
+      </div>
+      <div class="connector">
+        <div class="connector-line"></div>
+        <div class="connector-ops">
+          <button class="op-btn" data-from="t" data-to="kg" data-op="×1000">↓ ×1000</button>
+          <button class="op-btn" data-from="kg" data-to="t" data-op="÷1000">↑ ÷1000</button>
+        </div>
+        <div class="connector-line"></div>
+      </div>
+      <div class="rung" data-unit="kg">
+        <div><div class="rung-symbol">kg</div><div class="rung-name">kilogram</div></div>
+        <span class="rung-example">a bag of rice</span>
+      </div>
+      <div class="connector">
+        <div class="connector-line"></div>
+        <div class="connector-ops">
+          <button class="op-btn" data-from="kg" data-to="g" data-op="×1000">↓ ×1000</button>
+          <button class="op-btn" data-from="g" data-to="kg" data-op="÷1000">↑ ÷1000</button>
+        </div>
+        <div class="connector-line"></div>
+      </div>
+      <div class="rung" data-unit="g">
+        <div><div class="rung-symbol">g</div><div class="rung-name">gram</div></div>
+        <span class="rung-example">a paper clip</span>
+      </div>
+      <div class="connector">
+        <div class="connector-line"></div>
+        <div class="connector-ops">
+          <button class="op-btn" data-from="g" data-to="mg" data-op="×1000">↓ ×1000</button>
+          <button class="op-btn" data-from="mg" data-to="g" data-op="÷1000">↑ ÷1000</button>
+        </div>
+        <div class="connector-line"></div>
+      </div>
+      <div class="rung" data-unit="mg">
+        <div><div class="rung-symbol">mg</div><div class="rung-name">milligram</div></div>
+        <span class="rung-example">a grain of salt</span>
+      </div>
+    </div>
+    <p class="ladder-note" id="ladderNote">Click an arrow to see a step in action.</p>
+  </div>
+
+  <!-- Cream: Why it works -->
+  <div class="card card-cream">
+    <div class="card-eyebrow"><svg class="icon icon-sm"><use href="#icon-book" /></svg> Why it works</div>
+    <h2 class="card-title">Powers of ten</h2>
+    <p class="card-sub">Every extra step on the ladder just adds another set of three zeros — that's all a "power of ten" is.</p>
+    <div class="pot-grid">
+      <div class="pot-card"><div class="pot-power">10<sup>3</sup></div><div class="pot-value">1,000</div><div class="pot-note">1 step — e.g. mg → g</div></div>
+      <div class="pot-card"><div class="pot-power">10<sup>6</sup></div><div class="pot-value">1,000,000</div><div class="pot-note">2 steps — e.g. mg → kg</div></div>
+      <div class="pot-card"><div class="pot-power">10<sup>9</sup></div><div class="pot-value">1,000,000,000</div><div class="pot-note">3 steps — mg → t</div></div>
+    </div>
+  </div>
+
+  <!-- Teal: Calculator -->
+  <div class="card card-teal">
+    <div class="card-eyebrow"><svg class="icon icon-sm"><use href="#icon-bolt" /></svg> Try it yourself</div>
+    <h2 class="card-title">Live calculator</h2>
+    <p class="card-sub">Enter any amount and watch every step of the conversion, one at a time.</p>
+
+    <div class="calc-row">
+      <input type="text" inputmode="decimal" id="calcValue" class="calc-input" value="45000" />
+      <select id="calcFrom" class="calc-select">
+        <option value="mg" selected>mg</option><option value="g">g</option><option value="kg">kg</option><option value="t">t</option>
+      </select>
+      <span class="calc-arrow">→</span>
+      <select id="calcTo" class="calc-select">
+        <option value="mg">mg</option><option value="g">g</option><option value="kg" selected>kg</option><option value="t">t</option>
+      </select>
+      <button class="calc-btn" id="calcBtn">Convert <svg class="icon icon-sm"><use href="#icon-bolt" /></svg></button>
+    </div>
+    <div class="calc-steps" id="calcSteps"></div>
+  </div>
+
+  <!-- Purple: Practice -->
+  <div class="card card-purple" id="quizCard">
+    <div class="card-eyebrow"><svg class="icon icon-sm"><use href="#icon-target" /></svg> Quick practice</div>
+    <h2 class="card-title">Test yourself — 8 questions</h2>
+    <p class="card-sub">Mixed conversions across all four units. Instant feedback after every answer.</p>
+
+    <div class="quiz-live" id="quizLive">
+      <div class="quiz-progress-track"><div class="quiz-progress-fill" id="quizProgressFill" style="width:12.5%;"></div></div>
+      <div class="quiz-meta" id="quizMeta">Question 1 of 8</div>
+      <div class="quiz-prompt" id="quizPrompt">Loading…</div>
+      <div class="quiz-input-row">
+        <input type="text" inputmode="decimal" id="quizInput" class="quiz-input" placeholder="Your answer" />
+        <span class="quiz-unit" id="quizUnitLabel"></span>
+      </div>
+      <button class="quiz-btn" id="quizCheckBtn">Check answer</button>
+      <div class="quiz-feedback" id="quizFeedback">
+        <div class="quiz-feedback-title" id="quizFeedbackTitle"></div>
+        <div class="quiz-feedback-explain" id="quizFeedbackExplain"></div>
+        <div class="quiz-next-row"><button class="quiz-btn" id="quizNextBtn">Next question</button></div>
+      </div>
+    </div>
+
+    <div class="quiz-results" id="quizResults">
+      <div class="quiz-score-ring" id="quizScoreRing" style="--pct:0;">
+        <div class="quiz-score-ring-inner">
+          <div class="quiz-score-pct" id="quizScorePct">0%</div>
+          <div class="quiz-score-frac" id="quizScoreFrac">0 / 8</div>
+        </div>
+      </div>
+      <p style="margin-bottom:18px; font-weight:600;" id="quizScoreMessage"></p>
+      <button class="quiz-btn" id="quizRetryBtn" style="width:auto; display:inline-flex; align-items:center; gap:8px;">
+        <svg class="icon icon-sm"><use href="#icon-refresh" /></svg> Try again
+      </button>
+    </div>
+  </div>
+
+  <!-- Dark: Cheat sheet -->
+  <div class="card card-dark">
+    <div class="card-eyebrow"><svg class="icon icon-sm"><use href="#icon-book" /></svg> Reference</div>
+    <h2 class="card-title">Cheat sheet</h2>
+    <p class="card-sub">Keep this nearby while you practice.</p>
+
+    <div class="table-wrap">
+      <table class="conv-table">
+        <thead><tr><th>From</th><th>Equals</th></tr></thead>
+        <tbody>
+          <tr><td>1 mg</td><td>0.001 g</td></tr>
+          <tr><td>1 g</td><td>1,000 mg</td></tr>
+          <tr><td>1 g</td><td>0.001 kg</td></tr>
+          <tr><td>1 kg</td><td>1,000 g</td></tr>
+          <tr><td>1 kg</td><td>0.001 t</td></tr>
+          <tr><td>1 t</td><td>1,000 kg</td></tr>
+          <tr><td>1 t</td><td>1,000,000 g</td></tr>
+          <tr><td>1 t</td><td>1,000,000,000 mg</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ul class="tricks-list">
+      <li><svg class="icon icon-sm"><use href="#icon-bolt" /></svg> Smaller unit = multiply (number gets bigger). Bigger unit = divide (number gets smaller).</li>
+      <li><svg class="icon icon-sm"><use href="#icon-bolt" /></svg> Every step is exactly ×1000 or ÷1000 — never ×100 or ×10.</li>
+      <li><svg class="icon icon-sm"><use href="#icon-bolt" /></svg> ×1000 or ÷1000 always shifts the decimal point 3 places, once per step.</li>
+    </ul>
+  </div>
+
+  <p class="footnote">Bright EngMath · <b>Metric Ladder Lab</b> — mg, g, kg &amp; t conversion, explained one ladder step at a time.</p>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var EXP = { mg: 0, g: 3, kg: 6, t: 9 };
+  var UNIT_NAME = { mg: "mg", g: "g", kg: "kg", t: "t" };
+
+  function convert(value, from, to) {
+    return value * Math.pow(10, EXP[from] - EXP[to]);
+  }
+
+  function formatNumber(value, maxDecimals) {
+    if (maxDecimals === undefined) maxDecimals = 6;
+    var rounded = Number(value.toFixed(maxDecimals));
+    return rounded.toLocaleString("en-US", { maximumFractionDigits: maxDecimals });
+  }
+
+  /* ---------------- Ladder ---------------- */
+  var ladder = document.getElementById("ladder");
+  var ladderNote = document.getElementById("ladderNote");
+
+  ladder.addEventListener("click", function (e) {
+    var btn = e.target.closest(".op-btn");
+    if (!btn) return;
+    var from = btn.getAttribute("data-from");
+    var to = btn.getAttribute("data-to");
+    var op = btn.getAttribute("data-op");
+
+    ladder.querySelectorAll(".rung").forEach(function (r) { r.classList.remove("active"); });
+    ladder.querySelectorAll(".op-btn").forEach(function (b) { b.classList.remove("active"); });
+    ladder.querySelector('.rung[data-unit="' + from + '"]').classList.add("active");
+    ladder.querySelector('.rung[data-unit="' + to + '"]').classList.add("active");
+    btn.classList.add("active");
+
+    var verb = op === "×1000" ? "multiply" : "divide";
+    ladderNote.textContent = from + " " + (op === "×1000" ? "→" : "←") + " " + to + ": " + verb + " by 1000.";
+  });
+
+  /* ---------------- Calculator ---------------- */
+  var ORDER = ["mg", "g", "kg", "t"];
+
+  function pathBetween(from, to) {
+    var fi = ORDER.indexOf(from), ti = ORDER.indexOf(to);
+    var dir = fi < ti ? 1 : -1;
+    var path = [ORDER[fi]];
+    for (var i = fi; i !== ti; i += dir) path.push(ORDER[i + dir]);
+    return path;
+  }
+
+  var calcValue = document.getElementById("calcValue");
+  var calcFrom = document.getElementById("calcFrom");
+  var calcTo = document.getElementById("calcTo");
+  var calcSteps = document.getElementById("calcSteps");
+
+  document.getElementById("calcBtn").addEventListener("click", function () {
+    var value = Number(calcValue.value);
+    var from = calcFrom.value;
+    var to = calcTo.value;
+    calcSteps.innerHTML = "";
+    if (calcValue.value.trim() === "" || Number.isNaN(value)) return;
+
+    if (from === to) {
+      var same = document.createElement("div");
+      same.className = "calc-step";
+      same.textContent = "Pick two different units to see a conversion.";
+      calcSteps.appendChild(same);
+      return;
+    }
+
+    var path = pathBetween(from, to);
+    var dir = ORDER.indexOf(from) < ORDER.indexOf(to) ? 1 : -1;
+    var op = dir === 1 ? "÷" : "×";
+
+    for (var i = 0; i < path.length - 1; i++) {
+      var currentValue = convert(value, from, path[i]);
+      var nextValue = convert(value, from, path[i + 1]);
+      var row = document.createElement("div");
+      row.className = "calc-step";
+      row.innerHTML = formatNumber(currentValue) + " " + path[i] + " " + op + " 1000 = <strong>" + formatNumber(nextValue) + " " + path[i + 1] + "</strong>";
+      calcSteps.appendChild(row);
+    }
+    var finalRow = document.createElement("div");
+    finalRow.className = "calc-step final";
+    finalRow.innerHTML = "Final answer: " + formatNumber(value) + " " + from + " = " + formatNumber(convert(value, from, to)) + " " + to;
+    calcSteps.appendChild(finalRow);
+  });
+
+  /* ---------------- Quiz ---------------- */
+  var ALL_PAIRS = [
+    ["mg", "g"], ["g", "mg"], ["g", "kg"], ["kg", "g"], ["kg", "t"], ["t", "kg"],
+    ["mg", "kg"], ["kg", "mg"], ["g", "t"], ["t", "g"], ["mg", "t"], ["t", "mg"]
+  ];
+  var TOTAL_QUESTIONS = 8;
+  var state = { index: 0, score: 0, question: null, answered: false };
+
+  function randomInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+  function randomPair() { return ALL_PAIRS[randomInt(0, ALL_PAIRS.length - 1)]; }
+
+  function ladderExplanation(value, from, to, answer) {
+    var gap = EXP[from] - EXP[to];
+    var steps = Math.abs(gap) / 3;
+    var op = gap > 0 ? "×" : "÷";
+    var word = gap > 0 ? "multiply" : "divide";
+    var dir = gap > 0 ? "down" : "up";
+    return from + " to " + to + " is " + steps + " step" + (steps > 1 ? "s" : "") + " " + dir + " the ladder, so " + word +
+      " by 1000 " + (steps > 1 ? steps + " times" : "once") + ": " + formatNumber(value) + " " + op + " " +
+      Math.pow(1000, steps).toLocaleString("en-US") + " = " + formatNumber(answer) + " " + to + ".";
+  }
+
+  function generateQuestion() {
+    var pair = randomPair();
+    var from = pair[0], to = pair[1];
+    var digits = randomInt(2, 4);
+    var min = Math.pow(10, digits - 1), max = Math.pow(10, digits) - 1;
+    var value = randomInt(min, max);
+    var answer = convert(value, from, to);
+    return {
+      prompt: "Convert " + formatNumber(value) + " " + from + " to " + to + ".",
+      answer: answer,
+      tolerance: Math.max(Math.abs(answer) * 0.005, 0.0005),
+      unitLabel: to,
+      explanation: ladderExplanation(value, from, to, answer)
+    };
+  }
+
+  var quizProgressFill = document.getElementById("quizProgressFill");
+  var quizMeta = document.getElementById("quizMeta");
+  var quizPrompt = document.getElementById("quizPrompt");
+  var quizInput = document.getElementById("quizInput");
+  var quizUnitLabel = document.getElementById("quizUnitLabel");
+  var quizCheckBtn = document.getElementById("quizCheckBtn");
+  var quizFeedback = document.getElementById("quizFeedback");
+  var quizFeedbackTitle = document.getElementById("quizFeedbackTitle");
+  var quizFeedbackExplain = document.getElementById("quizFeedbackExplain");
+  var quizNextBtn = document.getElementById("quizNextBtn");
+  var quizLive = document.getElementById("quizLive");
+  var quizResults = document.getElementById("quizResults");
+  var quizScoreRing = document.getElementById("quizScoreRing");
+  var quizScorePct = document.getElementById("quizScorePct");
+  var quizScoreFrac = document.getElementById("quizScoreFrac");
+  var quizScoreMessage = document.getElementById("quizScoreMessage");
+
+  function loadQuestion() {
+    state.question = generateQuestion();
+    state.answered = false;
+    quizInput.value = "";
+    quizInput.disabled = false;
+    quizFeedback.classList.remove("show", "correct", "incorrect");
+    quizCheckBtn.style.display = "block";
+    quizCheckBtn.disabled = true;
+    quizMeta.textContent = "Question " + (state.index + 1) + " of " + TOTAL_QUESTIONS;
+    quizProgressFill.style.width = ((state.index) / TOTAL_QUESTIONS * 100) + "%";
+    quizPrompt.textContent = state.question.prompt;
+    quizUnitLabel.textContent = state.question.unitLabel;
+    quizInput.focus();
+  }
+
+  function checkAnswer() {
+    if (state.answered) return;
+    var given = Number(quizInput.value.replace(/,/g, ""));
+    var q = state.question;
+    var correct = !Number.isNaN(given) && Math.abs(given - q.answer) <= q.tolerance;
+    state.answered = true;
+    if (correct) state.score++;
+
+    quizInput.disabled = true;
+    quizCheckBtn.style.display = "none";
+    quizFeedback.classList.add("show", correct ? "correct" : "incorrect");
+    quizFeedbackTitle.innerHTML = correct
+      ? '<svg class="icon icon-sm"><use href="#icon-check" /></svg> Correct!'
+      : '<svg class="icon icon-sm"><use href="#icon-x" /></svg> Not quite — correct answer: ' + formatNumber(q.answer) + " " + q.unitLabel;
+    quizFeedbackExplain.textContent = q.explanation;
+    quizProgressFill.style.width = ((state.index + 1) / TOTAL_QUESTIONS * 100) + "%";
+  }
+
+  function nextQuestion() {
+    state.index++;
+    if (state.index >= TOTAL_QUESTIONS) {
+      showResults();
+      return;
+    }
+    loadQuestion();
+  }
+
+  function showResults() {
+    quizLive.style.display = "none";
+    quizResults.classList.add("show");
+    var pct = Math.round((state.score / TOTAL_QUESTIONS) * 100);
+    quizScoreRing.style.setProperty("--pct", pct);
+    quizScorePct.textContent = pct + "%";
+    quizScoreFrac.textContent = state.score + " / " + TOTAL_QUESTIONS;
+    var msg;
+    if (pct === 100) msg = "Perfect! You've mastered the ladder.";
+    else if (pct >= 80) msg = "Excellent work — that's mastery level!";
+    else if (pct >= 60) msg = "Solid! A little more practice and it'll stick for good.";
+    else msg = "Good start — try again and watch the ladder more closely.";
+    quizScoreMessage.textContent = msg;
+  }
+
+  function restartQuiz() {
+    state.index = 0;
+    state.score = 0;
+    quizResults.classList.remove("show");
+    quizLive.style.display = "block";
+    loadQuestion();
+  }
+
+  quizInput.addEventListener("input", function () {
+    quizCheckBtn.disabled = quizInput.value.trim() === "";
+  });
+  quizInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && !quizCheckBtn.disabled && !state.answered) checkAnswer();
+  });
+  quizCheckBtn.addEventListener("click", checkAnswer);
+  quizNextBtn.addEventListener("click", nextQuestion);
+  document.getElementById("quizRetryBtn").addEventListener("click", restartQuiz);
+
+  loadQuestion();
+})();
+</script>
+</body>
+</html>
