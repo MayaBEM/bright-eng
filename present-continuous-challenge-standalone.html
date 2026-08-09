@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+<title>Present Continuous Challenge — Grade 4 Exam Review | Bright EngMath</title>
+<meta name="description" content="A premium interactive practice app for Grade 4 Thai students to master the Present Continuous Tense before their English exam." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='80'%3E%E2%98%80%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<style>
+/* =========================================================================
+   Present Continuous Challenge — Styles
+   Warm, premium, playful-but-not-childish design for Grade 4 (age 9-10).
+   ========================================================================= */
+
+@media (prefers-reduced-motion: no-preference) {
+  :root { --motion-ok: 1; }
+}
+
+:root {
+  /* ---- palette: warm cream base, no purple/blue-dominant theme ---- */
+  --cream: #FFF8EC;
+  --cream-deep: #FDEFD9;
+  --card: #FFFFFF;
+  --ink: #2B2420;
+  --ink-soft: #5B5148;
+  --muted: #8C8074;
+  --line: #EDE1D0;
+
+  --orange: #FF8A3D;
+  --orange-deep: #E96F1F;
+  --coral: #FF6B5E;
+  --coral-deep: #E85147;
+  --yellow: #FFC93C;
+  --yellow-deep: #E8AE1E;
+  --mint: #2FBF96;
+  --mint-deep: #1F9E7A;
+  --teal: #35AEC0;
+  --teal-deep: #24909F;
+
+  --success-bg: #E6F8EF;
+  --success-line: #2FBF96;
+  --success-ink: #146B4F;
+  --error-bg: #FFEDE9;
+  --error-line: #FF6B5E;
+  --error-ink: #9A2E23;
+
+  --radius-lg: 26px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+  --shadow-soft: 0 10px 30px -12px rgba(43, 36, 26, 0.18);
+  --shadow-card: 0 6px 18px -8px rgba(43, 36, 26, 0.14);
+  --shadow-press: 0 2px 6px -2px rgba(43, 36, 26, 0.18);
+
+  --font-body: "Segoe UI", "Noto Sans Thai", "Leelawadee UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Segoe UI", "Noto Sans Thai", "Leelawadee UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: radial-gradient(1200px 600px at 10% -10%, var(--cream-deep) 0%, var(--cream) 55%) fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3 { font-family: var(--font-display); margin: 0; color: var(--ink); }
+p { margin: 0; }
+button { font-family: inherit; cursor: pointer; }
+
+/* ---------------------------- header ---------------------------- */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(255, 248, 236, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.brand-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+}
+.brand-btn:focus-visible, button:focus-visible, .test-card:focus-visible, .chip-btn:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+}
+.brand-mark { font-size: 26px; line-height: 1; }
+.brand-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; }
+.brand-name { font-weight: 800; font-size: 15px; color: var(--ink); }
+.brand-sub { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: .04em; }
+.ghost-btn {
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  color: var(--ink-soft);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.ghost-btn:hover { border-color: var(--teal); color: var(--teal-deep); }
+
+/* ---------------------------- layout ---------------------------- */
+#main-content {
+  flex: 1;
+  max-width: 880px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 18px 40px;
+}
+.screen { display: none; animation: fadeIn .28s ease both; }
+.screen.is-active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-heading { text-align: center; margin-bottom: 22px; }
+.eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--orange-deep);
+  background: #FFEBD9;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+.section-heading h1 { font-size: 26px; font-weight: 800; }
+.section-sub { color: var(--ink-soft); margin-top: 6px; font-size: 15px; }
+
+/* ---------------------------- home ---------------------------- */
+.home-hero { text-align: center; padding: 18px 6px 8px; }
+.hero-title { font-size: 34px; font-weight: 900; line-height: 1.15; letter-spacing: -.01em; }
+.hero-title span { color: var(--coral-deep); }
+.hero-subtitle { margin-top: 10px; font-size: 17px; color: var(--ink-soft); font-weight: 600; }
+
+.mastery-teaser {
+  max-width: 460px;
+  margin: 18px auto 4px;
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  box-shadow: var(--shadow-card);
+}
+.mastery-teaser-text { display: flex; align-items: baseline; justify-content: space-between; font-size: 13px; color: var(--ink-soft); font-weight: 700; margin-bottom: 8px; }
+.mastery-teaser-text strong { font-size: 18px; color: var(--ink); }
+.mastery-teaser-bar { height: 10px; border-radius: 999px; background: var(--cream-deep); overflow: hidden; }
+.mastery-teaser-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--mint), var(--teal)); border-radius: 999px; transition: width .5s ease; }
+
+.test-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 26px 0 20px;
+}
+@media (min-width: 700px) {
+  .test-cards { grid-template-columns: repeat(3, 1fr); }
+}
+
+.test-card {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+  border: 1.5px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.test-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); }
+.test-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.test-card-icon { font-size: 28px; }
+.badge { font-size: 11px; font-weight: 800; letter-spacing: .06em; padding: 5px 10px; border-radius: 999px; color: #fff; }
+.badge--easy { background: var(--mint); }
+.badge--medium { background: var(--orange); }
+.badge--hard { background: var(--coral); }
+.test-card h2 { font-size: 21px; font-weight: 800; }
+.test-card-desc { color: var(--ink-soft); font-size: 14px; }
+.test-card-count { font-weight: 700; color: var(--muted); font-size: 13px; margin-bottom: 4px; }
+
+.progress-row { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.progress-track { flex: 1; height: 10px; border-radius: 999px; background: var(--cream-deep); overflow: hidden; }
+.progress-fill { height: 100%; width: 0%; border-radius: 999px; transition: width .6s cubic-bezier(.22,1,.36,1); }
+.fill--easy { background: linear-gradient(90deg, var(--mint), #57D6B3); }
+.fill--medium { background: linear-gradient(90deg, var(--orange), var(--yellow)); }
+.fill--hard { background: linear-gradient(90deg, var(--coral), #FF8F7E); }
+.progress-label { font-size: 12px; font-weight: 800; color: var(--ink-soft); min-width: 40px; text-align: right; }
+
+.stars { letter-spacing: 3px; color: var(--line); font-size: 16px; }
+.stars .lit { color: var(--yellow-deep); }
+
+.cta-btn {
+  margin-top: 10px;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 13px 18px;
+  font-weight: 800;
+  font-size: 15px;
+  color: #fff;
+  box-shadow: var(--shadow-press);
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+  min-height: 48px;
+}
+.cta-btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
+.cta-btn:active { transform: translateY(0); box-shadow: none; }
+.cta-btn--easy { background: linear-gradient(180deg, #37CFA2, var(--mint-deep)); }
+.cta-btn--medium { background: linear-gradient(180deg, var(--orange), var(--orange-deep)); }
+.cta-btn--hard { background: linear-gradient(180deg, var(--coral), var(--coral-deep)); }
+
+.home-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 8px; }
+.secondary-btn {
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
+  min-height: 46px;
+}
+.secondary-btn:hover { border-color: var(--teal); color: var(--teal-deep); }
+
+.reset-row { text-align: center; margin-top: 22px; }
+.text-btn { background: none; border: none; color: var(--muted); font-size: 13px; font-weight: 700; text-decoration: underline; padding: 6px; }
+.text-btn:hover { color: var(--coral-deep); }
+
+/* ------------------------- quick review ------------------------- */
+.review-block {
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow-card);
+}
+.review-block h3 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+.review-block .en-title { font-size: 12.5px; color: var(--muted); font-weight: 700; margin-bottom: 12px; }
+.review-block .body-text { font-size: 15px; color: var(--ink-soft); margin-bottom: 10px; }
+.structure-pill {
+  display: inline-block;
+  background: var(--cream-deep);
+  border: 1.5px dashed var(--orange);
+  color: var(--orange-deep);
+  font-weight: 800;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+.example-list { display: grid; gap: 8px; margin-top: 6px; }
+.example-item {
+  background: var(--cream);
+  border-left: 4px solid var(--mint);
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.chart-table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; }
+.chart-table td { padding: 9px 10px; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+.chart-table td:first-child { font-weight: 700; }
+.chart-table td:last-child { text-align: right; font-weight: 800; color: var(--teal-deep); }
+.shortanswer-list { display: grid; gap: 6px; margin-top: 8px; }
+.shortanswer-item { background: var(--cream); border-radius: 10px; padding: 8px 12px; font-weight: 700; font-size: 14px; }
+
+.spelling-rules-grid { display: grid; gap: 14px; }
+.spelling-rule-card {
+  background: var(--card);
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--line);
+  padding: 16px;
+  box-shadow: var(--shadow-card);
+}
+.spelling-rule-card h4 { font-size: 15.5px; font-weight: 800; margin-bottom: 2px; }
+.spelling-rule-card .en-title { font-size: 12px; color: var(--muted); font-weight: 700; margin-bottom: 10px; }
+.spelling-examples { display: flex; flex-wrap: wrap; gap: 10px; }
+.spelling-example {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--cream); border-radius: 10px; padding: 8px 12px; font-weight: 700; font-size: 14px;
+}
+.spelling-example .arrow { color: var(--muted); }
+.spelling-example .to { color: var(--mint-deep); }
+
+.remember-card {
+  background: linear-gradient(135deg, #FFF3D6, #FFE7C2);
+  border: 1.5px solid var(--yellow-deep);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  font-weight: 700;
+  color: #6B4E12;
+  font-size: 14.5px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.remember-card .icon { font-size: 20px; }
+
+.quickreview-cta { text-align: center; margin-top: 24px; }
+.quickreview-cta .cta-btn { display: inline-block; padding: 14px 26px; }
+
+/* ---------------------------- test screen ---------------------------- */
+.test-topbar { position: sticky; top: 62px; z-index: 20; background: var(--cream); padding: 8px 0 12px; }
+.test-topbar-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.test-level-chip {
+  font-weight: 800; font-size: 12.5px; letter-spacing: .04em; text-transform: uppercase;
+  padding: 6px 12px; border-radius: 999px; background: var(--cream-deep); color: var(--orange-deep);
+}
+.test-progress-text { font-weight: 700; font-size: 13.5px; color: var(--ink-soft); }
+.test-progress-track { height: 10px; background: var(--cream-deep); border-radius: 999px; overflow: hidden; border: 1px solid var(--line); }
+.test-progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--teal), var(--mint)); border-radius: 999px; transition: width .4s ease; }
+.test-score-row { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; font-size: 13px; }
+#test-score-text { font-weight: 700; color: var(--ink-soft); }
+
+.question-card {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-soft);
+  border: 1.5px solid var(--line);
+  margin-top: 6px;
+}
+.question-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.question-type-tag {
+  font-size: 12px; font-weight: 800; color: var(--teal-deep); background: #E4F5F7;
+  padding: 5px 11px; border-radius: 999px;
+}
+.hint-btn {
+  background: #FFF3D6; border: 1.5px solid var(--yellow-deep); color: #7A5A0C;
+  font-weight: 800; font-size: 13px; padding: 7px 13px; border-radius: 999px;
+}
+.hint-btn:hover { background: #FFE9B8; }
+.hint-btn:disabled { opacity: .55; cursor: default; }
+.question-text {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--ink);
+  white-space: pre-line;
+  margin-bottom: 6px;
+}
+.hint-box {
+  margin-top: 10px; margin-bottom: 6px;
+  background: #FFF9E8; border-left: 4px solid var(--yellow-deep);
+  padding: 10px 14px; border-radius: 10px; font-size: 14px; color: #7A5A0C; font-weight: 600;
+}
+
+.choices-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 16px; }
+@media (min-width: 560px) {
+  .choices-grid { grid-template-columns: 1fr 1fr; }
+}
+.choice-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  background: var(--cream);
+  border: 2px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--ink);
+  min-height: 56px;
+  transition: border-color .12s ease, background .12s ease, transform .1s ease;
+}
+.choice-btn:hover:not(:disabled) { border-color: var(--teal); background: #F4FBFB; transform: translateY(-1px); }
+.choice-letter {
+  flex-shrink: 0;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 2px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 13.5px; color: var(--ink-soft);
+}
+.choice-btn:disabled { cursor: default; }
+.choice-btn.is-selected { border-color: var(--teal); background: #E8F7F8; }
+.choice-btn.is-correct { border-color: var(--success-line); background: var(--success-bg); }
+.choice-btn.is-correct .choice-letter { background: var(--success-line); border-color: var(--success-line); color: #fff; }
+.choice-btn.is-incorrect { border-color: var(--error-line); background: var(--error-bg); animation: shake .4s ease; }
+.choice-btn.is-incorrect .choice-letter { background: var(--error-line); border-color: var(--error-line); color: #fff; }
+.choice-btn.is-dimmed { opacity: .55; }
+.choice-mark { margin-left: auto; font-weight: 900; font-size: 16px; }
+.choice-mark.mark-correct { color: var(--success-ink); }
+.choice-mark.mark-incorrect { color: var(--error-ink); }
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-2px); }
+  20%, 80% { transform: translateX(3px); }
+  30%, 50%, 70% { transform: translateX(-5px); }
+  40%, 60% { transform: translateX(5px); }
+}
+
+.feedback-panel { margin-top: 18px; border-radius: var(--radius-md); padding: 16px 18px; animation: fadeIn .25s ease both; }
+.feedback-panel.is-correct { background: var(--success-bg); border: 1.5px solid var(--success-line); }
+.feedback-panel.is-incorrect { background: var(--error-bg); border: 1.5px solid var(--error-line); }
+.feedback-headline { font-weight: 900; font-size: 17px; display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.feedback-panel.is-correct .feedback-headline { color: var(--success-ink); }
+.feedback-panel.is-incorrect .feedback-headline { color: var(--error-ink); }
+.feedback-answers { font-size: 13.5px; font-weight: 700; color: var(--ink-soft); margin-bottom: 8px; display: flex; gap: 14px; flex-wrap: wrap; }
+.feedback-answers .wrong-tag { color: var(--error-ink); }
+.feedback-answers .right-tag { color: var(--success-ink); }
+.feedback-explanation { font-size: 14.5px; line-height: 1.6; color: var(--ink); background: var(--card); border-radius: 10px; padding: 10px 12px; margin-bottom: 12px; }
+.next-btn { width: 100%; margin-top: 0; }
+
+/* ---------------------------- results ---------------------------- */
+.results-card {
+  max-width: 480px; margin: 10px auto 0; text-align: center;
+  background: var(--card); border-radius: var(--radius-lg); border: 1.5px solid var(--line);
+  box-shadow: var(--shadow-soft); padding: 32px 24px;
+}
+.results-badge { font-size: 56px; margin: 0 0 6px; animation: pop .5s ease; }
+@keyframes pop { 0% { transform: scale(.4); opacity: 0; } 70% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
+.results-message { font-size: 22px; font-weight: 900; margin-bottom: 4px; }
+.results-level-label { color: var(--muted); font-weight: 700; font-size: 13.5px; margin-bottom: 18px; }
+.results-score-circle {
+  width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 20px;
+  background: conic-gradient(var(--mint) calc(var(--pct, 0) * 1%), var(--cream-deep) 0);
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  box-shadow: var(--shadow-card);
+}
+.results-score-circle-inner { background: var(--card); border-radius: 50%; width: 118px; height: 118px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.results-score-number { font-size: 22px; font-weight: 900; }
+.results-score-percent { font-size: 13px; font-weight: 700; color: var(--muted); }
+.results-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 22px; }
+.results-stat { border-radius: 12px; padding: 10px 6px; font-weight: 800; }
+.results-stat--correct { background: var(--success-bg); color: var(--success-ink); }
+.results-stat--incorrect { background: var(--error-bg); color: var(--error-ink); }
+.results-stat--hints { background: #FFF3D6; color: #7A5A0C; }
+.results-stat-num { display: block; font-size: 22px; }
+.results-stat-label { font-size: 11.5px; text-transform: uppercase; letter-spacing: .04em; }
+.results-actions { display: flex; flex-direction: column; gap: 10px; }
+.results-actions .cta-btn, .results-actions .secondary-btn { width: 100%; }
+
+/* ------------------------- review mistakes ------------------------- */
+.mistakes-filter { display: flex; justify-content: center; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+.chip-btn {
+  background: var(--card); border: 1.5px solid var(--line); color: var(--ink-soft);
+  font-weight: 700; font-size: 13px; padding: 8px 16px; border-radius: 999px;
+}
+.chip-btn.is-active { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+.mistake-item {
+  background: var(--card); border: 1.5px solid var(--line); border-radius: var(--radius-md);
+  padding: 16px 18px; margin-bottom: 14px; box-shadow: var(--shadow-card);
+}
+.mistake-item-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.mistake-level-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; color: #fff; }
+.mistake-item .mistake-q { font-weight: 700; font-size: 15.5px; margin-bottom: 10px; white-space: pre-line; }
+.mistake-answers { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13.5px; font-weight: 700; margin-bottom: 10px; }
+.mistake-answers .your { color: var(--error-ink); background: var(--error-bg); padding: 5px 10px; border-radius: 8px; }
+.mistake-answers .correct { color: var(--success-ink); background: var(--success-bg); padding: 5px 10px; border-radius: 8px; }
+.mistake-explain { font-size: 14px; color: var(--ink-soft); line-height: 1.55; background: var(--cream); border-radius: 10px; padding: 10px 12px; margin-bottom: 6px; }
+.mistake-rule { font-size: 12.5px; font-weight: 800; color: var(--teal-deep); }
+
+.empty-state { text-align: center; padding: 30px 14px; color: var(--muted); font-weight: 600; font-size: 15px; }
+.mistakes-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; max-width: 400px; margin-left: auto; margin-right: auto; }
+
+/* ---------------------------- mastery ---------------------------- */
+.mastery-card {
+  max-width: 480px; margin: 0 auto; text-align: center;
+  background: var(--card); border-radius: var(--radius-lg); border: 1.5px solid var(--line);
+  box-shadow: var(--shadow-soft); padding: 30px 24px;
+}
+.mastery-badge { font-size: 52px; margin-bottom: 8px; }
+.mastery-rows { display: grid; gap: 10px; margin: 14px 0; text-align: left; }
+.mastery-row { display: flex; align-items: center; gap: 10px; }
+.mastery-row-label { width: 76px; font-weight: 800; font-size: 13.5px; }
+.mastery-row-track { flex: 1; height: 10px; border-radius: 999px; background: var(--cream-deep); overflow: hidden; }
+.mastery-row-fill { height: 100%; border-radius: 999px; transition: width .5s ease; }
+.mastery-row-score { width: 52px; text-align: right; font-weight: 800; font-size: 13px; color: var(--ink-soft); }
+.mastery-total-row { display: flex; justify-content: space-between; align-items: center; font-size: 16px; font-weight: 800; border-top: 1.5px dashed var(--line); padding-top: 14px; margin-top: 8px; }
+.mastery-percent { font-size: 30px; font-weight: 900; color: var(--orange-deep); margin: 6px 0 4px; }
+.mastery-message { color: var(--ink-soft); font-weight: 600; margin-bottom: 20px; }
+
+/* ---------------------------- footer ---------------------------- */
+.app-footer { text-align: center; padding: 18px; color: var(--muted); font-size: 12.5px; font-weight: 600; }
+
+/* ---------------------------- modal ---------------------------- */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(43, 36, 26, .45);
+  display: flex; align-items: center; justify-content: center; z-index: 100; padding: 20px;
+}
+.modal-box {
+  background: var(--card); border-radius: var(--radius-lg); padding: 24px; max-width: 380px; width: 100%;
+  box-shadow: var(--shadow-soft); text-align: center;
+}
+.modal-box h2 { font-size: 19px; margin-bottom: 10px; }
+.modal-box p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.55; margin-bottom: 20px; }
+.modal-actions { display: flex; gap: 10px; }
+.modal-actions button { flex: 1; }
+.danger-btn { background: var(--coral); color: #fff; border: none; border-radius: var(--radius-sm); padding: 12px; font-weight: 800; min-height: 46px; }
+.danger-btn:hover { background: var(--coral-deep); }
+
+/* ---------------------------- celebration ---------------------------- */
+#celebration-layer { position: fixed; inset: 0; pointer-events: none; z-index: 200; overflow: hidden; }
+.confetti-piece {
+  position: absolute; top: -10px; font-size: 20px;
+  animation: fall 1.1s ease-in forwards;
+}
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(280deg); opacity: .2; }
+}
+
+/* ---------------------------- misc / a11y ---------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}
+
+@media (min-width: 700px) {
+  .hero-title { font-size: 42px; }
+  .results-actions { flex-direction: row; }
+  .results-actions .cta-btn, .results-actions .secondary-btn { flex: 1; }
+}
+
+</style>
+</head>
+<body>
+
+<div id="celebration-layer" aria-hidden="true"></div>
+
+<header class="app-header">
+  <div class="header-inner">
+    <button class="brand-btn" id="brand-home-btn" aria-label="Go to home screen">
+      <span class="brand-mark">☀️</span>
+      <span class="brand-text">
+        <span class="brand-name">Present Continuous Challenge</span>
+        <span class="brand-sub">Bright EngMath</span>
+      </span>
+    </button>
+    <button class="ghost-btn" id="header-back-btn" hidden>← Home</button>
+  </div>
+</header>
+
+<main id="main-content">
+
+  <!-- ============================= HOME ============================= -->
+  <section class="screen" id="screen-home" data-screen="home">
+    <div class="home-hero">
+      <p class="eyebrow">Grade 4 Exam Review</p>
+      <h1 class="hero-title">Present Continuous <span>Challenge</span></h1>
+      <p class="hero-subtitle">Learn it. Practice it. Master it! 🌟</p>
+    </div>
+
+    <div class="mastery-teaser" id="mastery-teaser" hidden>
+      <div class="mastery-teaser-text">
+        <strong id="mastery-teaser-score">0/60</strong>
+        <span>Total score across all levels</span>
+      </div>
+      <div class="mastery-teaser-bar"><div class="mastery-teaser-fill" id="mastery-teaser-fill"></div></div>
+    </div>
+
+    <div class="test-cards" role="list">
+      <article class="test-card test-card--easy" role="listitem" tabindex="0" data-level="easy">
+        <div class="test-card-top">
+          <span class="test-card-icon">🌱</span>
+          <span class="badge badge--easy">EASY</span>
+        </div>
+        <h2>Easy</h2>
+        <p class="test-card-desc">Basic Present Continuous</p>
+        <p class="test-card-count">20 Questions</p>
+        <div class="progress-row">
+          <div class="progress-track"><div class="progress-fill fill--easy" id="progress-fill-easy"></div></div>
+          <span class="progress-label" id="progress-label-easy">0/20</span>
+        </div>
+        <div class="stars" id="stars-easy" aria-hidden="true">★★★</div>
+        <button class="cta-btn cta-btn--easy" data-action="start-test" data-level="easy">Start Easy</button>
+      </article>
+
+      <article class="test-card test-card--medium" role="listitem" tabindex="0" data-level="medium">
+        <div class="test-card-top">
+          <span class="test-card-icon">🌿</span>
+          <span class="badge badge--medium">MEDIUM</span>
+        </div>
+        <h2>Medium</h2>
+        <p class="test-card-desc">Sentence &amp; Question Practice</p>
+        <p class="test-card-count">20 Questions</p>
+        <div class="progress-row">
+          <div class="progress-track"><div class="progress-fill fill--medium" id="progress-fill-medium"></div></div>
+          <span class="progress-label" id="progress-label-medium">0/20</span>
+        </div>
+        <div class="stars" id="stars-medium" aria-hidden="true">★★★</div>
+        <button class="cta-btn cta-btn--medium" data-action="start-test" data-level="medium">Start Medium</button>
+      </article>
+
+      <article class="test-card test-card--hard" role="listitem" tabindex="0" data-level="hard">
+        <div class="test-card-top">
+          <span class="test-card-icon">🔥</span>
+          <span class="badge badge--hard">HARD</span>
+        </div>
+        <h2>Hard</h2>
+        <p class="test-card-desc">Exam Challenge</p>
+        <p class="test-card-count">20 Questions</p>
+        <div class="progress-row">
+          <div class="progress-track"><div class="progress-fill fill--hard" id="progress-fill-hard"></div></div>
+          <span class="progress-label" id="progress-label-hard">0/20</span>
+        </div>
+        <div class="stars" id="stars-hard" aria-hidden="true">★★★</div>
+        <button class="cta-btn cta-btn--hard" data-action="start-test" data-level="hard">Start Hard</button>
+      </article>
+    </div>
+
+    <div class="home-actions">
+      <button class="secondary-btn" id="quick-review-btn">📘 Quick Review</button>
+      <button class="secondary-btn" id="review-mistakes-btn">🔍 Review My Mistakes</button>
+      <button class="secondary-btn" id="mastery-summary-btn">🏅 Mastery Summary</button>
+    </div>
+
+    <div class="reset-row">
+      <button class="text-btn" id="reset-progress-btn">Reset Progress</button>
+    </div>
+  </section>
+
+  <!-- ========================= QUICK REVIEW ========================= -->
+  <section class="screen" id="screen-quickreview" data-screen="quickreview">
+    <div class="section-heading">
+      <p class="eyebrow">5-Minute Refresher</p>
+      <h1>Quick Review</h1>
+      <p class="section-sub">A short recap before you test yourself. You've got this! 💪</p>
+    </div>
+    <div id="quick-review-content"></div>
+    <div class="quickreview-cta">
+      <button class="cta-btn cta-btn--easy" id="quickreview-to-home">I'm ready — Back to Home</button>
+    </div>
+  </section>
+
+  <!-- ============================== TEST ============================== -->
+  <section class="screen" id="screen-test" data-screen="test">
+    <div class="test-topbar">
+      <div class="test-topbar-row">
+        <span class="test-level-chip" id="test-level-chip">Easy</span>
+        <span class="test-progress-text" id="test-progress-text">Question 1 of 20</span>
+      </div>
+      <div class="test-progress-track"><div class="test-progress-fill" id="test-progress-fill"></div></div>
+      <div class="test-score-row">
+        <span id="test-score-text">Score: 0/0 correct</span>
+        <button class="text-btn" id="exit-test-btn">Exit to Home</button>
+      </div>
+    </div>
+
+    <div class="question-card" id="question-card">
+      <div class="question-meta">
+        <span class="question-type-tag" id="question-type-tag">Fill in the blank</span>
+        <button class="hint-btn" id="hint-btn">💡 Hint</button>
+      </div>
+      <p class="question-text" id="question-text"></p>
+      <div class="hint-box" id="hint-box" hidden></div>
+
+      <div class="choices-grid" id="choices-grid" role="group" aria-label="Answer choices"></div>
+
+      <div class="feedback-panel" id="feedback-panel" hidden>
+        <div class="feedback-headline" id="feedback-headline"></div>
+        <div class="feedback-answers" id="feedback-answers"></div>
+        <div class="feedback-explanation" id="feedback-explanation"></div>
+        <button class="cta-btn cta-btn--easy next-btn" id="next-question-btn">Next Question →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ RESULTS ============================ -->
+  <section class="screen" id="screen-results" data-screen="results">
+    <div class="results-card">
+      <p class="results-badge" id="results-emoji">🏆</p>
+      <h1 class="results-message" id="results-message">Present Continuous Master!</h1>
+      <p class="results-level-label" id="results-level-label">Easy Test</p>
+      <div class="results-score-circle" id="results-score-circle">
+        <div class="results-score-circle-inner">
+          <span class="results-score-number" id="results-score-number">17/20</span>
+          <span class="results-score-percent" id="results-score-percent">85%</span>
+        </div>
+      </div>
+      <div class="results-stats-grid">
+        <div class="results-stat results-stat--correct">
+          <span class="results-stat-num" id="results-correct-num">0</span>
+          <span class="results-stat-label">Correct</span>
+        </div>
+        <div class="results-stat results-stat--incorrect">
+          <span class="results-stat-num" id="results-incorrect-num">0</span>
+          <span class="results-stat-label">Incorrect</span>
+        </div>
+        <div class="results-stat results-stat--hints">
+          <span class="results-stat-num" id="results-hints-num">0</span>
+          <span class="results-stat-label">Hints Used</span>
+        </div>
+      </div>
+      <div class="results-actions">
+        <button class="cta-btn cta-btn--medium" id="results-retry-btn">Try Again</button>
+        <button class="secondary-btn" id="results-review-mistakes-btn">Review My Mistakes</button>
+        <button class="secondary-btn" id="results-home-btn">Back to Home</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== REVIEW MISTAKES ======================== -->
+  <section class="screen" id="screen-mistakes" data-screen="mistakes">
+    <div class="section-heading">
+      <p class="eyebrow">Learn From Every Mistake</p>
+      <h1>Review My Mistakes</h1>
+      <p class="section-sub" id="mistakes-sub">Questions you answered incorrectly, with explanations.</p>
+    </div>
+    <div class="mistakes-filter" id="mistakes-filter">
+      <button class="chip-btn is-active" data-filter="all">All</button>
+      <button class="chip-btn" data-filter="easy">Easy</button>
+      <button class="chip-btn" data-filter="medium">Medium</button>
+      <button class="chip-btn" data-filter="hard">Hard</button>
+    </div>
+    <div id="mistakes-list"></div>
+    <div class="empty-state" id="mistakes-empty" hidden>
+      <p>🎉 No mistakes recorded here yet — great job, or you haven't tested this level!</p>
+    </div>
+    <div class="mistakes-actions">
+      <button class="cta-btn cta-btn--medium" id="retry-mistakes-btn">Retry These Questions</button>
+      <button class="secondary-btn" id="mistakes-home-btn">Back to Home</button>
+    </div>
+  </section>
+
+  <!-- ====================== FINAL MASTERY SUMMARY ====================== -->
+  <section class="screen" id="screen-mastery" data-screen="mastery">
+    <div class="section-heading">
+      <p class="eyebrow">Your Full Journey</p>
+      <h1>Present Continuous Mastery</h1>
+    </div>
+    <div class="mastery-card">
+      <div class="mastery-badge" id="mastery-badge">🌱</div>
+      <div class="mastery-rows" id="mastery-rows"></div>
+      <div class="mastery-total-row">
+        <span>Total</span>
+        <strong id="mastery-total-text">0 / 60</strong>
+      </div>
+      <div class="mastery-percent" id="mastery-percent">0%</div>
+      <p class="mastery-message" id="mastery-message"></p>
+      <div class="results-actions">
+        <button class="cta-btn cta-btn--medium" id="mastery-tryagain-btn">Try Again</button>
+        <button class="secondary-btn" id="mastery-review-btn">Review Mistakes</button>
+        <button class="secondary-btn" id="mastery-home-btn">Back to Home</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="app-footer">
+  <p>© Bright EngMath — Learn • Practice • Master</p>
+</footer>
+
+<!-- Reset confirmation modal -->
+<div class="modal-overlay" id="reset-modal-overlay" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="reset-modal-title">
+    <h2 id="reset-modal-title">Reset all progress?</h2>
+    <p>This will erase your scores for Easy, Medium, and Hard, and clear your mistake history. This cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="secondary-btn" id="reset-cancel-btn">Cancel</button>
+      <button class="danger-btn" id="reset-confirm-btn">Yes, Reset</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =========================================================================
+   Present Continuous Challenge — Question & Lesson Data
+   Bright EngMath — Grade 4 Exam Review
+   -------------------------------------------------------------------------
+   This file is the ONLY place content lives. Teachers can edit questions,
+   hints, and explanations here without touching any app logic.
+
+   Question object shape:
+   {
+     id: number,              // unique across all 60 questions
+     level: "easy"|"medium"|"hard",
+     type: string,            // category label (for teacher reference)
+     question: string,        // may contain "______" for a blank
+     choices: [string, string, string, string],  // A, B, C, D (no prefix)
+     correctAnswer: 0-3,      // index into choices
+     hint: string,            // shown on demand, does not reveal the answer
+     explanation: string,     // Thai explanation w/ key English terms
+     grammarRule: string      // short rule label
+   }
+   ========================================================================= */
+
+const QUICK_REVIEW = {
+  intro: {
+    title: "Present Continuous คืออะไร?",
+    titleEn: "What is Present Continuous?",
+    body: "เราใช้ Present Continuous พูดถึงสิ่งที่ กำลังเกิดขึ้นตอนนี้ (happening now)",
+    structure: "Subject + am / is / are + verb-ing",
+    examples: ["I am reading.", "She is eating.", "They are playing football."]
+  },
+  amIsAre: {
+    title: "AM / IS / ARE",
+    rows: [
+      { subject: "I", verb: "am" },
+      { subject: "He / She / It", verb: "is" },
+      { subject: "You / We / They", verb: "are" }
+    ],
+    examples: ["I am studying.", "He is sleeping.", "We are watching TV."]
+  },
+  negative: {
+    title: "ประโยคปฏิเสธ (Negative)",
+    structure: "Subject + am / is / are + not + verb-ing",
+    examples: ["She is not sleeping.", "They are not running.", "I am not eating."]
+  },
+  questions: {
+    title: "ประโยคคำถาม (Questions)",
+    structure: "Am / Is / Are + subject + verb-ing?",
+    examples: ["Is she reading?", "Are they playing?", "Am I doing it correctly?"],
+    shortAnswers: [
+      "Yes, she is.  /  No, she isn't.",
+      "Yes, they are.  /  No, they aren't."
+    ]
+  },
+  spellingRules: [
+    {
+      rule: "กฎที่ 1: ส่วนใหญ่ → เติม -ing ตรงๆ",
+      ruleEn: "Most verbs → add -ing",
+      examples: [["play", "playing"], ["read", "reading"], ["eat", "eating"]]
+    },
+    {
+      rule: "กฎที่ 2: กริยาลงท้ายด้วย e → ตัด e แล้วเติม -ing",
+      ruleEn: "Verb ending in e → remove e + ing",
+      examples: [["make", "making"], ["write", "writing"], ["dance", "dancing"]]
+    },
+    {
+      rule: "กฎที่ 3: กริยาสั้นแบบ พยัญชนะ-สระ-พยัญชนะ (CVC) → เพิ่มตัวสะกดซ้ำ แล้วเติม -ing",
+      ruleEn: "Short verb ending consonant-vowel-consonant → double final consonant",
+      examples: [["run", "running"], ["sit", "sitting"], ["swim", "swimming"]]
+    }
+  ],
+  remember: "Remember! ดูตัวประธาน (subject) ก่อนเสมอ แล้วเลือก am / is / are ให้ตรงกัน จากนั้นเติม -ing ที่ verb ให้ถูกกฎการสะกด"
+};
+
+const QUESTIONS = [
+  /* ============================= EASY (1-20) ============================= */
+  {
+    id: 1, level: "easy", type: "Fill in the blank",
+    question: "I ______ playing football now.",
+    choices: ["am", "is", "are", "be"],
+    correctAnswer: 0,
+    hint: "\"I\" ใช้กับ am / is / are ตัวไหน?",
+    explanation: "I ใช้กับ am เสมอ ประโยคที่ถูกต้องคือ I am playing football.",
+    grammarRule: "I + am + V-ing"
+  },
+  {
+    id: 2, level: "easy", type: "Fill in the blank",
+    question: "She ______ reading a book.",
+    choices: ["am", "is", "are", "be"],
+    correctAnswer: 1,
+    hint: "She อยู่กลุ่มเดียวกับ he และ it",
+    explanation: "She ใช้กับ is ดังนั้นประโยคที่ถูกต้องคือ She is reading a book.",
+    grammarRule: "She + is + V-ing"
+  },
+  {
+    id: 3, level: "easy", type: "Fill in the blank",
+    question: "Look! The dog ______.",
+    choices: ["run", "runs", "is running", "running"],
+    correctAnswer: 2,
+    hint: "คำว่า Look! บอกว่ากำลังเกิดขึ้นตอนนี้ ต้องมี is/am/are อยู่ด้วย",
+    explanation: "คำว่า Look! บอกว่าเหตุการณ์กำลังเกิดขึ้นตอนนี้ จึงใช้ is + running",
+    grammarRule: "Signal word \"Look!\" → Present Continuous"
+  },
+  {
+    id: 4, level: "easy", type: "Fill in the blank",
+    question: "They ______ football in the playground.",
+    choices: ["is playing", "are playing", "am playing", "play"],
+    correctAnswer: 1,
+    hint: "They เป็นประธานพหูพจน์",
+    explanation: "They ใช้กับ are ดังนั้นประโยคที่ถูกต้องคือ They are playing football.",
+    grammarRule: "They + are + V-ing"
+  },
+  {
+    id: 5, level: "easy", type: "Fill in the blank",
+    question: "We ______ TV right now.",
+    choices: ["am watching", "is watching", "are watching", "watches"],
+    correctAnswer: 2,
+    hint: "We ใช้ am / is / are ตัวไหน?",
+    explanation: "We ใช้กับ are: We are watching TV.",
+    grammarRule: "We + are + V-ing"
+  },
+  {
+    id: 6, level: "easy", type: "Fill in the blank",
+    question: "He ______ his homework now.",
+    choices: ["do", "is doing", "are doing", "does"],
+    correctAnswer: 1,
+    hint: "He อยู่กลุ่มเดียวกับ she และ it",
+    explanation: "He ใช้กับ is: He is doing his homework.",
+    grammarRule: "He + is + V-ing"
+  },
+  {
+    id: 7, level: "easy", type: "Choose the correct sentence",
+    question: "Choose the correct sentence.",
+    choices: ["She is eat lunch.", "She is eating lunch.", "She eating lunch.", "She are eating lunch."],
+    correctAnswer: 1,
+    hint: "ประโยคที่ถูกต้องต้องมีทั้ง is และ verb เติม -ing",
+    explanation: "ประโยค Present Continuous ต้องมี is/am/are + verb-ing ครบทั้งสองส่วน",
+    grammarRule: "Subject + is/am/are + V-ing"
+  },
+  {
+    id: 8, level: "easy", type: "Fill in the blank",
+    question: "My cat ______ on the sofa now.",
+    choices: ["sleep", "sleeps", "is sleeping", "sleeping"],
+    correctAnswer: 2,
+    hint: "My cat = it",
+    explanation: "My cat (it) ใช้กับ is: My cat is sleeping.",
+    grammarRule: "It + is + V-ing"
+  },
+  {
+    id: 9, level: "easy", type: "Fill in the blank",
+    question: "I ______ not sleeping. I am reading.",
+    choices: ["am", "is", "are", "be"],
+    correctAnswer: 0,
+    hint: "ประโยคปฏิเสธของ I",
+    explanation: "I am not + V-ing เป็นรูปปฏิเสธของ I: I am not sleeping.",
+    grammarRule: "I + am not + V-ing"
+  },
+  {
+    id: 10, level: "easy", type: "Fill in the blank",
+    question: "She ______ not sleeping now.",
+    choices: ["am", "is", "are", "do"],
+    correctAnswer: 1,
+    hint: "She ใช้ is not หรือ isn't",
+    explanation: "She is not sleeping = She isn't sleeping.",
+    grammarRule: "He/She/It + is not (isn't)"
+  },
+  {
+    id: 11, level: "easy", type: "Fill in the blank",
+    question: "They ______ not playing football today.",
+    choices: ["am", "is", "are", "do"],
+    correctAnswer: 2,
+    hint: "They ใช้ are not หรือ aren't",
+    explanation: "They are not playing = They aren't playing.",
+    grammarRule: "You/We/They + are not (aren't)"
+  },
+  {
+    id: 12, level: "easy", type: "Choose the correct sentence",
+    question: "Choose the correct sentence.",
+    choices: ["He is study now.", "He studying now.", "He is studying now.", "He are studying now."],
+    correctAnswer: 2,
+    hint: "He ต้องใช้กับ is + verb-ing",
+    explanation: "He ใช้กับ is และต้องมี verb เติม -ing: He is studying now.",
+    grammarRule: "He + is + V-ing"
+  },
+  {
+    id: 13, level: "easy", type: "Fill in the blank",
+    question: "Anna ______ a sandwich right now.",
+    choices: ["eat", "eats", "is eating", "eating"],
+    correctAnswer: 2,
+    hint: "Anna = she",
+    explanation: "Anna (she) ใช้กับ is: Anna is eating a sandwich right now.",
+    grammarRule: "She + is + V-ing"
+  },
+  {
+    id: 14, level: "easy", type: "Fill in the blank",
+    question: "Look! Jack and Mia ______ in the pool.",
+    choices: ["swim", "swims", "is swimming", "are swimming"],
+    correctAnswer: 3,
+    hint: "Jack and Mia = they",
+    explanation: "Jack and Mia = they (พหูพจน์) จึงใช้ are + swimming: Jack and Mia are swimming.",
+    grammarRule: "They + are + V-ing"
+  },
+  {
+    id: 15, level: "easy", type: "Choose the correct sentence",
+    question: "Which sentence is correct?",
+    choices: ["The children is playing outside.", "The children are playing outside.", "The children am playing outside.", "The children playing outside."],
+    correctAnswer: 1,
+    hint: "children = they (พหูพจน์)",
+    explanation: "The children = they จึงใช้ are: The children are playing outside.",
+    grammarRule: "Plural subject + are"
+  },
+  {
+    id: 16, level: "easy", type: "Fill in the blank",
+    question: "I ______ my bike now.",
+    choices: ["is riding", "are riding", "am riding", "riding"],
+    correctAnswer: 2,
+    hint: "I ใช้กับ am เสมอ",
+    explanation: "I ใช้กับ am: I am riding my bike now.",
+    grammarRule: "I + am + V-ing"
+  },
+  {
+    id: 17, level: "easy", type: "Fill in the blank",
+    question: "Ben ______ a picture at the moment.",
+    choices: ["draw", "draws", "is drawing", "are drawing"],
+    correctAnswer: 2,
+    hint: "Ben = he, และ \"at the moment\" บอกว่ากำลังเกิดขึ้นตอนนี้",
+    explanation: "Ben (he) ใช้กับ is และ \"at the moment\" บอกว่าเป็นตอนนี้: Ben is drawing a picture.",
+    grammarRule: "He + is + V-ing"
+  },
+  {
+    id: 18, level: "easy", type: "Fill in the blank",
+    question: "Listen! The birds ______.",
+    choices: ["sing", "sings", "is singing", "are singing"],
+    correctAnswer: 3,
+    hint: "birds = they (พหูพจน์)",
+    explanation: "The birds = they จึงใช้ are + singing: The birds are singing.",
+    grammarRule: "They + are + V-ing"
+  },
+  {
+    id: 19, level: "easy", type: "Fill in the blank",
+    question: "We ______ not doing our homework now; we are playing.",
+    choices: ["am", "is", "are", "be"],
+    correctAnswer: 2,
+    hint: "We ใช้ are not หรือ aren't",
+    explanation: "We are not doing = We aren't doing our homework now.",
+    grammarRule: "We + are not (aren't) + V-ing"
+  },
+  {
+    id: 20, level: "easy", type: "Choose the correct sentence",
+    question: "Choose the correct negative sentence.",
+    choices: ["She not is cooking.", "She is not cooking.", "She no is cooking.", "She isn't is cooking."],
+    correctAnswer: 1,
+    hint: "not ต้องอยู่หลัง is เสมอ",
+    explanation: "รูปปฏิเสธคือ is + not + V-ing: She is not cooking.",
+    grammarRule: "Subject + is/am/are + not + V-ing"
+  },
+
+  /* ============================ MEDIUM (21-40) ============================ */
+  {
+    id: 21, level: "medium", type: "Wh- question",
+    question: "What ______ Tom doing?",
+    choices: ["am", "is", "are", "do"],
+    correctAnswer: 1,
+    hint: "Tom = he (เอกพจน์)",
+    explanation: "Tom เป็นเอกพจน์ จึงใช้ is: What is Tom doing?",
+    grammarRule: "What + is + subject + V-ing?"
+  },
+  {
+    id: 22, level: "medium", type: "Spelling",
+    question: "Which spelling is correct?",
+    choices: ["runing", "running", "runnung", "runnings"],
+    correctAnswer: 1,
+    hint: "run มีตัวอักษร 3 ตัว: พยัญชนะ-สระ-พยัญชนะ",
+    explanation: "run เป็นคำกริยาสั้นแบบ consonant-vowel-consonant จึงเพิ่ม n อีกหนึ่งตัวก่อนเติม -ing → running",
+    grammarRule: "CVC rule — double final consonant"
+  },
+  {
+    id: 23, level: "medium", type: "Fill in the blank",
+    question: "Is she ______ a letter now?",
+    choices: ["write", "writes", "writing", "wrote"],
+    correctAnswer: 2,
+    hint: "หลัง is ต้องตามด้วย verb-ing เสมอ",
+    explanation: "หลัง is ต้องตามด้วย verb-ing: Is she writing a letter now?",
+    grammarRule: "Is + subject + V-ing?"
+  },
+  {
+    id: 24, level: "medium", type: "Yes/No question",
+    question: "______ they playing in the garden?",
+    choices: ["Am", "Is", "Are", "Do"],
+    correctAnswer: 2,
+    hint: "they เป็นประธานพหูพจน์",
+    explanation: "they ใช้กับ Are: Are they playing in the garden?",
+    grammarRule: "Are + they + V-ing?"
+  },
+  {
+    id: 25, level: "medium", type: "Short answer",
+    question: "Is Lucy reading a book? — Choose the correct short answer.",
+    choices: ["Yes, she do.", "Yes, she is.", "Yes, she are.", "Yes, is she."],
+    correctAnswer: 1,
+    hint: "คำตอบสั้นใช้ subject + is/am/are เท่านั้น ไม่ใช้ verb-ing",
+    explanation: "คำตอบสั้นของ Is she...? คือ Yes, she is. / No, she isn't.",
+    grammarRule: "Short answer: Yes/No + subject + is/am/are"
+  },
+  {
+    id: 26, level: "medium", type: "Short answer",
+    question: "Are Jack and Sam playing football? — Choose the correct short answer.",
+    choices: ["Yes, they are.", "Yes, they is.", "Yes, they do.", "Yes, he is."],
+    correctAnswer: 0,
+    hint: "Jack and Sam = they",
+    explanation: "Jack and Sam = they จึงตอบว่า Yes, they are. / No, they aren't.",
+    grammarRule: "Short answer: Yes, they are."
+  },
+  {
+    id: 27, level: "medium", type: "Negative sentence",
+    question: "She ______ TV now. She is doing homework.",
+    choices: ["is not watching", "not is watching", "is watching not", "don't watch"],
+    correctAnswer: 0,
+    hint: "not ต้องอยู่หลัง is",
+    explanation: "รูปปฏิเสธคือ is + not + V-ing: She is not watching TV now.",
+    grammarRule: "Subject + is + not + V-ing"
+  },
+  {
+    id: 28, level: "medium", type: "Spelling",
+    question: "What spelling change happens when we add -ing to \"make\"?",
+    choices: ["Add -ing directly: makeing", "Remove e, add -ing: making", "Double the k: makking", "No change needed: makeing"],
+    correctAnswer: 1,
+    hint: "make ลงท้ายด้วยตัว e",
+    explanation: "คำกริยาที่ลงท้ายด้วย e ให้ตัด e ออกก่อนเติม -ing → make → making",
+    grammarRule: "Silent -e rule"
+  },
+  {
+    id: 29, level: "medium", type: "Wh- question",
+    question: "Where ______ Anna going right now?",
+    choices: ["is", "am", "are", "does"],
+    correctAnswer: 0,
+    hint: "Anna = she (เอกพจน์)",
+    explanation: "Anna เป็นเอกพจน์ จึงใช้ is: Where is Anna going?",
+    grammarRule: "Where + is/are + subject + V-ing?"
+  },
+  {
+    id: 30, level: "medium", type: "Wh- question",
+    question: "Who ______ Ben talking to?",
+    choices: ["am", "is", "are", "do"],
+    correctAnswer: 1,
+    hint: "Ben = he (เอกพจน์)",
+    explanation: "Ben เป็นเอกพจน์ จึงใช้ is: Who is Ben talking to?",
+    grammarRule: "Who + is + subject + V-ing?"
+  },
+  {
+    id: 31, level: "medium", type: "Find the mistake",
+    question: "Find the mistake: \"Mia and Lucy is playing in the park.\"",
+    choices: ["Mia and Lucy", "is", "playing", "in the park"],
+    correctAnswer: 1,
+    hint: "Mia and Lucy = they (พหูพจน์)",
+    explanation: "Mia and Lucy = they (พหูพจน์) ต้องใช้ are ไม่ใช่ is → Mia and Lucy are playing in the park.",
+    grammarRule: "Plural subject + are"
+  },
+  {
+    id: 32, level: "medium", type: "Choose the correct sentence",
+    question: "Choose the correct sentence.",
+    choices: ["I am not doing my homework now.", "I not am doing my homework now.", "I am doing not my homework now.", "I do not am doing my homework now."],
+    correctAnswer: 0,
+    hint: "not ต้องตามหลัง am ทันที",
+    explanation: "รูปปฏิเสธของ I คือ am + not + V-ing: I am not doing my homework now.",
+    grammarRule: "I + am not + V-ing"
+  },
+  {
+    id: 33, level: "medium", type: "Fill in the blank",
+    question: "My brother ______ TV now.",
+    choices: ["is watch", "watch", "is watching", "watches"],
+    correctAnswer: 2,
+    hint: "My brother = he",
+    explanation: "My brother (he) ใช้กับ is: My brother is watching TV now.",
+    grammarRule: "He + is + V-ing"
+  },
+  {
+    id: 34, level: "medium", type: "Spelling",
+    question: "Choose the correct spelling for \"sit\" + -ing.",
+    choices: ["siting", "sitting", "sitteing", "sitings"],
+    correctAnswer: 1,
+    hint: "sit เป็นคำสั้นแบบ consonant-vowel-consonant",
+    explanation: "sit เป็น CVC (s-i-t) จึงเพิ่ม t อีกตัวก่อนเติม -ing → sitting",
+    grammarRule: "CVC rule — double final consonant"
+  },
+  {
+    id: 35, level: "medium", type: "Yes/No question",
+    question: "______ I doing this correctly?",
+    choices: ["Am", "Is", "Are", "Do"],
+    correctAnswer: 0,
+    hint: "ประธานคือ I",
+    explanation: "I ใช้กับ Am เสมอ: Am I doing this correctly?",
+    grammarRule: "Am + I + V-ing?"
+  },
+  {
+    id: 36, level: "medium", type: "Choose the correct sentence",
+    question: "Choose the correct question.",
+    choices: ["Is you reading a comic book?", "Are you reading a comic book?", "Do you reading a comic book?", "Am you reading a comic book?"],
+    correctAnswer: 1,
+    hint: "you ใช้กับ are เสมอ",
+    explanation: "you ใช้กับ are: Are you reading a comic book?",
+    grammarRule: "Are + you + V-ing?"
+  },
+  {
+    id: 37, level: "medium", type: "Negative sentence",
+    question: "Emma ______ her dog right now — she's playing with him instead.",
+    choices: ["isn't walking", "aren't walking", "don't walk", "isn't walk"],
+    correctAnswer: 0,
+    hint: "Emma = she",
+    explanation: "Emma (she) ใช้กับ isn't + V-ing: Emma isn't walking her dog right now.",
+    grammarRule: "She + isn't + V-ing"
+  },
+  {
+    id: 38, level: "medium", type: "Spelling",
+    question: "Choose the correct spelling for \"dance\" + -ing.",
+    choices: ["danceing", "dancing", "dancceing", "dansing"],
+    correctAnswer: 1,
+    hint: "dance ลงท้ายด้วยตัว e",
+    explanation: "dance ลงท้ายด้วย e ให้ตัด e ออกก่อนเติม -ing → dancing",
+    grammarRule: "Silent -e rule"
+  },
+  {
+    id: 39, level: "medium", type: "Find the mistake",
+    question: "Find the mistake: \"She are cooking dinner now.\"",
+    choices: ["She", "are", "cooking", "now"],
+    correctAnswer: 1,
+    hint: "She เป็นประธานเอกพจน์",
+    explanation: "She ใช้กับ is ไม่ใช่ are → She is cooking dinner now.",
+    grammarRule: "She + is + V-ing"
+  },
+  {
+    id: 40, level: "medium", type: "Short answer",
+    question: "Am I doing this correctly? — Choose the correct short answer.",
+    choices: ["Yes, you are.", "Yes, I am.", "Yes, you do.", "Yes, you is."],
+    correctAnswer: 0,
+    hint: "เวลาตอบคำถาม Am I...? เราต้องเปลี่ยน I เป็น you",
+    explanation: "ตอบคำถาม Am I...? ด้วย Yes, you are. / No, you aren't.",
+    grammarRule: "Short answer: Yes, you are."
+  },
+
+  /* ============================= HARD (41-60) ============================= */
+  {
+    id: 41, level: "hard", type: "Dialogue",
+    question: "A: Where is Emma?\nB: She ______ in the kitchen. She ______ some sandwiches.",
+    choices: ["is / makes", "is / is making", "are / making", "does / make"],
+    correctAnswer: 1,
+    hint: "Emma = she, และการทำแซนด์วิชกำลังเกิดขึ้นตอนนี้",
+    explanation: "การทำแซนด์วิชกำลังเกิดขึ้นตอนนี้ จึงใช้ is making และ She ใช้กับ is",
+    grammarRule: "She + is + V-ing (two blanks)"
+  },
+  {
+    id: 42, level: "hard", type: "Dialogue",
+    question: "A: What are Tom and Ben doing?\nB: They ______ basketball ______ the playground right now.",
+    choices: ["is playing / at", "are playing / at", "are play / at", "is play / at"],
+    correctAnswer: 1,
+    hint: "Tom and Ben = they",
+    explanation: "Tom and Ben = they จึงใช้ are + playing: They are playing basketball at the playground.",
+    grammarRule: "They + are + V-ing"
+  },
+  {
+    id: 43, level: "hard", type: "Find the mistake",
+    question: "Find the mistake: \"Look! The children is swimming in the pool.\"",
+    choices: ["Look!", "children", "is", "swimming"],
+    correctAnswer: 2,
+    hint: "children = they (พหูพจน์)",
+    explanation: "children (พหูพจน์ = they) ต้องใช้ are ไม่ใช่ is → The children are swimming in the pool.",
+    grammarRule: "Plural subject + are"
+  },
+  {
+    id: 44, level: "hard", type: "Dialogue",
+    question: "A: Is your sister doing her homework?\nB: No, she ______. She ______ a story book at the moment.",
+    choices: ["isn't / is reading", "aren't / reading", "isn't / read", "don't / is reading"],
+    correctAnswer: 0,
+    hint: "your sister = she",
+    explanation: "your sister (she) ใช้กับ isn't และ is reading: No, she isn't. She is reading a story book at the moment.",
+    grammarRule: "She + isn't ... is + V-ing"
+  },
+  {
+    id: 45, level: "hard", type: "Choose the correct sentence",
+    question: "Choose the correct sentence.",
+    choices: ["My parents is cooking dinner in the kitchen now.", "My parents are cook dinner in the kitchen now.", "My parents are cooking dinner in the kitchen now.", "My parents am cooking dinner in the kitchen now."],
+    correctAnswer: 2,
+    hint: "My parents = they",
+    explanation: "My parents = they จึงใช้ are + cooking: My parents are cooking dinner in the kitchen now.",
+    grammarRule: "They + are + V-ing"
+  },
+  {
+    id: 46, level: "hard", type: "Spelling",
+    question: "What spelling rule applies to \"swim\" + -ing?",
+    choices: ["Just add -ing: swiming", "Remove the last letter: swiing", "Double the final consonant: swimming", "Change y to i: swimmying"],
+    correctAnswer: 2,
+    hint: "swim เป็นคำสั้นแบบ consonant-vowel-consonant",
+    explanation: "swim เป็นคำสั้นแบบ consonant-vowel-consonant (s-w-i-m) จึงเพิ่ม m อีกตัวก่อนเติม -ing → swimming",
+    grammarRule: "CVC rule — double final consonant"
+  },
+  {
+    id: 47, level: "hard", type: "Dialogue",
+    question: "A: Where are you going?\nB: I ______ to the shop. I ______ some milk for Mom.",
+    choices: ["am going / am buying", "is going / is buying", "am going / buying", "going / am buying"],
+    correctAnswer: 0,
+    hint: "I ใช้กับ am เสมอ ทั้งสองช่อง",
+    explanation: "I ใช้กับ am เสมอ: I am going to the shop. I am buying some milk for Mom.",
+    grammarRule: "I + am + V-ing (two blanks)"
+  },
+  {
+    id: 48, level: "hard", type: "Find the mistake",
+    question: "Find the mistake: \"She don't is playing the piano now.\"",
+    choices: ["She", "don't is", "playing", "now"],
+    correctAnswer: 1,
+    hint: "ประโยคนี้ใช้ verb to be สองรูปพร้อมกัน",
+    explanation: "ประโยคนี้ผิดเพราะใช้ don't กับ is พร้อมกัน ที่ถูกต้องคือ She isn't playing the piano now.",
+    grammarRule: "Never mix don't/doesn't with is/am/are"
+  },
+  {
+    id: 49, level: "hard", type: "Dialogue",
+    question: "A: What ______ your cat doing?\nB: It ______ under the table.",
+    choices: ["is / is sleeping", "are / sleeping", "is / sleep", "does / is sleeping"],
+    correctAnswer: 0,
+    hint: "your cat = it",
+    explanation: "your cat (it) ใช้กับ is ทั้งสองช่อง: What is your cat doing? It is sleeping under the table.",
+    grammarRule: "It + is + V-ing"
+  },
+  {
+    id: 50, level: "hard", type: "Spelling",
+    question: "Choose the sentence with correct spelling.",
+    choices: ["Anna is writeing a letter.", "Anna is writting a letter.", "Anna is writing a letter.", "Anna is writeng a letter."],
+    correctAnswer: 2,
+    hint: "write ลงท้ายด้วยตัว e",
+    explanation: "write ลงท้ายด้วย e จึงตัด e ออกก่อนเติม -ing → writing",
+    grammarRule: "Silent -e rule"
+  },
+  {
+    id: 51, level: "hard", type: "Dialogue",
+    question: "A: Are Lucy and Mia at school now?\nB: No, they ______. They ______ at the park.",
+    choices: ["isn't / are playing", "aren't / are playing", "aren't / playing", "don't / are playing"],
+    correctAnswer: 1,
+    hint: "Lucy and Mia = they",
+    explanation: "Lucy and Mia = they จึงใช้ aren't และ are playing: No, they aren't. They are playing at the park.",
+    grammarRule: "They + aren't ... are + V-ing"
+  },
+  {
+    id: 52, level: "hard", type: "Find the mistake",
+    question: "Find the mistake: \"Right now, Sam are eating his lunch.\"",
+    choices: ["Right now", "Sam", "are", "eating"],
+    correctAnswer: 2,
+    hint: "Sam = he (เอกพจน์)",
+    explanation: "Sam เป็นเอกพจน์ ต้องใช้ is ไม่ใช่ are → Right now, Sam is eating his lunch.",
+    grammarRule: "He + is + V-ing"
+  },
+  {
+    id: 53, level: "hard", type: "Context question",
+    question: "Which question matches this answer? \"No, he isn't. He is drawing a picture.\"",
+    choices: ["Is he reading a book?", "Are he reading a book?", "Does he reading a book?", "Is he read a book?"],
+    correctAnswer: 0,
+    hint: "คำตอบใช้ he isn't จึงต้องเป็นคำถามที่ใช้ Is he...?",
+    explanation: "คำตอบ \"No, he isn't\" มาจากคำถาม Is he...? เท่านั้น: Is he reading a book?",
+    grammarRule: "Is + he + V-ing? → No, he isn't."
+  },
+  {
+    id: 54, level: "hard", type: "Dialogue",
+    question: "A: What are Jack and his friends doing at the moment?\nB: They ______ football in the garden.",
+    choices: ["is playing", "are play", "are playing", "plays"],
+    correctAnswer: 2,
+    hint: "Jack and his friends = they",
+    explanation: "Jack and his friends = they จึงใช้ are + playing: They are playing football in the garden.",
+    grammarRule: "They + are + V-ing"
+  },
+  {
+    id: 55, level: "hard", type: "Choose the correct sentence",
+    question: "Choose the correct negative sentence.",
+    choices: ["We isn't doing our homework now.", "We aren't doing our homework now.", "We am not doing our homework now.", "We not doing our homework now."],
+    correctAnswer: 1,
+    hint: "We ใช้กับ are",
+    explanation: "We ใช้กับ aren't (are not): We aren't doing our homework now.",
+    grammarRule: "We + aren't + V-ing"
+  },
+  {
+    id: 56, level: "hard", type: "Find the mistake",
+    question: "Find the mistake: \"Listen! Someone is sing in the classroom.\"",
+    choices: ["Listen!", "Someone", "is sing", "in the classroom"],
+    correctAnswer: 2,
+    hint: "หลัง is ต้องมี verb เติม -ing เสมอ",
+    explanation: "ต้องเป็น is singing (ตามด้วย verb-ing) ไม่ใช่ is sing → Someone is singing in the classroom.",
+    grammarRule: "is/am/are + V-ing (not the base verb)"
+  },
+  {
+    id: 57, level: "hard", type: "Wh- question",
+    question: "A: Who is Anna talking to?\nB: She ______ to her best friend, Mia.",
+    choices: ["is talking", "talking", "talk", "are talking"],
+    correctAnswer: 0,
+    hint: "Anna = she",
+    explanation: "Anna (she) ใช้กับ is talking: She is talking to her best friend, Mia.",
+    grammarRule: "Who + is + subject + V-ing?"
+  },
+  {
+    id: 58, level: "hard", type: "Spelling",
+    question: "Choose the sentence with the correct spelling.",
+    choices: ["The baby is crying.", "The baby is cryhing.", "The baby is cryying.", "The baby is criing."],
+    correctAnswer: 0,
+    hint: "cry ลงท้ายด้วย y ตามหลังพยัญชนะ — กฎ -ing ไม่เปลี่ยน y",
+    explanation: "cry ลงท้ายด้วย y แต่กฎการเติม -ing ไม่เปลี่ยน y เป็น i (ต่างจากการเติม -s) จึงเติม -ing ตรงๆ → crying",
+    grammarRule: "-ing spelling: keep the y, just add -ing"
+  },
+  {
+    id: 59, level: "hard", type: "Dialogue",
+    question: "A: Where is Ben right now?\nB: He ______ in his room. He ______ his favorite song.",
+    choices: ["is / is singing", "is / sings", "are / are singing", "is / singing"],
+    correctAnswer: 0,
+    hint: "Ben = he เอกพจน์ ทั้งสองช่องต้องมี is",
+    explanation: "He เป็นเอกพจน์ ใช้ is เสมอ และต้องมี is อยู่หน้า singing: He is in his room. He is singing his favorite song.",
+    grammarRule: "He + is + V-ing (two blanks)"
+  },
+  {
+    id: 60, level: "hard", type: "Find the mistake",
+    question: "Find the mistake: \"My friends and I is having lunch at school now.\"",
+    choices: ["My friends and I", "is", "having", "at school"],
+    correctAnswer: 1,
+    hint: "My friends and I = we (พหูพจน์)",
+    explanation: "My friends and I = we (พหูพจน์) ต้องใช้ are ไม่ใช่ is → My friends and I are having lunch at school now.",
+    grammarRule: "We + are + V-ing"
+  }
+];
+
+/* Small sanity export for the app to verify content integrity at runtime */
+const QUESTION_COUNTS = {
+  easy: QUESTIONS.filter(q => q.level === "easy").length,
+  medium: QUESTIONS.filter(q => q.level === "medium").length,
+  hard: QUESTIONS.filter(q => q.level === "hard").length,
+  total: QUESTIONS.length
+};
+
+</script>
+<script>
+/* =========================================================================
+   Present Continuous Challenge — App Logic
+   Bright EngMath — Grade 4 Exam Review
+   Vanilla JS, no build step, no reload navigation, localStorage persistence.
+   ========================================================================= */
+(function () {
+  "use strict";
+
+  const STORAGE_KEY = "presentContinuousChallenge:v1";
+  const LETTERS = ["A", "B", "C", "D"];
+  const LEVEL_LABEL = { easy: "Easy", medium: "Medium", hard: "Hard" };
+  const LEVEL_COLOR = { easy: "var(--mint)", medium: "var(--orange)", hard: "var(--coral)" };
+
+  /* ------------------------------ state ------------------------------ */
+  function defaultState() {
+    return {
+      progress: {
+        easy: { bestScore: 0, lastScore: null, completed: false, attempts: 0 },
+        medium: { bestScore: 0, lastScore: null, completed: false, attempts: 0 },
+        hard: { bestScore: 0, lastScore: null, completed: false, attempts: 0 }
+      },
+      mistakes: {}, // { [questionId]: { chosenIndex, level, ts } }
+      currentTest: null,
+      lastResult: null
+    };
+  }
+
+  let state = loadState();
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return defaultState();
+      const parsed = JSON.parse(raw);
+      // merge with defaults to survive schema changes gracefully
+      const base = defaultState();
+      return {
+        progress: Object.assign(base.progress, parsed.progress),
+        mistakes: parsed.mistakes || {},
+        currentTest: parsed.currentTest || null,
+        lastResult: parsed.lastResult || null
+      };
+    } catch (e) {
+      return defaultState();
+    }
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+      /* storage unavailable — app still works for this session */
+    }
+  }
+
+  /* ------------------------------ helpers ------------------------------ */
+  function $(id) { return document.getElementById(id); }
+  function qsa(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+
+  function getLevelQuestions(level) {
+    return QUESTIONS.filter(function (q) { return q.level === level; });
+  }
+  function getQuestionById(id) {
+    return QUESTIONS.filter(function (q) { return q.id === id; })[0];
+  }
+
+  function starsForScore(score) {
+    if (score >= 18) return 3;
+    if (score >= 15) return 2;
+    if (score >= 11) return 1;
+    return 0;
+  }
+
+  function tierForPercent(pct) {
+    if (pct >= 90) return { emoji: "🏆", message: "Present Continuous Master!" };
+    if (pct >= 75) return { emoji: "🌟", message: "Great Job!" };
+    if (pct >= 55) return { emoji: "👍", message: "Good Progress!" };
+    return { emoji: "💪", message: "Keep Practicing!" };
+  }
+
+  function showScreen(name) {
+    qsa(".screen").forEach(function (el) { el.classList.remove("is-active"); });
+    const target = document.querySelector('.screen[data-screen="' + name + '"]');
+    if (target) target.classList.add("is-active");
+    $("header-back-btn").hidden = name === "home";
+    window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+  }
+
+  /* ------------------------------ HOME ------------------------------ */
+  function renderHome() {
+    ["easy", "medium", "hard"].forEach(function (level) {
+      const data = state.progress[level];
+      const score = data.bestScore || 0;
+      const pct = Math.round((score / 20) * 100);
+      $("progress-fill-" + level).style.width = pct + "%";
+      $("progress-label-" + level).textContent = score + "/20";
+      const lit = starsForScore(score);
+      const starsEl = $("stars-" + level);
+      let html = "";
+      for (let i = 0; i < 3; i++) {
+        html += '<span class="' + (i < lit ? "lit" : "") + '">★</span>';
+      }
+      starsEl.innerHTML = html;
+    });
+
+    const total = ["easy", "medium", "hard"].reduce(function (sum, lvl) {
+      return sum + (state.progress[lvl].bestScore || 0);
+    }, 0);
+    const anyAttempted = ["easy", "medium", "hard"].some(function (lvl) { return state.progress[lvl].completed; });
+    const teaser = $("mastery-teaser");
+    if (anyAttempted) {
+      teaser.hidden = false;
+      $("mastery-teaser-score").textContent = total + "/60";
+      $("mastery-teaser-fill").style.width = Math.round((total / 60) * 100) + "%";
+    } else {
+      teaser.hidden = true;
+    }
+  }
+
+  /* --------------------------- QUICK REVIEW --------------------------- */
+  let quickReviewRendered = false;
+  function renderQuickReview() {
+    if (quickReviewRendered) return;
+    quickReviewRendered = true;
+    const c = QUICK_REVIEW;
+    let html = "";
+
+    html += '<div class="review-block">';
+    html += "<h3>1. " + c.intro.title + "</h3>";
+    html += '<p class="en-title">' + c.intro.titleEn + "</p>";
+    html += '<p class="body-text">' + c.intro.body + "</p>";
+    html += '<span class="structure-pill">' + c.intro.structure + "</span>";
+    html += '<div class="example-list">' + c.intro.examples.map(function (e) {
+      return '<div class="example-item">' + e + "</div>";
+    }).join("") + "</div>";
+    html += "</div>";
+
+    html += '<div class="review-block">';
+    html += "<h3>2. " + c.amIsAre.title + "</h3>";
+    html += '<table class="chart-table"><tbody>' + c.amIsAre.rows.map(function (r) {
+      return "<tr><td>" + r.subject + "</td><td>" + r.verb + "</td></tr>";
+    }).join("") + "</tbody></table>";
+    html += '<div class="example-list">' + c.amIsAre.examples.map(function (e) {
+      return '<div class="example-item">' + e + "</div>";
+    }).join("") + "</div>";
+    html += "</div>";
+
+    html += '<div class="review-block">';
+    html += "<h3>3. " + c.negative.title + "</h3>";
+    html += '<span class="structure-pill">' + c.negative.structure + "</span>";
+    html += '<div class="example-list">' + c.negative.examples.map(function (e) {
+      return '<div class="example-item">' + e + "</div>";
+    }).join("") + "</div>";
+    html += "</div>";
+
+    html += '<div class="review-block">';
+    html += "<h3>4. " + c.questions.title + "</h3>";
+    html += '<span class="structure-pill">' + c.questions.structure + "</span>";
+    html += '<div class="example-list">' + c.questions.examples.map(function (e) {
+      return '<div class="example-item">' + e + "</div>";
+    }).join("") + "</div>";
+    html += '<p class="body-text" style="margin-top:12px;font-weight:700;">Short answers:</p>';
+    html += '<div class="shortanswer-list">' + c.questions.shortAnswers.map(function (s) {
+      return '<div class="shortanswer-item">' + s + "</div>";
+    }).join("") + "</div>";
+    html += "</div>";
+
+    html += '<div class="review-block">';
+    html += "<h3>Verb + ing Spelling Rules</h3>";
+    html += '<div class="spelling-rules-grid">' + c.spellingRules.map(function (r) {
+      return '<div class="spelling-rule-card">' +
+        "<h4>" + r.rule + "</h4>" +
+        '<p class="en-title">' + r.ruleEn + "</p>" +
+        '<div class="spelling-examples">' + r.examples.map(function (pair) {
+          return '<span class="spelling-example">' + pair[0] + '<span class="arrow">→</span><span class="to">' + pair[1] + "</span></span>";
+        }).join("") +
+        "</div></div>";
+    }).join("") + "</div>";
+    html += "</div>";
+
+    html += '<div class="remember-card"><span class="icon">💡</span><span>' + c.remember + "</span></div>";
+
+    $("quick-review-content").innerHTML = html;
+  }
+
+  /* ------------------------------ TEST ENGINE ------------------------------ */
+  function startTest(level, opts) {
+    opts = opts || {};
+    let ids, testLevel, mode;
+    if (opts.retryIds) {
+      ids = opts.retryIds.slice();
+      testLevel = opts.retryLabel || "mixed";
+      mode = "retry";
+    } else {
+      ids = getLevelQuestions(level).map(function (q) { return q.id; });
+      testLevel = level;
+      mode = "normal";
+    }
+    state.currentTest = {
+      level: testLevel,
+      mode: mode,
+      ids: ids,
+      index: 0,
+      correctCount: 0,
+      incorrectCount: 0,
+      perQuestion: {},
+      hintsShown: {}
+    };
+    saveState();
+    showScreen("test");
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const t = state.currentTest;
+    if (!t) { showScreen("home"); renderHome(); return; }
+    if (t.index >= t.ids.length) { finishTest(); return; }
+
+    const id = t.ids[t.index];
+    const q = getQuestionById(id);
+    const answeredSoFar = Object.keys(t.perQuestion).length;
+
+    $("test-level-chip").textContent = t.mode === "retry" ? "Retry: " + t.level : LEVEL_LABEL[t.level];
+    $("test-progress-text").textContent = "Question " + (t.index + 1) + " of " + t.ids.length;
+    $("test-progress-fill").style.width = Math.round((answeredSoFar / t.ids.length) * 100) + "%";
+    $("test-score-text").textContent = "Score: " + t.correctCount + "/" + answeredSoFar + " correct";
+
+    $("question-type-tag").textContent = q.type;
+    $("question-text").textContent = q.question;
+
+    const hintBox = $("hint-box");
+    const hintBtn = $("hint-btn");
+    const alreadyHinted = !!t.hintsShown[id];
+    hintBox.hidden = !alreadyHinted;
+    if (alreadyHinted) hintBox.textContent = "💡 " + q.hint;
+    hintBtn.disabled = alreadyHinted;
+    hintBtn.textContent = alreadyHinted ? "💡 Hint shown" : "💡 Hint";
+
+    const grid = $("choices-grid");
+    grid.innerHTML = "";
+    q.choices.forEach(function (choiceText, idx) {
+      const btn = document.createElement("button");
+      btn.className = "choice-btn";
+      btn.type = "button";
+      btn.setAttribute("data-idx", String(idx));
+      btn.innerHTML = '<span class="choice-letter">' + LETTERS[idx] + '</span><span class="choice-label"></span>';
+      btn.querySelector(".choice-label").textContent = choiceText;
+      grid.appendChild(btn);
+    });
+
+    const existing = t.perQuestion[id];
+    if (existing) {
+      applyAnsweredVisuals(q, existing.chosenIndex);
+      showFeedback(q, existing.chosenIndex, existing.correct);
+    } else {
+      $("feedback-panel").hidden = true;
+    }
+
+    saveState();
+  }
+
+  function choiceClickHandler(e) {
+    const btn = e.target.closest(".choice-btn");
+    if (!btn) return;
+    const t = state.currentTest;
+    if (!t) return;
+    const id = t.ids[t.index];
+    if (t.perQuestion[id]) return; // already answered — prevent double submission
+    const q = getQuestionById(id);
+    const chosenIndex = Number(btn.getAttribute("data-idx"));
+    const correct = chosenIndex === q.correctAnswer;
+
+    t.perQuestion[id] = {
+      chosenIndex: chosenIndex,
+      correct: correct,
+      usedHint: !!t.hintsShown[id]
+    };
+    if (correct) { t.correctCount++; } else { t.incorrectCount++; }
+
+    if (correct) {
+      delete state.mistakes[id];
+    } else {
+      state.mistakes[id] = { chosenIndex: chosenIndex, level: q.level, ts: Date.now() };
+    }
+
+    applyAnsweredVisuals(q, chosenIndex);
+    showFeedback(q, chosenIndex, correct);
+
+    const answeredSoFar = Object.keys(t.perQuestion).length;
+    $("test-score-text").textContent = "Score: " + t.correctCount + "/" + answeredSoFar + " correct";
+    $("test-progress-fill").style.width = Math.round((answeredSoFar / t.ids.length) * 100) + "%";
+
+    if (correct) spawnCelebration();
+    saveState();
+  }
+
+  function applyAnsweredVisuals(q, chosenIndex) {
+    qsa(".choice-btn", $("choices-grid")).forEach(function (btn) {
+      const idx = Number(btn.getAttribute("data-idx"));
+      btn.disabled = true;
+      if (idx === q.correctAnswer) {
+        btn.classList.add("is-correct");
+        const mark = document.createElement("span");
+        mark.className = "choice-mark mark-correct";
+        mark.textContent = "✓ Correct";
+        btn.appendChild(mark);
+      } else if (idx === chosenIndex) {
+        btn.classList.add("is-incorrect");
+        const mark = document.createElement("span");
+        mark.className = "choice-mark mark-incorrect";
+        mark.textContent = "✕ Your answer";
+        btn.appendChild(mark);
+      } else {
+        btn.classList.add("is-dimmed");
+      }
+    });
+  }
+
+  function showFeedback(q, chosenIndex, correct) {
+    const panel = $("feedback-panel");
+    panel.hidden = false;
+    panel.className = "feedback-panel " + (correct ? "is-correct" : "is-incorrect");
+    $("feedback-headline").textContent = correct ? "✅ Correct!" : "❌ Not quite!";
+    if (correct) {
+      $("feedback-answers").innerHTML = "";
+    } else {
+      $("feedback-answers").innerHTML =
+        '<span class="wrong-tag">Your answer: ' + LETTERS[chosenIndex] + ") " + escapeHtml(q.choices[chosenIndex]) + "</span>" +
+        '<span class="right-tag">Correct answer: ' + LETTERS[q.correctAnswer] + ") " + escapeHtml(q.choices[q.correctAnswer]) + "</span>";
+    }
+    $("feedback-explanation").innerHTML = "<strong>" + q.grammarRule + ".</strong><br>" + q.explanation;
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function nextQuestion() {
+    const t = state.currentTest;
+    if (!t) return;
+    const id = t.ids[t.index];
+    if (!t.perQuestion[id]) return; // must answer before continuing
+    t.index++;
+    if (t.index >= t.ids.length) {
+      finishTest();
+    } else {
+      saveState();
+      renderQuestion();
+    }
+  }
+
+  function useHint() {
+    const t = state.currentTest;
+    if (!t) return;
+    const id = t.ids[t.index];
+    if (t.hintsShown[id]) return;
+    t.hintsShown[id] = true;
+    const q = getQuestionById(id);
+    $("hint-box").hidden = false;
+    $("hint-box").textContent = "💡 " + q.hint;
+    $("hint-btn").disabled = true;
+    $("hint-btn").textContent = "💡 Hint shown";
+    saveState();
+  }
+
+  function finishTest() {
+    const t = state.currentTest;
+    const total = t.ids.length;
+    const score = t.correctCount;
+    const pct = Math.round((score / total) * 100);
+    const hintsUsed = Object.keys(t.hintsShown).length;
+
+    if (t.mode === "normal") {
+      const prog = state.progress[t.level];
+      prog.bestScore = Math.max(prog.bestScore || 0, score);
+      prog.lastScore = score;
+      prog.completed = true;
+      prog.attempts = (prog.attempts || 0) + 1;
+    }
+
+    state.lastResult = {
+      level: t.level,
+      mode: t.mode,
+      score: score,
+      total: total,
+      correctCount: t.correctCount,
+      incorrectCount: t.incorrectCount,
+      hintsUsed: hintsUsed,
+      pct: pct,
+      retryIds: t.mode === "retry" ? t.ids.slice() : null,
+      retryLabel: t.mode === "retry" ? t.level : null
+    };
+    state.currentTest = null;
+    saveState();
+    showScreen("results");
+    renderResults(state.lastResult);
+  }
+
+  function renderResults(r) {
+    const tier = tierForPercent(r.pct);
+    $("results-emoji").textContent = tier.emoji;
+    $("results-message").textContent = tier.message;
+    $("results-level-label").textContent = r.mode === "retry" ? "Retry Session — " + r.retryLabel : LEVEL_LABEL[r.level] + " Test";
+    $("results-score-number").textContent = r.score + "/" + r.total;
+    $("results-score-percent").textContent = r.pct + "%";
+    $("results-score-circle").style.setProperty("--pct", r.pct);
+    $("results-correct-num").textContent = r.correctCount;
+    $("results-incorrect-num").textContent = r.incorrectCount;
+    $("results-hints-num").textContent = r.hintsUsed;
+  }
+
+  /* --------------------------- REVIEW MISTAKES --------------------------- */
+  let currentMistakeIds = [];
+  function renderMistakes(filter) {
+    filter = filter || "all";
+    qsa(".chip-btn", $("mistakes-filter")).forEach(function (chip) {
+      chip.classList.toggle("is-active", chip.getAttribute("data-filter") === filter);
+    });
+
+    const entries = Object.keys(state.mistakes).map(function (idStr) {
+      return { id: Number(idStr), record: state.mistakes[idStr] };
+    }).filter(function (entry) {
+      return filter === "all" || entry.record.level === filter;
+    }).sort(function (a, b) { return a.id - b.id; });
+
+    currentMistakeIds = entries.map(function (e) { return e.id; });
+
+    const list = $("mistakes-list");
+    const empty = $("mistakes-empty");
+    const retryBtn = $("retry-mistakes-btn");
+
+    if (entries.length === 0) {
+      list.innerHTML = "";
+      empty.hidden = false;
+      retryBtn.disabled = true;
+      $("mistakes-sub").textContent = "Questions you answered incorrectly, with explanations.";
+      return;
+    }
+    empty.hidden = true;
+    retryBtn.disabled = false;
+    $("mistakes-sub").textContent = entries.length + " question" + (entries.length === 1 ? "" : "s") + " to review.";
+
+    list.innerHTML = entries.map(function (entry) {
+      const q = getQuestionById(entry.id);
+      if (!q) return "";
+      const yourText = q.choices[entry.record.chosenIndex];
+      const correctText = q.choices[q.correctAnswer];
+      return (
+        '<div class="mistake-item">' +
+          '<div class="mistake-item-top">' +
+            '<span class="mistake-level-tag" style="background:' + LEVEL_COLOR[q.level] + '">' + LEVEL_LABEL[q.level] + "</span>" +
+          "</div>" +
+          '<p class="mistake-q">' + escapeHtml(q.question) + "</p>" +
+          '<div class="mistake-answers">' +
+            '<span class="your">✕ Your answer: ' + LETTERS[entry.record.chosenIndex] + ") " + escapeHtml(yourText) + "</span>" +
+            '<span class="correct">✓ Correct: ' + LETTERS[q.correctAnswer] + ") " + escapeHtml(correctText) + "</span>" +
+          "</div>" +
+          '<div class="mistake-explain">' + q.explanation + "</div>" +
+          '<div class="mistake-rule">Rule: ' + q.grammarRule + "</div>" +
+        "</div>"
+      );
+    }).join("");
+  }
+
+  /* ------------------------------- MASTERY ------------------------------- */
+  function renderMastery() {
+    const levels = ["easy", "medium", "hard"];
+    const anyCompleted = levels.some(function (l) { return state.progress[l].completed; });
+    const total = levels.reduce(function (sum, l) { return sum + (state.progress[l].bestScore || 0); }, 0);
+    const pct = Math.round((total / 60) * 100);
+
+    $("mastery-rows").innerHTML = levels.map(function (l) {
+      const score = state.progress[l].bestScore || 0;
+      const fillPct = Math.round((score / 20) * 100);
+      return (
+        '<div class="mastery-row">' +
+          '<span class="mastery-row-label">' + LEVEL_LABEL[l] + "</span>" +
+          '<div class="mastery-row-track"><div class="mastery-row-fill" style="width:' + fillPct + '%;background:' + LEVEL_COLOR[l] + ';"></div></div>' +
+          '<span class="mastery-row-score">' + score + "/20</span>" +
+        "</div>"
+      );
+    }).join("");
+
+    $("mastery-total-text").textContent = total + " / 60";
+    $("mastery-percent").textContent = pct + "%";
+
+    if (!anyCompleted) {
+      $("mastery-badge").textContent = "🌱";
+      $("mastery-message").textContent = "Complete a test to see your mastery progress here!";
+    } else {
+      const tier = tierForPercent(pct);
+      $("mastery-badge").textContent = tier.emoji;
+      $("mastery-message").textContent = tier.message;
+    }
+  }
+
+  /* -------------------------------- RESET -------------------------------- */
+  function openResetModal() { $("reset-modal-overlay").hidden = false; }
+  function closeResetModal() { $("reset-modal-overlay").hidden = true; }
+  function confirmReset() {
+    state = defaultState();
+    saveState();
+    closeResetModal();
+    renderHome();
+    showScreen("home");
+  }
+
+  /* ----------------------------- CELEBRATION ----------------------------- */
+  const CONFETTI_EMOJI = ["🎉", "⭐", "✨", "🌟"];
+  function spawnCelebration() {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const layer = $("celebration-layer");
+    for (let i = 0; i < 8; i++) {
+      const piece = document.createElement("span");
+      piece.className = "confetti-piece";
+      piece.textContent = CONFETTI_EMOJI[Math.floor(Math.random() * CONFETTI_EMOJI.length)];
+      piece.style.left = Math.round(Math.random() * 100) + "vw";
+      piece.style.animationDelay = (Math.random() * 0.15) + "s";
+      piece.style.fontSize = (14 + Math.random() * 14) + "px";
+      layer.appendChild(piece);
+      setTimeout(function (el) { return function () { el.remove(); }; }(piece), 1400);
+    }
+  }
+
+  /* -------------------------------- INIT -------------------------------- */
+  function attachEvents() {
+    $("brand-home-btn").addEventListener("click", function () { showScreen("home"); renderHome(); });
+    $("header-back-btn").addEventListener("click", function () { showScreen("home"); renderHome(); });
+
+    qsa('[data-action="start-test"]').forEach(function (btn) {
+      btn.addEventListener("click", function () { startTest(btn.getAttribute("data-level")); });
+    });
+    qsa(".test-card").forEach(function (card) {
+      card.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); startTest(card.getAttribute("data-level")); }
+      });
+    });
+
+    $("quick-review-btn").addEventListener("click", function () { renderQuickReview(); showScreen("quickreview"); });
+    $("quickreview-to-home").addEventListener("click", function () { showScreen("home"); renderHome(); });
+
+    $("review-mistakes-btn").addEventListener("click", function () { showScreen("mistakes"); renderMistakes("all"); });
+    $("mastery-summary-btn").addEventListener("click", function () { showScreen("mastery"); renderMastery(); });
+
+    $("choices-grid").addEventListener("click", choiceClickHandler);
+    $("hint-btn").addEventListener("click", useHint);
+    $("next-question-btn").addEventListener("click", nextQuestion);
+    $("exit-test-btn").addEventListener("click", function () {
+      state.currentTest = null;
+      saveState();
+      showScreen("home");
+      renderHome();
+    });
+
+    $("results-retry-btn").addEventListener("click", function () {
+      const r = state.lastResult;
+      if (!r) return;
+      if (r.mode === "retry") { startTest(null, { retryIds: r.retryIds, retryLabel: r.retryLabel }); }
+      else { startTest(r.level); }
+    });
+    $("results-review-mistakes-btn").addEventListener("click", function () { showScreen("mistakes"); renderMistakes("all"); });
+    $("results-home-btn").addEventListener("click", function () { showScreen("home"); renderHome(); });
+
+    qsa(".chip-btn", $("mistakes-filter")).forEach(function (chip) {
+      chip.addEventListener("click", function () { renderMistakes(chip.getAttribute("data-filter")); });
+    });
+    $("retry-mistakes-btn").addEventListener("click", function () {
+      if (!currentMistakeIds.length) return;
+      const activeChip = document.querySelector('.chip-btn.is-active');
+      const filterLabel = activeChip ? activeChip.getAttribute("data-filter") : "all";
+      startTest(null, { retryIds: currentMistakeIds.slice(), retryLabel: filterLabel === "all" ? "Mistakes" : LEVEL_LABEL[filterLabel] });
+    });
+    $("mistakes-home-btn").addEventListener("click", function () { showScreen("home"); renderHome(); });
+
+    $("mastery-tryagain-btn").addEventListener("click", function () { showScreen("home"); renderHome(); });
+    $("mastery-review-btn").addEventListener("click", function () { showScreen("mistakes"); renderMistakes("all"); });
+    $("mastery-home-btn").addEventListener("click", function () { showScreen("home"); renderHome(); });
+
+    $("reset-progress-btn").addEventListener("click", openResetModal);
+    $("reset-cancel-btn").addEventListener("click", closeResetModal);
+    $("reset-confirm-btn").addEventListener("click", confirmReset);
+    $("reset-modal-overlay").addEventListener("click", function (e) {
+      if (e.target === $("reset-modal-overlay")) closeResetModal();
+    });
+  }
+
+  function init() {
+    attachEvents();
+    if (state.currentTest && state.currentTest.ids && state.currentTest.ids.length) {
+      showScreen("test");
+      renderQuestion();
+    } else {
+      renderHome();
+      showScreen("home");
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
+})();
+
+</script>
+</body>
+</html>

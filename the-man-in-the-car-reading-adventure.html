@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>The Man in the Car — Reading Adventure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Noto+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   THE MAN IN THE CAR — Reading Adventure (Grade 4)
+   Bright EngMath
+   ============================================================ */
+:root{
+  --cream:#FFF8EC;
+  --cream-2:#FFF1DC;
+  --paper:#FFFFFF;
+  --ink:#2B2118;
+  --ink-soft:#6B5D4F;
+  --teal:#0E7C7B;
+  --teal-dark:#0A5C5B;
+  --turquoise:#1FB2AE;
+  --turquoise-light:#E3F7F6;
+  --orange:#F0862B;
+  --orange-dark:#C96A18;
+  --orange-light:#FDEBD8;
+  --yellow:#F5B335;
+  --yellow-light:#FEF3DA;
+  --coral:#E85D4C;
+  --coral-dark:#C4432F;
+  --coral-light:#FCE4E0;
+  --green:#5FA86B;
+  --green-light:#E6F3E5;
+  --line:#EADFCD;
+  --shadow: 0 4px 14px rgba(43,33,24,0.08);
+  --shadow-lg: 0 10px 30px rgba(43,33,24,0.14);
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  font-size: 17px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "Baloo 2","Segoe UI",system-ui,-apple-system,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  min-height:100vh;
+}
+h1,h2,h3,h4{
+  font-family:"Baloo 2","Segoe UI",system-ui,sans-serif;
+  font-weight:700;
+  margin:0 0 .4em 0;
+  line-height:1.25;
+}
+p{line-height:1.55; margin:.3em 0;}
+button{font-family:inherit;}
+a{color:inherit;}
+.thai{font-family:"Noto Sans Thai","Baloo 2",sans-serif;}
+
+/* ---------- layout shell ---------- */
+#app{min-height:100vh; display:flex; flex-direction:column;}
+.topbar{
+  position:sticky; top:0; z-index:40;
+  background: var(--teal);
+  color:#fff;
+  box-shadow: var(--shadow);
+}
+.topbar-inner{
+  max-width:1100px; margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.7rem 1rem;
+  gap:.6rem;
+}
+.brand{
+  display:flex; align-items:center; gap:.55rem;
+  font-weight:800; font-size:1.05rem;
+  cursor:pointer; user-select:none;
+  white-space:nowrap;
+}
+.brand .brand-badge{
+  width:38px;height:38px;border-radius:12px;
+  background: var(--orange);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,.15);
+  flex:none;
+}
+.brand small{display:block; font-weight:500; font-size:.68rem; opacity:.85; letter-spacing:.02em;}
+.nav-toggle{
+  display:none;
+  background:rgba(255,255,255,.15); border:none; color:#fff;
+  width:42px;height:42px;border-radius:10px; font-size:1.3rem; cursor:pointer;
+}
+.nav{
+  display:flex; flex-wrap:wrap; gap:.3rem; justify-content:flex-end;
+}
+.nav button{
+  background:transparent; border:none; color:#fff;
+  padding:.5rem .68rem; border-radius:10px; cursor:pointer;
+  font-size:.86rem; font-weight:600; opacity:.85;
+  display:flex; align-items:center; gap:.35rem;
+  white-space:nowrap;
+}
+.nav button:hover{opacity:1; background:rgba(255,255,255,.12);}
+.nav button.active{opacity:1; background:rgba(255,255,255,.22);}
+
+main{flex:1; width:100%;}
+.wrap{max-width:1100px; margin:0 auto; padding:1.4rem 1rem 3rem;}
+.wrap.narrow{max-width:820px;}
+
+footer.site-footer{
+  text-align:center; padding:1.4rem 1rem 2rem;
+  color: var(--ink-soft); font-size:.82rem;
+}
+footer.site-footer b{color:var(--teal-dark);}
+
+/* ---------- generic card ---------- */
+.card{
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  border:1px solid var(--line);
+  padding:1.3rem;
+}
+.pill{
+  display:inline-flex; align-items:center; gap:.35rem;
+  padding:.28rem .7rem; border-radius:999px;
+  font-size:.76rem; font-weight:700;
+  background: var(--turquoise-light); color: var(--teal-dark);
+}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  border:none; border-radius:14px; cursor:pointer;
+  font-weight:700; font-size:.95rem; font-family:inherit;
+  padding:.8rem 1.3rem;
+  box-shadow: 0 3px 0 rgba(0,0,0,.12);
+  transition: transform .08s ease;
+}
+.btn:active{transform:translateY(2px); box-shadow:0 1px 0 rgba(0,0,0,.12);}
+.btn-primary{background:var(--orange); color:#fff;}
+.btn-primary:hover{background:var(--orange-dark);}
+.btn-teal{background:var(--teal); color:#fff;}
+.btn-teal:hover{background:var(--teal-dark);}
+.btn-outline{background:#fff; color:var(--teal-dark); border:2px solid var(--turquoise); box-shadow:none; padding:.7rem 1.2rem;}
+.btn-outline:hover{background:var(--turquoise-light);}
+.btn-ghost{background:transparent; color:var(--ink-soft); box-shadow:none; padding:.6rem 1rem;}
+.btn-ghost:hover{background:var(--cream-2);}
+.btn:disabled{opacity:.45; cursor:not-allowed; box-shadow:none;}
+.btn-block{width:100%;}
+.btn-row{display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1rem;}
+
+/* ---------- HOME ---------- */
+.hero{
+  background: linear-gradient(135deg, var(--teal) 0%, var(--turquoise) 100%);
+  border-radius: var(--radius-lg);
+  color:#fff; padding:2.2rem 1.6rem; text-align:center;
+  box-shadow: var(--shadow-lg);
+  position:relative; overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background: radial-gradient(circle at 85% 10%, rgba(255,255,255,.14), transparent 45%),
+              radial-gradient(circle at 8% 90%, rgba(255,255,255,.10), transparent 40%);
+}
+.hero-content{position:relative;}
+.hero h1{font-size: clamp(1.7rem, 5vw, 2.5rem); margin-bottom:.25rem;}
+.hero .subtitle{font-size:1.05rem; font-weight:600; opacity:.95; margin-bottom:.5rem;}
+.hero .tagline{font-style:italic; opacity:.9; font-size:.98rem; margin-bottom:1.2rem;}
+.hero-icons{font-size:1.6rem; letter-spacing:.3rem; opacity:.95;}
+
+.continue-box{
+  margin-top:1.2rem; display:flex; justify-content:center;
+}
+
+.card-grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:1rem; margin-top:1.6rem;
+}
+.learn-card{
+  background:var(--paper); border-radius:var(--radius-lg); border:1px solid var(--line);
+  box-shadow: var(--shadow); padding:1.2rem; cursor:pointer;
+  text-align:left; display:flex; flex-direction:column; gap:.55rem;
+  transition: transform .12s ease, box-shadow .12s ease;
+  position:relative;
+}
+.learn-card:hover{ transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.learn-card .lc-icon{
+  width:52px;height:52px;border-radius:15px;
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;
+}
+.learn-card h3{font-size:1.05rem; margin-bottom:.1rem;}
+.learn-card p{font-size:.85rem; color:var(--ink-soft); margin:0;}
+.learn-card .lc-progress{
+  margin-top:.3rem; font-size:.78rem; font-weight:700;
+  display:flex; align-items:center; gap:.4rem;
+}
+.progress-track{
+  height:8px; border-radius:999px; background:var(--cream-2); overflow:hidden; flex:1;
+}
+.progress-fill{height:100%; border-radius:999px; background:var(--turquoise); transition:width .3s ease;}
+
+/* section header used across pages */
+.section-head{
+  display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+  margin-bottom:1.2rem;
+}
+.section-head h2{font-size:1.5rem; display:flex; align-items:center; gap:.5rem;}
+.section-head .desc{color:var(--ink-soft); font-size:.92rem; max-width:60ch;}
+.back-link{
+  background:transparent;border:none;cursor:pointer;color:var(--teal-dark);
+  font-weight:700; font-size:.88rem; display:flex; align-items:center; gap:.3rem; padding:.3rem 0;
+  margin-bottom:.6rem;
+}
+
+/* ---------- STORY MODE ---------- */
+.scene-grid{display:flex; flex-direction:column; gap:1rem;}
+.scene-card{
+  background:var(--paper); border-radius:var(--radius-lg); border:1px solid var(--line);
+  box-shadow:var(--shadow); overflow:hidden;
+}
+.scene-banner{
+  padding:1rem 1.3rem; display:flex; align-items:center; gap:.8rem; color:#fff;
+}
+.scene-banner .scene-num{
+  width:38px;height:38px;border-radius:50%; background:rgba(255,255,255,.25);
+  display:flex;align-items:center;justify-content:center;font-weight:800; flex:none;
+}
+.scene-banner h3{margin:0; font-size:1.15rem;}
+.scene-banner .scene-icon{font-size:1.5rem;}
+.scene-body{padding:1.2rem 1.3rem;}
+.scene-text{font-size:1.02rem; line-height:1.7;}
+.scene-text .hl{
+  background:var(--yellow-light); border-bottom:2px solid var(--yellow);
+  border-radius:4px; padding:0 .15em; font-weight:700;
+}
+.scene-meta{display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.8rem;}
+.chip{
+  font-size:.76rem; font-weight:700; padding:.25rem .6rem; border-radius:999px;
+  background:var(--cream-2); color:var(--ink-soft);
+}
+.chip.char{background:var(--coral-light); color:var(--coral-dark);}
+.chip.vocab{background:var(--turquoise-light); color:var(--teal-dark);}
+.help-btn{
+  margin-top:.9rem; background:var(--yellow-light); border:1px dashed var(--yellow);
+  color:var(--orange-dark); font-weight:700; font-size:.84rem;
+  padding:.55rem .9rem; border-radius:12px; cursor:pointer;
+  display:inline-flex; align-items:center; gap:.4rem;
+}
+.thai-box{
+  margin-top:.7rem; background:var(--green-light); border-radius:12px; padding:.8rem 1rem;
+  font-size:.92rem; color:#265c33; display:none;
+}
+.thai-box.show{display:block;}
+.scene-footer{
+  padding:0 1.3rem 1.2rem; display:flex; justify-content:flex-end; gap:.6rem;
+}
+
+/* ---------- VOCAB LAB ---------- */
+.tabs{display:flex; gap:.4rem; flex-wrap:wrap; margin-bottom:1.2rem;}
+.tab-btn{
+  background:var(--paper); border:1px solid var(--line); color:var(--ink-soft);
+  padding:.55rem 1rem; border-radius:12px; font-weight:700; font-size:.86rem; cursor:pointer;
+}
+.tab-btn.active{background:var(--teal); border-color:var(--teal); color:#fff;}
+
+.vocab-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1rem;}
+.vocab-card{
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--radius-md);
+  box-shadow:var(--shadow); padding:1rem 1.1rem;
+}
+.vocab-card .vw{font-size:1.18rem; font-weight:800; color:var(--teal-dark);}
+.vocab-card .vipa{color:var(--ink-soft); font-size:.85rem; margin-bottom:.2rem;}
+.vocab-card .vpos{
+  display:inline-block; font-size:.7rem; font-weight:700; color:var(--orange-dark);
+  background:var(--orange-light); border-radius:6px; padding:.05rem .4rem; margin-bottom:.35rem;
+}
+.vocab-card .vth{font-weight:700; color:var(--coral-dark); margin:.15rem 0;}
+.vocab-card .vdef{font-size:.88rem; color:var(--ink-soft); margin:.25rem 0;}
+.vocab-card .vex{font-size:.88rem; font-style:italic; background:var(--cream-2); border-radius:8px; padding:.45rem .6rem; margin-top:.4rem;}
+
+/* quiz engine (shared) */
+.quiz-progress{display:flex; align-items:center; gap:.7rem; margin-bottom:1rem;}
+.quiz-progress .ptrack{flex:1; height:10px; border-radius:999px; background:var(--cream-2); overflow:hidden;}
+.quiz-progress .pfill{height:100%; background:var(--orange); border-radius:999px; transition:width .25s ease;}
+.quiz-progress .plabel{font-size:.82rem; font-weight:700; color:var(--ink-soft); white-space:nowrap;}
+
+.q-card{background:var(--paper); border-radius:var(--radius-lg); border:1px solid var(--line); box-shadow:var(--shadow); padding:1.4rem;}
+.q-kicker{font-size:.75rem; font-weight:800; letter-spacing:.03em; text-transform:uppercase; color:var(--turquoise);}
+.q-text{font-size:1.15rem; font-weight:700; margin:.4rem 0 1rem;}
+.q-context{
+  background:var(--cream-2); border-radius:12px; padding:.8rem 1rem; margin-bottom:1rem; font-size:.95rem;
+}
+.q-context .who{font-weight:800; color:var(--teal-dark);}
+.choices{display:flex; flex-direction:column; gap:.6rem;}
+.choice-btn{
+  text-align:left; background:#fff; border:2px solid var(--line); border-radius:14px;
+  padding:.75rem 1rem; font-size:.98rem; cursor:pointer; font-weight:600; color:var(--ink);
+  display:flex; align-items:center; gap:.6rem;
+}
+.choice-btn .letter{
+  width:28px;height:28px;border-radius:50%; background:var(--cream-2); color:var(--ink-soft);
+  display:flex;align-items:center;justify-content:center; font-size:.82rem; font-weight:800; flex:none;
+}
+.choice-btn:hover:not(:disabled){border-color:var(--turquoise);}
+.choice-btn:disabled{cursor:default;}
+.choice-btn.correct{background:var(--green-light); border-color:var(--green); color:#265c33;}
+.choice-btn.correct .letter{background:var(--green); color:#fff;}
+.choice-btn.incorrect{background:var(--coral-light); border-color:var(--coral); color:var(--coral-dark);}
+.choice-btn.incorrect .letter{background:var(--coral); color:#fff;}
+.choice-btn.dim{opacity:.5;}
+
+.tf-row{display:flex; gap:.8rem;}
+.tf-row .choice-btn{flex:1; justify-content:center; font-weight:800;}
+
+.feedback{
+  margin-top:1rem; border-radius:14px; padding:1rem 1.1rem; display:none;
+}
+.feedback.show{display:block;}
+.feedback.ok{background:var(--green-light); border:1px solid #bfe3c2;}
+.feedback.no{background:var(--coral-light); border:1px solid #f3c6bf;}
+.feedback .fb-head{font-weight:800; font-size:1rem; margin-bottom:.35rem; display:flex; align-items:center; gap:.4rem;}
+.feedback.ok .fb-head{color:#265c33;}
+.feedback.no .fb-head{color:var(--coral-dark);}
+.feedback .fb-en{font-size:.92rem; margin-bottom:.3rem;}
+.feedback .fb-th{font-size:.9rem; color:#4b4133;}
+.feedback .fb-clue{
+  margin-top:.5rem; font-size:.84rem; background:rgba(255,255,255,.6); border-radius:8px; padding:.5rem .7rem;
+  border-left:4px solid var(--orange);
+}
+
+.q-nav{display:flex; justify-content:flex-end; margin-top:1.1rem;}
+
+/* type-in for guess-the-word */
+.type-row{display:flex; gap:.6rem; flex-wrap:wrap;}
+.type-row input{
+  flex:1; min-width:180px; padding:.75rem 1rem; border-radius:12px; border:2px solid var(--line);
+  font-size:1rem; font-family:inherit;
+}
+.type-row input:focus{outline:none; border-color:var(--turquoise);}
+
+/* match activity */
+.match-wrap{display:grid; grid-template-columns:1fr 1fr; gap:.9rem;}
+@media (max-width:600px){.match-wrap{grid-template-columns:1fr;}}
+.match-col h4{font-size:.85rem; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-soft); margin-bottom:.5rem;}
+.match-item{
+  background:#fff; border:2px solid var(--line); border-radius:12px; padding:.65rem .9rem;
+  margin-bottom:.55rem; cursor:pointer; font-weight:700; font-size:.94rem;
+}
+.match-item.selected{border-color:var(--turquoise); background:var(--turquoise-light);}
+.match-item.done{background:var(--green-light); border-color:var(--green); color:#265c33; cursor:default;}
+.match-item.wrong-flash{animation:shake .3s;}
+@keyframes shake{ 0%,100%{transform:translateX(0);} 25%{transform:translateX(-6px);} 75%{transform:translateX(6px);} }
+
+/* story order */
+.order-bank{display:flex; flex-direction:column; gap:.6rem; margin-bottom:1.2rem;}
+.order-item{
+  background:#fff; border:2px solid var(--line); border-radius:14px; padding:.8rem 1rem;
+  display:flex; align-items:center; gap:.7rem; cursor:grab; font-weight:600;
+  box-shadow:var(--shadow);
+}
+.order-item .drag-handle{color:var(--ink-soft); font-size:1.1rem;}
+.order-item.placed{opacity:.35; cursor:default;}
+.order-slots{display:flex; flex-direction:column; gap:.5rem; margin-bottom:1.2rem;}
+.order-slot{
+  min-height:52px; border:2px dashed var(--line); border-radius:14px;
+  display:flex; align-items:center; gap:.7rem; padding:.5rem .9rem;
+  background:var(--cream-2); font-size:.9rem; color:var(--ink-soft);
+}
+.order-slot .slot-num{
+  width:28px;height:28px;border-radius:50%; background:var(--teal); color:#fff;
+  display:flex;align-items:center;justify-content:center; font-weight:800; font-size:.82rem; flex:none;
+}
+.order-slot.filled{border-style:solid; background:#fff; color:var(--ink); font-weight:700;}
+.order-slot.correct{border-color:var(--green); background:var(--green-light);}
+.order-slot.incorrect{border-color:var(--coral); background:var(--coral-light);}
+.order-slot.dragover{border-color:var(--turquoise); background:var(--turquoise-light);}
+.order-remove{margin-left:auto; background:none; border:none; color:var(--coral-dark); font-weight:800; cursor:pointer; font-size:1.1rem;}
+
+/* cause effect */
+.ce-grid{display:flex; flex-direction:column; gap:.8rem;}
+.ce-row{display:flex; align-items:stretch; gap:.7rem; flex-wrap:wrap;}
+.ce-box{
+  flex:1; min-width:220px; background:#fff; border:2px solid var(--line); border-radius:14px;
+  padding:.8rem 1rem; font-size:.92rem;
+}
+.ce-cause{border-left:6px solid var(--orange);}
+.ce-effect{border-left:6px solid var(--teal); cursor:pointer;}
+.ce-effect.selected{border-color:var(--turquoise); background:var(--turquoise-light);}
+.ce-effect.correct{border-color:var(--green); background:var(--green-light);}
+.ce-effect.incorrect{border-color:var(--coral); background:var(--coral-light);}
+.ce-label{font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-soft); display:block; margin-bottom:.2rem;}
+
+/* mistakes review */
+.mistake-card{
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius-md); box-shadow:var(--shadow);
+  padding:1.1rem 1.2rem; margin-bottom:1rem;
+}
+.mistake-card .mq{font-weight:700; margin-bottom:.5rem;}
+.mistake-row{display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:.4rem; font-size:.9rem;}
+.mistake-row .tag{font-weight:800; font-size:.72rem; text-transform:uppercase; padding:.15rem .5rem; border-radius:6px;}
+.tag.your{background:var(--coral-light); color:var(--coral-dark);}
+.tag.correct{background:var(--green-light); color:#265c33;}
+.mistake-clue{
+  margin-top:.5rem; background:var(--yellow-light); border-radius:8px; padding:.5rem .7rem; font-size:.85rem;
+  border-left:4px solid var(--yellow);
+}
+
+/* results */
+.results-hero{
+  text-align:center; background:linear-gradient(135deg,var(--orange),var(--yellow));
+  color:#fff; border-radius:var(--radius-lg); padding:2rem 1.4rem; box-shadow:var(--shadow-lg);
+}
+.results-score{font-size:3rem; font-weight:900;}
+.results-pct{font-size:1.2rem; font-weight:700; opacity:.95;}
+.results-badge{font-size:1.4rem; font-weight:800; margin-top:.5rem;}
+.stars-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-top:1.4rem;}
+.star-card{background:#fff; border:1px solid var(--line); border-radius:var(--radius-md); box-shadow:var(--shadow); padding:1rem 1.1rem; text-align:center;}
+.star-card h4{font-size:.88rem; color:var(--ink-soft); margin-bottom:.35rem;}
+.star-card .stars{font-size:1.35rem; letter-spacing:.1rem;}
+
+/* phonics */
+.phonics-row{display:flex; flex-wrap:wrap; gap:1rem;}
+.phonics-card{
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius-md); box-shadow:var(--shadow);
+  padding:1rem 1.3rem; text-align:center; min-width:120px; flex:1;
+}
+.phonics-card .pw{font-size:1.3rem; font-weight:800; color:var(--teal-dark);}
+.phonics-card .pw .em{color:var(--coral-dark);}
+.phonics-card .pipa{font-size:.82rem; color:var(--ink-soft);}
+
+/* empty / toast */
+.empty-state{text-align:center; padding:2.5rem 1rem; color:var(--ink-soft);}
+.empty-state .ei{font-size:2.4rem; margin-bottom:.6rem;}
+.toast{
+  position:fixed; bottom:1.2rem; left:50%; transform:translateX(-50%);
+  background:var(--ink); color:#fff; padding:.7rem 1.1rem; border-radius:12px;
+  font-size:.88rem; font-weight:600; z-index:100; box-shadow:var(--shadow-lg);
+  opacity:0; pointer-events:none; transition:opacity .25s ease;
+}
+.toast.show{opacity:1;}
+
+/* responsive nav */
+@media (max-width:860px){
+  .nav-toggle{display:flex; align-items:center; justify-content:center;}
+  .nav{
+    display:none; position:absolute; top:100%; left:0; right:0;
+    background:var(--teal-dark); flex-direction:column; padding:.6rem;
+    box-shadow:var(--shadow-lg);
+  }
+  .nav.open{display:flex;}
+  .nav button{justify-content:flex-start; width:100%;}
+  .topbar-inner{position:relative;}
+}
+@media (max-width:600px){
+  :root{font-size:16px;}
+  .wrap{padding:1rem .8rem 2.4rem;}
+  .hero{padding:1.6rem 1.1rem;}
+  .match-wrap{gap:.6rem;}
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   DATA LAYER
+   Teacher-friendly: all story/question content lives here,
+   separate from rendering logic below.
+   ============================================================ */
+window.DATA = {
+
+/* ---------------- STORY SCENES ---------------- */
+scenes: [
+  {
+    id:1, icon:"🚗", color:"var(--teal)",
+    title:"The Accident",
+    characters:["Grandpa","Ben","Lucy"],
+    vocab:["rain","car","fire"],
+    text:[
+      "It is raining. Grandpa, Ben, and Lucy are driving home.",
+      "Suddenly, they see a car by the side of the road. Something is wrong!",
+      "<span class=\"hl\">The car is on fire.</span>",
+      "\"We must help,\" says Grandpa."
+    ],
+    help:{ en:"The car is on fire.", th:"รถกำลังเกิดไฟไหม้" }
+  },
+  {
+    id:2, icon:"📞", color:"var(--orange)",
+    title:"Call for Help",
+    characters:["Grandpa","Lucy","Ben"],
+    vocab:["emergency","help","wait"],
+    text:[
+      "<span class=\"hl\">Grandpa gives Lucy his phone.</span>",
+      "\"Take the phone, Lucy. I'm going to help that man,\" he says.",
+      "Ben asks, \"Can I come with you, Grandpa?\"",
+      "\"No way. Stay in the car, please,\" says Grandpa.",
+      "Lucy calls the emergency services."
+    ],
+    help:{ en:"Grandpa gives Lucy his phone.", th:"คุณตายื่นโทรศัพท์ให้ลูซี่" }
+  },
+  {
+    id:3, icon:"🔍", color:"var(--coral)",
+    title:"Where Are You?",
+    characters:["Lucy","Operator"],
+    vocab:["operator","road"],
+    text:[
+      "The operator answers the phone. \"Where are you?\" she asks.",
+      "Lucy says, <span class=\"hl\">\"We're on Mill Road, in front of number 92.\"</span>",
+      "Lucy tells the operator that her grandpa has a fire extinguisher, and he's going to help the man in the car.",
+      "\"Good. But you mustn't get out of the car, OK?\" says the operator."
+    ],
+    help:{ en:"We're on Mill Road, in front of number 92.", th:"เราอยู่บนถนนมิลล์ ตรงหน้าบ้านเลขที่ 92" }
+  },
+  {
+    id:4, icon:"🚑", color:"var(--turquoise)",
+    title:"Help Is Coming",
+    characters:["Lucy","Operator"],
+    vocab:["ambulance","fire engine","wait"],
+    text:[
+      "\"Just wait a few minutes,\" says the operator.",
+      "<span class=\"hl\">\"An ambulance and a fire engine are coming.\"</span>",
+      "Lucy waits in the car. She feels a little scared, but she knows help is coming soon.",
+      "\"I think I can hear the ambulance now!\" says Lucy."
+    ],
+    help:{ en:"An ambulance and a fire engine are coming.", th:"รถพยาบาลและรถดับเพลิงกำลังมา" }
+  },
+  {
+    id:5, icon:"🧯", color:"var(--yellow)",
+    title:"Grandpa Helps",
+    characters:["Grandpa"],
+    vocab:["fire extinguisher","quick"],
+    text:[
+      "Grandpa runs to the car with the fire extinguisher.",
+      "<span class=\"hl\">He sprays it at the fire, again and again.</span>",
+      "Slowly, the fire gets smaller and smaller.",
+      "\"Wow! Look at Grandpa!\" says Ben. \"He's fantastic!\" says Lucy."
+    ],
+    help:{ en:"He sprays it at the fire, again and again.", th:"เขาฉีดถังดับเพลิงใส่ไฟซ้ำแล้วซ้ำเล่า" }
+  },
+  {
+    id:6, icon:"🚪", color:"var(--green)",
+    title:"Get Out!",
+    characters:["Grandpa","The man"],
+    vocab:["get out","hurt","leg"],
+    text:[
+      "\"Quick! We must get you out!\" says Grandpa.",
+      "He helps the man climb out of the car.",
+      "<span class=\"hl\">\"Agh, my leg!\" says the man.</span>",
+      "He has hurt his leg, but he is safe now."
+    ],
+    help:{ en:"He has hurt his leg.", th:"เขาขาเจ็บ" }
+  },
+  {
+    id:7, icon:"🏍️", color:"var(--coral)",
+    title:"What Happened?",
+    characters:["The man","Grandpa"],
+    vocab:["suddenly","motorbike","drive"],
+    text:[
+      "Later, the man tells his story.",
+      "\"I wasn't driving very fast,\" he says, \"but suddenly there was a flood on the road.\"",
+      "Just then, a motorbike rider goes past very fast.",
+      "\"Hey! Don't go so fast!\" Grandpa calls out.",
+      "<span class=\"hl\">He thinks the motorbike rider caused the accident.</span>"
+    ],
+    help:{ en:"He thinks the motorbike rider caused the accident.", th:"เขาคิดว่าคนขับรถจักรยานยนต์เป็นสาเหตุของอุบัติเหตุ" }
+  },
+  {
+    id:8, icon:"🎉", color:"var(--teal)",
+    title:"Safe at Last",
+    characters:["Grandpa","Lucy","Ben"],
+    vocab:["save","tired"],
+    text:[
+      "The ambulance and the fire engine arrive. The man is safe.",
+      "<span class=\"hl\">\"You were fantastic! You saved his life!\" says Lucy.</span>",
+      "\"And now tell us the story, Grandpa!\" says Ben.",
+      "But Grandpa smiles and says, \"Another time. I'm too tired now.\""
+    ],
+    help:{ en:"You were fantastic! You saved his life!", th:"คุณตาเก่งมาก! คุณตาช่วยชีวิตเขาไว้!" }
+  }
+],
+
+/* ---------------- VOCABULARY (22 words) ---------------- */
+vocabulary: [
+  {word:"accident", ipa:"/ˈæk.sɪ.dənt/", pos:"noun", th:"อุบัติเหตุ", def:"Something bad that happens without planning.", ex:"There was an accident on Mill Road."},
+  {word:"ambulance", ipa:"/ˈæm.bjə.ləns/", pos:"noun", th:"รถพยาบาล", def:"A vehicle that takes sick or hurt people to hospital.", ex:"An ambulance is coming to help the man."},
+  {word:"fire", ipa:"/faɪər/", pos:"noun", th:"ไฟ / เพลิงไหม้", def:"Hot, bright flames that burn things.", ex:"The car is on fire."},
+  {word:"fire engine", ipa:"/ˈfaɪər ˌendʒɪn/", pos:"noun", th:"รถดับเพลิง", def:"A big truck that firefighters use to stop fires.", ex:"The fire engine is coming."},
+  {word:"fire extinguisher", ipa:"/ˈfaɪər ɪkˌstɪŋɡwɪʃər/", pos:"noun", th:"ถังดับเพลิง", def:"A tool used to stop a small fire.", ex:"Grandpa uses a fire extinguisher."},
+  {word:"firefighter", ipa:"/ˈfaɪərˌfaɪtər/", pos:"noun", th:"นักดับเพลิง", def:"A person whose job is to stop fires and help people.", ex:"Firefighters help people in danger."},
+  {word:"emergency", ipa:"/ɪˈmɜːdʒənsi/", pos:"noun", th:"เหตุฉุกเฉิน", def:"A sudden, serious problem that needs help fast.", ex:"A car fire is an emergency."},
+  {word:"emergency services", ipa:"/ɪˈmɜːdʒənsi ˈsɜːvɪsɪz/", pos:"noun", th:"หน่วยบริการฉุกเฉิน", def:"Police, ambulance, and fire teams that help in an emergency.", ex:"Lucy calls the emergency services."},
+  {word:"operator", ipa:"/ˈɒpəreɪtər/", pos:"noun", th:"พนักงานรับสายฉุกเฉิน", def:"A person who answers emergency phone calls.", ex:"The operator asks where they are."},
+  {word:"motorbike", ipa:"/ˈməʊtəbaɪk/", pos:"noun", th:"รถจักรยานยนต์", def:"A small vehicle with two wheels and an engine.", ex:"A motorbike goes past very fast."},
+  {word:"car", ipa:"/kɑːr/", pos:"noun", th:"รถยนต์", def:"A vehicle with four wheels that people drive.", ex:"The man's car is on fire."},
+  {word:"rain", ipa:"/reɪn/", pos:"noun / verb", th:"ฝน / ฝนตก", def:"Water that falls from the sky.", ex:"It is raining on the road."},
+  {word:"save", ipa:"/seɪv/", pos:"verb", th:"ช่วยให้ปลอดภัย", def:"To keep someone safe from danger.", ex:"Grandpa saves the man's life."},
+  {word:"help", ipa:"/help/", pos:"verb", th:"ช่วยเหลือ", def:"To do something useful for someone who needs it.", ex:"Grandpa wants to help the man."},
+  {word:"hurt", ipa:"/hɜːt/", pos:"verb / adj.", th:"เจ็บ / บาดเจ็บ", def:"To feel pain, or to be injured.", ex:"The man has hurt his leg."},
+  {word:"leg", ipa:"/leɡ/", pos:"noun", th:"ขา", def:"The part of the body used for walking.", ex:"His leg hurts."},
+  {word:"quick", ipa:"/kwɪk/", pos:"adjective", th:"รวดเร็ว", def:"Fast; done in a short time.", ex:"Quick! We must get you out!"},
+  {word:"wait", ipa:"/weɪt/", pos:"verb", th:"รอ", def:"To stay in one place until something happens.", ex:"Just wait a few minutes."},
+  {word:"drive", ipa:"/draɪv/", pos:"verb", th:"ขับรถ", def:"To control a car or vehicle.", ex:"Grandpa is driving in the rain."},
+  {word:"tired", ipa:"/taɪəd/", pos:"adjective", th:"เหนื่อย", def:"Needing rest or sleep.", ex:"Grandpa is too tired to tell the story."},
+  {word:"suddenly", ipa:"/ˈsʌdənli/", pos:"adverb", th:"ทันใดนั้น", def:"Happening quickly, without warning.", ex:"Suddenly, there was a motorbike."},
+  {word:"get out", ipa:"/ɡet aʊt/", pos:"phrasal verb", th:"ออกไป / ออกมา", def:"To leave or exit a place.", ex:"Grandpa helps the man get out of the car."}
+],
+
+/* ---------------- VOCAB PRACTICE ---------------- */
+vocabMatch: [
+  {en:"ambulance", th:"รถพยาบาล"},
+  {en:"fire extinguisher", th:"ถังดับเพลิง"},
+  {en:"motorbike", th:"รถจักรยานยนต์"},
+  {en:"accident", th:"อุบัติเหตุ"},
+  {en:"emergency", th:"เหตุฉุกเฉิน"},
+  {en:"firefighter", th:"นักดับเพลิง"},
+  {en:"operator", th:"พนักงานรับสายฉุกเฉิน"},
+  {en:"fire engine", th:"รถดับเพลิง"},
+  {en:"hurt", th:"เจ็บ / บาดเจ็บ"},
+  {en:"suddenly", th:"ทันใดนั้น"}
+],
+
+vocabChoose: [
+  {id:"vc1", q:"What does \"save\" mean?", choices:["วิ่ง","ช่วยให้ปลอดภัย","โทรหา","ขับรถ"], correct:1, explain:"\"Save\" means to keep someone safe from danger — Grandpa saved the man's life."},
+  {id:"vc2", q:"What does \"quick\" mean?", choices:["ช้า","เหนื่อย","รวดเร็ว","ฝนตก"], correct:2, explain:"\"Quick\" means fast — Grandpa said \"Quick! We must get you out!\""},
+  {id:"vc3", q:"What does \"wait\" mean?", choices:["รอ","วิ่งหนี","ช่วยเหลือ","ขับรถ"], correct:0, explain:"\"Wait\" means to stay until something happens — the operator told Lucy to wait."},
+  {id:"vc4", q:"What does \"hurt\" mean?", choices:["มีความสุข","เจ็บ / บาดเจ็บ","รวดเร็ว","ง่วงนอน"], correct:1, explain:"\"Hurt\" means to feel pain or be injured — the man hurt his leg."},
+  {id:"vc5", q:"What does \"emergency\" mean?", choices:["งานปาร์ตี้","เหตุฉุกเฉิน","วันหยุด","การเดินทาง"], correct:1, explain:"An \"emergency\" is a sudden, serious problem that needs help fast."},
+  {id:"vc6", q:"What does \"tired\" mean?", choices:["เหนื่อย","ดีใจ","โกรธ","หิว"], correct:0, explain:"\"Tired\" means needing rest — Grandpa was too tired to tell the story."},
+  {id:"vc7", q:"What does \"suddenly\" mean?", choices:["ช้าๆ","ทันใดนั้น","เงียบๆ","สวยงาม"], correct:1, explain:"\"Suddenly\" means happening quickly, without warning."},
+  {id:"vc8", q:"What does \"get out\" mean?", choices:["เข้าไป","ออกไป / ออกมา","นอนหลับ","วิ่งเร็ว"], correct:1, explain:"\"Get out\" means to leave or exit a place — the man got out of the car."}
+],
+
+vocabComplete: [
+  {id:"vs1", q:"The ______ is coming to help the injured man.", choices:["classroom","ambulance","kitchen","bicycle"], correct:1, explain:"An ambulance takes injured people to hospital."},
+  {id:"vs2", q:"Grandpa used a ______ to stop the fire.", choices:["fire extinguisher","umbrella","phone","spoon"], correct:0, explain:"A fire extinguisher is a tool used to stop a small fire."},
+  {id:"vs3", q:"Lucy called the ______ to ask for help.", choices:["teacher","emergency services","shop","driver"], correct:1, explain:"Lucy phoned the emergency services for help."},
+  {id:"vs4", q:"The man ______ his leg in the accident.", choices:["washed","hurt","painted","sold"], correct:1, explain:"\"Hurt\" fits here — the man was injured in the accident."},
+  {id:"vs5", q:"\"______! We must get you out!\" said Grandpa.", choices:["Slowly","Quick","Never","Later"], correct:1, explain:"Grandpa needed to act fast, so he said \"Quick!\""},
+  {id:"vs6", q:"A ______ went past very fast on the road.", choices:["motorbike","bicycle","boat","train"], correct:0, explain:"A motorbike rider went past very fast."},
+  {id:"vs7", q:"Grandpa was too ______ to tell the story.", choices:["happy","tired","fast","young"], correct:1, explain:"After helping the man, Grandpa felt tired."},
+  {id:"vs8", q:"It was raining, so Grandpa was ______ carefully.", choices:["driving","swimming","flying","cooking"], correct:0, explain:"Grandpa was driving carefully in the rain."}
+],
+
+vocabGuess: [
+  {id:"vg1", clue:"A vehicle that takes sick or injured people to hospital.", answer:"ambulance"},
+  {id:"vg2", clue:"A tool used to stop a small fire.", answer:"fire extinguisher"},
+  {id:"vg3", clue:"A sudden, serious problem that needs help fast.", answer:"emergency"},
+  {id:"vg4", clue:"A person who answers emergency phone calls.", answer:"operator"},
+  {id:"vg5", clue:"A person whose job is to stop fires and help people.", answer:"firefighter"},
+  {id:"vg6", clue:"A small vehicle with two wheels and an engine.", answer:"motorbike"},
+  {id:"vg7", clue:"Happening quickly, without warning.", answer:"suddenly"},
+  {id:"vg8", clue:"The part of the body used for walking.", answer:"leg"}
+],
+
+/* ---------------- STORY ORDER (correct order = array order) ---------------- */
+storyOrder: [
+  {id:"o1", text:"They saw a car on fire."},
+  {id:"o2", text:"Grandpa went to help."},
+  {id:"o3", text:"Lucy called the emergency services."},
+  {id:"o4", text:"The operator asked for their location."},
+  {id:"o5", text:"Grandpa used the fire extinguisher."},
+  {id:"o6", text:"Grandpa helped the man out of the car."},
+  {id:"o7", text:"The emergency services arrived."},
+  {id:"o8", text:"Grandpa explained the accident."}
+],
+
+/* ---------------- WHO DID IT? ---------------- */
+whoDidIt: [
+  {id:"w1", q:"Who called the emergency services?", choices:["Grandpa","Lucy","Ben","Operator"], correct:1, explain:"Grandpa went to help the man, so he gave Lucy the phone to call for help."},
+  {id:"w2", q:"Who used the fire extinguisher?", choices:["Grandpa","Lucy","Ben","The man"], correct:0, explain:"Grandpa took the fire extinguisher and put out the fire."},
+  {id:"w3", q:"Who asked where they were?", choices:["Lucy","Grandpa","The man","Operator"], correct:3, explain:"The operator needed to know their location to send help."},
+  {id:"w4", q:"Who hurt his leg?", choices:["Grandpa","Ben","The man in the car","Motorbike rider"], correct:2, explain:"The man in the car hurt his leg while getting out."},
+  {id:"w5", q:"Who was riding very fast?", choices:["Grandpa","The man","Motorbike rider","Lucy"], correct:2, explain:"The motorbike rider went past very fast and may have caused the accident."},
+  {id:"w6", q:"Who said Grandpa was fantastic?", choices:["Ben","Lucy","The operator","The man"], correct:1, explain:"Lucy said, \"You were fantastic! You saved his life!\""},
+  {id:"w7", q:"Who wanted to come and help, but had to stay in the car?", choices:["Ben","Lucy","The operator","The man"], correct:0, explain:"Ben asked, \"Can I come with you, Grandpa?\" but Grandpa told him to stay."},
+  {id:"w8", q:"Who told Lucy to wait for the ambulance and fire engine?", choices:["Grandpa","The man","Operator","Ben"], correct:2, explain:"The operator said, \"Just wait a few minutes. An ambulance and a fire engine are coming.\""},
+  {id:"w9", q:"Who helped the man get out of the car?", choices:["Lucy","Ben","Grandpa","Operator"], correct:2, explain:"Grandpa helped the man climb out of the burning car."},
+  {id:"w10", q:"Who said \"And now tell us the story, Grandpa!\"?", choices:["Lucy","Ben","The man","Operator"], correct:1, explain:"Ben was excited and asked Grandpa to tell the story."}
+],
+
+/* ---------------- READING COMPREHENSION (15) ---------------- */
+comprehension: [
+  {id:"c1", level:1, type:"mc", q:"Where were Grandpa, Ben, and Lucy when they saw the car?", choices:["At school","On the road, driving home","At the hospital","At a party"], correct:1, explain:"They were driving home in the rain when they saw the car by the road.", clue:"\"Grandpa, Ben, and Lucy are driving home.\""},
+  {id:"c2", level:1, type:"mc", q:"Why did Grandpa leave the car?", choices:["To buy food","To help the man in the burning car","To find a phone","To visit a friend"], correct:1, explain:"Grandpa went to help the man whose car was on fire.", clue:"\"I'm going to help that man,\" Grandpa says."},
+  {id:"c3", level:1, type:"tf", q:"True or False: The car was on fire.", correct:true, explain:"Yes — the story says \"The car is on fire.\"", clue:"\"The car is on fire.\""},
+  {id:"c4", level:1, type:"mc", q:"Who made the emergency call?", choices:["Ben","Grandpa","Lucy","The man"], correct:2, explain:"Grandpa gave Lucy the phone, and Lucy called the emergency services.", clue:"\"Take the phone, Lucy.\""},
+  {id:"c5", level:1, type:"mc", q:"They were in front of house number ____.", choices:["29","92","9","22"], correct:1, explain:"Lucy told the operator, \"We're in front of number 92.\"", clue:"\"We're on Mill Road, in front of number 92.\""},
+  {id:"c6", level:1, type:"mc", q:"What two vehicles was the operator sending?", choices:["A taxi and a bus","An ambulance and a fire engine","A police car and a truck","Two motorbikes"], correct:1, explain:"The operator said an ambulance and a fire engine were coming.", clue:"\"An ambulance and a fire engine are coming.\""},
+  {id:"c7", level:2, type:"mc", q:"Why did Lucy call the emergency services?", choices:["She wanted to talk to her friend","A man needed help because his car was on fire","She was lost","She wanted a taxi"], correct:1, explain:"A man was trapped in a burning car, so they needed emergency help fast.", clue:"The car was on fire and a man was inside."},
+  {id:"c8", level:2, type:"mc", q:"Why did Grandpa use a fire extinguisher?", choices:["To clean the car","To stop the fire and help the man","To make the car cold","To signal for help"], correct:1, explain:"Grandpa used it to put out the fire so he could reach the man safely.", clue:"\"He sprays it at the fire, again and again.\""},
+  {id:"c9", level:2, type:"mc", q:"Why did the man need help getting out of the car?", choices:["He was too tall","The car was on fire and he was trapped inside","He was asleep","He didn't have a key"], correct:1, explain:"The burning car was dangerous, so Grandpa had to help him climb out quickly.", clue:"\"Quick! We must get you out!\""},
+  {id:"c10", level:2, type:"mc", q:"Why did Lucy think Grandpa was fantastic?", choices:["He told a funny joke","He drove very fast","He bravely saved the man's life","He bought her ice cream"], correct:2, explain:"Grandpa put out the fire and rescued the man, so Lucy called him fantastic.", clue:"\"You were fantastic! You saved his life!\""},
+  {id:"c11", level:2, type:"whosaid", q:"Who said, \"Another time. I'm too tired now\"?", choices:["Ben","Lucy","Grandpa","The operator"], correct:2, explain:"Grandpa was tired after the rescue and didn't want to tell the story yet.", clue:"\"Grandpa: Another time. I'm too tired now.\""},
+  {id:"c12", level:3, type:"mc", q:"Why was it important for Lucy to tell the operator their exact location?", choices:["So the operator could visit later","So the ambulance and fire engine could find them quickly","So Lucy could win a prize","It wasn't important"], correct:1, explain:"Emergency workers need an exact address to reach an accident quickly.", clue:"The operator asked for the house number so help could find them."},
+  {id:"c13", level:3, type:"mc", q:"What might have happened if Grandpa had not helped the man?", choices:["Nothing would change","The man might have been in more danger from the fire","The car would have been repaired","The rain would have stopped"], correct:1, explain:"Without help, the man was trapped near the fire, so he could have been badly hurt.", clue:"The car was on fire while the man was still inside."},
+  {id:"c14", level:3, type:"mc", q:"Why do you think Grandpa called out to the motorbike rider not to go so fast?", choices:["He wanted to race him","He was worried the rider might cause another accident","He wanted directions","He wanted to say hello"], correct:1, explain:"Grandpa believed fast riding caused the first accident, so he warned the rider.", clue:"\"He thinks the motorbike rider caused the accident.\""},
+  {id:"c15", level:3, type:"mc", q:"Which character acted responsibly by staying safe and following instructions?", choices:["Ben, because he ran to help too","Lucy, because she stayed in the car and called for help","The motorbike rider, because he drove fast","The man, because he drove in the flood"], correct:1, explain:"Lucy followed the operator's instructions and stayed safe while still helping.", clue:"\"You mustn't get out, OK?\" — and Lucy stayed in the car."}
+],
+
+/* ---------------- CAUSE & EFFECT (8) ---------------- */
+causeEffect: [
+  {cause:"The car was on fire.", effect:"Grandpa used the fire extinguisher."},
+  {cause:"The man was inside the damaged car.", effect:"Grandpa helped him get out."},
+  {cause:"The motorbike suddenly appeared.", effect:"There was an accident."},
+  {cause:"The man hurt his leg.", effect:"He needed medical help."},
+  {cause:"Grandpa saw the accident.", effect:"He told Lucy to call the emergency services."},
+  {cause:"It was raining hard on the road.", effect:"Grandpa had to drive carefully."},
+  {cause:"The operator needed to send help.", effect:"She asked Lucy for their exact location."},
+  {cause:"Grandpa was very tired after the rescue.", effect:"He didn't want to tell the story yet."}
+],
+
+/* ---------------- STORY CHALLENGE (20) ---------------- */
+challenge: [
+  {id:"ch1", q:"Why did Lucy call the emergency services?", choices:["She wanted to talk to her friend","A man needed help","Grandpa was lost","Ben wanted an ambulance"], correct:1, explain:"A man was trapped in a car that was on fire, so they needed emergency help."},
+  {id:"ch2", q:"Where were they when Lucy made the phone call?", choices:["At school","On Mill Road","At the hospital","At home"], correct:1, explain:"They were on Mill Road, in front of number 92."},
+  {id:"ch3", q:"Which happened FIRST?", choices:["The ambulance arrived","Grandpa helped the man","Lucy called the emergency services","Grandpa went home"], correct:2, explain:"Lucy called for help before the ambulance arrived or the man got out."},
+  {id:"ch4", q:"Why did the operator ask Lucy for the house number?", choices:["To know where to send help","To visit Lucy","To call Grandpa","To find the motorbike"], correct:0, explain:"Emergency workers need an exact location so they can find the accident quickly."},
+  {id:"ch5", q:"Which word means \"a vehicle used by firefighters\"?", choices:["ambulance","motorbike","fire engine","taxi"], correct:2, explain:"A fire engine is the truck firefighters use to stop fires."},
+  {id:"ch6", q:"True or False: Ben stayed in the car while Grandpa helped the man.", choices:["True","False"], correct:0, explain:"Grandpa told Ben to stay in the car, and Ben did as he was told."},
+  {id:"ch7", q:"True or False: Grandpa told the whole story to the children at the end.", choices:["True","False"], correct:1, explain:"Grandpa was too tired and said, \"Another time.\""},
+  {id:"ch8", q:"Who said, \"Take the phone, Lucy. I'm going to help that man\"?", choices:["Ben","Grandpa","Lucy","Operator"], correct:1, explain:"Grandpa said this before he went to help the man in the car."},
+  {id:"ch9", q:"What does \"fire extinguisher\" mean in Thai?", choices:["รถดับเพลิง","ถังดับเพลิง","นักดับเพลิง","รถพยาบาล"], correct:1, explain:"\"Fire extinguisher\" means \"ถังดับเพลิง\" — a tool for putting out small fires."},
+  {id:"ch10", q:"In the story, \"Quick! We must get you out!\" means Grandpa wanted to...", choices:["play a game","help the man leave the car fast","take a photo","drive away slowly"], correct:1, explain:"Grandpa needed the man to leave the dangerous car quickly."},
+  {id:"ch11", q:"Which happened LAST in this list?", choices:["Lucy called the emergency services","Grandpa used the fire extinguisher","The emergency services arrived and helped","Grandpa explained the accident"], correct:3, explain:"Grandpa explained what happened after the emergency services had already arrived."},
+  {id:"ch12", q:"Why did Grandpa use the fire extinguisher?", choices:["He wanted to clean the car","The car was on fire","It was raining","The man asked for water"], correct:1, explain:"The fire extinguisher was used because the car was burning."},
+  {id:"ch13", q:"Who was hurt in the accident?", choices:["Grandpa","Lucy","The man in the car","Ben"], correct:2, explain:"The man in the car hurt his leg while getting out."},
+  {id:"ch14", q:"Why do you think it was dangerous to stay near the burning car?", choices:["Fire can spread and hurt people","The car was very old","The car was expensive","It was too loud"], correct:0, explain:"Fire is dangerous because it can spread quickly and hurt anyone nearby."},
+  {id:"ch15", q:"In \"suddenly there was this flood,\" the word \"flood\" means...", choices:["a lot of water on the road","a loud noise","a kind of car","a type of fire"], correct:0, explain:"A flood is a lot of water covering the road, which made driving dangerous."},
+  {id:"ch16", q:"Operator: \"Can you see the number on a house?\" Lucy: \"We're in front of number 92.\" What was the operator trying to find out?", choices:["Lucy's phone number","The exact location of the accident","The name of the school","The color of the car"], correct:1, explain:"The operator needed the exact address to send help to the right place."},
+  {id:"ch17", q:"Which word best completes: \"Grandpa was ______ after helping the man.\"", choices:["hungry","tired","angry","cold"], correct:1, explain:"After the rescue, Grandpa felt tired and wanted to rest."},
+  {id:"ch18", q:"True or False: The story happened on a sunny day.", choices:["True","False"], correct:1, explain:"It was raining, not sunny — the story begins \"It is raining.\""},
+  {id:"ch19", q:"What lesson can we learn from Grandpa's actions?", choices:["Always drive fast","It's good to help people in danger","Never call for help","Stay away from accidents"], correct:1, explain:"Grandpa shows that helping people who are in danger is brave and important."},
+  {id:"ch20", q:"What did Grandpa do right after he saw the fire?", choices:["He went home","He told Lucy to call the emergency services","He fell asleep","He ate lunch"], correct:1, explain:"Grandpa quickly told Lucy to call for help before going to help the man himself."}
+],
+
+/* ---------------- PHONICS (mini section, long /aɪ/) ---------------- */
+phonics: [
+  {word:"bike", em:"i_e", ipa:"/baɪk/"},
+  {word:"light", em:"igh", ipa:"/laɪt/"},
+  {word:"life", em:"i_e", ipa:"/laɪf/"},
+  {word:"fire", em:"i_e", ipa:"/faɪər/"}
+],
+
+/* ---------------- HOME learning cards ---------------- */
+homeCards: [
+  {route:"story", icon:"📖", color:"#0E7C7B", title:"Read the Story", desc:"8 scenes with pictures and easy explanations."},
+  {route:"vocab", icon:"🔤", color:"#C96A18", title:"Learn Vocabulary", desc:"22 key words with meanings and examples."},
+  {route:"order", icon:"🧩", color:"#C4432F", title:"Put the Story in Order", desc:"Arrange the 8 main events correctly."},
+  {route:"whodidit", icon:"👤", color:"#1FB2AE", title:"Who Did It?", desc:"Match each action to the right character."},
+  {route:"comprehension", icon:"🔎", color:"#5FA86B", title:"Reading Questions", desc:"15 questions to check your understanding."},
+  {route:"challenge", icon:"🏆", color:"#C96A18", title:"Story Challenge", desc:"A 20-question exam-style final review."}
+]
+
+};
+</script>
+<script>
+/* ============================================================
+   APP LOGIC
+   ============================================================ */
+(function(){
+"use strict";
+const STORAGE_KEY = "manInCarApp:progress:v1";
+const $ = (sel,root)=> (root||document).querySelector(sel);
+const NAV = [
+  {route:"home", label:"Home", icon:"🏠"},
+  {route:"story", label:"Story", icon:"📖"},
+  {route:"vocab", label:"Vocabulary", icon:"🔤"},
+  {route:"order", label:"Story Order", icon:"🧩"},
+  {route:"whodidit", label:"Who Did It?", icon:"👤"},
+  {route:"comprehension", label:"Comprehension", icon:"🔎"},
+  {route:"challenge", label:"Challenge", icon:"🏆"},
+  {route:"mistakes", label:"Review", icon:"📝"},
+  {route:"results", label:"Results", icon:"⭐"}
+];
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+function pct(a,b){ return b>0 ? Math.round((a/b)*100) : 0; }
+function starRow(p){
+  const n = Math.max(0, Math.min(5, Math.round(p/20)));
+  return "★".repeat(n) + "☆".repeat(5-n);
+}
+
+const App = {
+  state:{ route:"home", navOpen:false, vocabTab:"cards", quiz:null, order:null, match:null, ce:null, guessInput:"" },
+  progress:null,
+
+  defaultProgress(){
+    return {
+      storyRead: [],
+      vocab: {
+        match:{done:false, correct:0, total:DATA.vocabMatch.length},
+        choose:{done:false, score:0, total:DATA.vocabChoose.length},
+        complete:{done:false, score:0, total:DATA.vocabComplete.length},
+        guess:{done:false, score:0, total:DATA.vocabGuess.length}
+      },
+      order:{solved:false, attempts:0},
+      whodidit:{done:false, score:0, total:DATA.whoDidIt.length},
+      comprehension:{done:false, score:0, total:DATA.comprehension.length},
+      causeEffect:{done:false, score:0, total:DATA.causeEffect.length},
+      challenge:{done:false, score:0, total:DATA.challenge.length, attempts:0},
+      mistakes:[]
+    };
+  },
+
+  loadProgress(){
+    const def = this.defaultProgress();
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return def;
+      const saved = JSON.parse(raw);
+      const merged = Object.assign({}, def, saved);
+      merged.vocab = Object.assign({}, def.vocab, saved.vocab||{});
+      merged.order = Object.assign({}, def.order, saved.order||{});
+      merged.whodidit = Object.assign({}, def.whodidit, saved.whodidit||{});
+      merged.comprehension = Object.assign({}, def.comprehension, saved.comprehension||{});
+      merged.causeEffect = Object.assign({}, def.causeEffect, saved.causeEffect||{});
+      merged.challenge = Object.assign({}, def.challenge, saved.challenge||{});
+      merged.mistakes = Array.isArray(saved.mistakes) ? saved.mistakes : [];
+      merged.storyRead = Array.isArray(saved.storyRead) ? saved.storyRead : [];
+      return merged;
+    }catch(e){ return def; }
+  },
+
+  save(){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(this.progress)); }catch(e){}
+  },
+
+  init(){
+    this.progress = this.loadProgress();
+    this.render();
+  },
+
+  toast(msg){
+    const t = $("#toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(this._toastTimer);
+    this._toastTimer = setTimeout(()=> t.classList.remove("show"), 1800);
+  },
+
+  navigate(route, opts){
+    this.state.route = route;
+    this.state.navOpen = false;
+    if(!opts || !opts.keepQuiz){
+      this.state.quiz = null; this.state.order = null; this.state.match = null; this.state.ce = null;
+    }
+    this.render();
+    window.scrollTo({top:0, behavior:"instant" in window ? "instant":"auto"});
+  },
+
+  toggleNav(){ this.state.navOpen = !this.state.navOpen; this.render(); },
+
+  /* ---------------- continue-learning logic ---------------- */
+  firstIncompleteRoute(){
+    const p = this.progress;
+    if(p.storyRead.length < DATA.scenes.length) return "story";
+    const vocabDone = p.vocab.match.done && p.vocab.choose.done && p.vocab.complete.done && p.vocab.guess.done;
+    if(!vocabDone) return "vocab";
+    if(!p.order.solved) return "order";
+    if(!p.whodidit.done) return "whodidit";
+    if(!p.comprehension.done) return "comprehension";
+    if(!p.challenge.done) return "challenge";
+    return "results";
+  },
+
+  /* ============================================================
+     RENDER — top level
+     ============================================================ */
+  render(){
+    const app = $("#app");
+    const routeHtml = this.renderRoute();
+    app.innerHTML = this.renderTopbar() + '<main><div class="wrap' + (this.state.route==="home"?"":" narrow") + '">' + routeHtml + "</div></main>" + this.renderFooter();
+    this.mount();
+  },
+
+  renderTopbar(){
+    const navBtns = NAV.map(n=>
+      '<button class="'+(this.state.route===n.route?"active":"")+'" onclick="App.navigate(\''+n.route+'\')">'+
+      '<span>'+n.icon+'</span><span>'+n.label+'</span></button>'
+    ).join("");
+    return '<div class="topbar"><div class="topbar-inner">'+
+      '<div class="brand" onclick="App.navigate(\'home\')"><span class="brand-badge">🚗</span>'+
+        '<span>THE MAN IN THE CAR<br><small>Bright EngMath Reading Adventure</small></span></div>'+
+      '<button class="nav-toggle" onclick="App.toggleNav()" aria-label="Menu">☰</button>'+
+      '<nav class="nav'+(this.state.navOpen?" open":"")+'">'+navBtns+'</nav>'+
+      '</div></div>';
+  },
+
+  renderFooter(){
+    return '<footer class="site-footer"><b>Bright EngMath</b> &mdash; Learn &bull; Practice &bull; Master<br>© Bright EngMath. All rights reserved.</footer>';
+  },
+
+  renderRoute(){
+    switch(this.state.route){
+      case "story": return this.renderStory();
+      case "vocab": return this.renderVocab();
+      case "order": return this.renderOrder();
+      case "whodidit": return this.renderQuizSectionHead("whodidit") + this.renderQuizSection("whodidit");
+      case "comprehension": return this.renderComprehensionPage();
+      case "challenge": return this.renderQuizSectionHead("challenge") + this.renderQuizSection("challenge");
+      case "mistakes": return this.renderMistakes();
+      case "results": return this.renderResults();
+      default: return this.renderHome();
+    }
+  },
+
+  mount(){
+    if(this.state.route==="order") this.mountOrderDnD();
+  },
+
+  /* ============================================================
+     HOME
+     ============================================================ */
+  renderHome(){
+    const p = this.progress;
+    const cardMeta = {
+      story: { text: p.storyRead.length+"/"+DATA.scenes.length+" scenes read", value: pct(p.storyRead.length, DATA.scenes.length) },
+      vocab: { text: (["match","choose","complete","guess"].filter(k=>p.vocab[k].done).length)+"/4 activities done", value: pct(["match","choose","complete","guess"].filter(k=>p.vocab[k].done).length,4) },
+      order: { text: p.order.solved ? "Solved! ✅" : (p.order.attempts>0 ? "Try again" : "Not started"), value: p.order.solved?100:(p.order.attempts>0?40:0) },
+      whodidit: { text: p.whodidit.done ? p.whodidit.score+"/"+p.whodidit.total : "Not started", value: p.whodidit.done?pct(p.whodidit.score,p.whodidit.total):0 },
+      comprehension: { text: p.comprehension.done ? p.comprehension.score+"/"+p.comprehension.total : "Not started", value: p.comprehension.done?pct(p.comprehension.score,p.comprehension.total):0 },
+      challenge: { text: p.challenge.done ? p.challenge.score+"/"+p.challenge.total : "Not Started", value: p.challenge.done?pct(p.challenge.score,p.challenge.total):0 }
+    };
+    const cards = DATA.homeCards.map(c=>{
+      const m = cardMeta[c.route];
+      return '<button class="learn-card" onclick="App.navigate(\''+c.route+'\')">'+
+        '<span class="lc-icon" style="background:'+c.color+'22;">'+c.icon+'</span>'+
+        '<h3>'+c.title+'</h3><p>'+c.desc+'</p>'+
+        '<div class="lc-progress"><div class="progress-track"><div class="progress-fill" style="width:'+m.value+'%; background:'+c.color+';"></div></div>'+
+        '<span style="color:'+c.color+'">'+m.text+'</span></div>'+
+        '</button>';
+    }).join("");
+    return '<div class="hero"><div class="hero-content">'+
+      '<div class="hero-icons">🚗🔥🚑🚒📞</div>'+
+      '<h1>THE MAN IN THE CAR</h1>'+
+      '<div class="subtitle">Reading Adventure — Grade 4</div>'+
+      '<div class="tagline">"Read. Understand. Solve the Story!"</div>'+
+      '<button class="btn btn-primary" onclick="App.navigate(\''+this.firstIncompleteRoute()+'\')">▶ Continue Learning</button>'+
+      '</div></div>'+
+      '<div class="card-grid">'+cards+'</div>';
+  },
+
+  /* ============================================================
+     STORY MODE
+     ============================================================ */
+  renderStory(){
+    const p = this.progress;
+    const scenes = DATA.scenes.map(s=>{
+      const read = p.storyRead.includes(s.id);
+      const paras = s.text.map(t=>'<p>'+t+'</p>').join("");
+      const chars = s.characters.map(c=>'<span class="chip char">👤 '+c+'</span>').join("");
+      const vocab = s.vocab.map(v=>'<span class="chip vocab">🔤 '+v+'</span>').join("");
+      return '<div class="scene-card">'+
+        '<div class="scene-banner" style="background:'+s.color+';">'+
+          '<span class="scene-num">'+s.id+'</span><span class="scene-icon">'+s.icon+'</span><h3>'+s.title+'</h3>'+
+        '</div>'+
+        '<div class="scene-body">'+
+          '<div class="scene-text">'+paras+'</div>'+
+          '<div class="scene-meta">'+chars+vocab+'</div>'+
+          '<button class="help-btn" onclick="App.toggleHelp('+s.id+')">🇹🇭 Help Me Understand</button>'+
+          '<div class="thai-box" id="help-'+s.id+'"><b>"'+s.help.en+'"</b><br><span class="thai">'+s.help.th+'</span></div>'+
+        '</div>'+
+        '<div class="scene-footer">'+
+          (read
+            ? '<span class="pill" style="background:var(--green-light);color:#265c33;">✓ Read</span>'
+            : '<button class="btn btn-outline" onclick="App.markSceneRead('+s.id+')">✓ I Understand This Scene</button>')+
+        '</div>'+
+      '</div>';
+    }).join("");
+    const phonicsCards = DATA.phonics.map(p=>{
+      const marked = p.word.replace(new RegExp(p.em,"i"), '<span class="em">'+p.em+'</span>');
+      return '<div class="phonics-card"><div class="pw">'+marked+'</div><div class="pipa">'+p.ipa+'</div></div>';
+    }).join("");
+    const phonicsBlock = '<div class="card" style="margin-top:1.4rem;">'+
+      '<h3>🔊 Phonics Corner: the long /aɪ/ sound</h3>'+
+      '<p class="desc" style="margin-bottom:.8rem;">These words from the story all have the same long /aɪ/ sound, spelled "i_e" or "igh".</p>'+
+      '<div class="phonics-row">'+phonicsCards+'</div></div>';
+    return '<div class="section-head"><div><h2>📖 Story Mode</h2><p class="desc">Read the story scene by scene. Tap "Help Me Understand" for a Thai explanation if a sentence is tricky — but try reading in English first!</p></div></div>'+
+      '<div class="scene-grid">'+scenes+'</div>'+
+      phonicsBlock+
+      '<div class="btn-row"><button class="btn btn-teal" onclick="App.navigate(\'vocab\')">Next: Learn Vocabulary →</button></div>';
+  },
+  toggleHelp(id){
+    $("#help-"+id).classList.toggle("show");
+  },
+  markSceneRead(id){
+    if(!this.progress.storyRead.includes(id)) this.progress.storyRead.push(id);
+    this.save();
+    this.render();
+    this.toast("Scene "+id+" marked as read!");
+  },
+
+  /* ============================================================
+     VOCABULARY LAB
+     ============================================================ */
+  renderVocab(){
+    const tabs = [
+      {key:"cards", label:"📇 Word Cards"},
+      {key:"match", label:"🔗 Match the Word"},
+      {key:"choose", label:"✅ Choose the Meaning"},
+      {key:"complete", label:"✏️ Complete the Sentence"},
+      {key:"guess", label:"❓ Guess the Word"}
+    ];
+    const tabBtns = tabs.map(t=>'<button class="tab-btn '+(this.state.vocabTab===t.key?"active":"")+'" onclick="App.setVocabTab(\''+t.key+'\')">'+t.label+'</button>').join("");
+    let body = "";
+    if(this.state.vocabTab==="cards") body = this.renderVocabCards();
+    else if(this.state.vocabTab==="match") body = this.renderVocabMatch();
+    else body = this.renderVocabQuiz(this.state.vocabTab);
+    return '<div class="section-head"><div><h2>🔤 Vocabulary Lab</h2><p class="desc">22 key words from the story, plus four ways to practice them.</p></div></div>'+
+      '<div class="tabs">'+tabBtns+'</div>'+body;
+  },
+  setVocabTab(tab){
+    this.state.vocabTab = tab;
+    this.state.quiz = null; this.state.match = null;
+    this.render();
+  },
+  renderVocabCards(){
+    const cards = DATA.vocabulary.map(v=>
+      '<div class="vocab-card"><div class="vw">'+v.word+'</div><div class="vipa">'+v.ipa+'</div>'+
+      '<span class="vpos">'+v.pos+'</span><div class="vth">'+v.th+'</div>'+
+      '<div class="vdef">'+v.def+'</div><div class="vex">"'+v.ex+'"</div></div>'
+    ).join("");
+    return '<div class="vocab-grid">'+cards+'</div>';
+  },
+
+  renderVocabMatch(){
+    if(!this.state.match){
+      const left = DATA.vocabMatch.map((m,i)=>({id:"L"+i, text:m.en, pairId:i}));
+      const right = shuffle(DATA.vocabMatch.map((m,i)=>({id:"R"+i, text:m.th, pairId:i})));
+      this.state.match = { left, right, selectedLeft:null, selectedRight:null, doneIds:[], wrongFlashId:null };
+    }
+    const m = this.state.match;
+    const leftItems = m.left.map(item=>{
+      const done = m.doneIds.includes(item.pairId);
+      const sel = m.selectedLeft===item.id;
+      return '<div class="match-item'+(done?" done":"")+(sel?" selected":"")+'" '+(done?"":'onclick="App.matchPick(\'left\',\''+item.id+'\','+item.pairId+')"')+'>'+item.text+(done?" ✓":"")+'</div>';
+    }).join("");
+    const rightItems = m.right.map(item=>{
+      const done = m.doneIds.includes(item.pairId);
+      const sel = m.selectedRight===item.id;
+      const flash = m.wrongFlashId===item.id;
+      return '<div class="match-item'+(done?" done":"")+(sel?" selected":"")+(flash?" wrong-flash":"")+'" '+(done?"":'onclick="App.matchPick(\'right\',\''+item.id+'\','+item.pairId+')"')+'>'+item.text+(done?" ✓":"")+'</div>';
+    }).join("");
+    const allDone = m.doneIds.length === DATA.vocabMatch.length;
+    return '<div class="q-card">'+
+      '<p class="q-context">Tap an English word, then tap its Thai meaning to match them. <b>'+m.doneIds.length+'/'+DATA.vocabMatch.length+'</b> matched.</p>'+
+      '<div class="match-wrap"><div class="match-col"><h4>English</h4>'+leftItems+'</div><div class="match-col"><h4>ไทย</h4>'+rightItems+'</div></div>'+
+      (allDone ? '<div class="feedback show ok"><div class="fb-head">🎉 Great job! You matched every word.</div></div><div class="btn-row"><button class="btn btn-teal" onclick="App.setVocabTab(\'choose\')">Next: Choose the Meaning →</button><button class="btn btn-outline" onclick="App.state.match=null;App.render();">↺ Play Again</button></div>' : "")+
+      '</div>';
+  },
+  matchPick(side, id, pairId){
+    const m = this.state.match;
+    if(m.doneIds.includes(pairId)) return;
+    if(side==="left") m.selectedLeft = (m.selectedLeft===id) ? null : id;
+    else m.selectedRight = (m.selectedRight===id) ? null : id;
+    if(m.selectedLeft && m.selectedRight){
+      const leftItem = m.left.find(x=>x.id===m.selectedLeft);
+      const rightItem = m.right.find(x=>x.id===m.selectedRight);
+      if(leftItem.pairId === rightItem.pairId){
+        m.doneIds.push(leftItem.pairId);
+        m.selectedLeft = null; m.selectedRight = null;
+        if(m.doneIds.length === DATA.vocabMatch.length){
+          this.progress.vocab.match = {done:true, correct:DATA.vocabMatch.length, total:DATA.vocabMatch.length};
+          this.save();
+        }
+      } else {
+        m.wrongFlashId = m.selectedRight;
+        const badLeft = m.selectedLeft, badRight = m.selectedRight;
+        this.render();
+        setTimeout(()=>{
+          if(this.state.match){
+            if(this.state.match.selectedLeft===badLeft) this.state.match.selectedLeft=null;
+            if(this.state.match.selectedRight===badRight) this.state.match.selectedRight=null;
+            this.state.match.wrongFlashId = null;
+            this.render();
+          }
+        }, 420);
+        return;
+      }
+    }
+    this.render();
+  },
+
+  renderVocabQuiz(mode){
+    const map = { choose:DATA.vocabChoose, complete:DATA.vocabComplete, guess:DATA.vocabGuess };
+    const label = { choose:"choose", complete:"complete", guess:"guess" };
+    if(!this.state.quiz || this.state.quiz.section!=="vocab-"+mode){
+      this.state.quiz = { section:"vocab-"+mode, list:map[mode], index:0, score:0, locked:false, selected:null, textVal:"", textResult:null };
+    }
+    const q = this.state.quiz;
+    if(q.index >= q.list.length){
+      this.progress.vocab[label[mode]] = {done:true, score:q.score, total:q.list.length};
+      this.save();
+      return this.renderQuizComplete("vocab-"+mode, q.score, q.list.length, "vocab");
+    }
+    const item = q.list[q.index];
+    let bodyHtml;
+    if(mode==="guess"){
+      bodyHtml = this.renderGuessQuestion(item, q);
+    } else {
+      bodyHtml = this.renderChoiceQuestion(item, q);
+    }
+    return '<div class="quiz-progress"><div class="ptrack"><div class="pfill" style="width:'+Math.round((q.index/q.list.length)*100)+'%"></div></div>'+
+      '<div class="plabel">'+(q.index+1)+' / '+q.list.length+' &nbsp;·&nbsp; Score: '+q.score+'</div></div>'+bodyHtml;
+  },
+
+  renderChoiceQuestion(item, q){
+    const letters = ["A","B","C","D"];
+    const choices = item.choices.map((c,i)=>{
+      let cls = "choice-btn";
+      if(q.locked){
+        if(i===item.correct) cls += " correct";
+        else if(i===q.selected) cls += " incorrect";
+        else cls += " dim";
+      }
+      return '<button class="'+cls+'" '+(q.locked?"disabled":"")+' onclick="App.answerChoice('+i+')"><span class="letter">'+letters[i]+'</span><span>'+c+'</span></button>';
+    }).join("");
+    let feedback = "";
+    if(q.locked){
+      const correct = q.selected === item.correct;
+      feedback = '<div class="feedback show '+(correct?"ok":"no")+'"><div class="fb-head">'+(correct?"✅ Correct!":"❌ Not quite!")+'</div>'+
+        (!correct ? '<div class="fb-en">Correct answer: <b>'+item.choices[item.correct]+'</b></div>' : "")+
+        '<div class="fb-en">'+item.explain+'</div></div>'+
+        '<div class="q-nav"><button class="btn btn-primary" onclick="App.nextQuizQuestion()">Next →</button></div>';
+    }
+    return '<div class="q-card"><p class="q-text">'+item.q+'</p><div class="choices">'+choices+'</div>'+feedback+'</div>';
+  },
+  renderGuessQuestion(item, q){
+    let feedback = "";
+    if(q.locked){
+      const correct = q.textResult;
+      feedback = '<div class="feedback show '+(correct?"ok":"no")+'"><div class="fb-head">'+(correct?"✅ Correct!":"❌ Not quite!")+'</div>'+
+        '<div class="fb-en">The word is: <b>'+item.answer+'</b></div></div>'+
+        '<div class="q-nav"><button class="btn btn-primary" onclick="App.nextQuizQuestion()">Next →</button></div>';
+    }
+    return '<div class="q-card"><p class="q-kicker">Guess the word</p><p class="q-text">"'+item.clue+'"</p>'+
+      '<div class="type-row"><input type="text" id="guessInput" placeholder="Type the word in English..." '+(q.locked?"disabled":"")+' value="'+(q.textVal||"")+'" onkeydown="if(event.key===\'Enter\')App.submitGuess();">'+
+      (q.locked?'':'<button class="btn btn-primary" onclick="App.submitGuess()">Check</button>')+'</div>'+feedback+'</div>';
+  },
+  submitGuess(){
+    const q = this.state.quiz;
+    if(q.locked) return;
+    const input = $("#guessInput");
+    const val = (input?input.value:"").trim().toLowerCase().replace(/\s+/g," ");
+    const item = q.list[q.index];
+    const correct = val === item.answer.toLowerCase();
+    q.locked = true; q.textVal = val; q.textResult = correct;
+    if(correct) q.score++;
+    else this.logMistake("Vocabulary — Guess the Word", item.clue, val || "(no answer)", item.answer, "The clue describes the meaning of this word.", item.clue);
+    this.render();
+  },
+  answerChoice(i){
+    const q = this.state.quiz;
+    if(q.locked) return;
+    q.locked = true; q.selected = i;
+    const item = q.list[q.index];
+    const correct = i === item.correct;
+    if(correct) q.score++;
+    else this.logMistake(this.sectionLabel(q.section), item.q, item.choices[i], item.choices[item.correct], item.explain, item.clue || item.explain);
+    this.render();
+  },
+  nextQuizQuestion(){
+    const q = this.state.quiz;
+    q.index++; q.locked=false; q.selected=null; q.textVal=""; q.textResult=null;
+    this.render();
+  },
+  sectionLabel(section){
+    const map = {
+      "vocab-choose":"Vocabulary — Choose the Meaning",
+      "vocab-complete":"Vocabulary — Complete the Sentence",
+      "whodidit":"Who Did It?",
+      "comprehension":"Reading Comprehension",
+      "challenge":"Story Challenge"
+    };
+    return map[section] || section;
+  },
+
+  /* ============================================================
+     STORY ORDER
+     ============================================================ */
+  renderOrder(){
+    if(!this.state.order){
+      const items = shuffle(DATA.storyOrder.map(e=>e.id));
+      this.state.order = { bank:items, slots:new Array(DATA.storyOrder.length).fill(null), checked:false, correctCount:0 };
+    }
+    const o = this.state.order;
+    const byId = {}; DATA.storyOrder.forEach(e=>byId[e.id]=e.text);
+
+    const bankHtml = o.bank.length===0 ? '<p style="color:var(--ink-soft);font-size:.88rem;">All events placed! Check your order below.</p>' :
+      o.bank.map(id=>'<div class="order-item" draggable="true" data-id="'+id+'" onclick="App.orderPlaceNext(\''+id+'\')"><span class="drag-handle">⠿</span><span>'+byId[id]+'</span></div>').join("");
+
+    const slotsHtml = o.slots.map((id,idx)=>{
+      let cls = "order-slot";
+      let inner = '<span class="slot-num">'+(idx+1)+'</span><span>Tap or drag an event here</span>';
+      if(id){
+        cls += " filled";
+        inner = '<span class="slot-num">'+(idx+1)+'</span><span>'+byId[id]+'</span>'+(!o.checked?'<button class="order-remove" onclick="App.orderRemove('+idx+')">×</button>':"");
+        if(o.checked){
+          cls += (DATA.storyOrder[idx].id===id) ? " correct" : " incorrect";
+        }
+      }
+      return '<div class="'+cls+'" data-slot="'+idx+'" ondragover="event.preventDefault();this.classList.add(\'dragover\')" ondragleave="this.classList.remove(\'dragover\')" ondrop="App.orderDrop(event,'+idx+')">'+inner+'</div>';
+    }).join("");
+
+    let resultHtml = "";
+    if(o.checked){
+      const correct = o.correctCount === DATA.storyOrder.length;
+      resultHtml = '<div class="feedback show '+(correct?"ok":"no")+'"><div class="fb-head">'+(correct?"✅ Correct Order!":"❌ Try Again!")+'</div>'+
+        '<div class="fb-en">'+(correct? "You put every event in the right order — great sequencing!" : "You got "+o.correctCount+" out of "+DATA.storyOrder.length+" in the right place. Look at the correct order below:")+'</div>'+
+        (!correct ? '<ol style="margin:.6rem 0 0 1.1rem; font-size:.9rem;">'+DATA.storyOrder.map(e=>'<li>'+e.text+'</li>').join("")+'</ol>' : "")+
+        '</div>';
+    }
+
+    const allFilled = o.slots.every(s=>s!==null);
+    return '<div class="section-head"><div><h2>🧩 Story Order</h2><p class="desc">Put the 8 events in the order they happened. Tap an event to add it to the next box, or drag it into a specific box.</p></div></div>'+
+      '<div class="card"><h4 style="margin-bottom:.5rem;">Events (tap or drag)</h4><div class="order-bank">'+bankHtml+'</div>'+
+      '<h4 style="margin-bottom:.5rem;">Your Order</h4><div class="order-slots">'+slotsHtml+'</div>'+
+      (!o.checked ? '<button class="btn btn-primary" '+(allFilled?"":"disabled")+' onclick="App.orderCheck()">Check Order</button>' : '<div class="btn-row"><button class="btn btn-outline" onclick="App.orderReset()">↺ Try Again</button><button class="btn btn-teal" onclick="App.navigate(\'whodidit\')">Next: Who Did It? →</button></div>')+
+      resultHtml+
+      '</div>';
+  },
+  orderPlaceNext(id){
+    const o = this.state.order;
+    if(o.checked) return;
+    const slotIdx = o.slots.findIndex(s=>s===null);
+    if(slotIdx===-1) return;
+    o.slots[slotIdx] = id;
+    o.bank = o.bank.filter(x=>x!==id);
+    this.render();
+  },
+  orderRemove(idx){
+    const o = this.state.order;
+    if(o.checked) return;
+    const id = o.slots[idx];
+    if(!id) return;
+    o.slots[idx] = null;
+    o.bank.push(id);
+    this.render();
+  },
+  orderDrop(ev, idx){
+    ev.preventDefault();
+    const o = this.state.order;
+    if(o.checked) return;
+    const id = ev.dataTransfer.getData("text/plain");
+    if(!id) return;
+    if(o.slots[idx]!==null) return;
+    if(o.bank.includes(id)){
+      o.slots[idx] = id;
+      o.bank = o.bank.filter(x=>x!==id);
+      this.render();
+    }
+  },
+  mountOrderDnD(){
+    document.querySelectorAll(".order-item[draggable=true]").forEach(el=>{
+      el.addEventListener("dragstart", ev=>{
+        ev.dataTransfer.setData("text/plain", el.getAttribute("data-id"));
+      });
+    });
+  },
+  orderCheck(){
+    const o = this.state.order;
+    let correctCount = 0;
+    o.slots.forEach((id,idx)=>{ if(DATA.storyOrder[idx].id===id) correctCount++; });
+    o.checked = true; o.correctCount = correctCount;
+    this.progress.order.attempts++;
+    if(correctCount === DATA.storyOrder.length) this.progress.order.solved = true;
+    this.save();
+    this.render();
+  },
+  orderReset(){
+    const items = shuffle(DATA.storyOrder.map(e=>e.id));
+    this.state.order = { bank:items, slots:new Array(DATA.storyOrder.length).fill(null), checked:false, correctCount:0 };
+    this.render();
+  },
+
+  /* ============================================================
+     SHARED QUIZ SECTIONS: whodidit / comprehension / challenge
+     ============================================================ */
+  quizDataFor(section){
+    if(section==="whodidit") return DATA.whoDidIt;
+    if(section==="comprehension") return DATA.comprehension;
+    if(section==="challenge") return DATA.challenge;
+    return [];
+  },
+  normalizeQ(section, raw){
+    if(section==="comprehension" && raw.type==="tf"){
+      return { id:raw.id, q:raw.q, choices:["True","False"], correct: raw.correct ? 0 : 1, explain:raw.explain, clue:raw.clue, kicker:"True / False" };
+    }
+    if(section==="challenge" && raw.choices.length===2 && (raw.choices[0]==="True"||raw.choices[0]==="False")){
+      return { id:raw.id, q:raw.q, choices:raw.choices, correct:raw.correct, explain:raw.explain, clue:raw.explain, kicker:"True / False" };
+    }
+    const kickerMap = { whosaid:"Who Said It?", mc:null };
+    return { id:raw.id, q:raw.q, choices:raw.choices, correct:raw.correct, explain:raw.explain, clue: raw.clue || raw.explain, kicker: raw.type ? kickerMap[raw.type] : null };
+  },
+  renderQuizSectionHead(section){
+    const titleMap = {
+      whodidit:{h:"👤 Who Did It?", d:"Match each action to the correct character from the story."},
+      comprehension:{h:"🔎 Reading Comprehension", d:"15 questions — Level 1 facts, Level 2 understanding, and Level 3 thinking questions."},
+      challenge:{h:"🏆 Story Challenge", d:"20 exam-style questions covering everything: vocabulary, characters, sequence, and cause & effect."}
+    };
+    return '<div class="section-head"><div><h2>'+titleMap[section].h+'</h2><p class="desc">'+titleMap[section].d+'</p></div></div>';
+  },
+  renderComprehensionPage(){
+    if(!this.state.compTab) this.state.compTab = "quiz";
+    const tabs = [
+      {key:"quiz", label:"🔎 Comprehension Quiz"},
+      {key:"causeeffect", label:"⚡ Cause & Effect"}
+    ];
+    const tabBtns = tabs.map(t=>'<button class="tab-btn '+(this.state.compTab===t.key?"active":"")+'" onclick="App.setCompTab(\''+t.key+'\')">'+t.label+'</button>').join("");
+    const body = this.state.compTab==="quiz" ? this.renderQuizSection("comprehension") : this.renderCauseEffect();
+    return this.renderQuizSectionHead("comprehension") + '<div class="tabs">'+tabBtns+'</div>' + body;
+  },
+  setCompTab(tab){
+    this.state.compTab = tab;
+    this.render();
+  },
+  renderQuizSection(section){
+    const list = this.quizDataFor(section);
+    if(!this.state.quiz || this.state.quiz.section!==section){
+      this.state.quiz = { section, list, index:0, score:0, locked:false, selected:null };
+    }
+    const q = this.state.quiz;
+    if(q.index >= q.list.length){
+      const key = section;
+      this.progress[key] = Object.assign({}, this.progress[key], {done:true, score:q.score, total:q.list.length});
+      if(section==="challenge") this.progress.challenge.attempts = (this.progress.challenge.attempts||0)+1;
+      this.save();
+      if(section==="challenge"){
+        this.state.route = "results";
+        return this.renderResults();
+      }
+      return this.renderQuizComplete(section, q.score, q.list.length, section);
+    }
+    const raw = q.list[q.index];
+    const item = this.normalizeQ(section, raw);
+    const kicker = item.kicker ? '<p class="q-kicker">'+item.kicker+'</p>' : "";
+    let bodyHtml = kicker + this.renderChoiceQuestionRaw(item, q);
+    return '<div class="quiz-progress"><div class="ptrack"><div class="pfill" style="width:'+Math.round((q.index/q.list.length)*100)+'%"></div></div>'+
+      '<div class="plabel">'+(q.index+1)+' / '+q.list.length+' &nbsp;·&nbsp; Score: '+q.score+'</div></div>'+bodyHtml;
+  },
+  renderChoiceQuestionRaw(item, q){
+    const letters = ["A","B","C","D"];
+    const isTF = item.choices.length===2 && (item.choices[0]==="True"||item.choices[0]==="False");
+    const choices = item.choices.map((c,i)=>{
+      let cls = "choice-btn";
+      if(q.locked){
+        if(i===item.correct) cls += " correct";
+        else if(i===q.selected) cls += " incorrect";
+        else cls += " dim";
+      }
+      const letterHtml = isTF ? '' : '<span class="letter">'+letters[i]+'</span>';
+      return '<button class="'+cls+'" '+(q.locked?"disabled":"")+' onclick="App.answerQSection('+i+')">'+letterHtml+'<span>'+(isTF? (c==="True"?"✅ True":"❌ False") : c)+'</span></button>';
+    }).join("");
+    let feedback = "";
+    if(q.locked){
+      const correct = q.selected === item.correct;
+      feedback = '<div class="feedback show '+(correct?"ok":"no")+'"><div class="fb-head">'+(correct?"✅ Correct!":"❌ Not quite!")+'</div>'+
+        (!correct ? '<div class="fb-en">Your answer: <b>'+item.choices[q.selected]+'</b> &nbsp;|&nbsp; Correct answer: <b>'+item.choices[item.correct]+'</b></div>' : "")+
+        '<div class="fb-en">'+item.explain+'</div></div>'+
+        '<div class="q-nav"><button class="btn btn-primary" onclick="App.nextQSection()">Next →</button></div>';
+    }
+    return '<div class="q-card"><p class="q-text">'+item.q+'</p><div class="'+(isTF?"tf-row":"choices")+'">'+choices+'</div>'+feedback+'</div>';
+  },
+  answerQSection(i){
+    const q = this.state.quiz;
+    if(q.locked) return;
+    q.locked = true; q.selected = i;
+    const raw = q.list[q.index];
+    const item = this.normalizeQ(q.section, raw);
+    const correct = i === item.correct;
+    if(correct) q.score++;
+    else this.logMistake(this.sectionLabel(q.section), item.q, item.choices[i], item.choices[item.correct], item.explain, item.clue);
+    this.render();
+  },
+  nextQSection(){
+    const q = this.state.quiz;
+    q.index++; q.locked=false; q.selected=null;
+    this.render();
+  },
+  renderQuizComplete(sectionKey, score, total, kind){
+    const p = pct(score,total);
+    const nextRoute = this.firstIncompleteRoute();
+    const hasMistakesThisRun = this.progress.mistakes.length>0;
+    return '<div class="q-card" style="text-align:center;">'+
+      '<div style="font-size:2.4rem;">'+(p>=80?"🌟":p>=50?"👍":"💪")+'</div>'+
+      '<h3>You scored '+score+' / '+total+' ('+p+'%)</h3>'+
+      '<p style="color:var(--ink-soft);">'+(p>=80?"Excellent work! You really understand the story.":p>=50?"Good progress! A little more practice will help.":"Let's review the story and try again.")+'</p>'+
+      '<div class="btn-row" style="justify-content:center;">'+
+        (hasMistakesThisRun?'<button class="btn btn-outline" onclick="App.navigate(\'mistakes\')">📝 Review Mistakes</button>':"")+
+        '<button class="btn btn-outline" onclick="App.retrySection(\''+kind+'\')">↺ Try Again</button>'+
+        '<button class="btn btn-teal" onclick="App.navigate(\''+nextRoute+'\')">Continue →</button>'+
+        '<button class="btn btn-ghost" onclick="App.navigate(\'home\')">🏠 Back to Home</button>'+
+      '</div></div>';
+  },
+  retrySection(kind){
+    if(kind==="whodidit"||kind==="comprehension"||kind==="challenge"){
+      this.state.quiz = { section:kind, list:this.quizDataFor(kind), index:0, score:0, locked:false, selected:null };
+    } else if(kind==="vocab"){
+      this.state.quiz = null;
+    }
+    this.render();
+  },
+
+  /* ============================================================
+     CAUSE & EFFECT (embedded inside Comprehension page via tab-less mini activity)
+     accessible from comprehension completion screen too — but per spec
+     it's its own small activity; we expose it from the Comprehension nav
+     as a secondary block reachable after finishing the 15 Qs, and also
+     directly.
+     ============================================================ */
+  renderCauseEffect(){
+    if(!this.state.ce){
+      const causes = DATA.causeEffect.map((c,i)=>i);
+      const effects = shuffle(DATA.causeEffect.map((c,i)=>i));
+      this.state.ce = { causes, effects, selectedCause:null, doneIds:[], wrongId:null };
+    }
+    const ce = this.state.ce;
+    const rows = ce.causes.map(ci=>{
+      const done = ce.doneIds.includes(ci);
+      const sel = ce.selectedCause===ci;
+      return '<div class="ce-box ce-cause'+(sel?" selected":"")+(done?" correct":"")+'" onclick="App.cePickCause('+ci+')" style="cursor:'+(done?"default":"pointer")+'"><span class="ce-label">Cause</span>'+DATA.causeEffect[ci].cause+(done?" ✓":"")+'</div>';
+    });
+    const effectBoxes = ce.effects.map(ei=>{
+      const done = ce.doneIds.includes(ei);
+      const flash = ce.wrongId===ei;
+      return '<div class="ce-box ce-effect'+(done?" correct":"")+(flash?" incorrect":"")+'" onclick="App.cePickEffect('+ei+')" style="'+(done?"cursor:default;":"")+'"><span class="ce-label">Effect</span>'+DATA.causeEffect[ei].effect+(done?" ✓":"")+'</div>';
+    });
+    const rowsHtml = rows.map((r,idx)=>'<div class="ce-row">'+r+effectBoxes[idx]+'</div>').join("");
+    const allDone = ce.doneIds.length === DATA.causeEffect.length;
+    return '<div class="q-card"><p class="q-context">Tap a <b>Cause</b> box, then tap the <b>Effect</b> box that matches it. <b>'+ce.doneIds.length+'/'+DATA.causeEffect.length+'</b> matched.</p>'+
+      '<div class="ce-grid">'+rowsHtml+'</div>'+
+      (allDone ? '<div class="feedback show ok" style="margin-top:1rem;"><div class="fb-head">🎉 You matched every cause and effect!</div></div>' : "")+
+      '</div>';
+  },
+  cePickCause(ci){
+    const ce = this.state.ce;
+    if(ce.doneIds.includes(ci)) return;
+    ce.selectedCause = ci;
+    this.render();
+  },
+  cePickEffect(ei){
+    const ce = this.state.ce;
+    if(ce.doneIds.includes(ei) || ce.selectedCause===null) return;
+    if(ce.selectedCause === ei){
+      ce.doneIds.push(ei);
+      ce.selectedCause = null;
+      const total = DATA.causeEffect.length;
+      const correctSoFar = ce.doneIds.length;
+      this.progress.causeEffect = {done: correctSoFar===total, score: correctSoFar, total};
+      this.save();
+    } else {
+      const causeItem = DATA.causeEffect[ce.selectedCause];
+      const effectItem = DATA.causeEffect[ei];
+      this.logMistake("Cause & Effect", "What is the effect of: \""+causeItem.cause+"\"?", effectItem.effect, causeItem.effect, "\""+causeItem.cause+"\" leads to \""+causeItem.effect+"\".", causeItem.cause);
+      ce.wrongId = ei;
+      const badCause = ce.selectedCause;
+      this.render();
+      setTimeout(()=>{
+        if(this.state.ce){
+          if(this.state.ce.selectedCause===badCause) this.state.ce.selectedCause=null;
+          this.state.ce.wrongId = null;
+          this.render();
+        }
+      }, 420);
+      return;
+    }
+    this.render();
+  },
+
+  /* ============================================================
+     MISTAKES
+     ============================================================ */
+  logMistake(section, question, yourAnswer, correctAnswer, explain, clue){
+    this.progress.mistakes.push({
+      section, question, yourAnswer, correctAnswer, explain, clue: clue||"",
+      ts: this.progress.mistakes.length
+    });
+    if(this.progress.mistakes.length > 200) this.progress.mistakes.shift();
+    this.save();
+  },
+  clearMistakes(){
+    this.progress.mistakes = [];
+    this.save();
+    this.render();
+  },
+  renderMistakes(){
+    const m = this.progress.mistakes;
+    const head = '<div class="section-head"><div><h2>📝 Review My Mistakes</h2><p class="desc">Every question you missed is saved here so you can review it before an exam.</p></div></div>';
+    if(m.length===0){
+      return head + '<div class="empty-state card"><div class="ei">🎉</div><p>No mistakes saved yet — great job! Keep practicing to fill this page with useful review notes if you ever need them.</p>'+
+        '<div class="btn-row" style="justify-content:center;"><button class="btn btn-teal" onclick="App.navigate(\'home\')">🏠 Back to Home</button></div></div>';
+    }
+    const cards = m.slice().reverse().map(x=>
+      '<div class="mistake-card"><span class="chip">'+x.section+'</span>'+
+      '<div class="mq">'+x.question+'</div>'+
+      '<div class="mistake-row"><span class="tag your">Your answer</span> '+x.yourAnswer+'</div>'+
+      '<div class="mistake-row"><span class="tag correct">Correct answer</span> '+x.correctAnswer+'</div>'+
+      '<p style="font-size:.9rem;">'+x.explain+'</p>'+
+      (x.clue ? '<div class="mistake-clue">📌 Story clue: '+(/^["“].*["”]$/.test(x.clue) ? x.clue : '"'+x.clue+'"')+'</div>' : "")+
+      '</div>'
+    ).join("");
+    return head + '<p class="pill" style="margin-bottom:1rem;">'+m.length+' saved mistake'+(m.length===1?"":"s")+'</p>'+cards+
+      '<div class="btn-row"><button class="btn btn-outline" onclick="App.clearMistakes()">🗑 Clear All</button><button class="btn btn-teal" onclick="App.navigate(\'home\')">🏠 Back to Home</button></div>';
+  },
+
+  /* ============================================================
+     RESULTS
+     ============================================================ */
+  renderResults(){
+    const p = this.progress;
+    if(!p.challenge.done){
+      return '<div class="section-head"><div><h2>⭐ Final Results</h2></div></div>'+
+        '<div class="empty-state card"><div class="ei">🏆</div><p>Complete the <b>Story Challenge</b> (20 questions) to see your final results and star ratings!</p>'+
+        '<div class="btn-row" style="justify-content:center;"><button class="btn btn-primary" onclick="App.navigate(\'challenge\')">Start Story Challenge →</button></div></div>';
+    }
+    const score = p.challenge.score, total = p.challenge.total;
+    const p100 = pct(score,total);
+    let badge = "💪 Read the Story Again";
+    if(score>=18) badge = "🏆 Story Detective";
+    else if(score>=15) badge = "🌟 Great Reader";
+    else if(score>=11) badge = "👍 Good Progress";
+
+    const vocabModesTotal = ["choose","complete","guess"].reduce((s,k)=>s+(p.vocab[k].done?p.vocab[k].total:0),0);
+    const vocabModesScore = ["choose","complete","guess"].reduce((s,k)=>s+(p.vocab[k].done?p.vocab[k].score:0),0);
+    const vocabPct = vocabModesTotal>0 ? pct(vocabModesScore, vocabModesTotal) : 0;
+    const seqPct = p.order.solved ? 100 : (p.order.attempts>0 ? 40 : 0);
+    const charPct = p.whodidit.done ? pct(p.whodidit.score,p.whodidit.total) : 0;
+    const cePct = p.causeEffect.done ? pct(p.causeEffect.score,p.causeEffect.total) : 0;
+    const storyPct = p.comprehension.done ? pct(p.comprehension.score,p.comprehension.total) : 0;
+
+    const stars = [
+      {label:"Vocabulary", v:vocabPct},
+      {label:"Story Understanding", v:storyPct},
+      {label:"Story Sequence", v:seqPct},
+      {label:"Characters", v:charPct},
+      {label:"Cause & Effect", v:cePct}
+    ].map(s=>'<div class="star-card"><h4>'+s.label+'</h4><div class="stars">'+starRow(s.v)+'</div></div>').join("");
+
+    return '<div class="results-hero"><div class="results-score">'+score+' / '+total+'</div><div class="results-pct">'+p100+'%</div><div class="results-badge">'+badge+'</div></div>'+
+      '<h3 style="margin-top:1.6rem;">Your Skill Breakdown</h3>'+
+      '<div class="stars-grid">'+stars+'</div>'+
+      '<div class="btn-row">'+
+        (p.mistakes.length>0?'<button class="btn btn-outline" onclick="App.navigate(\'mistakes\')">📝 Review Mistakes</button>':"")+
+        '<button class="btn btn-outline" onclick="App.navigate(\'story\')">📖 Read Story Again</button>'+
+        '<button class="btn btn-outline" onclick="App.navigate(\'vocab\')">🔤 Practice Vocabulary</button>'+
+        '<button class="btn btn-primary" onclick="App.retrySection(\'challenge\');App.navigate(\'challenge\',{keepQuiz:true});">🏆 Try Challenge Again</button>'+
+        '<button class="btn btn-ghost" onclick="App.navigate(\'home\')">🏠 Back to Home</button>'+
+      '</div>';
+  }
+};
+
+window.App = App;
+document.addEventListener("DOMContentLoaded", ()=> App.init());
+})();
+</script>
+</body>
+</html>
