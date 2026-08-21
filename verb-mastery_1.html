@@ -1,0 +1,1350 @@
+<title>Verb Mastery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mitr:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* ---------- tokens ---------- */
+:root{
+  --ground:#FBF6EC;
+  --ground-2:#F4EBDA;
+  --surface:#FFFFFF;
+  --surface-2:#FDF9F1;
+  --ink:#222B45;
+  --ink-soft:#4A5570;
+  --muted:#867B69;
+  --line:#E2D6C0;
+  --edge:#222B45;
+  --shadow:rgba(34,43,69,.22);
+  --coral:#E05A33;
+  --coral-soft:#FBE3DA;
+  --sky:#2F7DBC;
+  --sky-soft:#DCEBF7;
+  --sage:#4E9575;
+  --sage-soft:#DDEEE4;
+  --butter:#EFB53C;
+  --butter-soft:#FBEBC9;
+  --wrong:#C2412F;
+  --radius:16px;
+  --radius-s:10px;
+  --pop:4px 4px 0 var(--shadow);
+  --pop-s:3px 3px 0 var(--shadow);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#171512;
+    --ground-2:#211E19;
+    --surface:#262218;
+    --surface-2:#2E2921;
+    --ink:#F4EDE0;
+    --ink-soft:#D6CBB8;
+    --muted:#A3957E;
+    --line:#3D3629;
+    --edge:#0E0C0A;
+    --shadow:rgba(0,0,0,.55);
+    --coral:#FF8A63;
+    --coral-soft:#4A2A1E;
+    --sky:#6FB2E8;
+    --sky-soft:#1D3346;
+    --sage:#7FC8A0;
+    --sage-soft:#1E3A2C;
+    --butter:#F7CF6C;
+    --butter-soft:#43351A;
+    --wrong:#FF8A75;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#171512;
+  --ground-2:#211E19;
+  --surface:#262218;
+  --surface-2:#2E2921;
+  --ink:#F4EDE0;
+  --ink-soft:#D6CBB8;
+  --muted:#A3957E;
+  --line:#3D3629;
+  --edge:#0E0C0A;
+  --shadow:rgba(0,0,0,.55);
+  --coral:#FF8A63;
+  --coral-soft:#4A2A1E;
+  --sky:#6FB2E8;
+  --sky-soft:#1D3346;
+  --sage:#7FC8A0;
+  --sage-soft:#1E3A2C;
+  --butter:#F7CF6C;
+  --butter-soft:#43351A;
+  --wrong:#FF8A75;
+}
+
+*{box-sizing:border-box}
+html{overflow-x:clip}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"IBM Plex Sans Thai","Noto Sans Thai",system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  overflow-x:clip;
+}
+h1,h2,h3,h4{font-family:"Mitr","IBM Plex Sans Thai",system-ui,sans-serif;font-weight:500;line-height:1.25;margin:0;text-wrap:balance}
+button{font-family:inherit}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+
+/* ---------- shell ---------- */
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 72px}
+.topbar{
+  position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb,var(--ground) 88%,transparent);
+  backdrop-filter:blur(8px);
+  border-bottom:2px solid var(--line);
+}
+.topbar-in{max-width:1060px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:9px;font-family:"Mitr",sans-serif;font-weight:500;font-size:1.02rem;letter-spacing:.01em;cursor:pointer;background:none;border:0;color:var(--ink);padding:4px 2px}
+.brand-mark{
+  width:30px;height:30px;border-radius:9px;border:2px solid var(--edge);
+  background:var(--butter);color:#222B45;display:grid;place-items:center;
+  font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.82rem;flex:none;
+  box-shadow:2px 2px 0 var(--shadow);
+}
+.spacer{flex:1}
+.chipbtn{
+  border:2px solid var(--edge);background:var(--surface);color:var(--ink);
+  border-radius:999px;padding:6px 12px;font-size:.82rem;font-weight:600;cursor:pointer;
+  display:inline-flex;align-items:center;gap:6px;box-shadow:2px 2px 0 var(--shadow);
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.chipbtn:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--shadow)}
+.chipbtn:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--shadow)}
+.lang-seg{display:inline-flex;border:2px solid var(--edge);border-radius:999px;overflow:hidden;box-shadow:2px 2px 0 var(--shadow);background:var(--surface)}
+.lang-seg button{border:0;background:transparent;color:var(--muted);font-size:.78rem;font-weight:700;padding:6px 11px;cursor:pointer;letter-spacing:.04em}
+.lang-seg button[aria-pressed="true"]{background:var(--ink);color:var(--ground)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:38px 0 26px;text-align:center}
+.hero::before{
+  content:"";position:absolute;inset:-20px -50vw 0;z-index:-1;
+  background:
+    repeating-linear-gradient(to bottom,transparent 0 31px,var(--line) 31px 32px);
+  opacity:.5;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,transparent 92%);
+  mask-image:linear-gradient(to bottom,#000 0%,transparent 92%);
+}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.hero h1{font-size:clamp(2.1rem,7vw,3.4rem);font-weight:600;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--coral)}
+.hero .sub{margin:10px auto 0;max-width:44ch;color:var(--ink-soft);font-size:1rem}
+.hero .tag{display:inline-block;margin-top:14px;font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-top:2px solid var(--line);border-bottom:2px solid var(--line);padding:5px 0}
+
+/* ---------- progress strip ---------- */
+.stats{
+  display:grid;gap:10px;margin:26px 0 30px;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+}
+.stat{
+  background:var(--surface);border:2px solid var(--edge);border-radius:var(--radius-s);
+  padding:11px 13px;box-shadow:var(--pop-s);
+}
+.stat .k{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.stat .v{font-family:"Mitr",sans-serif;font-size:1.35rem;font-weight:500;font-variant-numeric:tabular-nums;line-height:1.2;margin-top:2px}
+.bar{height:7px;border-radius:99px;background:var(--ground-2);border:1px solid var(--line);overflow:hidden;margin-top:7px}
+.bar i{display:block;height:100%;background:var(--coral);width:0;transition:width .9s cubic-bezier(.22,1,.36,1)}
+.stat.is-mastery{background:var(--butter-soft)}
+.stat.is-mastery .bar i{background:var(--butter)}
+
+/* ---------- menu cards ---------- */
+.menu{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(248px,1fr))}
+.mcard{
+  position:relative;text-align:left;cursor:pointer;
+  background:var(--surface);border:2px solid var(--edge);border-radius:var(--radius);
+  padding:18px 18px 16px;box-shadow:var(--pop);
+  transition:transform .16s cubic-bezier(.22,1,.36,1), box-shadow .16s ease;
+  display:flex;flex-direction:column;gap:5px;color:var(--ink);
+  animation:rise .5s cubic-bezier(.22,1,.36,1) backwards;
+}
+.mcard:hover{transform:translate(-3px,-3px);box-shadow:7px 7px 0 var(--shadow)}
+.mcard:active{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--shadow)}
+.mcard .num{position:absolute;top:14px;right:16px;font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);letter-spacing:.1em}
+.mcard .glyph{
+  width:44px;height:44px;border-radius:12px;border:2px solid var(--edge);
+  display:grid;place-items:center;font-family:"IBM Plex Mono",monospace;font-weight:600;
+  font-size:.95rem;margin-bottom:7px;color:#222B45;
+}
+:root[data-theme="dark"] .mcard .glyph,
+:root[data-theme="dark"] .brand-mark{color:#171512}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .mcard .glyph,
+  :root:not([data-theme="light"]) .brand-mark{color:#171512}
+}
+.mcard h3{font-size:1.12rem;font-weight:500}
+.mcard p{margin:0;font-size:.88rem;color:var(--muted);line-height:1.5}
+.mcard .meta{margin-top:9px;font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- generic page bits ---------- */
+.pagehead{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;padding:26px 0 6px;border-bottom:2px solid var(--line);margin-bottom:20px}
+.pagehead h2{font-size:clamp(1.5rem,4.4vw,2.05rem);font-weight:600}
+.pagehead p{margin:4px 0 0;color:var(--muted);font-size:.92rem}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 20px}
+.tab{
+  border:2px solid var(--edge);background:var(--surface);color:var(--ink-soft);
+  padding:7px 14px;border-radius:999px;font-size:.85rem;font-weight:600;cursor:pointer;
+  box-shadow:2px 2px 0 var(--shadow);transition:transform .12s ease,box-shadow .12s ease;
+}
+.tab:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--shadow)}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--ground);border-color:var(--edge)}
+.panel{animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ---------- sound cards ---------- */
+.sound-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.sound{
+  border:2px solid var(--edge);border-radius:var(--radius);background:var(--surface);
+  box-shadow:var(--pop);overflow:hidden;display:flex;flex-direction:column;
+}
+.sound .cap{padding:14px 16px;border-bottom:2px solid var(--edge);display:flex;align-items:center;gap:12px}
+.sound .ipa{
+  font-family:"IBM Plex Mono",monospace;font-size:1.6rem;font-weight:600;
+  border:2px solid var(--edge);border-radius:11px;padding:2px 12px;background:var(--surface);
+  color:var(--ink);
+}
+.sound .cap h3{font-size:1rem;font-weight:500}
+.sound .cap .cap-sub{font-size:.78rem;color:var(--muted);font-family:"IBM Plex Mono",monospace;letter-spacing:.08em}
+.sound .rule{padding:14px 16px;font-size:.9rem;color:var(--ink-soft);border-bottom:2px dashed var(--line)}
+.sound .rule b{color:var(--ink)}
+.sound .words{padding:13px 16px 16px;display:flex;flex-wrap:wrap;gap:7px;align-content:flex-start;flex:1}
+.wchip{
+  border:2px solid var(--edge);border-radius:999px;padding:4px 11px;background:var(--surface-2);
+  font-size:.9rem;font-weight:500;white-space:nowrap;
+}
+.wchip .ed{background:var(--butter);color:#222B45;border-radius:5px;padding:0 3px;font-weight:700}
+.sound.t{background:var(--sky-soft)} .sound.t .cap{background:var(--sky-soft)} .sound.t .ipa{background:var(--sky);color:#fff;border-color:var(--edge)}
+.sound.d{background:var(--coral-soft)} .sound.d .cap{background:var(--coral-soft)} .sound.d .ipa{background:var(--coral);color:#fff}
+.sound.id{background:var(--sage-soft)} .sound.id .cap{background:var(--sage-soft)} .sound.id .ipa{background:var(--sage);color:#fff}
+.sound .rule,.sound .words{background:var(--surface)}
+
+/* ---------- spelling rules ---------- */
+.rules{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:20px}
+.rule-card{background:var(--surface);border:2px solid var(--edge);border-radius:var(--radius-s);padding:13px 15px;box-shadow:var(--pop-s)}
+.rule-card .n{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.14em;color:var(--muted)}
+.rule-card h4{font-size:.98rem;margin:3px 0 5px;font-weight:500}
+.rule-card p{margin:0;font-size:.84rem;color:var(--muted)}
+.rule-card .ex{margin-top:8px;font-family:"IBM Plex Mono",monospace;font-size:.85rem;color:var(--ink)}
+.rule-card .ex b{color:var(--coral)}
+
+/* ---------- sorting game ---------- */
+.game{background:var(--surface);border:2px solid var(--edge);border-radius:var(--radius);box-shadow:var(--pop);padding:20px 18px 24px}
+.game-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.game-top .lbl{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.score{font-family:"IBM Plex Mono",monospace;font-size:.85rem;font-variant-numeric:tabular-nums;color:var(--ink-soft)}
+.dragword{
+  margin:18px auto;display:block;max-width:340px;text-align:center;cursor:grab;
+  background:var(--butter-soft);border:2px solid var(--edge);border-radius:var(--radius);
+  padding:22px 18px;box-shadow:var(--pop);font-family:"Mitr",sans-serif;
+  font-size:clamp(1.6rem,6vw,2.2rem);font-weight:500;letter-spacing:.01em;color:var(--ink);
+  user-select:none;touch-action:manipulation;transition:transform .16s ease,box-shadow .16s ease;
+}
+.dragword small{display:block;font-family:"IBM Plex Sans Thai",sans-serif;font-size:.8rem;font-weight:400;color:var(--muted);letter-spacing:0;margin-top:4px}
+.dragword.picked{transform:translate(-3px,-3px) rotate(-1.4deg);box-shadow:8px 8px 0 var(--shadow);cursor:grabbing;border-color:var(--coral)}
+.dragword.ok{animation:pop .45s cubic-bezier(.34,1.56,.64,1)}
+.dragword.bad{animation:shake .38s ease}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.09) rotate(-2deg)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.bins{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.bin{
+  border:2px dashed var(--edge);border-radius:var(--radius);background:var(--ground-2);
+  padding:18px 8px;text-align:center;cursor:pointer;transition:transform .14s ease,background .14s ease;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.bin .ipa{font-family:"IBM Plex Mono",monospace;font-size:1.35rem;font-weight:600}
+.bin .hintline{font-size:.72rem;color:var(--muted);line-height:1.35}
+.bin.over,.bin:hover{transform:translateY(-3px);border-style:solid}
+.bin.t:hover,.bin.t.over{background:var(--sky-soft)}
+.bin.d:hover,.bin.d.over{background:var(--coral-soft)}
+.bin.id:hover,.bin.id.over{background:var(--sage-soft)}
+.feedback{margin-top:16px;border-radius:var(--radius-s);padding:13px 15px;border:2px solid var(--edge);font-size:.9rem;animation:fade .28s ease}
+.feedback.good{background:var(--sage-soft)}
+.feedback.warn{background:var(--butter-soft)}
+.feedback .head{font-family:"Mitr",sans-serif;font-weight:500;font-size:1rem;display:flex;align-items:center;gap:8px}
+.feedback .why{margin-top:5px;color:var(--ink-soft)}
+.feedback .why .mono{color:var(--ink);font-weight:600}
+.feedback .th{margin-top:3px;color:var(--muted);font-size:.85rem}
+
+/* confetti */
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden}
+.confetti i{position:absolute;width:8px;height:12px;border-radius:2px;animation:fall .95s cubic-bezier(.2,.6,.4,1) forwards}
+@keyframes fall{0%{opacity:1;transform:translate(0,0) rotate(0)}100%{opacity:0;transform:translate(var(--dx),140px) rotate(var(--rot))}}
+
+/* ---------- quick sort ---------- */
+.qword{text-align:center;margin:6px 0 4px;font-family:"Mitr",sans-serif;font-size:clamp(2rem,8vw,3rem);font-weight:600}
+.qask{text-align:center;color:var(--muted);font-size:.92rem;margin-bottom:18px}
+.opt-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.opt{
+  border:2px solid var(--edge);border-radius:var(--radius-s);background:var(--surface-2);
+  padding:14px 6px;font-family:"IBM Plex Mono",monospace;font-size:1.2rem;font-weight:600;
+  cursor:pointer;color:var(--ink);box-shadow:var(--pop-s);
+  transition:transform .12s ease,box-shadow .12s ease,background .12s ease;
+}
+.opt:hover:not(:disabled){transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--shadow)}
+.opt:disabled{cursor:default;opacity:.85}
+.opt.right{background:var(--sage);color:#fff}
+.opt.wrong{background:var(--wrong);color:#fff}
+.breakdown{margin-top:16px;text-align:center;font-size:.95rem;line-height:2}
+.breakdown .step{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+.pill{border:2px solid var(--edge);border-radius:999px;padding:2px 10px;font-family:"IBM Plex Mono",monospace;font-size:.9rem;background:var(--surface-2)}
+.pill.t{background:var(--sky);color:#fff}
+.pill.d{background:var(--coral);color:#fff}
+.pill.id{background:var(--sage);color:#fff}
+.arrow{color:var(--muted);font-family:"IBM Plex Mono",monospace}
+
+/* ---------- irregular lab ---------- */
+.labbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.search{
+  flex:1;min-width:180px;border:2px solid var(--edge);border-radius:999px;background:var(--surface);
+  padding:8px 15px;font-size:.9rem;color:var(--ink);box-shadow:2px 2px 0 var(--shadow);
+  font-family:inherit;
+}
+.search::placeholder{color:var(--muted)}
+.search:focus{outline:3px solid var(--butter);outline-offset:1px}
+.vgrid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(238px,1fr))}
+.vcard{
+  background:var(--surface);border:2px solid var(--edge);border-radius:var(--radius);
+  padding:14px 15px 13px;box-shadow:var(--pop-s);cursor:pointer;
+  transition:transform .14s ease,box-shadow .14s ease;
+}
+.vcard:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--shadow)}
+.vcard .v1{font-family:"Mitr",sans-serif;font-size:1.28rem;font-weight:500;text-transform:lowercase}
+.vcard .lv{float:right;font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.1em;color:var(--muted);border:2px solid var(--line);border-radius:99px;padding:1px 7px}
+.chain3{display:grid;gap:5px;margin:9px 0 8px}
+.row3{display:grid;grid-template-columns:24px 1fr;align-items:center;gap:9px;
+  border:2px solid var(--edge);border-radius:9px;padding:3px 9px;background:var(--surface-2)}
+.row3 .role{font-family:"IBM Plex Mono",monospace;font-size:.6rem;letter-spacing:.1em;color:var(--muted)}
+.row3 .cell{font-family:"IBM Plex Mono",monospace;font-size:.88rem;overflow-wrap:break-word}
+.row3.f2{background:var(--coral-soft);border-color:var(--coral)}
+.row3.f3{background:var(--sky-soft);border-color:var(--sky)}
+.row3.f2 .role,.row3.f3 .role{color:var(--ink-soft)}
+.row3.hide-v{background:var(--ground-2);border-color:var(--line)}
+.row3.hide-v .cell{color:transparent;position:relative}
+.row3.hide-v .cell::after{content:"?  ?  ?";position:absolute;left:0;top:0;color:var(--muted);letter-spacing:.1em}
+.vcard .th{font-size:.85rem;color:var(--muted)}
+.vcard .exs{font-size:.84rem;color:var(--ink-soft);margin-top:6px;border-top:2px dashed var(--line);padding-top:7px}
+.vcard .exs mark{background:var(--butter);color:#222B45;border-radius:4px;padding:0 3px;font-weight:600}
+.empty{padding:34px 12px;text-align:center;color:var(--muted);border:2px dashed var(--line);border-radius:var(--radius)}
+
+/* ---------- flashcards ---------- */
+.fc-stage{perspective:1200px;margin:12px auto 16px;max-width:420px}
+.fc{
+  position:relative;width:100%;min-height:230px;transform-style:preserve-3d;
+  transition:transform .55s cubic-bezier(.22,1,.36,1);cursor:pointer;
+}
+.fc.flipped{transform:rotateY(180deg)}
+.fc-face{
+  position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border:2px solid var(--edge);border-radius:var(--radius);box-shadow:var(--pop);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  padding:22px 18px;text-align:center;
+}
+.fc-front{background:var(--surface)}
+.fc-back{background:var(--butter-soft);transform:rotateY(180deg)}
+.fc-face .big{font-family:"Mitr",sans-serif;font-size:clamp(1.7rem,7vw,2.4rem);font-weight:600;line-height:1.2}
+.fc-face .kind{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.fc-face .hint{font-size:.82rem;color:var(--muted)}
+.fc-face .ans{font-family:"IBM Plex Mono",monospace;font-size:1.15rem}
+.fc-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{
+  border:2px solid var(--edge);border-radius:999px;padding:10px 20px;font-size:.92rem;font-weight:600;
+  cursor:pointer;background:var(--surface);color:var(--ink);box-shadow:var(--pop-s);
+  transition:transform .12s ease,box-shadow .12s ease;
+}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--shadow)}
+.btn:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--shadow)}
+.btn.primary{background:var(--coral);color:#fff}
+.btn.good{background:var(--sage);color:#fff}
+.btn.ghost{background:transparent}
+.btn:focus-visible,.tab:focus-visible,.opt:focus-visible,.bin:focus-visible,.mcard:focus-visible,.chipbtn:focus-visible{outline:3px solid var(--butter);outline-offset:2px}
+
+/* ---------- match game ---------- */
+.match-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+@media(max-width:560px){.match-grid{grid-template-columns:repeat(3,1fr)}}
+.tile{
+  border:2px solid var(--edge);border-radius:var(--radius-s);background:var(--surface-2);
+  min-height:64px;display:grid;place-items:center;text-align:center;padding:6px 4px;
+  font-size:.92rem;font-weight:600;cursor:pointer;color:var(--ink);box-shadow:var(--pop-s);
+  transition:transform .13s ease,box-shadow .13s ease,background .18s ease,opacity .3s ease;
+  word-break:break-word;
+}
+.tile:hover:not(.done){transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--shadow)}
+.tile.sel{background:var(--butter);color:#222B45}
+.tile.done{opacity:.35;cursor:default;background:var(--sage-soft);box-shadow:none;transform:none}
+.tile.miss{animation:shake .38s ease}
+.tile .role{display:block;font-family:"IBM Plex Mono",monospace;font-size:.58rem;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.tile.sel .role{color:#222B45}
+
+/* ---------- speed ---------- */
+.timerbar{height:12px;border:2px solid var(--edge);border-radius:99px;background:var(--ground-2);overflow:hidden;margin:4px 0 18px}
+.timerbar i{display:block;height:100%;background:var(--coral);width:100%;transition:width 1s linear}
+.timerbar.low i{background:var(--wrong)}
+.streak{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--muted)}
+.qcard{text-align:center;padding:6px 0 4px}
+.qcard .prompt{font-size:.9rem;color:var(--muted)}
+.qcard .subject{font-family:"Mitr",sans-serif;font-size:clamp(1.8rem,7vw,2.6rem);font-weight:600;margin:4px 0 16px}
+.opt-2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.opt-2 .opt{font-family:"IBM Plex Sans Thai",sans-serif;font-size:1.02rem}
+@media(max-width:430px){.opt-2{grid-template-columns:1fr}}
+
+/* ---------- results ---------- */
+.result{text-align:center;padding:16px 8px}
+.result .big{font-family:"Mitr",sans-serif;font-size:clamp(2.4rem,10vw,3.6rem);font-weight:600;font-variant-numeric:tabular-nums}
+.result .msg{color:var(--ink-soft);margin:6px auto 18px;max-width:42ch}
+.misslist{text-align:left;margin:18px auto 0;max-width:520px;display:grid;gap:8px}
+.missrow{display:flex;justify-content:space-between;gap:10px;border:2px solid var(--line);border-radius:var(--radius-s);padding:8px 12px;background:var(--surface-2);font-size:.88rem}
+.missrow .a{font-family:"IBM Plex Mono",monospace;color:var(--sage);font-weight:600;white-space:nowrap}
+.tagm{display:inline-block;min-width:34px;text-align:center;font-size:.62rem;letter-spacing:.06em;border:2px solid var(--line);border-radius:99px;padding:0 6px;margin-right:8px;color:var(--muted);vertical-align:1px}
+.hr-lbl{display:flex;align-items:center;gap:12px;color:var(--muted);font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;margin:26px 0 14px}
+.hr-lbl::after{content:"";flex:1;height:2px;background:var(--line)}
+.note{font-size:.84rem;color:var(--muted);margin-top:14px}
+footer{border-top:2px solid var(--line);margin-top:44px;padding:18px 0 6px;color:var(--muted);font-size:.8rem;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}
+}
+</style>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <button class="brand" id="brandBtn"><span class="brand-mark">V2</span><span>Verb Mastery</span></button>
+    <span class="spacer"></span>
+    <div class="lang-seg" id="langSeg">
+      <button data-lang="th" aria-pressed="true">ไทย</button>
+      <button data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <button class="chipbtn" id="resetBtn" title="Reset progress">↺</button>
+  </div>
+</div>
+<div class="wrap" id="app"></div>
+<script>
+/* =========================================================
+   Verb Mastery — data
+   ========================================================= */
+const REG = [
+["walk","walked","/k/","t","เดิน"],["look","looked","/k/","t","มอง"],["cook","cooked","/k/","t","ทำอาหาร"],
+["work","worked","/k/","t","ทำงาน"],["talk","talked","/k/","t","พูดคุย"],["ask","asked","/k/","t","ถาม"],
+["knock","knocked","/k/","t","เคาะ"],["laugh","laughed","/f/","t","หัวเราะ"],["cough","coughed","/f/","t","ไอ"],
+["watch","watched","/tʃ/","t","ดู"],["touch","touched","/tʃ/","t","สัมผัส"],["wash","washed","/ʃ/","t","ล้าง"],
+["brush","brushed","/ʃ/","t","แปรง"],["finish","finished","/ʃ/","t","ทำให้เสร็จ"],["push","pushed","/ʃ/","t","ผลัก"],
+["help","helped","/p/","t","ช่วยเหลือ"],["hope","hoped","/p/","t","หวัง"],["stop","stopped","/p/","t","หยุด"],
+["jump","jumped","/p/","t","กระโดด"],["type","typed","/p/","t","พิมพ์"],["kiss","kissed","/s/","t","จูบ"],
+["miss","missed","/s/","t","คิดถึง, พลาด"],["dance","danced","/s/","t","เต้นรำ"],["fix","fixed","/ks/","t","ซ่อม"],
+
+["live","lived","/v/","d","อาศัยอยู่"],["love","loved","/v/","d","รัก"],["move","moved","/v/","d","เคลื่อนย้าย"],
+["arrive","arrived","/v/","d","มาถึง"],["clean","cleaned","/n/","d","ทำความสะอาด"],["open","opened","/n/","d","เปิด"],
+["listen","listened","/n/","d","ฟัง"],["rain","rained","/n/","d","ฝนตก"],["turn","turned","/n/","d","หมุน, เลี้ยว"],
+["call","called","/l/","d","โทร, เรียก"],["fill","filled","/l/","d","เติมให้เต็ม"],["smile","smiled","/l/","d","ยิ้ม"],
+["pull","pulled","/l/","d","ดึง"],["kill","killed","/l/","d","ฆ่า"],["play","played","/eɪ/","d","เล่น"],
+["stay","stayed","/eɪ/","d","พักอยู่"],["enjoy","enjoyed","/ɔɪ/","d","สนุกกับ"],["study","studied","/i/","d","เรียน"],
+["carry","carried","/i/","d","ถือ, แบก"],["cry","cried","/aɪ/","d","ร้องไห้"],["try","tried","/aɪ/","d","พยายาม"],
+["follow","followed","/oʊ/","d","ติดตาม"],["borrow","borrowed","/oʊ/","d","ยืม"],["show","showed","/oʊ/","d","แสดง"],
+["change","changed","/dʒ/","d","เปลี่ยน"],["close","closed","/z/","d","ปิด"],["climb","climbed","/m/","d","ปีน"],
+["answer","answered","/r/","d","ตอบ"],
+
+["want","wanted","/t/","id","ต้องการ"],["wait","waited","/t/","id","รอ"],["start","started","/t/","id","เริ่ม"],
+["visit","visited","/t/","id","ไปเยี่ยม"],["paint","painted","/t/","id","ทาสี, วาดภาพ"],["accept","accepted","/t/","id","ยอมรับ"],
+["invite","invited","/t/","id","เชิญ"],["count","counted","/t/","id","นับ"],["shout","shouted","/t/","id","ตะโกน"],
+["rent","rented","/t/","id","เช่า"],["hunt","hunted","/t/","id","ล่าสัตว์"],["print","printed","/t/","id","พิมพ์ออกมา"],
+["taste","tasted","/t/","id","ชิม"],["plant","planted","/t/","id","ปลูก"],["treat","treated","/t/","id","ปฏิบัติต่อ, รักษา"],
+["protect","protected","/t/","id","ปกป้อง"],["expect","expected","/t/","id","คาดหวัง"],["repeat","repeated","/t/","id","พูดซ้ำ"],
+["hate","hated","/t/","id","เกลียด"],["create","created","/t/","id","สร้างสรรค์"],["collect","collected","/t/","id","สะสม"],
+["need","needed","/d/","id","ต้องการ"],["decide","decided","/d/","id","ตัดสินใจ"],["land","landed","/d/","id","ลงจอด"],
+["end","ended","/d/","id","จบ, สิ้นสุด"],["add","added","/d/","id","เพิ่ม"],["include","included","/d/","id","รวมถึง"],
+["avoid","avoided","/d/","id","หลีกเลี่ยง"]
+].map(r=>({base:r[0],past:r[1],end:r[2],g:r[3],th:r[4]}));
+
+const IRR = [
+["be","was / were","been","เป็น, อยู่, คือ","I was at home yesterday.","was",1],
+["become","became","become","กลายเป็น","She became a teacher in 2019.","became",2],
+["begin","began","begun","เริ่ม","The movie began at seven.","began",1],
+["beat","beat","beaten","ตี, เอาชนะ","Our team beat them last week.","beat",3],
+["bet","bet","bet","พนัน","I bet ten baht on that game.","bet",3],
+["bite","bit","bitten","กัด","The dog bit my shoe.","bit",2],
+["blow","blew","blown","เป่า, พัด","The wind blew all night.","blew",2],
+["break","broke","broken","ทำแตก, ทำหัก","He broke his phone.","broke",1],
+["bring","brought","brought","นำมา","She brought her lunch to school.","brought",1],
+["build","built","built","สร้าง","They built a treehouse.","built",2],
+["buy","bought","bought","ซื้อ","I bought a new bag.","bought",1],
+["catch","caught","caught","จับ","He caught the ball.","caught",1],
+["choose","chose","chosen","เลือก","We chose the blue team.","chose",2],
+["come","came","come","มา","My cousin came to visit.","came",1],
+["cost","cost","cost","มีราคา","The ticket cost 200 baht.","cost",2],
+["cut","cut","cut","ตัด","She cut the paper carefully.","cut",1],
+["do","did","done","ทำ","I did my homework last night.","did",1],
+["draw","drew","drawn","วาด","He drew a cat on the board.","drew",1],
+["drink","drank","drunk","ดื่ม","I drank a glass of milk.","drank",1],
+["drive","drove","driven","ขับรถ","My dad drove us to school.","drove",1],
+["eat","ate","eaten","กิน","We ate noodles for lunch.","ate",1],
+["fall","fell","fallen","ล้ม, ตก","The leaves fell from the tree.","fell",1],
+["feed","fed","fed","ให้อาหาร","She fed the cat this morning.","fed",2],
+["feel","felt","felt","รู้สึก","I felt tired after the game.","felt",1],
+["fight","fought","fought","ต่อสู้","They fought over the remote.","fought",2],
+["find","found","found","พบ, หาเจอ","I found my keys under the sofa.","found",1],
+["fly","flew","flown","บิน","The bird flew away.","flew",1],
+["forget","forgot","forgotten","ลืม","He forgot his notebook.","forgot",1],
+["forgive","forgave","forgiven","ให้อภัย","She forgave her brother.","forgave",3],
+["freeze","froze","frozen","แข็งตัว, เป็นน้ำแข็ง","The water froze last night.","froze",3],
+["get","got","got / gotten","ได้รับ","I got a letter from my friend.","got",1],
+["give","gave","given","ให้","He gave me a pencil.","gave",1],
+["go","went","gone","ไป","I went to school yesterday.","went",1],
+["grow","grew","grown","เติบโต","The plant grew very quickly.","grew",2],
+["hang","hung","hung","แขวน","She hung the picture on the wall.","hung",3],
+["have","had","had","มี","We had a test on Monday.","had",1],
+["hear","heard","heard","ได้ยิน","I heard a strange noise.","heard",1],
+["hide","hid","hidden","ซ่อน","He hid the present in the closet.","hid",2],
+["hit","hit","hit","ตี, กระแทก","The ball hit the window.","hit",2],
+["hold","held","held","ถือ, จับ","She held my hand.","held",2],
+["hurt","hurt","hurt","ทำให้เจ็บ","I hurt my knee in the race.","hurt",2],
+["keep","kept","kept","เก็บ, รักษาไว้","He kept the receipt.","kept",2],
+["know","knew","known","รู้, รู้จัก","I knew the answer.","knew",1],
+["lay","laid","laid","วางลง","She laid the book on the desk.","laid",3],
+["lead","led","led","นำ","He led the team to the finish.","led",3],
+["learn","learned / learnt","learned / learnt","เรียนรู้","We learned about verbs today.","learned",2],
+["leave","left","left","ออกจาก, ทิ้งไว้","The train left at six.","left",1],
+["lend","lent","lent","ให้ยืม","She lent me her eraser.","lent",3],
+["let","let","let","อนุญาต","Mom let me stay up late.","let",2],
+["lie","lay","lain","นอนลง","The cat lay on the sofa.","lay",3],
+["light","lit","lit","จุดไฟ","He lit a candle.","lit",3],
+["lose","lost","lost","ทำหาย, แพ้","I lost my umbrella.","lost",1],
+["make","made","made","ทำ, สร้าง","She made a cake for us.","made",1],
+["mean","meant","meant","หมายถึง","I meant to call you.","meant",2],
+["meet","met","met","พบ, เจอ","We met at the library.","met",1],
+["pay","paid","paid","จ่ายเงิน","He paid for the tickets.","paid",1],
+["put","put","put","วาง","She put the bag on the chair.","put",1],
+["read","read","read","อ่าน","I read that book last month.","read",1],
+["ride","rode","ridden","ขี่","He rode his bike to school.","rode",2],
+["ring","rang","rung","(กระดิ่ง) ดัง","The bell rang at noon.","rang",2],
+["rise","rose","risen","ขึ้น, สูงขึ้น","The sun rose at six.","rose",3],
+["run","ran","run","วิ่ง","She ran to the bus stop.","ran",1],
+["say","said","said","พูด, บอก","He said hello to me.","said",1],
+["see","saw","seen","เห็น","I saw a rainbow yesterday.","saw",1],
+["seek","sought","sought","ค้นหา","They sought help from a teacher.","sought",3],
+["sell","sold","sold","ขาย","She sold her old bike.","sold",2],
+["send","sent","sent","ส่ง","I sent an email this morning.","sent",1],
+["set","set","set","ตั้ง, จัดวาง","He set the table for dinner.","set",2],
+["sew","sewed","sewn","เย็บ","She sewed a button on my shirt.","sewed",3],
+["shake","shook","shaken","เขย่า","She shook the bottle.","shook",3],
+["shine","shone","shone","ส่องแสง","The sun shone all day.","shone",3],
+["shoot","shot","shot","ยิง","He shot the ball into the net.","shot",3],
+["show","showed","shown","แสดง, ให้ดู","She showed me her drawing.","showed",2],
+["shrink","shrank","shrunk","หดตัว","My shirt shrank in the wash.","shrank",3],
+["shut","shut","shut","ปิด","I shut the door quietly.","shut",2],
+["sing","sang","sung","ร้องเพลง","We sang a song together.","sang",1],
+["sink","sank","sunk","จม","The small boat sank quickly.","sank",3],
+["sit","sat","sat","นั่ง","He sat next to me.","sat",1],
+["sleep","slept","slept","นอนหลับ","I slept for eight hours.","slept",1],
+["speak","spoke","spoken","พูด","She spoke to the teacher.","spoke",1],
+["spend","spent","spent","ใช้ (เงิน/เวลา)","We spent an hour at the park.","spent",2],
+["spread","spread","spread","แผ่, ทา","He spread butter on the bread.","spread",3],
+["stand","stood","stood","ยืน","He stood by the door.","stood",2],
+["steal","stole","stolen","ขโมย","Someone stole my pen.","stole",2],
+["stick","stuck","stuck","ติด, แปะ","She stuck a sticker on her book.","stuck",3],
+["strike","struck","struck","ตี, กระทบ","Lightning struck the old tree.","struck",3],
+["sweep","swept","swept","กวาด","She swept the floor after class.","swept",3],
+["swim","swam","swum","ว่ายน้ำ","We swam in the pool.","swam",2],
+["swing","swung","swung","แกว่ง","He swung the bat and missed.","swung",3],
+["take","took","taken","เอา, พา","She took my photo.","took",1],
+["teach","taught","taught","สอน","Ms. Lee taught us math.","taught",1],
+["tear","tore","torn","ฉีก","He tore the paper by mistake.","tore",3],
+["tell","told","told","บอก","She told me a secret.","told",1],
+["think","thought","thought","คิด","I thought about it all night.","thought",1],
+["throw","threw","thrown","ขว้าง, โยน","He threw the ball to me.","threw",2],
+["understand","understood","understood","เข้าใจ","I understood the lesson.","understood",2],
+["wake","woke","woken","ตื่น","I woke up at six.","woke",2],
+["wear","wore","worn","สวมใส่","She wore a red dress.","wore",2],
+["win","won","won","ชนะ","Our team won the game.","won",1],
+["write","wrote","written","เขียน","He wrote a letter to his aunt.","wrote",1]
+].map(r=>({v1:r[0],v2:r[1],v3:r[2],th:r[3],ex:r[4],hi:r[5],lv:r[6]}));
+
+const GROUPS = {
+  t:{ipa:"/t/",cls:"t"},
+  d:{ipa:"/d/",cls:"d"},
+  id:{ipa:"/ɪd/",cls:"id"}
+};
+
+/* =========================================================
+   state
+   ========================================================= */
+const KEY = "verbmastery.v1";
+const state = {lang:"th", learned:{}, answers:0, best:0, view:"home", tab:0};
+
+function load(){
+  try{
+    const raw = localStorage.getItem(KEY);
+    if(raw){
+      const o = JSON.parse(raw);
+      state.lang = o.lang || "th";
+      state.learned = o.learned || {};
+      state.answers = o.answers || 0;
+      state.best = o.best || 0;
+    }
+  }catch(e){/* storage unavailable — run with defaults */}
+}
+function save(){
+  try{
+    localStorage.setItem(KEY, JSON.stringify({lang:state.lang,learned:state.learned,answers:state.answers,best:state.best}));
+  }catch(e){/* ignore */}
+}
+function learn(key){ state.learned[key] = (state.learned[key]||0)+1; save(); }
+function countLearned(p){ let n=0; for(const k in state.learned){ if(k.charAt(0)===p) n++; } return n; }
+
+/* i18n helper */
+function L(th,en){ return state.lang==="th" ? th : en; }
+const $ = s => document.querySelector(s);
+const app = $("#app");
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const shuffle = a => { const b=a.slice(); for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];} return b; };
+const pick = a => a[Math.floor(Math.random()*a.length)];
+const edHTML = w => esc(w.slice(0,-2)) + '<span class="ed">ed</span>';
+
+/* confetti — subtle, no sound */
+function confetti(el){
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const r = el.getBoundingClientRect();
+  const box = document.createElement("div");
+  box.className = "confetti";
+  const colors = ["var(--butter)","var(--sage)","var(--sky)","var(--coral)"];
+  for(let i=0;i<16;i++){
+    const p = document.createElement("i");
+    p.style.left = (r.left + r.width/2 + (Math.random()*140-70)) + "px";
+    p.style.top  = (r.top + r.height/2) + "px";
+    p.style.background = colors[i%colors.length];
+    p.style.setProperty("--dx", (Math.random()*180-90)+"px");
+    p.style.setProperty("--rot", (Math.random()*540-270)+"deg");
+    p.style.animationDelay = (Math.random()*.12)+"s";
+    box.appendChild(p);
+  }
+  document.body.appendChild(box);
+  setTimeout(()=>box.remove(), 1300);
+}
+
+/* =========================================================
+   HOME
+   ========================================================= */
+const MENU = [
+  {id:"regular", glyph:"-ed", bg:"var(--sky)",  th:["เรียน Regular Verbs","กฎการเติม -ed และการออกเสียง /t/ /d/ /ɪd/"], en:["Learn Regular Verbs","-ed spelling rules and the /t/ /d/ /ɪd/ sounds"]},
+  {id:"irregular", glyph:"V3", bg:"var(--coral)", th:["เรียน Irregular Verbs","ตาราง V1 / V2 / V3 พร้อมประโยคตัวอย่าง"], en:["Learn Irregular Verbs","V1 / V2 / V3 with example sentences"]},
+  {id:"flash", glyph:"↺", bg:"var(--sage)", th:["Flashcards","ฝึกจำแบบการ์ด พลิกดูเฉลย"], en:["Flashcards","Flip cards and test your memory"]},
+  {id:"match", glyph:"⇄", bg:"var(--butter)", th:["Match Game","จับคู่ V1 กับ V2 ให้ครบ"], en:["Match Game","Pair each V1 with its V2"]},
+  {id:"speed", glyph:"60s", bg:"var(--coral)", th:["Speed Challenge","ตอบให้ทันเวลา 60 วินาที"], en:["Speed Challenge","Answer as many as you can in 60 seconds"]},
+  {id:"mastery", glyph:"★", bg:"var(--butter)", th:["Mastery Test","ข้อสอบรวม 20 ข้อ"], en:["Mastery Test","A 20-question mixed test"]}
+];
+
+function masteryPct(){
+  const total = REG.length + IRR.length;
+  return Math.round((countLearned("r")+countLearned("i")) / total * 100);
+}
+
+function viewHome(){
+  const rp = Math.round(countLearned("r")/REG.length*100);
+  const ip = Math.round(countLearned("i")/IRR.length*100);
+  const pp = Math.min(100, Math.round(state.answers/250*100));
+  const cp = Math.min(100, Math.round(state.best/30*100));
+  const mp = masteryPct();
+  const stats = [
+    {k:L("REGULAR","REGULAR"), v:countLearned("r")+" / "+REG.length, p:rp},
+    {k:L("IRREGULAR","IRREGULAR"), v:countLearned("i")+" / "+IRR.length, p:ip},
+    {k:L("PRACTICE","PRACTICE"), v:state.answers+" "+L("ข้อ","ans"), p:pp},
+    {k:L("CHALLENGE","CHALLENGE"), v:L("สถิติ ","best ")+state.best, p:cp},
+    {k:"MASTERY", v:mp+"%", p:mp, m:true}
+  ];
+  return `
+  <section class="hero">
+    <div class="eyebrow">Past Simple · Grade 5 – 9</div>
+    <h1>Verb <em>Mastery</em></h1>
+    <p class="sub">${L("เรียน จับคู่ จำได้ เก่งขึ้น — ฝึก Regular &amp; Irregular Verbs จนตอบได้โดยไม่ต้องเปิดตาราง",
+      "Learn. Match. Remember. Master. — practise regular &amp; irregular verbs until you no longer need the table.")}</p>
+    <div class="tag">Learn · Match · Remember · Master</div>
+  </section>
+  <div class="stats">
+    ${stats.map(s=>`<div class="stat${s.m?" is-mastery":""}">
+      <div class="k">${s.k}</div><div class="v">${esc(s.v)}</div>
+      <div class="bar"><i data-w="${s.p}"></i></div></div>`).join("")}
+  </div>
+  <div class="hr-lbl">${L("เลือกกิจกรรม","Choose an activity")}</div>
+  <div class="menu">
+    ${MENU.map((m,i)=>{
+      const txt = state.lang==="th" ? m.th : m.en;
+      return `<button class="mcard" data-go="${m.id}" style="animation-delay:${i*60}ms">
+        <span class="num">0${i+1}</span>
+        <span class="glyph mono" style="background:${m.bg}">${m.glyph}</span>
+        <h3>${esc(txt[0])}</h3>
+        <p>${esc(txt[1])}</p>
+      </button>`;
+    }).join("")}
+  </div>
+  <footer><span>${L("ไม่มีเสียงในแอปนี้ ใช้ในห้องเรียนได้เลย","No audio — classroom safe.")}</span><span class="mono">${REG.length} regular · ${IRR.length} irregular</span></footer>`;
+}
+
+/* =========================================================
+   REGULAR VERBS
+   ========================================================= */
+const SOUND_INFO = {
+  t:{
+    title:"ED sounds like /t/",
+    th:"ถ้าคำกริยาลงท้ายด้วย <b>เสียงไม่ก้อง (voiceless)</b> เช่น /k/ /s/ /ʃ/ /tʃ/ /f/ /p/ เสียง -ed จะออกเป็น <b>/t/</b>",
+    en:"When the verb ends in a <b>voiceless sound</b> — /k/ /s/ /ʃ/ /tʃ/ /f/ /p/ — the -ed is pronounced <b>/t/</b>.",
+    sub:"voiceless endings"
+  },
+  d:{
+    title:"ED sounds like /d/",
+    th:"ถ้าคำลงท้ายด้วย <b>เสียงก้อง (voiced)</b> หรือ <b>เสียงสระ</b> และไม่ใช่เสียง /d/ เสียง -ed จะออกเป็น <b>/d/</b>",
+    en:"When the verb ends in a <b>voiced sound</b> or a <b>vowel</b> (but not /d/), the -ed is pronounced <b>/d/</b>.",
+    sub:"voiced &amp; vowel endings"
+  },
+  id:{
+    title:"ED sounds like /ɪd/",
+    th:"ถ้าคำกริยาลงท้ายด้วยเสียง <b>/t/</b> หรือ <b>/d/</b> ต้องเพิ่มอีก 1 พยางค์ และออกเสียง -ed เป็น <b>/ɪd/</b>",
+    en:"When the verb ends in a <b>/t/</b> or <b>/d/</b> sound, add an extra syllable and say <b>/ɪd/</b>.",
+    sub:"/t/ or /d/ endings"
+  }
+};
+const SPELL = [
+  {th:["ทั่วไป: เติม -ed ได้เลย","work → worked"],en:["Most verbs: just add -ed","work → worked"]},
+  {th:["ลงท้ายด้วย e: เติม -d","hope → hoped"],en:["Ends in e: add -d only","hope → hoped"]},
+  {th:["พยัญชนะ + y: เปลี่ยน y เป็น ied","study → studied"],en:["Consonant + y: y becomes ied","study → studied"]},
+  {th:["สระ + y: เติม -ed ตามปกติ","play → played"],en:["Vowel + y: just add -ed","play → played"]},
+  {th:["พยางค์เดียว สระเดี่ยว + พยัญชนะเดี่ยว: เพิ่มพยัญชนะตัวท้าย","stop → stopped"],en:["1 syllable, 1 vowel + 1 consonant: double it","stop → stopped"]}
+];
+
+function viewRegular(){
+  const tabs = [L("บทเรียน","Lesson"), L("ลากลงกล่อง","Sound Sorting"), L("ตอบเร็ว","Quick Sort")];
+  let body = "";
+  if(state.tab===0) body = regularLesson();
+  if(state.tab===1) body = `<div class="panel" id="sortPanel"></div>`;
+  if(state.tab===2) body = `<div class="panel" id="quickPanel"></div>`;
+  return `
+  <div class="pagehead">
+    <div><h2>Regular Verbs</h2>
+    <p>${L("เติม -ed แล้วออกเสียงให้ถูก 3 แบบ","Add -ed, then say it three different ways")}</p></div>
+    <span class="spacer" style="flex:1"></span>
+    <button class="chipbtn" data-go="home">← ${L("หน้าแรก","Home")}</button>
+  </div>
+  <div class="tabs" role="tablist">
+    ${tabs.map((t,i)=>`<button class="tab" role="tab" aria-selected="${state.tab===i}" data-tab="${i}">${esc(t)}</button>`).join("")}
+  </div>
+  ${body}`;
+}
+
+function regularLesson(){
+  const cards = ["t","d","id"].map(g=>{
+    const info = SOUND_INFO[g];
+    const words = REG.filter(v=>v.g===g).slice(0,15);
+    return `<div class="sound ${g}">
+      <div class="cap"><span class="ipa">${GROUPS[g].ipa}</span>
+        <div><h3>${info.title}</h3><div class="cap-sub">${info.sub}</div></div></div>
+      <div class="rule">${state.lang==="th"?info.th:info.en}</div>
+      <div class="words">${words.map(w=>`<span class="wchip">${edHTML(w.past)}</span>`).join("")}</div>
+    </div>`;
+  }).join("");
+  return `<div class="panel">
+    <div class="sound-grid">${cards}</div>
+    <div class="hr-lbl">${L("กฎการเติม -ed","Spelling rules for -ed")}</div>
+    <div class="rules">${SPELL.map((r,i)=>{
+      const t = state.lang==="th"?r.th:r.en;
+      const parts = t[1].split("→");
+      return `<div class="rule-card"><div class="n">RULE ${i+1}</div><h4>${esc(t[0])}</h4>
+        <div class="ex">${esc(parts[0].trim())} <span style="color:var(--muted)">→</span> <b>${esc(parts[1].trim())}</b></div></div>`;
+    }).join("")}</div>
+    <p class="note">${L("เคล็ดลับ: ถ้าออกเสียงคำแล้วรู้สึกว่า “ต้องเพิ่มพยางค์” นั่นคือ /ɪd/ เสมอ",
+      "Tip: if saying the word adds an extra syllable, it is always /ɪd/.")}</p>
+  </div>`;
+}
+
+/* ---- 2) drag sorting ---- */
+const sortState = {item:null, tries:0, right:0, total:0, picked:false};
+function newSortItem(){
+  sortState.item = pick(REG); sortState.tries = 0; sortState.picked=false;
+}
+function renderSort(){
+  const host = $("#sortPanel"); if(!host) return;
+  if(!sortState.item) newSortItem();
+  const v = sortState.item;
+  host.innerHTML = `
+  <div class="game">
+    <div class="game-top">
+      <span class="lbl">${L("ลากคำลงกล่องที่ถูกต้อง","Where Does It Belong?")}</span>
+      <span class="score mono">${L("ถูก","correct")} ${sortState.right}/${sortState.total}</span>
+    </div>
+    <div class="dragword" id="dw" draggable="true" tabindex="0">${esc(v.past.toUpperCase())}<small>${esc(v.th)}</small></div>
+    <div class="bins">
+      ${["t","d","id"].map(g=>`<button class="bin ${g}" data-bin="${g}">
+        <span class="ipa">${GROUPS[g].ipa}</span>
+        <span class="hintline">${g==="t"?L("เสียงไม่ก้อง","voiceless"):g==="d"?L("เสียงก้อง / สระ","voiced / vowel"):L("ลงท้าย /t/ /d/","ends /t/ or /d/")}</span>
+      </button>`).join("")}
+    </div>
+    <div id="sortFb"></div>
+  </div>`;
+
+  const dw = $("#dw");
+  dw.addEventListener("dragstart", e=>{ dw.classList.add("picked"); try{e.dataTransfer.setData("text/plain","w");}catch(_){} });
+  dw.addEventListener("dragend", ()=>dw.classList.remove("picked"));
+  dw.addEventListener("click", ()=>{ sortState.picked=!sortState.picked; dw.classList.toggle("picked",sortState.picked); });
+  dw.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); dw.click(); } });
+
+  host.querySelectorAll(".bin").forEach(bin=>{
+    bin.addEventListener("dragover", e=>{ e.preventDefault(); bin.classList.add("over"); });
+    bin.addEventListener("dragleave", ()=>bin.classList.remove("over"));
+    bin.addEventListener("drop", e=>{ e.preventDefault(); bin.classList.remove("over"); answerSort(bin.dataset.bin); });
+    bin.addEventListener("click", ()=>answerSort(bin.dataset.bin));
+  });
+}
+function answerSort(g){
+  const v = sortState.item, dw = $("#dw"), fb = $("#sortFb");
+  dw.classList.remove("picked"); sortState.picked=false;
+  if(g===v.g){
+    sortState.total++; sortState.right++; state.answers++; learn("r:"+v.base); save();
+    const sc = document.querySelector("#sortPanel .score");
+    if(sc) sc.textContent = L("ถูก","correct")+" "+sortState.right+"/"+sortState.total;
+    dw.classList.remove("bad"); void dw.offsetWidth; dw.classList.add("ok");
+    confetti(dw);
+    fb.innerHTML = `<div class="feedback good">
+      <div class="head">✓ Correct!</div>
+      <div class="why"><span class="mono">${esc(v.past)}</span> → <span class="mono">${GROUPS[v.g].ipa}</span> &nbsp;because <b>${esc(v.base)}</b> ends with the <span class="mono">${esc(v.end)}</span> sound.</div>
+      <div class="th">${esc(v.base)} ลงท้ายด้วยเสียง ${esc(v.end)} จึงออกเสียง -ed เป็น ${GROUPS[v.g].ipa}</div>
+      <div style="margin-top:10px"><button class="btn good" id="nextSort">${L("คำต่อไป →","Next word →")}</button></div>
+    </div>`;
+    $("#nextSort").addEventListener("click", ()=>{ newSortItem(); renderSort(); });
+    document.querySelectorAll("#sortPanel .bin").forEach(b=>b.style.pointerEvents="none");
+  }else{
+    sortState.tries++;
+    if(sortState.tries===1){
+      sortState.total++;
+      const sc = document.querySelector("#sortPanel .score");
+      if(sc) sc.textContent = L("ถูก","correct")+" "+sortState.right+"/"+sortState.total;
+    }
+    dw.classList.remove("ok"); void dw.offsetWidth; dw.classList.add("bad");
+    if(sortState.tries===1){
+      fb.innerHTML = `<div class="feedback warn"><div class="head">Try again 👀</div>
+        <div class="th">${L("ลองออกเสียงคำเดิมก่อนเติม -ed แล้วฟังเสียงตัวสุดท้ายดูนะ","Say the base verb first and listen to its last sound.")}</div></div>`;
+    }else{
+      fb.innerHTML = `<div class="feedback warn"><div class="head">💡 Hint</div>
+        <div class="why"><b>${esc(v.base)}</b> ends with <span class="mono">${esc(v.end)}</span>.</div>
+        <div class="th">${L("คำนี้ลงท้ายด้วยเสียง","This verb ends with the sound")} <b>${esc(v.end)}</b> — ${L("ลองเลือกอีกครั้ง","choose again")}</div></div>`;
+    }
+  }
+}
+
+/* ---- 3) quick sort ---- */
+const quickState = {item:null, done:false, right:0, total:0};
+function renderQuick(){
+  const host = $("#quickPanel"); if(!host) return;
+  if(!quickState.item) quickState.item = pick(REG);
+  const v = quickState.item;
+  host.innerHTML = `<div class="game">
+    <div class="game-top">
+      <span class="lbl">${L("ตอบเร็ว: -ed ออกเสียงอย่างไร","Quick sort: how is -ed pronounced?")}</span>
+      <span class="score mono">${quickState.right}/${quickState.total}</span>
+    </div>
+    <div class="qword">${edHTML(v.past)}</div>
+    <div class="qask">How is <b>-ed</b> pronounced?</div>
+    <div class="opt-row" id="qopts">
+      ${["t","d","id"].map(g=>`<button class="opt" data-g="${g}">${GROUPS[g].ipa}</button>`).join("")}
+    </div>
+    <div id="qfb"></div>
+  </div>`;
+  host.querySelectorAll("#qopts .opt").forEach(b=>b.addEventListener("click",()=>quickAnswer(b)));
+}
+function quickAnswer(btn){
+  const v = quickState.item, g = btn.dataset.g;
+  const opts = document.querySelectorAll("#qopts .opt");
+  opts.forEach(o=>{ o.disabled = true; if(o.dataset.g===v.g) o.classList.add("right"); });
+  quickState.total++; state.answers++;
+  if(g===v.g){ quickState.right++; learn("r:"+v.base); confetti(btn); }
+  else btn.classList.add("wrong");
+  save();
+  $("#qfb").innerHTML = `<div class="feedback ${g===v.g?"good":"warn"}">
+    <div class="head">${g===v.g?"✓ Correct!":"✗ "+L("ยังไม่ใช่","Not quite")}</div>
+    <div class="breakdown"><span class="step">
+      <span class="pill">${esc(v.base)}</span><span class="arrow">ends with</span><span class="pill">${esc(v.end)}</span>
+      <span class="arrow">so</span><span class="pill">${edHTML(v.past)}</span><span class="arrow">=</span><span class="pill ${v.g}">${GROUPS[v.g].ipa}</span>
+    </span></div>
+    <div class="th" style="text-align:center">${esc(v.th)}</div>
+    <div style="margin-top:12px;text-align:center"><button class="btn primary" id="nextQuick">${L("ข้อต่อไป →","Next →")}</button></div>
+  </div>`;
+  $("#nextQuick").addEventListener("click", ()=>{ quickState.item = pick(REG); renderQuick(); });
+}
+
+/* =========================================================
+   IRREGULAR LAB
+   ========================================================= */
+const labState = {q:"", lv:0, hide:false};
+function viewIrregular(){
+  return `
+  <div class="pagehead">
+    <div><h2>Irregular Verb Lab</h2>
+    <p>${L("V1 → V2 → V3 พร้อมความหมายและประโยคตัวอย่าง","V1 → V2 → V3 with meaning and an example sentence")}</p></div>
+    <span style="flex:1"></span>
+    <button class="chipbtn" data-go="home">← ${L("หน้าแรก","Home")}</button>
+  </div>
+  <div class="labbar">
+    <input class="search" id="labQ" placeholder="${L("ค้นหาคำกริยา เช่น go, ate, ไป","Search a verb: go, ate, ...")}" value="${esc(labState.q)}">
+    ${[0,1,2,3].map(n=>`<button class="tab" data-lv="${n}" aria-selected="${labState.lv===n}">${n===0?L("ทั้งหมด","All"):"Level "+n}</button>`).join("")}
+    <button class="chipbtn" id="hideBtn">${labState.hide?L("👁 แสดงเฉลย","👁 Show answers"):L("🙈 ซ่อน V2/V3","🙈 Hide V2/V3")}</button>
+  </div>
+  <div class="vgrid" id="labGrid"></div>`;
+}
+function renderLab(){
+  const grid = $("#labGrid"); if(!grid) return;
+  const q = labState.q.trim().toLowerCase();
+  const list = IRR.filter(v=>{
+    if(labState.lv && v.lv!==labState.lv) return false;
+    if(!q) return true;
+    return (v.v1+" "+v.v2+" "+v.v3+" "+v.th).toLowerCase().indexOf(q)>=0;
+  });
+  if(!list.length){ grid.innerHTML = `<div class="empty" style="grid-column:1/-1">${L("ไม่พบคำกริยานี้ ลองพิมพ์ใหม่อีกครั้ง","No verb found. Try another word.")}</div>`; return; }
+  grid.innerHTML = list.map(v=>{
+    const h = labState.hide ? " hide-v" : "";
+    const ex = esc(v.ex).replace(new RegExp("\\b"+v.hi+"\\b"), '<mark>'+v.hi+'</mark>');
+    return `<div class="vcard" data-v1="${esc(v.v1)}">
+      <span class="lv">LV ${v.lv}</span>
+      <div class="v1">${esc(v.v1)}</div>
+      <div class="chain3">
+        <div class="row3"><span class="role">V1</span><span class="cell">${esc(v.v1)}</span></div>
+        <div class="row3 f2${h}"><span class="role">V2</span><span class="cell">${esc(v.v2)}</span></div>
+        <div class="row3 f3${h}"><span class="role">V3</span><span class="cell">${esc(v.v3)}</span></div>
+      </div>
+      <div class="th">${esc(v.th)}</div>
+      <div class="exs">${ex}</div>
+    </div>`;
+  }).join("");
+  grid.querySelectorAll(".vcard").forEach(c=>c.addEventListener("click",()=>{
+    if(labState.hide){ c.querySelectorAll(".hide-v").forEach(s=>s.classList.remove("hide-v")); }
+    learn("i:"+c.dataset.v1); save();
+  }));
+}
+
+/* =========================================================
+   FLASHCARDS
+   ========================================================= */
+const fcState = {deck:[], i:0, flipped:false, done:0};
+function buildDeck(){
+  const irr = shuffle(IRR).slice(0,14).map(v=>({type:"i",key:"i:"+v.v1,front:v.v1,kind:"IRREGULAR · V1",
+    back:v.v2+"  /  "+v.v3, hint:v.th, ex:v.ex}));
+  const reg = shuffle(REG).slice(0,6).map(v=>({type:"r",key:"r:"+v.base,front:v.past,kind:"REGULAR · -ed sound",
+    back:GROUPS[v.g].ipa, hint:v.th, ex:v.base+" ends with "+v.end}));
+  fcState.deck = shuffle(irr.concat(reg)); fcState.i=0; fcState.flipped=false; fcState.done=0;
+}
+function viewFlash(){
+  if(!fcState.deck.length) buildDeck();
+  return `
+  <div class="pagehead">
+    <div><h2>Flashcards</h2><p>${L("แตะการ์ดเพื่อดูเฉลย แล้วบอกว่าจำได้ไหม","Tap the card to flip, then say whether you knew it")}</p></div>
+    <span style="flex:1"></span><button class="chipbtn" data-go="home">← ${L("หน้าแรก","Home")}</button>
+  </div>
+  <div class="game" id="fcHost"></div>`;
+}
+function renderFlash(){
+  const host = $("#fcHost"); if(!host) return;
+  if(fcState.i >= fcState.deck.length){
+    host.innerHTML = `<div class="result">
+      <div class="big">${fcState.done}/${fcState.deck.length}</div>
+      <p class="msg">${L("จำได้ตามนี้ พักสายตาแล้วลองสำรับใหม่ได้เลย","That's how many you knew. Shuffle a new deck when you're ready.")}</p>
+      <div class="fc-actions">
+        <button class="btn primary" id="newDeck">${L("สำรับใหม่","New deck")}</button>
+        <button class="btn ghost" data-go="home">${L("กลับหน้าแรก","Home")}</button>
+      </div></div>`;
+    $("#newDeck").addEventListener("click",()=>{ buildDeck(); renderFlash(); });
+    return;
+  }
+  const c = fcState.deck[fcState.i];
+  host.innerHTML = `
+    <div class="game-top">
+      <span class="lbl">${L("การ์ดที่","Card")} ${fcState.i+1} / ${fcState.deck.length}</span>
+      <span class="score mono">${L("จำได้","known")} ${fcState.done}</span>
+    </div>
+    <div class="bar"><i style="width:${Math.round(fcState.i/fcState.deck.length*100)}%"></i></div>
+    <div class="fc-stage"><div class="fc${fcState.flipped?" flipped":""}" id="fc" tabindex="0">
+      <div class="fc-face fc-front">
+        <div class="kind">${esc(c.kind)}</div>
+        <div class="big">${esc(c.front)}</div>
+        <div class="hint">${L("แตะเพื่อดูเฉลย","Tap to flip")}</div>
+      </div>
+      <div class="fc-face fc-back">
+        <div class="kind">${c.type==="i"?"V2 / V3":"-ED SOUND"}</div>
+        <div class="big mono">${esc(c.back)}</div>
+        <div class="hint">${esc(c.hint)}</div>
+        <div class="hint" style="font-style:italic">${esc(c.ex)}</div>
+      </div>
+    </div></div>
+    <div class="fc-actions">
+      ${fcState.flipped
+        ? `<button class="btn" id="again">${L("ยังไม่แม่น","Not yet")}</button>
+           <button class="btn good" id="got">${L("จำได้แล้ว ✓","I knew it ✓")}</button>`
+        : `<button class="btn primary" id="flip">${L("ดูเฉลย","Flip card")}</button>`}
+    </div>`;
+  const fc = $("#fc");
+  const doFlip = ()=>{ fcState.flipped = true; renderFlash(); };
+  fc.addEventListener("click", ()=>{ if(!fcState.flipped) doFlip(); });
+  fc.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){e.preventDefault(); if(!fcState.flipped) doFlip();} });
+  if($("#flip")) $("#flip").addEventListener("click", doFlip);
+  if($("#got")) $("#got").addEventListener("click", ()=>{ learn(c.key); state.answers++; fcState.done++; save(); next(); });
+  if($("#again")) $("#again").addEventListener("click", ()=>{ state.answers++; save(); fcState.deck.push(c); next(); });
+  function next(){ fcState.i++; fcState.flipped=false; renderFlash(); }
+}
+
+/* =========================================================
+   MATCH GAME
+   ========================================================= */
+const mState = {pairs:[], tiles:[], sel:null, found:0, moves:0};
+function newMatch(){
+  mState.pairs = shuffle(IRR).slice(0,6);
+  const tiles = [];
+  mState.pairs.forEach((v,i)=>{
+    tiles.push({id:i,role:"V1",text:v.v1,v:v});
+    tiles.push({id:i,role:"V2",text:v.v2,v:v});
+  });
+  mState.tiles = shuffle(tiles); mState.sel=null; mState.found=0; mState.moves=0;
+}
+function viewMatch(){
+  if(!mState.tiles.length) newMatch();
+  return `
+  <div class="pagehead">
+    <div><h2>Match Game</h2><p>${L("จับคู่ V1 กับ V2 ให้ครบ 6 คู่","Pair all six V1 verbs with their V2 forms")}</p></div>
+    <span style="flex:1"></span><button class="chipbtn" data-go="home">← ${L("หน้าแรก","Home")}</button>
+  </div>
+  <div class="game" id="mHost"></div>`;
+}
+function renderMatch(){
+  const host = $("#mHost"); if(!host) return;
+  if(mState.found===6){
+    host.innerHTML = `<div class="result">
+      <div class="big">✓</div>
+      <p class="msg">${L("ครบทุกคู่แล้ว! ใช้ไป","All six pairs matched in")} <b>${mState.moves}</b> ${L("ครั้ง","tries")}</p>
+      <div class="misslist">${mState.pairs.map(v=>`<div class="missrow"><span>${esc(v.v1)} → <b>${esc(v.v2)}</b> → ${esc(v.v3)}</span><span class="a">${esc(v.th)}</span></div>`).join("")}</div>
+      <div class="fc-actions" style="margin-top:20px">
+        <button class="btn primary" id="againM">${L("เล่นรอบใหม่","Play again")}</button>
+        <button class="btn ghost" data-go="home">${L("กลับหน้าแรก","Home")}</button></div>
+    </div>`;
+    $("#againM").addEventListener("click",()=>{ newMatch(); renderMatch(); });
+    return;
+  }
+  host.innerHTML = `
+    <div class="game-top"><span class="lbl">${L("จับคู่ V1 ↔ V2","Match V1 ↔ V2")}</span>
+      <span class="score mono">${mState.found}/6 · ${L("ครั้ง","tries")} ${mState.moves}</span></div>
+    <div class="match-grid" id="mg">
+      ${mState.tiles.map((t,i)=>`<button class="tile${t.done?" done":""}" data-i="${i}" ${t.done?"disabled":""}>
+        <span><span class="role">${t.role}</span>${esc(t.text)}</span></button>`).join("")}
+    </div>
+    <p class="note">${L("แตะการ์ดหนึ่งใบ แล้วแตะคู่ของมัน","Tap one tile, then tap its partner.")}</p>`;
+  host.querySelectorAll(".tile").forEach(el=>el.addEventListener("click",()=>tapTile(+el.dataset.i, el)));
+}
+function tapTile(i, el){
+  const t = mState.tiles[i];
+  if(t.done) return;
+  if(mState.sel === null){ mState.sel = i; el.classList.add("sel"); return; }
+  if(mState.sel === i){ mState.sel = null; el.classList.remove("sel"); return; }
+  const a = mState.tiles[mState.sel], b = t;
+  mState.moves++;
+  const prevEl = document.querySelector('.tile[data-i="'+mState.sel+'"]');
+  if(a.id===b.id && a.role!==b.role){
+    a.done = b.done = true; mState.found++; state.answers++; learn("i:"+a.v.v1); save();
+    el.classList.add("done"); prevEl.classList.add("done"); prevEl.classList.remove("sel");
+    confetti(el);
+    mState.sel = null;
+    if(mState.found===6) setTimeout(renderMatch, 520);
+  }else{
+    el.classList.add("miss"); prevEl.classList.add("miss");
+    const s = mState.sel; mState.sel = null; state.answers++; save();
+    setTimeout(()=>{
+      el.classList.remove("miss","sel");
+      const p = document.querySelector('.tile[data-i="'+s+'"]');
+      if(p) p.classList.remove("miss","sel");
+    }, 420);
+  }
+}
+
+/* =========================================================
+   QUESTION FACTORY (speed + mastery)
+   ========================================================= */
+/* build exactly 4 distinct options around one answer */
+function fourOptions(answer, candidates){
+  const out = [answer];
+  for(const c of shuffle(candidates)){
+    if(out.length>=4) break;
+    if(out.indexOf(c)<0) out.push(c);
+  }
+  let guard = 0;
+  while(out.length<4 && guard<200){
+    guard++;
+    const c = pick(IRR).v2;
+    if(out.indexOf(c)<0) out.push(c);
+  }
+  return shuffle(out);
+}
+function qIrrV2(){
+  const v = pick(IRR);
+  return {prompt:L("Past Simple (V2) ของคำนี้คือ","What is the Past Simple (V2)?"), subject:v.v1,
+    options:fourOptions(v.v2, IRR.map(x=>x.v2)), answer:v.v2, key:"i:"+v.v1,
+    why:v.v1+" → "+v.v2+" → "+v.v3, tag:"V2", wide:true};
+}
+function qIrrV3(){
+  const v = pick(IRR);
+  return {prompt:L("Past Participle (V3) ของคำนี้คือ","What is the Past Participle (V3)?"), subject:v.v1,
+    options:fourOptions(v.v3, IRR.map(x=>x.v3)), answer:v.v3, key:"i:"+v.v1,
+    why:v.v1+" → "+v.v2+" → "+v.v3, tag:"V3", wide:true};
+}
+function qRegSound(){
+  const v = pick(REG);
+  return {prompt:L("-ed ในคำนี้ออกเสียงอย่างไร","How is -ed pronounced here?"), subject:v.past,
+    options:["/t/","/d/","/ɪd/"], answer:GROUPS[v.g].ipa, key:"r:"+v.base,
+    why:v.base+" ends with "+v.end+" → "+GROUPS[v.g].ipa, tag:"-ed", wide:false};
+}
+function fakeRegular(v1){
+  if(/e$/.test(v1)) return v1+"d";
+  if(/[^aeiou]y$/.test(v1)) return v1.slice(0,-1)+"ied";
+  return v1+"ed";
+}
+function qSentence(){
+  const v = pick(IRR);
+  const blank = v.ex.replace(new RegExp("\\b"+v.hi+"\\b"), "______");
+  const wrong = [v.v1, v.v3.split(" / ")[0], fakeRegular(v.v1)];
+  return {prompt:L("เติมคำกริยาช่องที่ถูกต้อง","Choose the correct verb form"), subject:blank,
+    options:fourOptions(v.hi, wrong), answer:v.hi, key:"i:"+v.v1,
+    why:v.v1+" → "+v.v2+" → "+v.v3+"  ("+v.th+")", tag:"gap", wide:true, small:true};
+}
+function randomQ(){ return pick([qIrrV2,qIrrV2,qRegSound,qRegSound,qIrrV3,qSentence])(); }
+
+/* =========================================================
+   SPEED CHALLENGE
+   ========================================================= */
+const spState = {running:false, time:60, score:0, streak:0, best:0, q:null, timer:null, locked:false};
+function viewSpeed(){
+  return `
+  <div class="pagehead">
+    <div><h2>Speed Challenge</h2><p>${L("60 วินาที ตอบให้ได้มากที่สุด","60 seconds — answer as many as you can")}</p></div>
+    <span style="flex:1"></span><button class="chipbtn" data-go="home">← ${L("หน้าแรก","Home")}</button>
+  </div>
+  <div class="game" id="spHost"></div>`;
+}
+function renderSpeed(){
+  const host = $("#spHost"); if(!host) return;
+  if(!spState.running && spState.time===60 && spState.score===0){
+    host.innerHTML = `<div class="result">
+      <div class="big">60s</div>
+      <p class="msg">${L("ผสมทั้ง Regular และ Irregular ตอบถูกต่อเนื่องจะได้ streak เพิ่ม","A mix of regular and irregular. Keep a streak going for bonus points.")}</p>
+      <p class="score mono">${L("สถิติสูงสุด","Best")}: ${state.best}</p>
+      <div class="fc-actions"><button class="btn primary" id="startSp">${L("เริ่ม","Start")}</button></div></div>`;
+    $("#startSp").addEventListener("click", startSpeed); return;
+  }
+  if(!spState.running){
+    const isBest = spState.score >= state.best;
+    host.innerHTML = `<div class="result">
+      <div class="big">${spState.score}</div>
+      <p class="msg">${isBest?L("สถิติใหม่! เก่งมาก 🎉","New best score! 🎉"):L("ทำได้ดี ลองอีกครั้งเพื่อทำลายสถิติ","Nice work — try again to beat your best.")}</p>
+      <p class="score mono">${L("สถิติสูงสุด","Best")}: ${state.best}</p>
+      <div class="fc-actions">
+        <button class="btn primary" id="againSp">${L("เล่นอีกครั้ง","Play again")}</button>
+        <button class="btn ghost" data-go="home">${L("กลับหน้าแรก","Home")}</button></div></div>`;
+    $("#againSp").addEventListener("click", ()=>{ spState.time=60; spState.score=0; spState.streak=0; renderSpeed(); });
+    return;
+  }
+  const q = spState.q;
+  host.innerHTML = `
+    <div class="game-top"><span class="lbl">${L("เหลือเวลา","Time left")} <b class="mono" id="tleft">${spState.time}s</b></span>
+      <span class="score mono">${L("คะแนน","Score")} ${spState.score} · streak ${spState.streak}</span></div>
+    <div class="timerbar${spState.time<=10?" low":""}"><i id="tbar" style="width:${spState.time/60*100}%"></i></div>
+    <div class="qcard">
+      <div class="prompt">${q.prompt}</div>
+      <div class="subject"${q.small?' style="font-size:clamp(1.05rem,3.6vw,1.5rem);line-height:1.5"':""}>${esc(q.subject)}</div>
+      <div class="${q.wide?"opt-2":"opt-row"}" id="spOpts">
+        ${q.options.map(o=>`<button class="opt" data-o="${esc(o)}">${esc(o)}</button>`).join("")}
+      </div>
+    </div>`;
+  host.querySelectorAll("#spOpts .opt").forEach(b=>b.addEventListener("click",()=>speedAnswer(b)));
+}
+function startSpeed(){
+  spState.running = true; spState.time = 60; spState.score = 0; spState.streak = 0; spState.locked=false;
+  spState.q = randomQ(); renderSpeed();
+  clearInterval(spState.timer);
+  spState.timer = setInterval(()=>{
+    spState.time--;
+    const t = $("#tleft"), bar = $("#tbar");
+    if(t) t.textContent = spState.time+"s";
+    if(bar){ bar.style.width = (spState.time/60*100)+"%"; bar.parentElement.classList.toggle("low", spState.time<=10); }
+    if(spState.time<=0) endSpeed();
+  }, 1000);
+}
+function endSpeed(){
+  clearInterval(spState.timer); spState.running = false;
+  if(spState.score > state.best) state.best = spState.score;
+  save(); renderSpeed();
+}
+function speedAnswer(btn){
+  if(spState.locked) return;
+  spState.locked = true;
+  const q = spState.q, ok = btn.dataset.o === q.answer;
+  document.querySelectorAll("#spOpts .opt").forEach(o=>{
+    o.disabled = true;
+    if(o.dataset.o === q.answer) o.classList.add("right");
+  });
+  state.answers++;
+  if(ok){ spState.streak++; spState.score += 1 + Math.min(2, Math.floor(spState.streak/3)); learn(q.key); }
+  else { spState.streak = 0; btn.classList.add("wrong"); }
+  save();
+  setTimeout(()=>{ if(!spState.running) return; spState.q = randomQ(); spState.locked=false; renderSpeed(); }, ok?420:900);
+}
+
+/* =========================================================
+   MASTERY TEST
+   ========================================================= */
+const mtState = {qs:[], i:0, score:0, misses:[], running:false, locked:false};
+function viewMastery(){
+  return `
+  <div class="pagehead">
+    <div><h2>Mastery Test</h2><p>${L("20 ข้อ รวมทุกเรื่อง ไม่มีจับเวลา","20 mixed questions, no timer")}</p></div>
+    <span style="flex:1"></span><button class="chipbtn" data-go="home">← ${L("หน้าแรก","Home")}</button>
+  </div>
+  <div class="game" id="mtHost"></div>`;
+}
+function renderMastery(){
+  const host = $("#mtHost"); if(!host) return;
+  if(!mtState.running){
+    if(mtState.qs.length && mtState.i >= mtState.qs.length){
+      const pct = Math.round(mtState.score/mtState.qs.length*100);
+      const msg = pct>=90 ? L("ยอดเยี่ยม! คุณจำได้แม่นมาก","Outstanding — you really know these.")
+                : pct>=70 ? L("ดีมาก เหลืออีกนิดเดียว","Great work — just a few left to polish.")
+                : pct>=50 ? L("มาถูกทางแล้ว ฝึก Flashcards เพิ่มอีกหน่อย","You're getting there — try the flashcards again.")
+                : L("ไม่เป็นไร กลับไปอ่านบทเรียนแล้วลองใหม่","No worries — review the lesson and try again.");
+      host.innerHTML = `<div class="result">
+        <div class="big">${mtState.score}/${mtState.qs.length}</div>
+        <p class="msg">${pct}% · ${msg}</p>
+        ${mtState.misses.length?`<div class="hr-lbl">${L("ข้อที่ควรทบทวน","Review these")}</div>
+          <div class="misslist">${mtState.misses.map(m=>`<div class="missrow"><span><span class="tagm mono">${esc(m.tag||"")}</span>${esc(m.subject)}</span><span class="a">${esc(m.answer)}</span></div>`).join("")}</div>`:""}
+        <div class="fc-actions" style="margin-top:22px">
+          <button class="btn primary" id="retryMt">${L("ทำอีกครั้ง","Try again")}</button>
+          <button class="btn ghost" data-go="home">${L("กลับหน้าแรก","Home")}</button></div></div>`;
+      $("#retryMt").addEventListener("click", startMastery);
+      return;
+    }
+    host.innerHTML = `<div class="result">
+      <div class="big">★</div>
+      <p class="msg">${L("ข้อสอบรวม 20 ข้อ: เสียง -ed, V2, V3 และเติมคำในประโยค ทำได้ไม่จำกัดจำนวนครั้ง",
+        "20 mixed questions: -ed sounds, V2, V3 and sentence gap-fill. Retake as often as you like.")}</p>
+      <div class="fc-actions"><button class="btn primary" id="startMt">${L("เริ่มทำข้อสอบ","Start test")}</button></div></div>`;
+    $("#startMt").addEventListener("click", startMastery);
+    return;
+  }
+  const q = mtState.qs[mtState.i];
+  host.innerHTML = `
+    <div class="game-top"><span class="lbl">${L("ข้อ","Question")} ${mtState.i+1} / ${mtState.qs.length}</span>
+      <span class="score mono">${L("ถูก","correct")} ${mtState.score}</span></div>
+    <div class="bar"><i style="width:${Math.round(mtState.i/mtState.qs.length*100)}%"></i></div>
+    <div class="qcard">
+      <div class="prompt">${q.prompt}</div>
+      <div class="subject"${q.small?' style="font-size:clamp(1.05rem,3.6vw,1.5rem);line-height:1.5"':""}>${esc(q.subject)}</div>
+      <div class="${q.wide?"opt-2":"opt-row"}" id="mtOpts">
+        ${q.options.map(o=>`<button class="opt" data-o="${esc(o)}">${esc(o)}</button>`).join("")}
+      </div>
+    </div>
+    <div id="mtFb"></div>`;
+  host.querySelectorAll("#mtOpts .opt").forEach(b=>b.addEventListener("click",()=>masteryAnswer(b)));
+}
+function startMastery(){
+  mtState.qs = []; const seen = {};
+  let guard = 0;
+  while(mtState.qs.length < 20 && guard < 400){
+    guard++;
+    const q = randomQ();
+    if(seen[q.subject+q.prompt]) continue;
+    seen[q.subject+q.prompt] = 1;
+    mtState.qs.push(q);
+  }
+  mtState.i = 0; mtState.score = 0; mtState.misses = []; mtState.running = true; mtState.locked = false;
+  renderMastery();
+}
+function masteryAnswer(btn){
+  if(mtState.locked) return;
+  mtState.locked = true;
+  const q = mtState.qs[mtState.i], ok = btn.dataset.o === q.answer;
+  document.querySelectorAll("#mtOpts .opt").forEach(o=>{ o.disabled=true; if(o.dataset.o===q.answer) o.classList.add("right"); });
+  state.answers++;
+  if(ok){ mtState.score++; learn(q.key); confetti(btn); }
+  else { btn.classList.add("wrong"); mtState.misses.push(q); }
+  save();
+  $("#mtFb").innerHTML = `<div class="feedback ${ok?"good":"warn"}">
+    <div class="head">${ok?"✓ Correct!":"✗ "+L("คำตอบที่ถูกคือ","The answer is")+" "+esc(q.answer)}</div>
+    <div class="why mono">${esc(q.why)}</div>
+    <div style="margin-top:12px"><button class="btn ${ok?"good":"primary"}" id="mtNext">${mtState.i===mtState.qs.length-1?L("ดูผลคะแนน →","See results →"):L("ข้อต่อไป →","Next →")}</button></div>
+  </div>`;
+  $("#mtNext").addEventListener("click", ()=>{
+    mtState.i++; mtState.locked = false;
+    if(mtState.i >= mtState.qs.length){ mtState.running = false; }
+    renderMastery();
+  });
+}
+
+/* =========================================================
+   ROUTER
+   ========================================================= */
+function render(){
+  const v = state.view;
+  if(v==="home") app.innerHTML = viewHome();
+  else if(v==="regular") app.innerHTML = viewRegular();
+  else if(v==="irregular") app.innerHTML = viewIrregular();
+  else if(v==="flash") app.innerHTML = viewFlash();
+  else if(v==="match") app.innerHTML = viewMatch();
+  else if(v==="speed") app.innerHTML = viewSpeed();
+  else if(v==="mastery") app.innerHTML = viewMastery();
+
+  if(v==="home"){
+    requestAnimationFrame(()=>app.querySelectorAll(".bar i").forEach(b=>{ b.style.width = b.dataset.w+"%"; }));
+  }
+  if(v==="regular"){
+    if(state.tab===1) renderSort();
+    if(state.tab===2) renderQuick();
+    app.querySelectorAll("[data-tab]").forEach(t=>t.addEventListener("click",()=>{
+      state.tab = +t.dataset.tab; render();
+    }));
+  }
+  if(v==="irregular"){
+    renderLab();
+    const q = $("#labQ");
+    q.addEventListener("input", ()=>{ labState.q = q.value; renderLab(); });
+    app.querySelectorAll("[data-lv]").forEach(b=>b.addEventListener("click",()=>{
+      labState.lv = +b.dataset.lv;
+      app.querySelectorAll("[data-lv]").forEach(x=>x.setAttribute("aria-selected", x===b));
+      renderLab();
+    }));
+    $("#hideBtn").addEventListener("click", ()=>{ labState.hide = !labState.hide; render(); });
+  }
+  if(v==="flash") renderFlash();
+  if(v==="match") renderMatch();
+  if(v==="speed") renderSpeed();
+  if(v==="mastery") renderMastery();
+
+  app.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.go)));
+  window.scrollTo({top:0,behavior:"instant"});
+}
+function go(view){
+  if(spState.running){ clearInterval(spState.timer); spState.running=false; spState.time=60; spState.score=0; }
+  state.view = view;
+  if(view==="regular") state.tab = 0;
+  if(view==="flash") buildDeck();
+  if(view==="match") newMatch();
+  if(view==="mastery"){ mtState.running=false; mtState.qs=[]; mtState.i=0; }
+  if(view==="regular"){ newSortItem(); quickState.item = pick(REG); }
+  render();
+}
+
+/* chrome */
+document.getElementById("brandBtn").addEventListener("click", ()=>go("home"));
+document.getElementById("langSeg").addEventListener("click", e=>{
+  const b = e.target.closest("button[data-lang]"); if(!b) return;
+  state.lang = b.dataset.lang; save();
+  document.querySelectorAll("#langSeg button").forEach(x=>x.setAttribute("aria-pressed", x===b));
+  render();
+});
+document.getElementById("resetBtn").addEventListener("click", ()=>{
+  state.learned = {}; state.answers = 0; state.best = 0; save(); go("home");
+});
+
+load();
+document.querySelectorAll("#langSeg button").forEach(x=>x.setAttribute("aria-pressed", x.dataset.lang===state.lang));
+render();
+
+</script>
