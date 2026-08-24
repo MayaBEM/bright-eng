@@ -1,0 +1,2771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Past Continuous Adventure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Baloo+2:wght@600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,600&family=Noto+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================================
+   Past Continuous Adventure — Bright EngMath
+   Design system: 8-bit arcade / cup-sleeve event.
+   Hot pink frame · butter yellow ground · sky cyan panels · cream paper.
+   Square corners, hard pixel shadows, chunky outlines.
+   ========================================================================= */
+
+:root{
+  color-scheme:light;
+
+  /* ground + paper */
+  --yellow:#FFD22E;   --yellow-2:#FFC000;  --yellow-soft:#FFF2C2;
+  --cream:#FBF3DC;    --cream-2:#F0E4C2;   --paper:#FFFDF4;
+
+  /* ink + lines */
+  --ink:#2E2A3B;      --ink-2:#5F5972;     --ink-3:#948DA6;
+  --line:#2E2A3B;     --line-2:#D8CDB0;
+
+  /* brand + function */
+  --pink:#FF4F94;     --pink-deep:#D81B60; --pink-soft:#FFDCEA;
+  --cyan:#38C8F0;     --cyan-deep:#0F7FAE; --cyan-soft:#D6F2FD;
+  --green:#57C33C;    --green-deep:#31871F;--green-soft:#DCF4D2;
+  --red:#E8353C;      --red-deep:#B31D24;  --red-soft:#FFDDDD;
+  --orange:#F58A1F;   --orange-soft:#FFE6C6;
+  --purple:#8A5CD6;   --purple-soft:#E7DBFB;
+  --blue:#2F7FD6;     --blue-soft:#DCEBFB;
+  --teal:#0F9AA8;     --teal-soft:#D6F0F2;
+  --grass:#57C33C;    --grass-2:#3E9E28;   --dirt:#9A5F2E;    --dirt-2:#7B4620;
+
+  --r-s:4px; --r-m:0px; --r-l:0px; --r-xl:0px;
+  --bd:3px;
+  --sh-1:4px 4px 0 rgba(46,42,59,.18);
+  --sh-2:6px 6px 0 rgba(46,42,59,.22);
+  --sh-lift:8px 8px 0 rgba(46,42,59,.28);
+
+  --pixel:"Press Start 2P","Nunito",monospace;
+  --sans:"Nunito","Noto Sans Thai",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --display:"Baloo 2","Nunito","Noto Sans Thai",sans-serif;
+  --wrap:1080px;
+  --frame:14px;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--sans);
+  background-color:var(--yellow);
+  background-image:radial-gradient(rgba(46,42,59,.07) 2px,transparent 2px);
+  background-size:16px 16px;
+  color:var(--ink);
+  font-size:17px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  padding-top:var(--frame);
+}
+/* fixed arcade cabinet frame */
+.frame{
+  position:fixed;inset:0;z-index:200;pointer-events:none;
+  border:var(--frame) solid var(--pink);
+  box-shadow:inset 0 0 0 4px var(--pink-deep), inset 0 0 0 7px #FF8CBD;
+}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.2;margin:0;font-weight:800;letter-spacing:0}
+h1{font-size:clamp(1.9rem,4.6vw,2.9rem)}
+h2{font-size:clamp(1.4rem,3vw,1.95rem)}
+h3{font-size:1.2rem}
+p{margin:0 0 .9em}
+button{font-family:inherit;font-size:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input{font-family:inherit;font-size:inherit;color:var(--ink);background:var(--paper)}
+::placeholder{color:var(--ink-3);opacity:1}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 22px}
+
+/* ---------- header ---------- */
+.appbar{
+  position:sticky;top:var(--frame);z-index:60;
+  background:var(--cream);
+  border-bottom:var(--bd) solid var(--ink);
+  box-shadow:0 4px 0 rgba(46,42,59,.18);
+}
+.appbar-in{display:flex;align-items:center;gap:16px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.brand-mark{
+  width:40px;height:34px;display:grid;place-items:center;line-height:1;
+  background:var(--pink);border:var(--bd) solid var(--ink);
+  color:#fff;font-family:var(--pixel);font-size:.5rem;letter-spacing:.02em;
+  box-shadow:3px 3px 0 rgba(46,42,59,.25);
+}
+.brand-mark b{display:block;font-size:.62rem;margin-top:2px}
+.brand-name{font-family:var(--pixel);font-size:.72rem;line-height:1.3;white-space:nowrap}
+.brand-name small{display:block;font-family:var(--sans);font-weight:700;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);line-height:1.4}
+.nav{display:flex;gap:6px;margin-left:auto;overflow-x:auto;scrollbar-width:none;padding:6px 0}
+.nav::-webkit-scrollbar{display:none}
+.nav button{
+  padding:9px 12px;font-family:var(--pixel);font-size:.6rem;color:var(--ink);
+  background:var(--paper);border:var(--bd) solid var(--ink);white-space:nowrap;
+  box-shadow:3px 3px 0 rgba(46,42,59,.2);
+  transition:transform .12s,background .12s,box-shadow .12s;
+}
+.nav button:hover{background:var(--yellow-soft);transform:translate(-1px,-1px);box-shadow:4px 4px 0 rgba(46,42,59,.25)}
+.nav button.on{background:var(--cyan);color:var(--ink)}
+.nav button .dot{display:inline-block;width:7px;height:7px;background:var(--green);margin-left:7px;vertical-align:middle;border:2px solid var(--ink)}
+
+/* ---------- screens + motion ---------- */
+.screen{display:none;padding:30px 0 70px}
+.screen.on{display:block;animation:screenIn .28s steps(4,end) both}
+@keyframes screenIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.rise{animation:rise .36s steps(5,end) both}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.d1{animation-delay:.05s}.d2{animation-delay:.1s}.d3{animation-delay:.15s}
+.d4{animation-delay:.2s}.d5{animation-delay:.25s}.d6{animation-delay:.3s}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px 20px;font-family:var(--pixel);font-size:.68rem;line-height:1.5;
+  background:var(--paper);border:var(--bd) solid var(--ink);color:var(--ink);
+  box-shadow:5px 5px 0 rgba(46,42,59,.25);
+  transition:transform .1s,box-shadow .1s,background .12s;
+  min-height:48px;text-align:center;
+}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 rgba(46,42,59,.28);background:var(--yellow-soft)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 rgba(46,42,59,.25)}
+.btn-primary{background:var(--pink);color:#fff}
+.btn-primary:hover{background:#ff6ba6}
+.btn-dark{background:var(--cyan);color:var(--ink)}
+.btn-dark:hover{background:#5ad4f6}
+.btn-ghost{background:var(--cream-2)}
+.btn-sm{padding:10px 14px;font-size:.58rem;min-height:40px;box-shadow:4px 4px 0 rgba(46,42,59,.22)}
+.btn[disabled]{opacity:.4;cursor:not-allowed;transform:none;box-shadow:2px 2px 0 rgba(46,42,59,.18)}
+.btn-row{display:flex;flex-wrap:wrap;gap:14px}
+
+/* ---------- surfaces ---------- */
+.card{background:var(--cream);border:var(--bd) solid var(--ink);box-shadow:var(--sh-2)}
+.pad{padding:26px}
+.kicker{font-family:var(--pixel);font-size:.6rem;letter-spacing:.02em;color:var(--pink-deep);line-height:1.6}
+.lead{font-size:1.05rem;color:var(--ink-2)}
+.muted{color:var(--ink-2)}
+.rule{height:3px;background:var(--ink);border:0;margin:22px 0}
+
+/* pixel heart */
+.px-heart{display:inline-block;width:16px;height:16px;vertical-align:-2px;
+  background:
+    linear-gradient(var(--pink) 0 0) 4px 2px/4px 2px no-repeat,
+    linear-gradient(var(--pink) 0 0) 10px 2px/4px 2px no-repeat,
+    linear-gradient(var(--pink) 0 0) 2px 4px/12px 4px no-repeat,
+    linear-gradient(var(--pink) 0 0) 4px 8px/8px 2px no-repeat,
+    linear-gradient(var(--pink) 0 0) 6px 10px/4px 2px no-repeat;
+}
+.px-heart.off{filter:grayscale(1);opacity:.35}
+
+/* ---------- mastery panel ---------- */
+.mastery{
+  background:var(--cyan-soft);border:var(--bd) solid var(--ink);
+  padding:20px 22px;box-shadow:var(--sh-2);margin-bottom:26px;
+}
+.mastery h4{font-family:var(--pixel);font-size:.72rem;margin-bottom:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mrow{display:grid;grid-template-columns:120px 1fr 54px;gap:12px;align-items:center;margin-bottom:10px;font-size:.8rem;font-weight:800}
+.mrow:last-child{margin-bottom:0}
+.mrow .lbl{font-family:var(--pixel);font-size:.55rem;color:var(--ink)}
+.mrow .val{text-align:right;color:var(--ink-2);font-variant-numeric:tabular-nums;font-family:var(--pixel);font-size:.55rem}
+.bar{height:16px;background:var(--paper);border:var(--bd) solid var(--ink);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--pink);width:0;transition:width .6s steps(12,end);
+  background-image:linear-gradient(90deg,rgba(255,255,255,.35) 0 4px,transparent 4px 12px);background-size:12px 100%}
+.bar.t i{background-color:var(--cyan)} .bar.o i{background-color:var(--orange)} .bar.b i{background-color:var(--green)}
+
+/* ---------- HOME ---------- */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center;margin:6px 0 38px}
+.hero .kicker{margin-bottom:12px}
+.hero h1{margin-bottom:8px;text-shadow:3px 3px 0 #fff, 6px 6px 0 rgba(46,42,59,.18)}
+.hero h1 .u{background:var(--yellow-soft);box-shadow:0 0 0 3px var(--ink);padding:0 6px;display:inline-block}
+.hero .sub{font-family:var(--pixel);font-size:clamp(.7rem,1.7vw,.95rem);color:var(--cyan-deep);margin-bottom:14px;line-height:1.6}
+.hero p{max-width:44ch;color:var(--ink-2)}
+.hero-actions{margin-top:22px}
+.scene-art{
+  position:relative;background:var(--paper);border:var(--bd) solid var(--ink);
+  padding:10px;box-shadow:var(--sh-lift);
+}
+.scene-art svg{display:block;width:100%;height:auto;border:3px solid var(--ink)}
+.tape{
+  position:absolute;top:-16px;left:50%;transform:translateX(-50%);
+  background:var(--yellow);border:3px solid var(--ink);color:var(--ink);
+  font-family:var(--pixel);font-size:.52rem;padding:6px 12px;
+  box-shadow:3px 3px 0 rgba(46,42,59,.25);white-space:nowrap;
+}
+
+.roadmap{margin-top:10px}
+.roadmap h3{margin-bottom:16px;font-family:var(--pixel);font-size:.8rem}
+.steps{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.step{
+  background:var(--paper);border:var(--bd) solid var(--ink);
+  padding:14px 10px;text-align:center;box-shadow:4px 4px 0 rgba(46,42,59,.2);
+  transition:transform .12s,box-shadow .12s;
+}
+.step:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 rgba(46,42,59,.25)}
+.step .n{
+  width:28px;height:28px;display:grid;place-items:center;margin:0 auto 8px;
+  background:var(--cream-2);border:2px solid var(--ink);color:var(--ink);font-family:var(--pixel);font-size:.6rem;
+}
+.step .t{font-weight:800;font-size:.9rem}
+.step.done{background:var(--green-soft)}
+.step.done .n{background:var(--green);color:#fff}
+
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
+.fact{background:var(--paper);border:var(--bd) solid var(--ink);padding:14px 16px;box-shadow:4px 4px 0 rgba(46,42,59,.2);border-top:8px solid var(--cyan)}
+.fact b{display:block;font-family:var(--display);font-size:1.3rem}
+.fact span{font-size:.88rem;color:var(--ink-2)}
+.fact:nth-child(2){border-top-color:var(--pink)}
+.fact:nth-child(3){border-top-color:var(--green)}
+
+/* ---------- LESSON ---------- */
+.lesson-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:20px}
+.lsteps{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.lstep{
+  padding:10px 13px;border:var(--bd) solid var(--ink);background:var(--paper);
+  font-family:var(--pixel);font-size:.55rem;line-height:1.5;color:var(--ink);
+  box-shadow:3px 3px 0 rgba(46,42,59,.2);transition:transform .1s,background .12s;
+}
+.lstep:hover{background:var(--yellow-soft);transform:translate(-1px,-1px)}
+.lstep.on{background:var(--cyan);color:var(--ink)}
+.lstep.ok{background:var(--green-soft)}
+.lstep.ok.on{background:var(--green);color:#fff}
+
+.editorial{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.note{padding:16px 18px;border:var(--bd) solid var(--ink);font-size:.97rem;box-shadow:4px 4px 0 rgba(46,42,59,.18)}
+.note h4{font-family:var(--pixel);font-size:.62rem;margin-bottom:8px;line-height:1.6}
+.note.blue{background:var(--cyan-soft);color:#134f6b}
+.note.orange{background:var(--orange-soft);color:#8a4a08}
+.note.green{background:var(--green-soft);color:var(--green-deep)}
+.note.th{font-size:.95rem}
+
+.formula{
+  display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;
+  background:var(--cyan-soft);border:var(--bd) solid var(--ink);padding:18px;text-align:center;
+  box-shadow:4px 4px 0 rgba(46,42,59,.18);
+}
+.formula .box{background:var(--paper);border:3px solid var(--ink);padding:12px 10px;font-weight:800}
+.formula .op{font-family:var(--pixel);font-size:1rem;color:var(--ink)}
+.subj-split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.subj-col{padding:16px;border:var(--bd) solid var(--ink);box-shadow:4px 4px 0 rgba(46,42,59,.18)}
+.subj-col.was{background:var(--cyan-soft)}
+.subj-col.were{background:var(--pink-soft)}
+.subj-col h4{font-family:var(--pixel);font-size:1rem;margin-bottom:10px}
+.subj-col.was h4{color:var(--cyan-deep)} .subj-col.were h4{color:var(--pink-deep)}
+.subj-col ul{margin:0;padding-left:18px}
+.subj-col li{font-weight:800}
+
+.ex-list{list-style:none;margin:0;padding:0}
+.ex-list li{
+  padding:11px 14px;background:var(--paper);border:3px solid var(--ink);
+  margin-bottom:10px;font-size:1.04rem;box-shadow:3px 3px 0 rgba(46,42,59,.16);
+}
+.ex-list li.pop{animation:pop .3s steps(4,end) both}
+@keyframes pop{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+
+/* highlighted grammar */
+.s-sub{font-weight:800;box-shadow:inset 0 -6px 0 var(--yellow-soft),inset 0 -8px 0 var(--yellow)}
+.s-aux{color:#fff;background:var(--cyan-deep);border:2px solid var(--ink);padding:0 6px;font-weight:800}
+.s-ing{color:#fff;background:var(--green-deep);border:2px solid var(--ink);padding:0 6px;font-weight:800}
+.kw{background:var(--yellow);border:2px solid var(--ink);padding:0 5px;font-weight:800;font-family:var(--sans)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.8rem;font-weight:800;color:var(--ink-2);margin-top:14px}
+.legend i{display:inline-block;width:12px;height:12px;border:2px solid var(--ink);margin-right:5px;vertical-align:-1px}
+
+/* sort activity */
+.sort-pool{display:flex;flex-wrap:wrap;gap:10px;min-height:60px;padding:14px;background:var(--cream-2);border:3px dashed var(--ink);margin-bottom:16px}
+.chip{
+  padding:10px 16px;background:var(--paper);border:3px solid var(--ink);
+  font-weight:800;box-shadow:3px 3px 0 rgba(46,42,59,.22);transition:transform .1s,box-shadow .1s;
+}
+.chip:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 rgba(46,42,59,.25)}
+.chip.sel{background:var(--yellow)}
+.chip[disabled]{pointer-events:none;box-shadow:none;background:var(--paper)}
+.chip.shake{animation:shake .35s steps(3,end)}
+.drop{min-height:140px;padding:14px;border:3px solid var(--ink);display:flex;flex-direction:column;gap:10px;box-shadow:4px 4px 0 rgba(46,42,59,.18)}
+.drop.was{background:var(--cyan-soft)}
+.drop.were{background:var(--pink-soft)}
+.drop h4{font-family:var(--pixel);font-size:.95rem;text-align:center;margin-bottom:4px}
+.drop.was h4{color:var(--cyan-deep)} .drop.were h4{color:var(--pink-deep)}
+.drop .slot{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+@keyframes shake{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(4px)}30%,50%,70%{transform:translateX(-6px)}40%,60%{transform:translateX(6px)}}
+
+/* ing drill */
+.drill{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.drill-item{background:var(--paper);border:3px solid var(--ink);padding:14px;box-shadow:4px 4px 0 rgba(46,42,59,.18)}
+.drill-item .v{font-family:var(--pixel);font-size:.7rem;margin-bottom:10px}
+.drill-item input{
+  width:100%;padding:11px 12px;border:3px solid var(--ink);background:var(--cream);
+  font-weight:800;outline:none;transition:background .12s;
+}
+.drill-item input:focus{background:var(--yellow-soft)}
+.drill-item.ok{background:var(--green-soft)}
+.drill-item.ok input{background:#fff;color:var(--green-deep)}
+.drill-item.no{background:var(--red-soft);animation:shake .35s steps(3,end)}
+.drill-item .fb{font-size:.82rem;font-weight:800;margin-top:8px;min-height:1.1em}
+.drill-item.ok .fb{color:var(--green-deep)} .drill-item.no .fb{color:var(--red-deep)}
+
+/* rule cards */
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rule-card{padding:16px;border:var(--bd) solid var(--ink);background:var(--paper);box-shadow:4px 4px 0 rgba(46,42,59,.2)}
+.rule-card .tag{font-family:var(--pixel);font-size:.55rem;color:#fff;background:var(--orange);border:2px solid var(--ink);padding:3px 7px;display:inline-block}
+.rule-card h4{margin:10px 0 8px;font-size:1.02rem}
+.rule-card code{background:var(--yellow-soft);border:2px solid var(--ink);padding:2px 7px;font-weight:800;font-family:var(--sans);display:inline-block;margin:3px 3px 0 0}
+
+/* sentence builder */
+.build-strip{display:flex;flex-wrap:wrap;gap:8px;min-height:62px;align-items:center;
+  padding:12px;background:var(--cream-2);border:3px dashed var(--ink)}
+.build-strip.done{background:var(--green-soft);border-style:solid}
+.build-strip.no{background:var(--red-soft);animation:shake .35s steps(3,end)}
+.tok{padding:10px 14px;background:var(--paper);border:3px solid var(--ink);font-weight:800;box-shadow:3px 3px 0 rgba(46,42,59,.2);transition:transform .1s}
+.tok:hover{transform:translate(-2px,-2px)}
+.tok.placed{background:var(--cyan);color:var(--ink)}
+.grow-demo{display:flex;flex-direction:column;gap:10px}
+.grow-demo div{padding:11px 14px;background:var(--paper);border:3px solid var(--ink);font-size:1.04rem;opacity:.2;transition:opacity .25s steps(3,end)}
+.grow-demo div.on{opacity:1}
+
+/* timeline */
+.timeline{background:var(--cyan-soft);border:var(--bd) solid var(--ink);padding:26px 22px;overflow-x:auto;box-shadow:var(--sh-2)}
+.tl{position:relative;min-width:520px;padding:38px 0 46px}
+.tl .axis{height:5px;background:var(--ink);position:relative}
+.tl .long{position:absolute;left:8%;right:14%;top:-13px;height:30px;background:var(--green-soft);border:3px solid var(--green-deep);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;color:var(--green-deep)}
+.tl .mark{position:absolute;left:60%;top:-40px;text-align:center;transform:translateX(-50%)}
+.tl .mark .pin{width:16px;height:16px;background:var(--pink);border:3px solid var(--ink);margin:8px auto 0}
+.tl .mark b{background:var(--pink);color:#fff;border:3px solid var(--ink);padding:4px 10px;font-family:var(--pixel);font-size:.55rem;display:inline-block}
+.tl .past,.tl .now{position:absolute;bottom:10px;font-family:var(--pixel);font-size:.55rem;color:var(--ink-2)}
+.tl .past{left:0} .tl .now{right:0}
+
+/* illustrated scenes — mini game screen */
+.scene-box{background:#8CE0FA;border:var(--bd) solid var(--ink);padding:14px 14px 0;box-shadow:var(--sh-2);position:relative;overflow:hidden}
+.scene-box::after{content:"";display:block;height:26px;margin:0 -14px;
+  background:linear-gradient(var(--grass) 0 14px,var(--grass-2) 14px 20px,var(--dirt) 20px 100%)}
+.scene-title{font-family:var(--pixel);font-size:.55rem;color:var(--ink);margin-bottom:12px;text-align:center;
+  background:var(--paper);border:2px solid var(--ink);padding:5px 8px;display:inline-block;position:relative;left:50%;transform:translateX(-50%)}
+.scene-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:10px}
+.figure{background:rgba(255,255,255,.55);border:2px solid var(--ink);padding:10px 6px 8px;text-align:center}
+.figure svg{width:100%;max-width:92px;height:auto}
+.figure .nm{font-family:var(--pixel);font-size:.55rem;margin-top:6px}
+.figure .ac{font-size:.76rem;color:var(--ink-2);font-weight:700}
+
+/* ---------- QUIZ ---------- */
+.quiz-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+.quiz-top h2{font-size:1.4rem}
+.qmeta{display:flex;align-items:center;gap:10px;margin-left:auto}
+.pill{background:var(--paper);border:3px solid var(--ink);padding:8px 12px;font-family:var(--pixel);font-size:.55rem;box-shadow:3px 3px 0 rgba(46,42,59,.2)}
+.pill.score{background:var(--pink);color:#fff}
+.qbar{height:18px;background:var(--paper);border:var(--bd) solid var(--ink);overflow:hidden;margin:14px 0 22px;box-shadow:3px 3px 0 rgba(46,42,59,.2)}
+.qbar i{display:block;height:100%;background:var(--green);width:0;transition:width .4s steps(10,end);
+  background-image:linear-gradient(90deg,rgba(255,255,255,.4) 0 4px,transparent 4px 12px);background-size:12px 100%}
+
+.qcard{background:var(--cream);border:var(--bd) solid var(--ink);padding:28px;box-shadow:var(--sh-lift);position:relative}
+.qcard.in{animation:qin .24s steps(4,end) both}
+@keyframes qin{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.qcat{display:inline-block;font-family:var(--pixel);font-size:.52rem;padding:6px 9px;background:var(--cyan);border:2px solid var(--ink);color:var(--ink);margin-bottom:14px}
+.qprompt{font-weight:800;color:var(--ink-2);margin-bottom:10px}
+.qtext{font-family:var(--display);font-size:clamp(1.3rem,3vw,1.65rem);line-height:1.5;margin-bottom:20px}
+.qtext .gap{color:var(--pink-deep);letter-spacing:.05em}
+.story{background:var(--paper);border:3px solid var(--ink);border-left:10px solid var(--cyan);padding:14px 18px;margin-bottom:18px;font-size:1.01rem}
+.dialog{margin-bottom:18px;display:flex;flex-direction:column;gap:12px}
+.line{display:flex;gap:10px;align-items:flex-start}
+.line .who{flex:0 0 auto;font-family:var(--pixel);font-size:.5rem;background:var(--yellow);border:2px solid var(--ink);padding:6px 8px;margin-top:4px}
+.line .say{background:var(--paper);border:3px solid var(--ink);padding:10px 14px;font-size:1.01rem}
+.line:nth-child(2) .who{background:var(--cyan)}
+
+.choices{display:grid;gap:12px}
+.choice{
+  display:flex;align-items:center;gap:14px;width:100%;text-align:left;
+  padding:15px 16px;border:3px solid var(--ink);background:var(--paper);
+  font-size:1.04rem;font-weight:800;box-shadow:4px 4px 0 rgba(46,42,59,.22);
+  transition:transform .1s,box-shadow .1s,background .12s;
+}
+.choice .k{flex:0 0 auto;width:32px;height:32px;display:grid;place-items:center;
+  background:var(--cream-2);border:2px solid var(--ink);font-family:var(--pixel);font-size:.6rem}
+.choice:hover:not(:disabled){background:var(--yellow-soft);transform:translate(-2px,-2px);box-shadow:6px 6px 0 rgba(46,42,59,.25)}
+.choice:disabled{cursor:default}
+.choice.correct{background:var(--green-soft);animation:bounceIn .3s steps(3,end)}
+.choice.correct .k{background:var(--green);color:#fff}
+.choice.wrong{background:var(--red-soft);animation:shake .35s steps(3,end)}
+.choice.wrong .k{background:var(--red);color:#fff}
+.choice.dim{opacity:.45;box-shadow:2px 2px 0 rgba(46,42,59,.15)}
+@keyframes bounceIn{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
+
+.typerow{display:flex;gap:12px;flex-wrap:wrap}
+.typerow input{
+  flex:1 1 220px;padding:15px 16px;border:3px solid var(--ink);background:var(--paper);
+  font-weight:800;font-size:1.1rem;outline:none;box-shadow:4px 4px 0 rgba(46,42,59,.2);
+}
+.typerow input:focus{background:var(--yellow-soft)}
+.typerow input.correct{background:var(--green-soft)}
+.typerow input.wrong{background:var(--red-soft)}
+
+.tokrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.answer-strip{display:flex;flex-wrap:wrap;gap:10px;align-items:center;min-height:64px;padding:12px;
+  background:var(--paper);border:3px dashed var(--ink);margin-bottom:12px}
+.answer-strip.correct{background:var(--green-soft);border-style:solid}
+.answer-strip.wrong{background:var(--red-soft);border-style:solid}
+.strip-hint{color:var(--ink-3);font-weight:800;font-size:.9rem}
+
+.qfoot{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:22px}
+.qfoot .spacer{margin-left:auto}
+.hintbox{margin-top:16px;background:var(--yellow-soft);border:3px solid var(--ink);
+  padding:14px 16px;color:#7a4a06;font-weight:700;animation:rise .25s steps(3,end) both;box-shadow:4px 4px 0 rgba(46,42,59,.18)}
+.hintbox b{display:block;font-family:var(--pixel);font-size:.55rem;margin-bottom:8px;color:var(--ink)}
+
+.feedback{margin-top:20px;padding:20px;border:var(--bd) solid var(--ink);animation:rise .3s steps(4,end) both;box-shadow:5px 5px 0 rgba(46,42,59,.2)}
+.feedback.good{background:var(--green-soft)}
+.feedback.bad{background:var(--red-soft)}
+.feedback .fb-head{font-family:var(--pixel);font-size:.8rem;margin-bottom:14px;display:flex;align-items:center;gap:10px;line-height:1.5}
+.feedback.good .fb-head{color:var(--green-deep)} .feedback.bad .fb-head{color:var(--red-deep)}
+.mark-i{width:28px;height:28px;display:grid;place-items:center;color:#fff;font-size:.9rem;flex:0 0 auto;border:2px solid var(--ink)}
+.feedback.good .mark-i{background:var(--green)} .feedback.bad .mark-i{background:var(--red)}
+.yours{display:grid;gap:8px;margin-bottom:14px;font-weight:800;font-size:.95rem}
+.yours span b{display:inline-block;min-width:116px;color:var(--ink-2);font-family:var(--pixel);font-size:.5rem}
+.why{background:var(--paper);border:3px solid var(--ink);padding:14px 16px;font-size:.99rem}
+.why .why-t{font-family:var(--pixel);font-size:.5rem;color:var(--ink-2);margin-bottom:10px}
+.model-sent{margin-top:12px;padding:14px 16px;background:var(--paper);border:3px solid var(--ink);font-size:1.08rem;font-family:var(--display)}
+
+.navgrid{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.navgrid button{
+  width:36px;height:36px;border:2px solid var(--ink);background:var(--paper);
+  font-family:var(--pixel);font-size:.5rem;color:var(--ink);box-shadow:2px 2px 0 rgba(46,42,59,.2);
+  transition:transform .1s;
+}
+.navgrid button:hover{transform:translate(-1px,-1px)}
+.navgrid button.done{background:var(--green);color:#fff}
+.navgrid button.miss{background:var(--red);color:#fff}
+.navgrid button.cur{background:var(--cyan)}
+.navlegend{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:.78rem;font-weight:800;color:var(--ink-2)}
+.navlegend i{display:inline-block;width:12px;height:12px;border:2px solid var(--ink);margin-right:5px;vertical-align:-1px}
+
+/* ---------- RESULTS ---------- */
+.result-hero{text-align:center;padding:34px 24px;background:var(--cyan-soft);border:var(--bd) solid var(--ink);box-shadow:var(--sh-lift)}
+.big-score{font-family:var(--pixel);font-size:clamp(2rem,7vw,3.2rem);line-height:1.3;color:var(--pink-deep);text-shadow:3px 3px 0 #fff}
+.big-score small{font-size:.4em;color:var(--ink-2)}
+.ring{width:132px;height:132px;margin:0 auto 10px}
+.tier{display:inline-block;margin-top:14px;font-family:var(--pixel);font-size:.85rem;line-height:1.6}
+.cat-analysis{display:grid;grid-template-columns:repeat(2,1fr);gap:16px 24px;margin-top:8px}
+.cat-row{display:grid;grid-template-columns:1fr 66px;gap:10px;align-items:center}
+.cat-row .cn{font-weight:800;font-size:.9rem}
+.cat-row .cb{grid-column:1/-1;height:14px;background:var(--paper);border:2px solid var(--ink);overflow:hidden;margin-top:-2px}
+.cat-row .cb i{display:block;height:100%;background:var(--cyan);width:0;transition:width .6s steps(10,end)}
+.cat-row .cs{text-align:right;font-family:var(--pixel);font-size:.55rem;color:var(--ink)}
+
+.dash{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0}
+.dash-card{background:var(--paper);border:var(--bd) solid var(--ink);padding:18px;text-align:center;box-shadow:var(--sh-1)}
+.dash-card .qn{font-family:var(--pixel);font-size:.55rem;color:var(--ink-2)}
+.dash-card .sc{font-family:var(--pixel);font-size:1.05rem;line-height:1.6;margin:10px 0 4px}
+.dash-card.empty{background:var(--cream-2);color:var(--ink-3)}
+
+.badges{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.badge{padding:16px 12px;text-align:center;border:var(--bd) solid var(--ink);background:var(--cream-2);color:var(--ink-3);box-shadow:4px 4px 0 rgba(46,42,59,.18)}
+.badge .ic{width:48px;height:48px;margin:0 auto 10px;display:grid;place-items:center;background:var(--paper);border:2px solid var(--ink);font-size:1.2rem}
+.badge b{display:block;font-family:var(--pixel);font-size:.52rem;line-height:1.6}
+.badge span{font-size:.76rem;display:block;line-height:1.45;margin-top:8px}
+.badge.won{background:var(--yellow);color:var(--ink);animation:pop .35s steps(4,end) both}
+.badge.won .ic{background:var(--pink);color:#fff}
+
+.strengths{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.slist{list-style:none;margin:0;padding:0}
+.slist li{padding:9px 0;font-weight:800;border-bottom:2px dashed var(--line-2)}
+.slist li:last-child{border:0}
+.slist .ic{display:inline-grid;place-items:center;width:22px;height:22px;color:#fff;font-size:.7rem;margin-right:8px;vertical-align:-4px;border:2px solid var(--ink)}
+.slist.good .ic{background:var(--green)} .slist.work .ic{background:var(--orange)}
+
+.review-item{background:var(--cream);border:var(--bd) solid var(--ink);border-left:10px solid var(--red);padding:18px;margin-bottom:14px;box-shadow:var(--sh-1)}
+.review-item h4{font-family:var(--pixel);font-size:.6rem;margin-bottom:12px;line-height:1.6}
+.review-q{font-family:var(--display);font-size:1.14rem;margin-bottom:12px}
+.empty-state{text-align:center;padding:46px 20px;color:var(--ink-2)}
+
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;z-index:300;display:none;place-items:center;padding:20px;background:rgba(46,42,59,.6)}
+.modal.on{display:grid;animation:screenIn .18s steps(3,end) both}
+.modal .box{background:var(--cream);border:4px solid var(--ink);padding:26px;max-width:430px;width:100%;box-shadow:8px 8px 0 rgba(46,42,59,.4)}
+.modal h3{margin-bottom:10px;font-family:var(--pixel);font-size:.8rem;line-height:1.6}
+
+/* ---------- toast ---------- */
+.toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,20px);z-index:320;opacity:0;
+  background:var(--ink);color:#fff;padding:14px 20px;font-family:var(--pixel);font-size:.6rem;
+  border:3px solid #fff;box-shadow:5px 5px 0 rgba(46,42,59,.4);
+  transition:opacity .2s,transform .2s;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- ground strip ---------- */
+.ground{height:72px;
+  background:
+    linear-gradient(var(--grass) 0 22px,var(--grass-2) 22px 32px,var(--dirt) 32px 56px,var(--dirt-2) 56px 100%);
+  border-top:3px solid var(--ink);
+  background-repeat:no-repeat;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;gap:22px}
+  .editorial{grid-template-columns:1fr}
+  .steps{grid-template-columns:repeat(3,1fr)}
+  .drill,.rules{grid-template-columns:1fr 1fr}
+  .dash{grid-template-columns:1fr}
+  .badges{grid-template-columns:1fr 1fr}
+  .facts{grid-template-columns:1fr;gap:12px}
+  .cat-analysis{grid-template-columns:1fr}
+  .strengths{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  :root{--frame:8px;--bd:3px}
+  body{font-size:16px}
+  .wrap{padding:0 14px}
+  .appbar-in{height:58px;gap:10px}
+  .brand-name{font-size:.58rem}
+  .brand-name small{font-size:.6rem}
+  .brand-mark{width:34px;height:30px;font-size:.42rem}
+  .nav button{padding:8px 9px;font-size:.52rem}
+  .mrow{grid-template-columns:74px 1fr 46px;font-size:.75rem}
+  .mrow .lbl,.mrow .val{font-size:.48rem}
+  .pad{padding:18px}
+  .qcard{padding:18px}
+  .choice{padding:14px 12px;font-size:.98rem;gap:10px}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .drill,.rules,.subj-split{grid-template-columns:1fr}
+  .formula{grid-template-columns:1fr;gap:8px}
+  .formula .op{transform:rotate(90deg)}
+  .qfoot{gap:8px}
+  .qfoot .btn{flex:1 1 auto}
+  .navgrid button{width:32px;height:32px}
+  .btn{width:100%;font-size:.58rem}
+  .btn-row .btn{width:auto;flex:1 1 150px}
+  .hero-actions .btn{width:100%}
+  .big-score{font-size:1.9rem}
+  .tier{font-size:.62rem}
+  .feedback .fb-head{font-size:.66rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}
+}
+
+</style>
+</head>
+<body>
+
+<div class="frame" aria-hidden="true"></div>
+
+<header class="appbar">
+  <div class="wrap appbar-in">
+    <div class="brand">
+      <div class="brand-mark">LV<b>PC</b></div>
+      <div class="brand-name">PAST CONTINUOUS<small>Bright EngMath</small></div>
+    </div>
+    <nav class="nav" id="nav"></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="screen" id="s-home"></section>
+  <section class="screen" id="s-learn"></section>
+  <section class="screen" id="s-practice"></section>
+  <section class="screen" id="s-q1"></section>
+  <section class="screen" id="s-q2"></section>
+  <section class="screen" id="s-q3"></section>
+  <section class="screen" id="s-results"></section>
+</main>
+
+<div class="ground" aria-hidden="true"></div>
+
+<div class="modal" id="modal">
+  <div class="box">
+    <h3 id="modal-t">Are you sure?</h3>
+    <p class="muted" id="modal-b"></p>
+    <div class="btn-row" style="margin-top:16px">
+      <button class="btn btn-primary" id="modal-ok">Yes, restart</button>
+      <button class="btn btn-ghost" id="modal-no">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   QUIZ 1 — Grammar Builder  (25 questions, Easy → Medium)
+   cat: ww = was/were | ing = V-ing form | sent = sentence structure
+        err = error spotting | ctx = picture/context | when = when + PC
+   ============================================================ */
+const QUIZ1 = [
+  {
+    id: 101, cat: 'ww', type: 'mc',
+    q: 'Choose the correct word.',
+    text: 'She ___ reading a book.',
+    choices: ['were', 'was', 'is', 'are'],
+    a: 1,
+    hint: 'Look at the subject. She is ONE person — singular.',
+    why: 'ประธานคือ `She` ซึ่งเป็นเอกพจน์ จึงใช้ `was`\n`is` และ `are` เป็น Present Tense จึงใช้ไม่ได้กับเรื่องในอดีต',
+    model: '*She* [was] {reading} a book.'
+  },
+  {
+    id: 102, cat: 'ing', type: 'type',
+    q: 'Write the -ing form of the verb.',
+    text: 'run  →  ______',
+    ans: ['running'],
+    hint: 'run is a short verb with one vowel between two consonants.',
+    why: '`run` เป็นคำสั้นที่มีสระตัวเดียว (u) อยู่ระหว่างพยัญชนะ\nต้องเบิ้ลตัวสะกดท้ายก่อนเติม -ing\nr-u-n + n + ing',
+    model: '*They* [were] {running} in the park.'
+  },
+  {
+    id: 103, cat: 'ww', type: 'mc',
+    q: 'Choose the correct word.',
+    text: 'They ___ playing football in the park.',
+    choices: ['was', 'were', 'is', 'be'],
+    a: 1,
+    hint: 'They means more than one person.',
+    why: '`They` = พวกเขา เป็นประธานพหูพจน์ จึงใช้ `were`\nโครงสร้างคือ They + were + playing',
+    model: '*They* [were] {playing} football in the park.'
+  },
+  {
+    id: 104, cat: 'ing', type: 'mc',
+    q: 'Choose the correct -ing form.',
+    text: 'dance  →  ______',
+    choices: ['danceing', 'dancing', 'dancin', 'dancking'],
+    a: 1,
+    hint: 'The verb ends in -e. What happens to that -e?',
+    why: 'กริยาที่ลงท้ายด้วย `e` ต้องตัด e ทิ้งก่อนเติม -ing\ndance → danc + ing = `dancing`',
+    model: '*Nok* [was] {dancing} with her friends.'
+  },
+  {
+    id: 105, cat: 'sent', type: 'build',
+    q: 'Put the words in the correct order.',
+    tokens: ['was', 'Gina', 'singing', '.'],
+    ans: 'Gina was singing.',
+    hint: 'Start with the person. Then was/were. Then the -ing verb.',
+    why: 'โครงสร้าง Past Continuous คือ\nSubject + was/were + V-ing\nGina เป็นคนเดียว จึงใช้ `was` แล้วตามด้วย `singing`',
+    model: '*Gina* [was] {singing}.'
+  },
+  {
+    id: 106, cat: 'ww', type: 'mc',
+    q: 'Choose the correct word.',
+    text: 'I ___ climbing up a tree.',
+    choices: ['were', 'am', 'was', 'are'],
+    a: 2,
+    hint: 'I is special — it does NOT use were in Past Continuous.',
+    why: 'ประธาน `I` ใช้คู่กับ `was` เสมอในอดีต\nระวัง! `I were` ผิด และ `am` เป็นปัจจุบัน',
+    model: '*I* [was] {climbing} up a tree.'
+  },
+  {
+    id: 107, cat: 'ing', type: 'type',
+    q: 'Write the -ing form of the verb.',
+    text: 'swim  →  ______',
+    ans: ['swimming'],
+    hint: 'One vowel, one final consonant… double it.',
+    why: '`swim` เป็นคำสั้นที่ลงท้ายด้วยพยัญชนะเดียว และมีสระตัวเดียว (i)\nจึงต้องเบิ้ล m ก่อนเติม -ing → `swimming`',
+    model: '*We* [were] {swimming} in the pool.'
+  },
+  {
+    id: 108, cat: 'sent', type: 'mc',
+    q: 'Which sentence is correct?',
+    text: '',
+    choices: [
+      'We was studying English.',
+      'We were study English.',
+      'We were studying English.',
+      'We studying English.'
+    ],
+    a: 2,
+    hint: 'Check two things: the right helping verb, and the -ing on the main verb.',
+    why: '`We` เป็นพหูพจน์ ใช้ `were`\nและกริยาหลักต้องเติม -ing เสมอ → `studying`\nขาดอย่างใดอย่างหนึ่งไม่ได้',
+    model: '*We* [were] {studying} English.'
+  },
+  {
+    id: 109, cat: 'ww', type: 'mc',
+    q: 'Choose the correct word.',
+    text: 'You ___ talking to your teacher.',
+    choices: ['was', 'were', 'is', 'did'],
+    a: 1,
+    hint: 'You always takes the same word as they and we.',
+    why: '`You` ใช้คู่กับ `were` เสมอ ไม่ว่าจะหมายถึงคนเดียวหรือหลายคน\nกลุ่มที่ใช้ were คือ You / We / They',
+    model: '*You* [were] {talking} to your teacher.'
+  },
+  {
+    id: 110, cat: 'ing', type: 'mc',
+    q: 'Choose the correct -ing form.',
+    text: 'write  →  ______',
+    choices: ['writeing', 'writting', 'writing', 'writen'],
+    a: 2,
+    hint: 'Cross out the silent -e first.',
+    why: '`write` ลงท้ายด้วย e → ตัด e แล้วเติม -ing\nwrite → writ + ing = `writing`\n(ไม่ต้องเบิ้ล t นะ)',
+    model: '*He* [was] {writing} a letter.'
+  },
+  {
+    id: 111, cat: 'err', type: 'mc',
+    q: 'Find the mistake and choose the correct sentence.',
+    text: 'My sister were washing the dishes.',
+    choices: [
+      'My sister was washing the dishes.',
+      'My sister were wash the dishes.',
+      'My sister are washing the dishes.',
+      'My sister were washed the dishes.'
+    ],
+    a: 0,
+    hint: 'How many sisters? One. So which helping verb do we need?',
+    why: '`My sister` = คนเดียว (= she) จึงต้องใช้ `was` ไม่ใช่ were\nประโยคที่ถูกคือ My sister was washing the dishes.',
+    model: '*My sister* [was] {washing} the dishes.'
+  },
+  {
+    id: 112, cat: 'ww', type: 'mc',
+    q: 'Choose the correct word.',
+    text: 'The cat ___ sleeping on my bed.',
+    choices: ['were', 'was', 'are', 'be'],
+    a: 1,
+    hint: 'The cat = it. One animal.',
+    why: '`The cat` แทนด้วย `it` เป็นเอกพจน์ จึงใช้ `was`\nกลุ่มที่ใช้ was คือ I / He / She / It',
+    model: '*The cat* [was] {sleeping} on my bed.'
+  },
+  {
+    id: 113, cat: 'ing', type: 'type',
+    q: 'Write the -ing form of the verb.',
+    text: 'sit  →  ______',
+    ans: ['sitting'],
+    hint: 'Short verb: consonant + vowel + consonant.',
+    why: '`sit` = พยัญชนะ + สระ + พยัญชนะ (s-i-t) เป็นคำสั้น\nจึงเบิ้ล t แล้วเติม -ing → `sitting`',
+    model: '*The children* [were] {sitting} on the floor.'
+  },
+  {
+    id: 114, cat: 'sent', type: 'build',
+    q: 'Put the words in the correct order.',
+    tokens: ['were', 'playing', 'They', 'football', '.'],
+    ans: 'They were playing football.',
+    hint: 'Subject first, then were, then the -ing verb, then the object.',
+    why: 'เรียงตามโครงสร้าง\nSubject + was/were + V-ing + ส่วนขยาย\n`They` (พหูพจน์) + `were` + `playing` + football',
+    model: '*They* [were] {playing} football.'
+  },
+  {
+    id: 115, cat: 'ww', type: 'mc',
+    q: 'Choose the correct word.',
+    text: 'My friends ___ swimming in the pool.',
+    choices: ['was', 'is', 'were', 'be'],
+    a: 2,
+    hint: 'My friends = they.',
+    why: '`My friends` มี s = หลายคน แทนด้วย `they`\nประธานพหูพจน์ใช้ `were`',
+    model: '*My friends* [were] {swimming} in the pool.'
+  },
+  {
+    id: 116, cat: 'ing', type: 'mc',
+    q: 'Choose the correct -ing form.',
+    text: 'listen  →  ______',
+    choices: ['listenning', 'listning', 'listening', 'listenin'],
+    a: 2,
+    hint: 'This verb is not short, and it does not end in -e. Just add -ing.',
+    why: 'กริยาส่วนใหญ่เติม -ing ได้เลย ไม่ต้องเปลี่ยนอะไร\nlisten + ing = `listening`\n(ไม่เบิ้ล n เพราะไม่ใช่คำพยางค์เดียว)',
+    model: '*We* [were] {listening} to music.'
+  },
+  {
+    id: 117, cat: 'sent', type: 'mc',
+    q: 'Complete the sentence.',
+    text: 'He was ___ his bike to school.',
+    choices: ['rode', 'ride', 'riding', 'rides'],
+    a: 2,
+    hint: 'After was/were, the main verb always wears the same ending.',
+    why: 'หลัง `was` / `were` กริยาต้องอยู่ในรูป V-ing เสมอ\nride ลงท้ายด้วย e → ตัด e เติม -ing = `riding`',
+    model: '*He* [was] {riding} his bike to school.'
+  },
+  {
+    id: 118, cat: 'ww', type: 'mc',
+    q: 'Choose the correct word.',
+    text: 'Tom and I ___ cooking dinner.',
+    choices: ['was', 'were', 'am', 'is'],
+    a: 1,
+    hint: 'Tom and I = we. Two people.',
+    why: '`Tom and I` = สองคน แทนด้วย `we` จึงใช้ `were`\nอย่าดูแค่คำว่า I แล้วรีบตอบ was นะ',
+    model: '*Tom and I* [were] {cooking} dinner.'
+  },
+  {
+    id: 119, cat: 'ing', type: 'type',
+    q: 'Write the -ing form of the verb.',
+    text: 'draw  →  ______',
+    ans: ['drawing'],
+    hint: 'The last letter is w — we never double w.',
+    why: '`draw` เติม -ing ได้เลย ไม่ต้องเบิ้ล w\ndraw + ing = `drawing`',
+    model: '*Anna* [was] {drawing} a picture.'
+  },
+  {
+    id: 120, cat: 'sent', type: 'build',
+    q: 'Put the words in the correct order.',
+    tokens: ['a picture', 'She', 'drawing', 'was', '.'],
+    ans: 'She was drawing a picture.',
+    hint: 'Who? → was/were → doing what? → what thing?',
+    why: 'เรียงเป็น Subject + was + V-ing + กรรม\n`She` + `was` + `drawing` + a picture',
+    model: '*She* [was] {drawing} a picture.'
+  },
+  {
+    id: 121, cat: 'ww', type: 'mc',
+    q: 'Choose the correct word.',
+    text: 'It ___ raining last night.',
+    choices: ['were', 'was', 'are', 'is'],
+    a: 1,
+    hint: 'The subject is It.',
+    why: '`It` เป็นเอกพจน์ ใช้ `was`\nคำว่า last night บอกว่าเป็นเรื่องในอดีต จึงใช้ was ไม่ใช่ is',
+    model: '*It* [was] {raining} last night.'
+  },
+  {
+    id: 122, cat: 'ing', type: 'mc',
+    q: 'Choose the correct -ing form.',
+    text: 'study  →  ______',
+    choices: ['studing', 'studying', 'studiing', 'studyying'],
+    a: 1,
+    hint: 'The letter y at the end does not change for -ing.',
+    why: 'กริยาที่ลงท้ายด้วย `y` ให้เก็บ y ไว้แล้วเติม -ing ได้เลย\nstudy + ing = `studying`\n(กฎเปลี่ยน y เป็น i ใช้กับ -ed ไม่ใช่ -ing)',
+    model: '*The girls* [were] {studying} for a test.'
+  },
+  {
+    id: 123, cat: 'sent', type: 'mc',
+    q: 'Which sentence is correct?',
+    text: '',
+    choices: [
+      'They was dance.',
+      'They were dance.',
+      'They were dancing.',
+      'They dancing were.'
+    ],
+    a: 2,
+    hint: 'Two checks: they → was or were? And does the verb have -ing?',
+    why: '`They` ใช้ `were` และกริยาต้องเป็น V-ing\ndance → ตัด e เติม -ing = `dancing`\nลำดับคำคือ Subject + were + V-ing',
+    model: '*They* [were] {dancing}.'
+  },
+  {
+    id: 124, cat: 'err', type: 'mc',
+    q: 'Find the mistake and choose the correct sentence.',
+    text: 'I was eat a sandwich.',
+    choices: [
+      'I were eating a sandwich.',
+      'I was eating a sandwich.',
+      'I was ate a sandwich.',
+      'I eating a sandwich.'
+    ],
+    a: 1,
+    hint: 'was is correct here. Look at the main verb instead.',
+    why: 'ส่วนที่ผิดคือกริยา `eat` เพราะหลัง was/were ต้องเป็น V-ing เสมอ\neat + ing = `eating`\nประโยคที่ถูกคือ I was eating a sandwich.',
+    model: '*I* [was] {eating} a sandwich.'
+  },
+  {
+    id: 125, cat: 'ctx', type: 'mc',
+    q: 'Look at the park. What was Ben doing?',
+    scene: {
+      title: 'At the park, 4 p.m. yesterday',
+      people: [
+        { name: 'Ben', act: 'ride' },
+        { name: 'Mali', act: 'run' },
+        { name: 'Nok', act: 'football' },
+        { name: 'Fah', act: 'draw' }
+      ]
+    },
+    text: 'Ben ___.',
+    choices: [
+      'was running',
+      'was riding his bike',
+      'were riding his bike',
+      'was played football'
+    ],
+    a: 1,
+    hint: 'Find Ben in the picture first, then check was or were.',
+    why: 'ในภาพ Ben กำลังขี่จักรยาน\nBen = `he` เอกพจน์ จึงใช้ `was`\nride → ตัด e เติม -ing = `riding`',
+    model: '*Ben* [was] {riding} his bike.'
+  }
+];
+/* ============================================================
+   QUIZ 2 — What Was Happening?  (25 questions, Medium)
+   Past Continuous used inside real situations, pictures and stories.
+   ============================================================ */
+const QUIZ2 = [
+  {
+    id: 201, cat: 'ctx', type: 'mc',
+    q: 'Choose the correct answer.',
+    text: 'At 8 p.m. yesterday, Tom ___ TV.',
+    choices: ['watched', 'watches', 'was watching', 'watching'],
+    a: 2,
+    hint: 'The time tells you the exact moment in the past. Was the action still happening then?',
+    why: 'คำว่า at 8 p.m. yesterday บอกช่วงเวลาหนึ่งในอดีต\nตอนนั้น Tom กำลังดูทีวีอยู่ จึงใช้ Past Continuous\nTom = `he` → ใช้ `was` + `watching`',
+    model: '*Tom* [was] {watching} TV at 8 p.m. yesterday.'
+  },
+  {
+    id: 202, cat: 'ww', type: 'mc',
+    q: 'Choose the correct word.',
+    text: 'At seven o’clock this morning, my parents ___ having breakfast.',
+    choices: ['was', 'were', 'are', 'is'],
+    a: 1,
+    hint: 'My parents = two people.',
+    why: '`My parents` = พ่อและแม่ = สองคน แทนด้วย `they`\nประธานพหูพจน์ใช้ `were`',
+    model: '*My parents* [were] {having} breakfast.'
+  },
+  {
+    id: 203, cat: 'ctx', type: 'mc',
+    q: 'Look at the living room. What was Anna doing?',
+    scene: {
+      title: 'The Lee family, Sunday evening',
+      people: [
+        { name: 'Dad', act: 'tv' },
+        { name: 'Mum', act: 'read' },
+        { name: 'Anna', act: 'draw' },
+        { name: 'Tom', act: 'toy' }
+      ]
+    },
+    text: 'Anna ___.',
+    choices: [
+      'was reading',
+      'was drawing',
+      'were drawing',
+      'drawing'
+    ],
+    a: 1,
+    hint: 'Anna is one girl. Which helping verb goes with she?',
+    why: 'ในภาพ Anna กำลังวาดรูป\nAnna = `she` จึงใช้ `was`\ndraw + ing = `drawing`\nข้อ C ผิดเพราะ she ไม่ใช้ were',
+    model: '*Anna* [was] {drawing}.'
+  },
+  {
+    id: 204, cat: 'ing', type: 'type',
+    q: 'Write the -ing form of the verb.',
+    text: 'cook  →  ______',
+    ans: ['cooking'],
+    hint: 'Nothing to change here — just add the ending.',
+    why: '`cook` เป็นกริยาธรรมดา ไม่ลงท้ายด้วย e และไม่ต้องเบิ้ลตัวสะกด\ncook + ing = `cooking`',
+    model: '*Mum* [was] {cooking} dinner.'
+  },
+  {
+    id: 205, cat: 'ww', type: 'mc',
+    q: 'Choose the correct word.',
+    text: 'Yesterday at noon, the boys ___ eating their lunch.',
+    choices: ['was', 'is', 'were', 'are'],
+    a: 2,
+    hint: 'The boys — with an s. How many?',
+    why: '`The boys` มี s = หลายคน = `they` จึงใช้ `were`\nและ yesterday บอกว่าเป็นอดีต จึงไม่ใช้ are',
+    model: '*The boys* [were] {eating} their lunch.'
+  },
+  {
+    id: 206, cat: 'ctx', type: 'mc',
+    q: 'Complete the conversation.',
+    dialog: [
+      ['Nan', 'I called you at nine last night, but you didn’t answer.'],
+      ['Kit', 'Sorry! I ___ a shower.']
+    ],
+    text: '',
+    choices: ['took', 'was taking', 'am taking', 'were taking'],
+    a: 1,
+    hint: 'Kit was in the middle of the shower when the phone rang.',
+    why: 'ตอนที่โทรมา Kit กำลังอาบน้ำอยู่ (เหตุการณ์ยังดำเนินอยู่)\nจึงใช้ Past Continuous\nKit = `I` ในประโยคนี้ → `was` + `taking`',
+    model: '*I* [was] {taking} a shower.'
+  },
+  {
+    id: 207, cat: 'err', type: 'mc',
+    q: 'Find the mistake and choose the correct sentence.',
+    text: 'The students was listening to the teacher.',
+    choices: [
+      'The students was listen to the teacher.',
+      'The students were listening to the teacher.',
+      'The students is listening to the teacher.',
+      'The students were listen to the teacher.'
+    ],
+    a: 1,
+    hint: 'Count the students.',
+    why: '`The students` มี s = หลายคน จึงต้องใช้ `were` ไม่ใช่ was\nกริยายังคงเป็น `listening` เหมือนเดิม',
+    model: '*The students* [were] {listening} to the teacher.'
+  },
+  {
+    id: 208, cat: 'ctx', type: 'mc',
+    q: 'Read the story, then answer the question.',
+    story: 'Last Saturday morning the Chan family was very busy. Mum was cleaning the kitchen and Dad was washing the car. Ploy was doing her homework in her bedroom, and her little brother was sleeping.',
+    text: 'What was Dad doing?',
+    choices: [
+      'He was cleaning the kitchen.',
+      'He was sleeping.',
+      'He was washing the car.',
+      'He was doing his homework.'
+    ],
+    a: 2,
+    hint: 'Find the word Dad in the story and read what comes after it.',
+    why: 'ในเรื่องบอกว่า Dad was washing the car\nDad = `he` จึงใช้ `was` + `washing`',
+    model: '*Dad* [was] {washing} the car.'
+  },
+  {
+    id: 209, cat: 'ing', type: 'type',
+    q: 'Write the -ing form of the verb.',
+    text: 'ride  →  ______',
+    ans: ['riding'],
+    hint: 'Silent -e at the end? Drop it.',
+    why: '`ride` ลงท้ายด้วย e → ตัด e ทิ้งแล้วเติม -ing\nride → rid + ing = `riding`',
+    model: '*Ben* [was] {riding} his bike.'
+  },
+  {
+    id: 210, cat: 'ww', type: 'mc',
+    q: 'Choose the correct word.',
+    text: 'While I was doing my homework, my brother ___ playing video games.',
+    choices: ['were', 'was', 'are', 'did'],
+    a: 1,
+    hint: 'My brother = he.',
+    why: '`My brother` = คนเดียว = `he` จึงใช้ `was`\nสองเหตุการณ์นี้เกิดขึ้นพร้อมกัน จึงใช้ Past Continuous ทั้งคู่',
+    model: '*My brother* [was] {playing} video games.'
+  },
+  {
+    id: 211, cat: 'ctx', type: 'mc',
+    q: 'Look at the beach. Who was swimming?',
+    scene: {
+      title: 'At the beach, last weekend',
+      people: [
+        { name: 'Fah', act: 'swim' },
+        { name: 'Nai', act: 'football' },
+        { name: 'June', act: 'read' },
+        { name: 'Ton', act: 'eat' }
+      ]
+    },
+    text: '',
+    choices: ['Nai was swimming.', 'June was swimming.', 'Fah was swimming.', 'Ton was swimming.'],
+    a: 2,
+    hint: 'Look for the person in the water.',
+    why: 'ในภาพ Fah คือคนที่อยู่ในน้ำ\nFah = `she` เอกพจน์ → `was` + `swimming`\n(swim ต้องเบิ้ล m ก่อนเติม -ing)',
+    model: '*Fah* [was] {swimming}.'
+  },
+  {
+    id: 212, cat: 'sent', type: 'build',
+    q: 'Put the words in the correct order.',
+    tokens: ['was', 'Mum', 'dinner', 'cooking', '.'],
+    ans: 'Mum was cooking dinner.',
+    hint: 'Person → was/were → -ing verb → the thing.',
+    why: 'โครงสร้างคือ Subject + was/were + V-ing + กรรม\n`Mum` + `was` + `cooking` + dinner',
+    model: '*Mum* [was] {cooking} dinner.'
+  },
+  {
+    id: 213, cat: 'when', type: 'mc',
+    q: 'Choose the correct answer.',
+    text: 'When the bell rang, the children ___ in the classroom.',
+    choices: ['talk', 'talked', 'were talking', 'was talking'],
+    a: 2,
+    hint: 'The bell was the short event. The talking started before it.',
+    why: 'เสียงกริ่ง (rang) เป็นเหตุการณ์สั้นที่แทรกเข้ามา\nส่วนการคุยกันเป็นเหตุการณ์ที่กำลังเกิดขึ้นอยู่ จึงใช้ Past Continuous\n`The children` = พหูพจน์ → `were` + `talking`',
+    model: 'When the bell rang, *the children* [were] {talking}.'
+  },
+  {
+    id: 214, cat: 'sent', type: 'mc',
+    q: 'Choose the correct pair.',
+    text: 'It was six in the morning. The sun ___ and the birds ___.',
+    choices: [
+      'was shining / was singing',
+      'was shining / were singing',
+      'were shining / were singing',
+      'shining / singing'
+    ],
+    a: 1,
+    hint: 'The sun is one. The birds are many.',
+    why: '`The sun` เป็นเอกพจน์ → `was shining`\n`The birds` เป็นพหูพจน์ → `were singing`\nประธานแต่ละตัวเลือก was/were ของตัวเอง',
+    model: '*The sun* [was] {shining} and *the birds* [were] {singing}.'
+  },
+  {
+    id: 215, cat: 'ing', type: 'mc',
+    q: 'Choose the correct -ing form.',
+    text: 'clean  →  ______',
+    choices: ['cleanning', 'cleaning', 'clening', 'cleanin'],
+    a: 1,
+    hint: 'Two vowels together (ea) — no doubling needed.',
+    why: '`clean` มีสระสองตัวติดกัน (ea) จึงไม่ต้องเบิ้ล n\nclean + ing = `cleaning`',
+    model: '*She* [was] {cleaning} her room.'
+  },
+  {
+    id: 216, cat: 'ww', type: 'mc',
+    q: 'Choose the correct word.',
+    text: 'Where ___ you going at five o’clock?',
+    choices: ['was', 'were', 'are', 'did'],
+    a: 1,
+    hint: 'In questions, was/were comes before the subject — but the rule is the same.',
+    why: 'ประธานคือ `you` จึงใช้ `were` เสมอ\nในประโยคคำถาม เราสลับมาไว้หน้า you → Where were you going?',
+    model: 'Where [were] *you* {going} at five o’clock?'
+  },
+  {
+    id: 217, cat: 'sent', type: 'mc',
+    q: 'Complete the sentence.',
+    text: 'My grandma ___ tea in the kitchen.',
+    choices: ['were drinking', 'was drink', 'was drinking', 'drinking'],
+    a: 2,
+    hint: 'You need BOTH parts: the helping verb and the -ing verb.',
+    why: '`My grandma` = `she` → ใช้ `was`\nและกริยาหลักต้องเติม -ing → `drinking`\nขาดคำใดคำหนึ่งประโยคจะไม่สมบูรณ์',
+    model: '*My grandma* [was] {drinking} tea in the kitchen.'
+  },
+  {
+    id: 218, cat: 'ctx', type: 'mc',
+    q: 'Look at the classroom. What were Ploy and Mint doing?',
+    scene: {
+      title: 'Art class, Monday afternoon',
+      people: [
+        { name: 'Ploy', act: 'draw' },
+        { name: 'Mint', act: 'draw' },
+        { name: 'Krit', act: 'write' },
+        { name: 'Miss Ann', act: 'talk' }
+      ]
+    },
+    text: 'Ploy and Mint ___.',
+    choices: [
+      'was drawing',
+      'were drawing',
+      'were draw',
+      'were writing'
+    ],
+    a: 1,
+    hint: 'Two names joined by and — that makes a plural subject.',
+    why: '`Ploy and Mint` = สองคน = `they` จึงใช้ `were`\nในภาพทั้งคู่กำลังวาดรูป → `drawing`',
+    model: '*Ploy and Mint* [were] {drawing}.'
+  },
+  {
+    id: 219, cat: 'err', type: 'mc',
+    q: 'Find the mistake and choose the correct sentence.',
+    text: 'At nine o’clock last night, I am watching a movie.',
+    choices: [
+      'At nine o’clock last night, I were watching a movie.',
+      'At nine o’clock last night, I was watching a movie.',
+      'At nine o’clock last night, I am watched a movie.',
+      'At nine o’clock last night, I watching a movie.'
+    ],
+    a: 1,
+    hint: 'last night = past. Which helping verb is the past form of am?',
+    why: '`last night` เป็นอดีต จึงใช้ `am` ไม่ได้\nรูปอดีตของ am คือ `was`\nและ `I` ใช้ was เสมอ (ไม่ใช่ were)',
+    model: '*I* [was] {watching} a movie.'
+  },
+  {
+    id: 220, cat: 'sent', type: 'mc',
+    q: 'Complete the sentence.',
+    text: 'It was raining, so we stayed at home. My sister ___ a film while I ___ a book.',
+    choices: [
+      'was watching / was reading',
+      'were watching / was reading',
+      'was watching / were reading',
+      'watched / read'
+    ],
+    a: 0,
+    hint: 'My sister = she. I = I. Both take the same helping verb here.',
+    why: '`My sister` = she → `was watching`\n`I` → `was reading`\nทั้งสองเหตุการณ์กำลังเกิดขึ้นพร้อมกัน จึงใช้ Past Continuous ทั้งคู่',
+    model: '*My sister* [was] {watching} a film while *I* [was] {reading} a book.'
+  },
+  {
+    id: 221, cat: 'when', type: 'mc',
+    q: 'Choose the correct answer.',
+    text: 'When Mum came home, Jack ___ his homework.',
+    choices: ['did', 'was doing', 'were doing', 'does'],
+    a: 1,
+    hint: 'Jack started before Mum arrived, and he was still busy.',
+    why: 'แม่กลับบ้าน = เหตุการณ์สั้น (came)\nแจ็คกำลังทำการบ้านอยู่ก่อนแล้ว จึงใช้ Past Continuous\nJack = `he` → `was` + `doing`',
+    model: 'When Mum came home, *Jack* [was] {doing} his homework.'
+  },
+  {
+    id: 222, cat: 'ing', type: 'type',
+    q: 'Write the -ing form of the verb.',
+    text: 'walk  →  ______',
+    ans: ['walking'],
+    hint: 'Just add the ending — nothing changes.',
+    why: '`walk` เติม -ing ได้เลย ไม่ต้องเบิ้ล k\nwalk + ing = `walking`',
+    model: '*We* [were] {walking} to school.'
+  },
+  {
+    id: 223, cat: 'sent', type: 'build',
+    q: 'Put the words in the correct order.',
+    tokens: ['in the garden', 'were', 'The children', 'playing', '.'],
+    ans: 'The children were playing in the garden.',
+    hint: 'The place goes at the end of the sentence.',
+    why: 'เรียงเป็น Subject + were + V-ing + สถานที่\n`The children` (พหูพจน์) + `were` + `playing` + in the garden',
+    model: '*The children* [were] {playing} in the garden.'
+  },
+  {
+    id: 224, cat: 'err', type: 'mc',
+    q: 'Find the mistake and choose the correct sentence.',
+    text: 'We was waiting for the school bus.',
+    choices: [
+      'We were waiting for the school bus.',
+      'We was waited for the school bus.',
+      'We were wait for the school bus.',
+      'We is waiting for the school bus.'
+    ],
+    a: 0,
+    hint: 'We is a plural subject.',
+    why: '`We` เป็นประธานพหูพจน์ จึงใช้ `were` ไม่ใช่ was\nกลุ่มที่ใช้ were คือ You / We / They',
+    model: '*We* [were] {waiting} for the school bus.'
+  },
+  {
+    id: 225, cat: 'ctx', type: 'mc',
+    q: 'Look at the picture. Which sentence is TRUE?',
+    scene: {
+      title: 'In the kitchen, Sunday morning',
+      people: [
+        { name: 'Grandma', act: 'cook' },
+        { name: 'Pim', act: 'wash' },
+        { name: 'Aof', act: 'drink' },
+        { name: 'Max', act: 'sleep' }
+      ]
+    },
+    text: '',
+    choices: [
+      'Pim was cooking breakfast.',
+      'Grandma was washing the dishes.',
+      'Pim was washing the dishes.',
+      'Max were sleeping.'
+    ],
+    a: 2,
+    hint: 'Check the person AND the action in each sentence.',
+    why: 'ในภาพ Pim กำลังล้างจาน จึงเป็น Pim was washing the dishes.\nข้อ D ผิดเพราะ Max = `it/he` เอกพจน์ ต้องใช้ `was` ไม่ใช่ were',
+    model: '*Pim* [was] {washing} the dishes.'
+  }
+];
+/* ============================================================
+   QUIZ 3 — Past Continuous Challenge  (25 questions, Medium → Challenging)
+   Focus: interrupted past (when + Simple Past), error correction,
+   short passages and dialogue completion.
+   ============================================================ */
+const QUIZ3 = [
+  {
+    id: 301, cat: 'when', type: 'mc',
+    q: 'Choose the correct answer.',
+    text: 'When the phone rang, Ella ___ a book.',
+    choices: ['reads', 'read', 'was reading', 'were reading'],
+    a: 2,
+    hint: 'Ella did not start reading because of the phone. She was already reading.',
+    why: 'การอ่านหนังสือเป็นเหตุการณ์ที่กำลังเกิดขึ้นอยู่\nโทรศัพท์ดังเป็นเหตุการณ์สั้นที่เข้ามาแทรก\nElla = `she` → `was` + `reading`',
+    model: 'When the phone rang, *Ella* [was] {reading} a book.'
+  },
+  {
+    id: 302, cat: 'err', type: 'mc',
+    q: 'Find the mistake and choose the correct sentence.',
+    text: 'When the teacher arrived, the students was talking.',
+    choices: [
+      'When the teacher arrived, the students were talking.',
+      'When the teacher arrived, the students was talk.',
+      'When the teacher arrived, the students are talking.',
+      'When the teacher arrived, the students were talk.'
+    ],
+    a: 0,
+    hint: 'The short event (arrived) is fine. Check the long action.',
+    why: '`The students` เป็นพหูพจน์ จึงต้องใช้ `were talking`\nส่วน arrived เป็น Past Simple ถูกต้องแล้ว เพราะเป็นเหตุการณ์สั้น',
+    model: 'When the teacher arrived, *the students* [were] {talking}.'
+  },
+  {
+    id: 303, cat: 'when', type: 'mc',
+    q: 'Choose the correct answer.',
+    text: 'When it started raining, we ___ football.',
+    choices: ['played', 'were playing', 'was playing', 'play'],
+    a: 1,
+    hint: 'We started the game before the rain came.',
+    why: 'เรากำลังเล่นฟุตบอลอยู่ก่อน แล้วฝนจึงเริ่มตก\nเหตุการณ์ที่กำลังดำเนินอยู่ใช้ Past Continuous\n`We` → `were` + `playing`',
+    model: 'When it started raining, *we* [were] {playing} football.'
+  },
+  {
+    id: 304, cat: 'sent', type: 'build',
+    q: 'Put the words in the correct order.',
+    tokens: ['Ella', 'was reading', 'when', 'the phone', 'rang', '.'],
+    ans: 'Ella was reading when the phone rang.',
+    hint: 'Start with the long action. Then when. Then the short event.',
+    why: 'เขียนได้สองแบบ แต่แบบนี้เริ่มด้วยเหตุการณ์ที่กำลังเกิดขึ้น\nSubject + was/were + V-ing + `when` + Past Simple\nElla was reading + when + the phone rang',
+    model: '*Ella* [was] {reading} when the phone rang.'
+  },
+  {
+    id: 305, cat: 'ww', type: 'mc',
+    q: 'Choose the correct word.',
+    text: 'While the baby ___ sleeping, her parents were watching TV.',
+    choices: ['were', 'was', 'are', 'is'],
+    a: 1,
+    hint: 'The baby is one person, even though the sentence also talks about parents.',
+    why: '`The baby` = เอกพจน์ → ใช้ `was`\nส่วน her parents เป็นพหูพจน์ จึงใช้ were ในอีกครึ่งประโยค\nแต่ละประธานเลือก was/were ของตัวเอง',
+    model: 'While *the baby* [was] {sleeping}, *her parents* [were] {watching} TV.'
+  },
+  {
+    id: 306, cat: 'when', type: 'mc',
+    q: 'Read the sentence. Which action started FIRST?',
+    text: 'When I arrived at the party, everyone was dancing.',
+    choices: [
+      'I arrived at the party.',
+      'Everyone was dancing.',
+      'Both started at the same time.',
+      'The sentence does not say.'
+    ],
+    a: 1,
+    hint: 'Past Continuous shows the action that was already happening.',
+    why: 'เหตุการณ์ที่ใช้ Past Continuous (`was dancing`) เริ่มก่อนเสมอ\nส่วน `arrived` เป็นเหตุการณ์สั้นที่เข้ามาทีหลัง\nแปลว่า ตอนที่ฉันมาถึง ทุกคนเต้นกันอยู่แล้ว',
+    model: 'When I arrived, *everyone* [was] {dancing}.'
+  },
+  {
+    id: 307, cat: 'ing', type: 'type',
+    q: 'Write the -ing form of the verb.',
+    text: 'stop  →  ______',
+    ans: ['stopping'],
+    hint: 'One vowel (o) between consonants — short verb rule.',
+    why: '`stop` เป็นคำพยางค์เดียว มีสระตัวเดียว และลงท้ายด้วยพยัญชนะตัวเดียว\nจึงเบิ้ล p ก่อนเติม -ing → `stopping`',
+    model: '*The bus* [was] {stopping} at the corner.'
+  },
+  {
+    id: 308, cat: 'err', type: 'mc',
+    q: 'This sentence has TWO mistakes. Choose the correct sentence.',
+    text: 'Jack were riding his bike when he fall down.',
+    choices: [
+      'Jack were riding his bike when he fell down.',
+      'Jack was riding his bike when he fall down.',
+      'Jack was riding his bike when he fell down.',
+      'Jack was rode his bike when he fell down.'
+    ],
+    a: 2,
+    hint: 'Mistake 1 is the helping verb. Mistake 2 is the short event after when.',
+    why: 'ผิดที่ 1: Jack = `he` ต้องใช้ `was` ไม่ใช่ were\nผิดที่ 2: หลัง when เป็นเหตุการณ์สั้นในอดีต ต้องใช้ Past Simple → `fell`',
+    model: '*Jack* [was] {riding} his bike when he fell down.'
+  },
+  {
+    id: 309, cat: 'when', type: 'mc',
+    q: 'Choose the correct answer.',
+    text: 'The children were sleeping when the alarm ___ .',
+    choices: ['rings', 'was ringing', 'rang', 'ringing'],
+    a: 2,
+    hint: 'The alarm is the quick event that interrupts.',
+    why: 'เหตุการณ์สั้นที่แทรกเข้ามาใช้ Past Simple\nrings → รูปอดีตคือ `rang`\nส่วนการนอนที่ดำเนินอยู่ใช้ were sleeping',
+    model: '*The children* [were] {sleeping} when the alarm rang.'
+  },
+  {
+    id: 310, cat: 'ctx', type: 'mc',
+    q: 'Complete the conversation.',
+    dialog: [
+      ['Ann', 'I saw you at the mall yesterday. What were you doing there?'],
+      ['Ben', '___']
+    ],
+    text: '',
+    choices: [
+      'I buy a present for my mum.',
+      'I was buying a present for my mum.',
+      'I were buying a present for my mum.',
+      'I am buying a present for my mum.'
+    ],
+    a: 1,
+    hint: 'Answer a What were you doing? question in the same tense.',
+    why: 'คำถาม What were you doing? ต้องตอบด้วย Past Continuous\n`I` ใช้ `was` เสมอ → I was buying...',
+    model: '*I* [was] {buying} a present for my mum.'
+  },
+  {
+    id: 311, cat: 'sent', type: 'mc',
+    q: 'Which sentence is correct?',
+    text: '',
+    choices: [
+      'While we were wait for the bus, it started to rain.',
+      'While we was waiting for the bus, it started to rain.',
+      'While we were waiting for the bus, it started to rain.',
+      'While we were waiting for the bus, it starting to rain.'
+    ],
+    a: 2,
+    hint: 'Check three things: were, the -ing verb, and the short event.',
+    why: '`We` → `were` และกริยาหลักต้องเป็น `waiting`\nส่วน it started เป็นเหตุการณ์สั้น ใช้ Past Simple ถูกต้องแล้ว',
+    model: 'While *we* [were] {waiting} for the bus, it started to rain.'
+  },
+  {
+    id: 312, cat: 'ing', type: 'mc',
+    q: 'Choose the correct -ing form.',
+    text: 'put  →  ______',
+    choices: ['puting', 'putting', 'puuting', 'putings'],
+    a: 1,
+    hint: 'Short verb, one vowel, one final consonant.',
+    why: '`put` = พยัญชนะ + สระ + พยัญชนะ จึงเบิ้ล t\nput + t + ing = `putting`',
+    model: '*He* [was] {putting} his books in his bag.'
+  },
+  {
+    id: 313, cat: 'when', type: 'mc',
+    q: 'Choose the correct answer.',
+    text: 'When Dad ___ home, I was practising the piano.',
+    choices: ['comes', 'was coming', 'came', 'coming'],
+    a: 2,
+    hint: 'Which part of the sentence is the short event?',
+    why: 'หลัง `when` เป็นเหตุการณ์สั้น ใช้ Past Simple → `came`\nส่วนการเล่นเปียโนกำลังดำเนินอยู่ ใช้ was practising',
+    model: 'When Dad came home, *I* [was] {practising} the piano.'
+  },
+  {
+    id: 314, cat: 'err', type: 'mc',
+    q: 'This sentence has TWO mistakes. Choose the correct sentence.',
+    text: 'My friends was climbing the hill when it start to rain.',
+    choices: [
+      'My friends were climbing the hill when it started to rain.',
+      'My friends was climbing the hill when it started to rain.',
+      'My friends were climb the hill when it started to rain.',
+      'My friends were climbing the hill when it starts to rain.'
+    ],
+    a: 0,
+    hint: 'Count the friends, then look at the verb after when.',
+    why: 'ผิดที่ 1: `My friends` เป็นพหูพจน์ ต้องใช้ `were`\nผิดที่ 2: เหตุการณ์สั้นหลัง when ต้องเป็นอดีต → `started`',
+    model: '*My friends* [were] {climbing} the hill when it started to rain.'
+  },
+  {
+    id: 315, cat: 'ww', type: 'mc',
+    q: 'Choose the correct word to start the question.',
+    text: '___ the children swimming when you arrived?',
+    choices: ['Was', 'Were', 'Did', 'Are'],
+    a: 1,
+    hint: 'The children is plural — and the question is about the past.',
+    why: '`The children` เป็นพหูพจน์ จึงขึ้นต้นคำถามด้วย `Were`\nโครงสร้างคำถามคือ Were + ประธาน + V-ing ?',
+    model: '[Were] *the children* {swimming} when you arrived?'
+  },
+  {
+    id: 316, cat: 'sent', type: 'build',
+    q: 'Put the words in the correct order.',
+    tokens: ['We', 'were watching', 'a film', 'when', 'the lights', 'went out', '.'],
+    ans: 'We were watching a film when the lights went out.',
+    hint: 'Long action first, then when, then the sudden event.',
+    why: 'เหตุการณ์ที่กำลังดำเนินอยู่มาก่อน แล้วตามด้วย when + เหตุการณ์สั้น\nWe were watching a film + when + the lights went out',
+    model: '*We* [were] {watching} a film when the lights went out.'
+  },
+  {
+    id: 317, cat: 'ctx', type: 'mc',
+    q: 'Read the passage, then answer the question.',
+    story: 'It was a cloudy afternoon at Green Hill School. The Grade 5 students were having a picnic near the lake. Nok and Mint were feeding the ducks, Ton was taking photos, and Miss Ploy was setting the table. Then, at two o’clock, the rain suddenly started and everyone ran to the bus.',
+    text: 'What was Ton doing when the rain started?',
+    choices: [
+      'He was feeding the ducks.',
+      'He was setting the table.',
+      'He was taking photos.',
+      'He was running to the bus.'
+    ],
+    a: 2,
+    hint: 'Find Ton in the passage. What was he busy with before the rain?',
+    why: 'ในเรื่องบอกว่า Ton was taking photos ก่อนที่ฝนจะตก\nTon = `he` → `was` + `taking`\nส่วน ran to the bus เกิดขึ้นหลังฝนตกแล้ว',
+    model: '*Ton* [was] {taking} photos when the rain started.'
+  },
+  {
+    id: 318, cat: 'err', type: 'mc',
+    q: 'Find the mistake and choose the correct sentence.',
+    text: 'She was write a letter when I called her.',
+    choices: [
+      'She were writing a letter when I called her.',
+      'She was writing a letter when I called her.',
+      'She was wrote a letter when I called her.',
+      'She writing a letter when I called her.'
+    ],
+    a: 1,
+    hint: 'was is correct. The main verb is not.',
+    why: 'หลัง `was` ต้องเป็น V-ing เสมอ\nwrite ลงท้ายด้วย e → ตัด e เติม -ing = `writing`',
+    model: '*She* [was] {writing} a letter when I called her.'
+  },
+  {
+    id: 319, cat: 'when', type: 'mc',
+    q: 'Choose the correct word to join the two actions.',
+    text: 'The dog was barking ___ the postman came to the door.',
+    choices: ['when', 'what', 'because', 'so'],
+    a: 0,
+    hint: 'We need the word that introduces the short event.',
+    why: 'ใช้ `when` เพื่อเชื่อมเหตุการณ์สั้นเข้ากับเหตุการณ์ที่กำลังเกิดขึ้น\nโครงสร้าง: was/were + V-ing + when + Past Simple',
+    model: '*The dog* [was] {barking} when the postman came.'
+  },
+  {
+    id: 320, cat: 'sent', type: 'mc',
+    q: 'Complete the sentence.',
+    text: 'While my mother was cooking, my father ___ the table.',
+    choices: ['were setting', 'was set', 'was setting', 'setting'],
+    a: 2,
+    hint: 'Both actions were happening at the same time. My father = he.',
+    why: 'สองเหตุการณ์เกิดขึ้นพร้อมกัน จึงใช้ Past Continuous ทั้งคู่\n`My father` = he → `was` + `setting`\n(set เป็นคำสั้น จึงเบิ้ล t)',
+    model: 'While my mother was cooking, *my father* [was] {setting} the table.'
+  },
+  {
+    id: 321, cat: 'ing', type: 'type',
+    q: 'Write the -ing form of the verb.',
+    text: 'get  →  ______',
+    ans: ['getting'],
+    hint: 'Short verb: g-e-t. Double the last letter.',
+    why: '`get` มีสระตัวเดียว (e) และลงท้ายด้วยพยัญชนะตัวเดียว\nจึงเบิ้ล t → `getting`',
+    model: '*I* [was] {getting} ready for school.'
+  },
+  {
+    id: 322, cat: 'when', type: 'mc',
+    q: 'Choose the correct answer.',
+    text: 'I ___ my teeth when the lights suddenly went out.',
+    choices: ['brushed', 'brush', 'was brushing', 'were brushing'],
+    a: 2,
+    hint: 'The lights going out is the sudden event.',
+    why: 'การแปรงฟันกำลังดำเนินอยู่ก่อนแล้ว จึงใช้ Past Continuous\n`I` → `was` + `brushing`\nส่วน went out เป็นเหตุการณ์สั้น',
+    model: '*I* [was] {brushing} my teeth when the lights went out.'
+  },
+  {
+    id: 323, cat: 'err', type: 'mc',
+    q: 'Find the mistake and choose the correct sentence.',
+    text: 'When the bus arrived, we were stand at the bus stop.',
+    choices: [
+      'When the bus arrived, we was standing at the bus stop.',
+      'When the bus arrived, we were standing at the bus stop.',
+      'When the bus arrived, we were stood at the bus stop.',
+      'When the bus arrived, we stand at the bus stop.'
+    ],
+    a: 1,
+    hint: 'were is correct. The main verb needs something.',
+    why: 'หลัง `were` กริยาต้องเติม -ing เสมอ\nstand + ing = `standing`\n`We` ใช้ were ถูกต้องแล้ว',
+    model: 'When the bus arrived, *we* [were] {standing} at the bus stop.'
+  },
+  {
+    id: 324, cat: 'ww', type: 'mc',
+    q: 'Choose the correct word to start the question.',
+    text: '___ your brother playing outside when it started to rain?',
+    choices: ['Were', 'Was', 'Did', 'Is'],
+    a: 1,
+    hint: 'Your brother = he. One person.',
+    why: '`Your brother` เป็นเอกพจน์ = `he` จึงขึ้นต้นด้วย `Was`\nโครงสร้างคำถาม: Was + ประธานเอกพจน์ + V-ing ?',
+    model: '[Was] *your brother* {playing} outside?'
+  },
+  {
+    id: 325, cat: 'when', type: 'mc',
+    q: 'Which sentence is correct?',
+    text: '',
+    choices: [
+      'When the film started, we were eat popcorn.',
+      'When the film started, we was eating popcorn.',
+      'When the film start, we were eating popcorn.',
+      'When the film started, we were eating popcorn.'
+    ],
+    a: 3,
+    hint: 'Check the short event after when, then check we + the -ing verb.',
+    why: 'หลัง when ใช้ Past Simple → `started`\nประธาน `we` ใช้ `were` และกริยาต้องเป็น `eating`\nรวมกันเป็นประโยคที่ถูกต้อง',
+    model: 'When the film started, *we* [were] {eating} popcorn.'
+  }
+];
+/* ============================================================
+   GUIDED PRACTICE (10 questions — not scored) + LESSON ACTIVITY DATA
+   ============================================================ */
+const PRACTICE = [
+  {
+    id: 1, cat: 'ww', type: 'mc',
+    q: 'Choose the correct word.',
+    text: 'He ___ singing a happy song.',
+    choices: ['were', 'was', 'are', 'is'],
+    a: 1,
+    hint: 'He belongs to the was family.',
+    why: '`He` เป็นเอกพจน์ จึงใช้ `was`\nจำกลุ่มนี้ไว้: I / He / She / It → was',
+    model: '*He* [was] {singing} a happy song.'
+  },
+  {
+    id: 2, cat: 'ing', type: 'type',
+    q: 'Write the -ing form of the verb.',
+    text: 'play  →  ______',
+    ans: ['playing'],
+    hint: 'This one is easy — nothing changes.',
+    why: '`play` เติม -ing ได้เลย → `playing`',
+    model: '*They* [were] {playing} outside.'
+  },
+  {
+    id: 3, cat: 'ww', type: 'mc',
+    q: 'Choose the correct word.',
+    text: 'We ___ singing a happy song.',
+    choices: ['was', 'were', 'is', 'am'],
+    a: 1,
+    hint: 'We means you and me — more than one.',
+    why: '`We` เป็นพหูพจน์ จึงใช้ `were`\nจำกลุ่มนี้: You / We / They → were',
+    model: '*We* [were] {singing} a happy song.'
+  },
+  {
+    id: 4, cat: 'ing', type: 'mc',
+    q: 'Choose the correct -ing form.',
+    text: 'climb  →  ______',
+    choices: ['climbing', 'climbbing', 'climing', 'climbeing'],
+    a: 0,
+    hint: 'Add the ending — do not change any letters.',
+    why: '`climb` เติม -ing ได้เลย → `climbing`\n(ตัว b ไม่ต้องเบิ้ล)',
+    model: '*I* [was] {climbing} up a tree.'
+  },
+  {
+    id: 5, cat: 'sent', type: 'mc',
+    q: 'Complete the sentence.',
+    text: 'Gina ___ next to me.',
+    choices: ['were climbing', 'was climb', 'was climbing', 'climbing'],
+    a: 2,
+    hint: 'You need was/were AND the -ing verb together.',
+    why: '`Gina` = she → `was`\nและกริยาหลักต้องเป็น `climbing`',
+    model: '*Gina* [was] {climbing} next to me.'
+  },
+  {
+    id: 6, cat: 'sent', type: 'build',
+    q: 'Put the words in the correct order.',
+    tokens: ['was', 'The baby', 'sleeping', '.'],
+    ans: 'The baby was sleeping.',
+    hint: 'Who first, then was, then the -ing verb.',
+    why: 'Subject + was + V-ing\n`The baby` + `was` + `sleeping`',
+    model: '*The baby* [was] {sleeping}.'
+  },
+  {
+    id: 7, cat: 'ctx', type: 'mc',
+    q: 'Look at the picture. What was Tarn doing?',
+    scene: {
+      title: 'After school, 4 p.m.',
+      people: [
+        { name: 'Tarn', act: 'read' },
+        { name: 'Bas', act: 'football' },
+        { name: 'Kae', act: 'sing' }
+      ]
+    },
+    text: 'Tarn ___.',
+    choices: ['was singing', 'was reading', 'were reading', 'read'],
+    a: 1,
+    hint: 'Find Tarn first, then choose was or were.',
+    why: 'ในภาพ Tarn กำลังอ่านหนังสือ\nTarn = `she` → `was` + `reading`',
+    model: '*Tarn* [was] {reading}.'
+  },
+  {
+    id: 8, cat: 'when', type: 'mc',
+    q: 'Choose the correct answer.',
+    text: 'When the phone rang, Ella ___.',
+    choices: ['reads', 'was reading', 'were reading', 'reading'],
+    a: 1,
+    hint: 'Ella started reading before the phone rang.',
+    why: 'เอลล่ากำลังอ่านหนังสืออยู่ แล้วโทรศัพท์ก็ดังขึ้น\nเหตุการณ์ที่กำลังเกิดขึ้นใช้ Past Continuous → `was reading`',
+    model: 'When the phone rang, *Ella* [was] {reading}.'
+  },
+  {
+    id: 9, cat: 'err', type: 'mc',
+    q: 'Find the mistake and choose the correct sentence.',
+    text: 'They was running to school.',
+    choices: [
+      'They were running to school.',
+      'They was run to school.',
+      'They were run to school.',
+      'They is running to school.'
+    ],
+    a: 0,
+    hint: 'They is plural.',
+    why: '`They` เป็นพหูพจน์ จึงใช้ `were` ไม่ใช่ was',
+    model: '*They* [were] {running} to school.'
+  },
+  {
+    id: 10, cat: 'sent', type: 'build',
+    q: 'Put the words in the correct order.',
+    tokens: ['a happy song', 'were', 'We', 'singing', '.'],
+    ans: 'We were singing a happy song.',
+    hint: 'Subject → were → -ing verb → what they sang.',
+    why: 'Subject + were + V-ing + กรรม\n`We` + `were` + `singing` + a happy song',
+    model: '*We* [were] {singing} a happy song.'
+  }
+];
+
+/* --- Lesson 1 activity: sort the subjects into WAS / WERE --- */
+const SORT_ITEMS = [
+  { w: 'I', g: 'was' },
+  { w: 'He', g: 'was' },
+  { w: 'She', g: 'was' },
+  { w: 'It', g: 'was' },
+  { w: 'The cat', g: 'was' },
+  { w: 'You', g: 'were' },
+  { w: 'We', g: 'were' },
+  { w: 'They', g: 'were' },
+  { w: 'My friends', g: 'were' }
+];
+
+/* --- Lesson 2 activity: type the -ing form --- */
+const ING_DRILL = [
+  { v: 'read', a: 'reading', rule: 'add' },
+  { v: 'run', a: 'running', rule: 'double' },
+  { v: 'dance', a: 'dancing', rule: 'drop' },
+  { v: 'wash', a: 'washing', rule: 'add' },
+  { v: 'write', a: 'writing', rule: 'drop' },
+  { v: 'sit', a: 'sitting', rule: 'double' }
+];
+
+/* --- Lesson 3 activity: tap the blocks to build a sentence --- */
+const BUILD_DRILL = [
+  { tokens: ['was', 'Gina', 'singing', '.'], ans: 'Gina was singing.' },
+  { tokens: ['climbing', 'I', 'was', 'up a tree', '.'], ans: 'I was climbing up a tree.' },
+  { tokens: ['a happy song', 'We', 'singing', 'were', '.'], ans: 'We were singing a happy song.' }
+];
+
+/* --- Lesson 5 activity: read the scene, answer about each person --- */
+const SCENE_DRILL = {
+  title: 'The Sombat family, 7 p.m. yesterday',
+  people: [
+    { name: 'Dad', act: 'tv' },
+    { name: 'Mum', act: 'read' },
+    { name: 'Anna', act: 'draw' },
+    { name: 'Tom', act: 'toy' }
+  ],
+  questions: [
+    {
+      q: 'What was Anna doing?',
+      choices: ['She was reading.', 'She was drawing.', 'She were drawing.', 'She drawing.'],
+      a: 1,
+      why: 'Anna = `she` จึงใช้ `was`\ndraw + ing = `drawing`\nดังนั้น She was drawing.',
+      model: '*Anna* [was] {drawing}.'
+    },
+    {
+      q: 'What was Mum doing?',
+      choices: ['She was watching TV.', 'She was reading.', 'She were reading.', 'She was read.'],
+      a: 1,
+      why: 'ในภาพ Mum กำลังอ่านหนังสือ\n`She` + `was` + `reading`',
+      model: '*Mum* [was] {reading}.'
+    },
+    {
+      q: 'What were Dad and Tom doing?',
+      choices: [
+        'Dad was watching TV and Tom was playing with a toy.',
+        'Dad was drawing and Tom was reading.',
+        'Dad were watching TV and Tom were playing.',
+        'Dad watching TV and Tom playing.'
+      ],
+      a: 0,
+      why: 'ทั้งคู่เป็นเอกพจน์ จึงใช้ `was` ทั้งสองคน\nDad → watching TV, Tom → playing with a toy',
+      model: '*Dad* [was] {watching} TV and *Tom* [was] {playing}.'
+    }
+  ]
+};
+
+</script>
+<script>
+/* =========================================================================
+   Past Continuous Adventure — application
+   Part 1: helpers, illustrations, state, navigation, home, lesson
+   ========================================================================= */
+(function () {
+'use strict';
+
+/* ---------- tiny helpers ---------- */
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+const esc = s => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+const KEYS = ['A', 'B', 'C', 'D'];
+
+/* highlight markup:  *subject*  [was/were]  {v-ing}  */
+function hl(s) {
+  return esc(s)
+    .replace(/\*([^*]+)\*/g, '<span class="s-sub">$1</span>')
+    .replace(/\[([^\]]+)\]/g, '<span class="s-aux">$1</span>')
+    .replace(/\{([^}]+)\}/g, '<span class="s-ing">$1</span>');
+}
+/* Thai explanation: `word` becomes a highlighted English keyword */
+function th(s) {
+  return esc(s)
+    .replace(/`([^`]+)`/g, '<span class="kw">$1</span>')
+    .split('\n').join('<br>');
+}
+function gap(s) {
+  return esc(s).replace(/___+/g, '<span class="gap">______</span>');
+}
+function joinTokens(list) {
+  return list.join(' ').replace(/\s+([.,?!])/g, '$1').replace(/\s+/g, ' ').trim();
+}
+function toast(msg) {
+  const t = $('#toast');
+  t.textContent = msg; t.classList.add('on');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => t.classList.remove('on'), 1900);
+}
+function confirmBox(title, body, okLabel, cb) {
+  const m = $('#modal');
+  $('#modal-t').textContent = title;
+  $('#modal-b').textContent = body;
+  $('#modal-ok').textContent = okLabel;
+  m.classList.add('on');
+  const close = () => { m.classList.remove('on'); $('#modal-ok').onclick = null; $('#modal-no').onclick = null; };
+  $('#modal-ok').onclick = () => { close(); cb(); };
+  $('#modal-no').onclick = close;
+}
+
+/* ---------- illustration system (hand-built SVG, no stock art) ---------- */
+const SKIN = '#FFD8B4', INK = '#2E2A3B';
+const PALETTE = ['#FF4F94', '#38C8F0', '#57C33C', '#FFD22E', '#8A5CD6', '#F58A1F'];
+
+const ACTS = {
+  read:   { label: 'reading',            prop: '<rect x="46" y="44" width="28" height="18" rx="2" fill="#fff"/><path d="M60 44v18"/>' },
+  sing:   { label: 'singing',            prop: '<circle cx="62" cy="50" r="5" fill="#F0BE2C"/><path d="M67 50V28l10 4"/>' },
+  climb:  { label: 'climbing',           prop: '<path d="M76 80V46" stroke-width="5"/><circle cx="76" cy="32" r="15" fill="#CDE8D2"/>' },
+  wash:   { label: 'washing the dishes', prop: '<rect x="50" y="54" width="34" height="18" rx="3" fill="#E6EFF9"/><circle cx="60" cy="46" r="7" fill="#fff"/><circle cx="74" cy="46" r="7" fill="#fff"/>' },
+  run:    { label: 'running',            prop: '<path d="M6 42h13M2 52h11M8 62h13"/>' },
+  football:{label: 'playing football',   prop: '<circle cx="70" cy="70" r="11" fill="#fff"/><path d="M70 61l6 5-2 8h-8l-2-8z" fill="#2E2A3B" stroke="none"/>' },
+  tv:     { label: 'watching TV',        prop: '<rect x="52" y="36" width="36" height="25" rx="3" fill="#E6EFF9"/><path d="M62 61l-4 9M78 61l4 9"/>' },
+  draw:   { label: 'drawing',            prop: '<rect x="46" y="42" width="26" height="21" rx="2" fill="#fff"/><path d="M80 36l7 7-15 14-8 1 1-8z" fill="#F0BE2C"/>' },
+  cook:   { label: 'cooking',            prop: '<rect x="50" y="54" width="32" height="15" rx="3" fill="#E9DFCC"/><path d="M58 50c0-5 4-3 4-9M72 50c0-5 4-3 4-9"/>' },
+  sleep:  { label: 'sleeping',           prop: '<text x="58" y="36" font-size="16" font-weight="800" fill="#2A76BC" stroke="none">Z</text><text x="74" y="24" font-size="11" font-weight="800" fill="#2A76BC" stroke="none">z</text>' },
+  swim:   { label: 'swimming',           prop: '<path d="M2 72c6-6 12 6 18 0s12 6 18 0 12 6 18 0 12 6 18 0" stroke="#2A76BC"/><path d="M2 82c6-6 12 6 18 0s12 6 18 0 12 6 18 0 12 6 18 0" stroke="#2A76BC"/>' },
+  dance:  { label: 'dancing',            prop: '<circle cx="70" cy="50" r="5" fill="#DE7A2C"/><path d="M75 50V30l9 3"/>' },
+  write:  { label: 'writing',            prop: '<rect x="48" y="44" width="30" height="22" rx="2" fill="#fff"/><path d="M54 52h18M54 59h12"/>' },
+  eat:    { label: 'eating',             prop: '<circle cx="66" cy="58" r="12" fill="#fff"/><path d="M86 46v22M82 46v9"/>' },
+  drink:  { label: 'drinking',           prop: '<path d="M56 44h18l-3 22H59z" fill="#FCEEDE"/><path d="M61 44l4-9"/>' },
+  ride:   { label: 'riding a bike',      prop: '<circle cx="56" cy="70" r="11"/><circle cx="82" cy="70" r="11"/><path d="M56 70l11-15h10l5 15M67 55h10"/>' },
+  toy:    { label: 'playing with a toy', prop: '<rect x="54" y="54" width="28" height="15" rx="3" fill="#F0BE2C"/><circle cx="61" cy="72" r="4" fill="#2E2A3B" stroke="none"/><circle cx="76" cy="72" r="4" fill="#2E2A3B" stroke="none"/>' },
+  talk:   { label: 'talking',            prop: '<path d="M50 28h36v20H68l-9 8v-8h-9z" fill="#E2F1F1"/><path d="M58 38h20"/>' },
+  study:  { label: 'studying',           prop: '<rect x="50" y="57" width="32" height="8" rx="2" fill="#CDE8D2"/><rect x="53" y="47" width="26" height="8" rx="2" fill="#FCEEDE"/>' }
+};
+
+function person(act, color) {
+  const a = ACTS[act] || ACTS.read;
+  return '<g stroke="' + INK + '" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" font-family="Nunito, sans-serif">' +
+    a.prop +
+    '<circle cx="36" cy="26" r="11" fill="' + SKIN + '"/>' +
+    '<path d="M25 25a11 11 0 0 1 22 0Z" fill="#3A2E28" stroke="none"/>' +
+    '<circle cx="32" cy="28" r="1.5" fill="' + INK + '" stroke="none"/>' +
+    '<circle cx="40" cy="28" r="1.5" fill="' + INK + '" stroke="none"/>' +
+    '<path d="M33 32.5c1.6 1.6 4.4 1.6 6 0" stroke-width="1.6"/>' +
+    '<rect x="27" y="37" width="18" height="27" rx="9" fill="' + color + '"/>' +
+    '<path d="M28 45l-9 10M44 45l9 10"/>' +
+    '<path d="M32 64v14M40 64v14"/>' +
+    '</g>';
+}
+function figureSVG(act, i) {
+  return '<svg viewBox="0 0 96 92" role="img" aria-label="' + (ACTS[act] || ACTS.read).label + '">' +
+    person(act, PALETTE[i % PALETTE.length]) + '</svg>';
+}
+function sceneBox(scene, labels) {
+  return '<div class="scene-box">' +
+    (scene.title ? '<div class="scene-title">' + esc(scene.title) + '</div>' : '') +
+    '<div class="scene-grid">' +
+    scene.people.map((p, i) =>
+      '<div class="figure rise d' + Math.min(i + 1, 6) + '">' + figureSVG(p.act, i) +
+      '<div class="nm">' + esc(p.name) + '</div>' +
+      (labels === false ? '' : '<div class="ac">' + esc((ACTS[p.act] || ACTS.read).label) + '</div>') + '</div>').join('') +
+    '</div></div>';
+}
+function heroArt() {
+  const kids = [['read', 0], ['sing', 1], ['football', 2], ['ride', 3], ['climb', 4]];
+  const groups = kids.map((k, i) =>
+    '<g transform="translate(' + (6 + i * 124) + ',74) scale(1.4)">' + person(k[0], PALETTE[k[1]]) + '</g>').join('');
+  /* chunky pixel clouds + sun, grass and dirt band */
+  const px = (x, y, w, h, f) => '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + f + '"/>';
+  const cloud = x => px(x, 30, 60, 14, '#fff') + px(x + 12, 18, 36, 12, '#fff') + px(x - 10, 44, 80, 10, '#fff');
+  return '<svg viewBox="0 0 640 210" role="img" aria-label="Children doing different activities">' +
+    px(0, 0, 640, 210, '#8CE0FA') +
+    px(548, 22, 56, 56, '#FFD22E') + px(540, 30, 72, 40, '#FFD22E') + px(556, 14, 40, 72, '#FFD22E') +
+    cloud(70) + cloud(300) +
+    px(0, 178, 640, 18, '#57C33C') + px(0, 196, 640, 8, '#3E9E28') + px(0, 204, 640, 6, '#9A5F2E') +
+    px(24, 170, 8, 8, '#3E9E28') + px(120, 170, 8, 8, '#3E9E28') + px(430, 170, 8, 8, '#3E9E28') + px(596, 170, 8, 8, '#3E9E28') +
+    groups +
+    '</svg>';
+}
+
+/* ---------- state ---------- */
+const KEY = 'pastContinuousAdventure:v1';
+const LESSON_STEPS = 6;
+const QUIZZES = {
+  '1': { title: 'Quiz 1 — Grammar Builder', short: 'Quiz 1', data: QUIZ1, level: 'Easy → Medium' },
+  '2': { title: 'Quiz 2 — What Was Happening?', short: 'Quiz 2', data: QUIZ2, level: 'Medium' },
+  '3': { title: 'Quiz 3 — Past Continuous Challenge', short: 'Quiz 3', data: QUIZ3, level: 'Medium → Challenging' }
+};
+const CAT_NAME = {
+  ww: 'Was / Were', ing: 'Verb + -ing', sent: 'Sentence structure',
+  err: 'Error spotting', ctx: 'Picture & context', when: 'When + Past Continuous'
+};
+
+const blank = () => ({
+  learn: { steps: [], step: 0 },
+  practice: { answers: {} },
+  quiz: { '1': { answers: {}, idx: 0 }, '2': { answers: {}, idx: 0 }, '3': { answers: {}, idx: 0 } },
+  badges: []
+});
+let S = blank();
+
+function load() {
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (!raw) return;
+    const d = JSON.parse(raw);
+    if (d && d.quiz) {
+      S = Object.assign(blank(), d);
+      S.learn = Object.assign({ steps: [], step: 0 }, d.learn);
+      S.practice = Object.assign({ answers: {} }, d.practice);
+      ['1', '2', '3'].forEach(k => { S.quiz[k] = Object.assign({ answers: {}, idx: 0 }, (d.quiz || {})[k]); });
+    }
+  } catch (e) { /* corrupted storage — start fresh */ }
+}
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* private mode */ }
+}
+const answered = k => Object.keys((k === 'p' ? S.practice : S.quiz[k]).answers).length;
+const quizDone = k => answered(k) >= QUIZZES[k].data.length;
+const quizScore = k => Object.values(S.quiz[k].answers).filter(a => a.ok).length;
+const lessonPct = () => Math.round(S.learn.steps.filter(Boolean).length / LESSON_STEPS * 100);
+
+/* ---------- navigation ---------- */
+const SCREENS = [
+  { id: 'home', label: 'Home' }, { id: 'learn', label: 'Learn' }, { id: 'practice', label: 'Practice' },
+  { id: 'q1', label: 'Quiz 1' }, { id: 'q2', label: 'Quiz 2' }, { id: 'q3', label: 'Quiz 3' },
+  { id: 'results', label: 'Results' }
+];
+let current = 'home';
+
+function renderNav() {
+  $('#nav').innerHTML = SCREENS.map(s => {
+    let dot = '';
+    if (s.id === 'learn' && lessonPct() === 100) dot = '<span class="dot"></span>';
+    if (/^q[123]$/.test(s.id) && quizDone(s.id[1])) dot = '<span class="dot"></span>';
+    return '<button data-go="' + s.id + '" class="' + (current === s.id ? 'on' : '') + '">' + s.label + dot + '</button>';
+  }).join('');
+}
+function go(id) {
+  current = id;
+  $$('.screen').forEach(el => el.classList.remove('on'));
+  const el = $('#s-' + id);
+  el.classList.add('on');
+  renderNav();
+  if (id === 'home') renderHome();
+  if (id === 'learn') renderLearn();
+  if (id === 'practice') window.__PCA.renderRunner('p');
+  if (/^q[123]$/.test(id)) window.__PCA.renderRunner(id[1]);
+  if (id === 'results') window.__PCA.renderResults();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-go]');
+  if (b) { go(b.getAttribute('data-go')); }
+});
+
+/* ---------- mastery panel ---------- */
+function masteryPanel() {
+  const rows = [
+    ['Learning', lessonPct(), ''],
+    ['Practice', Math.round(answered('p') / PRACTICE.length * 100), 't'],
+    ['Quiz 1', Math.round(answered('1') / 25 * 100), 'b'],
+    ['Quiz 2', Math.round(answered('2') / 25 * 100), 'o'],
+    ['Quiz 3', Math.round(answered('3') / 25 * 100), 't']
+  ];
+  const avg = Math.round(rows.reduce((a, r) => a + r[1], 0) / rows.length);
+  const hearts = Array.from({ length: 5 }, (_, i) =>
+    '<i class="px-heart' + (avg >= (i + 1) * 20 ? '' : ' off') + '"></i>').join('');
+  return '<div class="mastery"><h4>PAST CONTINUOUS MASTERY <span class="hearts">' + hearts + '</span></h4>' +
+    rows.map(r => '<div class="mrow"><span class="lbl">' + r[0] + '</span>' +
+      '<span class="bar ' + r[2] + '"><i data-w="' + r[1] + '"></i></span>' +
+      '<span class="val">' + (r[1] === 0 ? '—' : r[1] + '%') + '</span></div>').join('') +
+    '</div>';
+}
+function fillBars(root) {
+  requestAnimationFrame(() => {
+    $$('[data-w]', root).forEach(i => { i.style.width = i.getAttribute('data-w') + '%'; });
+  });
+}
+
+/* ---------- HOME ---------- */
+function renderHome() {
+  const started = lessonPct() > 0 || answered('p') > 0 || ['1', '2', '3'].some(k => answered(k) > 0);
+  const steps = [
+    ['Learn', lessonPct() === 100], ['Try It', answered('p') >= PRACTICE.length],
+    ['Quiz 1', quizDone('1')], ['Quiz 2', quizDone('2')], ['Quiz 3', quizDone('3')],
+    ['Mastery', ['1', '2', '3'].every(quizDone)]
+  ];
+  const el = $('#s-home');
+  el.innerHTML =
+    '<div class="hero">' +
+      '<div class="rise">' +
+        '<div class="kicker">Grade 4–6 · English Grammar</div>' +
+        '<h1>Past Continuous <span class="u">Adventure</span></h1>' +
+        '<div class="sub">What was happening?</div>' +
+        '<p>Learn how to talk about actions that were happening in the past — then practise with 75 questions, hints and Thai explanations.</p>' +
+        '<div class="btn-row hero-actions">' +
+          '<button class="btn btn-primary" data-go="learn">Start Learning →</button>' +
+          (started ? '<button class="btn" id="continue-btn">Continue My Progress</button>' : '') +
+        '</div>' +
+        '<div class="facts">' +
+          '<div class="fact"><b>4 lessons</b><span>with drag, type and tap activities</span></div>' +
+          '<div class="fact"><b>75 questions</b><span>across three graded quizzes</span></div>' +
+          '<div class="fact"><b>คำอธิบายไทย</b><span>ทุกข้อ พร้อมไฮไลต์โครงสร้าง</span></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="scene-art rise d2"><span class="tape">Yesterday at 4 p.m.</span>' + heroArt() + '</div>' +
+    '</div>' +
+    masteryPanel() +
+    '<div class="roadmap rise d3"><h3>Your journey</h3><div class="steps">' +
+      steps.map((s, i) => '<div class="step' + (s[1] ? ' done' : '') + '"><div class="n">' + (s[1] ? '✓' : i + 1) + '</div><div class="t">' + s[0] + '</div></div>').join('') +
+    '</div></div>';
+  fillBars(el);
+  const c = $('#continue-btn');
+  if (c) c.onclick = () => {
+    if (lessonPct() < 100) return go('learn');
+    if (answered('p') < PRACTICE.length) return go('practice');
+    const next = ['1', '2', '3'].find(k => !quizDone(k));
+    go(next ? 'q' + next : 'results');
+  };
+}
+
+/* ---------- LESSON ---------- */
+const STEP_TITLES = ['What is it?', 'Was or Were?', 'Making -ing forms', 'Building sentences', 'When + Past Continuous', 'Picture practice'];
+
+function markStep(i) {
+  if (!S.learn.steps[i]) { S.learn.steps[i] = true; save(); renderNav(); }
+}
+function renderLearn() {
+  const i = Math.min(S.learn.step || 0, LESSON_STEPS - 1);
+  const el = $('#s-learn');
+  el.innerHTML =
+    '<div class="lesson-head"><div>' +
+      '<div class="kicker">Lesson ' + (i + 1) + ' of 6</div>' +
+      '<h2>' + STEP_TITLES[i] + '</h2></div>' +
+      '<div class="muted" style="font-weight:700">Learning progress: ' + lessonPct() + '%</div>' +
+    '</div>' +
+    '<div class="lsteps">' + STEP_TITLES.map((t, n) =>
+      '<button class="lstep' + (n === i ? ' on' : '') + (S.learn.steps[n] ? ' ok' : '') + '" data-step="' + n + '">' +
+      (S.learn.steps[n] ? '✓ ' : '') + (n + 1) + '. ' + t + '</button>').join('') +
+    '</div>' +
+    '<div id="lesson-body"></div>' +
+    '<div class="btn-row" style="margin-top:26px">' +
+      (i > 0 ? '<button class="btn" data-step="' + (i - 1) + '">← Back</button>' : '') +
+      (i < LESSON_STEPS - 1
+        ? '<button class="btn btn-primary" data-step="' + (i + 1) + '">Next lesson →</button>'
+        : '<button class="btn btn-primary" data-go="practice">Go to practice →</button>') +
+    '</div>';
+  $$('[data-step]', el).forEach(b => b.onclick = () => {
+    S.learn.step = +b.getAttribute('data-step'); save(); renderLearn();
+  });
+  [lesson1, lesson2, lesson3, lesson4, lesson5, lesson6][i]($('#lesson-body'), i);
+}
+
+/* Lesson 1 — what is Past Continuous */
+function lesson1(box, idx) {
+  box.innerHTML =
+    '<div class="editorial">' +
+      '<div class="rise">' +
+        '<p class="lead">We use the <b>Past Continuous</b> to talk about an action that <b>was happening</b> at a particular time in the past.</p>' +
+        '<div class="note th blue"><h4>ภาษาไทย</h4>Past Continuous ใช้พูดถึงเหตุการณ์ที่ <b>“กำลังเกิดขึ้นอยู่”</b> ในช่วงเวลาหนึ่งในอดีต เช่น เมื่อวานตอนสี่โมงเย็น เรา <b>กำลังทำอะไรอยู่</b></div>' +
+        '<div class="formula" style="margin-top:18px">' +
+          '<div class="box">Subject</div><div class="op">+</div>' +
+          '<div class="box"><span class="s-aux">was / were</span></div>' +
+          '<div class="box" style="grid-column:1/-1">verb + <span class="s-ing">-ing</span></div>' +
+        '</div>' +
+        '<div class="subj-split">' +
+          '<div class="subj-col was"><h4>was</h4><ul><li>I</li><li>He</li><li>She</li><li>It</li></ul></div>' +
+          '<div class="subj-col were"><h4>were</h4><ul><li>You</li><li>We</li><li>They</li></ul></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="card pad rise d2">' +
+        '<div class="kicker">Examples</div><h3 style="margin:6px 0 14px">Watch the sentences build</h3>' +
+        '<ul class="ex-list" id="ex-list"></ul>' +
+        '<div class="legend"><span><i style="background:var(--ink-3)"></i>subject</span><span><i style="background:var(--blue)"></i>was / were</span><span><i style="background:var(--green)"></i>verb + -ing</span></div>' +
+        '<button class="btn btn-sm" id="replay" style="margin-top:14px">Play again</button>' +
+      '</div>' +
+    '</div>';
+  const lines = [
+    '*I* [was] {reading}.',
+    '*She* [was] {singing}.',
+    '*They* [were] {playing} football.',
+    '*We* [were] {studying} English.',
+    '*Gina* [was] {climbing} next to me.'
+  ];
+  const list = $('#ex-list', box);
+  function play() {
+    list.innerHTML = '';
+    lines.forEach((t, n) => setTimeout(() => {
+      const li = document.createElement('li');
+      li.className = 'pop'; li.innerHTML = hl(t); list.appendChild(li);
+      if (n === lines.length - 1) markStep(idx);
+    }, n * 420));
+  }
+  play();
+  $('#replay', box).onclick = play;
+}
+
+/* Lesson 2 — was / were sorting activity */
+function lesson2(box, idx) {
+  box.innerHTML =
+    '<div class="card pad rise">' +
+      '<div class="kicker">Activity</div>' +
+      '<h3 style="margin:6px 0 4px">Put each subject in the right column</h3>' +
+      '<p class="muted">Tap a word, then tap <b>was</b> or <b>were</b>. แตะคำ แล้วเลือกช่องให้ถูกต้อง</p>' +
+      '<div class="sort-pool" id="pool"></div>' +
+      '<div class="subj-split">' +
+        '<div class="drop was" data-g="was"><h4>was</h4><div class="slot" id="slot-was"></div></div>' +
+        '<div class="drop were" data-g="were"><h4>were</h4><div class="slot" id="slot-were"></div></div>' +
+      '</div>' +
+      '<div id="sort-msg" style="margin-top:16px"></div>' +
+    '</div>' +
+    '<div class="editorial" style="margin-top:22px">' +
+      '<div class="note blue"><h4>Remember</h4><b>I</b> is special. We say <b>I was</b>, never <i>I were</i>.</div>' +
+      '<div class="note orange"><h4>เคล็ดลับ</h4>ถ้าประธานมีมากกว่าหนึ่งคน (หรือเป็น you) ให้ใช้ <b>were</b> เสมอ เช่น My friends, Tom and I, The students</div>' +
+    '</div>';
+  const pool = $('#pool', box), msg = $('#sort-msg', box);
+  let sel = null, left = SORT_ITEMS.length;
+  SORT_ITEMS.forEach((it, n) => {
+    const b = document.createElement('button');
+    b.className = 'chip'; b.textContent = it.w; b.dataset.g = it.g; b.dataset.n = n;
+    b.onclick = () => {
+      $$('.chip', pool).forEach(c => c.classList.remove('sel'));
+      b.classList.add('sel'); sel = b;
+    };
+    pool.appendChild(b);
+  });
+  $$('.drop', box).forEach(d => d.onclick = () => {
+    if (!sel) { toast('Tap a word first'); return; }
+    if (sel.dataset.g === d.getAttribute('data-g')) {
+      sel.classList.remove('sel'); sel.disabled = true;
+      $('.slot', d).appendChild(sel); sel = null; left--;
+      if (!left) {
+        msg.innerHTML = '<div class="note green"><h4>Great!</h4>You know when to use <b>was</b> and <b>were</b>. เก่งมาก!</div>';
+        markStep(idx);
+      }
+    } else {
+      sel.classList.add('shake');
+      setTimeout(() => sel && sel.classList.remove('shake'), 420);
+      msg.innerHTML = '<div class="note orange"><h4>Not that one</h4>' +
+        (sel.dataset.g === 'was'
+          ? 'This subject is <b>singular</b> (one person or thing). Try the other column.'
+          : 'This subject means <b>more than one</b> — or it is <b>you</b>. Try the other column.') + '</div>';
+    }
+  });
+}
+
+/* Lesson 3 — -ing forms */
+function lesson3(box, idx) {
+  box.innerHTML =
+    '<div class="rules rise">' +
+      '<div class="rule-card"><div class="tag">Rule 1</div><h4>Most verbs</h4><p class="muted" style="margin:0">Just add <b>-ing</b>.</p>' +
+        '<code>play → playing</code> <code>read → reading</code> <code>wash → washing</code></div>' +
+      '<div class="rule-card"><div class="tag">Rule 2</div><h4>Verbs ending in <i>e</i></h4><p class="muted" style="margin:0">Take the <b>e</b> away, then add <b>-ing</b>.</p>' +
+        '<code>dance → dancing</code> <code>write → writing</code> <code>ride → riding</code></div>' +
+      '<div class="rule-card"><div class="tag">Rule 3</div><h4>Short verbs</h4><p class="muted" style="margin:0">Double the last letter.</p>' +
+        '<code>run → running</code> <code>sit → sitting</code> <code>swim → swimming</code></div>' +
+    '</div>' +
+    '<div class="card pad rise d2" style="margin-top:22px">' +
+      '<div class="kicker">Activity</div><h3 style="margin:6px 0 4px">Change the verb into the -ing form</h3>' +
+      '<p class="muted">Type your answer and press Enter. พิมพ์คำตอบแล้วกด Enter</p>' +
+      '<div class="drill" id="drill"></div>' +
+      '<div id="drill-msg" style="margin-top:16px"></div>' +
+    '</div>';
+  const wrap = $('#drill', box), msg = $('#drill-msg', box);
+  let done = 0;
+  ING_DRILL.forEach(d => {
+    const item = document.createElement('div');
+    item.className = 'drill-item';
+    item.innerHTML = '<div class="v">' + d.v + '  →</div><input type="text" autocomplete="off" spellcheck="false" placeholder="' + d.v + ' + ing" aria-label="-ing form of ' + d.v + '"><div class="fb"></div>';
+    const input = $('input', item), fb = $('.fb', item);
+    const check = () => {
+      const v = input.value.trim().toLowerCase();
+      if (!v) return;
+      if (v === d.a) {
+        if (!item.classList.contains('ok')) done++;
+        item.classList.remove('no'); item.classList.add('ok');
+        fb.textContent = 'Correct!'; input.disabled = true;
+        if (done === ING_DRILL.length) {
+          msg.innerHTML = '<div class="note green"><h4>All correct!</h4>You can build -ing forms. เยี่ยมมาก!</div>';
+          markStep(idx);
+        }
+      } else {
+        item.classList.add('no');
+        setTimeout(() => item.classList.remove('no'), 450);
+        fb.textContent = d.rule === 'drop' ? 'Hint: this verb ends in e.'
+          : d.rule === 'double' ? 'Hint: it is a short verb — double the last letter.'
+          : 'Hint: nothing changes, just add -ing.';
+      }
+    };
+    input.onkeydown = e => { if (e.key === 'Enter') check(); };
+    input.onblur = () => { if (input.value.trim()) check(); };
+    wrap.appendChild(item);
+  });
+}
+
+/* Lesson 4 — building sentences */
+function lesson4(box, idx) {
+  box.innerHTML =
+    '<div class="editorial">' +
+      '<div class="card pad rise">' +
+        '<div class="kicker">Step by step</div><h3 style="margin:6px 0 14px">One sentence, four steps</h3>' +
+        '<div class="grow-demo" id="grow">' +
+          '<div>' + hl('*She*') + '</div>' +
+          '<div>' + hl('*She* [was]') + '</div>' +
+          '<div>' + hl('*She* [was] {reading}') + '</div>' +
+          '<div>' + hl('*She* [was] {reading} a book.') + '</div>' +
+        '</div>' +
+        '<button class="btn btn-sm" id="grow-again" style="margin-top:14px">Play again</button>' +
+      '</div>' +
+      '<div class="card pad rise d2">' +
+        '<div class="kicker">Activity</div><h3 style="margin:6px 0 4px">Tap the blocks in the right order</h3>' +
+        '<p class="muted">Tap a block to add it. Tap it again to take it back.</p>' +
+        '<div class="build-strip" id="strip"><span class="strip-hint">Your sentence appears here…</span></div>' +
+        '<div class="tokrow" id="bank" style="margin-top:12px"></div>' +
+        '<div id="build-msg" style="margin-top:14px"></div>' +
+      '</div>' +
+    '</div>';
+  const rows = $$('#grow > div', box);
+  function grow() {
+    rows.forEach(r => r.classList.remove('on'));
+    rows.forEach((r, n) => setTimeout(() => r.classList.add('on'), 350 + n * 500));
+  }
+  grow();
+  $('#grow-again', box).onclick = grow;
+
+  const strip = $('#strip', box), bank = $('#bank', box), msg = $('#build-msg', box);
+  let n = 0;
+  function loadDrill() {
+    const d = BUILD_DRILL[n];
+    strip.className = 'build-strip';
+    strip.innerHTML = '<span class="strip-hint">Your sentence appears here…</span>';
+    bank.innerHTML = '';
+    msg.innerHTML = '';
+    const order = d.tokens.map((t, i) => i).sort(() => Math.random() - 0.5);
+    order.forEach(i => {
+      const b = document.createElement('button');
+      b.className = 'tok'; b.textContent = d.tokens[i];
+      b.onclick = () => {
+        if (b.parentElement === bank) {
+          if ($('.strip-hint', strip)) strip.innerHTML = '';
+          b.classList.add('placed'); strip.appendChild(b);
+        } else {
+          b.classList.remove('placed'); bank.appendChild(b);
+          if (!strip.children.length) strip.innerHTML = '<span class="strip-hint">Your sentence appears here…</span>';
+        }
+        checkBuild(d);
+      };
+      bank.appendChild(b);
+    });
+  }
+  function checkBuild(d) {
+    if (bank.children.length) return;
+    const got = joinTokens($$('.tok', strip).map(t => t.textContent));
+    if (got === d.ans) {
+      strip.classList.add('done');
+      msg.innerHTML = '<div class="note green"><h4>Perfect!</h4>' + hl(d.ans.replace(/^(\w+[\w ]*?) (was|were) (\w+)/, '*$1* [$2] {$3}')) + '</div>' +
+        (n < BUILD_DRILL.length - 1 ? '<button class="btn btn-sm btn-primary" id="next-build" style="margin-top:12px">Next sentence →</button>' : '');
+      const nb = $('#next-build', box);
+      if (nb) nb.onclick = () => { n++; loadDrill(); };
+      else markStep(idx);
+      if (n === BUILD_DRILL.length - 1) markStep(idx);
+    } else {
+      strip.classList.add('no');
+      setTimeout(() => strip.classList.remove('no'), 450);
+      msg.innerHTML = '<div class="note orange"><h4>Almost!</h4>Remember the order: <b>Subject → was/were → verb + -ing</b></div>';
+    }
+  }
+  loadDrill();
+}
+
+/* Lesson 5 — when + Past Continuous */
+function lesson5(box, idx) {
+  box.innerHTML =
+    '<p class="lead rise" style="max-width:62ch">Sometimes one action <b>was already happening</b> — and then a shorter event suddenly happened.</p>' +
+    '<div class="timeline rise d2"><div class="tl">' +
+      '<div class="long">Ella was reading  (long action)</div>' +
+      '<div class="mark"><b>the phone rang</b><div class="pin"></div></div>' +
+      '<div class="axis"></div><span class="past">Past</span><span class="now">Now</span>' +
+    '</div></div>' +
+    '<div class="editorial" style="margin-top:22px">' +
+      '<div class="card pad rise d3">' +
+        '<div class="kicker">The pattern</div><h3 style="margin:6px 0 12px">' + hl('When the phone rang, *Ella* [was] {reading}.') + '</h3>' +
+        '<ul class="ex-list">' +
+          '<li>' + hl('When Mum came home, *Jack* [was] {doing} his homework.') + '</li>' +
+          '<li>' + hl('When the teacher arrived, *the students* [were] {talking}.') + '</li>' +
+          '<li>' + hl('When it started raining, *we* [were] {playing} football.') + '</li>' +
+        '</ul>' +
+      '</div>' +
+      '<div class="rise d4">' +
+        '<div class="note th orange"><h4>ภาษาไทย</h4>Ella กำลังอ่านหนังสืออยู่ แล้วโทรศัพท์ก็ดังขึ้น<br><b>was reading</b> = เหตุการณ์ที่กำลังเกิดขึ้นอยู่ (ยาว)<br><b>rang</b> = เหตุการณ์สั้นที่แทรกเข้ามา (ใช้ Past Simple)</div>' +
+        '<div class="note blue" style="margin-top:14px"><h4>Two ways to say it</h4>' +
+          hl('When the phone rang, *Ella* [was] {reading}.') + '<br>' +
+          hl('*Ella* [was] {reading} when the phone rang.') +
+          '<br><span class="muted">ความหมายเหมือนกัน สลับที่ได้</span></div>' +
+        '<button class="btn btn-primary" id="got-it" style="margin-top:16px">I understand →</button>' +
+      '</div>' +
+    '</div>';
+  $('#got-it', box).onclick = () => {
+    markStep(idx);
+    S.learn.step = idx + 1; save(); renderLearn();
+  };
+}
+
+/* Lesson 6 — picture practice */
+function lesson6(box, idx) {
+  box.innerHTML =
+    '<div class="editorial">' +
+      '<div class="rise">' + sceneBox(SCENE_DRILL) +
+        '<div class="note blue" style="margin-top:14px"><h4>Look carefully</h4>Find the person first, then decide <b>was</b> or <b>were</b>, then add <b>verb + -ing</b>.</div>' +
+      '</div>' +
+      '<div class="card pad rise d2"><div class="kicker">Answer the questions</div><div id="scene-qs" style="margin-top:10px"></div></div>' +
+    '</div>';
+  const host = $('#scene-qs', box);
+  let ok = 0;
+  SCENE_DRILL.questions.forEach((q, n) => {
+    const wrap = document.createElement('div');
+    wrap.style.marginBottom = '22px';
+    wrap.innerHTML = '<div class="qtext" style="font-size:1.1rem">' + esc(q.q) + '</div><div class="choices"></div><div class="fbhost"></div>';
+    const ch = $('.choices', wrap), fbh = $('.fbhost', wrap);
+    q.choices.forEach((c, i) => {
+      const b = document.createElement('button');
+      b.className = 'choice'; b.innerHTML = '<span class="k">' + KEYS[i] + '</span><span>' + esc(c) + '</span>';
+      b.onclick = () => {
+        $$('.choice', ch).forEach(x => { x.disabled = true; if (x !== b) x.classList.add('dim'); });
+        const good = i === q.a;
+        b.classList.add(good ? 'correct' : 'wrong');
+        if (!good) $$('.choice', ch)[q.a].classList.remove('dim'), $$('.choice', ch)[q.a].classList.add('correct');
+        fbh.innerHTML = '<div class="feedback ' + (good ? 'good' : 'bad') + '">' +
+          '<div class="fb-head"><span class="mark-i">' + (good ? '✓' : '✕') + '</span>' + (good ? 'Correct!' : 'Not quite.') + '</div>' +
+          '<div class="why"><div class="why-t">ทำไม</div>' + th(q.why) + '</div>' +
+          '<div class="model-sent">' + hl(q.model) + '</div></div>';
+        ok++;
+        if (ok === SCENE_DRILL.questions.length) markStep(idx);
+      };
+      ch.appendChild(b);
+    });
+    host.appendChild(wrap);
+  });
+}
+
+/* export to part 2 */
+window.__PCA = {
+  $, $$, esc, hl, th, gap, joinTokens, toast, confirmBox, KEYS,
+  sceneBox, figureSVG, masteryPanel, fillBars, renderNav, go,
+  QUIZZES, CAT_NAME, get S() { return S; }, set S(v) { S = v; }, save, load, blank,
+  answered, quizDone, quizScore, lessonPct, LESSON_STEPS
+};
+})();
+/* =========================================================================
+   Past Continuous Adventure — Part 2: quiz engine, results, review, badges
+   ========================================================================= */
+(function () {
+'use strict';
+const P = window.__PCA;
+const { $, $$, esc, hl, th, gap, joinTokens, toast, confirmBox, KEYS,
+        sceneBox, masteryPanel, fillBars, QUIZZES, CAT_NAME } = P;
+
+const view = {};                 // per quiz: 'run' | 'result' | 'review'
+const hintOpen = {};             // per question id
+
+const setOf = k => (k === 'p' ? PRACTICE : QUIZZES[k].data);
+const stOf = k => (k === 'p' ? P.S.practice : P.S.quiz[k]);
+const hostOf = k => (k === 'p' ? $('#s-practice') : $('#s-q' + k));
+const isDone = k => Object.keys(stOf(k).answers).length >= setOf(k).length;
+
+/* ---------------- runner ---------------- */
+function renderRunner(k) {
+  const host = hostOf(k);
+  if (k !== 'p') {
+    if (isDone(k) && !view[k]) view[k] = 'result';
+    if (view[k] === 'result') return renderQuizResult(k, host);
+    if (view[k] === 'review') return renderReview(k, host);
+  }
+  if (k === 'p' && isDone('p') && view.p === 'result') return renderPracticeDone(host);
+
+  const data = setOf(k), st = stOf(k);
+  if (st.idx == null || st.idx >= data.length) st.idx = 0;
+  const title = k === 'p' ? 'Guided Practice' : QUIZZES[k].title;
+  const level = k === 'p' ? 'Warm-up · not scored' : QUIZZES[k].level;
+
+  host.innerHTML =
+    '<div class="quiz-top"><div>' +
+      '<div class="kicker">' + esc(level) + '</div><h2>' + esc(title) + '</h2></div>' +
+      '<div class="qmeta" id="qmeta"></div>' +
+    '</div>' +
+    '<div class="qbar"><i id="qfill"></i></div>' +
+    '<div id="qhost"></div>' +
+    '<div class="navgrid" id="navgrid"></div>' +
+    '<div class="navlegend">' +
+      '<span><i style="border-color:var(--green);background:var(--green-soft)"></i>correct</span>' +
+      '<span><i style="border-color:var(--red);background:var(--red-soft)"></i>wrong</span>' +
+      '<span><i style="border-color:var(--line);background:#fff"></i>not answered</span>' +
+      '<span><i style="border-color:var(--ink);background:var(--ink)"></i>current</span>' +
+    '</div>' +
+    (k === 'p' ? '' : '<div style="margin-top:22px"><button class="btn btn-sm btn-ghost" id="restart">Restart this quiz</button></div>');
+
+  if (k !== 'p') $('#restart', host).onclick = () => confirmBox(
+    'Restart ' + QUIZZES[k].short + '?',
+    'All your answers in this quiz will be deleted and you will start again from question 1.',
+    'Yes, restart', () => { P.S.quiz[k] = { answers: {}, idx: 0 }; view[k] = 'run'; P.save(); P.renderNav(); renderRunner(k); }
+  );
+  paint(k);
+}
+
+function paint(k) {
+  const data = setOf(k), st = stOf(k), host = hostOf(k);
+  const i = st.idx, q = data[i], rec = st.answers[q.id];
+  const nAns = Object.keys(st.answers).length;
+  const score = Object.values(st.answers).filter(a => a.ok).length;
+
+  $('#qmeta', host).innerHTML =
+    '<span class="pill">Question ' + (i + 1) + ' of ' + data.length + '</span>' +
+    '<span class="pill score">Score so far: ' + score + '</span>';
+  $('#qfill', host).style.width = Math.round(nAns / data.length * 100) + '%';
+
+  /* --- question card --- */
+  let body = '';
+  if (q.scene) body += sceneBox(q.scene, false) + '<div style="height:16px"></div>';
+  if (q.story) body += '<div class="story">' + esc(q.story) + '</div>';
+  if (q.dialog) body += '<div class="dialog">' + q.dialog.map(d =>
+    '<div class="line"><span class="who">' + esc(d[0]) + '</span><span class="say">' + gap(d[1]) + '</span></div>').join('') + '</div>';
+  if (q.text) body += '<div class="qtext">' + gap(q.text) + '</div>';
+
+  let input = '';
+  if (q.type === 'mc') {
+    input = '<div class="choices" id="choices">' + q.choices.map((c, n) =>
+      '<button class="choice" data-i="' + n + '"><span class="k">' + KEYS[n] + '</span><span>' + esc(c) + '</span></button>').join('') + '</div>';
+  } else if (q.type === 'type') {
+    input = '<div class="typerow"><input id="typein" type="text" autocomplete="off" spellcheck="false" placeholder="Type the -ing form…" aria-label="your answer">' +
+      '<button class="btn btn-primary" id="checkbtn">Check answer</button></div>';
+  } else {
+    input = '<div class="answer-strip" id="strip"><span class="strip-hint">Tap the words below in the right order…</span></div>' +
+      '<div class="tokrow" id="bank"></div>' +
+      '<div class="btn-row" style="margin-top:14px"><button class="btn btn-primary" id="checkbtn" disabled>Check answer</button>' +
+      '<button class="btn btn-sm btn-ghost" id="clearbtn">Clear</button></div>';
+  }
+
+  $('#qhost', host).innerHTML =
+    '<div class="qcard in">' +
+      '<span class="qcat">' + esc(CAT_NAME[q.cat]) + '</span>' +
+      '<div class="qprompt">' + esc(q.q) + '</div>' +
+      body + input +
+      '<div id="hinthost">' + (hintOpen[q.id] && !rec ? hintBox(q) : '') + '</div>' +
+      '<div id="fbhost"></div>' +
+      '<div class="qfoot">' +
+        (rec ? '' : '<button class="btn btn-sm" id="hintbtn">💡 Hint</button>') +
+        '<span class="spacer"></span>' +
+        (i > 0 ? '<button class="btn btn-sm" id="prev">← Previous</button>' : '') +
+        '<button class="btn btn-sm btn-primary" id="next"' + (rec ? '' : ' disabled') + '>' + nextLabel(k, i, data.length) + '</button>' +
+      '</div>' +
+    '</div>';
+
+  wire(k, q, rec);
+  paintNav(k);
+}
+
+function nextLabel(k, i, total) {
+  if (i < total - 1) return 'Next Question →';
+  return k === 'p' ? 'Finish practice →' : 'See my score →';
+}
+function hintBox(q) {
+  return '<div class="hintbox"><b>Hint</b>' + esc(q.hint) + '</div>';
+}
+
+function wire(k, q, rec) {
+  const host = hostOf(k), data = setOf(k), st = stOf(k);
+  const hb = $('#hintbtn', host);
+  if (hb) hb.onclick = () => { hintOpen[q.id] = !hintOpen[q.id]; $('#hinthost', host).innerHTML = hintOpen[q.id] ? hintBox(q) : ''; };
+
+  const prev = $('#prev', host);
+  if (prev) prev.onclick = () => { st.idx--; P.save(); paint(k); };
+
+  const next = $('#next', host);
+  next.onclick = () => {
+    if (st.idx < data.length - 1) { st.idx++; P.save(); paint(k); return; }
+    if (!isDone(k)) {
+      const miss = data.findIndex(x => !st.answers[x.id]);
+      st.idx = miss; P.save(); paint(k);
+      toast('Please answer this question first');
+      return;
+    }
+    if (k === 'p') { view.p = 'result'; renderPracticeDone(hostOf('p')); }
+    else { view[k] = 'result'; renderQuizResult(k, host); }
+  };
+
+  if (q.type === 'mc') {
+    const btns = $$('.choice', host);
+    btns.forEach(b => {
+      const n = +b.getAttribute('data-i');
+      if (rec) {
+        b.disabled = true;
+        if (n === q.a) b.classList.add('correct');
+        else if (n === rec.v) b.classList.add('wrong');
+        else b.classList.add('dim');
+      } else {
+        b.onclick = () => submit(k, q, n, n === q.a);
+      }
+    });
+  } else if (q.type === 'type') {
+    const inp = $('#typein', host), btn = $('#checkbtn', host);
+    if (rec) {
+      inp.value = rec.v; inp.disabled = true; btn.disabled = true;
+      inp.classList.add(rec.ok ? 'correct' : 'wrong');
+    } else {
+      const run = () => {
+        const v = inp.value.trim();
+        if (!v) { toast('Type your answer first'); inp.focus(); return; }
+        submit(k, q, v, q.ans.indexOf(v.toLowerCase()) >= 0);
+      };
+      btn.onclick = run;
+      inp.onkeydown = e => { if (e.key === 'Enter') run(); };
+      setTimeout(() => inp.focus(), 60);
+    }
+  } else {
+    const strip = $('#strip', host), bank = $('#bank', host), btn = $('#checkbtn', host), clr = $('#clearbtn', host);
+    if (rec) {
+      strip.innerHTML = '';
+      strip.classList.add(rec.ok ? 'correct' : 'wrong');
+      String(rec.v).split(' ').forEach(w => {
+        const s = document.createElement('span'); s.className = 'tok placed'; s.textContent = w; strip.appendChild(s);
+      });
+      bank.innerHTML = '';
+      btn.disabled = true; clr.disabled = true;
+      return;
+    }
+    const order = q.tokens.map((t, n) => n).sort(() => Math.random() - 0.5);
+    const refresh = () => {
+      btn.disabled = bank.children.length > 0;
+      if (!strip.children.length) strip.innerHTML = '<span class="strip-hint">Tap the words below in the right order…</span>';
+    };
+    order.forEach(n => {
+      const b = document.createElement('button');
+      b.className = 'tok'; b.textContent = q.tokens[n];
+      b.onclick = () => {
+        if (b.parentElement === bank) {
+          const h = $('.strip-hint', strip); if (h) h.remove();
+          b.classList.add('placed'); strip.appendChild(b);
+        } else { b.classList.remove('placed'); bank.appendChild(b); }
+        refresh();
+      };
+      bank.appendChild(b);
+    });
+    refresh();
+    clr.onclick = () => { $$('.tok', strip).forEach(t => { t.classList.remove('placed'); bank.appendChild(t); }); refresh(); };
+    btn.onclick = () => {
+      const got = joinTokens($$('.tok', strip).map(t => t.textContent));
+      submit(k, q, got, got === q.ans);
+    };
+  }
+}
+
+function submit(k, q, value, ok) {
+  const st = stOf(k);
+  st.answers[q.id] = { v: value, ok: !!ok };
+  P.save();
+  P.renderNav();
+  paint(k);
+  showFeedback(k, q, st.answers[q.id]);
+}
+
+function showFeedback(k, q, rec) {
+  const host = hostOf(k);
+  let yours = '';
+  if (!rec.ok) {
+    const mine = q.type === 'mc' ? q.choices[rec.v] : rec.v;
+    const right = q.type === 'mc' ? q.choices[q.a] : (q.type === 'type' ? q.ans[0] : q.ans);
+    yours = '<div class="yours"><span><b>Your answer:</b> ' + esc(mine) + '</span>' +
+      '<span><b>Correct answer:</b> ' + esc(right) + '</span></div>';
+  }
+  $('#fbhost', host).innerHTML =
+    '<div class="feedback ' + (rec.ok ? 'good' : 'bad') + '">' +
+      '<div class="fb-head"><span class="mark-i">' + (rec.ok ? '✓' : '✕') + '</span>' + (rec.ok ? 'Correct!' : 'Not quite.') + '</div>' +
+      yours +
+      '<div class="why"><div class="why-t">ทำไม / Why?</div>' + th(q.why) + '</div>' +
+      (q.model ? '<div class="model-sent">' + hl(q.model) + '</div>' : '') +
+    '</div>';
+}
+
+function paintNav(k) {
+  const host = hostOf(k), data = setOf(k), st = stOf(k);
+  $('#navgrid', host).innerHTML = data.map((q, n) => {
+    const r = st.answers[q.id];
+    const cls = n === st.idx ? 'cur' : r ? (r.ok ? 'done' : 'miss') : '';
+    return '<button class="' + cls + '" data-n="' + n + '" aria-label="Question ' + (n + 1) + '">' + (n + 1) + '</button>';
+  }).join('');
+  $$('#navgrid button', host).forEach(b => b.onclick = () => {
+    const n = +b.getAttribute('data-n');
+    const firstOpen = data.findIndex(x => !st.answers[x.id]);
+    if (!st.answers[data[n].id] && firstOpen !== -1 && n > firstOpen) {
+      toast('Answer question ' + (firstOpen + 1) + ' first');
+      return;
+    }
+    st.idx = n; P.save(); paint(k);
+  });
+}
+
+/* ---------------- per-quiz result ---------------- */
+function catStats(list, answers) {
+  const out = {};
+  list.forEach(q => {
+    const r = answers[q.id]; if (!r) return;
+    out[q.cat] = out[q.cat] || { n: 0, ok: 0 };
+    out[q.cat].n++; if (r.ok) out[q.cat].ok++;
+  });
+  return out;
+}
+function tierMsg(pct) {
+  if (pct >= 90) return ['PAST CONTINUOUS MASTER! 🏆', 'var(--green-deep)'];
+  if (pct >= 80) return ['GREAT JOB! 🌟', 'var(--green-deep)'];
+  if (pct >= 60) return ['GOOD PROGRESS! KEEP PRACTISING', 'var(--cyan-deep)'];
+  return ['LET’S REVIEW THE LESSON AGAIN', 'var(--orange)'];
+}
+function ringSVG(pct, color) {
+  const C = 327;
+  return '<svg class="ring" viewBox="0 0 120 120" aria-hidden="true">' +
+    '<circle cx="60" cy="60" r="52" fill="none" stroke="#FFFDF4" stroke-width="14" stroke-opacity=".9"/>' +
+    '<circle id="ringp" cx="60" cy="60" r="52" fill="none" stroke="' + color + '" stroke-width="14" ' +
+    'transform="rotate(-90 60 60)" stroke-dasharray="' + C + '" stroke-dashoffset="' + C + '" data-off="' + (C * (1 - pct / 100)) + '" ' +
+    'style="transition:stroke-dashoffset 1s cubic-bezier(.2,.8,.3,1)"/></svg>';
+}
+function countUp(el, to) {
+  let n = 0; const step = Math.max(1, Math.round(to / 22));
+  const t = setInterval(() => { n += step; if (n >= to) { n = to; clearInterval(t); } el.textContent = n; }, 32);
+}
+
+function renderQuizResult(k, host) {
+  const data = QUIZZES[k].data, st = P.S.quiz[k];
+  const score = Object.values(st.answers).filter(a => a.ok).length;
+  const pct = Math.round(score / data.length * 100);
+  const [msg, color] = tierMsg(pct);
+  const cs = catStats(data, st.answers);
+  const wrong = data.filter(q => st.answers[q.id] && !st.answers[q.id].ok);
+  const nextQ = ['1', '2', '3'].find(x => x > k && !P.quizDone(x));
+  awardBadges();
+
+  host.innerHTML =
+    '<div class="result-hero rise">' +
+      '<div class="kicker">' + esc(QUIZZES[k].short) + ' complete</div>' +
+      ringSVG(pct, color) +
+      '<div class="big-score"><span id="cnt">0</span><small> / ' + data.length + '</small></div>' +
+      '<div style="font-weight:800;color:var(--ink-2)">' + pct + '%</div>' +
+      '<div class="tier" style="color:' + color + '">' + msg + '</div>' +
+    '</div>' +
+    '<div class="card pad rise d2" style="margin-top:20px">' +
+      '<div class="kicker">What you did well</div><h3 style="margin:6px 0 16px">Category analysis</h3>' +
+      '<div class="cat-analysis">' + Object.keys(cs).map(c => {
+        const s = cs[c], p = Math.round(s.ok / s.n * 100);
+        return '<div class="cat-row"><span class="cn">' + CAT_NAME[c] + '</span>' +
+          '<span class="cs">' + s.ok + ' / ' + s.n + '</span>' +
+          '<span class="cb"><i data-w="' + p + '"></i></span></div>';
+      }).join('') + '</div>' +
+    '</div>' +
+    '<div class="btn-row rise d3" style="margin-top:22px">' +
+      (wrong.length ? '<button class="btn btn-primary" id="btn-review">Review my ' + wrong.length + ' mistake' + (wrong.length > 1 ? 's' : '') + '</button>' : '') +
+      '<button class="btn" id="btn-again">Try again</button>' +
+      (nextQ ? '<button class="btn btn-dark" data-go="q' + nextQ + '">Next quiz →</button>' : '<button class="btn btn-dark" data-go="results">See my mastery →</button>') +
+      '<button class="btn btn-ghost" data-go="learn">Back to lesson</button>' +
+    '</div>';
+
+  fillBars(host);
+  requestAnimationFrame(() => { const r = $('#ringp', host); if (r) r.style.strokeDashoffset = r.getAttribute('data-off'); });
+  countUp($('#cnt', host), score);
+  const rv = $('#btn-review', host);
+  if (rv) rv.onclick = () => { view[k] = 'review'; renderReview(k, host); };
+  $('#btn-again', host).onclick = () => confirmBox(
+    'Try ' + QUIZZES[k].short + ' again?',
+    'Your current answers will be deleted so you can start the quiz from the beginning.',
+    'Yes, restart', () => { P.S.quiz[k] = { answers: {}, idx: 0 }; view[k] = 'run'; P.save(); P.renderNav(); renderRunner(k); });
+}
+
+function renderPracticeDone(host) {
+  const score = Object.values(P.S.practice.answers).filter(a => a.ok).length;
+  host.innerHTML =
+    '<div class="result-hero rise">' +
+      '<div class="kicker">Guided practice complete</div>' +
+      '<div class="big-score"><span id="cnt">0</span><small> / ' + PRACTICE.length + '</small></div>' +
+      '<p class="muted" style="max-width:44ch;margin:10px auto 0">Practice is not scored — it is here to warm you up. ' +
+      'When you feel ready, start Quiz 1.</p>' +
+      '<div class="btn-row" style="margin-top:20px;justify-content:center">' +
+        '<button class="btn btn-primary" data-go="q1">Start Quiz 1 →</button>' +
+        '<button class="btn" id="p-again">Practise again</button>' +
+        '<button class="btn btn-ghost" data-go="learn">Back to lesson</button>' +
+      '</div>' +
+    '</div>';
+  countUp($('#cnt', host), score);
+  $('#p-again', host).onclick = () => { P.S.practice = { answers: {}, idx: 0 }; view.p = 'run'; P.save(); P.renderNav(); renderRunner('p'); };
+}
+
+/* ---------------- review mistakes ---------------- */
+function renderReview(k, host) {
+  const data = QUIZZES[k].data, st = P.S.quiz[k];
+  const wrong = data.filter(q => st.answers[q.id] && !st.answers[q.id].ok);
+  host.innerHTML =
+    '<div class="quiz-top"><div><div class="kicker">' + esc(QUIZZES[k].short) + '</div><h2>Review your mistakes</h2></div></div>' +
+    (wrong.length ? wrong.map(q => {
+      const r = st.answers[q.id], n = data.indexOf(q) + 1;
+      const mine = q.type === 'mc' ? q.choices[r.v] : r.v;
+      const right = q.type === 'mc' ? q.choices[q.a] : (q.type === 'type' ? q.ans[0] : q.ans);
+      return '<div class="review-item rise">' +
+        '<h4>Question ' + n + ' · ' + CAT_NAME[q.cat] + '</h4>' +
+        (q.story ? '<div class="story">' + esc(q.story) + '</div>' : '') +
+        '<div class="review-q">' + (q.text ? gap(q.text) : esc(q.q)) + '</div>' +
+        '<div class="yours"><span><b>You answered:</b> ' + esc(mine) + '</span><span><b>Correct:</b> ' + esc(right) + '</span></div>' +
+        '<div class="why"><div class="why-t">ทำไม / Why?</div>' + th(q.why) + '</div>' +
+        (q.model ? '<div class="model-sent">' + hl(q.model) + '</div>' : '') +
+        '<button class="btn btn-sm" style="margin-top:14px" data-retry="' + q.id + '">Try this question again</button>' +
+        '</div>';
+    }).join('')
+      : '<div class="empty-state card pad"><h3>No mistakes to review 🎉</h3><p class="muted">Every answer in this quiz was correct. Excellent work!</p></div>') +
+    '<div class="btn-row" style="margin-top:20px">' +
+      '<button class="btn btn-primary" id="back-res">← Back to my score</button>' +
+      '<button class="btn btn-ghost" data-go="learn">Back to lesson</button>' +
+    '</div>';
+  $('#back-res', host).onclick = () => { view[k] = 'result'; renderQuizResult(k, host); };
+  $$('[data-retry]', host).forEach(b => b.onclick = () => {
+    const id = +b.getAttribute('data-retry');
+    delete st.answers[id];
+    st.idx = data.findIndex(q => q.id === id);
+    view[k] = 'run'; P.save(); P.renderNav(); renderRunner(k);
+  });
+}
+
+/* ---------------- badges + mastery ---------------- */
+const BADGES = [
+  { id: 'ww', name: 'Was/Were Wizard', icon: '✦', need: 'Answer was/were questions with 90% accuracy' },
+  { id: 'ing', name: 'ING Expert', icon: '✎', need: 'Answer verb + -ing questions with 90% accuracy' },
+  { id: 'det', name: 'Past Detective', icon: '⌕', need: 'Complete Quiz 2' },
+  { id: 'master', name: 'Past Continuous Master', icon: '★', need: 'Finish all 3 quizzes with 85% or more' }
+];
+function allStats() {
+  const all = {}; let n = 0, ok = 0;
+  ['1', '2', '3'].forEach(k => {
+    const st = P.S.quiz[k];
+    QUIZZES[k].data.forEach(q => {
+      const r = st.answers[q.id]; if (!r) return;
+      all[q.cat] = all[q.cat] || { n: 0, ok: 0 };
+      all[q.cat].n++; n++;
+      if (r.ok) { all[q.cat].ok++; ok++; }
+    });
+  });
+  return { cats: all, n, ok };
+}
+function earned() {
+  const s = allStats(), out = [];
+  const acc = c => s.cats[c] && s.cats[c].n >= 10 && s.cats[c].ok / s.cats[c].n >= 0.9;
+  if (acc('ww')) out.push('ww');
+  if (acc('ing')) out.push('ing');
+  if (P.quizDone('2')) out.push('det');
+  if (['1', '2', '3'].every(P.quizDone) && s.ok / 75 >= 0.85) out.push('master');
+  return out;
+}
+function awardBadges() {
+  const now = earned(), had = P.S.badges || [];
+  const fresh = now.filter(b => had.indexOf(b) === -1);
+  if (fresh.length) {
+    P.S.badges = now; P.save();
+    const b = BADGES.find(x => x.id === fresh[0]);
+    setTimeout(() => toast('New badge earned: ' + b.name), 700);
+  }
+}
+
+function renderResults() {
+  const host = $('#s-results');
+  const s = allStats();
+  const done = ['1', '2', '3'].filter(P.quizDone);
+  const total = ['1', '2', '3'].reduce((a, k) => a + P.quizScore(k), 0);
+  const answeredAll = ['1', '2', '3'].reduce((a, k) => a + Object.keys(P.S.quiz[k].answers).length, 0);
+  const pct = answeredAll ? Math.round(total / answeredAll * 100) : 0;
+  const badges = earned();
+  const cats = Object.keys(s.cats);
+  const strong = cats.filter(c => s.cats[c].n >= 4 && s.cats[c].ok / s.cats[c].n >= 0.8);
+  const weak = cats.filter(c => s.cats[c].n >= 4 && s.cats[c].ok / s.cats[c].n < 0.8);
+
+  host.innerHTML =
+    '<div class="lesson-head"><div><div class="kicker">Dashboard</div><h2>Your Past Continuous Journey</h2></div></div>' +
+    masteryPanel() +
+    '<div class="dash">' + ['1', '2', '3'].map(k => {
+      const n = Object.keys(P.S.quiz[k].answers).length;
+      if (!n) return '<div class="dash-card empty"><div class="qn">' + QUIZZES[k].short + '</div><div class="sc">—</div><div>Not started</div>' +
+        '<button class="btn btn-sm" style="margin-top:10px" data-go="q' + k + '">Start</button></div>';
+      const sc = P.quizScore(k);
+      return '<div class="dash-card"><div class="qn">' + QUIZZES[k].short + '</div>' +
+        '<div class="sc">' + sc + ' / 25</div>' +
+        '<div class="muted" style="font-weight:700">' + (P.quizDone(k) ? Math.round(sc / 25 * 100) + '%' : n + ' of 25 answered') + '</div>' +
+        '<button class="btn btn-sm" style="margin-top:10px" data-go="q' + k + '">' + (P.quizDone(k) ? 'Review' : 'Continue') + '</button></div>';
+    }).join('') + '</div>' +
+
+    '<div class="card pad rise" style="margin-top:6px">' +
+      '<div class="kicker">Overall</div>' +
+      '<h3 style="margin:6px 0 12px">' + total + ' / 75 correct' + (done.length < 3 ? ' <span class="muted" style="font-weight:600;font-size:.9rem">(' + done.length + ' of 3 quizzes finished)</span>' : '') + '</h3>' +
+      '<div class="bar"><i data-w="' + Math.round(total / 75 * 100) + '"></i></div>' +
+      '<div class="muted" style="margin-top:8px;font-weight:700">Accuracy on answered questions: ' + pct + '%</div>' +
+      (done.length === 3 ? '<div class="tier" style="color:' + tierMsg(Math.round(total / 75 * 100))[1] + '">' + tierMsg(Math.round(total / 75 * 100))[0] + '</div>' : '') +
+    '</div>' +
+
+    (cats.length ? '<div class="card pad rise d2" style="margin-top:18px"><div class="kicker">Skill check</div>' +
+      '<h3 style="margin:6px 0 14px">Strengths and next steps</h3>' +
+      '<div class="strengths">' +
+        '<div><h4 style="font-size:1rem;margin-bottom:6px">Strengths</h4><ul class="slist good">' +
+          (strong.length ? strong.map(c => '<li><span class="ic">✓</span>' + CAT_NAME[c] + ' <span class="muted">(' + s.cats[c].ok + '/' + s.cats[c].n + ')</span></li>').join('')
+            : '<li class="muted">Finish more questions to see your strengths.</li>') + '</ul></div>' +
+        '<div><h4 style="font-size:1rem;margin-bottom:6px">Needs more practice</h4><ul class="slist work">' +
+          (weak.length ? weak.map(c => '<li><span class="ic">△</span>' + CAT_NAME[c] + ' <span class="muted">(' + s.cats[c].ok + '/' + s.cats[c].n + ')</span></li>').join('')
+            : '<li class="muted">Nothing here — great work!</li>') + '</ul></div>' +
+      '</div>' +
+      '<div class="btn-row" style="margin-top:18px"><button class="btn btn-sm" data-go="learn">Back to the lesson</button>' +
+      '<button class="btn btn-sm" data-go="practice">Guided practice</button></div>' +
+    '</div>' : '') +
+
+    '<div class="card pad rise d3" style="margin-top:18px">' +
+      '<div class="kicker">Badges</div><h3 style="margin:6px 0 14px">' + badges.length + ' of 4 earned</h3>' +
+      '<div class="badges">' + BADGES.map(b =>
+        '<div class="badge' + (badges.indexOf(b.id) >= 0 ? ' won' : '') + '"><div class="ic">' + b.icon + '</div>' +
+        '<b>' + b.name + '</b><span>' + b.need + '</span></div>').join('') + '</div>' +
+    '</div>';
+  fillBars(host);
+}
+
+/* ---------------- boot ---------------- */
+P.renderRunner = renderRunner;
+P.renderResults = renderResults;
+P.load();
+P.renderNav();
+P.go('home');
+})();
+
+</script>
+</body>
+</html>
