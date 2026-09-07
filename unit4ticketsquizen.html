@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 4: Two Return Tickets - Review Test (Grade 4)</title>
+<style>
+  body{font-family:-apple-system,'Segoe UI',Tahoma,Arial,sans-serif;max-width:720px;margin:0 auto;padding:16px;background:#f7f7f7;color:#222;line-height:1.5}
+  h1{font-size:22px;margin-bottom:4px}
+  h2{font-size:17px;background:#2b5faa;color:#fff;padding:8px 12px;border-radius:6px;margin-top:28px}
+  .note{background:#fff8e1;border:1px solid #ecd98f;border-radius:6px;padding:12px;font-size:14px;margin-bottom:16px}
+  .q{background:#fff;border:1px solid #ddd;border-radius:6px;padding:10px 12px;margin:10px 0}
+  .q p{margin:0 0 8px;font-weight:600}
+  .q label{display:block;padding:4px 6px;border-radius:4px;cursor:pointer;font-size:15px}
+  .q label:hover{background:#f0f4fa}
+  .correct{background:#dff5df!important}
+  .wrong{background:#fbdcdc!important}
+  .order-row{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #ddd;border-radius:6px;padding:8px 12px;margin:8px 0}
+  .order-row select{font-size:15px;padding:4px}
+  #result{position:sticky;bottom:0;background:#fff;border-top:2px solid #2b5faa;padding:10px 12px;text-align:center;font-size:16px;font-weight:700}
+  button{background:#2b5faa;color:#fff;border:none;padding:12px 24px;border-radius:6px;font-size:16px;cursor:pointer;display:block;margin:24px auto}
+  button:hover{background:#1e4a8a}
+  .score{font-size:20px;color:#2b5faa}
+</style>
+</head>
+<body>
+
+<h1>Unit 4: Two Return Tickets</h1>
+<p>Grade 4 | Travel Vocabulary, in/at/on, Past Continuous + Past Simple (when), Phonics /eə/</p>
+
+<div class="note">
+<b>Quick Review</b><br>
+- <b>in</b> for months/seasons/long periods (in March, in the summer, in the morning)<br>
+- <b>at</b> for clock times/specific points (at 3 o'clock, at night)<br>
+- <b>on</b> for days (on Friday, on Tuesdays)<br>
+- <b>Past Continuous + Past Simple</b>: an ongoing action (was/were + V-ing) interrupted by a short action (V2), joined by "when". Example: "I <u>was walking</u> up the wall, <u>when</u> I <u>had</u> a little fall."
+</div>
+
+<h2>Part 1: Travel Vocabulary</h2>
+<div id="quiz-vocab"></div>
+
+<h2>Part 2: In / At / On</h2>
+<div id="quiz-prep"></div>
+
+<h2>Part 3: Past Continuous + Past Simple (when)</h2>
+<div id="quiz-grammar"></div>
+
+<h2>Part 4: Put the Story "The Tunnel" in Order</h2>
+<p style="font-size:14px;color:#555">Choose the order 1-8 (1 = happened first)</p>
+<div id="quiz-order"></div>
+
+<h2>Part 5: Phonics /eə/ (same sound as stairs, pear, care)</h2>
+<div id="quiz-phonics"></div>
+
+<button onclick="checkAnswers()">Check Answers</button>
+<div id="result"></div>
+
+<script>
+const vocab = [
+  {q:"A moving staircase is a(n) ___.", c:["stairs","escalator","platform","station"], a:1},
+  {q:"The place where you buy train tickets is the ___.", c:["ticket office","platform","station","suitcase"], a:0},
+  {q:"You wait for the train on the ___.", c:["platform","escalator","rucksack","ticket office"], a:0},
+  {q:"The person who drives the train is the ___.", c:["conductor","train driver","paramedic","pilot"], a:1},
+  {q:"A train stops at a ___.", c:["station","airport","platform","stairs"], a:0},
+  {q:"A bag you carry on your back is a ___.", c:["suitcase","rucksack","ticket","platform"], a:1},
+  {q:"A large bag with wheels for traveling is a ___.", c:["rucksack","suitcase","ticket office","stairs"], a:1},
+  {q:"Steps that do not move are called ___.", c:["stairs","escalator","platform","rucksack"], a:0},
+  {q:"A hot drink made from coffee beans, in a cup, is ___.", c:["a cup of tea","a cup of coffee","a glass of coffee","a coffee cup"], a:1},
+  {q:"A hot drink made from tea leaves, in a cup, is ___.", c:["a cup of coffee","a cup of tea","a tea cup","a glass of tea"], a:1},
+];
+
+const prep = [
+  {q:"My birthday is ___ March.", c:["in","at","on"], a:0},
+  {q:"The bus leaves ___ 3 o'clock.", c:["in","at","on"], a:1},
+  {q:"Let's go to the cinema ___ Friday.", c:["in","at","on"], a:2},
+  {q:"I'm always tired ___ the morning.", c:["in","at","on"], a:0},
+  {q:"We sometimes go to Italy ___ the summer.", c:["in","at","on"], a:0},
+  {q:"In winter, ___ nine at night, I'm in bed.", c:["in","at","on"], a:1},
+  {q:"___ Sunday morning, I go out for a run.", c:["In","At","On"], a:2},
+  {q:"___ Monday evening, I meet up with friends.", c:["In","At","On"], a:2},
+  {q:"I have piano lessons ___ Tuesdays.", c:["in","at","on"], a:2},
+  {q:"The train leaves ___ eight o'clock.", c:["in","at","on"], a:1},
+];
+
+const grammar = [
+  {q:"I ___ (walk) up the wall, when I had a little fall.", c:["walked","was walking","walk"], a:1},
+  {q:"When a man opened the door, I ___ (lie) on the floor.", c:["lay","was lying","lie"], a:1},
+  {q:"When you phoned me, I ___ (eat) dinner.", c:["ate","was eating","eat"], a:1},
+  {q:"She ___ (play) football when she fell.", c:["played","was playing","plays"], a:1},
+  {q:"When I ___ (come) home from school, our dog was sleeping.", c:["come","comes","came"], a:2},
+  {q:"My dad ___ (cook) dinner when I came into the living room.", c:["cook","cooked","was cooking"], a:2},
+  {q:"When my parents came home, my big brother and I ___ (watch) TV.", c:["watched","were watching","watch"], a:1},
+  {q:"When I came into the garden, my friends ___ (play) hide and seek.", c:["played","were playing","play"], a:1},
+  {q:"My teacher ___ (smile) when I arrived at school.", c:["smile","smiled","was smiling"], a:2},
+  {q:"When I started my homework, my sister ___ (talk) on the phone next door.", c:["talk","talked","was talking"], a:2},
+];
+
+const orderItems = [
+  {text:"Horax and Zelda have to get off the train.", correct:7},
+  {text:"In the tunnel Lucy takes Horax and Zelda's tickets.", correct:4},
+  {text:"Lucy and Ben get on the train.", correct:1},
+  {text:"At Broom station Lucy sees Horax and Zelda.", correct:2},
+  {text:"The conductor wants to see the tickets.", correct:5},
+  {text:"Horax looks for the map in Ben's rucksack.", correct:3},
+  {text:"Horax can't find their tickets.", correct:6},
+  {text:"Ben sees the line of the rhyme.", correct:8},
+];
+
+const phonics = [
+  {q:"Which word has the same sound as 'stairs'?", c:["star","chair","store","stir"], a:1},
+  {q:"Which word has the same sound as 'pear'?", c:["pear","pier","peer","pour"], a:0},
+  {q:"Which word has the same sound as 'bear'?", c:["beer","bear","bar","burr"], a:1},
+  {q:"Which word has the same sound as 'airport'?", c:["airport","art","ear","oar"], a:0},
+  {q:"Which word has the same sound as 'there'?", c:["there","three","tar","tour"], a:0},
+];
+
+function renderMCQ(containerId, items, prefix){
+  const el = document.getElementById(containerId);
+  let html = "";
+  items.forEach((item,i)=>{
+    const n = prefix+(i+1);
+    html += `<div class="q" id="${n}"><p>${i+1}. ${item.q}</p>`;
+    item.c.forEach((choice,ci)=>{
+      html += `<label><input type="radio" name="${n}" value="${ci}"> ${choice}</label>`;
+    });
+    html += `</div>`;
+  });
+  el.innerHTML = html;
+}
+renderMCQ('quiz-vocab', vocab, 'v');
+renderMCQ('quiz-prep', prep, 'p');
+renderMCQ('quiz-grammar', grammar, 'g');
+renderMCQ('quiz-phonics', phonics, 'ph');
+
+const orderEl = document.getElementById('quiz-order');
+let orderHtml = "";
+orderItems.forEach((item,i)=>{
+  orderHtml += `<div class="order-row" id="o${i+1}">
+    <select id="osel${i+1}">
+      <option value="0">-</option>
+      ${[1,2,3,4,5,6,7,8].map(n=>`<option value="${n}">${n}</option>`).join('')}
+    </select>
+    <span>${item.text}</span>
+  </div>`;
+});
+orderEl.innerHTML = orderHtml;
+
+function checkAnswers(){
+  let score = 0, total = 0;
+
+  [{items:vocab,prefix:'v'},{items:prep,prefix:'p'},{items:grammar,prefix:'g'},{items:phonics,prefix:'ph'}].forEach(group=>{
+    group.items.forEach((item,i)=>{
+      total++;
+      const n = group.prefix+(i+1);
+      const qDiv = document.getElementById(n);
+      const labels = qDiv.querySelectorAll('label');
+      const selected = qDiv.querySelector('input[name="'+n+'"]:checked');
+      labels.forEach((label,ci)=>{
+        label.classList.remove('correct','wrong');
+        if(ci===item.a) label.classList.add('correct');
+      });
+      if(selected){
+        const selIdx = parseInt(selected.value);
+        if(selIdx===item.a) score++;
+        else labels[selIdx].classList.add('wrong');
+      }
+    });
+  });
+
+  orderItems.forEach((item,i)=>{
+    total++;
+    const sel = document.getElementById('osel'+(i+1));
+    const row = document.getElementById('o'+(i+1));
+    row.style.background = '';
+    if(parseInt(sel.value) === item.correct){
+      score++;
+      row.style.background = '#dff5df';
+    } else {
+      row.style.background = '#fbdcdc';
+    }
+  });
+
+  document.getElementById('result').innerHTML =
+    `<div class="score">Score: ${score} / ${total}</div>
+     <div>${score===total ? 'Excellent! All correct.' : 'Check the red answers (wrong) and review the green answers (correct) — for the story order, the number is the correct event sequence 1-8.'}</div>`;
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

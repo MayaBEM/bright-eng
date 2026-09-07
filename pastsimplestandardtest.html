@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Past Simple Tense - Standard Test (Grade 4)</title>
+<style>
+  body{font-family:-apple-system,'Segoe UI',Tahoma,Arial,sans-serif;max-width:760px;margin:0 auto;padding:16px;background:#f7f7f7;color:#222;line-height:1.5}
+  h1{font-size:21px;margin-bottom:2px}
+  .sub{color:#555;font-size:14px;margin-bottom:16px}
+  .tabs{display:flex;gap:8px;margin-bottom:16px}
+  .tab{flex:1;text-align:center;padding:10px 6px;border-radius:6px;background:#e2e8f0;cursor:pointer;font-weight:600;font-size:14px}
+  .tab.active{background:#2b5faa;color:#fff}
+  .paper{display:none}
+  .paper.active{display:block}
+  .header-box{border:1px solid #999;border-radius:6px;padding:10px 14px;margin-bottom:16px;background:#fff;font-size:14px}
+  .header-box .fields{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+  .header-box .fields span{border-bottom:1px solid #666;min-width:120px;display:inline-block}
+  h2{font-size:16px;background:#2b5faa;color:#fff;padding:8px 12px;border-radius:6px;margin-top:24px}
+  .instructions{font-style:italic;color:#444;font-size:14px;margin:6px 0 12px}
+  .passage{background:#fff;border:1px solid #ddd;border-radius:6px;padding:12px 14px;font-size:15px;margin-bottom:12px}
+  .q{background:#fff;border:1px solid #ddd;border-radius:6px;padding:10px 12px;margin:10px 0}
+  .q p{margin:0 0 8px;font-weight:600}
+  .q label{display:block;padding:4px 6px;border-radius:4px;cursor:pointer;font-size:15px}
+  .q label:hover{background:#f0f4fa}
+  .correct{background:#dff5df!important}
+  .wrong{background:#fbdcdc!important}
+  #result-A,#result-B,#result-C{position:sticky;bottom:0;background:#fff;border-top:2px solid #2b5faa;padding:10px 12px;text-align:center;font-size:16px;font-weight:700}
+  button.check{background:#2b5faa;color:#fff;border:none;padding:12px 24px;border-radius:6px;font-size:16px;cursor:pointer;display:block;margin:24px auto}
+  button.check:hover{background:#1e4a8a}
+  .score{font-size:20px;color:#2b5faa}
+</style>
+</head>
+<body>
+
+<h1>Past Simple Tense - Standard Test</h1>
+<div class="sub">Grade 4 (ป.4) &nbsp;|&nbsp; Three sets, increasing difficulty</div>
+
+<div class="tabs">
+  <div class="tab active" data-tab="A" onclick="showTab('A')">Set 1 - Easy</div>
+  <div class="tab" data-tab="B" onclick="showTab('B')">Set 2 - Medium</div>
+  <div class="tab" data-tab="C" onclick="showTab('C')">Set 3 - Hard</div>
+</div>
+
+<!-- ===================== SET A - EASY ===================== -->
+<div class="paper active" id="paper-A">
+  <div class="header-box">
+    <b>Past Simple Tense Test - Set 1 (Easy)</b> &nbsp; Total: 20 marks
+    <div class="fields">Name: <span>&nbsp;</span> Class: <span>&nbsp;</span> Score: <span>&nbsp;/20</span></div>
+  </div>
+
+  <h2>Part I: Verb Forms (10 marks)</h2>
+  <p class="instructions">Choose the correct past simple form of each verb.</p>
+  <div id="quiz-A1"></div>
+
+  <h2>Part II: Complete the Sentence (10 marks)</h2>
+  <p class="instructions">Choose the best word to complete each sentence.</p>
+  <div id="quiz-A2"></div>
+
+  <button class="check" onclick="checkAnswers('A')">Check Answers</button>
+  <div id="result-A"></div>
+</div>
+
+<!-- ===================== SET B - MEDIUM ===================== -->
+<div class="paper" id="paper-B">
+  <div class="header-box">
+    <b>Past Simple Tense Test - Set 2 (Medium)</b> &nbsp; Total: 20 marks
+    <div class="fields">Name: <span>&nbsp;</span> Class: <span>&nbsp;</span> Score: <span>&nbsp;/20</span></div>
+  </div>
+
+  <h2>Part I: Complete the Sentence (10 marks)</h2>
+  <p class="instructions">Choose the best word to complete each sentence. Pay attention to the time expressions.</p>
+  <div id="quiz-B1"></div>
+
+  <h2>Part II: Negative and Question Forms (10 marks)</h2>
+  <p class="instructions">Choose the correct word to complete each negative sentence or question.</p>
+  <div id="quiz-B2"></div>
+
+  <button class="check" onclick="checkAnswers('B')">Check Answers</button>
+  <div id="result-B"></div>
+</div>
+
+<!-- ===================== SET C - HARD ===================== -->
+<div class="paper" id="paper-C">
+  <div class="header-box">
+    <b>Past Simple Tense Test - Set 3 (Hard)</b> &nbsp; Total: 20 marks
+    <div class="fields">Name: <span>&nbsp;</span> Class: <span>&nbsp;</span> Score: <span>&nbsp;/20</span></div>
+  </div>
+
+  <h2>Part I: Find the Mistake (8 marks)</h2>
+  <p class="instructions">Each sentence is divided into four parts (A), (B), (C), (D). Choose the part that has a mistake.</p>
+  <div id="quiz-C1"></div>
+
+  <h2>Part II: Reading - Fill in the Blanks (8 marks)</h2>
+  <p class="instructions">Read the story and choose the correct word for each blank.</p>
+  <div class="passage">
+    Last Saturday, Somchai <b>(1)___</b> up early. He <b>(2)___</b> breakfast with his family. After that, he <b>(3)___</b> his bicycle to the park. At the park, he <b>(4)___</b> his friends and they <b>(5)___</b> football together. In the afternoon, it <b>(6)___</b> to rain, so they <b>(7)___</b> home quickly. Somchai <b>(8)___</b> a great day.
+  </div>
+  <div id="quiz-C2"></div>
+
+  <h2>Part III: Make a Question (4 marks)</h2>
+  <p class="instructions">Choose the correct question for each sentence.</p>
+  <div id="quiz-C3"></div>
+
+  <button class="check" onclick="checkAnswers('C')">Check Answers</button>
+  <div id="result-C"></div>
+</div>
+
+<script>
+function showTab(t){
+  document.querySelectorAll('.tab').forEach(el=>el.classList.toggle('active', el.dataset.tab===t));
+  document.querySelectorAll('.paper').forEach(el=>el.classList.toggle('active', el.id==='paper-'+t));
+}
+
+// ---------- SET A ----------
+const A1 = [
+  {q:"walk → ___", c:["walked","walkd","walkied","walks"], a:0},
+  {q:"watch → ___", c:["watchs","watched","watchd","watchied"], a:1},
+  {q:"stop → ___", c:["stoped","stopped","stops","stopping"], a:1},
+  {q:"study → ___", c:["studyed","studies","studied","studing"], a:2},
+  {q:"go → ___", c:["goed","gone","went","going"], a:2},
+  {q:"eat → ___", c:["eated","ate","eaten","eats"], a:1},
+  {q:"have → ___", c:["haved","has","had","having"], a:2},
+  {q:"see → ___", c:["seed","saw","seen","sees"], a:1},
+  {q:"do → ___", c:["doed","does","did","done"], a:2},
+  {q:"make → ___", c:["maked","makes","made","making"], a:2},
+];
+const A2 = [
+  {q:"I ___ my homework last night.", c:["do","did","does","done"], a:1},
+  {q:"She ___ to the market yesterday.", c:["go","goes","went","going"], a:2},
+  {q:"We ___ pizza for dinner last Friday.", c:["eat","eats","ate","eating"], a:2},
+  {q:"They ___ football after school yesterday.", c:["play","plays","played","playing"], a:2},
+  {q:"He ___ a new bike last week.", c:["buy","buys","bought","buying"], a:2},
+  {q:"My mother ___ the house yesterday morning.", c:["clean","cleans","cleaned","cleaning"], a:2},
+  {q:"The children ___ in the pool last Sunday.", c:["swim","swims","swam","swimming"], a:2},
+  {q:"I ___ a letter to my friend yesterday.", c:["write","writes","wrote","writing"], a:2},
+  {q:"We ___ a movie last night.", c:["watch","watches","watched","watching"], a:2},
+  {q:"She ___ her keys yesterday, but she found them again.", c:["lose","loses","lost","losing"], a:2},
+];
+
+// ---------- SET B ----------
+const B1 = [
+  {q:"Two days ago, my family ___ to the beach.", c:["go","goes","went","going"], a:2},
+  {q:"Last year, we ___ in Chiang Mai.", c:["live","lived","living","lives"], a:1},
+  {q:"Yesterday afternoon, the students ___ a test.", c:["take","takes","took","taking"], a:2},
+  {q:"My brother ___ his bike an hour ago.", c:["rides","rode","riding","ride"], a:1},
+  {q:"Last night, I ___ very tired after school.", c:["feel","feels","felt","feeling"], a:2},
+  {q:"The dog ___ under the table when it started to rain.", c:["sleep","sleeps","slept","sleeping"], a:2},
+  {q:"Three days ago, she ___ a beautiful bird in the garden.", c:["see","sees","saw","seeing"], a:2},
+  {q:"We ___ our grandparents last weekend.", c:["visit","visits","visited","visiting"], a:2},
+  {q:"He ___ his phone at school yesterday.", c:["forgets","forget","forgot","forgetting"], a:2},
+  {q:"My friends and I ___ a sandcastle at the beach.", c:["build","builds","built","building"], a:2},
+];
+const B2 = [
+  {q:"He ___ go to school yesterday because he was sick.", c:["doesn't","don't","didn't","isn't"], a:2},
+  {q:"___ you finish your homework last night?", c:["Do","Does","Did","Are"], a:2},
+  {q:"She didn't ___ her lunch this morning.", c:["eat","ate","eats","eating"], a:0},
+  {q:"___ they play basketball yesterday?", c:["Do","Does","Did","Was"], a:2},
+  {q:"We ___ have any money to buy the toy.", c:["don't","doesn't","didn't","isn't"], a:2},
+  {q:"I didn't ___ my umbrella, so I got wet.", c:["bring","brought","brings","bringing"], a:0},
+  {q:"___ your sister go to the party last night?", c:["Do","Does","Did","Is"], a:2},
+  {q:"The boys didn't ___ their room yesterday.", c:["clean","cleaned","cleans","cleaning"], a:0},
+  {q:"___ it rain yesterday?", c:["Do","Does","Did","Is"], a:2},
+  {q:"She didn't ___ the answer, so she asked her teacher.", c:["know","knew","knows","knowing"], a:0},
+];
+
+// ---------- SET C ----------
+const C1 = [
+  {q:"(A) Yesterday (B) I go (C) to the cinema (D) with my friend.", c:["A","B","C","D"], a:1},
+  {q:"(A) Last week (B) she (C) buyed (D) a new dress.", c:["A","B","C","D"], a:2},
+  {q:"(A) He (B) didn't (C) went (D) to school yesterday.", c:["A","B","C","D"], a:2},
+  {q:"(A) We (B) was (C) at the park (D) yesterday afternoon.", c:["A","B","C","D"], a:1},
+  {q:"(A) Did (B) you (C) saw (D) the movie last night?", c:["A","B","C","D"], a:2},
+  {q:"(A) My mom (B) cooked (C) dinner (D) tomorrow.", c:["A","B","C","D"], a:3},
+  {q:"(A) Two days ago, (B) the children (C) swims (D) in the sea.", c:["A","B","C","D"], a:2},
+  {q:"(A) She (B) don't (C) go to school (D) yesterday.", c:["A","B","C","D"], a:1},
+];
+const C2 = [
+  {q:"(1) wake up", c:["wake","wakes","woke","waking"], a:2},
+  {q:"(2) have breakfast", c:["eat","eats","ate","eating"], a:2},
+  {q:"(3) ride his bicycle", c:["ride","rides","rode","riding"], a:2},
+  {q:"(4) meet his friends", c:["meet","meets","met","meeting"], a:2},
+  {q:"(5) play football", c:["play","plays","played","playing"], a:2},
+  {q:"(6) start to rain", c:["start","starts","started","starting"], a:2},
+  {q:"(7) run home", c:["run","runs","ran","running"], a:2},
+  {q:"(8) have a great day", c:["have","has","had","having"], a:2},
+];
+const C3 = [
+  {q:"He went to school yesterday. → Make a question.", c:["Does he go to school yesterday?","Did he went to school yesterday?","Did he go to school yesterday?","Was he go to school yesterday?"], a:2},
+  {q:"They played football last Sunday. → Make a question.", c:["Did they play football last Sunday?","Did they played football last Sunday?","Do they play football last Sunday?","Were they play football last Sunday?"], a:0},
+  {q:"She was at home yesterday. → Make a question.", c:["Did she was at home yesterday?","Was she at home yesterday?","Does she be at home yesterday?","Is she at home yesterday?"], a:1},
+  {q:"My father bought a new car last month. → Make a question.", c:["Did my father buy a new car last month?","Did my father bought a new car last month?","Does my father buy a new car last month?","Was my father buy a new car last month?"], a:0},
+];
+
+function renderQuiz(containerId, items, prefix){
+  const el = document.getElementById(containerId);
+  let html = "";
+  items.forEach((item,i)=>{
+    const n = prefix + (i+1);
+    html += `<div class="q" id="${n}"><p>${item.q}</p>`;
+    item.c.forEach((choice,ci)=>{
+      html += `<label><input type="radio" name="${n}" value="${ci}"> ${choice}</label>`;
+    });
+    html += `</div>`;
+  });
+  el.innerHTML = html;
+}
+
+renderQuiz('quiz-A1', A1, 'a1_');
+renderQuiz('quiz-A2', A2, 'a2_');
+renderQuiz('quiz-B1', B1, 'b1_');
+renderQuiz('quiz-B2', B2, 'b2_');
+renderQuiz('quiz-C1', C1, 'c1_');
+renderQuiz('quiz-C2', C2, 'c2_');
+renderQuiz('quiz-C3', C3, 'c3_');
+
+const sets = {
+  A: [{items:A1, prefix:'a1_'}, {items:A2, prefix:'a2_'}],
+  B: [{items:B1, prefix:'b1_'}, {items:B2, prefix:'b2_'}],
+  C: [{items:C1, prefix:'c1_'}, {items:C2, prefix:'c2_'}, {items:C3, prefix:'c3_'}],
+};
+
+function checkAnswers(setKey){
+  let score = 0, total = 0;
+  sets[setKey].forEach(group=>{
+    group.items.forEach((item,i)=>{
+      total++;
+      const n = group.prefix + (i+1);
+      const qDiv = document.getElementById(n);
+      const labels = qDiv.querySelectorAll('label');
+      const selected = qDiv.querySelector('input[name="'+n+'"]:checked');
+      labels.forEach((label,ci)=>{
+        label.classList.remove('correct','wrong');
+        if(ci===item.a) label.classList.add('correct');
+      });
+      if(selected){
+        const selIdx = parseInt(selected.value);
+        if(selIdx===item.a) score++;
+        else labels[selIdx].classList.add('wrong');
+      }
+    });
+  });
+  document.getElementById('result-'+setKey).innerHTML =
+    `<div class="score">Score: ${score} / ${total}</div>
+     <div>${score===total ? 'Excellent! All correct.' : 'Check the red answers (wrong) and the green answers (correct).'}</div>`;
+  document.getElementById('result-'+setKey).scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
