@@ -1,0 +1,416 @@
+<title>Letter Combinations Practice</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=Noto+Sans+Thai:wght@400;600;700&display=swap">
+<style>
+  :root{
+    --bg:#FBF3E4; --surface:#FFFFFF; --surface-2:#F1E7D0; --ink:#33291F; --ink-soft:#7A6E5C; --border:#E3D5B8;
+    --coral:#E1613F; --amber:#C98A12; --sage:#4C7A50; --sky:#2E76A0; --teal:#1F7A6D; --terracotta:#B85A28; --rose:#B24468; --cobalt:#33549A;
+    --paper-shadow: 0 1px 0 rgba(51,41,31,.06), 0 8px 20px -14px rgba(51,41,31,.35);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#171310; --surface:#211B14; --surface-2:#2A2318; --ink:#F3E9D6; --ink-soft:#C8B99C; --border:#3C3223;
+      --coral:#FF8161; --amber:#F3BB49; --sage:#7FBF81; --sky:#5FB0DA; --teal:#4FC2B0; --terracotta:#E58A52; --rose:#E27A9B; --cobalt:#8AA6E8;
+      --paper-shadow: 0 1px 0 rgba(0,0,0,.3), 0 8px 24px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#171310; --surface:#211B14; --surface-2:#2A2318; --ink:#F3E9D6; --ink-soft:#C8B99C; --border:#3C3223;
+    --coral:#FF8161; --amber:#F3BB49; --sage:#7FBF81; --sky:#5FB0DA; --teal:#4FC2B0; --terracotta:#E58A52; --rose:#E27A9B; --cobalt:#8AA6E8;
+    --paper-shadow: 0 1px 0 rgba(0,0,0,.3), 0 8px 24px -14px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);}
+  .app{font-family:'Nunito',system-ui,sans-serif; color:var(--ink); background:var(--bg); padding-bottom:40px;}
+  .th{font-family:'Noto Sans Thai','Nunito',sans-serif;}
+  h1,h2,h3,.disp{font-family:'Fredoka',system-ui,sans-serif;}
+  h1,h2,h3{text-wrap:balance;}
+
+  .jumpbar{position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:6px; overflow-x:auto; padding:10px 16px; background:color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter:blur(6px); border-bottom:1px solid var(--border);}
+  .jumpbar a{flex:0 0 auto; display:flex; align-items:center; gap:6px; font-family:'Nunito',sans-serif; font-weight:700; font-size:.78rem; color:var(--ink); text-decoration:none; background:var(--surface); border:1px solid var(--border); padding:6px 12px; border-radius:999px; white-space:nowrap;}
+  .jumpbar a .dot{width:8px;height:8px;border-radius:50%; background:var(--dot);}
+  .jump-total{flex:0 0 auto; margin-left:auto; display:flex; align-items:center; gap:6px; font-weight:800; font-size:.78rem; color:var(--ink); background:var(--surface-2); border:1px solid var(--border); padding:6px 12px; border-radius:999px; white-space:nowrap;}
+  .jump-total b{font-variant-numeric:tabular-nums;}
+  .jump-total .totpct{color:var(--coral);}
+
+  .sheet{max-width:900px; margin:0 auto; padding:0 18px;}
+
+  /* Cover */
+  .cover{max-width:900px; margin:28px auto 0; padding:0 18px;}
+  .cover-card{background:var(--surface); border:1px solid var(--border); border-radius:22px; box-shadow:var(--paper-shadow); padding:40px clamp(20px,5vw,56px); position:relative; overflow:hidden;}
+  .brand{font-weight:800; letter-spacing:.14em; text-transform:uppercase; font-size:.72rem; color:var(--ink-soft);}
+  .cover-title{font-size:clamp(2rem,5vw,2.9rem); font-weight:700; margin:.35em 0 .15em; line-height:1.05;}
+  .cover-title .accent{color:var(--coral);}
+  .cover-sub{font-size:1.05rem; color:var(--ink-soft); margin:0 0 22px; max-width:60ch;}
+  .swatch-row{display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 26px;}
+  .swatch{display:flex; align-items:center; gap:8px; background:var(--surface-2); border:1px solid var(--border); border-radius:12px; padding:8px 12px; font-weight:700; font-size:.82rem;}
+  .swatch .dot{width:10px;height:10px;border-radius:50%;}
+  .parent-box{background:var(--surface-2); border:1px dashed var(--border); border-radius:16px; padding:18px 20px; display:flex; gap:14px; align-items:flex-start;}
+  .parent-box .icon{flex:0 0 auto; width:38px;height:38px;border-radius:50%; background:var(--coral); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-family:'Fredoka',sans-serif;}
+  .parent-box p{margin:0; color:var(--ink); line-height:1.7;}
+  .parent-box strong{color:var(--ink);}
+
+  /* Unit pages */
+  .unit-page{max-width:900px; margin:26px auto 0; padding:0 18px;}
+  .unit-card{background:var(--surface); border:1px solid var(--border); border-radius:22px; box-shadow:var(--paper-shadow); overflow:hidden;}
+  .unit-head{background:var(--accent); color:#fff; padding:22px clamp(18px,4vw,34px); display:flex; align-items:center; justify-content:space-between; gap:16px; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  .unit-head .num{font-family:'Fredoka',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; opacity:.85;}
+  .unit-head h2{margin:.1em 0 0; font-size:clamp(1.4rem,3.4vw,1.9rem); color:#fff;}
+  .unit-head .pattern{font-family:'Fredoka',sans-serif; font-size:clamp(1.5rem,4vw,2.1rem); font-weight:700; background:rgba(255,255,255,.18); border-radius:14px; padding:8px 18px; letter-spacing:.03em;}
+  .unit-body{padding:22px clamp(18px,4vw,34px) 28px;}
+  .howto{color:var(--ink-soft); font-size:.92rem; margin:0 0 18px; display:flex; gap:8px; align-items:center;}
+  .howto .badge{flex:0 0 auto; width:22px;height:22px;border-radius:50%;background:var(--surface-2); border:1px solid var(--border); display:flex; align-items:center;justify-content:center; font-size:.7rem; font-weight:800; font-family:'Fredoka',sans-serif; color:var(--accent);}
+
+  .pods{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:22px;}
+  .pod{background:var(--surface-2); border:1px solid var(--border); border-radius:16px; padding:14px 14px 16px;}
+  .pod-label{font-family:'Fredoka',sans-serif; font-weight:600; font-size:1.05rem; color:var(--accent); margin:0 0 10px; text-align:center; letter-spacing:.02em;}
+  .word-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px;}
+  .word-list li{display:flex; align-items:center; gap:10px; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:7px 10px; font-weight:700; font-size:1.15rem; color:var(--ink); transition:background .15s, border-color .15s;}
+  .word-list li.is-checked{background:color-mix(in srgb, var(--accent) 12%, var(--surface)); border-color:var(--accent);}
+  .word-list .word-text{flex:1; text-align:left;}
+  .word-list mark{background:transparent; color:var(--accent); font-weight:800; padding:0;}
+
+  .chk{flex:0 0 auto; width:26px; height:26px; border-radius:8px; border:2px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; padding:0; cursor:pointer; -webkit-appearance:none; appearance:none;}
+  .chk svg{width:15px; height:15px; opacity:0; transform:scale(.6); transition:opacity .15s, transform .15s;}
+  .chk svg path{fill:none; stroke:#fff; stroke-width:3; stroke-linecap:round; stroke-linejoin:round;}
+  .chk.is-checked{background:var(--accent); border-color:var(--accent);}
+  .chk.is-checked svg{opacity:1; transform:scale(1);}
+  .chk:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+  .sent-title{font-family:'Fredoka',sans-serif; font-weight:600; font-size:1.05rem; margin:6px 0 12px; display:flex; align-items:center; gap:8px;}
+  .sent-title .swash{color:var(--accent);}
+  .sent-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px 18px;}
+  .sent-col{list-style:none; margin:0; padding:0; counter-reset:s;}
+  .sent-col li{counter-increment:s; position:relative; padding-left:1.5em; margin-bottom:11px; line-height:1.55; font-size:.98rem;}
+  .sent-col li::before{content:counter(s)"."; position:absolute; left:0; top:0; font-weight:800; color:var(--ink-soft);}
+  .tword{color:var(--accent); font-weight:800;}
+
+  .foot-row{display:flex; align-items:center; justify-content:space-between; gap:14px; margin-top:6px; padding-top:16px; border-top:1px dashed var(--border); flex-wrap:wrap;}
+  .score-chip{display:flex; align-items:center; gap:6px; background:var(--surface-2); border:1px solid var(--border); border-radius:999px; padding:9px 16px; font-weight:800; font-size:.9rem; font-variant-numeric:tabular-nums;}
+  .score-chip .score-pct{color:var(--accent);}
+  .reset-btn{border:1px solid var(--border); background:var(--surface); border-radius:999px; padding:9px 14px; font-weight:700; font-size:.78rem; color:var(--ink-soft); cursor:pointer;}
+  .reset-btn:hover{color:var(--ink); border-color:var(--accent);}
+  .signline{display:flex; align-items:center; gap:8px; font-size:.85rem; color:var(--ink-soft);}
+  .signline .line{width:120px; border-bottom:1px solid var(--border); height:1.1em;}
+
+  .pagenum{text-align:center; font-size:.75rem; color:var(--ink-soft); margin:10px 0 0;}
+
+  /* Summary */
+  .summary-page{max-width:900px; margin:26px auto 40px; padding:0 18px;}
+  .summary-card{background:var(--surface); border:1px solid var(--border); border-radius:22px; box-shadow:var(--paper-shadow); padding:28px clamp(18px,4vw,34px);}
+  .summary-card h2{margin:0 0 4px;}
+  .summary-note{color:var(--ink-soft); font-size:.9rem; margin:0;}
+  .summary-table{width:100%; border-collapse:collapse; margin-top:16px; font-variant-numeric:tabular-nums;}
+  .summary-table th,.summary-table td{padding:10px 10px; text-align:left; border-bottom:1px solid var(--border); font-size:.92rem;}
+  .summary-table thead th{color:var(--ink-soft); font-weight:700; font-size:.72rem; text-transform:uppercase; letter-spacing:.06em;}
+  .summary-table tbody td:nth-child(3),.summary-table tbody td:nth-child(4),.summary-table tfoot td:nth-child(2){text-align:right;}
+  .summary-table tfoot td{font-weight:800; border-bottom:none; border-top:2px solid var(--border);}
+  .summary-table .unitdot{display:inline-flex; align-items:center; gap:8px;}
+  .summary-table .unitdot span{width:10px;height:10px;border-radius:50%;flex:0 0 auto;}
+  .summary-actions{margin-top:18px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+  .storage-note{font-size:.78rem; color:var(--ink-soft); margin:0;}
+
+  @media (max-width:720px){
+    .pods{grid-template-columns:1fr;}
+    .sent-grid{grid-template-columns:1fr;}
+    .unit-head{flex-direction:column; align-items:flex-start;}
+  }
+
+  @media print{
+    :root{
+      --bg:#FBF3E4; --surface:#FFFFFF; --surface-2:#F1E7D0; --ink:#2A2118; --ink-soft:#6B6152; --border:#DDCBA6;
+      --coral:#E1613F; --amber:#C98A12; --sage:#4C7A50; --sky:#2E76A0; --teal:#1F7A6D; --terracotta:#B85A28; --rose:#B24468; --cobalt:#33549A;
+      --paper-shadow:none;
+    }
+    .jumpbar{display:none;}
+    .reset-btn,.summary-actions button,.storage-note{display:none;}
+    body,.app{background:#fff;}
+    .cover,.unit-page,.summary-page{max-width:none; margin:0; padding:0;}
+    .cover-card,.unit-card,.summary-card{border-radius:0; border:none; box-shadow:none;}
+    .cover{page-break-after:always;}
+    .unit-page{page-break-after:always;}
+    .summary-page{page-break-after:auto;}
+    * {-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  }
+  @page{ size:A4; margin:12mm; }
+</style>
+
+<div class="app" id="app">
+  <nav class="jumpbar" id="jumpbar"></nav>
+  <header class="cover">
+    <div class="cover-card">
+      <div class="brand">Bright EngMath · Phonics Series</div>
+      <h1 class="cover-title th">ฝึกอ่านคำศัพท์ <span class="accent">Letter Combinations</span></h1>
+      <p class="cover-sub th">ชุดฝึกอ่านออกเสียงคำศัพท์ภาษาอังกฤษตามกลุ่มตัวอักษรผสม 8 หน่วยการเรียนรู้ พร้อมประโยคฝึกอ่านของแต่ละคำ เหมาะสำหรับฝึกที่บ้านกับผู้ปกครอง</p>
+      <div class="swatch-row" id="swatchRow"></div>
+      <div class="parent-box th">
+        <div class="icon">!</div>
+        <p><strong>คำแนะนำสำหรับผู้ปกครอง / คุณครู</strong><br>
+        1) ให้บุตรหลานอ่านออกเสียงคำศัพท์ในแต่ละกล่อง &nbsp;
+        2) กดติ๊กถูกที่กล่องหน้าคำที่อ่านได้ถูกต้อง (กดซ้ำเพื่อยกเลิก) ระบบจะคำนวณจำนวนคำและ % ที่อ่านได้ให้อัตโนมัติทั้งรายหน่วยและภาพรวมท้ายเล่ม &nbsp;
+        3) จากนั้นอ่านประโยคฝึกอ่านด้านล่าง โดยเน้นเสียงตรงคำที่แต้มสี แล้วเซ็นชื่อรับรองท้ายหน้า ทำทีละหน่วย ไม่จำเป็นต้องจบในครั้งเดียว</p>
+      </div>
+    </div>
+  </header>
+  <main id="units"></main>
+  <section class="summary-page" id="summary">
+    <div class="summary-card">
+      <h2 class="th">สรุปผลการประเมิน</h2>
+      <p class="summary-note th">จำนวนคำที่อ่านได้ถูกต้องในแต่ละหน่วย และคะแนนรวมทั้งหมด (อัปเดตอัตโนมัติเมื่อติ๊กคำศัพท์ด้านบน)</p>
+      <table class="summary-table">
+        <thead><tr><th class="th">หน่วย</th><th class="th">รูปแบบตัวอักษร</th><th class="th">อ่านได้</th><th class="th">%</th></tr></thead>
+        <tbody id="summaryBody"></tbody>
+        <tfoot><tr><td colspan="2" class="th">รวมทั้งหมด</td><td id="summaryTotal">0 / 0</td><td id="summaryPct">0%</td></tr></tfoot>
+      </table>
+      <div class="summary-actions">
+        <p class="storage-note th">ผลจะถูกบันทึกไว้ในเบราว์เซอร์นี้เท่านั้น (สำหรับเด็กคนต่อไป ให้กด "รีเซ็ตทั้งหมด")</p>
+        <button class="reset-btn th" id="resetAllBtn" type="button">รีเซ็ตทั้งหมด</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+const UNITS = [
+  { num:1, title:'Vowel + r combinations', pattern:'ar · ir ur · er or', accent:'coral',
+    groups:[
+      { label:'ar', words:[['car'],['farm'],['park'],['star']],
+        sentences:['I can see a red **car**.','My grandpa has a **farm**.','We play at the **park**.','I can see a bright **star**.'] },
+      { label:'ir  ur', words:[['bird','ir'],['girl','ir'],['nurse','ur'],['purple','ur']],
+        sentences:['A little **bird** sings in the tree.','The **girl** has a new bike.','The **nurse** helps sick people.','She wears a **purple** dress.'] },
+      { label:'er  or', words:[['teacher','er'],['sister','er'],['doctor','or'],['tractor','or']],
+        sentences:['My **teacher** is very kind.','My **sister** likes to draw.','The **doctor** checks my ears.','The farmer drives a big **tractor**.'] },
+    ]},
+  { num:2, title:'Diphthongs & double vowels', pattern:'ou ow · oi oy · oo u', accent:'amber',
+    groups:[
+      { label:'ou  ow', words:[['mouse','ou'],['house','ou'],['cow','ow'],['brown','ow']],
+        sentences:['A small **mouse** ran under the table.','We live in a blue **house**.','The **cow** eats green grass.','My dog has **brown** fur.'] },
+      { label:'oi  oy', words:[['coin','oi'],['soil','oi'],['toy','oy'],['boy','oy']],
+        sentences:['I found a **coin** on the floor.','Plants grow in the **soil**.','He plays with his new **toy**.','The **boy** can run very fast.'] },
+      { label:'oo  u', words:[['book','oo'],['foot','oo'],['bush','u'],['pull','u']],
+        sentences:['I read a **book** before bed.','I hurt my **foot** at school.','A rabbit hid in the **bush**.','Please **pull** the door open.'] },
+    ]},
+  { num:3, title:'Broad "aw" and "or" sounds', pattern:'au aw · all wa · or oar', accent:'sage',
+    groups:[
+      { label:'au  aw', words:[['sauce','au'],['August','au'],['prawn','aw'],['draw','aw']],
+        sentences:['I love pasta with tomato **sauce**.','My birthday is in **August**.','The **prawn** is pink and small.','I like to **draw** animals.'] },
+      { label:'all  wa', words:[['ball','all'],['tall','all'],['water','wa'],['walk','wa']],
+        sentences:['Kick the **ball** to me.','My brother is very **tall**.','Please drink some **water**.','We **walk** to school together.'] },
+      { label:'or  oar', words:[['horse','or'],['fork','or'],['roar','oar'],['board','oar']],
+        sentences:['The **horse** runs in the field.','Use a **fork** to eat your rice.','The lion gave a loud **roar**.','The teacher writes on the **board**.'] },
+    ]},
+  { num:4, title:'"air" and "ear" sounds', pattern:'are air · ea ear · ear eer', accent:'sky',
+    groups:[
+      { label:'are  air', words:[['square','are'],['share','are'],['chair','air'],['hair','air']],
+        sentences:['Draw a blue **square** on the paper.',"Let's **share** our lunch together.",'Please sit on your **chair**.','She has long black **hair**.'] },
+      { label:'ea  ear', words:[['bread','ea'],['head','ea'],['bear','ear'],['pear','ear']],
+        sentences:['I eat **bread** for breakfast.','I wear a hat on my **head**.','A big **bear** lives in the forest.','This **pear** tastes very sweet.'] },
+      { label:'ear  eer', words:[['ear','ear'],['clear','ear'],['deer','eer'],['cheer','eer']],
+        sentences:['My **ear** hurts a little.','The sky is **clear** today.','A **deer** ran across the road.','We **cheer** for our team.'] },
+    ]},
+  { num:5, title:'Long vowel sounds', pattern:'a · e i · o u', accent:'teal',
+    groups:[
+      { label:'a', words:[['acorn','a'],['baby','a'],['elevator','a'],['lady','a']],
+        sentences:['A squirrel found an **acorn**.','The **baby** is sleeping now.','We took the **elevator** upstairs.','A kind **lady** helped me.'] },
+      { label:'e  i', words:[['he','e'],['she','e'],['tiger','i'],['child','i']],
+        sentences:['**He** likes to play football.','**She** sings a happy song.','The **tiger** has orange fur.','Every **child** needs love and care.'] },
+      { label:'o  u', words:[['cold','o'],['hotel','o'],['uniform','u'],['music','u']],
+        sentences:['The winter wind feels **cold**.','We stayed in a nice **hotel**.','I wear my school **uniform**.','I enjoy listening to **music**.'] },
+    ]},
+  { num:6, title:'Schwa sound', pattern:'a · e i o u · o', accent:'terracotta',
+    groups:[
+      { label:'a', words:[['panda','a',null,'last'],['gorilla','a',null,'last'],['banana','a',null,'last'],['umbrella','a',null,'last']],
+        sentences:['The **panda** eats bamboo all day.','A **gorilla** is very strong.','I eat a **banana** every morning.','Bring an **umbrella**, it may rain.'] },
+      { label:'e i o u', words:[['chicken','e'],['pencil','i'],['lemon','o'],['surprise','u']],
+        sentences:['The **chicken** lays an egg.','I write with a yellow **pencil**.','This **lemon** tastes very sour.','My mom gave me a **surprise**.'] },
+      { label:'o', words:[['monkey','o'],['love','o'],['son','o'],['honey','o']],
+        sentences:['The **monkey** swings from tree to tree.','I **love** my family very much.','He is my only **son**.','Bees make sweet **honey**.'] },
+    ]},
+  { num:7, title:'Silent letters', pattern:'kn wr · mb e · rh st', accent:'rose',
+    groups:[
+      { label:'kn  wr', words:[['knife','kn'],['knee','kn'],['write','wr'],['wrong','wr']],
+        sentences:['Be careful with the sharp **knife**.','I hurt my **knee** at the park.','I **write** my name every day.','That answer is **wrong**, try again.'] },
+      { label:'mb  e', words:[['lamb','mb'],['comb','mb'],['glove','e',null,'last'],['live','e',null,'last']],
+        sentences:['The little **lamb** follows its mother.','Use a **comb** to fix your hair.',"I wear a **glove** when it's cold.",'Fish **live** in the water.'] },
+      { label:'rh  st', words:[['rhino','rh'],['rhubarb','rh'],['whistle','t'],['castle','t']],
+        sentences:['A **rhino** has thick grey skin.','Grandma made **rhubarb** pie.','The coach blew the **whistle**.','The princess lives in a **castle**.'] },
+    ]},
+  { num:8, title:'Longer word endings', pattern:'ture sure · tion sion · ous ful', accent:'cobalt',
+    groups:[
+      { label:'ture  sure', words:[['picture','ture'],['nature','ture'],['treasure','sure'],['measure','sure']],
+        sentences:['I drew a **picture** of my house.','We enjoy walking in **nature**.','The pirates found hidden **treasure**.','Use a ruler to **measure** the line.'] },
+      { label:'tion  sion', words:[['station','tion'],['competition','tion'],['television','sion'],['excursion','sion']],
+        sentences:['The train **station** is very busy.','She won first place in the **competition**.','We watched a show on **television**.','Our class went on a fun **excursion**.'] },
+      { label:'ous  ful', words:[['famous','ous'],['dangerous','ous'],['beautiful','ful'],['helpful','ful']],
+        sentences:['He is a **famous** singer.','Swimming there can be **dangerous**.','The garden looks **beautiful** today.','My friend is always **helpful**.'] },
+    ]},
+];
+
+function highlightWord(word, target, occurrence){
+  if(!target) return word;
+  const lower = word.toLowerCase();
+  const idx = occurrence === 'last' ? lower.lastIndexOf(target) : lower.indexOf(target);
+  if(idx === -1) return word;
+  return word.slice(0,idx) + '<mark>' + word.slice(idx, idx+target.length) + '</mark>' + word.slice(idx+target.length);
+}
+function renderSentence(s){
+  return s.replace(/\*\*(.+?)\*\*/g, '<span class="tword">$1</span>');
+}
+function checkIconSvg(){
+  return '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+}
+
+const STORAGE_KEY = 'phonics-lc-checklist-v1';
+let checked = {};
+try{
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if(raw) checked = JSON.parse(raw) || {};
+}catch(e){ checked = {}; }
+function saveState(){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(checked)); }catch(e){}
+}
+
+const jumpbar = document.getElementById('jumpbar');
+const swatchRow = document.getElementById('swatchRow');
+const unitsEl = document.getElementById('units');
+const summaryBody = document.getElementById('summaryBody');
+const TOTAL_WORDS = UNITS.reduce((n,u) => n + u.groups.reduce((m,g) => m + g.words.length, 0), 0);
+
+UNITS.forEach(u => {
+  jumpbar.innerHTML += `<a href="#unit-${u.num}"><span class="dot" style="background:var(--${u.accent})"></span>Unit ${u.num}</a>`;
+  swatchRow.innerHTML += `<div class="swatch"><span class="dot" style="background:var(--${u.accent})"></span>${u.pattern}</div>`;
+
+  const podsHtml = u.groups.map((g,gi) => `
+    <div class="pod">
+      <p class="pod-label" style="color:var(--${u.accent})">${g.label}</p>
+      <ul class="word-list">
+        ${g.words.map(([w,t,_,occ],wi) => {
+          const uid = `u${u.num}-g${gi}-w${wi}`;
+          return `<li data-word-item="${uid}">
+            <button class="chk" type="button" role="checkbox" aria-checked="false" data-uid="${uid}" data-unit="${u.num}" aria-label="ทำเครื่องหมายว่าอ่านคำว่า ${w} ได้">${checkIconSvg()}</button>
+            <span class="word-text">${highlightWord(w,t,occ)}</span>
+          </li>`;
+        }).join('')}
+      </ul>
+    </div>`).join('');
+
+  const sentHtml = u.groups.map(g => `
+    <ol class="sent-col">
+      ${g.sentences.map(s => `<li>${renderSentence(s)}</li>`).join('')}
+    </ol>`).join('');
+
+  const unitTotal = u.groups.reduce((m,g) => m + g.words.length, 0);
+
+  unitsEl.innerHTML += `
+    <section class="unit-page" id="unit-${u.num}" style="--accent:var(--${u.accent})">
+      <div class="unit-card">
+        <div class="unit-head">
+          <div>
+            <div class="num">Unit ${u.num} · ${u.title}</div>
+            <h2>${u.title}</h2>
+          </div>
+          <div class="pattern">${u.pattern}</div>
+        </div>
+        <div class="unit-body">
+          <p class="howto th"><span class="badge">1</span>&nbsp;อ่านคำศัพท์ในแต่ละกล่องให้คล่อง แล้วกดติ๊กถูกที่คำซึ่งอ่านได้ถูกต้อง</p>
+          <div class="pods">${podsHtml}</div>
+          <p class="sent-title th"><span class="swash">✎</span> อ่านประโยคฝึกอ่าน</p>
+          <div class="sent-grid">${sentHtml}</div>
+          <div class="foot-row">
+            <div class="score-chip"><span class="th" style="color:var(--ink-soft);font-weight:700;">อ่านได้ถูกต้อง</span>&nbsp;<b id="score-u${u.num}">0</b>&nbsp;/&nbsp;${unitTotal}&nbsp;คำ&nbsp;<span class="score-pct" id="pct-u${u.num}">(0%)</span></div>
+            <button class="reset-btn th" type="button" data-reset-unit="${u.num}">รีเซ็ตหน่วยนี้</button>
+            <div class="signline th">ผู้ปกครองเซ็นชื่อ <span class="line"></span></div>
+          </div>
+        </div>
+      </div>
+      <p class="pagenum th">หน่วยที่ ${u.num} จาก ${UNITS.length}</p>
+    </section>`;
+
+  summaryBody.innerHTML += `<tr data-summary-unit="${u.num}">
+    <td class="th"><span class="unitdot"><span style="background:var(--${u.accent})"></span>Unit ${u.num}</span></td>
+    <td class="th">${u.pattern}</td>
+    <td id="summary-count-${u.num}">0 / ${unitTotal}</td>
+    <td id="summary-pct-${u.num}">0%</td>
+  </tr>`;
+});
+
+jumpbar.insertAdjacentHTML('beforeend', `<div class="jump-total th">รวม <b id="totalScore">0</b>/${TOTAL_WORDS} <span class="totpct" id="totalPct">(0%)</span></div>`);
+
+function recompute(){
+  let grandCount = 0;
+  UNITS.forEach(u => {
+    const unitTotal = u.groups.reduce((m,g) => m + g.words.length, 0);
+    let count = 0;
+    u.groups.forEach((g,gi) => g.words.forEach((w,wi) => {
+      if(checked[`u${u.num}-g${gi}-w${wi}`]) count++;
+    }));
+    grandCount += count;
+    const pct = Math.round((count/unitTotal)*100);
+    const scoreEl = document.getElementById(`score-u${u.num}`);
+    const pctEl = document.getElementById(`pct-u${u.num}`);
+    if(scoreEl) scoreEl.textContent = count;
+    if(pctEl) pctEl.textContent = `(${pct}%)`;
+    const sc = document.getElementById(`summary-count-${u.num}`);
+    const sp = document.getElementById(`summary-pct-${u.num}`);
+    if(sc) sc.textContent = `${count} / ${unitTotal}`;
+    if(sp) sp.textContent = `${pct}%`;
+  });
+  const grandPct = Math.round((grandCount/TOTAL_WORDS)*100);
+  document.getElementById('summaryTotal').textContent = `${grandCount} / ${TOTAL_WORDS}`;
+  document.getElementById('summaryPct').textContent = `${grandPct}%`;
+  const totalScoreEl = document.getElementById('totalScore');
+  const totalPctEl = document.getElementById('totalPct');
+  if(totalScoreEl) totalScoreEl.textContent = grandCount;
+  if(totalPctEl) totalPctEl.textContent = `(${grandPct}%)`;
+}
+
+function applyCheckedState(){
+  document.querySelectorAll('.chk[data-uid]').forEach(btn => {
+    const uid = btn.dataset.uid;
+    const isOn = !!checked[uid];
+    btn.classList.toggle('is-checked', isOn);
+    btn.setAttribute('aria-checked', String(isOn));
+    const li = btn.closest('li');
+    if(li) li.classList.toggle('is-checked', isOn);
+  });
+}
+
+document.getElementById('app').addEventListener('click', (e) => {
+  const chk = e.target.closest('.chk[data-uid]');
+  if(chk){
+    const uid = chk.dataset.uid;
+    checked[uid] = !checked[uid];
+    saveState();
+    applyCheckedState();
+    recompute();
+    return;
+  }
+  const resetUnitBtn = e.target.closest('[data-reset-unit]');
+  if(resetUnitBtn){
+    const n = resetUnitBtn.dataset.resetUnit;
+    Object.keys(checked).forEach(k => { if(k.startsWith(`u${n}-`)) delete checked[k]; });
+    saveState();
+    applyCheckedState();
+    recompute();
+    return;
+  }
+  const resetAllBtn = e.target.closest('#resetAllBtn');
+  if(resetAllBtn){
+    if(resetAllBtn.dataset.confirm === '1'){
+      checked = {};
+      saveState();
+      applyCheckedState();
+      recompute();
+      resetAllBtn.textContent = 'รีเซ็ตทั้งหมด';
+      resetAllBtn.dataset.confirm = '0';
+    }else{
+      resetAllBtn.dataset.confirm = '1';
+      resetAllBtn.textContent = 'กดอีกครั้งเพื่อยืนยัน';
+      setTimeout(() => { resetAllBtn.dataset.confirm = '0'; resetAllBtn.textContent = 'รีเซ็ตทั้งหมด'; }, 4000);
+    }
+  }
+});
+
+applyCheckedState();
+recompute();
+</script>
