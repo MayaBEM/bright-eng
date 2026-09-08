@@ -77,12 +77,18 @@
   .chk.is-checked svg{opacity:1; transform:scale(1);}
   .chk:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
 
-  .sent-title{font-family:'Fredoka',sans-serif; font-weight:600; font-size:1.05rem; margin:6px 0 12px; display:flex; align-items:center; gap:8px;}
-  .sent-title .swash{color:var(--accent);}
-  .sent-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px 18px;}
-  .sent-col{list-style:none; margin:0; padding:0; counter-reset:s;}
-  .sent-col li{counter-increment:s; position:relative; padding-left:1.5em; margin-bottom:11px; line-height:1.55; font-size:.98rem;}
-  .sent-col li::before{content:counter(s)"."; position:absolute; left:0; top:0; font-weight:800; color:var(--ink-soft);}
+  .sent-title{font-family:'Fredoka',sans-serif; font-weight:600; font-size:1.05rem; margin:6px 0 12px; display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+  .sent-title .swash{color:var(--accent); font-size:1.15em;}
+  .sent-count{font-family:'Nunito',sans-serif; font-weight:800; font-size:.8rem; color:var(--ink-soft); font-variant-numeric:tabular-nums;}
+  .sent-count b{color:var(--accent);}
+
+  .sent-card{background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:4px clamp(14px,3vw,26px);}
+  .sent-log{list-style:none; margin:0; padding:0;}
+  .sent-row{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px dotted var(--border);}
+  .sent-row:last-child{border-bottom:none;}
+  .sent-row .chk{width:24px; height:24px; border-radius:7px; margin-top:1px;}
+  .sent-row .sent-text{flex:1; font-size:.98rem; line-height:1.55;}
+  .sent-row.is-checked .sent-text{color:var(--ink-soft); text-decoration:line-through; text-decoration-color:var(--accent); text-decoration-thickness:1.5px;}
   .tword{color:var(--accent); font-weight:800;}
 
   .foot-row{display:flex; align-items:center; justify-content:space-between; gap:14px; margin-top:6px; padding-top:16px; border-top:1px dashed var(--border); flex-wrap:wrap;}
@@ -90,10 +96,13 @@
   .score-chip .score-pct{color:var(--accent);}
   .reset-btn{border:1px solid var(--border); background:var(--surface); border-radius:999px; padding:9px 14px; font-weight:700; font-size:.78rem; color:var(--ink-soft); cursor:pointer;}
   .reset-btn:hover{color:var(--ink); border-color:var(--accent);}
-  .signline{display:flex; align-items:center; gap:8px; font-size:.85rem; color:var(--ink-soft);}
-  .signline .line{width:120px; border-bottom:1px solid var(--border); height:1.1em;}
 
   .pagenum{text-align:center; font-size:.75rem; color:var(--ink-soft); margin:10px 0 0;}
+
+  @media (max-width:520px){
+    .sent-row .sent-text{white-space:normal; text-overflow:clip;}
+    .sent-row{height:auto; min-height:52px; padding:6px 0;}
+  }
 
   /* Summary */
   .summary-page{max-width:900px; margin:26px auto 40px; padding:0 18px;}
@@ -112,7 +121,6 @@
 
   @media (max-width:720px){
     .pods{grid-template-columns:1fr;}
-    .sent-grid{grid-template-columns:1fr;}
     .unit-head{flex-direction:column; align-items:flex-start;}
   }
 
@@ -146,9 +154,9 @@
       <div class="parent-box th">
         <div class="icon">!</div>
         <p><strong>คำแนะนำสำหรับผู้ปกครอง / คุณครู</strong><br>
-        1) ให้บุตรหลานอ่านออกเสียงคำศัพท์ในแต่ละกล่อง &nbsp;
-        2) กดติ๊กถูกที่กล่องหน้าคำที่อ่านได้ถูกต้อง (กดซ้ำเพื่อยกเลิก) ระบบจะคำนวณจำนวนคำและ % ที่อ่านได้ให้อัตโนมัติทั้งรายหน่วยและภาพรวมท้ายเล่ม &nbsp;
-        3) จากนั้นอ่านประโยคฝึกอ่านด้านล่าง โดยเน้นเสียงตรงคำที่แต้มสี แล้วเซ็นชื่อรับรองท้ายหน้า ทำทีละหน่วย ไม่จำเป็นต้องจบในครั้งเดียว</p>
+        1) ให้บุตรหลานอ่านออกเสียงคำศัพท์ในแต่ละกล่อง แล้วกดติ๊กถูกที่คำซึ่งอ่านได้ถูกต้อง &nbsp;
+        2) อ่านประโยคฝึกอ่านด้านล่าง โดยเน้นเสียงตรงคำที่แต้มสี แล้วติ๊กถูกทีละประโยค &nbsp;
+        3) ระบบจะคำนวณจำนวนคำและ % ที่อ่านได้ให้อัตโนมัติทั้งรายหน่วยและภาพรวมท้ายเล่ม ทำทีละหน่วย ไม่จำเป็นต้องจบในครั้งเดียว</p>
       </div>
     </div>
   </header>
@@ -259,6 +267,15 @@ function renderSentence(s){
 function checkIconSvg(){
   return '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 }
+const SENT_COUNTS_BY_GROUP = [3,3,2];
+function pickSentences(u){
+  const out = [];
+  u.groups.forEach((g,gi) => {
+    const n = SENT_COUNTS_BY_GROUP[gi] ?? g.sentences.length;
+    out.push(...g.sentences.slice(0, n));
+  });
+  return out;
+}
 
 const STORAGE_KEY = 'phonics-lc-checklist-v1';
 let checked = {};
@@ -294,10 +311,14 @@ UNITS.forEach(u => {
       </ul>
     </div>`).join('');
 
-  const sentHtml = u.groups.map(g => `
-    <ol class="sent-col">
-      ${g.sentences.map(s => `<li>${renderSentence(s)}</li>`).join('')}
-    </ol>`).join('');
+  const practiceSentences = pickSentences(u);
+  const sentHtml = practiceSentences.map((s,si) => {
+    const uid = `u${u.num}-sent${si}`;
+    return `<li class="sent-row" data-sent-item="${uid}">
+      <button class="chk" type="button" role="checkbox" aria-checked="false" data-uid="${uid}" data-unit="${u.num}" aria-label="ทำเครื่องหมายว่าอ่านประโยคนี้ได้"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
+      <span class="sent-text">${renderSentence(s)}</span>
+    </li>`;
+  }).join('');
 
   const unitTotal = u.groups.reduce((m,g) => m + g.words.length, 0);
 
@@ -314,12 +335,11 @@ UNITS.forEach(u => {
         <div class="unit-body">
           <p class="howto th"><span class="badge">1</span>&nbsp;อ่านคำศัพท์ในแต่ละกล่องให้คล่อง แล้วกดติ๊กถูกที่คำซึ่งอ่านได้ถูกต้อง</p>
           <div class="pods">${podsHtml}</div>
-          <p class="sent-title th"><span class="swash">✎</span> อ่านประโยคฝึกอ่าน</p>
-          <div class="sent-grid">${sentHtml}</div>
+          <p class="sent-title th"><span class="swash">✎</span> อ่านประโยคฝึกอ่าน <span class="sent-count th">อ่านได้ <b id="sentcount-u${u.num}">0</b>/${practiceSentences.length} ประโยค</span></p>
+          <div class="sent-card"><ol class="sent-log">${sentHtml}</ol></div>
           <div class="foot-row">
-            <div class="score-chip"><span class="th" style="color:var(--ink-soft);font-weight:700;">อ่านได้ถูกต้อง</span>&nbsp;<b id="score-u${u.num}">0</b>&nbsp;/&nbsp;${unitTotal}&nbsp;คำ&nbsp;<span class="score-pct" id="pct-u${u.num}">(0%)</span></div>
+            <div class="score-chip"><span class="th" style="color:var(--ink-soft);font-weight:700;">อ่านคำได้ถูกต้อง</span>&nbsp;<b id="score-u${u.num}">0</b>&nbsp;/&nbsp;${unitTotal}&nbsp;คำ&nbsp;<span class="score-pct" id="pct-u${u.num}">(0%)</span></div>
             <button class="reset-btn th" type="button" data-reset-unit="${u.num}">รีเซ็ตหน่วยนี้</button>
-            <div class="signline th">ผู้ปกครองเซ็นชื่อ <span class="line"></span></div>
           </div>
         </div>
       </div>
@@ -354,6 +374,11 @@ function recompute(){
     const sp = document.getElementById(`summary-pct-${u.num}`);
     if(sc) sc.textContent = `${count} / ${unitTotal}`;
     if(sp) sp.textContent = `${pct}%`;
+
+    let sentCount = 0;
+    Object.keys(checked).forEach(k => { if(checked[k] && k.startsWith(`u${u.num}-sent`)) sentCount++; });
+    const sentEl = document.getElementById(`sentcount-u${u.num}`);
+    if(sentEl) sentEl.textContent = sentCount;
   });
   const grandPct = Math.round((grandCount/TOTAL_WORDS)*100);
   document.getElementById('summaryTotal').textContent = `${grandCount} / ${TOTAL_WORDS}`;
