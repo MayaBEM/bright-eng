@@ -1,0 +1,1099 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; font: 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+<title>Bright EngMath Homework Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap">
+<style>
+  :root {
+    --paper: #FBF5E9;
+    --surface: #FFFFFF;
+    --cream-2: #F6EDDC;
+    --ink: #32372D;
+    --muted: #7C8472;
+    --line: #E9DFCB;
+    --sage: #A6C46B;
+    --sage-soft: #E9F1D9;
+    --green: #2F7A56;
+    --green-soft: #DDEDE2;
+    --orange: #E7853F;
+    --orange-ink: #BC6427;
+    --orange-soft: #FBE7D4;
+    --yellow: #F7DF5B;
+    --berry: #C7566B;
+    --berry-soft: #FADFE3;
+    --on-orange: #FFFFFF;
+    --on-green: #FFFFFF;
+    --t1: #FBDCE3;
+    --t2: #CFE0F5;
+    --t3: #E2D3F3;
+    --t4: #D8EDD9;
+    --t5: #FBE3C8;
+    --shadow: 0 2px 0 rgba(50,55,45,.04), 0 16px 30px -22px rgba(50,55,45,.5);
+    --radius: 18px;
+    --display: "Fredoka", "Trebuchet MS", sans-serif;
+    --body: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1E2320;
+      --surface: #272E28;
+      --cream-2: #2F3730;
+      --ink: #ECEFE5;
+      --muted: #A3AC99;
+      --line: #3A433A;
+      --sage: #A6C46B;
+      --sage-soft: #2B3628;
+      --green: #6DBE93;
+      --green-soft: #24352C;
+      --orange: #EE9455;
+      --orange-ink: #F3AC76;
+      --orange-soft: #3A2A1D;
+      --yellow: #F7DF5B;
+      --berry: #E88A99;
+      --berry-soft: #3A2429;
+      --on-orange: #2A1A0E;
+      --on-green: #12231A;
+      --t1: #3D2C31;
+      --t2: #26323F;
+      --t3: #332B3F;
+      --t4: #26362A;
+      --t5: #3B3025;
+      --shadow: 0 2px 0 rgba(0,0,0,.2), 0 16px 30px -22px rgba(0,0,0,.9);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1E2320;
+    --surface: #272E28;
+    --cream-2: #2F3730;
+    --ink: #ECEFE5;
+    --muted: #A3AC99;
+    --line: #3A433A;
+    --sage: #A6C46B;
+    --sage-soft: #2B3628;
+    --green: #6DBE93;
+    --green-soft: #24352C;
+    --orange: #EE9455;
+    --orange-ink: #F3AC76;
+    --orange-soft: #3A2A1D;
+    --yellow: #F7DF5B;
+    --berry: #E88A99;
+    --berry-soft: #3A2429;
+    --on-orange: #2A1A0E;
+    --on-green: #12231A;
+    --t1: #3D2C31;
+    --t2: #26323F;
+    --t3: #332B3F;
+    --t4: #26362A;
+    --t5: #3B3025;
+    --shadow: 0 2px 0 rgba(0,0,0,.2), 0 16px 30px -22px rgba(0,0,0,.9);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: var(--display); font-weight: 600; margin: 0; text-wrap: balance; }
+  a { color: var(--orange-ink); }
+  :focus-visible { outline: 3px solid var(--sage); outline-offset: 2px; border-radius: 10px; }
+  .shell { max-width: 980px; margin: 0 auto; padding: 0 18px 76px; }
+
+  .label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--muted); }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+    background: var(--sage); border-radius: 0 0 24px 24px;
+    padding: 20px 22px; margin: 0 -18px 22px;
+  }
+  .crest {
+    width: 48px; height: 48px; flex: none; border-radius: 16px;
+    background: var(--surface); color: var(--orange);
+    display: grid; place-items: center; font-family: var(--display); font-weight: 600; font-size: 18px;
+  }
+  .masthead .titles { flex: 1 1 220px; min-width: 0; }
+  .masthead .label { color: #3B4A2C; opacity: .8; }
+  #className {
+    font-family: var(--display); font-weight: 600; font-size: 26px; color: #22331C;
+    background: transparent; border: 2px solid transparent;
+    padding: 0 8px; margin-left: -10px; border-radius: 12px; width: 100%; max-width: 620px;
+  }
+  #className:hover:not(:disabled) { border-color: rgba(255,255,255,.55); }
+  #className:focus { border-color: var(--surface); outline: none; background: rgba(255,255,255,.5); }
+  #className:disabled { color: #22331C; opacity: 1; }
+  .masthead .actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .role-chip {
+    display: inline-flex; align-items: center; gap: 7px; font-size: 11px; letter-spacing: .08em;
+    text-transform: uppercase; font-weight: 800; padding: 7px 12px; border-radius: 99px;
+    color: #3B4A2C; background: rgba(255,255,255,.6);
+  }
+  .role-chip .dot { width: 7px; height: 7px; border-radius: 99px; background: #3B4A2C; }
+  .role-chip.is-teacher { background: var(--surface); color: var(--orange-ink); }
+  .role-chip.is-teacher .dot { background: var(--orange); }
+
+  /* ---------- buttons ---------- */
+  button { font-family: inherit; font-size: 14px; cursor: pointer; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    padding: 10px 18px; border-radius: 99px; border: 2px solid var(--line);
+    background: var(--surface); color: var(--ink); font-weight: 700; font-size: 13.5px;
+    transition: background .15s ease, border-color .15s ease, transform .12s ease;
+  }
+  .btn:hover { background: var(--cream-2); border-color: var(--muted); }
+  .btn:active { transform: translateY(1px); }
+  .btn.primary { background: var(--orange); border-color: var(--orange); color: var(--on-orange); }
+  .btn.primary:hover { background: var(--orange); filter: brightness(1.06); border-color: var(--orange); }
+  .btn.ghost { background: transparent; border-color: transparent; color: var(--muted); padding: 7px 10px; font-weight: 600; }
+  .btn.ghost:hover { background: var(--cream-2); color: var(--ink); border-color: transparent; }
+  .btn.small { padding: 7px 13px; font-size: 12.5px; }
+  .btn.danger:hover { background: var(--berry-soft); color: var(--berry); }
+
+  /* ---------- tabs ---------- */
+  nav.tabs { display: flex; gap: 8px; margin-bottom: 22px; overflow-x: auto; padding-bottom: 2px; }
+  nav.tabs button {
+    background: var(--surface); border: 2px solid var(--line); border-radius: 99px;
+    padding: 8px 18px; color: var(--muted); font-family: var(--display); font-weight: 500;
+    font-size: 15px; white-space: nowrap;
+  }
+  nav.tabs button:hover { border-color: var(--sage); color: var(--ink); }
+  nav.tabs button[aria-selected="true"] { background: var(--orange); border-color: var(--orange); color: var(--on-orange); }
+  nav.tabs .count {
+    font-family: var(--body); font-weight: 800; font-size: 11px; margin-left: 7px; padding: 2px 8px;
+    border-radius: 99px; background: rgba(255,255,255,.35);
+  }
+  nav.tabs button[aria-selected="false"] .count { background: var(--cream-2); color: var(--muted); }
+
+  /* ---------- notices ---------- */
+  .notice {
+    display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+    padding: 13px 18px; border-radius: var(--radius); margin-bottom: 20px;
+    border: 2px solid var(--line); background: var(--surface); font-size: 14px; color: var(--muted);
+  }
+  .notice strong { color: var(--ink); font-weight: 800; }
+  .notice.sample { border-color: var(--orange); background: var(--orange-soft); color: var(--orange-ink); }
+  .notice.sample strong { color: var(--orange-ink); }
+  .notice .spacer { flex: 1 1 auto; }
+
+  /* ---------- today ---------- */
+  .dayline { margin-bottom: 20px; }
+  .dayline .date { font-family: var(--display); font-size: 24px; font-weight: 600; }
+  .dayline .summary { font-size: 14px; color: var(--muted); }
+
+  .statstrip {
+    display: flex; flex-wrap: wrap; gap: 10px; background: var(--orange);
+    border-radius: var(--radius); padding: 14px 18px; margin-bottom: 26px;
+  }
+  .statstrip .stat {
+    flex: 1 1 110px; display: flex; flex-direction: column; gap: 1px;
+    padding: 6px 12px; border-radius: 12px; background: rgba(255,255,255,.16);
+  }
+  .statstrip .v { font-family: var(--display); font-size: 25px; line-height: 1.1; color: var(--on-orange); font-variant-numeric: tabular-nums; }
+  .statstrip .k { font-size: 11px; letter-spacing: .09em; text-transform: uppercase; font-weight: 800; color: var(--on-orange); opacity: .82; }
+
+  .section { margin-bottom: 30px; }
+  .section-head { display: flex; align-items: center; gap: 11px; margin-bottom: 14px; }
+  .section-head h2 { font-family: var(--display); font-size: 17px; font-weight: 500; color: var(--ink); }
+  .section-head .rule { flex: 1; height: 2px; background: var(--line); border-radius: 2px; }
+  .section-head .n {
+    font-size: 12px; font-weight: 800; color: var(--muted);
+    background: var(--cream-2); border-radius: 99px; padding: 2px 9px;
+  }
+  .section.today .section-head h2 { color: var(--orange-ink); }
+  .section.overdue .section-head h2 { color: var(--berry); }
+
+  .cards { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  .card {
+    background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius);
+    padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; box-shadow: var(--shadow);
+  }
+  .section.today .card { border-color: var(--orange); }
+  .section.overdue .card { border-color: var(--berry); }
+  .card .who { display: flex; align-items: center; gap: 8px; }
+  .card .who .name { font-size: 12.5px; font-weight: 800; color: var(--muted); }
+  .card h3 { font-size: 18px; line-height: 1.3; font-weight: 600; }
+  .card .details { font-size: 14px; color: var(--muted); margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .card .foot { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .card .foot .spacer { flex: 1 1 auto; }
+
+  .due {
+    font-size: 12px; font-weight: 800; padding: 5px 12px; border-radius: 99px;
+    background: var(--cream-2); color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums;
+  }
+  .due.is-today { background: var(--yellow); color: #5B4A0E; }
+  .due.is-late { background: var(--berry-soft); color: var(--berry); }
+  .done-flag {
+    font-size: 11px; letter-spacing: .07em; text-transform: uppercase; font-weight: 800;
+    color: var(--green); background: var(--green-soft); padding: 5px 12px; border-radius: 99px;
+  }
+  .open-link {
+    display: inline-flex; align-items: center; gap: 7px; text-decoration: none;
+    font-weight: 800; font-size: 13.5px; padding: 10px 18px; border-radius: 99px;
+    background: var(--orange); color: var(--on-orange); border: 2px solid var(--orange);
+  }
+  .open-link:hover { filter: brightness(1.06); }
+  .open-link.quiet { background: transparent; color: var(--green); border-color: var(--green); }
+  .open-link.quiet:hover { background: var(--green-soft); filter: none; }
+  .no-link { font-size: 13px; color: var(--muted); font-style: italic; }
+
+  /* ---------- forms ---------- */
+  .panel {
+    background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius);
+    padding: 20px; margin-bottom: 26px; box-shadow: var(--shadow);
+  }
+  .panel h2 { font-size: 20px; margin-bottom: 16px; font-weight: 600; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 800; color: var(--muted); }
+  input[type="text"], input[type="date"], textarea {
+    font-family: var(--body); font-size: 14.5px; font-weight: 600; color: var(--ink); background: var(--paper);
+    border: 2px solid var(--line); border-radius: 14px; padding: 11px 14px; width: 100%;
+  }
+  textarea { min-height: 80px; resize: vertical; line-height: 1.55; font-weight: 400; }
+  input:focus, textarea:focus { outline: none; border-color: var(--sage); background: var(--surface); }
+  .grid-2 { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .grid-2 { grid-template-columns: 2fr 1fr; } }
+  .form-rows { display: grid; gap: 14px; }
+  .form-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .hint { font-size: 13px; color: var(--muted); }
+
+  details.also { border-top: 2px solid var(--line); padding-top: 14px; }
+  details.also summary {
+    cursor: pointer; font-size: 13.5px; color: var(--orange-ink); font-weight: 800;
+    list-style: none; display: inline-flex; align-items: center; gap: 7px;
+  }
+  details.also summary::-webkit-details-marker { display: none; }
+  details.also summary::before { content: "+"; color: var(--orange); }
+  details.also[open] summary::before { content: "\2212"; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 99px;
+    border: 2px solid var(--line); background: var(--paper); font-size: 13px; font-weight: 600; cursor: pointer;
+  }
+  .chip input { accent-color: var(--orange); margin: 0; }
+  .chip:hover { border-color: var(--orange); }
+
+  /* ---------- avatars ---------- */
+  .ava {
+    border-radius: 99px; flex: none; overflow: hidden; display: grid; place-items: center;
+    background: var(--sage-soft); color: var(--green);
+    font-family: var(--display); font-weight: 600; line-height: 1;
+  }
+  .ava img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ava.s24 { width: 26px; height: 26px; font-size: 10px; }
+  .ava.s64 { width: 66px; height: 66px; font-size: 21px; border: 3px solid var(--surface); }
+  .ava.s108 { width: 110px; height: 110px; font-size: 34px; border: 5px solid var(--surface); box-shadow: var(--shadow); }
+
+  /* ---------- students grid ---------- */
+  .students { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(212px, 1fr)); }
+  .scard {
+    background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow: hidden; display: flex; flex-direction: column;
+  }
+  .scard .top {
+    padding: 20px 16px 16px; display: flex; flex-direction: column; align-items: center; gap: 10px;
+    text-align: center; border: none; width: 100%; cursor: pointer; font-family: inherit; color: inherit;
+    background: var(--cream-2);
+  }
+  .scard.t1 .top { background: var(--t1); }
+  .scard.t2 .top { background: var(--t2); }
+  .scard.t3 .top { background: var(--t3); }
+  .scard.t4 .top { background: var(--t4); }
+  .scard.t5 .top { background: var(--t5); }
+  .scard .sname { font-family: var(--display); font-size: 18px; font-weight: 600; line-height: 1.25; }
+  .scard .tally { font-size: 12.5px; font-weight: 700; color: var(--muted); }
+  .scard .tally b { color: var(--orange-ink); font-weight: 800; }
+  .scard .tally .late { color: var(--berry); font-weight: 800; }
+  .scard .tools { display: flex; gap: 0; justify-content: center; padding: 8px 4px; flex-wrap: wrap; }
+  .scard .tools .btn { padding: 6px 8px; font-size: 12px; }
+
+  /* ---------- student page ---------- */
+  .crumb {
+    display: inline-flex; align-items: center; gap: 7px; background: none; border: none;
+    color: var(--muted); font-size: 13.5px; font-weight: 700; padding: 4px 0; margin-bottom: 12px;
+  }
+  .crumb:hover { color: var(--orange-ink); }
+  .profile {
+    background: var(--sage); border-radius: var(--radius);
+    padding: 26px 22px 22px; margin-bottom: 24px; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 13px;
+  }
+  .profile h2 { font-size: 29px; font-weight: 600; color: #22331C; }
+  .profile .sub { font-size: 14px; color: #3B4A2C; margin-top: -6px; }
+  .profile .photo-tools { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+  .profile .photo-tools .btn.ghost { color: #3B4A2C; font-weight: 700; }
+  .profile .photo-tools .btn.ghost:hover { background: rgba(255,255,255,.6); color: #22331C; }
+  .profile .stats { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .profile .stat {
+    display: flex; flex-direction: column; gap: 0; align-items: center;
+    background: rgba(255,255,255,.72); border-radius: 14px; padding: 8px 20px; min-width: 84px;
+  }
+  .profile .stat .v { font-family: var(--display); font-size: 23px; line-height: 1.15; color: #22331C; font-variant-numeric: tabular-nums; }
+  .profile .stat .k { font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; font-weight: 800; color: #4B5B3B; }
+
+  .hwlist { display: grid; gap: 14px; }
+  .hw {
+    display: flex; gap: 14px; align-items: flex-start; background: var(--surface);
+    border: 2px solid var(--line); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow);
+  }
+  .hw.is-done { background: var(--green-soft); border-color: var(--green-soft); box-shadow: none; }
+  .hw .body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 9px; }
+  .hw .title { font-family: var(--display); font-weight: 600; font-size: 18px; line-height: 1.3; overflow-wrap: anywhere; }
+  .hw.is-done .title { color: var(--green); }
+  .hw .details { font-size: 14px; color: var(--muted); white-space: pre-wrap; overflow-wrap: anywhere; }
+  .hw.is-done .details { color: color-mix(in srgb, var(--green) 75%, var(--muted)); }
+  .hw .meta { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; }
+  .hw .tools { display: flex; gap: 2px; flex: none; }
+
+  .tick {
+    width: 34px; height: 34px; flex: none; margin-top: 2px; border-radius: 99px;
+    border: 2px solid var(--line); background: var(--paper); color: var(--muted);
+    display: inline-grid; place-items: center; font-size: 16px; line-height: 1;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .tick:hover:not(:disabled) { border-color: var(--green); background: var(--green-soft); }
+  .tick[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: var(--on-green); }
+  .tick:disabled { cursor: default; opacity: .9; }
+
+  /* ---------- empty ---------- */
+  .empty {
+    border: 2px dashed var(--line); border-radius: var(--radius); padding: 34px 24px;
+    text-align: center; color: var(--muted); background: var(--surface);
+  }
+  .empty h3 { font-size: 21px; font-weight: 600; color: var(--ink); margin-bottom: 7px; }
+  .empty p { margin: 0 auto; max-width: 44ch; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
+    background: var(--ink); color: var(--paper); padding: 12px 20px; border-radius: 99px;
+    font-size: 14px; font-weight: 700; box-shadow: var(--shadow); z-index: 40; max-width: calc(100% - 32px);
+  }
+  .toast.warn { background: var(--berry); color: #FFF; }
+
+  .foot-note { margin-top: 38px; font-size: 13px; color: var(--muted); text-align: center; }
+  .foot-note .script { font-family: var(--display); font-size: 17px; color: var(--green); display: block; font-weight: 500; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+</head>
+<body>
+<div class="shell">
+  <header class="masthead">
+    <div class="crest" aria-hidden="true">BE</div>
+    <div class="titles">
+      <div class="label">Homework board</div>
+      <input id="className" type="text" value="My Class" aria-label="Class name" disabled>
+    </div>
+    <div class="actions">
+      <span class="role-chip" id="roleChip"><span class="dot"></span><span id="roleText">Connecting</span></span>
+      <button class="btn small" id="copyLink" type="button">Copy board link</button>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" id="tabs">
+    <button role="tab" data-tab="today" aria-selected="true">Today</button>
+    <button role="tab" data-tab="students" aria-selected="false">Students <span class="count num" id="cStudents">0</span></button>
+  </nav>
+
+  <div id="notices"></div>
+  <main id="view"></main>
+
+  <p class="foot-note"><span class="script">Every student has their own page</span>
+    Links, notes and photos are saved for everyone who opens this board.</p>
+</div>
+
+<input type="file" id="photoInput" accept="image/*" hidden>
+
+<script>
+(function () {
+  "use strict";
+
+  var state = {
+    meta: { className: "My Class", sample: false },
+    students: [],   // [{id, name}]
+    items: [],      // [{id, studentId, title, link, details, due, done, createdAt}]
+    photos: {},     // studentId -> data URI
+    canEdit: false,
+    ready: false,
+    tab: "today",
+    student: null,
+    locked: false,
+    editingId: null,
+    photoTarget: null
+  };
+
+  var db = null;
+  var LS_KEY = "bright-engmath-homework-board.v2";
+  var deferredRender = false;
+
+  /* ---------------- helpers ---------------- */
+  function uid(p) { return (p || "x") + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c];
+    });
+  }
+  function todayStr() {
+    var d = new Date();
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+  function parseDate(s) {
+    if (!s) return null;
+    var p = String(s).split("-");
+    return p.length === 3 ? new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2])) : null;
+  }
+  function fmtDue(s) {
+    var d = parseDate(s);
+    return d ? d.toLocaleDateString(undefined, { weekday: "short", day: "numeric", month: "short" }) : "";
+  }
+  function dueLabel(s) {
+    if (!s) return "No due date";
+    var d = parseDate(s), t = parseDate(todayStr());
+    var n = Math.round((d - t) / 86400000);
+    if (n === 0) return fmtDue(s) + " · today";
+    if (n === 1) return fmtDue(s) + " · tomorrow";
+    if (n > 1) return fmtDue(s) + " · in " + n + " days";
+    if (n === -1) return fmtDue(s) + " · 1 day late";
+    return fmtDue(s) + " · " + Math.abs(n) + " days late";
+  }
+  function dueClass(s) {
+    if (!s) return "";
+    var t = todayStr();
+    return s === t ? " is-today" : (s < t ? " is-late" : "");
+  }
+  function safeUrl(raw) {
+    var u = String(raw || "").trim();
+    if (!u) return "";
+    if (/^javascript:/i.test(u) || /^data:/i.test(u)) return "";
+    if (!/^https?:\/\//i.test(u)) u = "https://" + u.replace(/^\/+/, "");
+    return u;
+  }
+  function initials(name) {
+    var parts = String(name).trim().split(/\s+/).filter(Boolean);
+    if (!parts.length) return "?";
+    return (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] : "")).toUpperCase();
+  }
+  function avatar(s, size) {
+    var photo = state.photos[s.id];
+    var inner = photo
+      ? '<img src="' + esc(photo) + '" alt="">'
+      : esc(initials(s.name));
+    return '<span class="ava ' + size + '" aria-hidden="true">' + inner + "</span>";
+  }
+  function studentById(id) {
+    for (var i = 0; i < state.students.length; i++) if (state.students[i].id === id) return state.students[i];
+    return null;
+  }
+  function sortItems(a, b) {
+    return String(a.due || "9999-99-99").localeCompare(String(b.due || "9999-99-99")) || (a.createdAt || 0) - (b.createdAt || 0);
+  }
+  function itemsFor(sid) {
+    return state.items.filter(function (it) { return it.studentId === sid; }).sort(sortItems);
+  }
+  function toast(msg, warn) {
+    var old = document.querySelector(".toast");
+    if (old) old.remove();
+    var el = document.createElement("div");
+    el.className = "toast" + (warn ? " warn" : "");
+    el.setAttribute("role", "status");
+    el.textContent = msg;
+    document.body.appendChild(el);
+    setTimeout(function () { el.remove(); }, 3200);
+  }
+
+  /* ---------------- storage ---------------- */
+  function saveLocal() {
+    try {
+      localStorage.setItem(LS_KEY, JSON.stringify({
+        meta: state.meta, students: state.students, items: state.items, photos: state.photos
+      }));
+    } catch (e) { /* storage blocked or full — page still works in memory */ }
+  }
+  function loadLocal() {
+    try {
+      var raw = localStorage.getItem(LS_KEY);
+      if (!raw) return;
+      var d = JSON.parse(raw);
+      state.meta = d.meta || state.meta;
+      state.students = d.students || [];
+      state.items = d.items || [];
+      state.photos = d.photos || {};
+    } catch (e) { /* ignore corrupt cache */ }
+  }
+  function guard(p) {
+    if (!p || !p.catch) return;
+    p.catch(function (err) {
+      var code = err && err.code;
+      if (code === "invalid_argument" || code === "not_granted" || code === "revoked") {
+        if (state.canEdit) { state.canEdit = false; render(); }
+        toast("This board is view-only for you. Ask your teacher to make the change.", true);
+      } else {
+        toast("Could not save just now — try again in a moment.", true);
+      }
+    });
+  }
+  function saveMeta() { db ? guard(db.doc("board/meta").set(state.meta)) : saveLocal(); }
+  function saveRoster() { db ? guard(db.doc("board/roster").set({ students: state.students })) : saveLocal(); }
+  function saveItem(it) { db ? guard(db.collection("items").doc(it.id).set(it)) : saveLocal(); }
+  function dropItem(id) { db ? guard(db.collection("items").doc(id).delete()) : saveLocal(); }
+  function savePhoto(sid) { db ? guard(db.collection("photos").doc(sid).set({ data: state.photos[sid] })) : saveLocal(); }
+  function dropPhoto(sid) { db ? guard(db.collection("photos").doc(sid).delete()) : saveLocal(); }
+
+  /* ---------------- photos ---------------- */
+  function squareJpeg(file, size, quality) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onerror = function () { reject(new Error("read")); };
+      reader.onload = function () {
+        var img = new Image();
+        img.onerror = function () { reject(new Error("decode")); };
+        img.onload = function () {
+          var side = Math.min(img.width, img.height);
+          var c = document.createElement("canvas");
+          c.width = size; c.height = size;
+          var ctx = c.getContext("2d");
+          ctx.fillStyle = "#FFFFFF";
+          ctx.fillRect(0, 0, size, size);
+          ctx.drawImage(img, (img.width - side) / 2, (img.height - side) / 2, side, side, 0, 0, size, size);
+          resolve(c.toDataURL("image/jpeg", quality));
+        };
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function handlePhotoFile(file) {
+    var sid = state.photoTarget;
+    if (!sid || !file) return;
+    if (!/^image\//.test(file.type)) { toast("Choose an image file (JPG or PNG).", true); return; }
+    squareJpeg(file, 256, 0.78).then(function (data) {
+      if (data.length > 180000) return squareJpeg(file, 180, 0.6);
+      return data;
+    }).then(function (data) {
+      if (data.length > 240000) { toast("That picture is too large — try a smaller one.", true); return; }
+      state.photos[sid] = data;
+      savePhoto(sid);
+      saveLocal();
+      render();
+      toast("Photo added.");
+    }).catch(function () {
+      toast("Could not read that image — try another file.", true);
+    });
+  }
+
+  /* ---------------- render ---------------- */
+  function render() {
+    var a = document.activeElement;
+    if (a && (a.tagName === "INPUT" || a.tagName === "TEXTAREA") && a.id !== "className" && a.id !== "photoInput") {
+      deferredRender = true;
+      return;
+    }
+    deferredRender = false;
+
+    var nameInput = document.getElementById("className");
+    if (document.activeElement !== nameInput) nameInput.value = state.meta.className || "My Class";
+    nameInput.disabled = !state.canEdit;
+
+    var chip = document.getElementById("roleChip"), txt = document.getElementById("roleText");
+    if (!state.ready) { txt.textContent = "Connecting"; chip.className = "role-chip"; }
+    else if (state.canEdit) { txt.textContent = "Teacher view"; chip.className = "role-chip is-teacher"; }
+    else { txt.textContent = "Student view"; chip.className = "role-chip"; }
+
+    document.getElementById("cStudents").textContent = state.students.length;
+    document.getElementById("tabs").hidden = state.locked;
+    document.getElementById("copyLink").textContent = state.student && !state.locked ? "Copy this student's link" : "Copy board link";
+
+    Array.prototype.forEach.call(document.querySelectorAll("#tabs button"), function (b) {
+      var on = state.student ? b.dataset.tab === "students" : b.dataset.tab === state.tab;
+      b.setAttribute("aria-selected", on ? "true" : "false");
+    });
+
+    renderNotices();
+    var view = document.getElementById("view");
+    if (state.student) view.innerHTML = viewStudent(state.student);
+    else if (state.tab === "students") view.innerHTML = viewStudents();
+    else view.innerHTML = viewToday();
+  }
+
+  function renderNotices() {
+    var out = "";
+    if (state.ready && !state.canEdit) {
+      out += '<div class="notice"><strong>View only.</strong> Open your homework links here — your teacher keeps the page up to date.</div>';
+    }
+    if (state.canEdit && state.meta.sample) {
+      out += '<div class="notice sample"><strong>Sample class loaded.</strong> Two example students with homework links, so you can see how it works.'
+        + '<span class="spacer"></span><button class="btn small" type="button" data-act="clear-sample">Clear sample data</button></div>';
+    }
+    document.getElementById("notices").innerHTML = out;
+  }
+
+  /* ---------- Today ---------- */
+  function todayCard(it) {
+    var s = studentById(it.studentId);
+    var url = safeUrl(it.link);
+    return '<article class="card">'
+      + '<div class="who">' + (s ? avatar(s, "s24") : "") + '<span class="name">' + esc(s ? s.name : "Unassigned") + "</span></div>"
+      + "<h3>" + esc(it.title) + "</h3>"
+      + (it.details ? '<p class="details">' + esc(it.details) + "</p>" : "")
+      + '<div class="foot"><span class="due' + dueClass(it.due) + '">' + esc(dueLabel(it.due)) + "</span></div>"
+      + '<div class="foot">'
+      + (url ? '<a class="open-link" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">Open homework &rarr;</a>'
+             : '<span class="no-link">No link added yet</span>')
+      + '<span class="spacer"></span>'
+      + '<button class="btn ghost small" type="button" data-act="open-student" data-id="' + esc(it.studentId) + '">Their page &rarr;</button>'
+      + "</div></article>";
+  }
+
+  function section(title, cls, items) {
+    if (!items.length) return "";
+    return '<section class="section ' + cls + '">'
+      + '<div class="section-head"><h2>' + title + '</h2><span class="n num">' + items.length + '</span><span class="rule"></span></div>'
+      + '<div class="cards">' + items.map(todayCard).join("") + "</div></section>";
+  }
+
+  function viewToday() {
+    var t = todayStr();
+    var open = state.items.filter(function (it) { return !it.done; }).sort(sortItems);
+    var due = [], late = [], soon = [], undated = [];
+    open.forEach(function (it) {
+      if (!it.due) undated.push(it);
+      else if (it.due === t) due.push(it);
+      else if (it.due > t) soon.push(it);
+      else late.push(it);
+    });
+
+    var handed = state.items.filter(function (it) { return it.done; }).length;
+    var head = '<div class="dayline"><div class="date">Today</div><div class="summary">'
+      + new Date().toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long", year: "numeric" })
+      + "</div></div>"
+      + '<div class="statstrip">'
+      + '<span class="stat"><span class="v num">' + due.length + '</span><span class="k">Due today</span></span>'
+      + '<span class="stat"><span class="v num">' + late.length + '</span><span class="k">Still open</span></span>'
+      + '<span class="stat"><span class="v num">' + soon.length + '</span><span class="k">Coming up</span></span>'
+      + '<span class="stat"><span class="v num">' + handed + '</span><span class="k">Handed in</span></span>'
+      + "</div>";
+
+    if (!state.students.length) {
+      return head + '<div class="empty"><h3>No students yet</h3><p>'
+        + (state.canEdit ? "Open the Students tab, add a name, and each student gets their own homework page."
+                         : "Your teacher has not set up the class list yet.") + "</p></div>";
+    }
+    if (!open.length) {
+      return head + '<div class="empty"><h3>Everything is handed in</h3><p>No homework is open right now. '
+        + (state.canEdit ? "Open a student’s page to post the next task." : "") + "</p></div>";
+    }
+
+    return head + section("Due today", "today", due)
+      + section("Still open", "overdue", late)
+      + section("Coming up", "soon", soon)
+      + section("No due date", "undated", undated);
+  }
+
+  /* ---------- Students ---------- */
+  function viewStudents() {
+    var out = "";
+    if (state.canEdit) {
+      out += '<form class="panel" id="studentForm"><h2>Add a student</h2>'
+        + '<div class="form-rows"><div class="field"><label for="fName">Full name</label>'
+        + '<input id="fName" type="text" required placeholder="Nannaphat S." autocomplete="off"></div>'
+        + '<div class="form-actions"><button class="btn primary" type="submit">Add student</button>'
+        + '<span class="hint">Paste several names at once — separate them with commas or new lines. Add photos after.</span>'
+        + "</div></div></form>";
+    }
+    if (!state.students.length) {
+      return out + '<div class="empty"><h3>No students on the list</h3><p>'
+        + (state.canEdit ? "Add a name and a homework page is created for that student."
+                         : "Your teacher has not added the class list yet.") + "</p></div>";
+    }
+    var cards = state.students.map(function (s, idx) {
+      var items = itemsFor(s.id);
+      var openN = items.filter(function (i) { return !i.done; }).length;
+      var lateN = items.filter(function (i) { return !i.done && i.due && i.due < todayStr(); }).length;
+      return '<article class="scard t' + ((idx % 5) + 1) + '">'
+        + '<button class="top" type="button" data-act="open-student" data-id="' + esc(s.id) + '">'
+        + avatar(s, "s64")
+        + '<span class="sname">' + esc(s.name) + "</span>"
+        + '<span class="tally">' + (openN ? "<b>" + openN + " open</b>" : "all handed in")
+        + (lateN ? ' · <span class="late">' + lateN + " late</span>" : "") + "</span>"
+        + "</button>"
+        + (state.canEdit
+            ? '<div class="tools">'
+              + '<button class="btn ghost small" type="button" data-act="photo" data-id="' + esc(s.id) + '">'
+              + (state.photos[s.id] ? "Change photo" : "Add photo") + "</button>"
+              + '<button class="btn ghost small" type="button" data-act="rename-student" data-id="' + esc(s.id) + '">Rename</button>'
+              + '<button class="btn ghost small danger" type="button" data-act="del-student" data-id="' + esc(s.id) + '">Delete</button>'
+              + "</div>"
+            : "")
+        + "</article>";
+    }).join("");
+    return out + '<div class="students">' + cards + "</div>";
+  }
+
+  /* ---------- one student ---------- */
+  function viewStudent(sid) {
+    var s = studentById(sid);
+    if (!s) return '<div class="empty"><h3>Student not found</h3><p>They may have been removed from the class list.</p></div>';
+
+    var items = itemsFor(sid);
+    var open = items.filter(function (i) { return !i.done; });
+    var done = items.filter(function (i) { return i.done; });
+    var late = open.filter(function (i) { return i.due && i.due < todayStr(); }).length;
+
+    var out = state.locked ? "" : '<button class="crumb" type="button" data-act="back">&larr; All students</button>';
+
+    out += '<section class="profile">' + avatar(s, "s108")
+      + "<h2>" + esc(s.name) + "</h2>"
+      + '<div class="stats">'
+      + '<span class="stat"><span class="v num">' + open.length + '</span><span class="k">Open</span></span>'
+      + '<span class="stat"><span class="v num">' + late + '</span><span class="k">Late</span></span>'
+      + '<span class="stat"><span class="v num">' + done.length + '</span><span class="k">Handed in</span></span>'
+      + "</div>"
+      + (state.canEdit
+          ? '<div class="photo-tools">'
+            + '<button class="btn small" type="button" data-act="photo" data-id="' + esc(sid) + '">'
+            + (state.photos[sid] ? "Change photo" : "Add photo") + "</button>"
+            + (state.photos[sid] ? '<button class="btn ghost small" type="button" data-act="rm-photo" data-id="' + esc(sid) + '">Remove photo</button>' : "")
+            + "</div>"
+          : "")
+      + "</section>";
+
+    if (state.canEdit) {
+      var e = state.editingId ? items.filter(function (i) { return i.id === state.editingId; })[0] : null;
+      out += '<form class="panel" id="hwForm" data-student="' + esc(sid) + '">'
+        + "<h2>" + (e ? "Edit homework" : "Add homework for " + esc(s.name)) + "</h2>"
+        + '<div class="form-rows">'
+        + '<div class="field"><label for="fTitle">Task</label>'
+        + '<input id="fTitle" type="text" required placeholder="Unit 4 — Present Perfect practice" value="' + esc(e ? e.title : "") + '"></div>'
+        + '<div class="field"><label for="fLink">Homework link</label>'
+        + '<input id="fLink" type="text" placeholder="Paste a Google Form, Drive, Canva or Quizizz link" value="' + esc(e ? e.link : "") + '"></div>'
+        + '<div class="grid-2">'
+        + '<div class="field"><label for="fDetails">Details</label>'
+        + '<textarea id="fDetails" placeholder="What to do, how long it should take, what to hand in…">' + esc(e ? e.details : "") + "</textarea></div>"
+        + '<div class="field"><label for="fDue">Due date</label>'
+        + '<input id="fDue" type="date" value="' + esc(e ? e.due : "") + '"></div>'
+        + "</div>";
+
+      if (!e && state.students.length > 1) {
+        out += '<details class="also"><summary>Give this to other students too</summary><div class="chips">'
+          + state.students.filter(function (o) { return o.id !== sid; }).map(function (o) {
+              return '<label class="chip"><input type="checkbox" class="alsoBox" value="' + esc(o.id) + '">' + esc(o.name) + "</label>";
+            }).join("")
+          + "</div></details>";
+      }
+
+      out += '<div class="form-actions"><button class="btn primary" type="submit">' + (e ? "Save changes" : "Add to this page") + "</button>"
+        + (e ? '<button class="btn" type="button" data-act="cancel-edit">Cancel</button>' : "")
+        + "</div></div></form>";
+    }
+
+    if (!items.length) {
+      return out + '<div class="empty"><h3>No homework on this page yet</h3><p>'
+        + (state.canEdit ? "Add a task above — paste the link, write what to do, set a due date."
+                         : "Nothing has been posted for you yet.") + "</p></div>";
+    }
+
+    out += hwSection("Open", open, false);
+    out += hwSection("Handed in", done, true);
+    return out;
+  }
+
+  function hwSection(title, items, isDone) {
+    if (!items.length) return "";
+    var rows = items.map(function (it) {
+      var url = safeUrl(it.link);
+      return '<article class="hw' + (isDone ? " is-done" : "") + '">'
+        + '<button class="tick" type="button" aria-pressed="' + (it.done ? "true" : "false") + '" data-act="tick" data-id="' + esc(it.id) + '"'
+        + (state.canEdit ? "" : " disabled") + ' aria-label="Mark ' + esc(it.title) + ' as handed in">'
+        + (it.done ? "&#10003;" : "&nbsp;") + "</button>"
+        + '<div class="body"><span class="title">' + esc(it.title) + "</span>"
+        + (it.details ? '<span class="details">' + esc(it.details) + "</span>" : "")
+        + '<span class="meta"><span class="due' + (it.done ? "" : dueClass(it.due)) + '">'
+        + esc(it.done ? (it.due ? "Due " + fmtDue(it.due) : "No due date") : dueLabel(it.due)) + "</span>"
+        + (it.done ? '<span class="done-flag">Handed in</span>' : "")
+        + (url ? '<a class="open-link' + (isDone ? " quiet" : "") + '" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">Open homework &rarr;</a>'
+               : '<span class="no-link">No link added yet</span>')
+        + "</span></div>"
+        + (state.canEdit
+            ? '<div class="tools"><button class="btn ghost small" type="button" data-act="edit" data-id="' + esc(it.id) + '">Edit</button>'
+              + '<button class="btn ghost small danger" type="button" data-act="del-item" data-id="' + esc(it.id) + '">Delete</button></div>'
+            : "")
+        + "</article>";
+    }).join("");
+    return '<section class="section"><div class="section-head"><h2>' + title + '</h2><span class="n num">'
+      + items.length + '</span><span class="rule"></span></div><div class="hwlist">' + rows + "</div></section>";
+  }
+
+  /* ---------------- navigation ---------------- */
+  function goStudent(id) {
+    state.student = id;
+    state.editingId = null;
+    if (!state.locked) location.hash = "student=" + id;
+    render();
+    window.scrollTo({ top: 0 });
+  }
+  function goBack() {
+    state.student = null;
+    state.editingId = null;
+    state.tab = "students";
+    if (!state.locked) location.hash = "";
+    render();
+  }
+
+  function addStudents(raw) {
+    var names = String(raw).split(/[,\n]/).map(function (s) { return s.trim(); }).filter(Boolean);
+    if (!names.length) return;
+    names.forEach(function (n) { state.students.push({ id: uid("s"), name: n }); });
+    saveRoster();
+    saveLocal();
+    render();
+    toast(names.length === 1 ? names[0] + " added." : names.length + " students added.");
+  }
+
+  function clearSample() {
+    state.items.slice().forEach(function (it) { dropItem(it.id); });
+    state.students.slice().forEach(function (s) { if (state.photos[s.id]) dropPhoto(s.id); });
+    state.items = [];
+    state.students = [];
+    state.photos = {};
+    state.meta = Object.assign({}, state.meta, { sample: false });
+    state.student = null;
+    saveRoster();
+    saveMeta();
+    saveLocal();
+    render();
+    toast("Sample data cleared — the board is yours now.");
+  }
+
+  /* ---------------- events ---------------- */
+  document.getElementById("tabs").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-tab]");
+    if (!b) return;
+    state.tab = b.dataset.tab;
+    state.student = null;
+    state.editingId = null;
+    if (!state.locked) location.hash = "";
+    render();
+  });
+
+  document.getElementById("className").addEventListener("change", function (e) {
+    state.meta = Object.assign({}, state.meta, { className: e.target.value.trim() || "My Class" });
+    saveMeta();
+    saveLocal();
+  });
+
+  document.getElementById("copyLink").addEventListener("click", function () {
+    var url = location.href;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(
+        function () { toast(state.student ? "Link copied — it opens this student’s page." : "Board link copied."); },
+        function () { toast("Copy the address bar link to share this page.", true); }
+      );
+    } else { toast("Copy the address bar link to share this page.", true); }
+  });
+
+  var photoInput = document.getElementById("photoInput");
+  photoInput.addEventListener("change", function () {
+    var f = photoInput.files && photoInput.files[0];
+    photoInput.value = "";
+    handlePhotoFile(f);
+  });
+
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest("[data-act]");
+    if (!el) return;
+    var act = el.dataset.act;
+
+    if (act === "open-student") { goStudent(el.dataset.id); }
+    else if (act === "back") { goBack(); }
+    else if (act === "photo" && state.canEdit) {
+      state.photoTarget = el.dataset.id;
+      photoInput.click();
+    }
+    else if (act === "rm-photo" && state.canEdit) {
+      delete state.photos[el.dataset.id];
+      dropPhoto(el.dataset.id);
+      saveLocal();
+      render();
+    }
+    else if (act === "tick" && state.canEdit) {
+      var it = state.items.filter(function (x) { return x.id === el.dataset.id; })[0];
+      if (!it) return;
+      it.done = !it.done;
+      saveItem(it);
+      saveLocal();
+      render();
+    }
+    else if (act === "edit") {
+      state.editingId = el.dataset.id;
+      render();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    else if (act === "cancel-edit") { state.editingId = null; render(); }
+    else if (act === "del-item") {
+      var target = state.items.filter(function (x) { return x.id === el.dataset.id; })[0];
+      if (!target || !window.confirm('Delete "' + target.title + '" from this page?')) return;
+      state.items = state.items.filter(function (x) { return x.id !== target.id; });
+      dropItem(target.id);
+      saveLocal();
+      if (state.editingId === target.id) state.editingId = null;
+      render();
+    }
+    else if (act === "rename-student") {
+      var s = studentById(el.dataset.id);
+      if (!s) return;
+      var next = window.prompt("New name for this student", s.name);
+      if (next === null) return;
+      next = next.trim();
+      if (!next) return;
+      s.name = next;
+      saveRoster();
+      saveLocal();
+      render();
+    }
+    else if (act === "del-student") {
+      var st = studentById(el.dataset.id);
+      if (!st) return;
+      var mine = itemsFor(st.id);
+      if (!window.confirm("Delete " + st.name + " and the " + mine.length + " task(s) on their page?")) return;
+      state.students = state.students.filter(function (x) { return x.id !== st.id; });
+      mine.forEach(function (item) { dropItem(item.id); });
+      state.items = state.items.filter(function (item) { return item.studentId !== st.id; });
+      if (state.photos[st.id]) { dropPhoto(st.id); delete state.photos[st.id]; }
+      if (state.student === st.id) state.student = null;
+      saveRoster();
+      saveLocal();
+      render();
+      toast(st.name + " removed.");
+    }
+    else if (act === "clear-sample") {
+      if (window.confirm("Remove the sample students and their homework?")) clearSample();
+    }
+  });
+
+  document.addEventListener("submit", function (e) {
+    if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+
+    if (e.target.id === "studentForm") {
+      e.preventDefault();
+      var input = document.getElementById("fName");
+      var value = input.value;
+      input.value = "";
+      addStudents(value);
+      var again = document.getElementById("fName");
+      if (again) again.focus();
+      return;
+    }
+
+    if (e.target.id === "hwForm") {
+      e.preventDefault();
+      var sid = e.target.dataset.student;
+      var title = document.getElementById("fTitle").value.trim();
+      if (!title) return;
+      var payload = {
+        title: title,
+        link: document.getElementById("fLink").value.trim(),
+        details: document.getElementById("fDetails").value.trim(),
+        due: document.getElementById("fDue").value || ""
+      };
+
+      if (state.editingId) {
+        var ex = state.items.filter(function (x) { return x.id === state.editingId; })[0];
+        if (ex) { Object.assign(ex, payload); saveItem(ex); }
+        state.editingId = null;
+        toast("Homework updated.");
+      } else {
+        var targets = [sid];
+        Array.prototype.forEach.call(document.querySelectorAll(".alsoBox:checked"), function (b) { targets.push(b.value); });
+        targets.forEach(function (t, i) {
+          var rec = Object.assign({ id: uid("h"), studentId: t, done: false, createdAt: Date.now() + i }, payload);
+          state.items.push(rec);
+          saveItem(rec);
+        });
+        toast(targets.length === 1 ? "Added to this page." : "Added to " + targets.length + " students.");
+      }
+      saveLocal();
+      render();
+    }
+  });
+
+  document.addEventListener("focusout", function (e) {
+    var t = e.target;
+    if ((t.tagName === "INPUT" || t.tagName === "TEXTAREA") && deferredRender) setTimeout(render, 0);
+  });
+
+  window.addEventListener("hashchange", function () {
+    if (state.locked) return;
+    var m = /student=([A-Za-z0-9_-]+)/.exec(location.hash || "");
+    state.student = m ? m[1] : null;
+    render();
+  });
+
+  /* ---------------- boot ---------------- */
+  var initial = /student=([A-Za-z0-9_-]+)/.exec(location.hash || "");
+  if (initial) state.student = initial[1];
+  loadLocal();
+  render();
+
+  function attach(theDb) {
+    db = theDb;
+    theDb.doc("board/meta").onSnapshot(function (snap) {
+      if (snap.exists) { state.meta = Object.assign({ className: "My Class", sample: false }, snap.data()); render(); }
+    }, function () {});
+    theDb.doc("board/roster").onSnapshot(function (snap) {
+      var d = snap.exists ? snap.data() : null;
+      state.students = (d && Array.isArray(d.students)) ? d.students : [];
+      render();
+    }, function () {});
+    theDb.collection("items").onSnapshot(function (snap) {
+      state.items = snap.docs.map(function (d) {
+        return Object.assign({ id: d.id, studentId: "", title: "Untitled", link: "", details: "", due: "", done: false, createdAt: 0 }, d.data());
+      });
+      render();
+    }, function () {});
+    theDb.collection("photos").onSnapshot(function (snap) {
+      var next = {};
+      snap.docs.forEach(function (d) {
+        var v = d.data() || {};
+        if (typeof v.data === "string" && v.data.indexOf("data:image/") === 0) next[d.id] = v.data;
+      });
+      state.photos = next;
+      render();
+    }, function () {});
+  }
+
+  var dbPromise = (window.claude && window.claude.use) ? window.claude.use("db") : Promise.resolve(null);
+
+  dbPromise.then(function (theDb) {
+    if (!theDb) { state.canEdit = true; return; }   // no shared store: this browser keeps its own copy
+    attach(theDb);
+    return theDb.doc("system/access-probe").set({ checkedAt: Date.now() }).then(
+      function () { state.canEdit = true; },
+      function () { state.canEdit = false; }
+    );
+  }).catch(function () {
+    state.canEdit = false;
+  }).then(function () {
+    state.ready = true;
+    if (!state.canEdit && state.student) state.locked = true;
+    render();
+  });
+})();
+</script>
+
+</body>
+</html>
