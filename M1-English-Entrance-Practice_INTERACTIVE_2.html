@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>English Practice — Grade 7 Entrance Preparation</title>
+<style>
+:root{
+  --cream:#F8F2E6; --cream2:#F1E8D8; --surface:#FFFFFF;
+  --ink:#16243D; --ink2:#42537180; --ink2:#425371; --muted:#7C8AA1;
+  --line:#E9E0CE; --line2:#DBD0BA;
+  --blue:#5BAEEF; --peach:#F0964B; --indigo:#6B72C9; --mint:#43BFA8; --coral:#F0857C; --navy:#1B2A4A;
+  --ok:#2E9E6B; --ok-t:#E7F5EE; --no:#DF6156; --no-t:#FDEDEB;
+  --accent:#9CD2F5; --accent-ink:#2C7CB8; --accent-t:#EEF7FD;
+  --r:20px; --r2:14px;
+  --sh:0 1px 2px rgba(27,42,74,.04), 0 10px 24px -14px rgba(27,42,74,.34);
+  --sh2:0 2px 4px rgba(27,42,74,.05), 0 18px 34px -18px rgba(27,42,74,.42);
+  --ui:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --serif:"Iowan Old Style",Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:var(--ui);
+  font-size:18px;line-height:1.55;-webkit-text-size-adjust:100%;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+sup{font-size:.66em;font-weight:800;line-height:0}
+u{text-underline-offset:4px;text-decoration-thickness:1.5px}
+.wrap{max-width:860px;margin:0 auto;padding:0 22px}
+.screen{display:none}
+.screen.on{display:block;animation:fade .22s ease}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---------------- primitives ---------------- */
+.eyebrow{font-size:13px;letter-spacing:.13em;text-transform:uppercase;font-weight:800;color:var(--muted);margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  min-height:56px;padding:0 26px;border-radius:16px;font-weight:750;font-size:18px;
+  background:var(--navy);color:#fff;box-shadow:var(--sh);transition:filter .15s,transform .06s}
+.btn:hover{filter:brightness(1.06)}
+.btn:active{transform:translateY(1px)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;filter:none;box-shadow:none}
+.btn.ghost{background:var(--surface);color:var(--ink);border:2px solid var(--line2);box-shadow:none}
+.btn.ghost:hover{border-color:var(--accent-ink);color:var(--accent-ink);filter:none}
+.btn.dark{background:var(--accent-ink)}
+.iconbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:48px;min-width:48px;padding:0 15px;border-radius:14px;background:var(--surface);
+  border:2px solid var(--line);font-size:16px;font-weight:700;color:var(--ink)}
+.iconbtn:hover{border-color:var(--accent-ink);color:var(--accent-ink)}
+.iconbtn svg{flex:none}
+.link{padding:10px 0;color:var(--muted);font-size:16px;text-decoration:underline;text-underline-offset:4px}
+.link:hover{color:var(--ink)}
+.pill{display:inline-block;font-size:13.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  padding:6px 12px;border-radius:999px;background:var(--accent-t);color:var(--accent-ink)}
+
+/* ---------------- top bar ---------------- */
+.top{position:sticky;top:0;z-index:40;background:rgba(248,242,230,.93);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line)}
+.top .in{max-width:860px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:12px}
+.top .who{flex:1;min-width:0}
+.top .who b{display:block;font-size:17px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top .who span{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.prog{height:6px;background:var(--line)}
+.prog i{display:block;height:100%;background:var(--accent-ink);width:0;transition:width .3s ease;border-radius:0 4px 4px 0}
+
+/* ---------------- home ---------------- */
+.hero{padding:46px 0 8px}
+.hero h1{font-size:clamp(38px,7.5vw,58px);line-height:1.04;margin:12px 0 0;letter-spacing:-.025em}
+.hero .lede{color:var(--ink2);font-size:19px;margin:16px 0 0;max-width:50ch}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 0}
+.chip{display:flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--line);
+  border-radius:999px;padding:9px 17px;font-size:15.5px;font-weight:700;box-shadow:var(--sh)}
+.chip i{width:11px;height:11px;border-radius:50%;display:block}
+.sechead{margin:40px 0 16px;display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.sechead h2{font-size:16px;letter-spacing:.12em;text-transform:uppercase;margin:0;color:var(--muted)}
+.cards{display:grid;gap:16px}
+.lvcard{display:block;width:100%;text-align:left;border-radius:var(--r);overflow:hidden;
+  background:var(--surface);box-shadow:var(--sh);transition:transform .14s,box-shadow .14s}
+.lvcard:hover{transform:translateY(-3px);box-shadow:var(--sh2)}
+.lvcard .hd{background:var(--lv);color:var(--ink);padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.lvcard .hd h3{margin:0;font-size:25px;letter-spacing:-.02em}
+.lvcard .hd .n{font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  background:rgba(255,255,255,.6);padding:6px 13px;border-radius:999px;white-space:nowrap}
+.lvcard .bd{padding:16px 22px 18px;display:flex;align-items:center;gap:14px}
+.lvcard .bd p{margin:0;flex:1;color:var(--ink2);font-size:16.5px;line-height:1.5}
+.lvcard .go{flex:none;width:46px;height:46px;border-radius:50%;background:var(--navy);color:#fff;
+  display:grid;place-items:center}
+.steps{counter-reset:s;display:grid;gap:14px;margin:0;padding:0;list-style:none}
+.steps li{counter-increment:s;position:relative;padding-left:50px;color:var(--ink2);font-size:17px;min-height:36px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:34px;height:34px;border-radius:12px;
+  background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;
+  font-size:16px;font-weight:800;color:var(--ink);box-shadow:var(--sh)}
+.foot{margin:44px 0 44px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:15px}
+
+/* ---------------- menu ---------------- */
+.menuhead{padding:26px 0 0}
+.menuhead h1{font-size:clamp(30px,6vw,42px);margin:10px 0 0;letter-spacing:-.025em}
+.menuhead p{color:var(--ink2);margin:12px 0 0;max-width:52ch;font-size:17.5px}
+.pcard{display:flex;align-items:center;gap:16px;width:100%;text-align:left;background:var(--surface);
+  border-radius:var(--r2);padding:16px 18px;box-shadow:var(--sh);transition:transform .12s,box-shadow .12s}
+.pcard:hover{transform:translateY(-2px);box-shadow:var(--sh2)}
+.pcard:hover .m h3{color:var(--accent-ink)}
+.pcard .badge{flex:none;width:56px;height:56px;border-radius:16px;display:grid;place-items:center;
+  font-size:20px;font-weight:800;color:var(--ink);background:var(--lv)}
+.pcard .m{flex:1;min-width:0}
+.pcard .m h3{margin:0;font-size:19.5px;letter-spacing:-.01em}
+.pcard .m p{margin:3px 0 0;color:var(--muted);font-size:15.5px;line-height:1.45}
+.pcard .r{flex:none;text-align:right}
+.pcard .r .n{font-size:14px;font-weight:800;color:var(--ink2);white-space:nowrap}
+.pcard .r .best{display:block;font-size:13.5px;font-weight:800;color:var(--ok);margin-top:3px;white-space:nowrap}
+
+/* ---------------- question ---------------- */
+.qwrap{padding:26px 0 176px}
+.passage{background:var(--surface);border-radius:var(--r2);box-shadow:var(--sh);margin:0 0 24px;overflow:hidden}
+.passage summary{cursor:pointer;list-style:none;padding:15px 20px;font-size:15px;font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:var(--accent);
+  display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:52px}
+.passage summary::-webkit-details-marker{display:none}
+.passage summary::after{content:"▾";font-size:13px;opacity:.9}
+.passage details[open] summary::after{content:"▴"}
+.passage .inner{padding:18px 20px 20px}
+.passage h4{margin:0 0 10px;font-size:18px;letter-spacing:-.01em}
+.passage .body{font-family:var(--serif);font-size:18px;line-height:1.66;color:var(--ink)}
+.passage .body p{margin:0 0 11px}
+.passage .body p:last-child{margin-bottom:0}
+.qhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px}
+.qnum{font-size:14px;letter-spacing:.11em;text-transform:uppercase;font-weight:800;color:var(--muted)}
+.donetag{font-size:13px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  padding:5px 11px;border-radius:999px}
+.donetag.ok{background:var(--ok-t);color:var(--ok)}
+.donetag.no{background:var(--no-t);color:var(--no)}
+.stem{font-size:clamp(21px,2.5vw,25px);line-height:1.46;margin:0 0 24px;letter-spacing:-.008em;font-weight:500}
+.stem .hint{display:block;font-size:16px;color:var(--muted);font-weight:700;margin-bottom:10px;letter-spacing:0}
+.stem .blank{display:inline-block;min-width:104px;border-bottom:3px solid var(--line2);vertical-align:baseline}
+.opts{display:grid;gap:12px}
+.opt{display:flex;gap:15px;align-items:center;width:100%;text-align:left;min-height:66px;
+  background:var(--surface);border:2.5px solid transparent;border-radius:16px;padding:14px 18px;
+  font-size:clamp(17px,2vw,20px);line-height:1.4;box-shadow:var(--sh);
+  transition:border-color .12s,background .12s,transform .06s}
+.opt:hover:not(:disabled){border-color:var(--accent-ink)}
+.opt:active:not(:disabled){transform:scale(.995)}
+.opt .k{flex:none;width:40px;height:40px;border-radius:13px;background:var(--cream2);
+  display:grid;place-items:center;font-size:17px;font-weight:800}
+.opt .tx{flex:1}
+.opt.sel{border-color:var(--accent-ink);background:var(--accent-t)}
+.opt.sel .k{background:var(--accent-ink);color:#fff}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--ok);background:var(--ok-t)}
+.opt.right .k{background:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--no);background:var(--no-t)}
+.opt.wrong .k{background:var(--no);color:#fff}
+.opt .mark{flex:none;font-size:13px;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+.opt.right .mark{color:var(--ok)} .opt.wrong .mark{color:var(--no)}
+.fb{margin:24px 0 0;border-radius:var(--r2);padding:20px 22px;background:var(--surface);box-shadow:var(--sh);
+  border-left:6px solid var(--line2)}
+.fb.good{border-left-color:var(--ok);background:var(--ok-t)}
+.fb.bad{border-left-color:var(--no);background:var(--no-t)}
+.fb .head{display:flex;align-items:center;gap:11px;font-weight:800;font-size:20px;letter-spacing:-.01em}
+.fb.good .head{color:var(--ok)} .fb.bad .head{color:var(--no)}
+.fb .head svg{flex:none}
+.fb .skill{display:inline-block;margin:12px 0 0;font-size:13px;font-weight:800;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink2);background:rgba(255,255,255,.8);
+  border:1px solid var(--line2);padding:5px 11px;border-radius:999px}
+.fb .why{margin:11px 0 0;font-size:17.5px;line-height:1.6;color:var(--ink2)}
+.fb .fix{margin:12px 0 0;font-size:18px}
+.fb .fix s{color:var(--no);text-decoration-thickness:2px}
+.fb .fix b{color:var(--ok)}
+
+/* ---------------- dock ---------------- */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:35;background:rgba(248,242,230,.96);
+  backdrop-filter:blur(12px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.dock .in{max-width:860px;margin:0 auto;padding:13px 22px;display:flex;gap:12px;align-items:center}
+.dock .in .btn.main{flex:1}
+.nav{display:flex;align-items:center;justify-content:center;min-width:56px;min-height:56px;
+  border-radius:16px;background:var(--surface);border:2px solid var(--line);color:var(--ink)}
+.nav:hover:not([disabled]){border-color:var(--accent-ink);color:var(--accent-ink)}
+.nav[disabled]{opacity:.35;cursor:not-allowed}
+
+/* ---------------- navigator sheet ---------------- */
+.sheet{position:fixed;inset:0;z-index:60;display:none}
+.sheet.on{display:block}
+.sheet .veil{position:absolute;inset:0;background:rgba(22,36,61,.42);animation:fade .2s ease}
+.sheet .panel{position:absolute;left:0;right:0;bottom:0;max-height:86vh;overflow:auto;
+  background:var(--cream);border-radius:26px 26px 0 0;padding:22px 22px calc(26px + env(safe-area-inset-bottom));
+  box-shadow:0 -18px 44px -20px rgba(27,42,74,.5);animation:up .24s cubic-bezier(.2,.8,.3,1)}
+@keyframes up{from{transform:translateY(22px);opacity:.6}to{transform:none;opacity:1}}
+.sheet .grab{width:46px;height:5px;border-radius:3px;background:var(--line2);margin:0 auto 16px}
+.sheet h3{margin:0 0 4px;font-size:22px;letter-spacing:-.02em}
+.sheet .sub{margin:0 0 16px;color:var(--muted);font-size:15.5px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin:0 0 16px;font-size:14px;color:var(--ink2);font-weight:600}
+.legend span{display:flex;align-items:center;gap:7px}
+.legend i{width:15px;height:15px;border-radius:5px;display:block;border:2px solid var(--line2);background:var(--surface)}
+.legend i.ok{background:var(--ok);border-color:var(--ok)}
+.legend i.no{background:var(--no);border-color:var(--no)}
+.legend i.cur{border-color:var(--accent-ink);background:var(--accent-t)}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(56px,1fr));gap:10px;margin:0 0 22px}
+.qg{min-height:56px;border-radius:14px;background:var(--surface);border:2.5px solid var(--line);
+  font-size:17px;font-weight:800;color:var(--ink2);display:grid;place-items:center;box-shadow:var(--sh)}
+.qg:hover{border-color:var(--accent-ink)}
+.qg.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.qg.no{background:var(--no);border-color:var(--no);color:#fff}
+.qg.cur{border-color:var(--accent-ink);background:var(--accent-t);color:var(--accent-ink);
+  box-shadow:0 0 0 4px var(--accent-t),var(--sh)}
+.sheet .acts{display:flex;gap:12px;flex-wrap:wrap}
+.sheet .acts .btn{flex:1 1 190px}
+
+/* ---------------- results ---------------- */
+.res{padding:32px 0 70px}
+.scorecard{background:var(--accent);color:var(--ink);border-radius:var(--r);padding:26px 26px 24px;box-shadow:var(--sh2)}
+.scorecard .lab{font-size:13.5px;letter-spacing:.13em;text-transform:uppercase;font-weight:800;opacity:.72}
+.scorecard .big{font-size:clamp(52px,13vw,76px);font-weight:800;letter-spacing:-.035em;line-height:1;margin:8px 0 0}
+.scorecard .big small{font-size:.4em;font-weight:700;opacity:.55;letter-spacing:0}
+.scorecard .row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 0}
+.scorecard .row span{background:rgba(255,255,255,.62);border-radius:999px;padding:7px 15px;font-size:15px;font-weight:750}
+.verdict{background:var(--surface);border-radius:var(--r2);padding:20px 22px;margin:18px 0 0;box-shadow:var(--sh)}
+.verdict{border-left:6px solid var(--accent)}
+.verdict b{display:block;font-size:20px;margin-bottom:6px;letter-spacing:-.01em}
+.verdict p{margin:0;color:var(--ink2);font-size:17px}
+.brk{display:grid;gap:15px}
+.brow{display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:center}
+.brow .nm{font-size:17px;font-weight:650}
+.brow .vl{font-size:15.5px;font-weight:800;color:var(--muted)}
+.brow .track{grid-column:1/-1;height:10px;background:var(--line);border-radius:6px;overflow:hidden}
+.brow .track i{display:block;height:100%;background:var(--accent-ink);border-radius:6px}
+.misslist{display:grid;gap:13px}
+.miss{background:var(--surface);border-radius:var(--r2);padding:17px 19px;box-shadow:var(--sh)}
+.miss .q{font-size:17.5px;line-height:1.45}
+.miss .a{margin:9px 0 0;font-size:17px}
+.miss .a s{color:var(--no)} .miss .a b{color:var(--ok)}
+.miss .why{margin:8px 0 0;font-size:16px;color:var(--ink2);line-height:1.55}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0 0}
+.actions .btn{flex:1 1 210px}
+
+@media (max-width:560px){
+  body{font-size:17px}
+  .wrap{padding:0 17px}
+  .top .in,.dock .in{padding-left:17px;padding-right:17px}
+  .hero{padding:34px 0 6px}
+  .opt{min-height:60px;padding:13px 15px}
+  .opt .k{width:36px;height:36px;border-radius:11px}
+  .qgrid{grid-template-columns:repeat(auto-fill,minmax(50px,1fr))}
+  .qg{min-height:50px;font-size:16px}
+  .actions .btn{flex:1 1 100%}
+}
+@media (min-width:760px){
+  .cards.parts{grid-template-columns:1fr 1fr}
+  .cards.parts .pcard.full{grid-column:1/-1}
+}
+</style>
+</head>
+<body>
+
+<div id="app">
+
+<!-- ===================== HOME ===================== -->
+<section class="screen on" id="s-home"><div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">Mathayom 1 · Grade 7 entrance preparation</p>
+    <h1>English Practice</h1>
+    <p class="lede">Three complete papers, 180 questions. Answer in any order you like — check each one
+      and see straight away why the answer is right.</p>
+    <div class="chips">
+      <div class="chip"><i style="background:#86D8C4"></i>3 papers</div>
+      <div class="chip"><i style="background:#F8BE87"></i>180 questions</div>
+      <div class="chip"><i style="background:#AFB4EE"></i>180 explanations</div>
+      <div class="chip"><i style="background:#9CD2F5"></i>4 skill areas</div>
+    </div>
+  </header>
+  <div class="sechead"><h2>Choose a level</h2></div>
+  <div class="cards" id="levelCards"></div>
+  <div class="sechead"><h2>How it works</h2></div>
+  <ol class="steps">
+    <li>Pick a level, then a section — or take all 60 questions of a paper.</li>
+    <li>Tap an answer and press <b>Check answer</b>. The explanation appears at once.</li>
+    <li>Skip anything you like. The <b>Questions</b> button lets you jump to any question at any time.</li>
+    <li>Finish to see your score, your weakest skills, and every question you missed.</li>
+  </ol>
+  <p class="foot">Best scores are saved in this browser only. Nothing is uploaded and no personal data is collected.</p>
+</div></section>
+
+<!-- ===================== MENU ===================== -->
+<section class="screen" id="s-menu">
+  <div class="top"><div class="in">
+    <button class="iconbtn" data-go="home" aria-label="Home">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/></svg>
+      <span>Home</span></button>
+    <div class="who"><span id="mTopLab">Level</span><b id="mTopName"></b></div>
+  </div></div>
+  <div class="wrap">
+    <div class="menuhead">
+      <p class="eyebrow">Practice paper</p>
+      <h1 id="mLevelName"></h1>
+      <p id="mLevelBlurb"></p>
+    </div>
+    <div class="sechead"><h2>Choose what to practise</h2></div>
+    <div class="cards parts" id="partCards"></div>
+    <p class="foot"><button class="link" id="resetBtn">Clear saved scores for this level</button></p>
+  </div>
+</section>
+
+<!-- ===================== QUIZ ===================== -->
+<section class="screen" id="s-quiz">
+  <div class="top">
+    <div class="in">
+      <button class="iconbtn" id="homeBtn" aria-label="Home">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/></svg>
+      </button>
+      <div class="who"><span id="qLevel"></span><b id="qPart"></b></div>
+      <button class="iconbtn" id="navBtn">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M4 6h6M4 12h6M4 18h6M14 6h6M14 12h6M14 18h6"/></svg>
+        <span id="qCount"></span></button>
+    </div>
+    <div class="prog"><i id="qProg"></i></div>
+  </div>
+  <div class="wrap"><div class="qwrap">
+    <div id="qPassage"></div>
+    <div class="qhead"><span class="qnum" id="qNum"></span><span id="qDone"></span></div>
+    <div class="stem" id="qStem"></div>
+    <div class="opts" id="qOpts"></div>
+    <div id="qFb"></div>
+  </div></div>
+  <div class="dock"><div class="in">
+    <button class="nav" id="prevBtn" aria-label="Previous question">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button class="btn main" id="actBtn">Skip</button>
+    <button class="nav" id="nextBtn" aria-label="Next question">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div></div>
+</section>
+
+<!-- ===================== NAVIGATOR ===================== -->
+<div class="sheet" id="sheet">
+  <div class="veil" id="veil"></div>
+  <div class="panel" role="dialog" aria-label="All questions">
+    <div class="grab"></div>
+    <h3>All questions</h3>
+    <p class="sub" id="sheetSub"></p>
+    <div class="legend">
+      <span><i class="cur"></i>Current</span>
+      <span><i class="ok"></i>Correct</span>
+      <span><i class="no"></i>Wrong</span>
+      <span><i></i>Not answered</span>
+    </div>
+    <div class="qgrid" id="qgrid"></div>
+    <div class="acts">
+      <button class="btn" id="finishBtn">Finish and see results</button>
+      <button class="btn ghost" id="closeSheet">Keep practising</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== RESULTS ===================== -->
+<section class="screen" id="s-res">
+  <div class="top"><div class="in">
+    <button class="iconbtn" data-go="home" aria-label="Home">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/></svg>
+      <span>Home</span></button>
+    <div class="who"><span>Results</span><b id="rTopName"></b></div>
+  </div></div>
+  <div class="wrap"><div class="res">
+    <div class="scorecard">
+      <div class="lab" id="rWhat"></div>
+      <div class="big" id="rScore"></div>
+      <div class="row" id="rRow"></div>
+    </div>
+    <div class="verdict"><b id="rBand"></b><p id="rAdvice"></p></div>
+    <div id="rBreak"></div>
+    <div id="rWeak"></div>
+    <div id="rMissWrap"></div>
+    <div class="actions">
+      <button class="btn" id="againMissed">Practise what I missed</button>
+      <button class="btn ghost" id="againAll">Start again</button>
+      <button class="btn ghost" data-go="menu">Other sections</button>
+    </div>
+  </div></div>
+</section>
+
+</div>
+
+<script>
+const DATA = {"title":"English Entrance Practice","sub":"Mathayom 1 · Grade 7 entrance preparation","levels":[{"id":"foundation","name":"Foundation","accent":"#1A7A55","blurb":"Secure the basics: tenses, articles, prepositions, plurals, comparatives.","parts":[{"id":"A","title":"Grammar and Structure","type":"mcq","blurb":"Choose the word or phrase that best completes each sentence.","items":[{"n":1,"stem":"My brother ____ badminton with his friends every Saturday morning.","options":["play","plays","playing","is play"],"answer":"B","explain":"The subject <b>my brother</b> is third person singular, so the present simple verb takes <b>-s</b>: <i>plays</i>. <i>play</i> is the form used with I / you / we / they; <i>playing</i> cannot stand alone as the main verb; <i>is play</i> mixes two verb forms.","tag":"Present simple"},{"n":2,"stem":"Look! The children ____ in the swimming pool.","options":["swam","are swimming","swims","swim"],"answer":"B","explain":"<i>Look!</i> tells us the action is happening <b>now</b>, so we need the present continuous (<i>am / is / are</i> + <i>-ing</i>). <i>swim</i> and <i>swims</i> describe habits, and <i>swam</i> is past.","tag":"Present continuous"},{"n":3,"stem":"We ____ to Chiang Mai by train last April.","options":["going","have gone","went","go"],"answer":"C","explain":"<i>last April</i> is a finished time in the past, so the past simple <b>went</b> is required. The present perfect <i>have gone</i> can never be used with a finished past time expression.","tag":"Past simple"},{"n":4,"stem":"Ploy is ____ honest girl, so everybody trusts her.","options":["the","a","some","an"],"answer":"D","explain":"Choose <i>a</i> or <i>an</i> by the <b>sound</b>, not the spelling. The <i>h</i> in <i>honest</i> is silent, so the word begins with a vowel sound /ˈɒn-/ and takes <b>an</b>.","tag":"Articles"},{"n":5,"stem":"The English test will start ____ nine o'clock.","options":["on","in","until","at"],"answer":"D","explain":"Use <b>at</b> with clock times, <i>on</i> with days and dates, and <i>in</i> with months, years and longer periods. <i>until</i> is impossible here because <i>start until</i> needs a negative verb: <i>The test won't start until nine o'clock.</i>","tag":"Prepositions of time"},{"n":6,"stem":"Be careful with those ____ — they are very sharp.","options":["knifs","knifes","knives","knife"],"answer":"C","explain":"Nouns ending in <i>-fe</i> usually change to <b>-ves</b> in the plural: <i>knife → knives</i> (also <i>life → lives</i>, <i>wife → wives</i>). <i>those</i> and <i>they are</i> both show a plural is needed.","tag":"Irregular plurals"},{"n":7,"stem":"An elephant is ____ than a horse.","options":["heaviest","heavy","heavier","more heavy"],"answer":"C","explain":"Two things are compared, so we need the comparative. Two-syllable adjectives ending in <i>-y</i> change <i>y</i> to <i>i</i> and add <i>-er</i>: <b>heavier</b>. Short adjectives form the comparative with <i>-er</i>, not with <i>more</i>.","tag":"Comparatives"},{"n":8,"stem":"February is ____ month of the year.","options":["the shortest","shorter","short","the most short"],"answer":"A","explain":"One month is compared with all the others, so we need the superlative with <b>the</b>: <i>the shortest</i>. <i>the most short</i> is wrong because <i>short</i> is a one-syllable adjective.","tag":"Superlatives"},{"n":9,"stem":"Nan ____ speak three languages: Thai, English and Chinese.","options":["must","should","can","need"],"answer":"C","explain":"<b>can</b> expresses ability. <i>must</i> and <i>should</i> express obligation and advice, which do not fit a statement about what somebody is able to do.","tag":"Modal verbs"},{"n":10,"stem":"There ____ some milk in the fridge, but there aren't any eggs.","options":["are","is","have","be"],"answer":"B","explain":"<i>milk</i> is an uncountable noun, so it is treated as singular: <b>there is some milk</b>. The contrast with <i>there aren't any eggs</i> (countable plural) makes the rule clear.","tag":"There is / there are"},{"n":11,"stem":"A: “____ does your father work?”   B: “In a hospital in Nakhon Pathom.”","options":["When","Where","What","Who"],"answer":"B","explain":"The answer gives a <b>place</b> (<i>in a hospital</i>), so the question word must be <b>Where</b>.","tag":"Question words"},{"n":12,"stem":"That blue bag isn't mine. I think it's ____.","options":["she","her's","her","hers"],"answer":"D","explain":"A possessive pronoun stands alone with no noun after it: <i>mine, yours, <b>hers</b>, his, ours, theirs</i>. <i>her</i> must be followed by a noun (<i>her bag</i>), and <i>her's</i> is never correct — possessive pronouns take no apostrophe.","tag":"Possessive pronouns"},{"n":13,"stem":"Sam ____ late for school. He always leaves home at six.","options":["is not never","be never","never be","is never"],"answer":"D","explain":"An adverb of frequency goes <b>after</b> the verb <i>be</i> but <b>before</b> other main verbs: <i>He <b>is never</b> late</i> / <i>He <b>never arrives</b> late</i>. <i>is not never</i> is a double negative, and the other two are not possible verb forms after <i>Sam</i>.","tag":"Adverbs of frequency"},{"n":14,"stem":"I looked in the cupboard, but there weren't ____ biscuits left.","options":["any","some","much","no"],"answer":"A","explain":"Use <b>any</b> in negative sentences and questions; <i>some</i> belongs in positive statements. <i>no</i> cannot follow <i>weren't</i> (double negative), and <i>much</i> is for uncountable nouns.","tag":"Some / any"},{"n":15,"stem":"How ____ homework do you have to do tonight?","options":["many","long","much","far"],"answer":"C","explain":"<i>homework</i> is uncountable, so we ask <b>how much</b>. <i>How many</i> is used with countable plural nouns, e.g. <i>How many exercises...?</i>","tag":"Countable / uncountable"},{"n":16,"stem":"Look at those black clouds! It ____ rain.","options":["would","will be","goes to","is going to"],"answer":"D","explain":"When we can see present evidence for a future event, English uses <b>be going to</b>. <i>will be rain</i> is not a possible verb form, <i>goes to</i> is not a future form at all, and <i>would</i> refers to an imagined situation.","tag":"Future forms"},{"n":17,"stem":"My cousins live in Phuket. I visit ____ every summer.","options":["them","theirs","they","their"],"answer":"A","explain":"The pronoun comes after the verb <i>visit</i>, so it must be an <b>object pronoun</b>: <i>them</i>. <i>they</i> is a subject pronoun and <i>their / theirs</i> are possessives.","tag":"Object pronouns"},{"n":18,"stem":"Ken ____ eat meat because he is a vegetarian.","options":["not","isn't","don't","doesn't"],"answer":"D","explain":"For a third person singular subject (<i>Ken</i>), the negative is <b>doesn't</b> + base verb. <i>isn't eat</i> is impossible because <i>be</i> cannot be used with a bare infinitive.","tag":"Present simple negative"},{"n":19,"stem":"The cat is hiding ____ the sofa. I can only see its tail.","options":["under","into","of","among"],"answer":"A","explain":"<b>under</b> means in a position below something. <i>into</i> shows movement, not position, and <i>among</i> needs three or more things.","tag":"Prepositions of place"},{"n":20,"stem":"I ____ my homework when my friend called me.","options":["am doing","do","was doing","have done"],"answer":"C","explain":"The past continuous describes a longer action in progress that is interrupted by a shorter past action (<i>called</i>). The pattern is <b>was / were + -ing</b> + <i>when</i> + past simple.","tag":"Past continuous"},{"n":21,"stem":"She went to the library ____ a book about dinosaurs.","options":["borrow","to borrow","for borrow","borrowing"],"answer":"B","explain":"To explain <b>why</b> somebody does something, English uses the infinitive of purpose: <i>to</i> + base verb. <i>for</i> is followed by a noun (<i>for a book</i>), never by a bare verb.","tag":"Infinitive of purpose"},{"n":22,"stem":"____ open the window, please? It's very hot in here.","options":["Could you","Are you","Do you","Would you like"],"answer":"A","explain":"<b>Could you</b> + base verb is a standard polite request. <i>Do you open...?</i> and <i>Are you open...?</i> are not requests, and <i>Would you like</i> must be followed by <i>to open</i> or a noun.","tag":"Polite requests"},{"n":23,"stem":"We stayed at home all day ____ it was raining heavily.","options":["because","but","although","so"],"answer":"A","explain":"<b>because</b> introduces the reason. <i>so</i> introduces a result, and <i>although</i> would mean the rain did not stop us — the opposite of the meaning here.","tag":"Linking words"},{"n":24,"stem":"____ shoes are too small for me now. I need a bigger size.","options":["This","These","It","That"],"answer":"B","explain":"<i>shoes</i> is plural, so a plural demonstrative is needed, and of the four options only <b>these</b> is plural. <i>this</i>, <i>that</i> and <i>it</i> are all singular.","tag":"Demonstratives"},{"n":25,"stem":"____ your sister like Thai food, or does she prefer Japanese food?","options":["Is","Do","Does","Has"],"answer":"C","explain":"In present simple questions with a third person singular subject we use <b>does</b> + base verb. The second half of the sentence (<i>does she prefer</i>) confirms the pattern.","tag":"Question formation"}],"count":25},{"id":"B","title":"Error Identification","type":"error","blurb":"One of the four underlined parts is incorrect. Find it.","items":[{"n":26,"segs":["My sister and I ",{"u":"goes"}," to school ",{"u":"by"}," bus ",{"u":"every"}," ",{"u":"morning"},"."],"answer":"A","wrong":"goes","fix":"go","explain":"The subject is <i>My sister and I</i> — two people, so it is plural and behaves like <i>we</i>. A plural subject takes the base form <b>go</b>, not <i>goes</i>.","tag":"Subject–verb agreement"},{"n":27,"segs":["Nid bought ",{"u":"three"}," ",{"u":"beautiful"}," ",{"u":"dress"}," at the market ",{"u":"last Sunday"},"."],"answer":"C","wrong":"dress","fix":"dresses","explain":"A number greater than one must be followed by a plural countable noun: <i>three beautiful <b>dresses</b></i>.","tag":"Plural nouns"},{"n":28,"segs":["The concert will begin ",{"u":"at"}," seven o'clock ",{"u":"in"}," Saturday ",{"u":"evening"}," in the school ",{"u":"hall"},"."],"answer":"B","wrong":"in","fix":"on","explain":"Use <b>on</b> with days and with parts of a named day: <i>on Saturday evening</i>. <i>in the evening</i> is correct only when no day is mentioned.","tag":"Prepositions of time"},{"n":29,"segs":["Ann ",{"u":"practises"}," the piano ",{"u":"every day"},", ",{"u":"so"}," she plays it very ",{"u":"good"},"."],"answer":"D","wrong":"good","fix":"well","explain":"<i>plays</i> is an action verb, so it must be described by the adverb <b>well</b>. <i>good</i> is an adjective and can only describe a noun (<i>a good pianist</i>).","tag":"Adjective vs adverb"},{"n":30,"segs":[{"u":"Peoples"}," from many different countries ",{"u":"come"}," ",{"u":"to visit"}," this temple ",{"u":"every year"},"."],"answer":"A","wrong":"Peoples","fix":"People","explain":"<i>people</i> is already the plural of <i>person</i>, so it never takes <i>-s</i>. (<i>Peoples</i> exists only in the rare sense of <i>nations or ethnic groups</i>.)","tag":"Irregular plurals"},{"n":31,"segs":["When the bell ",{"u":"rang"},", all the students ",{"u":"ran"}," ",{"u":"on"}," the ",{"u":"classroom"},"."],"answer":"C","wrong":"on","fix":"into","explain":"<i>ran</i> shows movement from outside to inside, so the preposition of movement <b>into</b> is needed. <i>on</i> shows position on a surface.","tag":"Prepositions of movement"},{"n":32,"segs":["We ",{"u":"went"}," to the beach and ",{"u":"swimmed"}," ",{"u":"in the sea"}," all ",{"u":"afternoon"},"."],"answer":"B","wrong":"swimmed","fix":"swam","explain":"<i>swim</i> is irregular: <b>swim – swam – swum</b>. Irregular verbs never take <i>-ed</i>.","tag":"Irregular past tense"},{"n":33,"segs":["We ",{"u":"enjoyed"}," the film ",{"u":"very much"},", ",{"u":"but"}," it was ",{"u":"too much long"},"."],"answer":"D","wrong":"too much long","fix":"much too long","explain":"<i>much</i> cannot sit between <i>too</i> and an adjective. To strengthen <i>too</i> we put <i>much</i> in front of it: <b>much too long</b>.","tag":"Degree modifiers"},{"n":34,"segs":[{"u":"Their"}," are ",{"u":"twenty-eight"}," ",{"u":"students"}," in my class ",{"u":"this year"},"."],"answer":"A","wrong":"Their","fix":"There","explain":"<b>There</b> is the word used to say that something exists (<i>there is, there are</i>). <i>Their</i> is a possessive (<i>their books</i>) and <i>they're</i> means <i>they are</i>.","tag":"There / their / they're"},{"n":35,"segs":["Every student ",{"u":"must"}," ",{"u":"brings"}," ",{"u":"a dictionary"}," to ",{"u":"the lesson"}," on Friday."],"answer":"B","wrong":"brings","fix":"bring","explain":"After a modal verb (<i>must, can, should, will</i>...) we always use the <b>base form</b> of the verb, with no <i>-s</i>: <i>must bring</i>.","tag":"Modal verbs"}],"count":10},{"id":"C","title":"Vocabulary and Everyday Conversation","type":"mcq","blurb":"Word choice, collocation and natural replies in conversation.","items":[{"n":36,"stem":"My grandmother is very ____. She always helps people who need her.","options":["kind","rude","silent","lazy"],"answer":"A","explain":"<b>kind</b> describes somebody who cares about other people and helps them, which matches <i>always helps people</i>.","tag":"Vocabulary: character"},{"n":37,"stem":"It was so ____ in the classroom that I couldn't hear what the teacher was saying.","options":["quiet","tidy","noisy","empty"],"answer":"C","explain":"If you cannot hear the teacher, there is too much sound, so the room was <b>noisy</b>. <i>quiet</i> is the opposite.","tag":"Vocabulary: adjectives"},{"n":38,"stem":"Please ____ off your shoes before you go into the temple.","options":["take","get","bring","put"],"answer":"A","explain":"<b>take off</b> means to remove clothing or shoes. <i>put on</i> is the opposite action.","tag":"Phrasal verbs"},{"n":39,"stem":"I've been running for an hour and I'm really ____. Can I have a glass of water?","options":["hungry","angry","sleepy","thirsty"],"answer":"D","explain":"Wanting a drink means you are <b>thirsty</b>. <i>hungry</i> would be followed by a request for food.","tag":"Vocabulary: feelings"},{"n":40,"stem":"We had to ____ for the bus for almost twenty minutes in the rain.","options":["hurry","expect","wait","stay"],"answer":"C","explain":"The fixed pattern is <b>wait for</b> somebody or something. <i>expect</i> takes no preposition (<i>expect the bus</i>), and neither <i>stay for</i> nor <i>hurry for</i> can mean standing and passing the time until something arrives.","tag":"Verb + preposition"},{"n":41,"stem":"A: “Thank you so much for helping me with my project.” B: “____”","options":["Here you are.","You're welcome.","I'm sorry to hear that.","Yes, of course I do."],"answer":"B","explain":"<b>You're welcome</b> is the standard reply to <i>thank you</i>. <i>Here you are</i> is what you say when you hand something to somebody.","tag":"Conversation: responding to thanks"},{"n":42,"stem":"A: “How was your weekend?” B: “____”","options":["It is on Saturday.","Yes, I did, thank you.","I'm fine, thank you.","It was great. I went camping."],"answer":"D","explain":"<i>How was...?</i> asks for an <b>opinion about a finished event</b>, so the answer must be in the past tense. <i>I'm fine, thank you</i> answers <i>How are you?</i>, not <i>How was your weekend?</i>","tag":"Conversation: past questions"},{"n":43,"stem":"A: “____” B: “It's a quarter past seven.”","options":["How far is it?","What day is it?","How often is it?","What time is it?"],"answer":"D","explain":"The reply gives a <b>clock time</b>, so the question must be <i>What time is it?</i>","tag":"Conversation: asking the time"},{"n":44,"stem":"A: “Would you like some more rice?” B: “____”","options":["No, thanks. I'm full.","No, I amn't.","Yes, I am.","Yes, I would like."],"answer":"A","explain":"A polite refusal of an offer is <b>No, thanks</b> plus a short reason. <i>Yes, I would like</i> is incomplete — <i>would like</i> needs an object (<i>Yes, I'd like some, please</i>).","tag":"Conversation: offers"},{"n":45,"stem":"A: “I've got a really bad headache.” B: “____”","options":["Congratulations!","Oh dear. You should go and see the nurse.","Yes, please.","That's very kind of you."],"answer":"B","explain":"Bad news is followed by <b>sympathy plus advice</b>. The other replies answer good news, an offer and a favour.","tag":"Conversation: sympathy and advice"}],"count":10},{"id":"D","title":"Reading Comprehension","type":"reading","blurb":"Read each text, then answer the questions on it.","passages":[{"title":"NOTICE — Year 6 Trip to the National Science Centre","text":["All Year 6 students will visit the National Science Centre on <b>Friday 14 November</b>.","The coaches will leave the school car park at 7.30 a.m. Please arrive at school by <b>7.00 a.m.</b> Students who arrive after 7.20 a.m. will not be able to join the trip.","<b>Bring:</b> a packed lunch, a bottle of water, a notebook and a pen. Do not bring money for the gift shop, because there will be no time for shopping.","Wear your sports uniform and comfortable shoes. There is a lot of walking at the Centre.","The cost of the trip is 250 baht. Please give the money and the signed permission slip to Miss Ratana <b>before Wednesday 5 November</b>.","We will return to school at about 4.30 p.m. Parents should collect students from the front gate. If your child cannot join the trip, please telephone the school office before 5 November."],"items":[{"n":46,"stem":"What time must students arrive at school on the day of the trip?","options":["At 7.30 a.m.","By 4.30 p.m.","By 7.00 a.m.","At 7.20 a.m."],"answer":"C","explain":"The notice says <i>Please arrive at school by 7.00 a.m.</i> 7.30 a.m. is when the coaches leave, and 7.20 a.m. is the moment after which a student is too late.","tag":"Reading: finding detail"},{"n":47,"stem":"What are students told <b>not</b> to bring?","options":["A notebook and a pen","A packed lunch","A bottle of water","Money for the gift shop"],"answer":"D","explain":"The notice says <i>Do not bring money for the gift shop</i>. Everything else in that sentence is on the list of things students <b>must</b> bring.","tag":"Reading: finding detail"},{"n":48,"stem":"Why must students wear comfortable shoes?","options":["The coach journey is very long.","It is part of the sports uniform.","They will have to walk a lot at the Centre.","The Science Centre has no seats."],"answer":"C","explain":"The notice gives the reason directly: <i>There is a lot of walking at the Centre.</i> The uniform is mentioned in the same sentence, but as a separate instruction, not as the reason for the shoes; the coach journey and the seating are not discussed at all.","tag":"Reading: understanding reasons"},{"n":49,"stem":"What must be given to Miss Ratana before 5 November?","options":["The packed lunch order","The money and the signed permission slip","The notebook and pen","A note from a doctor"],"answer":"B","explain":"The notice states: <i>Please give the money and the signed permission slip to Miss Ratana before Wednesday 5 November.</i>","tag":"Reading: finding detail"},{"n":50,"stem":"Who should collect the students when they return?","options":["Miss Ratana, in the car park","Nobody — students go home alone","The coach driver, at the Science Centre","Their parents, at the front gate"],"answer":"D","explain":"The last paragraph says <i>Parents should collect students from the front gate.</i>","tag":"Reading: finding detail"}]},{"title":"Why Do We Need Sleep?","text":["Everybody sleeps, but not everybody sleeps in the same way. A newborn baby sleeps for about sixteen hours a day. A teenager needs about nine hours, and most adults need seven or eight. Some animals sleep far longer: a brown bat can sleep for nineteen hours a day, while a giraffe sleeps for less than five.","Scientists are still learning why sleep matters so much, but they already know part of the answer. While we sleep, the body repairs itself. Cuts heal, muscles grow, and the system that fights illness becomes stronger. The brain is busy too. It sorts through everything we have learned during the day and stores the useful parts in our memory. That is why students who sleep well before a test usually remember more than students who stay awake all night studying.","Losing sleep is more serious than most people think. Tired people find it hard to concentrate, they become bad-tempered, and they fall ill more often. So the next time you want to watch one more video at midnight, remember: sleep is not laziness. It is work."],"items":[{"n":51,"stem":"According to the passage, how much sleep does a teenager need?","options":["About nine hours","Less than five hours","About sixteen hours","Seven or eight hours"],"answer":"A","explain":"<i>A teenager needs about nine hours.</i> Sixteen hours is for a newborn baby and seven or eight for most adults.","tag":"Reading: finding detail"},{"n":52,"stem":"Which of these sleeps the <b>least</b>?","options":["A brown bat","An adult human","A newborn baby","A giraffe"],"answer":"D","explain":"The giraffe <i>sleeps for less than five</i> hours — fewer than the adult's seven or eight, the baby's sixteen and the bat's nineteen.","tag":"Reading: comparing information"},{"n":53,"stem":"What does the brain do while we are asleep?","options":["It teaches us new facts we have never met.","It stores useful information in the memory.","It stops working completely until morning.","It repairs cuts and helps muscles to grow."],"answer":"B","explain":"The passage says the brain <i>sorts through everything we have learned during the day and stores the useful parts in our memory</i>. Repairing cuts and growing muscles is the work of the <b>body</b>, not the brain.","tag":"Reading: finding detail"},{"n":54,"stem":"What does the writer say about students who stay awake all night studying?","options":["They usually get the highest marks in the test.","They usually remember less than students who sleep well.","They fall asleep during the test itself.","They learn more facts but forget them later."],"answer":"B","explain":"The passage compares the two groups: students who sleep well <i>usually remember more</i> — which means the students who stay awake remember less.","tag":"Reading: understanding comparison"},{"n":55,"stem":"What does the writer mean by “sleep is not laziness. It is work”?","options":["Sleeping makes people feel tired the next morning.","Lazy people always sleep more than hard-working people.","Important jobs are being done by the body and brain during sleep.","People should work late at night instead of sleeping."],"answer":"C","explain":"The whole passage lists jobs that get done during sleep — repairing, growing, fighting illness, storing memories — so the writer is arguing that sleeping is productive, not idle.","tag":"Reading: understanding the writer's meaning"}]},{"title":"An email from Pim to her friend Nadia","text":["<b>Hi Nadia,</b>","How are you? I hope your new school is going well and that you have found somebody nice to sit with.","I have some exciting news. My family is moving to a new house next month! It is in Nonthaburi, about half an hour from our old flat. The best part is that I will finally have my own bedroom — I have shared with my sister Mint for eleven years.","The new house has a small garden. Dad has already promised that we can grow vegetables there, and Mum says I can keep a rabbit if I look after it completely by myself. I am reading a book about rabbits at the moment so that I know exactly what to do before it arrives.","There is one problem. The new house is a long way from my old friends, and I will have to take two buses to visit them. Mint says we will make new friends in a week, but she says that about everything.","Please write soon and tell me all about your school.","<b>Love, Pim</b>"],"items":[{"n":56,"stem":"Why is Pim most pleased about the move?","options":["The new house has a garden.","She will have a bedroom of her own.","She will travel to school by bus.","The new house is in Nonthaburi."],"answer":"B","explain":"Pim writes <i>The best part is that I will finally have my own bedroom</i>. The garden is mentioned later and more calmly.","tag":"Reading: finding the main point"},{"n":57,"stem":"How long has Pim shared a bedroom with Mint?","options":["Half an hour","One month","A week","Eleven years"],"answer":"D","explain":"<i>I have shared with my sister Mint for eleven years.</i> The other numbers belong to the move, the journey time and Mint's prediction.","tag":"Reading: finding detail"},{"n":58,"stem":"What condition did Pim's mother give about the rabbit?","options":["Pim must look after it entirely by herself.","Pim must share it with Mint.","Pim must keep it in the garden.","Pim must first read a book about rabbits."],"answer":"A","explain":"Mum's condition is that Pim looks after the rabbit entirely alone — in the email, <i>if I look after it completely by myself</i>. Reading the book is Pim's own idea, not her mother's condition.","tag":"Reading: finding detail"},{"n":59,"stem":"What worries Pim about the new house?","options":["It is far from the friends she has now.","It is smaller than the old flat.","She will have to change schools.","There is no room for a garden."],"answer":"A","explain":"Pim says <i>There is one problem. The new house is a long way from my old friends.</i> Nothing in the email says she will change schools.","tag":"Reading: finding detail"},{"n":60,"stem":"“Mint says we will make new friends in a week, but she says that about everything.” What does this tell us about Pim?","options":["She agrees with Mint about making friends quickly.","She thinks Mint has a lot of friends.","She is not completely convinced by what Mint says.","She is angry with Mint for lying to her."],"answer":"C","explain":"The word <i>but</i> plus <i>she says that about everything</i> gently suggests Mint is always over-optimistic, so Pim is doubtful — though she is amused rather than angry.","tag":"Reading: understanding attitude"}]}],"count":15}]},{"id":"standard","name":"Standard","accent":"#A85417","blurb":"The realistic school standard: perfect tenses, conditionals, passive, inference.","parts":[{"id":"A","title":"Grammar and Structure","type":"mcq","blurb":"Choose the word or phrase that best completes each sentence.","items":[{"n":1,"stem":"I can't get into the house because I ____ my keys.","options":["have lost","lose","am losing","was losing"],"answer":"A","explain":"A past action with a result that still matters <b>now</b> takes the present perfect: <i>have lost</i> (and so I am locked out). The past simple <i>lost</i> would need a finished time expression such as <i>yesterday</i>.","tag":"Present perfect"},{"n":2,"stem":"We ____ in this house since 2019.","options":["lived","have lived","are living","live"],"answer":"B","explain":"<i>since</i> marks the starting point of a period that continues up to now, and that requires the present perfect. Remember: <b>since</b> + a point in time, <b>for</b> + a length of time.","tag":"Present perfect with since"},{"n":3,"stem":"While Dad ____ the car, it suddenly started to rain.","options":["has washed","was washing","washed","washes"],"answer":"B","explain":"The past continuous sets the longer background action; the past simple (<i>started</i>) is the shorter action that interrupts it.","tag":"Past continuous"},{"n":4,"stem":"If it ____ tomorrow, we will cancel the picnic.","options":["rained","will rain","would rain","rains"],"answer":"D","explain":"In a first conditional the <i>if</i> clause uses the <b>present simple</b> even though it refers to the future; <i>will</i> belongs only in the main clause.","tag":"First conditional"},{"n":5,"stem":"If I ____ you, I would apologise to her immediately.","options":["have been","am","will be","were"],"answer":"D","explain":"The fixed advice pattern is <b>If I were you, I would...</b> A second conditional uses the past form in the <i>if</i> clause, and <i>were</i> is used for all persons.","tag":"Second conditional"},{"n":6,"stem":"That's the boy ____ father teaches Chemistry at our school.","options":["who","who's","whose","which"],"answer":"C","explain":"<b>whose</b> shows possession — the father belongs to the boy. <i>who's</i> is a contraction of <i>who is</i> and makes no sense here.","tag":"Relative pronouns"},{"n":7,"stem":"The bridge ____ by engineers every two years.","options":["inspects","is inspecting","is inspected","inspected"],"answer":"C","explain":"The bridge does not do the inspecting; it receives the action, so we need the passive: <b>am / is / are + past participle</b>.","tag":"Present simple passive"},{"n":8,"stem":"The classroom window ____ by a football yesterday afternoon.","options":["broke","was broken","is broken","has broken"],"answer":"B","explain":"The agent is introduced by <i>by</i>, so the sentence is passive, and <i>yesterday</i> makes it past: <b>was broken</b>.","tag":"Past simple passive"},{"n":9,"stem":"She apologised for ____ so late to the meeting.","options":["arriving","arrive","to arrive","arrived"],"answer":"A","explain":"A verb that follows a preposition (<i>for, at, on, without, before, after</i>...) is always in the <b>-ing</b> form.","tag":"Preposition + gerund"},{"n":10,"stem":"My little sister enjoys ____ pictures of animals.","options":["to draw","draw","drew","drawing"],"answer":"D","explain":"<i>enjoy</i> belongs to the group of verbs always followed by the <b>-ing</b> form (also <i>finish, avoid, mind, suggest, practise</i>).","tag":"Verb + gerund"},{"n":11,"stem":"Ann told me that she ____ very tired after the long journey.","options":["has been","is","will be","was"],"answer":"D","explain":"When the reporting verb is in the past (<i>told</i>), the tense of the original words moves back one step: <i>“I am tired”</i> becomes <i>she <b>was</b> tired</i>.","tag":"Reported speech"},{"n":12,"stem":"This soup is ____ hot for the children to eat.","options":["too","enough","very much","such"],"answer":"A","explain":"<b>too</b> + adjective + <i>for somebody to do something</i> means there is more heat than is acceptable. <i>enough</i> would have to follow the adjective (<i>hot enough</i>) and would reverse the meaning.","tag":"Too / enough"},{"n":13,"stem":"My father ____ smoke, but he gave up ten years ago.","options":["is used to","use to","used to","was used to"],"answer":"C","explain":"<b>used to</b> + base verb describes a past habit that has stopped. <i>be used to</i> means <i>be accustomed to</i> and is followed by a noun or <i>-ing</i>.","tag":"Used to"},{"n":14,"stem":"You haven't finished the assignment yet, ____?","options":["did you","have you","haven't you","do you"],"answer":"B","explain":"A negative statement takes a <b>positive</b> tag, and the tag repeats the auxiliary of the statement (<i>haven't</i> → <i>have you</i>).","tag":"Question tags"},{"n":15,"stem":"Nok can run ____ fast as her older brother.","options":["more","as","so","such"],"answer":"B","explain":"Equal comparison in a positive sentence uses <b>as</b> + adjective/adverb + <b>as</b>. <i>so ... as</i> appears only in negatives, and <i>more</i> would need <i>than</i>.","tag":"Comparison: as ... as"},{"n":16,"stem":"All the lights are off and their car has gone. They ____ be away on holiday.","options":["must","can't","should","would"],"answer":"A","explain":"The evidence points to one likely conclusion, so we use <b>must</b> for a confident deduction. <i>can't</i> expresses the opposite — a confident deduction that something is <b>not</b> true.","tag":"Modals of deduction"},{"n":17,"stem":"You'd better ____ now, or you will miss the last train.","options":["leave","left","leaving","to leave"],"answer":"A","explain":"<b>had better</b> is always followed by the <b>base form</b> of the verb, with no <i>to</i>.","tag":"had better"},{"n":18,"stem":"There is only ____ milk left in the bottle, so I'll buy some more.","options":["several","a little","a few","many"],"answer":"B","explain":"<i>milk</i> is uncountable, so it takes <b>a little</b>. <i>a few, many</i> and <i>several</i> are used only with countable plural nouns.","tag":"Quantifiers"},{"n":19,"stem":"We ____ for the bus for half an hour and it still hasn't come.","options":["wait","are waiting","have been waiting","waited"],"answer":"C","explain":"The action started in the past, is still going on, and the sentence stresses <b>how long</b> — that is exactly what <i>have / has been + -ing</i> is for.","tag":"Present perfect continuous"},{"n":20,"stem":"It was ____ a difficult exercise that nobody in the class could finish it.","options":["very","so","such","too"],"answer":"C","explain":"<b>such</b> comes before <i>a</i> + adjective + noun; <b>so</b> comes before an adjective on its own (<i>so difficult that...</i>).","tag":"So / such"},{"n":21,"stem":"I'll telephone you as soon as I ____ home this evening.","options":["am getting","get","will get","got"],"answer":"B","explain":"After <i>when, as soon as, until, before, after</i> we use the <b>present simple</b> to talk about the future. <i>will</i> is never used in the time clause itself.","tag":"Future time clauses"},{"n":22,"stem":"I can't come out this evening. I haven't finished my project ____.","options":["already","just","since","yet"],"answer":"D","explain":"<b>yet</b> is used in negatives and questions to mean <i>up to now</i>. <i>already</i> belongs in positive sentences, and <i>just</i> means <i>a very short time ago</i>.","tag":"Adverbs with the perfect"},{"n":23,"stem":"____ my brother nor my sister can swim, which surprises people.","options":["Both","Not only","Either","Neither"],"answer":"D","explain":"The pair is <b>neither ... nor</b>. <i>either</i> is paired with <i>or</i>, <i>both</i> with <i>and</i>, and <i>not only</i> with <i>but also</i> — none of them can be followed by <i>nor</i>.","tag":"Correlative conjunctions"},{"n":24,"stem":"Excuse me, could you tell me ____?","options":["where the station is","where is station","where the station","where is the station"],"answer":"A","explain":"Inside an indirect question the word order returns to <b>statement order</b>: subject before verb, with no auxiliary <i>do</i>.","tag":"Indirect questions"},{"n":25,"stem":"The talk was so ____ that several people in the audience fell asleep.","options":["boredom","bore","boring","bored"],"answer":"C","explain":"An <b>-ing</b> adjective describes the thing that causes the feeling (the talk); an <b>-ed</b> adjective describes the person who feels it (the audience was <i>bored</i>).","tag":"-ed / -ing adjectives"}],"count":25},{"id":"B","title":"Error Identification","type":"error","blurb":"One of the four underlined parts is incorrect. Find it.","items":[{"n":26,"segs":["Although it ",{"u":"was raining"}," heavily, ",{"u":"but"}," we ",{"u":"decided"}," to go ",{"u":"to the market"},"."],"answer":"B","wrong":"but","fix":"(delete “but”)","explain":"English uses <b>one</b> linking word, not two. <i>Although</i> already shows the contrast, so <i>but</i> must be removed: <i>Although it was raining heavily, we decided to go...</i>","tag":"Conjunctions"},{"n":27,"segs":[{"u":"One of"}," ",{"u":"my"}," ",{"u":"friend"}," ",{"u":"lives"}," in Japan with her family."],"answer":"C","wrong":"friend","fix":"friends","explain":"<b>one of</b> means one member taken from a group, so the noun after it must be plural: <i>one of my <b>friends</b></i>. The verb still stays singular (<i>lives</i>), because the subject is <i>one</i>.","tag":"One of + plural noun"},{"n":28,"segs":["The number of students in our school ",{"u":"are"}," ",{"u":"increasing"}," ",{"u":"every"}," ",{"u":"year"},"."],"answer":"A","wrong":"are","fix":"is","explain":"The subject is <i>the number</i> — singular — so the verb is <b>is increasing</b>. Compare <i>A number of students <b>are</b>...</i>, where the subject is plural.","tag":"Subject–verb agreement"},{"n":29,"segs":["My mother told me ",{"u":"that"}," ",{"u":"I should"}," ",{"u":"finish"}," all my homework before ",{"u":"to watch"}," television."],"answer":"D","wrong":"to watch","fix":"watching","explain":"<i>before</i> is working as a preposition here, and a preposition is followed by the <b>-ing</b> form: <i>before <b>watching</b> television</i>.","tag":"Preposition + gerund"},{"n":30,"segs":[{"u":"Despite of"}," ",{"u":"the heavy rain"},", the match ",{"u":"was not"}," ",{"u":"cancelled"},"."],"answer":"A","wrong":"Despite of","fix":"Despite / In spite of","explain":"<b>Despite</b> is never followed by <i>of</i>. Either write <i>Despite the heavy rain</i> or <i>In spite of the heavy rain</i> — the two forms must not be mixed.","tag":"Despite / in spite of"},{"n":31,"segs":["If I ",{"u":"had"}," more free time, I ",{"u":"would"}," ",{"u":"learning"}," to play ",{"u":"the guitar"},"."],"answer":"C","wrong":"learning","fix":"learn","explain":"After the modal <i>would</i> we need the <b>base form</b>: <i>would <b>learn</b></i>. The rest of the second conditional (<i>If + past</i>) is already correct.","tag":"Second conditional"},{"n":32,"segs":["The homework ",{"u":"which"}," ",{"u":"you gave it"}," to us ",{"u":"yesterday"}," ",{"u":"was"}," extremely difficult."],"answer":"B","wrong":"you gave it","fix":"you gave","explain":"The relative pronoun <i>which</i> is already the object of <i>gave</i>, so the extra pronoun <i>it</i> must be deleted: <i>the homework which you gave to us</i>.","tag":"Relative clauses"},{"n":33,"segs":["The film ",{"u":"was"}," ",{"u":"so"}," ",{"u":"exciting"}," that I watched it ",{"u":"twice times"}," in one week."],"answer":"D","wrong":"twice times","fix":"twice","explain":"<i>twice</i> already means <i>two times</i>, so <i>twice times</i> says the same thing twice. Write <b>twice</b> or <i>two times</i>, never both together.","tag":"Frequency expressions"},{"n":34,"segs":["The letters ",{"u":"were"}," ",{"u":"send"}," ",{"u":"to all parents"}," ",{"u":"last week"},"."],"answer":"B","wrong":"send","fix":"sent","explain":"A passive needs <i>be</i> + the <b>past participle</b>. The participle of <i>send</i> is <b>sent</b>, not <i>send</i>.","tag":"Passive voice"},{"n":35,"segs":["There ",{"u":"were"}," ",{"u":"so many"}," people at the concert ",{"u":"that"}," we couldn't ",{"u":"find nowhere"}," to sit."],"answer":"D","wrong":"find nowhere","fix":"find anywhere","explain":"<i>couldn't</i> is already negative, so <i>nowhere</i> makes a double negative. After a negative verb English uses <b>anywhere</b>.","tag":"Double negatives"}],"count":10},{"id":"C","title":"Vocabulary and Everyday Conversation","type":"mcq","blurb":"Word choice, collocation and natural replies in conversation.","items":[{"n":36,"stem":"Everyone looked completely ____ when the teacher explained the new marking system.","options":["confuse","confusing","confused","confusion"],"answer":"C","explain":"An <b>-ed</b> adjective describes how a person feels, so the people looked <i>confused</i>. The system itself would be <i>confusing</i>, and <i>confusion</i> is the noun.","tag":"Word form: -ed adjectives"},{"n":37,"stem":"In spite of the heavy traffic, we ____ to arrive at the airport on time.","options":["achieved","managed","succeeded","could"],"answer":"B","explain":"<b>manage to</b> + verb means to do something difficult successfully. <i>succeed</i> takes <i>in + -ing</i>, and <i>achieve</i> takes a noun object — neither is followed by <i>to</i> + verb.","tag":"Verb patterns"},{"n":38,"stem":"Please ____ your seat belt before the aeroplane takes off.","options":["tie","fasten","lock","close"],"answer":"B","explain":"The fixed collocation is <b>fasten a seat belt</b>. <i>tie</i> is used for shoelaces and knots.","tag":"Collocation"},{"n":39,"stem":"Nan is completely ____; she tells the truth even when it costs her something.","options":["polite","patient","honest","generous"],"answer":"C","explain":"<b>honest</b> means truthful. <i>generous</i> is about giving, <i>patient</i> about waiting calmly, and <i>polite</i> about good manners.","tag":"Vocabulary: character"},{"n":40,"stem":"The doctor told my grandfather to ____ down on sugar and fried food.","options":["cut","get","put","take"],"answer":"A","explain":"<b>cut down on</b> something means to reduce the amount of it that you use or eat. <i>put down</i>, <i>take down</i> and <i>get down</i> all exist, but none of them carries this meaning of reducing a quantity.","tag":"Phrasal verbs"},{"n":41,"stem":"A: “Do you mind if I sit here?” B: “____”","options":["Not at all. Go ahead.","Yes, of course. Please sit down.","Never mind.","I'd love to, thanks."],"answer":"A","explain":"<i>Do you mind...?</i> literally asks <i>is this a problem for you?</i>, so agreement is expressed with a <b>negative</b>: <i>Not at all</i>. Answering <i>Yes, of course</i> would mean you object.","tag":"Conversation: permission"},{"n":42,"stem":"A: “I'm afraid I can't come to your party on Saturday.” B: “____”","options":["Don't mention it.","Yes, you can.","Congratulations!","Oh, that's a shame. Maybe next time."],"answer":"D","explain":"A polite reaction to a disappointing message expresses mild regret. <i>Don't mention it</i> is a reply to thanks, not to an apology of this kind.","tag":"Conversation: reacting to bad news"},{"n":43,"stem":"A: “____” B: “I'd rather have tea, if that's all right.”","options":["How much does the tea cost?","Do you ever drink tea?","Would you like some coffee?","Have you finished your tea?"],"answer":"C","explain":"<i>I'd rather have tea</i> is a polite way of choosing something <b>instead of</b> what was offered, so the question must be an offer of a different drink.","tag":"Conversation: offers and preferences"},{"n":44,"stem":"A: “Shall I carry that heavy box for you?” B: “____”","options":["That's very kind of you. Thank you.","Yes, you shall.","It doesn't matter to me at all.","No, I shan't."],"answer":"A","explain":"<i>Shall I...?</i> is an offer of help, and the natural reply is to thank the speaker. <i>Yes, you shall</i> is grammatically possible but sounds like a command.","tag":"Conversation: accepting an offer"},{"n":45,"stem":"A: “How do you find your new school?” B: “____”","options":["I found it on the internet.","It's just behind the market.","I take the bus and then walk.","It's much friendlier than my old one."],"answer":"D","explain":"<b>How do you find...?</b> is an idiom meaning <i>what do you think of...?</i> It is not a question about directions or about searching.","tag":"Conversation: idiomatic questions"}],"count":10},{"id":"D","title":"Reading Comprehension","type":"reading","blurb":"Read each text, then answer the questions on it.","passages":[{"title":"BAAN RIVERSIDE SUMMER ENGLISH CAMP","text":["<b>Two weeks of English that does not feel like school.</b>","<b>When:</b> 4–15 April (Monday to Friday only)  ·  <b>Where:</b> Baan Riverside Centre, Kanchanaburi  ·  <b>Who:</b> students aged 11–14","<b>Cost: 8,500 baht.</b> This includes accommodation, all meals, materials and the day trip to Erawan Falls. Coach transport from Bangkok and back costs 500 baht extra.","Every morning is spent in small classes of no more than eight students. Afternoons are for drama, cooking, kayaking and photography — all taught in English. In the evening, campers may speak only English in the dining hall; anyone who speaks Thai loses one point for their team.","Places are limited to 48 students. A deposit of 2,000 baht holds a place, and the rest of the fee must be paid by 20 March. Deposits are returned only if you cancel before 1 March.","To book, email camp@baanriverside.example or telephone 02-555-1234 between 9 a.m. and 5 p.m."],"items":[{"n":46,"stem":"A student who lives in Bangkok and needs the coach will pay a total of","options":["10,500 baht.","9,000 baht.","8,500 baht.","2,000 baht."],"answer":"B","explain":"The camp costs 8,500 baht and the coach is <i>500 baht extra</i>, so 8,500 + 500 = <b>9,000</b>. 2,000 baht is only the deposit.","tag":"Reading: working with figures"},{"n":47,"stem":"What happens to a camper who speaks Thai in the dining hall in the evening?","options":["Their team loses a point.","They cannot join the trip to Erawan Falls.","They are sent home from the camp.","They must pay a small fine."],"answer":"A","explain":"The advertisement says <i>anyone who speaks Thai loses one point for their team</i>. The other punishments are never mentioned.","tag":"Reading: finding detail"},{"n":48,"stem":"To get the deposit back, a family must cancel","options":["at any time before the camp begins.","before 4 April.","before 1 March.","before 20 March."],"answer":"C","explain":"<i>Deposits are returned only if you cancel before 1 March.</i> 20 March is the deadline for paying the balance, not for cancelling.","tag":"Reading: finding detail"},{"n":49,"stem":"What is the largest number of students in one morning class?","options":["Eight","Forty-eight","Fourteen","Eleven"],"answer":"A","explain":"<i>small classes of no more than eight students</i>. Eleven and fourteen are the age limits, and 48 is the size of the whole camp.","tag":"Reading: finding detail"},{"n":50,"stem":"Which of these is <b>NOT</b> included in the 8,500 baht?","options":["All meals at the centre","The trip to Erawan Falls","The learning materials","The coach from Bangkok"],"answer":"D","explain":"Everything else is listed as included; the coach is described as <i>500 baht extra</i>.","tag":"Reading: finding detail"}]},{"title":"Plastic in the Ocean","text":["Every year about eight million tonnes of plastic end up in the world's oceans. That is roughly the weight of one and a half million elephants, and the figure is still rising.","Most people picture floating bottles and shopping bags, and those certainly exist. The greater danger, however, is invisible. Sunlight and waves slowly break large pieces of plastic into fragments smaller than a grain of rice, known as microplastics. Fish swallow them by mistake, and the plastic then travels up the food chain until it arrives on our own plates.","The problem is hard to solve precisely because plastic is so useful. It is light, cheap and strong, and it keeps food fresh for longer, which means less food is thrown away. Banning it completely would create fresh problems of its own.","Instead, most scientists suggest three changes. First, manufacturers should design packaging that can genuinely be recycled, rather than packaging that merely looks as though it can. Second, governments should charge for single-use items, as several countries already do with plastic bags. Third — and this is the part that belongs to us — shoppers should refuse the plastic they do not really need.","None of these three steps is dramatic. Taken together, however, they would reduce the flow of plastic into the sea far faster than any clean-up ship ever could."],"items":[{"n":51,"stem":"How much plastic reaches the oceans each year, according to the passage?","options":["The passage does not say.","About three million tonnes","About one and a half million tonnes","About eight million tonnes"],"answer":"D","explain":"The first sentence gives the figure. <i>One and a half million</i> refers to the elephants the writer uses to help the reader picture that weight, not to a number of tonnes.","tag":"Reading: finding detail"},{"n":52,"stem":"What are microplastics?","options":["Plastic that dissolves completely in sea water","Very small plastic bottles sold in shops","Pieces of plastic smaller than a grain of rice","A new material designed to replace plastic"],"answer":"C","explain":"The passage defines the word directly: <i>fragments smaller than a grain of rice, known as microplastics</i>.","tag":"Reading: vocabulary in context"},{"n":53,"stem":"Why does the writer say the problem is difficult to solve?","options":["Because clean-up ships are far too expensive to build","Because plastic is genuinely useful, so banning it would cause new problems","Because most governments refuse to charge for plastic bags","Because scientists cannot agree on what should be done"],"answer":"B","explain":"The third paragraph explains it: plastic is <i>light, cheap and strong</i> and reduces food waste, so <i>banning it completely would create fresh problems of its own</i>.","tag":"Reading: understanding reasons"},{"n":54,"stem":"The phrase “the part that belongs to us” refers to","options":["the money that governments collect from charges.","the packaging that manufacturers design.","the plastic that ends up on our plates.","the action that ordinary shoppers can take."],"answer":"D","explain":"The dash introduces the third change, which is aimed at <i>shoppers</i> — that is, at readers themselves, rather than at manufacturers or governments.","tag":"Reading: understanding reference"},{"n":55,"stem":"What is the writer's main purpose in this passage?","options":["To explain the problem and argue for a few practical changes","To warn readers never to eat fish caught in the ocean","To persuade readers that all plastic should be banned","To describe how clean-up ships remove plastic from the sea"],"answer":"A","explain":"The passage sets out the problem, admits that plastic is useful, and then recommends three realistic steps. It specifically argues <b>against</b> a complete ban.","tag":"Reading: identifying purpose"}]},{"title":"The Wallet","text":["Kritsada noticed the wallet on the bus seat just as he was standing up to get off. It was thick brown leather, worn soft at the corners, and it lay half under a folded newspaper, as though somebody had tried to hide it there.","He looked around. The old woman two rows in front was asleep. The student by the window had headphones on and his eyes shut. Nobody was watching.","Inside there was three thousand baht in new notes, a driving licence, and a photograph of two small children standing on a beach. Kritsada was fifteen and had never held so much money at one time. He thought about the football boots he had wanted since March.","Then he looked at the photograph again.","At the next stop he got off and walked back three streets to the police station, which made him twenty minutes late for his tutoring class and cost him a scolding. The officer wrote down his name and the name of his school without much interest, and put the wallet in a drawer.","Two weeks later a letter arrived at the school. It was from a delivery driver called Somsak, and inside there was a note of thanks and a voucher for a sports shop. Kritsada read the note twice. Then he folded it carefully into his pocket and said nothing about it to anybody."],"items":[{"n":56,"stem":"Where exactly was the wallet?","options":["In the pocket of the sleeping student","On the floor beneath the old woman's seat","Half hidden under a newspaper on a bus seat","On a table at the police station"],"answer":"C","explain":"The first paragraph says it <i>lay half under a folded newspaper</i> on the seat.","tag":"Reading: finding detail"},{"n":57,"stem":"Why does the writer mention the photograph a second time?","options":["It proves that the wallet belonged to a delivery driver.","It is the moment when Kritsada decides not to keep the money.","It explains why Kritsada was late for his class.","It shows that Kritsada recognised the children in it."],"answer":"B","explain":"The one-line paragraph <i>Then he looked at the photograph again</i> sits between his temptation (the football boots) and his walk to the police station, so it marks the turning point in his decision.","tag":"Reading: inference"},{"n":58,"stem":"What did returning the wallet cost Kritsada?","options":["He was twenty minutes late for his tutoring class and was told off.","He had to give his name to the newspapers.","He had to pay for the bus fare a second time.","He lost the chance to buy the football boots for ever."],"answer":"A","explain":"The passage states that the detour <i>made him twenty minutes late for his tutoring class and cost him a scolding</i>.","tag":"Reading: finding detail"},{"n":59,"stem":"How did the police officer treat Kritsada?","options":["He thanked Kritsada warmly for his honesty.","He was openly suspicious of Kritsada.","He refused to take the wallet from him.","He did his job, but showed very little interest."],"answer":"D","explain":"The officer takes the details and stores the wallet — the job is done — but he does it <i>without much interest</i>. The moment clearly means far less to him than it does to Kritsada.","tag":"Reading: understanding attitude"},{"n":60,"stem":"What do the last two sentences suggest about Kritsada?","options":["He was ashamed of what he had done.","He was planning to sell the voucher to a friend.","He was quietly pleased and was not looking for praise.","He was disappointed that the reward was so small."],"answer":"C","explain":"He reads the note <i>twice</i> and keeps it carefully, which shows it matters to him; saying <i>nothing about it to anybody</i> shows he is not seeking attention.","tag":"Reading: inference"}]}],"count":15}]},{"id":"advanced","name":"Advanced","accent":"#8E2433","blurb":"The most competitive papers: inversion, subjunctive, participle clauses, tone.","parts":[{"id":"A","title":"Grammar and Structure","type":"mcq","blurb":"Choose the word or phrase that best completes each sentence.","items":[{"n":1,"stem":"If she ____ harder in the final term, she would have passed the entrance examination.","options":["has studied","had studied","would have studied","studied"],"answer":"B","explain":"The result clause is <i>would have passed</i>, so this is a third conditional about an unreal past. The <i>if</i> clause must be in the <b>past perfect</b>; <i>would have</i> is never used inside the <i>if</i> clause itself.","tag":"Third conditional"},{"n":2,"stem":"If I hadn't missed the early train, I ____ in that meeting now instead of in a taxi.","options":["would be sitting","will be sitting","had been sitting","would have sat"],"answer":"A","explain":"The condition is in the past (<i>hadn't missed</i>) but the result is in the <b>present</b> (<i>now</i>). That mixture takes <i>would</i> + base form / continuous, not <i>would have</i>.","tag":"Mixed conditional"},{"n":3,"stem":"Never before ____ such an extraordinary sight in all his years at sea.","options":["he had seen","he has seen","had he seen","did he saw"],"answer":"C","explain":"When a negative adverbial (<i>never, seldom, rarely, little</i>) begins a sentence, the subject and auxiliary <b>invert</b>, exactly as in a question: <i>Never before <b>had he seen</b>...</i>","tag":"Inversion"},{"n":4,"stem":"____ the letter twice, she folded it away and said nothing to anyone.","options":["Read","To have read","After she reading","Having read"],"answer":"D","explain":"A perfect participle clause (<i>Having</i> + past participle) shows that one action was completed before the next. The subject of both halves must be the same person — here, <i>she</i>.","tag":"Participle clauses"},{"n":5,"stem":"The headmaster has insisted that every prefect ____ present at tomorrow's ceremony.","options":["be","is","will be","was"],"answer":"A","explain":"After verbs of demand and recommendation (<i>insist, demand, suggest, recommend, require</i>) the <i>that</i> clause takes the <b>base form</b> — the present subjunctive — for every subject. British English also allows <i>should be</i>; what it never allows here is a present or past indicative, because the ceremony has not yet taken place.","tag":"Subjunctive"},{"n":6,"stem":"This is the colleague ____ I reported the incident last Friday.","options":["to whom","which","to who","whom"],"answer":"A","explain":"<i>report something <b>to</b> somebody</i> — the preposition cannot be dropped — and after a preposition the object form is always <b>whom</b>, never <i>who</i>.","tag":"Relative pronouns with prepositions"},{"n":7,"stem":"By the time the ambulance arrived, the injured man ____ consciousness.","options":["already regained","was already regaining","has already regained","had already regained"],"answer":"D","explain":"<i>By the time</i> + past simple signals that the other action finished <b>earlier still</b>, which is exactly what the past perfect expresses.","tag":"Past perfect"},{"n":8,"stem":"The examiner asked me ____ ever visited an English-speaking country.","options":["did I have","whether I had","that I had","if had I"],"answer":"B","explain":"A reported yes/no question uses <i>whether</i> or <i>if</i> and then <b>statement word order</b>, with the tense shifted back: <i>whether I <b>had</b> ever visited</i>.","tag":"Reported questions"},{"n":9,"stem":"We are going to ____ the roof repaired before the rainy season begins.","options":["do","make","let","have"],"answer":"D","explain":"The causative pattern is <b>have / get + object + past participle</b>: we arrange for somebody else to do the work. <i>make</i> and <i>let</i> are followed by a person plus a bare infinitive.","tag":"Causative structures"},{"n":10,"stem":"I wish I ____ his advice; I would not be in this mess now.","options":["had taken","took","take","would take"],"answer":"A","explain":"<b>wish + past perfect</b> expresses regret about something that did or did not happen in the past. <i>wish + past simple</i> would refer to a present situation.","tag":"Wish + past perfect"},{"n":11,"stem":"The forms ____ before the deadline, but unfortunately nobody remembered.","options":["should submit","should have been submitted","should have submitted","must submitting"],"answer":"B","explain":"The forms receive the action, so we need the passive, and the deadline has already gone, so we need the perfect: <b>should have been + past participle</b>.","tag":"Modal perfect passive"},{"n":12,"stem":"On the way to the hospital he stopped ____ a cigarette, even though the doctor had warned him twice.","options":["smoking","to smoke","smoke","smoked"],"answer":"B","explain":"<b>stop + to-infinitive</b> means to pause <i>in order to</i> do something; <b>stop + -ing</b> means to give the activity up. Only <i>stopped to smoke</i> fits <i>even though the doctor had warned him</i>.","tag":"Gerund vs infinitive"},{"n":13,"stem":"Neither proposal ____ acceptable to the committee.","options":["were","have been","was","are"],"answer":"C","explain":"<i>Neither</i> before a singular noun means <i>not one and not the other</i>, so the verb must be <b>singular</b>. (<i>Neither of the proposals</i> also takes a singular verb in careful writing.)","tag":"Subject–verb agreement"},{"n":14,"stem":"The evidence against him was thin; ____, the jury found him guilty.","options":["although","whereas","despite","nevertheless"],"answer":"D","explain":"A semicolon joins two complete clauses, and the slot before the comma needs a linking <b>adverb</b> such as <i>nevertheless, however, therefore</i>. <i>although</i> and <i>whereas</i> are conjunctions and <i>despite</i> is a preposition, so none of them can stand there.","tag":"Linking adverbs"},{"n":15,"stem":"No sooner had the bell rung ____ the whole class rushed out into the corridor.","options":["when","that","than","then"],"answer":"C","explain":"The fixed pair is <b>no sooner ... than</b>. (Compare <i>hardly / scarcely ... when</i>.) <i>then</i> is an adverb of time and cannot join two clauses.","tag":"No sooner ... than"},{"n":16,"stem":"The students ____ in the debating competition must register at the office by Friday.","options":["taking part","who taking part","take part","takes part"],"answer":"A","explain":"<i>The students <b>who are</b> taking part</i> can be shortened by deleting <i>who are</i> and keeping the <i>-ing</i> form. Once the relative pronoun is dropped, no finite verb may remain.","tag":"Reduced relative clauses"},{"n":17,"stem":"You ____ seen Malee at the market yesterday; she has been in Chiang Mai all week.","options":["mustn't have","shouldn't have","couldn't be","can't have"],"answer":"D","explain":"<b>can't have + past participle</b> expresses a confident conclusion that something did <b>not</b> happen. <i>mustn't have</i> is not used for deduction in standard English.","tag":"Modal perfect deduction"},{"n":18,"stem":"____ was the noise from the street, not the heat, that kept me awake all night.","options":["This","That","It","There"],"answer":"C","explain":"The emphatic pattern is <b>It was ... that ...</b>, used to single out one element of a sentence. <i>There was</i> would simply state that the noise existed.","tag":"Cleft sentences"},{"n":19,"stem":"She is admired not only for her intelligence ____ for her extraordinary patience.","options":["and also","as well","but also","but too"],"answer":"C","explain":"The correlative pair is <b>not only ... but also</b>, and the two halves must be grammatically parallel — here, <i>for</i> + noun on both sides.","tag":"Parallel structure"},{"n":20,"stem":"The furniture for the new office ____ arrived yet, so we are still sitting on boxes.","options":["haven't","hasn't","didn't","aren't"],"answer":"B","explain":"<i>furniture</i> is uncountable and therefore singular, so it takes <b>has</b>. <i>yet</i> also requires the present perfect rather than the past simple.","tag":"Uncountable nouns"},{"n":21,"stem":"The manager accused his assistant ____ leaking confidential information to a rival firm.","options":["for","with","of","about"],"answer":"C","explain":"The fixed pattern is <b>accuse somebody of (doing) something</b>. Compare <i>blame somebody for</i> and <i>charge somebody with</i>.","tag":"Dependent prepositions"},{"n":22,"stem":"The committee's decision was met with widespread ____ from parents and teachers alike.","options":["disapproved","disapprove","disapproval","disapproving"],"answer":"C","explain":"After the adjective <i>widespread</i> and the preposition <i>with</i>, a <b>noun</b> is required, and the noun form is <i>disapproval</i>.","tag":"Word formation"},{"n":23,"stem":"The longer he waited outside the office, ____ he became.","options":["more anxious","the more anxious","the most anxious","anxious more"],"answer":"B","explain":"The pattern is <b>the</b> + comparative ... <b>the</b> + comparative, showing that two things increase together: <i>The longer he waited, the more anxious he became.</i>","tag":"Double comparatives"},{"n":24,"stem":"A: “I have never been to Japan.”   B: “____.”","options":["Neither have I","So have I","Neither I have","So I have"],"answer":"A","explain":"To agree with a <b>negative</b> statement we use <i>Neither / Nor</i> + auxiliary + subject. <i>So have I</i> agrees with a <b>positive</b> statement; <i>Neither I have</i> has the wrong word order; and <i>So I have</i> is used to confirm something just pointed out, not to agree.","tag":"Short additions"},{"n":25,"stem":"I'd rather you ____ anything to her about the party — it is meant to be a surprise.","options":["won't say","not to say","don't say","didn't say"],"answer":"D","explain":"<b>would rather + subject + past tense</b> expresses a preference about what somebody <b>else</b> does now or in the future. The past form here has no past meaning.","tag":"Would rather + past subjunctive"}],"count":25},{"id":"B","title":"Error Identification","type":"error","blurb":"One of the four underlined parts is incorrect. Find it.","items":[{"n":26,"segs":["The report, ",{"u":"together with"}," the attached photographs, ",{"u":"were"}," ",{"u":"submitted"}," to the committee ",{"u":"last Monday"},"."],"answer":"B","wrong":"were","fix":"was","explain":"A phrase introduced by <i>together with, as well as, along with, in addition to</i> does <b>not</b> change the number of the subject. The subject is still <i>the report</i>, so the verb is <b>was</b>.","tag":"Subject–verb agreement"},{"n":27,"segs":[{"u":"Not only"}," ",{"u":"did she win"}," the scholarship, but she ",{"u":"also has been"}," ",{"u":"offered"}," a place at a leading university."],"answer":"C","wrong":"also has been","fix":"has also been","explain":"In the <i>not only ... but also</i> pattern <i>also</i> takes mid-position — after the first auxiliary verb: <i>she <b>has also been</b> offered</i>.","tag":"Word order with also"},{"n":28,"segs":[{"u":"If he would have"}," told me earlier, I ",{"u":"could have"}," ",{"u":"changed"}," ",{"u":"the arrangements"},"."],"answer":"A","wrong":"If he would have","fix":"If he had","explain":"<i>would</i> belongs only in the result clause of a conditional. The <i>if</i> clause of a third conditional must use the <b>past perfect</b>: <i>If he <b>had</b> told me earlier...</i>","tag":"Third conditional"},{"n":29,"segs":[{"u":"Neither"}," the manager nor the assistants ",{"u":"was"}," ",{"u":"aware"}," of ",{"u":"the change"}," in the timetable."],"answer":"B","wrong":"was","fix":"were","explain":"With <i>neither ... nor</i> the verb agrees with the <b>nearer</b> subject. That subject is <i>the assistants</i>, which is plural, so the verb must be <b>were</b>.","tag":"Neither ... nor agreement"},{"n":30,"segs":["She is one of ",{"u":"those people"}," ",{"u":"who"}," ",{"u":"believes"}," that hard work ",{"u":"always pays off"},"."],"answer":"C","wrong":"believes","fix":"believe","explain":"<i>who</i> refers back to <i>those people</i>, not to <i>one</i>, so the verb in the relative clause is plural: <i>one of those people who <b>believe</b></i>.","tag":"Relative clause agreement"},{"n":31,"segs":["Hardly ",{"u":"had"}," we ",{"u":"sat down"}," ",{"u":"when"}," the fire alarm ",{"u":"has started"}," to ring."],"answer":"D","wrong":"has started","fix":"started","explain":"In the <i>hardly ... when</i> pattern the first clause is in the past perfect and the second must be in the <b>past simple</b>. A present perfect cannot describe an event fixed in past time.","tag":"Hardly ... when"},{"n":32,"segs":[{"u":"Having finished"}," the experiment, ",{"u":"the results were recorded"}," ",{"u":"carefully"}," ",{"u":"in the notebook"},"."],"answer":"B","wrong":"the results were recorded","fix":"we recorded the results","explain":"The participle clause <i>Having finished the experiment</i> must describe the subject of the main clause — but results cannot finish an experiment. The main clause needs a human subject: <i>Having finished the experiment, <b>we recorded the results</b> carefully.</i>","tag":"Dangling participle"},{"n":33,"segs":["The scientist ",{"u":"whom"}," ",{"u":"we spoke"}," ",{"u":"with him"}," yesterday ",{"u":"has published"}," two books on the subject."],"answer":"C","wrong":"with him","fix":"with","explain":"<i>whom</i> is already the object of <i>with</i>, so the extra pronoun <i>him</i> must go: <i>the scientist whom we spoke <b>with</b> yesterday</i> (or <i>with whom we spoke</i>).","tag":"Relative clauses"},{"n":34,"segs":[{"u":"Comparing to"}," last year, ",{"u":"the number of"}," foreign tourists ",{"u":"has fallen"}," by ",{"u":"almost a third"},"."],"answer":"A","wrong":"Comparing to","fix":"Compared with / Compared to","explain":"The number of tourists is being compared — it is not doing the comparing — so the <b>past</b> participle is required: <i>Compared with last year...</i>","tag":"Participle form"},{"n":35,"segs":[{"u":"It is essential"}," that ",{"u":"every candidate"}," ",{"u":"should bring"}," a valid form of ",{"u":"identifications"},"."],"answer":"D","wrong":"identifications","fix":"identification","explain":"<i>identification</i> in the sense of proof of identity is <b>uncountable</b> and has no plural. The countable phrase is <i>a form of identification</i>, which is already there.","tag":"Uncountable nouns"}],"count":10},{"id":"C","title":"Vocabulary and Everyday Conversation","type":"mcq","blurb":"Word choice, collocation and natural replies in conversation.","items":[{"n":36,"stem":"The two witnesses gave ____ accounts of the accident, which is why the police were confused.","options":["identical","reliable","contradictory","consistent"],"answer":"C","explain":"Only <b>contradictory</b> accounts — accounts that cannot both be true — would confuse the police. <i>consistent</i> and <i>identical</i> would make their work easier, not harder.","tag":"Vocabulary: precision"},{"n":37,"stem":"Despite his ____ manner in public, my uncle is in fact painfully shy.","options":["nervous","confident","timid","awkward"],"answer":"B","explain":"<i>Despite</i> signals a contrast, so the adjective must be the <b>opposite</b> of <i>shy</i>. The other three all mean much the same as shy, which destroys the contrast.","tag":"Vocabulary: contrast signals"},{"n":38,"stem":"The new evidence completely ____ the theory that the professor had defended for thirty years.","options":["undermined","supported","strengthened","confirmed"],"answer":"A","explain":"<b>undermine</b> means to weaken something gradually until it can no longer stand. The other three verbs all mean the opposite.","tag":"Vocabulary: academic verbs"},{"n":39,"stem":"I have read his statement three times, and it simply does not ____ sense.","options":["give","do","take","make"],"answer":"D","explain":"The fixed collocation is <b>make sense</b>. Collocations of this kind must be learned as whole phrases; the individual words cannot be swapped.","tag":"Collocation"},{"n":40,"stem":"The conference was ____ off altogether at the last minute, and no new date will be arranged.","options":["set","taken","put","called"],"answer":"D","explain":"<b>call something off</b> means to cancel it completely. <i>put off</i> means to postpone to a later date, which is ruled out by <i>altogether</i> and <i>no new date will be arranged</i>.","tag":"Phrasal verbs"},{"n":41,"stem":"A: “I'm afraid we shall have to postpone Friday's meeting.” B: “____”","options":["I'm afraid I don't agree with you at all.","That's a pity, but I quite understand.","Never mind, it was entirely my fault.","Yes, please do it again."],"answer":"B","explain":"The natural reply expresses mild regret and acceptance. <i>Never mind, it was my fault</i> would only make sense if B had caused the problem.","tag":"Conversation: responding to bad news"},{"n":42,"stem":"A: “Would you mind awfully if I opened the window?” B: “____”","options":["Yes, please open it.","Of course I would. Go ahead.","Not in the least. Please do.","I'd rather you do, thank you."],"answer":"C","explain":"<i>Would you mind if...?</i> asks whether something would trouble the listener, so agreement is signalled by a <b>negative</b>: <i>Not in the least</i>. <i>Of course I would</i> means the opposite of what the friendly <i>Go ahead</i> suggests, which makes it self-contradictory.","tag":"Conversation: formal permission"},{"n":43,"stem":"A: “____” B: “I'm afraid he's in a meeting. Can I take a message?”","options":["What time does the meeting start?","Is Mr Chai your manager?","Would you like to leave a message?","Could I speak to Mr Chai, please?"],"answer":"D","explain":"The reply refuses access to a person and offers to pass on a message, so the question must have asked to speak to that person.","tag":"Conversation: telephone language"},{"n":44,"stem":"A: “I've just heard that you won the national scholarship!” B: “____”","options":["Thank you. I still can't quite believe it.","It really doesn't matter at all.","Never mind — better luck next time.","I'm very sorry to hear that."],"answer":"A","explain":"The news is good, so the reply must accept the congratulation. The other three all respond to <b>bad</b> news.","tag":"Conversation: receiving congratulations"},{"n":45,"stem":"A: “You really should have told me you were coming.” B: “____”","options":["I know. I'm sorry — I wanted it to be a surprise.","You're very welcome indeed.","Yes, I should tell you tomorrow.","That's extremely kind of you."],"answer":"A","explain":"<i>should have told me</i> is a gentle complaint about the past, so B must acknowledge it and explain. Only <i>I know. I'm sorry — I wanted it to be a surprise</i> does both.","tag":"Conversation: apologising"}],"count":10},{"id":"D","title":"Reading Comprehension","type":"reading","blurb":"Read each text, then answer the questions on it.","passages":[{"title":"THE SUWANNA FOUNDATION SCHOLARSHIP 2027 — Announcement","text":["The Suwanna Foundation will award <b>twelve full scholarships</b> covering the three years of lower secondary education beginning in May 2027.","<b>Eligibility.</b> Applicants must (a) be in their final year of primary school in the academic year 2026; (b) have a grade point average of at least 3.25 over the two most recent terms; and (c) come from a household whose total annual income does not exceed 300,000 baht. Applicants who satisfy (a) and (b) but not (c) may still apply for the Foundation's <b>half-scholarship</b>, which is announced separately in September.","<b>Selection.</b> Shortlisted applicants sit a written paper in Thai, English and mathematics on 8 February. Those who reach the required standard are invited to interview during the following week. The Foundation does not take a candidate's school into account, and it does not run, endorse or co-operate with any preparatory course.","<b>Conditions.</b> A scholar must maintain a grade point average of 3.00. A scholar whose average falls below that figure receives one term's warning; if the average has not recovered by the end of that term, the award is withdrawn.","Applications close at <b>4 p.m. on 15 December</b>. Late applications are not accepted under any circumstances. Incomplete forms are returned to the applicant once only."],"items":[{"n":46,"stem":"Ploy is in her final primary year and has an average of 3.40, but her family's annual income is 420,000 baht. What can she do?","options":["Nothing — she does not meet any of the Foundation's conditions","Apply for a full scholarship, because her average is high enough","Apply for a full scholarship if she takes a preparatory course","Apply for the half-scholarship announced in September"],"answer":"D","explain":"She satisfies (a) and (b) but fails the income condition (c). The announcement says such applicants <i>may still apply for the Foundation's half-scholarship</i>.","tag":"Reading: applying rules to a case"},{"n":47,"stem":"What happens immediately after the written paper?","options":["All applicants are invited to interview the following week.","Applicants who reach the required standard are invited to interview.","The twelve scholarships are announced at once.","Applicants are asked to submit their school reports."],"answer":"B","explain":"<i>Those who reach the required standard are invited to interview</i> — so the interview is not offered to everyone, only to those who pass the paper.","tag":"Reading: sequence of events"},{"n":48,"stem":"A scholar's average falls to 2.80. According to the announcement, what happens <b>first</b>?","options":["She is given a warning and one term to recover.","Her family's income is checked again.","Her award is withdrawn immediately.","She must re-sit the written paper."],"answer":"A","explain":"The warning comes first; withdrawal follows only <i>if the average has not recovered by the end of that term</i>.","tag":"Reading: understanding conditions"},{"n":49,"stem":"What does the announcement say about the school a candidate attends?","options":["Only government schools may put forward candidates.","It plays no part in the Foundation's decision.","Candidates from well-known schools are preferred.","The school must confirm the family's income."],"answer":"B","explain":"<i>The Foundation does not take a candidate's school into account.</i>","tag":"Reading: finding detail"},{"n":50,"stem":"An application is handed in at 5 p.m. on 15 December. What will happen to it?","options":["It will be rejected, because the deadline has passed.","It will be accepted, because it arrived on the correct day.","It will be returned once for completion.","It will be considered only for the half-scholarship."],"answer":"A","explain":"The deadline is <b>4 p.m.</b> on 15 December, and <i>late applications are not accepted under any circumstances</i>. Returning a form <i>once only</i> applies to incomplete forms, not late ones.","tag":"Reading: precise detail"}]},{"title":"In Praise of Being Bored","text":["Ask a group of parents what they most want to protect their children from, and boredom will appear surprisingly near the top of the list. Weekends are filled with lessons, clubs and screens; a quiet Sunday afternoon is treated as a small emergency to be solved. Yet a growing number of psychologists argue that in rescuing our children from empty hours we may be removing something they badly need.","Boredom is uncomfortable, and that is precisely the point. It is the mind's way of announcing that nothing in the immediate surroundings is worth attention, and it presses us to do something about it. Given no ready-made entertainment, a child eventually invents: a game, a story, a fort behind the sofa. Researchers who have compared children left with nothing to do with children given carefully structured activities consistently find the first group more inventive afterwards. Boredom, in other words, is not the absence of thought. It is the empty space in which thought begins.","The difficulty is that this space is now extraordinarily easy to fill. A telephone offers an escape within three seconds, and an escape taken every single time is an escape that hardens into a habit. What is lost is not merely inventiveness but the ability to sit with an unpleasant feeling without instantly reaching for a cure — a skill that turns out to matter a great deal in adult life.","None of this means that children should be left to drift through whole holidays with nothing arranged. Structure teaches discipline, and some skills can be learned in no other way. But a Sunday afternoon with no plan is not a failure of parenting. It may be one of the few remaining places where a child discovers what she actually finds interesting, rather than being told."],"items":[{"n":51,"stem":"What is the main idea of the passage?","options":["Parents today are far lazier than parents were in the past.","Telephones should be taken away from children completely.","Unstructured, boring time has a real value that children are losing.","Organised clubs and lessons are harmful to young children."],"answer":"C","explain":"The whole passage defends empty time and warns that it is disappearing. The writer never attacks parents or organised activities — indeed the final paragraph defends structure.","tag":"Reading: main idea"},{"n":52,"stem":"The phrase “a small emergency to be solved” suggests that parents","options":["believe that their children are in some real danger.","find it difficult to plan weekend activities in advance.","worry that their children may become physically ill.","treat an unfilled afternoon as a problem that demands action."],"answer":"D","explain":"The word <i>emergency</i> is deliberate exaggeration. The writer is describing the <b>attitude</b> of parents — that empty time must be fixed at once — not a genuine danger.","tag":"Reading: interpreting figurative language"},{"n":53,"stem":"What do the studies mentioned in paragraph 2 show?","options":["Children given nothing to do were more inventive afterwards.","Boredom made most children badly behaved.","Children preferred inventing games to joining clubs.","Children in structured activities learned more quickly."],"answer":"A","explain":"The passage reports that researchers <i>consistently find that the first group</i> — those left with nothing to do — <i>is more inventive afterwards</i>. Nothing is said about behaviour or preference.","tag":"Reading: finding detail"},{"n":54,"stem":"According to the writer, what is the real danger of the telephone?","options":["It gives children access to material their parents cannot control.","It makes children so tired that they cannot concentrate at school.","Escaping boredom instantly becomes a habit, so an important skill is never learned.","It replaces the games and stories that children used to invent."],"answer":"C","explain":"The third paragraph makes the point precisely: <i>an escape taken every single time is an escape that hardens into a habit</i>, and what is lost is <i>the ability to sit with an unpleasant feeling</i>.","tag":"Reading: understanding argument"},{"n":55,"stem":"In paragraph 3, “hardens into a habit” means that the escape","options":["becomes steadily less enjoyable each time.","becomes automatic and difficult to give up.","grows harder and harder to find.","turns into a physical illness over time."],"answer":"B","explain":"<i>Harden</i> is used figuratively: something soft and occasional sets into something fixed. The words just before it — <i>an escape taken every single time</i> — show that the writer means repetition turning into an automatic response.","tag":"Reading: vocabulary in context"}]},{"title":"The Visit","text":["The house had not changed, which was the first surprise. Anong had prepared herself for decay — a sagging roof, weeds pushing through the steps — and found instead fresh paint and a mango tree neatly pruned. Somebody had been looking after it. The thought sat uncomfortably with her all the way up the path.","Her aunt opened the door before she knocked. She was smaller than Anong remembered, and she wore the same green blouse she had worn in every photograph of the last twenty years.","“You've come,” the old woman said, as though Anong had merely been out to the market.","Inside, the front room had been arranged for a visitor: two cups already set out, the good chairs turned to face one another. Anong understood then that her aunt had been expecting her not since the letter, but for years — that the cups had probably been set out and put away a hundred times.","They talked about the weather and the price of fish. Neither of them mentioned the argument, or the funeral Anong had not attended, or the eleven years. Twice her aunt began a sentence with “Your mother —” and twice she stopped, and poured more tea instead.","When Anong left, the old woman walked her as far as the gate and said only, “Come again on Sunday.” It was not a question, and Anong, who had booked a flight for Saturday, heard herself say yes."],"items":[{"n":56,"stem":"What surprised Anong when she arrived?","options":["Her aunt was not at home.","The house had been well looked after.","The house was smaller than she remembered.","The mango tree had been cut down."],"answer":"B","explain":"She had expected <i>decay</i> and found <i>fresh paint and a mango tree neatly pruned</i>. It is her <b>aunt</b>, not the house, who is smaller than she remembered.","tag":"Reading: finding detail"},{"n":57,"stem":"Why is the detail of the two cups important?","options":["It proves that somebody else had been in the house that morning.","It suggests that the aunt rarely has anyone to talk to.","It shows that the aunt was expecting a different visitor.","It shows that the aunt had been hoping for this visit for a very long time."],"answer":"D","explain":"Anong realises her aunt had been expecting her <i>not since the letter, but for years</i>, and that the cups <i>had probably been set out and put away a hundred times</i>.","tag":"Reading: inference"},{"n":58,"stem":"What does the sentence beginning “Neither of them mentioned...” tell the reader?","options":["Anong's aunt has forgiven her completely for staying away.","The two women have very little in common any more.","Neither woman can remember what the argument was about.","There is a painful shared history that both women are avoiding."],"answer":"D","explain":"Listing the argument, the missed funeral and the eleven years — and then saying that <b>neither</b> woman raised any of them — shows the reader exactly what is being carefully left unsaid.","tag":"Reading: inference"},{"n":59,"stem":"Why does the aunt stop twice after saying “Your mother —”?","options":["She has forgotten what she intended to say.","She is waiting for Anong to finish the sentence.","The subject is too painful for her to continue.","She does not want the tea to go cold."],"answer":"C","explain":"She breaks off at the same point twice and covers the silence by <i>pouring more tea</i>, which is the behaviour of somebody avoiding a subject rather than somebody who has lost her thread.","tag":"Reading: inference"},{"n":60,"stem":"What does the final sentence suggest?","options":["Anong is likely to change her travel plans and stay longer.","Anong intends to leave on Saturday as arranged.","Anong agreed only out of politeness and will not return.","Anong has decided to move back into the house."],"answer":"A","explain":"She has a flight booked for Saturday yet agrees to return on Sunday. The phrase <i>heard herself say yes</i> shows the answer came before she had decided — the visit has moved her more than she expected.","tag":"Reading: inference"}]}],"count":15}]}]};
+</script>
+<script>
+const $ = s => document.querySelector(s);
+const el = (t,c,h)=>{const n=document.createElement(t); if(c)n.className=c; if(h!==undefined)n.innerHTML=h; return n;};
+const L4 = ["A","B","C","D"];
+const OK_SVG='<svg width="23" height="23" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="M6.8 12.4l3.3 3.3 7.1-7.4" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const NO_SVG='<svg width="23" height="23" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="M8.2 8.2l7.6 7.6M15.8 8.2l-7.6 7.6" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>';
+
+const store={
+  get(k,d){try{const v=localStorage.getItem("eep_"+k);return v===null?d:JSON.parse(v);}catch(e){return d;}},
+  set(k,v){try{localStorage.setItem("eep_"+k,JSON.stringify(v));}catch(e){}},
+  del(k){try{localStorage.removeItem("eep_"+k);}catch(e){}}
+};
+const blanks = s => String(s).replace(/_{3,}/g,'<span class="blank"></span>');
+function errSentence(segs){let i=0;return segs.map(s=>typeof s==="string"?s
+  :'<u>'+s.u+'</u><sup>('+L4[i++]+')</sup>').join("");}
+const PALETTE={foundation:{p:"#86D8C4",k:"#127A63"},
+                standard:{p:"#F8BE87",k:"#B0641F"},
+                advanced:{p:"#AFB4EE",k:"#4A52B8"}};
+function paint(lv){return PALETTE[lv.id]||{p:"#9CD2F5",k:"#2C7CB8"};}
+function tintOf(hex){const n=parseInt(hex.slice(1),16),r=n>>16,g=(n>>8)&255,b=n&255,p=.11;
+  const m=v=>Math.round(255-(255-v)*p);return "rgb("+m(r)+","+m(g)+","+m(b)+")";}
+function setAccent(lv){
+  const c = lv ? paint(lv) : {p:"#9CD2F5",k:"#2C7CB8"};
+  const r=document.documentElement.style;
+  r.setProperty("--accent",c.p); r.setProperty("--accent-ink",c.k);
+  r.setProperty("--accent-t",tintOf(c.p));}
+
+let LV=null, RUN=null;
+function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));
+  $("#s-"+id).classList.add("on"); window.scrollTo(0,0);}
+
+/* ---------------- home ---------------- */
+function buildHome(){
+  const box=$("#levelCards"); box.innerHTML="";
+  DATA.levels.forEach(lv=>{
+    const total=lv.parts.reduce((a,p)=>a+p.count,0);
+    const b=el("button","lvcard"); b.style.setProperty("--lv",paint(lv).p);
+    b.innerHTML='<div class="hd"><h3>'+lv.name+'</h3><span class="n">'+total+' questions</span></div>'
+      +'<div class="bd"><p>'+lv.blurb+'</p><span class="go">'
+      +'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></span></div>';
+    b.onclick=()=>openLevel(lv.id);
+    box.appendChild(b);
+  });
+}
+
+/* ---------------- menu ---------------- */
+function openLevel(id){
+  LV=DATA.levels.find(l=>l.id===id); setAccent(LV);
+  $("#mLevelName").textContent=LV.name+" Level";
+  $("#mLevelBlurb").textContent=LV.blurb;
+  $("#mTopName").textContent=LV.name+" Level";
+  buildMenu(); show("menu");
+}
+const bestKey = p => "best_"+LV.id+"_"+p;
+function buildMenu(){
+  const box=$("#partCards"); box.innerHTML="";
+  const total=LV.parts.reduce((a,p)=>a+p.count,0);
+  const rows=[{id:"ALL",badge:"60",title:"The whole paper",count:total,full:true,
+               blurb:"All four sections in order — the complete practice paper."}]
+    .concat(LV.parts.map(p=>({id:p.id,badge:p.id,title:"Part "+p.id+" · "+p.title,count:p.count,blurb:p.blurb})));
+  rows.forEach(r=>{
+    const best=store.get(bestKey(r.id),null);
+    const b=el("button","pcard"+(r.full?" full":"")); b.style.setProperty("--lv",paint(LV).p);
+    b.innerHTML='<span class="badge">'+r.badge+'</span>'
+      +'<span class="m"><h3>'+r.title+'</h3><p>'+r.blurb+'</p></span>'
+      +'<span class="r"><span class="n">'+r.count+' Qs</span>'
+      +(best!==null?'<span class="best">Best '+best+'/'+r.count+'</span>':'')+'</span>';
+    b.onclick=()=>startRun(r.id);
+    box.appendChild(b);
+  });
+}
+
+/* ---------------- run ---------------- */
+function collect(partId){
+  const out=[];
+  LV.parts.forEach(p=>{
+    if(partId!=="ALL"&&p.id!==partId)return;
+    if(p.type==="reading") p.passages.forEach(pas=>pas.items.forEach(it=>out.push({kind:"mcq",part:p,passage:pas,it})));
+    else if(p.type==="error") p.items.forEach(it=>out.push({kind:"err",part:p,it}));
+    else p.items.forEach(it=>out.push({kind:"mcq",part:p,it}));
+  });
+  return out;
+}
+function startRun(partId,only){
+  const all=collect(partId);
+  const qs=only?all.filter(q=>only.includes(q.it.n)):all;
+  RUN={partId,qs,i:0,review:!!only,
+       st:qs.map(()=>({picked:null,checked:false,ok:false}))};
+  $("#qLevel").textContent=LV.name+" level";
+  $("#qPart").textContent = partId==="ALL" ? "The whole paper"
+    : (only ? "Review" : "Part "+partId+" · "+LV.parts.find(p=>p.id===partId).title);
+  show("quiz"); renderQ();
+}
+const doneCount = () => RUN.st.filter(s=>s.checked).length;
+const scoreNow  = () => RUN.st.filter(s=>s.ok).length;
+
+/* ---------------- question ---------------- */
+function renderQ(){
+  const q=RUN.qs[RUN.i], st=RUN.st[RUN.i];
+  $("#qCount").textContent=(RUN.i+1)+"/"+RUN.qs.length;
+  $("#qProg").style.width=(doneCount()/RUN.qs.length*100)+"%";
+  $("#qNum").textContent="Question "+q.it.n;
+  $("#qFb").innerHTML="";
+  $("#qDone").innerHTML = st.checked
+    ? '<span class="donetag '+(st.ok?"ok":"no")+'">'+(st.ok?"Answered correctly":"Answered — wrong")+'</span>' : "";
+
+  const pw=$("#qPassage"); pw.innerHTML="";
+  if(q.passage){
+    const prev=RUN.i>0?RUN.qs[RUN.i-1].passage:null;
+    const first=prev!==q.passage;
+    pw.innerHTML='<div class="passage"><details'+(first?" open":"")+'>'
+      +'<summary>'+(first?"Reading text":"Show the reading text")+'</summary>'
+      +'<div class="inner"><h4>'+q.passage.title+'</h4><div class="body">'
+      +q.passage.text.map(t=>"<p>"+t+"</p>").join("")+'</div></div></details></div>';
+  }
+
+  if(q.kind==="err"){
+    $("#qStem").innerHTML='<span class="hint">One of the four underlined parts is wrong. Which one?</span>'
+      +errSentence(q.it.segs);
+  }else{
+    $("#qStem").innerHTML=blanks(q.it.stem);
+  }
+
+  const box=$("#qOpts"); box.innerHTML="";
+  const labels = q.kind==="err"
+    ? L4.map((L,i)=>"<i>"+q.it.segs.filter(s=>typeof s!=="string")[i].u+"</i>")
+    : q.it.options;
+  labels.forEach((txt,i)=>{
+    const b=el("button","opt");
+    b.innerHTML='<span class="k">'+L4[i]+'</span><span class="tx">'+txt+'</span>';
+    b.onclick=()=>{
+      if(RUN.st[RUN.i].checked)return;
+      RUN.st[RUN.i].picked=L4[i];
+      [...box.children].forEach(c=>c.classList.remove("sel"));
+      b.classList.add("sel"); syncDock();
+    };
+    box.appendChild(b);
+  });
+
+  if(st.checked) paintChecked(); else if(st.picked) box.children[L4.indexOf(st.picked)].classList.add("sel");
+  syncDock();
+}
+
+function paintChecked(){
+  const q=RUN.qs[RUN.i], st=RUN.st[RUN.i], right=q.it.answer, box=$("#qOpts");
+  [...box.children].forEach((c,i)=>{
+    c.disabled=true; c.classList.remove("sel");
+    const L=L4[i];
+    if(L===right){c.classList.add("right"); if(!c.querySelector(".mark"))c.appendChild(el("span","mark","Correct"));}
+    else if(L===st.picked){c.classList.add("wrong"); if(!c.querySelector(".mark"))c.appendChild(el("span","mark","You chose"));}
+  });
+  const fix = q.kind==="err" ? '<p class="fix"><s>'+q.it.wrong+'</s> &nbsp;→&nbsp; <b>'+q.it.fix+'</b></p>' : "";
+  const fb=el("div","fb "+(st.ok?"good":"bad"));
+  fb.innerHTML='<div class="head">'+(st.ok?OK_SVG+"Correct":NO_SVG+"Not quite")+'</div>'+fix
+    +(q.it.tag?'<span class="skill">'+q.it.tag+'</span>':"")
+    +'<p class="why">'+q.it.explain+'</p>';
+  $("#qFb").innerHTML=""; $("#qFb").appendChild(fb);
+  $("#qDone").innerHTML='<span class="donetag '+(st.ok?"ok":"no")+'">'+(st.ok?"Answered correctly":"Answered — wrong")+'</span>';
+}
+
+function syncDock(){
+  const st=RUN.st[RUN.i], last=RUN.i===RUN.qs.length-1;
+  const a=$("#actBtn");
+  $("#prevBtn").disabled = RUN.i===0;
+  $("#nextBtn").disabled = last;
+  if(st.checked){
+    a.textContent = last ? "Finish" : "Next question";
+    a.className="btn main"; a.onclick = last ? results : goNext;
+  }else if(st.picked){
+    a.textContent="Check answer"; a.className="btn main"; a.onclick=check;
+  }else{
+    a.textContent = last ? "Finish" : "Skip this one";
+    a.className="btn main ghost"; a.onclick = last ? results : goNext;
+  }
+}
+function goNext(){ if(RUN.i<RUN.qs.length-1){RUN.i++;renderQ();window.scrollTo(0,0);} }
+function goPrev(){ if(RUN.i>0){RUN.i--;renderQ();window.scrollTo(0,0);} }
+
+function check(){
+  const st=RUN.st[RUN.i], q=RUN.qs[RUN.i];
+  st.checked=true; st.ok = st.picked===q.it.answer;
+  paintChecked(); syncDock();
+  $("#qProg").style.width=(doneCount()/RUN.qs.length*100)+"%";
+  $("#qFb").firstChild.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+/* ---------------- navigator ---------------- */
+function openSheet(){
+  const g=$("#qgrid"); g.innerHTML="";
+  RUN.qs.forEach((q,i)=>{
+    const st=RUN.st[i];
+    const b=el("button","qg"+(i===RUN.i?" cur":st.checked?(st.ok?" ok":" no"):""),String(q.it.n));
+    b.onclick=()=>{RUN.i=i;closeSheet();renderQ();window.scrollTo(0,0);};
+    g.appendChild(b);
+  });
+  const left=RUN.qs.length-doneCount();
+  $("#sheetSub").textContent = doneCount()+" answered · "+left+" still to do. Tap any number to jump there.";
+  $("#sheet").classList.add("on");
+  document.body.style.overflow="hidden";
+}
+function closeSheet(){$("#sheet").classList.remove("on");document.body.style.overflow="";}
+
+/* ---------------- results ---------------- */
+const BANDS=[
+  [.80,"Ready for this level","Comfortable here. Move up a level — on the Advanced paper this is entrance-ready."],
+  [.60,"Solid, with one weak area","Look at the section bars below. Whichever is furthest behind is where the next week should go."],
+  [.40,"The basics are there but not secure","Re-read every explanation, then practise the two weakest skills before trying again."],
+  [.00,"Build the foundation first","Drop back a level and learn the rules before re-testing. A harder paper will only discourage."]
+];
+const SBANDS=[
+  [.80,"This section is secure","Strong work. Try another section, or the same one at the next level up."],
+  [.60,"Nearly there","Read the explanations below, then come back to this section tomorrow."],
+  [.40,"This section needs work","Work through every explanation, then press “Practise what I missed”."],
+  [.00,"Start with the rules","Learn the rules behind the skills listed below before trying this section again."]
+];
+function results(){
+  closeSheet();
+  const tot=RUN.qs.length, sc=scoreNow(), done=doneCount(), skipped=tot-done;
+  const pct=sc/tot;
+  if(!RUN.review && done===tot){
+    const prev=store.get(bestKey(RUN.partId),-1);
+    if(RUN.qs.length===collect(RUN.partId).length && sc>prev) store.set(bestKey(RUN.partId),sc);
+  }
+  const label = LV.name+" level · "+$("#qPart").textContent;
+  $("#rTopName").textContent=$("#qPart").textContent;
+  $("#rWhat").textContent=label;
+  $("#rScore").innerHTML=sc+' <small>/ '+tot+'</small>';
+  const row=$("#rRow"); row.innerHTML='<span>'+Math.round(pct*100)+'% correct</span>'
+    +'<span>'+(done-sc)+' wrong</span>'+(skipped?'<span>'+skipped+' not answered</span>':'');
+  const whole = RUN.partId==="ALL" && !RUN.review;
+  const band=(whole?BANDS:SBANDS).find(b=>pct>=b[0]);
+  $("#rBand").textContent=band[1]; $("#rAdvice").textContent=band[2];
+
+  const log=RUN.qs.map((q,i)=>({part:q.part.id,tag:q.it.tag||"",st:RUN.st[i],q}));
+  // by section
+  const byPart={};
+  log.forEach(l=>{(byPart[l.part]=byPart[l.part]||{ok:0,n:0}); byPart[l.part].n++; if(l.st.ok)byPart[l.part].ok++;});
+  const bw=el("div");
+  if(Object.keys(byPart).length>1){
+    bw.appendChild(el("div","sechead","<h2>By section</h2>"));
+    const g=el("div","brk");
+    LV.parts.forEach(p=>{const s=byPart[p.id]; if(!s)return;
+      g.appendChild(el("div","brow",'<span class="nm">Part '+p.id+' · '+p.title+'</span>'
+        +'<span class="vl">'+s.ok+' / '+s.n+'</span>'
+        +'<span class="track"><i style="width:'+(s.ok/s.n*100)+'%"></i></span>'));});
+    bw.appendChild(g);
+  }
+  $("#rBreak").innerHTML=""; $("#rBreak").appendChild(bw);
+  // weakest skills
+  const byTag={};
+  log.forEach(l=>{if(!l.tag)return;(byTag[l.tag]=byTag[l.tag]||{ok:0,n:0});byTag[l.tag].n++;if(l.st.ok)byTag[l.tag].ok++;});
+  const weak=Object.entries(byTag).filter(([,v])=>v.ok<v.n).sort((a,b)=>(a[1].ok/a[1].n)-(b[1].ok/b[1].n)).slice(0,6);
+  const ww=el("div");
+  if(weak.length){
+    ww.appendChild(el("div","sechead","<h2>Skills to work on</h2>"));
+    const g=el("div","brk");
+    weak.forEach(([t,v])=>g.appendChild(el("div","brow",'<span class="nm">'+t+'</span>'
+      +'<span class="vl">'+v.ok+' / '+v.n+'</span>'
+      +'<span class="track"><i style="width:'+(v.ok/v.n*100)+'%"></i></span>')));
+    ww.appendChild(g);
+  }
+  $("#rWeak").innerHTML=""; $("#rWeak").appendChild(ww);
+  // wrong answers get the full treatment; skipped ones are just listed
+  const bad=log.filter(l=>!l.st.ok);
+  const wrongs=bad.filter(l=>l.st.checked), skips=bad.filter(l=>!l.st.checked);
+  const mw=el("div");
+  if(wrongs.length){
+    mw.appendChild(el("div","sechead","<h2>To go over ("+wrongs.length+")</h2>"));
+    const g=el("div","misslist");
+    wrongs.forEach(l=>{
+      const q=l.q;
+      const qtext=q.kind==="err"?errSentence(q.it.segs):blanks(q.it.stem);
+      const ans=q.kind==="err"
+        ? '<s>'+q.it.wrong+'</s> → <b>'+q.it.fix+'</b>'
+        : '<b>'+q.it.answer+'. '+q.it.options[L4.indexOf(q.it.answer)]+'</b>';
+      g.appendChild(el("div","miss",'<div class="q"><b style="color:var(--muted)">'+q.it.n+'.</b> '+qtext+'</div>'
+        +'<div class="a">'+ans+'</div><div class="why">'+q.it.explain+'</div>'));
+    });
+    mw.appendChild(g);
+  }else if(!skips.length){
+    mw.appendChild(el("div","verdict",'<b>Nothing to go over.</b><p>Every question here was answered correctly.</p>'));
+  }
+  if(skips.length){
+    mw.appendChild(el("div","sechead","<h2>Not answered ("+skips.length+")</h2>"));
+    mw.appendChild(el("div","verdict",
+      '<b>Questions '+skips.map(l=>l.q.it.n).join(", ")+'</b>'
+      +'<p>These were skipped, so they count as not correct. Use the button below to go straight to them.</p>'));
+  }
+  $("#rMissWrap").innerHTML=""; $("#rMissWrap").appendChild(mw);
+
+  const am=$("#againMissed");
+  am.style.display=bad.length?"":"none";
+  const ns=bad.map(l=>l.q.it.n);
+  am.onclick=()=>startRun(RUN.partId,ns);
+  $("#againAll").onclick=()=>startRun(RUN.partId);
+  show("res");
+}
+
+/* ---------------- wiring ---------------- */
+document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{
+  const t=b.dataset.go;
+  if(t==="home"){setAccent(null);show("home");}
+  else{buildMenu();show("menu");}
+});
+$("#homeBtn").onclick=()=>{
+  if(doneCount()>0 && !confirm("Leave this practice set and go back to the start? Your answers here will be lost."))return;
+  setAccent(null); show("home");
+};
+$("#navBtn").onclick=openSheet;
+$("#veil").onclick=closeSheet;
+$("#closeSheet").onclick=closeSheet;
+$("#finishBtn").onclick=results;
+$("#prevBtn").onclick=goPrev;
+$("#nextBtn").onclick=goNext;
+$("#resetBtn").onclick=()=>{
+  if(!confirm("Clear the saved best scores for the "+LV.name+" level?"))return;
+  ["ALL"].concat(LV.parts.map(p=>p.id)).forEach(k=>store.del(bestKey(k)));
+  buildMenu();
+};
+document.addEventListener("keydown",e=>{
+  if($("#sheet").classList.contains("on")&&e.key==="Escape"){closeSheet();return;}
+  if(!$("#s-quiz").classList.contains("on"))return;
+  if(e.metaKey||e.ctrlKey||e.altKey)return;
+  const k=e.key.toUpperCase();
+  if(!RUN.st[RUN.i].checked&&L4.includes(k)){
+    const b=$("#qOpts").children[L4.indexOf(k)];
+    if(b){b.click();e.preventDefault();}
+  }else if(e.key==="Enter"){$("#actBtn").click();e.preventDefault();}
+  else if(e.key==="ArrowRight"){goNext();e.preventDefault();}
+  else if(e.key==="ArrowLeft"){goPrev();e.preventDefault();}
+});
+buildHome();
+</script>
+</body>
+</html>
