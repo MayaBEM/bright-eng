@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>When It Happened - Past Continuous &amp; Past Simple</title>
+<style>
+/* ============ tokens ============ */
+:root{
+  --ivory:#FBF6EC; --cream:#F4EAD6; --card:#FFFDF8;
+  --ink:#16243D; --ink2:#43516C; --ink3:#77839A;
+  --line:#E2D5BC; --line2:#D2C1A2;
+  --mint:#8FD9C4; --mint-d:#0E7460; --mint-l:#E3F6F0;
+  --peach:#F9C38E; --peach-d:#A2581A; --peach-l:#FDEEDD;
+  --sky:#A8CCEF; --sky-d:#1C5A8E; --sky-l:#E6F0FA;
+  --coral:#F4907E; --coral-d:#B23A26; --coral-l:#FCE6E1;
+  --butter:#FBE3A2; --butter-d:#8A6410;
+  --ok:#0E7460; --bad:#B23A26;
+  --shadow:0 2px 0 var(--line2), 0 8px 22px rgba(22,36,61,.07);
+  --shadow-sm:0 1px 0 var(--line2), 0 3px 10px rgba(22,36,61,.06);
+  --r:18px; --r-sm:12px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--ivory);
+  color:var(--ink);
+  font-family:"Trebuchet MS","Verdana",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:18px; line-height:1.5;
+  -webkit-text-size-adjust:100%;
+  overflow-x:hidden;
+}
+button{font-family:inherit}
+h1,h2,h3,h4{margin:0; line-height:1.2; letter-spacing:-.01em}
+p{margin:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ============ shell ============ */
+.app{min-height:100vh;display:flex;flex-direction:column}
+.topbar{
+  position:sticky; top:0; z-index:40;
+  background:rgba(251,246,236,.94);
+  backdrop-filter:blur(6px);
+  border-bottom:2px solid var(--line);
+  padding:10px 16px;
+}
+.topbar-in{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:10px}
+.tb-title{font-size:16px;font-weight:bold;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tb-sub{font-size:13px;color:var(--ink3);font-weight:normal}
+.wrap{max-width:960px;margin:0 auto;width:100%;padding:20px 16px 56px}
+.screen{display:none}
+.screen.on{display:block;animation:fadeUp .32s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ============ buttons ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:54px;padding:12px 22px;border-radius:14px;
+  border:2px solid var(--ink); background:var(--ink); color:#FFFDF8;
+  font-size:18px;font-weight:bold;cursor:pointer;
+  box-shadow:0 3px 0 #0B1524; transition:transform .12s ease, box-shadow .12s ease, background .15s;
+}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 0 #0B1524}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #0B1524}
+.btn:focus-visible{outline:3px solid var(--sky-d);outline-offset:3px}
+.btn.ghost{background:var(--card);color:var(--ink);box-shadow:0 3px 0 var(--line2)}
+.btn.ghost:hover{background:#fff}
+.btn.ghost:active{box-shadow:0 1px 0 var(--line2)}
+.btn.sm{min-height:44px;padding:8px 16px;font-size:16px;border-radius:12px}
+.btn.icon{min-height:44px;min-width:44px;padding:8px 12px;font-size:16px;border-radius:12px;background:var(--card);color:var(--ink);border:2px solid var(--line2);box-shadow:0 2px 0 var(--line2)}
+.btn.icon:hover{background:#fff}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none;box-shadow:0 3px 0 var(--line2)}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:22px}
+.btn-row.center{justify-content:center}
+
+/* ============ cards ============ */
+.card{background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+.tag{display:inline-block;font-size:13px;font-weight:bold;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:var(--cream);border:2px solid var(--line2)}
+.tag.mint{background:var(--mint-l);border-color:var(--mint);color:var(--mint-d)}
+.tag.peach{background:var(--peach-l);border-color:var(--peach);color:var(--peach-d)}
+.tag.sky{background:var(--sky-l);border-color:var(--sky);color:var(--sky-d)}
+.tag.coral{background:var(--coral-l);border-color:var(--coral);color:var(--coral-d)}
+
+/* ============ HOME ============ */
+.hero{position:relative;border:2px solid var(--line);border-radius:24px;background:
+  radial-gradient(120% 90% at 85% 0%, var(--butter) 0%, rgba(251,227,162,0) 55%),
+  radial-gradient(90% 80% at 0% 100%, var(--mint-l) 0%, rgba(227,246,240,0) 60%),
+  var(--card);
+  padding:30px 26px 26px;box-shadow:var(--shadow);overflow:hidden}
+.hero h1{font-size:clamp(28px,6.4vw,44px);margin:12px 0 8px}
+.hero .lead{font-size:clamp(16px,3.4vw,20px);color:var(--ink2);max-width:34em}
+.unitchip{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:bold;color:var(--ink2)}
+.unitchip .num{width:30px;height:30px;border-radius:9px;background:var(--peach);border:2px solid var(--peach-d);color:var(--peach-d);display:grid;place-items:center;font-size:15px}
+.hero-art{margin-top:18px;border-top:2px dashed var(--line2);padding-top:16px}
+.menu{display:grid;gap:14px;margin-top:20px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.mcard{
+  text-align:left;background:var(--card);border:2px solid var(--line);border-radius:var(--r);
+  padding:18px;cursor:pointer;box-shadow:var(--shadow-sm);transition:transform .14s ease,box-shadow .14s ease,border-color .14s;
+  display:flex;flex-direction:column;gap:8px;min-height:150px;color:var(--ink);font-size:18px
+}
+.mcard:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--line2)}
+.mcard:focus-visible{outline:3px solid var(--sky-d);outline-offset:3px}
+.mcard .ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;border:2px solid}
+.mcard h3{font-size:21px}
+.mcard .d{font-size:15px;color:var(--ink2);flex:1}
+.mcard .meta{font-size:13px;font-weight:bold;color:var(--ink3)}
+.m1 .ic{background:var(--mint-l);border-color:var(--mint-d);color:var(--mint-d)}
+.m2 .ic{background:var(--peach-l);border-color:var(--peach-d);color:var(--peach-d)}
+.m3 .ic{background:var(--sky-l);border-color:var(--sky-d);color:var(--sky-d)}
+
+/* ============ progress ============ */
+.pbar{height:12px;background:var(--cream);border:2px solid var(--line2);border-radius:999px;overflow:hidden;flex:1;min-width:80px}
+.pbar i{display:block;height:100%;background:var(--mint-d);border-radius:999px;transition:width .35s cubic-bezier(.4,1.3,.5,1);width:0}
+.pmeta{font-size:14px;font-weight:bold;color:var(--ink2);white-space:nowrap}
+
+/* ============ LESSON ============ */
+.slide-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.slide h2{font-size:clamp(22px,4.6vw,30px);margin:6px 0 10px}
+.slide p.say{font-size:clamp(16px,3.4vw,19px);color:var(--ink2)}
+.rulebox{margin-top:18px;border:2px solid var(--ink);border-radius:var(--r);background:var(--butter);padding:16px 18px;box-shadow:0 3px 0 #C9A84A}
+.rulebox b{color:var(--ink)}
+.ex{margin-top:14px;display:grid;gap:10px}
+.ex .row{display:flex;gap:10px;align-items:flex-start;background:var(--cream);border:2px solid var(--line2);border-radius:var(--r-sm);padding:11px 14px;font-size:17px}
+.ex .row .k{font-weight:bold;color:var(--ink3);font-size:14px;min-width:52px;padding-top:2px}
+.hl-c{background:var(--mint);border-radius:5px;padding:0 4px;font-weight:bold;box-shadow:inset 0 -2px 0 var(--mint-d)}
+.hl-s{background:var(--peach);border-radius:5px;padding:0 4px;font-weight:bold;box-shadow:inset 0 -2px 0 var(--peach-d)}
+.bad-ex{text-decoration:line-through;color:var(--bad)}
+
+/* timeline animation */
+.tl{margin-top:18px;background:var(--card);border:2px solid var(--line2);border-radius:var(--r);padding:20px 18px 14px;position:relative}
+.tl-label{font-size:13px;font-weight:bold;text-transform:uppercase;letter-spacing:.06em;color:var(--ink3);margin-bottom:14px}
+.tl-track{position:relative;height:76px}
+.tl-line{position:absolute;left:0;right:0;top:46px;height:3px;background:var(--line2);border-radius:2px}
+.tl-line:after{content:"";position:absolute;right:-2px;top:-6px;border-left:12px solid var(--line2);border-top:7px solid transparent;border-bottom:7px solid transparent}
+.tl-long{position:absolute;left:4%;top:30px;height:18px;border-radius:999px;background:var(--mint);border:2px solid var(--mint-d);width:0}
+.tl-long .cap{position:absolute;left:8px;top:-26px;font-size:13px;font-weight:bold;color:var(--mint-d);white-space:nowrap}
+.tl-short{position:absolute;left:52%;top:20px;width:0;opacity:0}
+.tl-short .bolt{width:38px;height:38px;border-radius:11px;background:var(--peach);border:2px solid var(--peach-d);display:grid;place-items:center;transform:translateX(-19px)}
+.tl-short .cap{position:absolute;left:50%;transform:translateX(-50%);top:42px;font-size:13px;font-weight:bold;color:var(--peach-d);white-space:nowrap}
+.play .tl-long{animation:grow 2.6s ease-out forwards}
+.play .tl-short{animation:pop 0.5s ease-out 1.5s forwards}
+@keyframes grow{from{width:0}to{width:88%}}
+@keyframes pop{0%{opacity:0;transform:scale(.4) translateY(-6px)}60%{opacity:1;transform:scale(1.12)}100%{opacity:1;transform:scale(1)}}
+.tl-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:14px;color:var(--ink2)}
+.tl-legend span{display:flex;align-items:center;gap:7px}
+.sw{width:16px;height:16px;border-radius:5px;border:2px solid}
+.sw.c{background:var(--mint);border-color:var(--mint-d)}
+.sw.s{background:var(--peach);border-color:var(--peach-d)}
+
+/* was/were table */
+.wtable{margin-top:16px;display:grid;gap:10px;grid-template-columns:1fr 1fr}
+.wtable .col{border:2px solid var(--line2);border-radius:var(--r-sm);overflow:hidden;background:var(--card)}
+.wtable .h{padding:9px 12px;font-weight:bold;font-size:17px;border-bottom:2px solid var(--line2)}
+.wtable .col:first-child .h{background:var(--sky-l);color:var(--sky-d)}
+.wtable .col:last-child .h{background:var(--coral-l);color:var(--coral-d)}
+.wtable ul{margin:0;padding:10px 12px 12px 28px;font-size:16px}
+.wtable li{margin:3px 0}
+.spellgrid{margin-top:16px;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.spell{border:2px solid var(--line2);border-radius:var(--r-sm);background:var(--card);padding:12px 14px}
+.spell .t{font-size:13px;font-weight:bold;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em}
+.spell .w{font-size:18px;margin-top:4px}
+.spell .w b{color:var(--mint-d)}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:22px}
+.dots i{width:11px;height:11px;border-radius:50%;background:var(--line2);cursor:pointer;transition:transform .2s,background .2s}
+.dots i.on{background:var(--ink);transform:scale(1.35)}
+
+/* ============ practice hub ============ */
+.plist{display:grid;gap:12px;margin-top:18px}
+.prow{display:flex;gap:14px;align-items:center;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:15px 16px;cursor:pointer;box-shadow:var(--shadow-sm);transition:transform .14s,box-shadow .14s;color:var(--ink);font-size:18px;width:100%}
+.prow:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.prow:focus-visible{outline:3px solid var(--sky-d);outline-offset:3px}
+.prow .n{width:44px;height:44px;flex:0 0 44px;border-radius:12px;display:grid;place-items:center;font-weight:bold;font-size:19px;background:var(--cream);border:2px solid var(--line2)}
+.prow .tx{flex:1;min-width:0}
+.prow .tx h3{font-size:19px}
+.prow .tx p{font-size:14px;color:var(--ink2)}
+.prow .st{font-size:14px;font-weight:bold;color:var(--ink3);white-space:nowrap}
+.prow .st.done{color:var(--mint-d)}
+
+/* ============ questions ============ */
+.qcard{background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow)}
+.qnum{font-size:14px;font-weight:bold;color:var(--ink3);letter-spacing:.05em;text-transform:uppercase}
+.qtext{font-size:clamp(19px,4vw,24px);font-weight:bold;margin:8px 0 4px;line-height:1.35}
+.qhint{font-size:15px;color:var(--ink2);margin-bottom:14px}
+.blank{display:inline-block;min-width:86px;border-bottom:3px solid var(--peach-d);margin:0 3px}
+.opts{display:grid;gap:10px;margin-top:14px}
+.opt{
+  display:flex;align-items:center;gap:12px;text-align:left;width:100%;
+  min-height:60px;padding:12px 14px;border-radius:14px;border:2px solid var(--line2);
+  background:var(--card);color:var(--ink);font-size:18px;cursor:pointer;
+  transition:background .13s,border-color .13s,transform .13s
+}
+.opt:hover:not([disabled]){background:var(--cream);transform:translateX(2px)}
+.opt:focus-visible{outline:3px solid var(--sky-d);outline-offset:2px}
+.opt .lt{width:32px;height:32px;flex:0 0 32px;border-radius:9px;display:grid;place-items:center;font-weight:bold;font-size:16px;background:var(--cream);border:2px solid var(--line2)}
+.opt.sel{border-color:var(--ink);background:var(--cream)}
+.opt.sel .lt{background:var(--ink);color:var(--card);border-color:var(--ink)}
+.opt.right{border-color:var(--mint-d);background:var(--mint-l)}
+.opt.right .lt{background:var(--mint-d);color:#fff;border-color:var(--mint-d)}
+.opt.wrong{border-color:var(--coral-d);background:var(--coral-l)}
+.opt.wrong .lt{background:var(--coral-d);color:#fff;border-color:var(--coral-d)}
+.opt .mk{margin-left:auto;font-weight:bold;font-size:16px}
+.opt.right .mk{color:var(--mint-d)}
+.opt.wrong .mk{color:var(--coral-d)}
+.opt[disabled]{cursor:default}
+.fb{margin-top:16px;border-radius:14px;padding:14px 16px;border:2px solid;font-size:17px;animation:fadeUp .25s ease both}
+.fb.good{background:var(--mint-l);border-color:var(--mint-d)}
+.fb.bad{background:var(--coral-l);border-color:var(--coral-d)}
+.fb .ft{font-weight:bold;display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.fb.good .ft{color:var(--mint-d)}
+.fb.bad .ft{color:var(--coral-d)}
+.fb .fx{color:var(--ink)}
+.fb .fx b{background:var(--butter);padding:0 4px;border-radius:4px}
+.qbar{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+
+/* tick activity */
+.scene{border:2px solid var(--line2);border-radius:var(--r);overflow:hidden;background:var(--sky-l);margin-bottom:8px}
+.scene-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.scene svg{display:block;width:100%;height:auto}
+.scene-hint{display:none;font-size:14px;color:var(--ink3);font-weight:bold;margin:0 0 14px 2px}
+@media (max-width:640px){
+  .scene svg{min-width:600px}
+  .scene-hint{display:block}
+}
+.ticks{display:grid;gap:10px}
+.tick{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;padding:12px 14px;border-radius:13px;border:2px solid var(--line2);background:var(--card);color:var(--ink);font-size:17px;cursor:pointer;transition:background .13s,border-color .13s}
+.tick:hover:not([disabled]){background:var(--cream)}
+.tick .bx{width:30px;height:30px;flex:0 0 30px;border-radius:8px;border:2px solid var(--ink);background:var(--card);display:grid;place-items:center;font-size:18px;font-weight:bold;color:transparent}
+.tick.on .bx{background:var(--ink);color:#fff}
+.tick .nn{font-weight:bold;color:var(--ink3);min-width:18px}
+.tick.ok{border-color:var(--mint-d);background:var(--mint-l)}
+.tick.err{border-color:var(--coral-d);background:var(--coral-l)}
+.tick .why{display:block;font-size:14px;color:var(--ink2);margin-top:4px}
+.tick[disabled]{cursor:default}
+
+/* word order builder */
+.build{min-height:86px;border:2px dashed var(--line2);border-radius:var(--r-sm);background:var(--cream);padding:12px;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;margin-bottom:14px}
+.build:empty:before{content:"Tap the words below to build your sentence";color:var(--ink3);font-size:15px}
+.chip{min-height:46px;padding:8px 14px;border-radius:11px;border:2px solid var(--line2);background:var(--card);color:var(--ink);font-size:17px;cursor:pointer;box-shadow:0 2px 0 var(--line2);transition:transform .12s,background .12s}
+.chip:hover:not([disabled]){background:#fff;transform:translateY(-2px)}
+.chip:active{transform:translateY(1px);box-shadow:0 1px 0 var(--line2)}
+.chip.used{opacity:.3;pointer-events:none}
+.chip.inbuild{background:var(--sky-l);border-color:var(--sky-d)}
+.pool{display:flex;flex-wrap:wrap;gap:9px}
+.answer-line{margin-top:14px;font-size:18px;background:var(--mint-l);border:2px solid var(--mint-d);border-radius:var(--r-sm);padding:12px 14px}
+.answer-line .t{font-size:13px;font-weight:bold;text-transform:uppercase;letter-spacing:.05em;color:var(--mint-d);display:block;margin-bottom:3px}
+
+/* error id */
+.errsent{font-size:clamp(18px,3.8vw,23px);line-height:1.9;background:var(--cream);border:2px solid var(--line2);border-radius:var(--r-sm);padding:14px 16px;margin-bottom:8px}
+.errsent u{text-decoration:none;border-bottom:3px solid var(--sky-d);padding-bottom:1px;white-space:nowrap}
+.errsent sub{font-size:12px;font-weight:bold;color:var(--sky-d);vertical-align:baseline;position:relative;top:-2px;margin-left:2px}
+
+/* jump panel */
+.sheet{position:fixed;inset:0;z-index:60;display:none}
+.sheet.on{display:block}
+.sheet .bg{position:absolute;inset:0;background:rgba(22,36,61,.4)}
+.sheet .pane{position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:min(560px,100%);background:var(--ivory);border:2px solid var(--line2);border-radius:20px 20px 0 0;padding:18px;max-height:80vh;overflow:auto;animation:up .25s ease both}
+@keyframes up{from{transform:translate(-50%,18px);opacity:.6}to{transform:translate(-50%,0);opacity:1}}
+.grid-n{display:grid;grid-template-columns:repeat(auto-fill,minmax(50px,1fr));gap:8px;margin-top:14px}
+.gn{min-height:50px;border-radius:11px;border:2px solid var(--line2);background:var(--card);font-weight:bold;font-size:17px;cursor:pointer;color:var(--ink)}
+.gn.r{background:var(--mint-l);border-color:var(--mint-d);color:var(--mint-d)}
+.gn.w{background:var(--coral-l);border-color:var(--coral-d);color:var(--coral-d)}
+.gn.cur{outline:3px solid var(--ink);outline-offset:1px}
+.legend-row{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--ink2);margin-top:12px}
+
+/* results */
+.scorebox{text-align:center;padding:26px 20px;border:2px solid var(--line);border-radius:24px;background:
+  radial-gradient(110% 80% at 50% 0%, var(--butter) 0%, rgba(251,227,162,0) 60%), var(--card);box-shadow:var(--shadow)}
+.big{font-size:clamp(46px,13vw,74px);font-weight:bold;line-height:1;letter-spacing:-.03em}
+.big small{font-size:.36em;color:var(--ink3);letter-spacing:0}
+.chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.chipv{border:2px solid var(--line2);background:var(--card);border-radius:999px;padding:8px 15px;font-size:15px;font-weight:bold}
+.chipv.g{background:var(--mint-l);border-color:var(--mint-d);color:var(--mint-d)}
+.chipv.r{background:var(--coral-l);border-color:var(--coral-d);color:var(--coral-d)}
+.chipv.n{background:var(--cream)}
+.verdict{margin-top:16px;font-size:18px;color:var(--ink2);max-width:36em;margin-left:auto;margin-right:auto}
+.stars{font-size:34px;letter-spacing:6px;margin-top:10px;color:var(--butter-d)}
+.bars{margin-top:22px;display:grid;gap:12px}
+.bline{display:flex;align-items:center;gap:12px;font-size:16px}
+.bline .nm{width:132px;flex:0 0 132px;font-weight:bold;font-size:15px}
+.bline .tr{flex:1;height:26px;background:var(--cream);border:2px solid var(--line2);border-radius:999px;overflow:hidden}
+.bline .tr i{display:block;height:100%;border-radius:999px;transition:width .6s cubic-bezier(.3,1.2,.4,1)}
+.bline .vv{width:62px;flex:0 0 62px;text-align:right;font-weight:bold;font-size:15px}
+.review{margin-top:26px;display:grid;gap:12px}
+.rv{border:2px solid var(--coral-d);background:var(--coral-l);border-radius:var(--r);padding:14px 16px}
+.rv .h{font-size:14px;font-weight:bold;color:var(--coral-d);text-transform:uppercase;letter-spacing:.05em}
+.rv .q{font-size:17px;font-weight:bold;margin:5px 0}
+.rv .a{font-size:16px}
+.rv .a b{color:var(--mint-d)}
+.rv .x{font-size:15px;color:var(--ink2);margin-top:4px}
+.skipline{margin-top:16px;font-size:16px;background:var(--cream);border:2px solid var(--line2);border-radius:var(--r-sm);padding:12px 14px}
+.note{font-size:15px;color:var(--ink3);margin-top:24px;text-align:center}
+.divider{height:2px;background:var(--line);margin:26px 0;border-radius:2px}
+.h-sec{font-size:clamp(20px,4.4vw,26px);margin-bottom:4px}
+.sub-sec{font-size:16px;color:var(--ink2);margin-bottom:8px}
+
+/* confetti (subtle) */
+.pops{position:fixed;inset:0;pointer-events:none;z-index:70;overflow:hidden}
+.pops i{position:absolute;width:9px;height:9px;border-radius:3px;animation:fall 1.5s ease-in forwards}
+@keyframes fall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(70vh) rotate(300deg);opacity:0}}
+
+/* ============ brand ============ */
+.brand{display:flex;align-items:center;gap:10px}
+.brand .mk{width:38px;height:38px;flex:0 0 38px;border-radius:11px;background:var(--ink);border:2px solid var(--ink);display:grid;place-items:center;box-shadow:0 2px 0 var(--line2)}
+.brand .nm{line-height:1.1}
+.brand .nm b{display:block;font-size:17px;letter-spacing:-.01em}
+.brand .nm span{display:block;font-size:12px;font-weight:bold;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3)}
+.brandbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;padding-bottom:14px;border-bottom:2px dashed var(--line2)}
+.brandbar .sp{flex:1}
+.foot{margin-top:30px;padding-top:16px;border-top:2px solid var(--line);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.foot .cp{font-size:14px;color:var(--ink3);flex:1;min-width:200px}
+.foot .cp b{color:var(--ink2)}
+.tb-brand{font-size:13px;font-weight:bold;color:var(--ink3);letter-spacing:.04em;white-space:nowrap}
+@media (max-width:620px){.tb-brand{display:none}}
+
+@media (max-width:620px){
+  body{font-size:17px}
+  .wrap{padding:16px 13px 48px}
+  .card,.qcard{padding:16px}
+  .hero{padding:22px 18px 20px}
+  .wtable{grid-template-columns:1fr}
+  .bline .nm{width:96px;flex:0 0 96px;font-size:14px}
+  .btn{min-height:50px;padding:11px 18px;font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001s!important;animation-delay:0s!important;transition-duration:.001s!important}
+}
+@media print{.topbar,.btn-row,.dots{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="topbar-in">
+      <button class="btn icon" id="homeBtn" title="Home" aria-label="Go to home screen">&#8962;</button>
+      <div class="tb-title" id="tbTitle">Past Continuous &amp; Past Simple<span class="tb-sub"> &middot; Grade 4&ndash;5</span></div>
+      <span class="tb-brand">Bright EngMath</span>
+      <button class="btn icon" id="jumpBtn" style="display:none" title="All questions" aria-label="Show all questions">&#9783;</button>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <!-- ================= HOME ================= -->
+    <section class="screen on" id="sc-home">
+      <div class="hero">
+        <div class="brandbar"><div class="brand"><span class="mk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FBF6EC" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l2.5 5.3 5.5.8-4 4 1 5.7-5-2.8-5 2.8 1-5.7-4-4 5.5-.8z"/></svg></span><span class="nm"><b>Bright EngMath</b><span>English &amp; Maths Resources</span></span></div><span class="sp"></span><span class="unitchip"><span class="num">4</span> Grammar Unit &middot; Grade 4&ndash;5</span></div>
+        <h1>When It Happened</h1>
+        <p class="lead">Learn how <b>past continuous</b> and <b>past simple</b> work together in one sentence &mdash; then practise until it feels easy.</p>
+        <div class="hero-art">
+          <div class="ex">
+            <div class="row"><span class="k">Model</span><span>I <span class="hl-c">was walking</span> up the wall, when I <span class="hl-s">had</span> a little fall.</span></div>
+            <div class="row"><span class="k">Model</span><span>When a man <span class="hl-s">opened</span> the door, I <span class="hl-c">was lying</span> on the floor.</span></div>
+          </div>
+          <div class="tl-legend"><span><i class="sw c"></i> long action (was/were + -ing)</span><span><i class="sw s"></i> short action (past simple)</span></div>
+        </div>
+      </div>
+
+      <div class="menu">
+        <button class="mcard m1" data-go="lesson">
+          <div class="ic" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5A2 2 0 0 1 5 3.5h5v17H5a2 2 0 0 1-2-2z"/><path d="M21 5.5a2 2 0 0 0-2-2h-5v17h5a2 2 0 0 0 2-2z"/></svg>
+          </div>
+          <h3>1. Lesson</h3>
+          <p class="d">Five short slides with animated timelines: the form, the rule, the comma, and &minus;ing spelling.</p>
+          <span class="meta" id="m-lesson">5 slides &middot; about 8 minutes</span>
+        </button>
+        <button class="mcard m2" data-go="phub">
+          <div class="ic" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h10M4 12h16M4 18h7"/><path d="M18 5l2 2 3-3.5"/></svg>
+          </div>
+          <h3>2. Practice</h3>
+          <p class="d">Four activities: tick the picture, build sentences, fill the gaps, finish the sentence.</p>
+          <span class="meta" id="m-practice">4 activities &middot; 37 items</span>
+        </button>
+        <button class="mcard m3" data-go="tstart">
+          <div class="ic" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3.5h6v3H9z"/><path d="M6 6.5h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-12a1 1 0 0 1 1-1z"/><path d="M8.5 13l2 2 4-4.5"/></svg>
+          </div>
+          <h3>3. Test</h3>
+          <p class="d">30 questions in three parts, marked instantly, with a full report and a retry of your mistakes.</p>
+          <span class="meta" id="m-test">30 questions &middot; best score saved</span>
+        </button>
+      </div>
+      <p class="note">Everything works offline. Nothing is uploaded. Your best scores stay in this browser.</p>
+      <div class="foot"><div class="brand"><span class="mk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FBF6EC" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l2.5 5.3 5.5.8-4 4 1 5.7-5-2.8-5 2.8 1-5.7-4-4 5.5-.8z"/></svg></span><span class="nm"><b>Bright EngMath</b><span>English &amp; Maths Resources</span></span></div><span class="cp">&copy; 2026 <b>Bright EngMath</b>. Made for the classroom.<br>One teacher / one classroom licence &middot; please do not resell or share publicly.</span></div>
+    </section>
+
+    <!-- ================= LESSON ================= -->
+    <section class="screen" id="sc-lesson">
+      <div class="qbar">
+        <div class="pbar"><i id="lsProg"></i></div>
+        <span class="pmeta" id="lsMeta">1 / 5</span>
+      </div>
+      <div class="card slide" id="lsBody"></div>
+      <div class="btn-row">
+        <button class="btn ghost" id="lsPrev">&#8249; Back</button>
+        <button class="btn" id="lsNext">Next &#8250;</button>
+      </div>
+      <div class="dots" id="lsDots"></div>
+    </section>
+
+    <!-- ================= PRACTICE HUB ================= -->
+    <section class="screen" id="sc-phub">
+      <span class="tag peach">Practice</span>
+      <h2 class="h-sec" style="margin-top:10px">Choose an activity</h2>
+      <p class="sub-sec">You can do them in any order. Each one checks your answer straight away and tells you why.</p>
+      <div class="plist" id="pList"></div>
+      <div class="btn-row"><button class="btn ghost" data-go="home">&#8249; Home</button><button class="btn" data-go="tstart">Go to the test &#8250;</button></div>
+    </section>
+
+    <!-- ================= PRACTICE: ACTIVITY ================= -->
+    <section class="screen" id="sc-pact">
+      <div class="qbar">
+        <div class="pbar"><i id="paProg"></i></div>
+        <span class="pmeta" id="paMeta"></span>
+      </div>
+      <div id="paBody"></div>
+      <div class="btn-row" id="paBtns"></div>
+    </section>
+
+    <!-- ================= TEST START ================= -->
+    <section class="screen" id="sc-tstart">
+      <div class="hero">
+        <span class="tag sky">Test</span>
+        <h1 style="font-size:clamp(26px,5.6vw,38px)">Past Continuous &amp; Past Simple Test</h1>
+        <p class="lead">30 questions in three parts. Answer in any order, skip anything you want to come back to, and finish whenever you like.</p>
+        <div class="ex" style="margin-top:18px">
+          <div class="row"><span class="k">Part A</span><span>Complete the sentence &mdash; 10 questions</span></div>
+          <div class="row"><span class="k">Part B</span><span>Correct sentence &amp; find the mistake &mdash; 10 questions</span></div>
+          <div class="row"><span class="k">Part C</span><span>Word order, questions &amp; negatives &mdash; 10 questions</span></div>
+        </div>
+        <p class="pmeta" id="bestLine" style="margin-top:16px"></p>
+      </div>
+      <div class="btn-row"><button class="btn" id="tGo">Start the test</button><button class="btn ghost" data-go="home">&#8249; Home</button></div>
+      <p class="note">Tip for teachers: project this on the board and let the class vote on each answer before you reveal it.</p>
+      <p class="note" style="margin-top:8px"><b>Bright EngMath</b> &middot; English &amp; Maths Resources</p>
+    </section>
+
+    <!-- ================= TEST RUN ================= -->
+    <section class="screen" id="sc-test">
+      <div class="qbar">
+        <div class="pbar"><i id="tProg"></i></div>
+        <span class="pmeta" id="tMeta"></span>
+      </div>
+      <div id="tBody"></div>
+      <div class="btn-row" id="tBtns"></div>
+    </section>
+
+    <!-- ================= RESULTS ================= -->
+    <section class="screen" id="sc-res">
+      <div id="resBody"></div>
+    </section>
+
+  </div>
+</div>
+
+<!-- jump sheet -->
+<div class="sheet" id="sheet">
+  <div class="bg" data-close="1"></div>
+  <div class="pane">
+    <div style="display:flex;align-items:center;gap:10px">
+      <h3 style="flex:1;font-size:20px">All 30 questions</h3>
+      <button class="btn icon" data-close="1" aria-label="Close">&#10005;</button>
+    </div>
+    <div class="legend-row">
+      <span><i class="sw" style="background:var(--mint-l);border-color:var(--mint-d)"></i> correct</span>
+      <span><i class="sw" style="background:var(--coral-l);border-color:var(--coral-d)"></i> wrong</span>
+      <span><i class="sw" style="background:var(--card);border-color:var(--line2)"></i> not answered</span>
+    </div>
+    <div class="grid-n" id="jumpGrid"></div>
+    <div class="btn-row"><button class="btn" id="finishNow">Finish and see results</button></div>
+  </div>
+</div>
+
+<!-- original park illustration used by Practice 1 -->
+<template id="parkScene">
+<svg viewBox="0 0 800 360" role="img" aria-label="A park scene: a man reading a newspaper on a bench, a girl eating an ice cream, a woman drinking at a small table, a boy riding a bike, two dogs running after a ball, and two children flying a kite.">
+<defs>
+  <style>
+    .ol{stroke:#2B2A28;stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round}
+    .skin1{fill:#F2CBA4}.skin2{fill:#E3B189}
+    .limb-o{stroke:#2B2A28;stroke-width:13;stroke-linecap:round;fill:none}
+    .limb-s1{stroke:#F2CBA4;stroke-width:8.4;stroke-linecap:round;fill:none}
+    .limb-s2{stroke:#E3B189;stroke-width:8.4;stroke-linecap:round;fill:none}
+    .leg-o{stroke:#2B2A28;stroke-width:16;stroke-linecap:round;fill:none}
+    .leg-d{stroke:#43516C;stroke-width:11;stroke-linecap:round;fill:none}
+    .eye{fill:#2B2A28}
+    .shadow{fill:#16243D;opacity:.10}
+    .txt{stroke:#B3BBC9;stroke-width:2.4;stroke-linecap:round}
+  </style>
+</defs>
+
+<!-- ===== sky, sun, clouds, birds ===== -->
+<rect x="0" y="0" width="800" height="246" fill="#DCEBF8"/>
+<circle cx="750" cy="50" r="24" fill="#FBE3A2" class="ol"/>
+<g stroke="#E0B84A" stroke-width="3" stroke-linecap="round">
+  <path d="M750 16v-9"/><path d="M784 50h9"/><path d="M775 25l6-6"/><path d="M775 75l6 6"/><path d="M725 25l-6-6"/>
+</g>
+<g fill="#FFFDF8" opacity=".97">
+  <ellipse cx="168" cy="60" rx="40" ry="17"/><ellipse cx="198" cy="52" rx="26" ry="15"/><ellipse cx="140" cy="54" rx="22" ry="12"/>
+  <ellipse cx="432" cy="46" rx="34" ry="14"/><ellipse cx="456" cy="40" rx="22" ry="11"/>
+</g>
+<g fill="none" stroke="#2B2A28" stroke-width="2" stroke-linecap="round">
+  <path d="M262 86q7-7 14 0"/><path d="M276 86q7-7 14 0"/>
+  <path d="M300 104q6-6 12 0"/><path d="M312 104q6-6 12 0"/>
+</g>
+
+<!-- ===== ground ===== -->
+<rect x="0" y="246" width="800" height="114" fill="#C9E3BE"/>
+<g fill="#B7D8AA">
+  <path d="M0 246q42-28 82 0z"/><path d="M420 246q34-22 68 0z"/><path d="M566 246q36-26 72 0z"/><path d="M660 246q30-20 60 0z"/>
+</g>
+<path d="M0 246h800" stroke="#2B2A28" stroke-width="2"/>
+<path d="M0 268C140 258 250 278 400 274C560 270 660 284 800 276L800 308C660 316 560 302 400 306C250 310 140 296 0 302Z" fill="#EFE3CC" class="ol"/>
+
+<!-- ===== tree ===== -->
+<g>
+  <rect x="32" y="164" width="17" height="92" rx="4" fill="#A5744C" class="ol"/>
+  <path d="M40 204q-8-14-2-22" stroke="#2B2A28" stroke-width="2.4" fill="none"/>
+  <circle cx="40" cy="140" r="50" fill="#8FBF8A" class="ol"/>
+  <g fill="none" stroke="#75AD70" stroke-width="4.5" stroke-linecap="round">
+    <path d="M12 128q24-18 50-8"/><path d="M6 152q26-14 52-4"/><path d="M22 172q22-12 44-6"/>
+  </g>
+</g>
+
+<!-- ===== A. bench + man reading a newspaper ===== -->
+<g>
+  <ellipse cx="140" cy="306" rx="66" ry="7" class="shadow"/>
+  <rect x="76" y="212" width="11" height="54" rx="3" fill="#A5744C" class="ol"/>
+  <rect x="193" y="212" width="11" height="54" rx="3" fill="#A5744C" class="ol"/>
+  <rect x="70" y="214" width="140" height="13" rx="5" fill="#C89A6C" class="ol"/>
+  <rect x="70" y="234" width="140" height="13" rx="5" fill="#C89A6C" class="ol"/>
+  <circle cx="125" cy="200" r="4" class="skin1 ol"/><circle cx="155" cy="200" r="4" class="skin1 ol"/>
+  <circle cx="140" cy="197" r="16" class="skin1 ol"/>
+  <path d="M123 192q0-18 17-18t17 18q-5-9-17-9t-17 9z" fill="#3E2A1C" class="ol"/>
+  <g class="eye"><circle cx="134" cy="197" r="2.1"/><circle cx="146" cy="197" r="2.1"/></g>
+  <path d="M134 206q6 5 12 0" fill="none" stroke="#2B2A28" stroke-width="2.2" stroke-linecap="round"/>
+  <rect x="133" y="209" width="14" height="9" class="skin1"/>
+  <path d="M119 222q21-9 42 0l5 44h-52z" fill="#1C5A8E" class="ol"/>
+  <rect x="64" y="262" width="152" height="14" rx="5" fill="#D9AC7C" class="ol"/>
+  <rect x="76" y="276" width="12" height="28" rx="4" fill="#A5744C" class="ol"/>
+  <rect x="192" y="276" width="12" height="28" rx="4" fill="#A5744C" class="ol"/>
+  <path d="M131 268v24" class="leg-o"/><path d="M131 268v24" class="leg-d"/>
+  <path d="M150 268v24" class="leg-o"/><path d="M150 268v24" class="leg-d"/>
+  <path d="M120 296h20q5 0 5 5t-5 5h-20q-4 0-4-5t4-5z" fill="#5E4A3A" class="ol"/>
+  <path d="M139 296h20q5 0 5 5t-5 5h-20q-4 0-4-5t4-5z" fill="#5E4A3A" class="ol"/>
+  <!-- arms holding the paper -->
+  <path d="M121 228l-14 26" class="limb-o"/><path d="M121 228l-14 26" class="limb-s1"/>
+  <path d="M159 228l14 26" class="limb-o"/><path d="M159 228l14 26" class="limb-s1"/>
+  <!-- newspaper -->
+  <path d="M140 220 104 226v42l36 6z" fill="#FFFDF8" class="ol"/>
+  <path d="M140 220l36 6v42l-36 6z" fill="#F4F0E4" class="ol"/>
+  <g class="txt"><path d="M110 234h22"/><path d="M110 242h22"/><path d="M110 250h22"/><path d="M110 258h15"/>
+    <path d="M148 238h22"/><path d="M148 246h22"/><path d="M148 254h22"/><path d="M148 262h14"/></g>
+  <path d="M140 222v52" stroke="#2B2A28" stroke-width="2" fill="none"/>
+  <circle cx="105" cy="257" r="7" class="skin1 ol"/>
+  <circle cx="175" cy="257" r="7" class="skin1 ol"/>
+</g>
+
+<!-- ===== B. girl eating an ice cream ===== -->
+<g>
+  <ellipse cx="250" cy="304" rx="26" ry="6" class="shadow"/>
+  <path d="M243 258l-2 34" class="leg-o"/><path d="M243 258l-2 34" stroke="#F2CBA4" stroke-width="11" stroke-linecap="round" fill="none"/>
+  <path d="M257 258l2 34" class="leg-o"/><path d="M257 258l2 34" stroke="#F2CBA4" stroke-width="11" stroke-linecap="round" fill="none"/>
+  <path d="M230 296h20q5 0 5 5t-5 5h-20q-4 0-4-5t4-5z" fill="#B23A26" class="ol"/>
+  <path d="M250 296h20q5 0 5 5t-5 5h-20q-4 0-4-5t4-5z" fill="#B23A26" class="ol"/>
+  <path d="M234 214q16-9 32 0l12 52q-28 9-56 0z" fill="#F4907E" class="ol"/>
+  <path d="M236 226q14 6 28 0" fill="none" stroke="#D2705F" stroke-width="2.4"/>
+  <path d="M234 222l-10 30" class="limb-o"/><path d="M234 222l-10 30" class="limb-s1"/>
+  <path d="M267 222l14-14" class="limb-o"/><path d="M267 222l14-14" class="limb-s1"/>
+  <circle cx="250" cy="197" r="16" class="skin1 ol"/>
+  <path d="M232 200q-3-30 18-30t18 30q-2-12-8-16q-10 6-20 1q-5 4-8 15z" fill="#6B4326" class="ol"/>
+  <path d="M234 198q-6 12-2 22" stroke="#6B4326" stroke-width="9" stroke-linecap="round" fill="none"/>
+  <path d="M266 198q6 12 2 22" stroke="#6B4326" stroke-width="9" stroke-linecap="round" fill="none"/>
+  <g class="eye"><circle cx="244" cy="198" r="2.1"/><circle cx="256" cy="198" r="2.1"/></g>
+  <path d="M245 205q6 6 11 0q-6 6-11 0z" fill="#2B2A28" class="ol" stroke-width="1.5"/>
+  <!-- ice cream, held clear of the face -->
+  <circle cx="283" cy="205" r="6.5" class="skin1 ol"/>
+  <path d="M275 190h17l-8.5 17z" fill="#E3B476" class="ol"/>
+  <path d="M279 194l5 6M283 192l4 5" stroke="#B5884E" stroke-width="1.8"/>
+  <circle cx="279" cy="182" r="8" fill="#F7C9D6" class="ol"/>
+  <circle cx="289" cy="184" r="7" fill="#FBE3A2" class="ol"/>
+</g>
+
+<!-- ===== C. table + woman having a drink ===== -->
+<g>
+  <ellipse cx="318" cy="302" rx="32" ry="6" class="shadow"/>
+  <ellipse cx="396" cy="306" rx="36" ry="6" class="shadow"/>
+  <rect x="414" y="210" width="13" height="58" rx="4" fill="#A5744C" class="ol"/>
+  <rect x="378" y="264" width="52" height="11" rx="4" fill="#C89A6C" class="ol"/>
+  <rect x="384" y="275" width="10" height="29" rx="3" fill="#A5744C" class="ol"/>
+  <rect x="414" y="275" width="10" height="29" rx="3" fill="#A5744C" class="ol"/>
+  <path d="M398 260l-26 10" class="leg-o"/><path d="M398 260l-26 10" class="leg-d"/>
+  <path d="M372 270l-4 24" class="leg-o"/><path d="M372 270l-4 24" class="leg-d"/>
+  <path d="M356 292h22q5 0 5 5.5t-5 5.5h-22q-4 0-4-5.5t4-5.5z" fill="#5E4A3A" class="ol"/>
+  <path d="M386 218q18-8 34 0l4 48h-42z" fill="#2F8F7A" class="ol"/>
+  <path d="M402 264l-24 12" class="leg-o"/><path d="M402 264l-24 12" class="leg-d"/>
+  <path d="M378 276l-4 22" class="leg-o"/><path d="M378 276l-4 22" class="leg-d"/>
+  <path d="M362 296h22q5 0 5 5.5t-5 5.5h-22q-4 0-4-5.5t4-5.5z" fill="#5E4A3A" class="ol"/>
+  <path d="M420 224l8 26" class="limb-o"/><path d="M420 224l8 26" class="limb-s2"/>
+  <path d="M392 230l-6-16" class="limb-o"/><path d="M392 230l-6-16" class="limb-s2"/>
+  <circle cx="403" cy="198" r="16" class="skin2 ol"/>
+  <path d="M385 200q-2-28 18-28t18 28q-4-13-18-13t-18 13z" fill="#2F2119" class="ol"/>
+  <circle cx="420" cy="184" r="9" fill="#2F2119" class="ol"/>
+  <g class="eye"><circle cx="397" cy="199" r="2.1"/><circle cx="409" cy="199" r="2.1"/></g>
+  <circle cx="386" cy="212" r="6.5" class="skin2 ol"/>
+  <path d="M378 192h20v16h-20z" fill="#FFFDF8" class="ol"/>
+  <path d="M378 196q-9 4 0 9" fill="none" class="ol"/>
+  <path d="M378 196h20" stroke="#C8D0DC" stroke-width="2.4"/>
+  <!-- table -->
+  <rect x="313" y="262" width="11" height="34" fill="#A5744C" class="ol"/>
+  <ellipse cx="318" cy="296" rx="19" ry="6" fill="#A5744C" class="ol"/>
+  <ellipse cx="318" cy="258" rx="40" ry="12" fill="#D9AC7C" class="ol"/>
+  <ellipse cx="302" cy="252" rx="14" ry="5" fill="#F4F0E4" class="ol"/>
+  <path d="M294 240h16v11h-16z" fill="#FFFDF8" class="ol"/>
+  <path d="M310 242q8 4 0 8" fill="none" class="ol"/>
+  <g fill="none" stroke="#A9B3C4" stroke-width="2.4" stroke-linecap="round">
+    <path d="M298 236q4-6 0-11"/><path d="M306 236q4-6 0-11"/>
+  </g>
+</g>
+
+<!-- ===== D. boy riding a bike ===== -->
+<g>
+  <ellipse cx="494" cy="306" rx="58" ry="6" class="shadow"/>
+  <g fill="none" stroke="#8FA0B8" stroke-width="3" stroke-linecap="round">
+    <path d="M430 262q-8 6-8 14"/><path d="M420 274q-8 5-8 13"/>
+  </g>
+  <circle cx="458" cy="276" r="27" fill="none" stroke="#2B2A28" stroke-width="5"/>
+  <circle cx="530" cy="276" r="27" fill="none" stroke="#2B2A28" stroke-width="5"/>
+  <g stroke="#9AA6B8" stroke-width="1.8">
+    <path d="M458 251v50M433 276h50M441 259l34 34M475 259l-34 34"/>
+    <path d="M530 251v50M505 276h50M513 259l34 34M547 259l-34 34"/>
+  </g>
+  <g fill="none" stroke="#1C5A8E" stroke-width="6" stroke-linecap="round">
+    <path d="M458 276h36"/><path d="M494 276l-6-36"/><path d="M494 276l22-32"/><path d="M488 240h28"/><path d="M458 276l30-34"/><path d="M516 244l14 32"/>
+  </g>
+  <path d="M516 236q10-6 18-1" fill="none" stroke="#2B2A28" stroke-width="5" stroke-linecap="round"/>
+  <path d="M480 233h18q4 0 4 4t-6 4h-16z" fill="#2B2A28" class="ol"/>
+  <circle cx="494" cy="276" r="5" fill="#2B2A28"/>
+  <path d="M494 276l8 12" stroke="#2B2A28" stroke-width="4"/>
+  <path d="M496 286h14v6h-14z" fill="#2B2A28"/>
+  <path d="M488 240l-6 20" class="leg-o"/><path d="M488 240l-6 20" class="leg-d"/>
+  <path d="M482 260l10 12" class="leg-o"/><path d="M482 260l10 12" class="leg-d"/>
+  <path d="M478 202q14-8 26 0l6 40h-38z" fill="#F9C38E" class="ol"/>
+  <path d="M492 240l10 22" class="leg-o"/><path d="M492 240l10 22" class="leg-d"/>
+  <path d="M502 262l2 20" class="leg-o"/><path d="M502 262l2 20" class="leg-d"/>
+  <path d="M494 280h18v9h-18z" fill="#5E4A3A" class="ol"/>
+  <path d="M504 208l16 24" class="limb-o"/><path d="M504 208l16 24" class="limb-s1"/>
+  <circle cx="523" cy="234" r="6" class="skin1 ol"/>
+  <circle cx="492" cy="186" r="15" class="skin1 ol"/>
+  <g class="eye"><circle cx="493" cy="186" r="2.1"/><circle cx="504" cy="186" r="2.1"/></g>
+  <path d="M494 194q5 5 10 0" fill="none" stroke="#2B2A28" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M476 180q2-16 17-16t16 16z" fill="#B23A26" class="ol"/>
+  <path d="M509 176q12 0 13 6h-15z" fill="#B23A26" class="ol"/>
+</g>
+
+<!-- ===== E. two dogs running after a ball ===== -->
+<g>
+  <!-- back dog (cream) -->
+  <ellipse cx="584" cy="292" rx="26" ry="5" class="shadow"/>
+  <path d="M563 262q-13-5-14-15" class="ol" stroke-width="9" fill="none"/>
+  <path d="M563 262q-13-5-14-15" stroke="#F0E2C6" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="584" cy="268" rx="22" ry="13" fill="#F0E2C6" class="ol"/>
+  <g><path d="M572 278l-9 12" class="ol" stroke-width="9" fill="none"/><path d="M572 278l-9 12" stroke="#F0E2C6" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+     <path d="M580 280l-1 12" class="ol" stroke-width="9" fill="none"/><path d="M580 280l-1 12" stroke="#F0E2C6" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+     <path d="M594 278l9 11" class="ol" stroke-width="9" fill="none"/><path d="M594 278l9 11" stroke="#F0E2C6" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+     <path d="M600 275l6 13" class="ol" stroke-width="9" fill="none"/><path d="M600 275l6 13" stroke="#F0E2C6" stroke-width="5.5" fill="none" stroke-linecap="round"/></g>
+  <circle cx="606" cy="256" r="13" fill="#F0E2C6" class="ol"/>
+  <ellipse cx="618" cy="260" rx="9" ry="6.5" fill="#FBF3E2" class="ol"/>
+  <ellipse cx="625" cy="258" rx="3.4" ry="2.6" fill="#2B2A28"/>
+  <path d="M598 246q-8-12 2-14t8 10z" fill="#DCC9A4" class="ol"/>
+  <circle cx="609" cy="252" r="2.3" class="eye"/>
+  <path d="M596 264q9 6 18 2" stroke="#B23A26" stroke-width="4.5" fill="none"/>
+  <!-- front dog (brown) -->
+  <ellipse cx="628" cy="324" rx="34" ry="5" class="shadow"/>
+  <path d="M600 294q-16-8-18-20" class="ol" stroke-width="10" fill="none"/>
+  <path d="M600 294q-16-8-18-20" stroke="#C89A6C" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <g><path d="M608 312l-10 10" class="ol" stroke-width="11" fill="none"/><path d="M608 312l-10 10" stroke="#C89A6C" stroke-width="7" fill="none" stroke-linecap="round"/>
+     <path d="M618 314l-2 12" class="ol" stroke-width="11" fill="none"/><path d="M618 314l-2 12" stroke="#C89A6C" stroke-width="7" fill="none" stroke-linecap="round"/>
+     <path d="M642 312l12 8" class="ol" stroke-width="11" fill="none"/><path d="M642 312l12 8" stroke="#C89A6C" stroke-width="7" fill="none" stroke-linecap="round"/>
+     <path d="M650 308l6 14" class="ol" stroke-width="11" fill="none"/><path d="M650 308l6 14" stroke="#C89A6C" stroke-width="7" fill="none" stroke-linecap="round"/></g>
+  <ellipse cx="628" cy="300" rx="30" ry="17" fill="#C89A6C" class="ol"/>
+  <circle cx="660" cy="286" r="16" fill="#C89A6C" class="ol"/>
+  <ellipse cx="676" cy="291" rx="11" ry="8" fill="#E0BE96" class="ol"/>
+  <ellipse cx="684" cy="288" rx="4" ry="3" fill="#2B2A28"/>
+  <path d="M674 297q8 1 10 6q-8 3-13-3z" fill="#E88A8A" class="ol"/>
+  <path d="M649 273q-10-14 2-17t9 13z" fill="#A87D50" class="ol"/>
+  <circle cx="664" cy="281" r="2.6" class="eye"/>
+  <path d="M646 294q10 8 22 4" stroke="#B23A26" stroke-width="5.5" fill="none"/>
+  <!-- ball -->
+  <g fill="none" stroke="#8FA0B8" stroke-width="2.6" stroke-dasharray="5 6" stroke-linecap="round"><path d="M676 262q20 8 26 26"/></g>
+  <circle cx="700" cy="300" r="13" fill="#F4907E" class="ol"/>
+  <path d="M687 300q13-8 26 0" fill="none" stroke="#FFFDF8" stroke-width="4"/>
+  <path d="M700 287v26" stroke="#B23A26" stroke-width="2.4"/>
+</g>
+
+<!-- ===== F. two children flying a kite ===== -->
+<g>
+  <path d="M620 34l28 34-28 38-28-38z" fill="#F4907E" class="ol"/>
+  <path d="M620 34v72M592 68h56" stroke="#B23A26" stroke-width="2.4"/>
+  <path d="M620 106q-12 14 4 22q-16 10-2 24" fill="none" stroke="#2B2A28" stroke-width="2.2"/>
+  <path d="M620 118l10 6-10 6-9-6z" fill="#FBE3A2" class="ol" stroke-width="2"/>
+  <path d="M625 142l10 6-10 6-9-6z" fill="#8FD9C4" class="ol" stroke-width="2"/>
+  <path d="M620 106C648 124 682 152 706 174" fill="none" stroke="#43516C" stroke-width="1.8"/>
+  <ellipse cx="740" cy="304" rx="24" ry="6" class="shadow"/>
+  <path d="M733 258l-2 34" class="leg-o"/><path d="M733 258l-2 34" class="leg-d"/>
+  <path d="M747 258l2 34" class="leg-o"/><path d="M747 258l2 34" class="leg-d"/>
+  <path d="M720 296h20q5 0 5 5t-5 5h-20q-4 0-4-5t4-5z" fill="#5E4A3A" class="ol"/>
+  <path d="M740 296h20q5 0 5 5t-5 5h-20q-4 0-4-5t4-5z" fill="#5E4A3A" class="ol"/>
+  <path d="M726 216q14-8 28 0l6 44h-40z" fill="#A8CCEF" class="ol"/>
+  <path d="M727 222l-14-32" class="limb-o"/><path d="M727 222l-14-32" class="limb-s2"/>
+  <path d="M753 224l8 26" class="limb-o"/><path d="M753 224l8 26" class="limb-s2"/>
+  <circle cx="712" cy="188" r="6.5" class="skin2 ol"/>
+  <circle cx="740" cy="198" r="16" class="skin2 ol"/>
+  <path d="M722 198q0-18 18-18t18 18q-6-10-18-10t-18 10z" fill="#2F2119" class="ol"/>
+  <g class="eye"><circle cx="735" cy="195" r="2.1"/><circle cx="747" cy="195" r="2.1"/></g>
+  <path d="M734 204q6 7 12 0q-6 7-12 0z" fill="#2B2A28" class="ol" stroke-width="1.6"/>
+  <path d="M702 172h16v13h-16z" fill="#C89A6C" class="ol"/><path d="M702 178h16" stroke="#8C6239" stroke-width="2"/>
+  <ellipse cx="776" cy="306" rx="21" ry="6" class="shadow"/>
+  <path d="M770 264l-2 30" class="leg-o"/><path d="M770 264l-2 30" class="leg-d"/>
+  <path d="M782 264l2 30" class="leg-o"/><path d="M782 264l2 30" class="leg-d"/>
+  <path d="M758 298h20q5 0 5 5t-5 5h-20q-4 0-4-5t4-5z" fill="#B23A26" class="ol"/>
+  <path d="M776 298h19q5 0 5 5t-5 5h-19q-4 0-4-5t4-5z" fill="#B23A26" class="ol"/>
+  <path d="M764 230q12-7 24 0l4 36h-32z" fill="#FBE3A2" class="ol"/>
+  <path d="M788 236l8-22" class="limb-o"/><path d="M788 236l8-22" class="limb-s1"/>
+  <path d="M764 236l-6 20" class="limb-o"/><path d="M764 236l-6 20" class="limb-s1"/>
+  <circle cx="776" cy="214" r="14" class="skin1 ol"/>
+  <path d="M760 214q0-16 16-16t16 16q-5-9-16-9t-16 9z" fill="#8A5A2B" class="ol"/>
+  <g class="eye"><circle cx="771" cy="212" r="2"/><circle cx="782" cy="212" r="2"/></g>
+  <path d="M771 219q5 5 10 0" fill="none" stroke="#2B2A28" stroke-width="2.1" stroke-linecap="round"/>
+</g>
+
+<!-- ===== foreground ===== -->
+<g fill="none" stroke="#8FBF8A" stroke-width="3" stroke-linecap="round">
+  <path d="M60 336v-12M66 336q-2-8 2-14M54 336q-2-8-4-12"/>
+  <path d="M300 344v-12M306 344q-2-8 2-14M294 344q-2-8-4-12"/>
+  <path d="M500 340v-12M506 340q-2-8 2-14M494 340q-2-8-4-12"/>
+  <path d="M730 338v-12M736 338q-2-8 2-14M724 338q-2-8-4-12"/>
+</g>
+<g><circle cx="180" cy="330" r="5" fill="#FBE3A2" class="ol" stroke-width="2"/><circle cx="180" cy="330" r="1.8" fill="#E0B84A"/>
+   <circle cx="420" cy="338" r="5" fill="#F7C9D6" class="ol" stroke-width="2"/><circle cx="420" cy="338" r="1.8" fill="#D2708C"/>
+   <circle cx="640" cy="344" r="5" fill="#FFFDF8" class="ol" stroke-width="2"/><circle cx="640" cy="344" r="1.8" fill="#E0B84A"/></g>
+</svg>
+</template>
+<script>
+"use strict";
+/* ======================= LESSON ======================= */
+var TL = function(longCap, shortCap){
+  return '<div class="tl" data-tl><div class="tl-label">How the two actions fit together</div>'+
+    '<div class="tl-track"><div class="tl-line"></div>'+
+    '<div class="tl-long"><span class="cap">'+longCap+'</span></div>'+
+    '<div class="tl-short"><div class="bolt"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A2581A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 L5 14h6l-1 8 8-12h-6z"/></svg></div><span class="cap">'+shortCap+'</span></div>'+
+    '</div><div class="tl-legend"><span><i class="sw c"></i> long action &middot; past continuous</span><span><i class="sw s"></i> short action &middot; past simple</span>'+
+    '<button class="btn sm ghost" data-replay style="margin-left:auto">&#8635; Play again</button></div></div>';
+};
+
+var LESSON = [
+{
+ tag:'<span class="tag mint">Step 1</span><span class="pmeta">Two kinds of past action</span>',
+ title:'One was long. One was short.',
+ html:
+  '<p class="say">When we tell a story about the past, some actions take time and some happen in one quick moment.</p>'+
+  TL('I was watching TV', 'the phone rang')+
+  '<div class="ex">'+
+   '<div class="row"><span class="k">Long</span><span>I <span class="hl-c">was watching</span> TV. &nbsp;<span style="color:var(--ink3);font-size:15px">It went on for a while.</span></span></div>'+
+   '<div class="row"><span class="k">Short</span><span>The phone <span class="hl-s">rang</span>. &nbsp;<span style="color:var(--ink3);font-size:15px">One quick moment.</span></span></div>'+
+   '<div class="row"><span class="k">Both</span><span>I <span class="hl-c">was watching</span> TV when the phone <span class="hl-s">rang</span>.</span></div>'+
+  '</div>'+
+  '<div class="rulebox">The <b>past continuous</b> is the long action in the background. The <b>past simple</b> is the short action that cuts into it.</div>'
+},
+{
+ tag:'<span class="tag mint">Step 2</span><span class="pmeta">How to build it</span>',
+ title:'was / were + verb + -ing',
+ html:
+  '<p class="say">The past continuous always has two parts. Choose <b>was</b> or <b>were</b> to match the person.</p>'+
+  '<div class="wtable">'+
+   '<div class="col"><div class="h">was + -ing</div><ul><li>I <b>was</b> reading.</li><li>He <b>was</b> reading.</li><li>She <b>was</b> reading.</li><li>It <b>was</b> raining.</li><li>My dog <b>was</b> barking.</li></ul></div>'+
+   '<div class="col"><div class="h">were + -ing</div><ul><li>You <b>were</b> reading.</li><li>We <b>were</b> reading.</li><li>They <b>were</b> reading.</li><li>My friends <b>were</b> talking.</li><li>The dogs <b>were</b> barking.</li></ul></div>'+
+  '</div>'+
+  '<div class="ex">'+
+   '<div class="row"><span class="k">&minus;</span><span>She <b>wasn’t</b> listening. &nbsp; They <b>weren’t</b> listening.</span></div>'+
+   '<div class="row"><span class="k">?</span><span><b>Was</b> she listening? &nbsp; <b>What were</b> you doing at six o’clock?</span></div>'+
+   '<div class="row"><span class="k">&#10007;</span><span class="bad-ex">She was listen. / They was playing. / We were play football.</span></div>'+
+  '</div>'+
+  '<div class="rulebox">Never drop the <b>-ing</b>, and never use <b>was</b> with <i>you, we, they</i> or a plural noun.</div>'
+},
+{
+ tag:'<span class="tag peach">Step 3</span><span class="pmeta">The rule that joins them</span>',
+ title:'when + past simple, past continuous',
+ html:
+  '<p class="say">Most sentences about the past put one long action and one short action together. The word <b>when</b> almost always sits next to the <b>short</b> one.</p>'+
+  TL('we were having dinner', 'the lights went out')+
+  '<div class="ex">'+
+   '<div class="row"><span class="k">1</span><span>We <span class="hl-c">were having</span> dinner when the lights <span class="hl-s">went</span> out.</span></div>'+
+   '<div class="row"><span class="k">2</span><span>When the train <span class="hl-s">arrived</span>, a man <span class="hl-c">was reading</span> a newspaper.</span></div>'+
+   '<div class="row"><span class="k">3</span><span>She <span class="hl-c">was playing</span> football when she <span class="hl-s">fell</span> over.</span></div>'+
+  '</div>'+
+  '<div class="rulebox">Ask yourself: <b>which action started first?</b> That one gets <b>was/were + -ing</b>. The action that came in and interrupted it gets the <b>past simple</b>.</div>'
+},
+{
+ tag:'<span class="tag peach">Step 4</span><span class="pmeta">Word order &amp; the comma</span>',
+ title:'Either half can go first',
+ html:
+  '<p class="say">The meaning does not change when you swap the two halves &mdash; but the comma does.</p>'+
+  '<div class="ex">'+
+   '<div class="row"><span class="k">A</span><span>I <span class="hl-c">was walking</span> up the wall<b>,</b> when I <span class="hl-s">had</span> a little fall.</span></div>'+
+   '<div class="row"><span class="k">B</span><span><b>When</b> a man <span class="hl-s">opened</span> the door<b>,</b> I <span class="hl-c">was lying</span> on the floor.</span></div>'+
+  '</div>'+
+  '<div class="rulebox">Start the sentence with <b>When</b> &rarr; put a <b>comma</b> before the second half.<br>Start with the long action &rarr; no comma is needed: <i>I was lying on the floor when a man opened the door.</i></div>'+
+  '<div class="ex" style="margin-top:16px">'+
+   '<div class="row"><span class="k">Also</span><span><b>while</b> works like <i>when</i>, but it goes with the <b>long</b> action: He dropped his ice cream <b>while</b> he <span class="hl-c">was walking</span> to school.</span></div>'+
+  '</div>'
+},
+{
+ tag:'<span class="tag sky">Step 5</span><span class="pmeta">Spelling &amp; common mistakes</span>',
+ title:'Adding &minus;ing the right way',
+ html:
+  '<div class="spellgrid">'+
+   '<div class="spell"><div class="t">Most verbs</div><div class="w">play &rarr; play<b>ing</b><br>read &rarr; read<b>ing</b></div></div>'+
+   '<div class="spell"><div class="t">Ends in e &rarr; drop it</div><div class="w">ride &rarr; rid<b>ing</b><br>make &rarr; mak<b>ing</b></div></div>'+
+   '<div class="spell"><div class="t">Short vowel + 1 consonant &rarr; double it</div><div class="w">run &rarr; ru<b>nning</b><br>sit &rarr; si<b>tting</b><br>swim &rarr; swi<b>mming</b></div></div>'+
+   '<div class="spell"><div class="t">Ends in ie &rarr; y</div><div class="w">lie &rarr; l<b>ying</b><br>tie &rarr; t<b>ying</b></div></div>'+
+  '</div>'+
+  '<div class="ex" style="margin-top:18px">'+
+   '<div class="row"><span class="k">&#10007;</span><span class="bad-ex">I was ride my bike.</span><span style="color:var(--mint-d);font-weight:bold">&rarr; I was riding my bike.</span></div>'+
+   '<div class="row"><span class="k">&#10007;</span><span class="bad-ex">They was runing.</span><span style="color:var(--mint-d);font-weight:bold">&rarr; They were running.</span></div>'+
+   '<div class="row"><span class="k">&#10007;</span><span class="bad-ex">When I was arriving, the bell rang.</span><span style="color:var(--mint-d);font-weight:bold">&rarr; When I arrived, the bell rang.</span></div>'+
+  '</div>'+
+  '<div class="rulebox">A quick, one-moment action (arrive, ring, drop, fall, start, stop, see, say) is almost always <b>past simple</b> &mdash; not <i>was &hellip;-ing</i>.</div>'
+}
+];
+
+/* ======================= PRACTICE ======================= */
+var PRACTICE = [
+{
+ id:'p1', kind:'tick', num:'Practice 1', title:'Look, read and tick',
+ sub:'Sunnyside Park, last Saturday afternoon. Tick every sentence that matches the picture, then check.',
+ items:[
+  {s:'A man was reading a newspaper on the bench.', ok:true,  why:'He is on the bench with an open newspaper.'},
+  {s:'A girl was eating an ice cream.',             ok:true,  why:'She is holding a two-scoop ice cream.'},
+  {s:'A boy was riding a skateboard.',              ok:false, why:'He was riding a bike, not a skateboard.'},
+  {s:'Two dogs were running after a ball.',         ok:true,  why:'Both dogs are chasing the red ball.'},
+  {s:'Two children were flying a kite.',            ok:true,  why:'They are holding the string of the red kite.'},
+  {s:'A cat was sleeping under the tree.',          ok:false, why:'There is no cat in the picture.'},
+  {s:'A woman was having a drink at a small table.',ok:true,  why:'She is sitting at the table with a cup.'},
+  {s:'Three boys were playing football.',           ok:false, why:'Nobody is playing football here.'},
+  {s:'Two men were eating hot dogs.',               ok:false, why:'There are no hot dogs in the park.'}
+ ]
+},
+{
+ id:'p2', kind:'order', num:'Practice 2', title:'Put the words in order',
+ sub:'Tap the words to build the sentence. The capital letter shows you where to start, and the full stop shows where to finish.',
+ items:[
+  {w:['eating','When','you','was','dinner.','me,','I','phoned'], a:'When you phoned me, I was eating dinner.',
+   why:'phoned is the short action, so it goes with when. The long action takes was + -ing.'},
+  {w:['was','over.','when','football','fell','She','playing','she'], a:'She was playing football when she fell over.',
+   why:'The game was already going on; falling over happened in one moment.'},
+  {w:['the','When','rang,','bell','were','we','lunch.','eating'], a:'When the bell rang, we were eating lunch.',
+   why:'When starts the sentence, so a comma comes before the second half. we &rarr; were.'},
+  {w:['I','brushing','was','teeth','my','when','lights','the','out.','went'], a:'I was brushing my teeth when the lights went out.',
+   why:'The long action comes first here, so no comma is needed.'},
+  {w:['Mum','When','home,','came','was','I','my','doing','homework.'], a:'When Mum came home, I was doing my homework.',
+   why:'came = the short action after when; the homework was already in progress.'},
+  {w:['were','They','for','waiting','bus','the','it','when','to','started','rain.'], a:'They were waiting for the bus when it started to rain.',
+   why:'They &rarr; were waiting. The rain started suddenly &rarr; past simple.'},
+  {w:['the','When','jumped','cat','the','on','table,','was','Dad','dinner.','cooking'], a:'When the cat jumped on the table, Dad was cooking dinner.',
+   why:'Dad is singular, so was cooking is correct.'},
+  {w:['sister','My','sleeping','was','the','when','rang.','phone'], a:'My sister was sleeping when the phone rang.',
+   why:'My sister = she &rarr; was sleeping.'},
+  {w:['the','When','walked','teacher','in,','class','the','singing.','was'], a:'When the teacher walked in, the class was singing.',
+   why:'The class is one group, so it takes was singing.'},
+  {w:['We','swimming','were','the','in','sea','we','when','a','saw','turtle.'], a:'We were swimming in the sea when we saw a turtle.',
+   why:'We &rarr; were swimming. Seeing the turtle happened in one moment &rarr; saw.'}
+ ]
+},
+{
+ id:'p3', kind:'mc', num:'Practice 3', title:'Fill in the gap',
+ sub:'Choose the correct form of the verb for each gap.',
+ items:[
+  {q:'When the train arrived, a man ___ a newspaper.', o:['read','was reading','were reading'], a:1,
+   why:'The train arriving is the short action. The reading had already started &rarr; was reading. One man &rarr; was.'},
+  {q:'She was cooking dinner when the phone ___.', o:['was ringing','rang','ringing'], a:1,
+   why:'Cooking is the long action; the phone ringing cuts into it &rarr; past simple rang.'},
+  {q:'We ___ football when it started to rain.', o:['played','were playing','was playing'], a:1,
+   why:'We is plural, so we need were + playing.'},
+  {q:'When I ___ into the kitchen, Mum was making a cake.', o:['walked','was walking','walk'], a:0,
+   why:'After when we need the short action in the past simple: walked.'},
+  {q:'The baby ___ when we came home.', o:['slept','were sleeping','was sleeping'], a:2,
+   why:'The baby was already asleep when we arrived, and baby is singular &rarr; was sleeping.'},
+  {q:'They were watching TV when the lights ___ out.', o:['went','were going','was going'], a:0,
+   why:'The lights going out was sudden and short &rarr; past simple went.'},
+  {q:'When Dad opened the door, the dog ___ on his chair.', o:['sat','were sitting','was sitting'], a:2,
+   why:'The dog was there before Dad opened the door. The dog is singular &rarr; was sitting.'},
+  {q:'I ___ my bike when I fell off.', o:['rode','was rideing','was riding'], a:2,
+   why:'Riding is the long action, and ride drops its final e: ride &rarr; riding.'},
+  {q:'My brother broke his arm while he ___.', o:['was skating','skated','were skating'], a:0,
+   why:'While goes with the long action, and he &rarr; was skating.'},
+  {q:'When the fire alarm rang, the students ___ a test.', o:['was doing','did','were doing'], a:2,
+   why:'The students is plural &rarr; were doing. The test was already in progress.'},
+  {q:'He dropped his ice cream while he ___ to school.', o:['walked','was walking','was walkking'], a:1,
+   why:'Walk has a long vowel sound, so we do not double the k: walking.'},
+  {q:'When she saw me, she ___ hello.', o:['was saying','said','was said'], a:1,
+   why:'Two quick actions, one after the other: saw &hellip; said. Both are past simple.'}
+ ]
+},
+{
+ id:'p4', kind:'mc', num:'Practice 4', title:'Finish the sentence',
+ sub:'Choose the ending that is correct English. Watch out for was / were.',
+ items:[
+  {q:'When I came home from school, our dog …', o:['was sleeping on my bed','were sleeping on my bed','sleeps on my bed'], a:0,
+   why:'Our dog is singular &rarr; was sleeping. The dog was already asleep when I came home.'},
+  {q:'My dad … when I came into the living room.', o:['watched the news','was watching the news','were watching the news'], a:1,
+   why:'My dad = he &rarr; was watching. His watching started before I came in.'},
+  {q:'When my parents came home, my big brother and I …', o:['was washing the dishes','were washing the dishes','are washing the dishes'], a:1,
+   why:'My big brother and I = we &rarr; were washing.'},
+  {q:'When I came into the garden, my friends …', o:['was playing basketball','played basketball all day','were playing basketball'], a:2,
+   why:'My friends is plural &rarr; were playing, and the game was already going on.'},
+  {q:'My teacher … when I arrived at school.', o:['was standing at the door','were standing at the door','stands at the door'], a:0,
+   why:'My teacher is singular &rarr; was standing. Stands is present tense, so it cannot be right.'},
+  {q:'When I started my homework, my sister …', o:['were practising the piano','was practising the piano','practise the piano'], a:1,
+   why:'My sister = she &rarr; was practising.'}
+ ]
+}
+];
+</script>
+<script>
+"use strict";
+/* ======================= TEST: 30 questions ======================= */
+var TEST = [
+/* ---------- PART A: complete the sentence (1-10) ---------- */
+{p:'A', t:'mc', q:'I ___ TV when my mum called me.', o:['watched','was watching','were watching'], a:1,
+ why:'Watching TV was the long action already in progress; I takes was.'},
+{p:'A', t:'mc', q:'When the film ___, we went home.', o:['was finishing','finished','finish'], a:1,
+ why:'After when we use the past simple for the short action: finished.'},
+{p:'A', t:'mc', q:'The children ___ in the garden when it began to snow.', o:['were playing','was playing','played'], a:0,
+ why:'The children is plural &rarr; were playing. The snow began later.'},
+{p:'A', t:'mc', q:'She ___ her keys while she was running for the bus.', o:['was losing','lost','loses'], a:1,
+ why:'Losing the keys happened in one moment &rarr; past simple lost.'},
+{p:'A', t:'mc', q:'When I woke up, the sun ___.', o:['shone','was shining','were shining'], a:1,
+ why:'The sun was already shining before I woke up. The sun is singular &rarr; was shining.'},
+{p:'A', t:'mc', q:'We were having dinner when someone ___ the doorbell.', o:['rang','was ringing','ring'], a:0,
+ why:'The dinner is the long action; ringing the doorbell is the short one &rarr; rang.'},
+{p:'A', t:'mc', q:'My brother ___ his leg while he was skiing.', o:['was breaking','broke','breaks'], a:1,
+ why:'The accident happened in one moment &rarr; broke. The skiing is the long action after while.'},
+{p:'A', t:'mc', q:'What ___ you doing at six o’clock yesterday?', o:['was','were','did'], a:1,
+ why:'Questions in the past continuous use was/were + -ing, and you takes were.'},
+{p:'A', t:'mc', q:'They weren’t listening when the teacher ___ the homework.', o:['explained','was explaining','explains'], a:0,
+ why:'The teacher explaining is the short action introduced by when &rarr; explained.'},
+{p:'A', t:'mc', q:'While Dad was driving, the car ___ down.', o:['was breaking','broke','breaked'], a:1,
+ why:'Break is irregular: break &rarr; broke. The breakdown happened suddenly.'},
+
+/* ---------- PART B: correct sentence (11-15) ---------- */
+{p:'B', t:'best', q:'Which sentence is correct?',
+ o:['When the train arrived, a man was reading a paper.','When the train was arriving, a man read a paper.','When the train arrived, a man were reading a paper.'], a:0,
+ why:'Arrive is a one-moment action &rarr; past simple. A man is singular &rarr; was reading.'},
+{p:'B', t:'best', q:'Which sentence is correct?',
+ o:['I was play football when I hurt my knee.','I was playing football when I hurt my knee.','I was playing football when I was hurting my knee.'], a:1,
+ why:'The past continuous always keeps the -ing, and hurting my knee happened in one moment &rarr; hurt.'},
+{p:'B', t:'best', q:'Which sentence is correct?',
+ o:['We was waiting for the bus.','We were wait for the bus.','We were waiting for the bus.'], a:2,
+ why:'We needs were, and the verb must keep its -ing ending.'},
+{p:'B', t:'best', q:'Which sentence is correct?',
+ o:['The dogs was barking when I opened the gate.','The dogs were barking when I opened the gate.','The dogs were bark when I opened the gate.'], a:1,
+ why:'The dogs is plural &rarr; were barking.'},
+{p:'B', t:'best', q:'Which sentence is correct?',
+ o:['While she was tying her shoes, the bus left.','While she was tieing her shoes, the bus left.','While she was tying her shoes, the bus leave.'], a:0,
+ why:'Verbs ending in -ie change to -y: tie &rarr; tying. The bus leaving is past simple left.'},
+
+/* ---------- PART B: find the mistake (16-20) ---------- */
+{p:'B', t:'err', q:'One underlined part is wrong. Which one?',
+ s:[{x:'When I '},{u:'was arriving'},{x:' at school, the bell '},{u:'rang'},{x:' and everyone '},{u:'ran'},{x:' inside.'}], a:0,
+ why:'Arriving is a one-moment action, so it must be the past simple: <b>When I arrived at school…</b>'},
+{p:'B', t:'err', q:'One underlined part is wrong. Which one?',
+ s:[{x:'My friends '},{u:'was playing'},{x:' video games when I '},{u:'arrived'},{x:', so they '},{u:'didn’t see'},{x:' me.'}], a:0,
+ why:'My friends is plural, so it must be <b>were playing</b>.'},
+{p:'B', t:'err', q:'One underlined part is wrong. Which one?',
+ s:[{x:'While we '},{u:'were walk'},{x:' home, it '},{u:'started'},{x:' to rain, so we '},{u:'ran'},{x:'.'}], a:0,
+ why:'The past continuous needs the -ing ending: <b>were walking</b>.'},
+{p:'B', t:'err', q:'One underlined part is wrong. Which one?',
+ s:[{x:'She '},{u:'were reading'},{x:' a book when her brother '},{u:'came'},{x:' in and '},{u:'turned'},{x:' on the TV.'}], a:0,
+ why:'She is singular, so the correct form is <b>was reading</b>.'},
+{p:'B', t:'err', q:'One underlined part is wrong. Which one?',
+ s:[{x:'I '},{u:'was reading'},{x:' in bed when I '},{u:'was hearing'},{x:' a strange noise '},{u:'outside'},{x:'.'}], a:1,
+ why:'Hearing a noise happens in one moment, so we say <b>heard</b>, not was hearing.'},
+
+/* ---------- PART C: questions, negatives, order (21-30) ---------- */
+{p:'C', t:'mc', q:'___ you watching TV when I called?', o:['Was','Were','Did'], a:1,
+ why:'You always takes were, and the question keeps watching.'},
+{p:'C', t:'mc', q:'___ your sister doing her homework at seven o’clock?', o:['Was','Were','Did'], a:0,
+ why:'Your sister = she &rarr; Was she doing…'},
+{p:'C', t:'mc', q:'What ___ the boys doing when the bell rang?', o:['was','were','did'], a:1,
+ why:'The boys is plural &rarr; were doing.'},
+{p:'C', t:'mc', q:'They ___ listening when I explained the game.', o:['wasn’t','weren’t','didn’t'], a:1,
+ why:'The negative past continuous for they is weren’t + -ing.'},
+{p:'C', t:'mc', q:'It ___ raining when we left the house.', o:['was','were','did'], a:0,
+ why:'It takes was: it was raining.'},
+{p:'C', t:'mc', q:'Were the children swimming? &mdash; No, they ___.', o:['wasn’t','weren’t','didn’t'], a:1,
+ why:'A short answer repeats the same helping verb: Were…? &rarr; No, they weren’t.'},
+{p:'C', t:'best', q:'Which question is correct?',
+ o:['What were you do at nine o’clock?','What was you doing at nine o’clock?','What were you doing at nine o’clock?'], a:2,
+ why:'You &rarr; were, and the main verb keeps its -ing ending.'},
+{p:'C', t:'best', q:'Which sentence is punctuated correctly?',
+ o:['When the film finished we went home.','When the film finished, we went home.','When, the film finished we went home.'], a:1,
+ why:'When the sentence starts with the when-half, put a comma before the second half.'},
+{p:'C', t:'best', q:'Which sentence is spelled correctly?',
+ o:['They were runing to the bus.','They was running to the bus.','They were running to the bus.'], a:2,
+ why:'Run has a short vowel and one final consonant, so we double it: running. They &rarr; were.'},
+{p:'C', t:'best', q:'Which sentence is in the correct order?',
+ o:['She playing was football when she fell over.','She was playing football when she fell over.','She was playing football when fell she over.'], a:1,
+ why:'The order is subject + was/were + -ing, then when + subject + past simple verb.'}
+];
+</script>
+<script>
+"use strict";
+/* ======================= helpers ======================= */
+function $(s,r){return (r||document).querySelector(s);}
+function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
+function esc(t){return String(t).replace(/&(?![a-z#])/g,'&amp;').replace(/</g,'&lt;');}
+var LET=['A','B','C','D'];
+var STORE='wih_v1';
+function load(){try{return JSON.parse(localStorage.getItem(STORE))||{};}catch(e){return {};}}
+function save(o){try{localStorage.setItem(STORE,JSON.stringify(o));}catch(e){}}
+var DB=load();
+function reflow(n){void n.offsetWidth;}
+function playTl(root){
+  $$('[data-tl]',root).forEach(function(t){
+    t.classList.remove('play'); reflow(t); requestAnimationFrame(function(){t.classList.add('play');});
+    var b=$('[data-replay]',t);
+    if(b) b.onclick=function(){t.classList.remove('play');reflow(t);requestAnimationFrame(function(){t.classList.add('play');});};
+  });
+}
+function pops(){
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var box=document.createElement('div'); box.className='pops';
+  var cs=['#8FD9C4','#F9C38E','#A8CCEF','#FBE3A2','#F4907E'];
+  for(var i=0;i<26;i++){
+    var d=document.createElement('i');
+    d.style.left=(4+Math.random()*92)+'%';
+    d.style.top=(-5-Math.random()*10)+'%';
+    d.style.background=cs[i%cs.length];
+    d.style.animationDelay=(Math.random()*.5)+'s';
+    d.style.animationDuration=(1.2+Math.random()*.7)+'s';
+    box.appendChild(d);
+  }
+  document.body.appendChild(box);
+  setTimeout(function(){box.remove();},2600);
+}
+function gapize(q){return esc(q).replace(/___/g,'<span class="blank"></span>');}
+
+/* ======================= navigation ======================= */
+var TITLES={home:'Past Continuous &amp; Past Simple<span class="tb-sub"> &middot; Grade 4&ndash;5</span>',
+  lesson:'Lesson<span class="tb-sub"> &middot; the rule step by step</span>',
+  phub:'Practice<span class="tb-sub"> &middot; 4 activities</span>', pact:'Practice',
+  tstart:'Test<span class="tb-sub"> &middot; 30 questions</span>', test:'Test', res:'Your results'};
+function go(name){
+  $$('.screen').forEach(function(s){s.classList.remove('on');});
+  var sc=$('#sc-'+name); sc.classList.add('on');
+  $('#tbTitle').innerHTML=TITLES[name]||TITLES.home;
+  $('#jumpBtn').style.display=(name==='test')?'':'none';
+  window.scrollTo(0,0);
+  if(name==='lesson') playTl(sc);
+}
+document.addEventListener('click',function(e){
+  var g=e.target.closest('[data-go]'); if(!g) return;
+  var d=g.getAttribute('data-go');
+  if(d==='lesson'){L.i=0;renderLesson();go('lesson');}
+  else if(d==='phub'){renderHub();go('phub');}
+  else if(d==='tstart'){bestLine();go('tstart');}
+  else if(d==='home'){renderHome();go('home');}
+  else go(d);
+});
+$('#homeBtn').onclick=function(){renderHome();go('home');};
+
+function renderHome(){
+  var done=DB.p||{}, n=0; PRACTICE.forEach(function(p){if(done[p.id]!==undefined)n++;});
+  $('#m-practice').textContent='4 activities · 37 items'+(n?'  ·  '+n+'/4 done':'');
+  $('#m-lesson').textContent='5 slides · about 8 minutes'+(DB.ls?'  ·  read':'');
+  $('#m-test').textContent=DB.best!==undefined?('30 questions · best '+DB.best+'/30'):'30 questions · best score saved';
+}
+
+/* ======================= LESSON ======================= */
+var L={i:0};
+function renderLesson(){
+  var s=LESSON[L.i], b=$('#lsBody');
+  b.innerHTML='<div class="slide-head">'+s.tag+'</div><h2>'+s.title+'</h2>'+s.html;
+  $('#lsProg').style.width=((L.i+1)/LESSON.length*100)+'%';
+  $('#lsMeta').textContent=(L.i+1)+' / '+LESSON.length;
+  $('#lsPrev').disabled=(L.i===0);
+  $('#lsNext').innerHTML=(L.i===LESSON.length-1)?'Start practising &#8250;':'Next &#8250;';
+  var d=$('#lsDots'); d.innerHTML='';
+  LESSON.forEach(function(_,k){
+    var i=document.createElement('i'); if(k===L.i)i.className='on';
+    i.onclick=function(){L.i=k;renderLesson();playTl($('#sc-lesson'));};
+    d.appendChild(i);
+  });
+  playTl(b);
+}
+$('#lsPrev').onclick=function(){if(L.i>0){L.i--;renderLesson();window.scrollTo(0,0);}};
+$('#lsNext').onclick=function(){
+  if(L.i===LESSON.length-1){DB.ls=1;save(DB);renderHub();go('phub');}
+  else {L.i++;renderLesson();window.scrollTo(0,0);}
+};
+
+/* ======================= PRACTICE HUB ======================= */
+function renderHub(){
+  var done=DB.p||{}, list=$('#pList'); list.innerHTML='';
+  PRACTICE.forEach(function(p,k){
+    var sc=done[p.id], n=p.items.length;
+    var b=document.createElement('button'); b.className='prow';
+    b.innerHTML='<span class="n">'+(k+1)+'</span><span class="tx"><h3>'+p.title+'</h3><p>'+n+' items · '+
+      (p.kind==='tick'?'picture &amp; tick':p.kind==='order'?'build the sentence':'multiple choice')+'</p></span>'+
+      '<span class="st'+(sc!==undefined?' done':'')+'">'+(sc!==undefined?('✓ '+sc+'/'+n):'not done')+'</span>';
+    b.onclick=function(){startPractice(k);};
+    list.appendChild(b);
+  });
+}
+/* ======================= PRACTICE RUN ======================= */
+var P={k:0,i:0,score:0,checked:false,build:[]};
+function startPractice(k){P={k:k,i:0,score:0,checked:false,build:[]};renderPractice();go('pact');}
+function pAct(){return PRACTICE[P.k];}
+function renderPractice(){
+  var a=pAct(), body=$('#paBody'), btns=$('#paBtns');
+  btns.innerHTML=''; body.innerHTML='';
+  if(a.kind==='tick'){ renderTick(body,btns); }
+  else if(a.kind==='order'){ renderOrder(body,btns); }
+  else { renderPmc(body,btns); }
+}
+function pbar(cur,tot,label){
+  $('#paProg').style.width=(cur/tot*100)+'%';
+  $('#paMeta').textContent=label;
+}
+function mkBtn(label,cls,fn){
+  var b=document.createElement('button'); b.className='btn '+(cls||''); b.innerHTML=label; b.onclick=fn; return b;
+}
+function finishPractice(score,total){
+  var d=DB.p||{}; if(d[pAct().id]===undefined||d[pAct().id]<score) d[pAct().id]=score;
+  DB.p=d; save(DB);
+  var body=$('#paBody'), btns=$('#paBtns');
+  var pct=Math.round(score/total*100);
+  body.innerHTML='<div class="scorebox"><span class="tag mint">'+pAct().num+' complete</span>'+
+    '<div class="big" style="margin-top:12px">'+score+'<small>/'+total+'</small></div>'+
+    '<div class="stars">'+(pct>=90?'★★★':pct>=70?'★★☆':pct>=50?'★☆☆':'☆☆☆')+'</div>'+
+    '<p class="verdict">'+(pct>=90?'Excellent. You can hear which action was long and which was short.':
+      pct>=70?'Good work. Check the ones you missed, then try the next activity.':
+      pct>=50?'You are getting there. Read the lesson slides again and repeat this activity.':
+      'Go back to the lesson first, then try this activity one more time.')+'</p></div>';
+  btns.innerHTML='';
+  btns.appendChild(mkBtn('Try again','ghost',function(){startPractice(P.k);}));
+  if(P.k<PRACTICE.length-1) btns.appendChild(mkBtn('Next activity &#8250;','',function(){startPractice(P.k+1);}));
+  else btns.appendChild(mkBtn('Go to the test &#8250;','',function(){bestLine();go('tstart');}));
+  btns.appendChild(mkBtn('All activities','ghost',function(){renderHub();go('phub');}));
+  if(pct>=80) pops();
+  window.scrollTo(0,0);
+}
+
+/* ---- tick activity ---- */
+function renderTick(body,btns){
+  var a=pAct();
+  pbar(0,1,a.num+' · '+a.items.length+' sentences');
+  var card=document.createElement('div'); card.className='qcard';
+  card.innerHTML='<div class="qnum">'+a.num+'</div><div class="qtext">'+a.title+'</div><p class="qhint">'+a.sub+'</p>';
+  var scene=document.createElement('div'); scene.className='scene scene-scroll';
+  scene.appendChild(document.importNode($('#parkScene').content,true));
+  card.appendChild(scene);
+  var hint=document.createElement('p'); hint.className='scene-hint';
+  hint.innerHTML='\u2190 Swipe the picture to see the whole park \u2192';
+  card.appendChild(hint);
+  var wrap=document.createElement('div'); wrap.className='ticks';
+  a.items.forEach(function(it,i){
+    var b=document.createElement('button'); b.className='tick'; b.type='button';
+    b.innerHTML='<span class="bx">✓</span><span class="nn">'+(i+1)+'</span><span class="tt">'+esc(it.s)+'</span>';
+    b.onclick=function(){ if(P.checked) return; b.classList.toggle('on'); };
+    wrap.appendChild(b);
+  });
+  card.appendChild(wrap); body.appendChild(card);
+  btns.appendChild(mkBtn('Check answers','',function(){
+    P.checked=true; var sc=0;
+    $$('.tick',wrap).forEach(function(b,i){
+      var it=a.items[i], sel=b.classList.contains('on');
+      b.disabled=true;
+      var right=(sel===it.ok);
+      if(right) sc++;
+      b.classList.add(right?'ok':'err');
+      var why=document.createElement('span'); why.className='why';
+      why.innerHTML=(it.ok?'✓ True — ':'✕ Not true — ')+esc(it.why);
+      $('.tt',b).appendChild(why);
+    });
+    pbar(1,1,a.num+' · '+sc+'/'+a.items.length+' correct');
+    btns.innerHTML='';
+    btns.appendChild(mkBtn('See my score &#8250;','',function(){finishPractice(sc,a.items.length);}));
+    btns.appendChild(mkBtn('Try again','ghost',function(){startPractice(P.k);}));
+  }));
+  btns.appendChild(mkBtn('&#8249; All activities','ghost',function(){renderHub();go('phub');}));
+}
+
+/* ---- word order activity ---- */
+function renderOrder(body,btns){
+  var a=pAct(), it=a.items[P.i];
+  pbar(P.i,a.items.length,a.num+' · sentence '+(P.i+1)+' of '+a.items.length);
+  P.build=[];
+  var card=document.createElement('div'); card.className='qcard';
+  card.innerHTML='<div class="qnum">Sentence '+(P.i+1)+'</div><div class="qtext">Put the words in order</div>'+
+    '<p class="qhint">'+a.sub+'</p>';
+  var build=document.createElement('div'); build.className='build';
+  var pool=document.createElement('div'); pool.className='pool';
+  function redraw(){
+    build.innerHTML='';
+    P.build.forEach(function(w,bi){
+      var c=document.createElement('button'); c.className='chip inbuild'; c.type='button'; c.textContent=w;
+      c.onclick=function(){ P.build.splice(bi,1); redraw(); };
+      build.appendChild(c);
+    });
+    $$('.chip',pool).forEach(function(c){
+      var used=P.build.filter(function(w){return w===c.textContent;}).length;
+      var total=it.w.filter(function(w){return w===c.textContent;}).length;
+      var order=$$('.chip',pool).filter(function(x){return x.textContent===c.textContent;}).indexOf(c);
+      c.classList.toggle('used', order<used);
+    });
+    chk.disabled=(P.build.length!==it.w.length);
+  }
+  it.w.forEach(function(w){
+    var c=document.createElement('button'); c.className='chip'; c.type='button'; c.textContent=w;
+    c.onclick=function(){ P.build.push(w); redraw(); };
+    pool.appendChild(c);
+  });
+  card.appendChild(build); card.appendChild(pool); body.appendChild(card);
+  var chk=mkBtn('Check','',function(){
+    var got=P.build.join(' '), right=(got===it.a);
+    if(right) P.score++;
+    $$('.chip',card).forEach(function(c){c.disabled=true;c.style.pointerEvents='none';});
+    var fb=document.createElement('div'); fb.className='fb '+(right?'good':'bad');
+    fb.innerHTML='<div class="ft">'+(right?'✓ Correct!':'✕ Not quite')+'</div>'+
+      (right?'':'<div class="answer-line" style="margin-top:0"><span class="t">Correct sentence</span>'+esc(it.a)+'</div>')+
+      '<div class="fx" style="margin-top:8px">'+it.why+'</div>';
+    card.appendChild(fb);
+    btns.innerHTML='';
+    btns.appendChild(mkBtn(P.i===a.items.length-1?'See my score &#8250;':'Next sentence &#8250;','',function(){
+      if(P.i===a.items.length-1){finishPractice(P.score,a.items.length);}
+      else {P.i++;renderPractice();window.scrollTo(0,0);}
+    }));
+  });
+  chk.disabled=true;
+  btns.appendChild(chk);
+  btns.appendChild(mkBtn('Clear','ghost',function(){P.build=[];redraw();}));
+  btns.appendChild(mkBtn('Skip','ghost',function(){
+    if(P.i===a.items.length-1){finishPractice(P.score,a.items.length);}
+    else {P.i++;renderPractice();window.scrollTo(0,0);}
+  }));
+  redraw();
+}
+
+/* ---- multiple choice practice ---- */
+function renderPmc(body,btns){
+  var a=pAct(), it=a.items[P.i];
+  pbar(P.i,a.items.length,a.num+' · question '+(P.i+1)+' of '+a.items.length);
+  var card=document.createElement('div'); card.className='qcard';
+  card.innerHTML='<div class="qnum">Question '+(P.i+1)+'</div><div class="qtext">'+gapize(it.q)+'</div><p class="qhint">'+a.sub+'</p>';
+  var opts=document.createElement('div'); opts.className='opts';
+  it.o.forEach(function(o,oi){
+    var b=document.createElement('button'); b.className='opt'; b.type='button';
+    b.innerHTML='<span class="lt">'+LET[oi]+'</span><span>'+esc(o)+'</span>';
+    b.onclick=function(){ answerPmc(card,opts,oi); };
+    opts.appendChild(b);
+  });
+  card.appendChild(opts); body.appendChild(card);
+  btns.appendChild(mkBtn('&#8249; All activities','ghost',function(){renderHub();go('phub');}));
+}
+function answerPmc(card,opts,oi){
+  var a=pAct(), it=a.items[P.i], right=(oi===it.a);
+  if(right) P.score++;
+  $$('.opt',opts).forEach(function(b,k){
+    b.disabled=true;
+    if(k===it.a){b.classList.add('right'); b.insertAdjacentHTML('beforeend','<span class="mk">✓</span>');}
+    else if(k===oi){b.classList.add('wrong'); b.insertAdjacentHTML('beforeend','<span class="mk">✕</span>');}
+  });
+  var fb=document.createElement('div'); fb.className='fb '+(right?'good':'bad');
+  fb.innerHTML='<div class="ft">'+(right?'✓ Correct!':'✕ Not this time')+'</div>'+
+    '<div class="fx">'+(right?'':'<b>'+esc(it.o[it.a])+'</b> &mdash; ')+it.why+'</div>';
+  card.appendChild(fb);
+  var btns=$('#paBtns'); btns.innerHTML='';
+  btns.appendChild(mkBtn(P.i===a.items.length-1?'See my score &#8250;':'Next question &#8250;','',function(){
+    if(P.i===a.items.length-1){finishPractice(P.score,a.items.length);}
+    else {P.i++;renderPractice();window.scrollTo(0,0);}
+  }));
+}
+
+/* ======================= TEST ======================= */
+var T={order:[],idx:0,ans:{},retry:false};
+function bestLine(){
+  $('#bestLine').innerHTML=DB.best!==undefined?('Your best score so far: <b>'+DB.best+' / 30</b>'):'No score saved yet — this will be your first try.';
+}
+function startTest(list,isRetry){
+  T.order=list||TEST.map(function(_,i){return i;});
+  T.idx=0; T.retry=!!isRetry;
+  if(!isRetry) T.ans={};
+  else { T.order.forEach(function(i){delete T.ans[i];}); }
+  renderTest(); go('test');
+}
+$('#tGo').onclick=function(){startTest(null,false);};
+function doneCount(){
+  return T.order.filter(function(qi){var a=T.ans[qi];return a&&a.sel!==null;}).length;
+}
+function renderTest(){
+  var qi=T.order[T.idx], q=TEST[qi], body=$('#tBody'), btns=$('#tBtns');
+  body.innerHTML=''; btns.innerHTML='';
+  var answered=doneCount();
+  $('#tProg').style.width=(answered/T.order.length*100)+'%';
+  $('#tMeta').textContent='Q '+(qi+1)+' · Part '+q.p+' · '+answered+'/'+T.order.length+' done';
+  var card=document.createElement('div'); card.className='qcard';
+  var head='<div class="qnum">Question '+(qi+1)+' · Part '+q.p+'</div>';
+  var optTexts=[];
+  if(q.t==='err'){
+    var html='', li=0;
+    q.s.forEach(function(tk){
+      if(tk.x) html+=esc(tk.x);
+      else { html+='<u>'+esc(tk.u)+'</u><sub>('+LET[li]+')</sub>'; optTexts.push(tk.u); li++; }
+    });
+    card.innerHTML=head+'<div class="qtext">'+esc(q.q)+'</div><div class="errsent">'+html+'</div>';
+  } else {
+    optTexts=q.o.slice();
+    card.innerHTML=head+'<div class="qtext">'+gapize(q.q)+'</div>';
+  }
+  var opts=document.createElement('div'); opts.className='opts';
+  optTexts.forEach(function(o,oi){
+    var b=document.createElement('button'); b.className='opt'; b.type='button';
+    b.innerHTML='<span class="lt">'+LET[oi]+'</span><span>'+esc(o)+'</span>';
+    b.onclick=function(){answerTest(card,opts,oi,optTexts);};
+    opts.appendChild(b);
+  });
+  card.appendChild(opts); body.appendChild(card);
+  var prev=mkBtn('&#8249;','ghost',function(){if(T.idx>0){T.idx--;renderTest();}});
+  prev.classList.add('sm'); prev.disabled=(T.idx===0);
+  var next=mkBtn('&#8250;','ghost',function(){if(T.idx<T.order.length-1){T.idx++;renderTest();}});
+  next.classList.add('sm'); next.disabled=(T.idx===T.order.length-1);
+  btns.appendChild(prev); btns.appendChild(next);
+  var prior=T.ans[qi];
+  if(prior&&prior.sel!==null){ lockTest(card,opts,prior.sel,optTexts,true); }
+  else {
+    btns.appendChild(mkBtn('Skip this one','ghost',function(){
+      T.ans[qi]={sel:null,ok:false};
+      if(T.idx<T.order.length-1){T.idx++;renderTest();window.scrollTo(0,0);} else renderTest();
+    }));
+    btns.appendChild(mkBtn('Finish','ghost',function(){results();}));
+  }
+}
+function answerTest(card,opts,oi,optTexts){
+  var qi=T.order[T.idx], q=TEST[qi];
+  T.ans[qi]={sel:oi,ok:(oi===q.a)};
+  lockTest(card,opts,oi,optTexts,false);
+  var answered=doneCount();
+  $('#tProg').style.width=(answered/T.order.length*100)+'%';
+  $('#tMeta').textContent='Q '+(qi+1)+' · Part '+q.p+' · '+answered+'/'+T.order.length+' done';
+}
+function lockTest(card,opts,oi,optTexts,quiet){
+  var qi=T.order[T.idx], q=TEST[qi], right=(oi===q.a);
+  $$('.opt',opts).forEach(function(b,k){
+    b.disabled=true;
+    if(k===q.a){b.classList.add('right'); if(!$('.mk',b))b.insertAdjacentHTML('beforeend','<span class="mk">✓</span>');}
+    else if(k===oi){b.classList.add('wrong'); if(!$('.mk',b))b.insertAdjacentHTML('beforeend','<span class="mk">✕</span>');}
+  });
+  if(!$('.fb',card)){
+    var fb=document.createElement('div'); fb.className='fb '+(right?'good':'bad');
+    fb.innerHTML='<div class="ft">'+(right?'✓ Correct!':'✕ Not this time')+'</div>'+
+      '<div class="fx">'+(right?'':'<b>'+esc(optTexts[q.a])+'</b> &mdash; ')+q.why+'</div>';
+    card.appendChild(fb);
+  }
+  var btns=$('#tBtns'); btns.innerHTML='';
+  var prev=mkBtn('&#8249;','ghost',function(){if(T.idx>0){T.idx--;renderTest();}}); prev.classList.add('sm'); prev.disabled=(T.idx===0);
+  btns.appendChild(prev);
+  if(T.idx<T.order.length-1){
+    btns.appendChild(mkBtn('Next question &#8250;','',function(){T.idx++;renderTest();window.scrollTo(0,0);}));
+  } else {
+    btns.appendChild(mkBtn('See my results &#8250;','',function(){results();}));
+  }
+  btns.appendChild(mkBtn('Finish now','ghost',function(){results();}));
+}
+/* jump sheet */
+$('#jumpBtn').onclick=function(){
+  var g=$('#jumpGrid'); g.innerHTML='';
+  $('#sheet .pane h3').textContent='All '+T.order.length+' questions';
+  T.order.forEach(function(qi,k){
+    var b=document.createElement('button'); b.className='gn'; b.textContent=(qi+1);
+    var a=T.ans[qi];
+    if(a&&a.sel!==null) b.classList.add(a.ok?'r':'w');
+    if(k===T.idx) b.classList.add('cur');
+    b.onclick=function(){T.idx=k;$('#sheet').classList.remove('on');renderTest();window.scrollTo(0,0);};
+    g.appendChild(b);
+  });
+  $('#sheet').classList.add('on');
+};
+$('#sheet').addEventListener('click',function(e){ if(e.target.closest('[data-close]')) $('#sheet').classList.remove('on'); });
+$('#finishNow').onclick=function(){$('#sheet').classList.remove('on');results();};
+
+/* ======================= RESULTS ======================= */
+function results(){
+  var total=T.order.length, correct=0, skipped=[], wrong=[];
+  T.order.forEach(function(qi){
+    var a=T.ans[qi];
+    if(!a||a.sel===null){skipped.push(qi+1);}
+    else if(a.ok){correct++;}
+    else {wrong.push(qi);}
+  });
+  var pct=Math.round(correct/total*100);
+  if(!T.retry && total===TEST.length){ if(DB.best===undefined||correct>DB.best){DB.best=correct;save(DB);} }
+  var parts={A:[0,0],B:[0,0],C:[0,0]};
+  T.order.forEach(function(qi){
+    var q=TEST[qi], a=T.ans[qi];
+    parts[q.p][1]++; if(a&&a.sel!==null&&a.ok) parts[q.p][0]++;
+  });
+  var stars=pct>=90?'★★★':pct>=70?'★★☆':pct>=50?'★☆☆':'☆☆☆';
+  var verdict = pct>=90?'Outstanding. You can choose between the two tenses quickly and accurately.':
+                pct>=75?'Strong work. Look at the questions below and you will be close to perfect.':
+                pct>=50?'A solid start. The gaps are listed below — read each explanation, then retry your mistakes.':
+                'Go back to the lesson slides and Practice 1–2, then try the test again. You will see a big jump.';
+  var names={A:'Part A · gaps',B:'Part B · correct / mistake',C:'Part C · questions &amp; order'};
+  var cols={A:'var(--mint-d)',B:'var(--peach-d)',C:'var(--sky-d)'};
+  var h='<div class="scorebox"><span class="tag sky">'+(T.retry?'Retry of your mistakes':'Test complete')+'</span>'+
+    '<div class="big" style="margin-top:12px">'+correct+'<small>/'+total+'</small></div>'+
+    '<div class="stars">'+stars+'</div>'+
+    '<div class="chips"><span class="chipv g">'+pct+'% correct</span><span class="chipv r">'+wrong.length+' wrong</span><span class="chipv n">'+skipped.length+' not answered</span></div>'+
+    '<p class="verdict">'+verdict+'</p></div>';
+  h+='<div class="bars">';
+  ['A','B','C'].forEach(function(p){
+    if(!parts[p][1]) return;
+    var v=Math.round(parts[p][0]/parts[p][1]*100);
+    h+='<div class="bline"><span class="nm">'+names[p]+'</span><span class="tr"><i style="width:'+v+'%;background:'+cols[p]+'"></i></span><span class="vv">'+parts[p][0]+'/'+parts[p][1]+'</span></div>';
+  });
+  h+='</div>';
+  if(skipped.length) h+='<div class="skipline"><b>Not answered:</b> '+skipped.join(', ')+'</div>';
+  if(wrong.length){
+    h+='<div class="divider"></div><h3 class="h-sec">Let’s look at your mistakes</h3><p class="sub-sec">'+wrong.length+' question'+(wrong.length>1?'s':'')+' to go over.</p><div class="review">';
+    wrong.forEach(function(qi){
+      var q=TEST[qi], a=T.ans[qi], texts;
+      if(q.t==='err'){ texts=q.s.filter(function(t){return t.u;}).map(function(t){return t.u;}); }
+      else texts=q.o;
+      var qshow = q.t==='err' ? q.s.map(function(t){return t.x?t.x:'['+t.u+']';}).join('') : q.q;
+      h+='<div class="rv"><div class="h">Question '+(qi+1)+' · Part '+q.p+'</div>'+
+        '<div class="q">'+esc(qshow)+'</div>'+
+        '<div class="a">You chose: '+esc(texts[a.sel])+' &nbsp;→&nbsp; Correct: <b>'+esc(texts[q.a])+'</b></div>'+
+        '<div class="x">'+q.why+'</div></div>';
+    });
+    h+='</div>';
+  }
+  var body=$('#resBody'); body.innerHTML=h;
+  var row=document.createElement('div'); row.className='btn-row center';
+  var missed=wrong.concat(T.order.filter(function(qi){var a=T.ans[qi];return !a||a.sel===null;}));
+  missed=missed.filter(function(v,i,s){return s.indexOf(v)===i;}).sort(function(x,y){return x-y;});
+  if(missed.length) row.appendChild(mkBtn('Practise what I missed ('+missed.length+')','',function(){startTest(missed,true);}));
+  row.appendChild(mkBtn('Take the whole test again','ghost',function(){startTest(null,false);}));
+  row.appendChild(mkBtn('Practice activities','ghost',function(){renderHub();go('phub');}));
+  row.appendChild(mkBtn('Home','ghost',function(){renderHome();go('home');}));
+  body.appendChild(row);
+  var note=document.createElement('p'); note.className='note';
+  note.innerHTML=(DB.best!==undefined?('Best score saved on this device: <b>'+DB.best+' / 30</b><br>'):'')+
+    '<b>Bright EngMath</b> \u00b7 English &amp; Maths Resources';
+  body.appendChild(note);
+  go('res');
+  if(pct>=80) pops();
+}
+
+/* ======================= keyboard ======================= */
+document.addEventListener('keydown',function(e){
+  if($('#sheet').classList.contains('on')&&e.key==='Escape'){$('#sheet').classList.remove('on');return;}
+  var onTest=$('#sc-test').classList.contains('on'), onP=$('#sc-pact').classList.contains('on'), onL=$('#sc-lesson').classList.contains('on');
+  if(onL){ if(e.key==='ArrowRight')$('#lsNext').click(); if(e.key==='ArrowLeft')$('#lsPrev').click(); return; }
+  if(onTest||onP){
+    var k=e.key.toUpperCase(), i=LET.indexOf(k);
+    if(i>-1){ var o=$$('.opt:not([disabled])'); if(o[i]) o[i].click(); return; }
+    if(e.key==='Enter'){ var b=$$('#tBtns .btn, #paBtns .btn').filter(function(x){return !x.classList.contains('ghost')&&!x.disabled;})[0]; if(b)b.click(); return; }
+    if(onTest&&e.key==='ArrowRight'){ if(T.idx<T.order.length-1){T.idx++;renderTest();} }
+    if(onTest&&e.key==='ArrowLeft'){ if(T.idx>0){T.idx--;renderTest();} }
+  }
+});
+
+/* ======================= init ======================= */
+renderHome(); renderHub(); bestLine();
+</script>
+</body>
+</html>
