@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Bright EngMath">
+<meta name="copyright" content="© 2026 Bright EngMath. Single-classroom licence.">
+<meta name="description" content="Bright EngMath — Grade 6 (EP/Inter) maths practice: 60 questions on Decimals and Ratio &amp; Percentage, with worked solutions.">
+<style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<!-- Decimals & Ratio Workbook - (c) 2026 Bright EngMath. Licensed for one teacher and their own classroom. Not for resale or redistribution. -->
+<title>Decimals &amp; Ratio Workbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Nunito:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --page:#F0DA80; --card:#FDF9EF; --paper:#FFFDF6; --rail:#FDF9EF;
+  --ink:#17140E; --ink-2:#5C5648; --ink-3:#8E8672;
+  --line:#17140E; --line-soft:#CFC7AE; --hl:#F3ECD9;
+  --accent:#A5E565; --accent-deep:#8BD343; --accent-soft:#E4F7CC;
+  --good:#2F7D2F; --good-soft:#CDF0AE;
+  --bad:#C93B2F; --bad-soft:#FBC9C3;
+  --badge:#17140E; --badge-on:#FDF9EF;
+  --g1:#FBE49B; --g2:#F8AFA8; --g3:#A9D9F2; --g4:#A9E5BE; --g5:#FBC9A0;
+  --g6:#C9BDF5; --g7:#F7B8D8; --g8:#B8E0D2; --g9:#D8E88A;
+  --bw:2.5px; --pop:4px 4px 0 var(--line); --pop-sm:3px 3px 0 var(--line);
+  --f-display:"Archivo Black","Arial Black",system-ui,sans-serif;
+  --f-body:"Nunito","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --page:#1C1913; --card:#262118; --paper:#2C261B; --rail:#262118;
+    --ink:#FAF4E4; --ink-2:#BDB49C; --ink-3:#8A8270;
+    --line:#FAF4E4; --line-soft:#4A4335; --hl:#332C21;
+    --accent:#9FDD5E; --accent-deep:#B6E97E; --accent-soft:#2C3A1C;
+    --good:#A6DC6C; --good-soft:#2C3A1C; --bad:#F0837A; --bad-soft:#402019;
+    --badge:#FAF4E4; --badge-on:#17140E;
+    --g1:#4A401E; --g2:#4C2B27; --g3:#1E3A4C; --g4:#1E4430; --g5:#4C3421;
+    --g6:#332B55; --g7:#4A2438; --g8:#23423A; --g9:#3F4522;
+  }
+}
+:root[data-theme="dark"]{
+  --page:#1C1913; --card:#262118; --paper:#2C261B; --rail:#262118;
+  --ink:#FAF4E4; --ink-2:#BDB49C; --ink-3:#8A8270;
+  --line:#FAF4E4; --line-soft:#4A4335; --hl:#332C21;
+  --accent:#9FDD5E; --accent-deep:#B6E97E; --accent-soft:#2C3A1C;
+  --good:#A6DC6C; --good-soft:#2C3A1C; --bad:#F0837A; --bad-soft:#402019;
+  --badge:#FAF4E4; --badge-on:#17140E;
+  --g1:#4A401E; --g2:#4C2B27; --g3:#1E3A4C; --g4:#1E4430; --g5:#4C3421;
+  --g6:#332B55; --g7:#4A2438; --g8:#23423A; --g9:#3F4522;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--page); color:var(--ink); font-family:var(--f-body); font-size:16px; line-height:1.6; font-weight:600; -webkit-font-smoothing:antialiased}
+b{font-weight:800}
+.wrap{max-width:1100px; margin:0 auto; padding-block:26px; padding-left:18px; padding-right:18px; position:relative; z-index:1}
+.mono{font-family:var(--f-mono); font-variant-numeric:tabular-nums}
+
+/* ---------- memphis confetti, purely decorative ---------- */
+.deco{position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden}
+.deco span{position:absolute; display:block}
+.deco .dots{width:88px; height:88px; top:8%; right:14px;
+  background-image:radial-gradient(var(--ink) 1.7px,transparent 1.8px); background-size:11px 11px; opacity:.5}
+.deco .tri{width:0; height:0; top:26%; left:18px; border-left:23px solid transparent; border-right:23px solid transparent; border-bottom:40px solid transparent;
+  border-bottom-color:#E4574C; opacity:.85; transform:rotate(-14deg)}
+.deco .ring{width:70px; height:70px; border-radius:99px; border:var(--bw) solid #6AB8E8; bottom:16%; left:16px; opacity:.85}
+.deco .blob{width:52px; height:52px; border-radius:99px; background:#F6A6C1; top:7%; left:26px; opacity:.75}
+.deco .wave{top:60%; right:10px; width:96px; height:34px; opacity:.85;
+  background:
+    radial-gradient(circle at 12px 24px, transparent 10px, #8BD343 10px, #8BD343 13px, transparent 13px),
+    radial-gradient(circle at 36px 10px, transparent 10px, #8BD343 10px, #8BD343 13px, transparent 13px),
+    radial-gradient(circle at 60px 24px, transparent 10px, #8BD343 10px, #8BD343 13px, transparent 13px),
+    radial-gradient(circle at 84px 10px, transparent 10px, #8BD343 10px, #8BD343 13px, transparent 13px)}
+.deco .bar{width:14px; height:44px; border-radius:99px; background:#B9A4F0; bottom:9%; right:30px; transform:rotate(24deg); opacity:.8}
+@media (max-width:1300px){.deco span{display:none}}
+
+/* ---------- masthead ---------- */
+.mast{display:flex; align-items:center; gap:14px; flex-wrap:wrap; justify-content:space-between; margin-bottom:20px}
+.brand{display:flex; align-items:center; gap:12px; min-width:0}
+.seal{width:50px;height:50px;flex:none;border-radius:15px;background:var(--g3);color:var(--ink);
+  border:var(--bw) solid var(--line); box-shadow:var(--pop-sm);
+  display:grid;place-items:center;font-family:var(--f-display);font-size:19px;letter-spacing:-.02em;line-height:1;text-align:center}
+.brand h1{font-family:var(--f-display); font-size:23px; margin:0; letter-spacing:-.02em; text-transform:uppercase; line-height:1.05; text-wrap:balance}
+.brand p{margin:3px 0 0; font-size:12.5px; color:var(--ink-2); font-weight:700}
+.mast-tools{display:flex; align-items:center; gap:9px; flex-wrap:wrap}
+
+/* ---------- buttons ---------- */
+.btn{font-family:var(--f-body); font-size:14.5px; font-weight:800; color:var(--ink);
+  background:var(--card); border:var(--bw) solid var(--line); border-radius:14px; box-shadow:var(--pop-sm);
+  padding:9px 16px; cursor:pointer; min-height:46px; display:inline-flex; align-items:center; gap:7px;
+  transition:transform .1s,box-shadow .1s,background .14s}
+.btn:hover{background:var(--hl)}
+.btn:active{transform:translate(3px,3px); box-shadow:0 0 0 var(--line)}
+.btn:disabled{opacity:.4; cursor:not-allowed; box-shadow:var(--pop-sm)}
+.btn:disabled:hover{background:var(--card)}
+.btn-primary{background:var(--accent); color:#17140E}
+.btn-primary:hover{background:var(--accent-deep)}
+.btn-lg{padding:14px 26px; font-size:16.5px; min-height:56px; border-radius:16px; box-shadow:var(--pop)}
+.btn-lg:active{transform:translate(4px,4px)}
+.btn-ghost{background:var(--card); font-weight:700}
+:focus-visible{outline:3px solid var(--line); outline-offset:3px; border-radius:14px}
+
+/* ---------- start screen ---------- */
+.hero{background:var(--card); border:var(--bw) solid var(--line); border-radius:24px; box-shadow:var(--pop); padding:30px 26px}
+.eyebrow{font-family:var(--f-mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink); font-weight:700; margin:0 0 12px;
+  display:inline-block; background:var(--g2); border:var(--bw) solid var(--line); border-radius:99px; padding:4px 13px}
+.hero h2{font-family:var(--f-display); font-size:clamp(27px,5vw,40px); line-height:1.08; letter-spacing:-.025em; margin:14px 0 14px; text-wrap:balance}
+.hero .lede{margin:0; max-width:58ch; color:var(--ink-2); font-size:16px; font-weight:600}
+.hero .lede strong{color:var(--ink); font-weight:800}
+.facts{display:flex; gap:8px; flex-wrap:wrap; margin:20px 0 0; padding:0; list-style:none}
+.facts li{font-family:var(--f-mono); font-size:11.5px; color:var(--ink); font-weight:500; background:var(--paper); border:2px solid var(--line); border-radius:10px; padding:6px 11px}
+.facts li b{font-weight:700}
+
+.gridhead{display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin:30px 0 13px; flex-wrap:wrap}
+.gridhead h3{font-family:var(--f-display); font-size:16px; text-transform:uppercase; letter-spacing:-.01em; margin:0}
+.gridhead span{font-family:var(--f-mono); font-size:11.5px; color:var(--ink-2); font-weight:500}
+.cells{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+@media (max-width:620px){.cells{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:380px){.cells{grid-template-columns:1fr}}
+.cell{display:flex; flex-direction:column; gap:4px; text-align:left; cursor:pointer;
+  background:var(--gc); border:var(--bw) solid var(--line); border-radius:18px; box-shadow:var(--pop); padding:15px 15px 13px;
+  font-family:var(--f-body); color:var(--ink); transition:transform .1s,box-shadow .1s; min-height:112px}
+.cell:hover{transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--line)}
+.cell:active{transform:translate(3px,3px); box-shadow:0 0 0 var(--line)}
+.cell .u{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); font-weight:600; opacity:.75}
+.cell .t{font-size:15.5px; font-weight:800; line-height:1.25; text-wrap:balance}
+.cell .n{margin-top:auto; font-family:var(--f-display); font-size:20px; letter-spacing:-.02em}
+.cell .n em{font-style:normal; font-family:var(--f-mono); font-size:11px; font-weight:500; margin-left:5px; opacity:.75}
+.start-row{display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:28px}
+.start-row .note{font-size:13.5px; color:var(--ink-2); margin:0; font-weight:700}
+
+/* ---------- layout ---------- */
+.board{display:grid; grid-template-columns:272px 1fr; gap:18px; align-items:start}
+@media (max-width:860px){.board{grid-template-columns:1fr}}
+
+/* ---------- rail ---------- */
+.rail{background:var(--card); border:var(--bw) solid var(--line); border-radius:20px; box-shadow:var(--pop); padding:18px 16px; position:sticky; top:16px}
+@media (max-width:860px){.rail{position:static}}
+.rail-head{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:3px}
+.rail-head h3{font-family:var(--f-display); font-size:15px; text-transform:uppercase; margin:0; letter-spacing:-.01em}
+.rail-head .toggle{display:none; min-height:38px; padding:6px 13px; font-size:13px}
+@media (max-width:860px){.rail-head .toggle{display:inline-flex}}
+.rail-sub{font-size:12.5px; color:var(--ink-2); margin:0 0 15px; font-weight:700}
+.group{margin-bottom:15px}
+.group:last-child{margin-bottom:0}
+.group-title{font-family:var(--f-mono); font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink); font-weight:600; margin:0 0 8px; display:flex; align-items:center; gap:7px}
+.group-title .dot{width:12px; height:12px; border-radius:4px; background:var(--gc); border:2px solid var(--line); flex:none}
+.group-title em{font-style:normal; margin-left:auto; opacity:.6}
+.chips{display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:6px}
+.chip{font-family:var(--f-mono); font-size:12.5px; font-weight:600; color:var(--ink);
+  background:var(--gc,var(--paper)); border:2px solid var(--line); border-radius:10px; box-shadow:2px 2px 0 var(--line);
+  min-height:36px; display:grid; place-items:center; cursor:pointer; position:relative;
+  transition:transform .1s,box-shadow .1s}
+.chip:hover{transform:translate(-1px,-1px); box-shadow:3px 3px 0 var(--line)}
+.chip:active{transform:translate(2px,2px); box-shadow:0 0 0 var(--line)}
+.chip.is-current{outline:3px solid var(--line); outline-offset:2px}
+.chip.is-correct{background:var(--accent)}
+.chip.is-correct::after{content:"✓"; position:absolute; top:-8px; right:-6px; font-size:10px; background:var(--badge); color:var(--badge-on); width:17px; height:17px; border-radius:6px; display:grid; place-items:center; line-height:1; border:2px solid var(--line)}
+.chip.is-wrong{background:var(--bad-soft)}
+.chip.is-wrong::after{content:"↻"; position:absolute; top:-8px; right:-6px; font-size:10px; background:var(--bad); color:#FFF; width:17px; height:17px; border-radius:6px; display:grid; place-items:center; line-height:1; border:2px solid var(--line)}
+
+/* ---------- question card ---------- */
+.stage{display:flex; flex-direction:column; gap:14px; min-width:0}
+.statusbar{display:flex; align-items:center; gap:14px; flex-wrap:wrap; background:var(--card); border:var(--bw) solid var(--line); border-radius:16px; box-shadow:var(--pop-sm); padding:12px 18px}
+.track{flex:1 1 160px; height:14px; background:var(--paper); border:2px solid var(--line); border-radius:99px; overflow:hidden}
+.track i{display:block; height:100%; background:var(--accent); width:0; transition:width .35s ease}
+.statusbar .stat{font-family:var(--f-mono); font-size:12px; color:var(--ink-2); white-space:nowrap; font-weight:500}
+.statusbar .stat b{color:var(--ink); font-weight:700}
+
+.qcard{background:var(--card); border:var(--bw) solid var(--line); border-radius:22px; box-shadow:var(--pop); overflow:hidden}
+.qhead{display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:15px 22px; background:var(--gc,var(--paper)); border-bottom:var(--bw) solid var(--line)}
+.qnum{font-family:var(--f-display); font-size:27px; letter-spacing:-.03em; color:var(--ink); line-height:1}
+.qmeta{display:flex; flex-direction:column; min-width:0}
+.qmeta .t{font-size:16px; font-weight:800; color:var(--ink); line-height:1.3}
+.qmeta .u{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); font-weight:500; opacity:.75}
+.tag{margin-left:auto; font-family:var(--f-mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; border:2px solid var(--line); border-radius:9px; padding:4px 10px; color:var(--ink); background:var(--card); font-weight:500}
+.qbody{padding:24px 22px 20px}
+.qtext{font-size:19px; line-height:1.6; margin:0 0 20px; max-width:60ch; text-wrap:pretty; font-weight:600}
+.qtext b{font-weight:800; color:var(--ink); background:var(--g1); border:2px solid var(--line); padding:0 6px; border-radius:7px}
+.hintline{font-family:var(--f-mono); font-size:13px; color:var(--ink-2); font-weight:500}
+
+.opts{display:grid; gap:11px; max-width:600px}
+.opt{display:flex; align-items:center; gap:13px; width:100%; text-align:left;
+  background:var(--paper); border:var(--bw) solid var(--line); border-radius:15px; box-shadow:var(--pop-sm);
+  padding:14px 16px; cursor:pointer; font-family:var(--f-body); font-size:16.5px; font-weight:700; color:var(--ink);
+  transition:transform .1s,box-shadow .1s,background .14s}
+.opt:hover:not(:disabled){transform:translate(-1px,-1px); box-shadow:5px 5px 0 var(--line); background:var(--hl)}
+.opt:active:not(:disabled){transform:translate(2px,2px); box-shadow:0 0 0 var(--line)}
+.opt .k{font-family:var(--f-mono); font-weight:700; font-size:12.5px; flex:none; width:29px; height:29px; border-radius:9px; display:grid; place-items:center; background:var(--card); border:2px solid var(--line); color:var(--ink)}
+.opt.is-picked{background:var(--g3)}
+.opt.is-picked .k{background:var(--badge); border-color:var(--line); color:var(--badge-on)}
+.opt:disabled{cursor:default; box-shadow:var(--pop-sm)}
+.opt.mark-good{background:var(--accent)}
+.opt.mark-good .k{background:var(--badge); color:var(--badge-on)}
+.opt.mark-bad{background:var(--bad-soft); border-style:dashed}
+.opt .flag{margin-left:auto; font-family:var(--f-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; font-weight:700; flex:none; color:var(--ink)}
+
+.fill{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+.fill label{font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2); width:100%; font-weight:600}
+.fill input{font-family:var(--f-mono); font-size:22px; font-weight:600; color:var(--ink); background:var(--paper); border:var(--bw) solid var(--line); border-radius:15px; box-shadow:var(--pop-sm); padding:12px 17px; width:192px; max-width:100%}
+.fill input::placeholder{color:var(--ink-3); font-weight:400}
+.fill.mark-good input{background:var(--accent)}
+.fill.mark-bad input{background:var(--bad-soft); border-style:dashed}
+.fill .suffix{font-family:var(--f-mono); font-size:15px; color:var(--ink-2); font-weight:600}
+
+.actions{display:flex; gap:11px; flex-wrap:wrap; align-items:center; margin-top:24px; padding-top:20px; border-top:2.5px dashed var(--line-soft)}
+.actions .spacer{flex:1 1 auto}
+
+/* ---------- feedback ---------- */
+.feedback{margin-top:20px; border-radius:18px; border:var(--bw) solid var(--line); box-shadow:var(--pop-sm); overflow:hidden}
+.fb-head{display:flex; align-items:center; gap:8px 11px; flex-wrap:wrap; padding:13px 18px; font-weight:800; font-size:15.5px; border-bottom:var(--bw) solid var(--line); color:var(--ink)}
+.feedback.good .fb-head{background:var(--accent)}
+.feedback.bad .fb-head{background:var(--bad-soft)}
+.fb-head .mark{flex:none; width:27px; height:27px; border-radius:9px; display:grid; place-items:center; font-size:14px; font-weight:700; border:2px solid var(--line)}
+.feedback.good .fb-head .mark{background:var(--badge); color:var(--badge-on)}
+.feedback.bad .fb-head .mark{background:var(--bad); color:#FFF}
+.fb-head .ans{margin-left:auto; font-family:var(--f-mono); font-size:13px; font-weight:500; white-space:nowrap}
+@media (max-width:560px){.fb-head .ans{margin-left:0; width:100%}}
+.fb-body{padding:18px; background:var(--card)}
+.fb-body h4{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); margin:0 0 13px; font-weight:600}
+.steps{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:11px; counter-reset:s}
+.steps li{display:flex; gap:12px; font-size:15.5px; line-height:1.55; color:var(--ink-2); font-weight:600}
+.steps li::before{counter-increment:s; content:counter(s); flex:none; font-family:var(--f-mono); font-size:11px; font-weight:700; color:var(--badge-on); width:24px; height:24px; border-radius:8px; background:var(--badge); border:2px solid var(--line); display:grid; place-items:center; margin-top:2px}
+.steps li b{color:var(--ink); font-weight:800}
+.watch{display:flex; gap:12px; margin-top:18px; padding:13px 15px; border-radius:14px; background:var(--g1); border:var(--bw) solid var(--line); font-size:14.5px; color:var(--ink); line-height:1.5; font-weight:600}
+.watch .lbl{font-family:var(--f-mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; flex:none; margin-top:3px}
+
+/* ---------- results ---------- */
+.score-hero{background:var(--card); border:var(--bw) solid var(--line); border-radius:24px; box-shadow:var(--pop); padding:30px 26px}
+.score-big{font-family:var(--f-display); font-size:clamp(48px,11vw,78px); line-height:1; letter-spacing:-.035em; color:var(--ink); margin:14px 0 0}
+.score-big small{font-size:.34em; color:var(--ink-2); letter-spacing:-.01em}
+.verdict{font-size:16.5px; color:var(--ink-2); margin:12px 0 0; max-width:52ch; font-weight:600}
+.breakdown{margin-top:28px; display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+@media (max-width:620px){.breakdown{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:380px){.breakdown{grid-template-columns:1fr}}
+.brow{display:flex; flex-direction:column; gap:8px; background:var(--gc); border:var(--bw) solid var(--line); border-radius:18px; box-shadow:var(--pop); padding:14px 14px 12px; min-height:112px}
+.brow .nm{font-size:14.5px; font-weight:800; line-height:1.25; text-wrap:balance}
+.brow .nm span{display:block; font-family:var(--f-mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; font-weight:500; opacity:.75; margin-bottom:2px}
+.brow .sc{margin-top:auto; font-family:var(--f-display); font-size:19px; letter-spacing:-.02em}
+.brow .bar{height:12px; background:var(--paper); border:2px solid var(--line); border-radius:99px; position:relative; overflow:hidden}
+.brow .bar u{position:absolute; inset:0 auto 0 0; display:block; background:var(--hl)}
+.brow .bar i{position:relative; display:block; height:100%; background:var(--accent)}
+.review{display:flex; flex-wrap:wrap; gap:9px; margin-top:14px}
+.hidden{display:none !important}
+.brand p .by{font-family:var(--f-display); font-size:12.5px; letter-spacing:-.01em; text-transform:uppercase; color:var(--ink)}
+.licence{display:flex; gap:15px; align-items:center; margin-top:26px; padding:15px 17px; background:var(--paper); border:var(--bw) solid var(--line); border-radius:16px}
+.licence .mk{flex:none; width:78px; font-family:var(--f-display); font-size:12px; line-height:1.15; text-transform:uppercase; letter-spacing:-.01em; text-align:center;
+  background:var(--g4); border:2px solid var(--line); border-radius:11px; padding:10px 4px; box-shadow:2px 2px 0 var(--line)}
+.licence p{margin:0; font-size:13.5px; line-height:1.5; color:var(--ink-2); font-weight:600}
+.licence p b{color:var(--ink); font-weight:800}
+@media (max-width:520px){.licence{flex-direction:column; align-items:flex-start; gap:12px}}
+footer{margin-top:26px; padding-top:16px; border-top:2.5px dashed var(--line-soft); font-size:12.5px; color:var(--ink-2); display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; font-weight:700}
+@media (prefers-reduced-motion:reduce){*{transition:none !important; animation:none !important}}
+@media (max-width:520px){
+  .qbody{padding:20px 15px 18px} .qhead{padding:14px 15px} .qtext{font-size:17.5px}
+  .hero{padding:24px 18px} .score-hero{padding:24px 18px}
+  .opt{font-size:15.5px; padding:13px 13px} .brand h1{font-size:18px} .cells,.breakdown{gap:11px}
+}
+</style>
+
+</head>
+<body>
+<div class="deco" aria-hidden="true"><span class="dots"></span><span class="tri"></span><span class="ring"></span><span class="blob"></span><span class="wave"></span><span class="bar"></span></div>
+<div class="wrap">
+  <div class="mast">
+    <div class="brand">
+      <div class="seal" title="Bright EngMath">BE</div>
+      <div>
+        <h1>Decimals &amp; Ratio Workbook</h1>
+        <p><span class="by">Bright EngMath</span> · Grade 6 English Programme · Units 5–6</p>
+      </div>
+    </div>
+    <div class="mast-tools">
+      <button class="btn btn-ghost" id="themeBtn" type="button" title="Switch light / dark">◐ Theme</button>
+      <button class="btn btn-ghost hidden" id="homeBtn" type="button">↩ Contents</button>
+      <button class="btn hidden" id="finishBtn" type="button">See my score</button>
+    </div>
+  </div>
+
+  <!-- ============ START ============ -->
+  <section id="viewStart">
+    <div class="hero">
+      <p class="eyebrow">60 questions · worked solutions</p>
+      <h2>Practise every skill in Units 5 and 6, one question at a time.</h2>
+      <p class="lede">Choose <strong>any</strong> question from the contents list — you do not have to work in order. Answer it, press <strong>Check answer</strong>, and you get the mark straight away with a <strong>worked solution</strong> and the mistake to watch out for.</p>
+      <ul class="facts">
+        <li><b>60</b> questions</li>
+        <li><b>9</b> skill groups</li>
+        <li>Multiple choice <b>+</b> write-the-answer</li>
+        <li>Worked solution for <b>every</b> question</li>
+      </ul>
+      <div class="gridhead">
+        <h3>Pick a skill to practise</h3>
+        <span>tap a card to start there</span>
+      </div>
+      <div class="cells" id="cells"></div>
+      <div class="start-row">
+        <button class="btn btn-primary btn-lg" id="startBtn" type="button">Start at question 1</button>
+        <button class="btn btn-lg" id="pickBtn" type="button">Pick a question</button>
+        <p class="note" id="resumeNote"></p>
+      </div>
+      <div class="licence">
+        <span class="mk">Bright<br>EngMath</span>
+        <p><b>Made by Bright EngMath.</b> Licensed for one teacher and their own classroom or tutoring group. Please do not resell it, share the file, or post it on a public website. Extra licences are available from the shop you bought this from.</p>
+      </div>
+    </div>
+    <footer>
+      <span>© 2026 Bright EngMath · All rights reserved</span>
+      <span class="mono">UNITS 5–6 · 60 QUESTIONS</span>
+    </footer>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section id="viewQuiz" class="hidden">
+    <div class="board">
+      <aside class="rail">
+        <div class="rail-head">
+          <h3>Contents</h3>
+          <button class="btn btn-ghost toggle" id="railToggle" type="button">Hide</button>
+        </div>
+        <p class="rail-sub">Tap any number to jump there.</p>
+        <div id="railGroups"></div>
+      </aside>
+      <div class="stage">
+        <div class="statusbar">
+          <div class="track"><i id="trackFill"></i></div>
+          <span class="stat" id="statDone">Answered <b>0</b>/60</span>
+          <span class="stat" id="statScore">Correct <b>0</b></span>
+        </div>
+        <article class="qcard" id="qcard"></article>
+      </div>
+    </div>
+    <footer>
+      <span>© 2026 Bright EngMath · Press <span class="mono">Enter</span> to check, <span class="mono">→</span> for next</span>
+      <span class="mono" id="footPos">Q1 / 60</span>
+    </footer>
+  </section>
+
+  <!-- ============ RESULTS ============ -->
+  <section id="viewDone" class="hidden">
+    <div class="score-hero">
+      <p class="eyebrow">Practice complete</p>
+      <p class="score-big" id="scoreBig">0<small>/60</small></p>
+      <p class="verdict" id="verdict"></p>
+      <div class="breakdown" id="breakdown"></div>
+      <div id="reviewWrap" class="hidden">
+        <h4 class="eyebrow" style="margin:26px 0 0">Questions to look at again</h4>
+        <div class="review" id="review"></div>
+      </div>
+      <div class="start-row">
+        <button class="btn btn-primary btn-lg" id="againBtn" type="button">Start again</button>
+        <button class="btn btn-lg" id="backBtn" type="button">Back to questions</button>
+      </div>
+    </div>
+    <footer>
+      <span>© 2026 Bright EngMath · All rights reserved</span>
+      <span class="mono">UNITS 5–6 · 60 QUESTIONS</span>
+    </footer>
+  </section>
+</div>
+
+<script>
+const QUESTIONS = [
+ {
+  "id": 1,
+  "unit": 5,
+  "topic": "Fractions & Decimals",
+  "type": "mcq",
+  "q": "Which decimal is equal to <b>7/8</b>?",
+  "options": [
+   "0.78",
+   "0.875",
+   "0.87",
+   "0.8"
+  ],
+  "answer": 1,
+  "explain": [
+   "7/8 means 7 ÷ 8.",
+   "8 does not go into 7, so write 7 as 7.000 and divide: 7.000 ÷ 8 = 0.875.",
+   "Check: 0.875 × 8 = 7 ✔"
+  ],
+  "tip": "A fraction bar is a division sign. Top ÷ bottom, always."
+ },
+ {
+  "id": 2,
+  "unit": 5,
+  "topic": "Fractions & Decimals",
+  "type": "mcq",
+  "q": "Write <b>0.045</b> as a fraction in its lowest terms.",
+  "options": [
+   "45/100",
+   "9/20",
+   "9/200",
+   "45/10"
+  ],
+  "answer": 2,
+  "explain": [
+   "0.045 has 3 decimal places, so the denominator is 1000: 0.045 = 45/1000.",
+   "Divide the top and the bottom by 5: 45 ÷ 5 = 9 and 1000 ÷ 5 = 200.",
+   "So 0.045 = <b>9/200</b>."
+  ],
+  "tip": "1 decimal place → /10, 2 places → /100, 3 places → /1000."
+ },
+ {
+  "id": 3,
+  "unit": 5,
+  "topic": "Fractions & Decimals",
+  "type": "fill",
+  "q": "Convert <b>3/25</b> to a decimal.",
+  "answer": [
+   "0.12",
+   ".12"
+  ],
+  "suffix": "",
+  "explain": [
+   "Make the denominator 100: 25 × 4 = 100, so multiply the top by 4 too.",
+   "3/25 = (3 × 4)/(25 × 4) = 12/100.",
+   "12/100 = <b>0.12</b>."
+  ],
+  "tip": "If the denominator divides into 10, 100 or 1000, scale it up instead of dividing."
+ },
+ {
+  "id": 4,
+  "unit": 5,
+  "topic": "Fractions & Decimals",
+  "type": "mcq",
+  "q": "Which set of numbers is arranged from <b>least to greatest</b>?",
+  "options": [
+   "0.405, 0.45, 0.5, 0.54",
+   "0.5, 0.54, 0.45, 0.405",
+   "0.45, 0.405, 0.5, 0.54",
+   "0.405, 0.5, 0.45, 0.54"
+  ],
+  "answer": 0,
+  "explain": [
+   "Give every number the same number of decimal places: 0.500, 0.450, 0.405, 0.540.",
+   "Now compare like whole numbers: 405 &lt; 450 &lt; 500 &lt; 540.",
+   "Order: <b>0.405, 0.45, 0.5, 0.54</b>."
+  ],
+  "tip": "0.5 is bigger than 0.45 — more digits does not mean a bigger number."
+ },
+ {
+  "id": 5,
+  "unit": 5,
+  "topic": "Fractions & Decimals",
+  "type": "fill",
+  "q": "Write the mixed number <b>2 3/4</b> as a decimal.",
+  "answer": [
+   "2.75"
+  ],
+  "suffix": "",
+  "explain": [
+   "Keep the whole number 2 and change 3/4 to a decimal.",
+   "3 ÷ 4 = 0.75.",
+   "So 2 3/4 = <b>2.75</b>."
+  ],
+  "tip": "The whole number stays in front of the decimal point."
+ },
+ {
+  "id": 6,
+  "unit": 5,
+  "topic": "Fractions & Decimals",
+  "type": "mcq",
+  "q": "Which fraction is equivalent to <b>1.6</b>?",
+  "options": [
+   "5/8",
+   "16/100",
+   "8/5",
+   "1/6"
+  ],
+  "answer": 2,
+  "explain": [
+   "1.6 = 16/10.",
+   "Divide the top and the bottom by 2: 16 ÷ 2 = 8 and 10 ÷ 2 = 5.",
+   "So 1.6 = <b>8/5</b>. (16/100 = 0.16, and 5/8 = 0.625 — both are too small.)"
+  ],
+  "tip": "The answer must be greater than 1, so the top number has to be bigger than the bottom one."
+ },
+ {
+  "id": 7,
+  "unit": 5,
+  "topic": "Adding & Subtracting",
+  "type": "fill",
+  "q": "Work out <b>4.7 + 12.85</b>",
+  "answer": [
+   "17.55"
+  ],
+  "suffix": "",
+  "explain": [
+   "Line up the decimal points and fill the gap with a zero: 4.70 + 12.85.",
+   "0 + 5 = 5, 7 + 8 = 15 (write 5, carry 1), 4 + 2 + 1 = 7, then 1.",
+   "Answer: <b>17.55</b>."
+  ],
+  "tip": "Write 4.7 as 4.70 so both numbers have the same number of decimal places."
+ },
+ {
+  "id": 8,
+  "unit": 5,
+  "topic": "Adding & Subtracting",
+  "type": "fill",
+  "q": "Work out <b>20 − 3.46</b>",
+  "answer": [
+   "16.54"
+  ],
+  "suffix": "",
+  "explain": [
+   "Write 20 as 20.00 so the decimal places match.",
+   "20.00 − 3.46: borrow across the zeros.",
+   "Answer: <b>16.54</b>. Check: 16.54 + 3.46 = 20 ✔"
+  ],
+  "tip": "A whole number always has a hidden decimal point: 20 = 20.00"
+ },
+ {
+  "id": 9,
+  "unit": 5,
+  "topic": "Adding & Subtracting",
+  "type": "mcq",
+  "q": "<b>6.08 + 0.9 = ?</b>",
+  "options": [
+   "6.17",
+   "6.98",
+   "15.08",
+   "6.089"
+  ],
+  "answer": 1,
+  "explain": [
+   "0.9 is the same as 0.90 — nine tenths, not nine hundredths.",
+   "6.08 + 0.90: 8 + 0 = 8 hundredths, 0 + 9 = 9 tenths, 6 ones.",
+   "Answer: <b>6.98</b>."
+  ],
+  "tip": "6.17 is the mistake you get if you treat 0.9 as 0.09."
+ },
+ {
+  "id": 10,
+  "unit": 5,
+  "topic": "Adding & Subtracting",
+  "type": "mcq",
+  "q": "<b>9.3 − 4.75 = ?</b>",
+  "options": [
+   "5.55",
+   "4.65",
+   "4.55",
+   "5.45"
+  ],
+  "answer": 2,
+  "explain": [
+   "Write 9.3 as 9.30.",
+   "9.30 − 4.75 = 4.55.",
+   "Check by adding back: 4.55 + 4.75 = 9.30 ✔"
+  ],
+  "tip": "Always check a subtraction by adding your answer to the number you took away."
+ },
+ {
+  "id": 11,
+  "unit": 5,
+  "topic": "Adding & Subtracting",
+  "type": "fill",
+  "q": "Work out <b>1.25 + 3.7 + 0.08</b>",
+  "answer": [
+   "5.03"
+  ],
+  "suffix": "",
+  "explain": [
+   "Match the decimal places: 1.25 + 3.70 + 0.08.",
+   "Hundredths: 5 + 0 + 8 = 13 → write 3, carry 1 tenth.",
+   "Tenths: 2 + 7 + 0 + 1 = 10 → write 0, carry 1 one. Ones: 1 + 3 + 0 + 1 = 5. Answer: <b>5.03</b>."
+  ],
+  "tip": "Adding three decimals is no harder — just keep the points in one straight column."
+ },
+ {
+  "id": 12,
+  "unit": 5,
+  "topic": "Adding & Subtracting",
+  "type": "fill",
+  "q": "Work out <b>15.4 − 6.75 − 2.5</b>",
+  "answer": [
+   "6.15"
+  ],
+  "suffix": "",
+  "explain": [
+   "Do it in order, left to right. First: 15.40 − 6.75 = 8.65.",
+   "Then: 8.65 − 2.50 = 6.15.",
+   "Answer: <b>6.15</b>."
+  ],
+  "tip": "With two subtractions, never jump ahead — finish the first one completely."
+ },
+ {
+  "id": 13,
+  "unit": 5,
+  "topic": "Multiplying & Dividing",
+  "type": "fill",
+  "q": "Work out <b>3.6 × 0.5</b>",
+  "answer": [
+   "1.8",
+   "1.80"
+  ],
+  "suffix": "",
+  "explain": [
+   "Ignore the points first: 36 × 5 = 180.",
+   "Count the decimal places in the question: 3.6 has 1 and 0.5 has 1, so 2 in total.",
+   "Put 2 decimal places into 180 → 1.80 = <b>1.8</b>."
+  ],
+  "tip": "× 0.5 is the same as halving. Half of 3.6 is 1.8 ✔"
+ },
+ {
+  "id": 14,
+  "unit": 5,
+  "topic": "Multiplying & Dividing",
+  "type": "fill",
+  "q": "Work out <b>0.24 × 100</b>",
+  "answer": [
+   "24",
+   "24.0",
+   "24.00"
+  ],
+  "suffix": "",
+  "explain": [
+   "Multiplying by 100 moves every digit 2 places to the <b>left</b>.",
+   "0.24 → 2.4 → 24.",
+   "Answer: <b>24</b>."
+  ],
+  "tip": "The digits move, the decimal point stays still — but moving the point the other way gives the same result."
+ },
+ {
+  "id": 15,
+  "unit": 5,
+  "topic": "Multiplying & Dividing",
+  "type": "mcq",
+  "q": "<b>7.2 ÷ 0.8 = ?</b>",
+  "options": [
+   "0.9",
+   "9",
+   "90",
+   "5.76"
+  ],
+  "answer": 1,
+  "explain": [
+   "Make the divisor a whole number: multiply <i>both</i> numbers by 10.",
+   "7.2 × 10 = 72 and 0.8 × 10 = 8, so the sum becomes 72 ÷ 8.",
+   "72 ÷ 8 = <b>9</b>."
+  ],
+  "tip": "Dividing by a number smaller than 1 makes the answer <i>bigger</i>, so 0.9 cannot be right."
+ },
+ {
+  "id": 16,
+  "unit": 5,
+  "topic": "Multiplying & Dividing",
+  "type": "fill",
+  "q": "Work out <b>0.7 × 0.03</b>",
+  "answer": [
+   "0.021",
+   ".021"
+  ],
+  "suffix": "",
+  "explain": [
+   "Ignore the points: 7 × 3 = 21.",
+   "Decimal places: 0.7 has 1, 0.03 has 2 → 3 places in the answer.",
+   "Write 21 with 3 decimal places: <b>0.021</b>."
+  ],
+  "tip": "You may need to add zeros in front to make enough decimal places."
+ },
+ {
+  "id": 17,
+  "unit": 5,
+  "topic": "Multiplying & Dividing",
+  "type": "mcq",
+  "q": "<b>4.5 ÷ 100 = ?</b>",
+  "options": [
+   "0.45",
+   "0.045",
+   "450",
+   "4.5"
+  ],
+  "answer": 1,
+  "explain": [
+   "Dividing by 100 moves the digits 2 places to the <b>right</b>.",
+   "4.5 → 0.45 → 0.045.",
+   "Answer: <b>0.045</b>."
+  ],
+  "tip": "0.45 is only one move — that is dividing by 10, not 100."
+ },
+ {
+  "id": 18,
+  "unit": 5,
+  "topic": "Multiplying & Dividing",
+  "type": "fill",
+  "q": "Work out <b>12.6 ÷ 4</b>",
+  "answer": [
+   "3.15"
+  ],
+  "suffix": "",
+  "explain": [
+   "Divide as usual and keep the decimal point in line: 12.6 ÷ 4.",
+   "12 ÷ 4 = 3, then 0.6 ÷ 4 = 0.15 (write 12.6 as 12.60).",
+   "Answer: <b>3.15</b>. Check: 3.15 × 4 = 12.6 ✔"
+  ],
+  "tip": "If the division does not end, add zeros after the decimal point and carry on."
+ },
+ {
+  "id": 19,
+  "unit": 5,
+  "topic": "Multiplying & Dividing",
+  "type": "mcq",
+  "q": "<b>2.5 × 1.2 = ?</b>",
+  "options": [
+   "2.7",
+   "3",
+   "30",
+   "0.3"
+  ],
+  "answer": 1,
+  "explain": [
+   "Ignore the points: 25 × 12 = 300.",
+   "Decimal places: 1 + 1 = 2, so 300 becomes 3.00.",
+   "Answer: <b>3</b>."
+  ],
+  "tip": "2.7 comes from adding instead of multiplying — read the sign carefully."
+ },
+ {
+  "id": 20,
+  "unit": 5,
+  "topic": "Multiplying & Dividing",
+  "type": "fill",
+  "q": "Work out <b>8.1 ÷ 0.09</b>",
+  "answer": [
+   "90",
+   "90.0"
+  ],
+  "suffix": "",
+  "explain": [
+   "Multiply both numbers by 100 so the divisor becomes a whole number.",
+   "8.1 × 100 = 810 and 0.09 × 100 = 9, so the sum becomes 810 ÷ 9.",
+   "810 ÷ 9 = <b>90</b>."
+  ],
+  "tip": "Whatever you do to the divisor, do exactly the same to the other number."
+ },
+ {
+  "id": 21,
+  "unit": 5,
+  "topic": "Decimal Word Problems",
+  "type": "mcq",
+  "q": "A ribbon <b>12.5 m</b> long is cut into pieces, each <b>0.25 m</b> long. How many pieces are there?",
+  "options": [
+   "5",
+   "50",
+   "500",
+   "3.125"
+  ],
+  "answer": 1,
+  "explain": [
+   "“Cut into equal pieces” means divide: 12.5 ÷ 0.25.",
+   "Multiply both by 100: 1250 ÷ 25.",
+   "1250 ÷ 25 = <b>50 pieces</b>."
+  ],
+  "tip": "Each piece is much shorter than 1 m, so expect a large number of pieces."
+ },
+ {
+  "id": 22,
+  "unit": 5,
+  "topic": "Decimal Word Problems",
+  "type": "fill",
+  "q": "Mali buys <b>1.8 kg</b> of mangoes. The price is <b>45.50 baht</b> per kilogram. How much does she pay?",
+  "answer": [
+   "81.9",
+   "81.90"
+  ],
+  "suffix": "baht",
+  "explain": [
+   "Cost = price per kg × number of kg = 45.50 × 1.8.",
+   "Ignore the points: 455 × 18 = 8190.",
+   "45.5 has 1 decimal place and 1.8 has 1, so put 2 decimal places into 8190 → <b>81.90 baht</b>."
+  ],
+  "tip": "Estimate first: 45 × 2 = 90, so the answer should be a little under 90."
+ },
+ {
+  "id": 23,
+  "unit": 5,
+  "topic": "Decimal Word Problems",
+  "type": "mcq",
+  "q": "A runner runs <b>2.75 km</b> on Monday and <b>3.4 km</b> on Tuesday. How much <b>farther</b> did he run on Tuesday?",
+  "options": [
+   "0.65 km",
+   "1.35 km",
+   "6.15 km",
+   "0.75 km"
+  ],
+  "answer": 0,
+  "explain": [
+   "“How much farther” means subtract the smaller from the larger.",
+   "3.40 − 2.75 = 0.65.",
+   "He ran <b>0.65 km</b> farther on Tuesday."
+  ],
+  "tip": "6.15 km is the total of both days — that is not what the question asks for."
+ },
+ {
+  "id": 24,
+  "unit": 5,
+  "topic": "Decimal Word Problems",
+  "type": "fill",
+  "q": "A bottle holds <b>1.5 litres</b> of juice. Nan pours <b>0.375 litres</b> into each glass. How many <b>full glasses</b> can she pour?",
+  "answer": [
+   "4"
+  ],
+  "suffix": "glasses",
+  "explain": [
+   "Divide the total by the size of one glass: 1.5 ÷ 0.375.",
+   "Multiply both by 1000: 1500 ÷ 375.",
+   "1500 ÷ 375 = <b>4 glasses</b> exactly."
+  ],
+  "tip": "375 × 4 = 1500 — a quick way to check a division is to multiply back."
+ },
+ {
+  "id": 25,
+  "unit": 5,
+  "topic": "Decimal Word Problems",
+  "type": "mcq",
+  "q": "One box has a mass of <b>4.25 kg</b>. What is the total mass of <b>6</b> identical boxes?",
+  "options": [
+   "24.30 kg",
+   "25.5 kg",
+   "10.25 kg",
+   "2.55 kg"
+  ],
+  "answer": 1,
+  "explain": [
+   "Total = mass of one box × number of boxes = 4.25 × 6.",
+   "425 × 6 = 2550, and there are 2 decimal places.",
+   "Total mass = <b>25.5 kg</b>."
+  ],
+  "tip": "Estimate: 4 × 6 = 24, so 25.5 kg is sensible."
+ },
+ {
+  "id": 26,
+  "unit": 5,
+  "topic": "Decimal Word Problems",
+  "type": "fill",
+  "q": "A rectangular card is <b>4.5 cm</b> long and <b>3.2 cm</b> wide. What is its <b>area</b>?",
+  "answer": [
+   "14.4",
+   "14.40"
+  ],
+  "suffix": "cm²",
+  "explain": [
+   "Area of a rectangle = length × width = 4.5 × 3.2.",
+   "45 × 32 = 1440, and there are 1 + 1 = 2 decimal places.",
+   "Area = <b>14.4 cm²</b>."
+  ],
+  "tip": "Area is measured in square units, so write cm² not cm."
+ },
+ {
+  "id": 27,
+  "unit": 5,
+  "topic": "Decimal Word Problems",
+  "type": "mcq",
+  "q": "Pim has <b>500 baht</b>. She spends <b>128.75 baht</b> and <b>96.50 baht</b>. How much money is left?",
+  "options": [
+   "225.25 baht",
+   "274.75 baht",
+   "275.25 baht",
+   "371.25 baht"
+  ],
+  "answer": 1,
+  "explain": [
+   "First add what she spent: 128.75 + 96.50 = 225.25.",
+   "Then subtract from what she had: 500.00 − 225.25 = 274.75.",
+   "She has <b>274.75 baht</b> left."
+  ],
+  "tip": "371.25 baht is what you get if you forget the second purchase."
+ },
+ {
+  "id": 28,
+  "unit": 5,
+  "topic": "Decimal Word Problems",
+  "type": "fill",
+  "q": "Seven identical books have a total mass of <b>10.5 kg</b>. What is the mass of <b>one</b> book?",
+  "answer": [
+   "1.5",
+   "1.50"
+  ],
+  "suffix": "kg",
+  "explain": [
+   "“Identical” means share equally, so divide: 10.5 ÷ 7.",
+   "10.5 ÷ 7 = 1.5.",
+   "One book has a mass of <b>1.5 kg</b>. Check: 1.5 × 7 = 10.5 ✔"
+  ],
+  "tip": "Total ÷ number of items = size of one item."
+ },
+ {
+  "id": 29,
+  "unit": 5,
+  "topic": "Decimal Word Problems",
+  "type": "mcq",
+  "q": "Each bottle contains <b>0.45 litres</b> of water. How many litres are in <b>20</b> bottles?",
+  "options": [
+   "0.9 L",
+   "9 L",
+   "90 L",
+   "4.5 L"
+  ],
+  "answer": 1,
+  "explain": [
+   "Total = 0.45 × 20.",
+   "0.45 × 2 = 0.9, then × 10 gives 9.",
+   "Total = <b>9 litres</b>."
+  ],
+  "tip": "Break a tricky multiplication into easy steps: × 20 is × 2 then × 10."
+ },
+ {
+  "id": 30,
+  "unit": 5,
+  "topic": "Decimal Word Problems",
+  "type": "fill",
+  "q": "A car travels <b>96.6 km</b> in <b>1.4 hours</b>. What is its average speed in kilometres per hour?",
+  "answer": [
+   "69",
+   "69.0"
+  ],
+  "suffix": "km/h",
+  "explain": [
+   "Speed = distance ÷ time = 96.6 ÷ 1.4.",
+   "Multiply both by 10: 966 ÷ 14.",
+   "966 ÷ 14 = <b>69 km/h</b>."
+  ],
+  "tip": "Check: 69 × 1.4 = 96.6 ✔"
+ },
+ {
+  "id": 31,
+  "unit": 6,
+  "topic": "Idea of Ratio",
+  "type": "mcq",
+  "q": "A class has <b>12 boys</b> and <b>18 girls</b>. What is the ratio of boys to girls in its simplest form?",
+  "options": [
+   "12 : 18",
+   "3 : 2",
+   "2 : 3",
+   "6 : 9"
+  ],
+  "answer": 2,
+  "explain": [
+   "Write it in the order asked: boys : girls = 12 : 18.",
+   "Divide both parts by the highest common factor, 6: 12 ÷ 6 = 2 and 18 ÷ 6 = 3.",
+   "Simplest form: <b>2 : 3</b>."
+  ],
+  "tip": "Order matters. “Boys to girls” must start with the number of boys."
+ },
+ {
+  "id": 32,
+  "unit": 6,
+  "topic": "Idea of Ratio",
+  "type": "fill",
+  "q": "Write the ratio <b>24 : 36</b> in its simplest form. <span class='hintline'>(type it like 2:3)</span>",
+  "answer": [
+   "2:3"
+  ],
+  "suffix": "",
+  "explain": [
+   "The highest common factor of 24 and 36 is 12.",
+   "24 ÷ 12 = 2 and 36 ÷ 12 = 3.",
+   "Simplest form: <b>2 : 3</b>."
+  ],
+  "tip": "If you divide by 6 first you get 4 : 6 — keep going until no common factor is left."
+ },
+ {
+  "id": 33,
+  "unit": 6,
+  "topic": "Idea of Ratio",
+  "type": "mcq",
+  "q": "The ratio of red marbles to blue marbles is <b>3 : 5</b>. There are <b>15 red</b> marbles. How many blue marbles are there?",
+  "options": [
+   "9",
+   "20",
+   "25",
+   "45"
+  ],
+  "answer": 2,
+  "explain": [
+   "3 parts stand for 15 red marbles, so 1 part = 15 ÷ 3 = 5 marbles.",
+   "Blue is 5 parts: 5 × 5 = 25.",
+   "There are <b>25 blue marbles</b>."
+  ],
+  "tip": "Find the value of ONE part first — it unlocks every ratio question."
+ },
+ {
+  "id": 34,
+  "unit": 6,
+  "topic": "Idea of Ratio",
+  "type": "mcq",
+  "q": "A recipe uses <b>2 cups of sugar</b> to <b>5 cups of flour</b>. What is the ratio of <b>flour to sugar</b>?",
+  "options": [
+   "2 : 5",
+   "5 : 2",
+   "2 : 7",
+   "7 : 5"
+  ],
+  "answer": 1,
+  "explain": [
+   "The question asks for flour first, then sugar.",
+   "Flour = 5 cups, sugar = 2 cups.",
+   "Ratio of flour to sugar = <b>5 : 2</b>."
+  ],
+  "tip": "Reading the order backwards is the most common mistake in ratio questions."
+ },
+ {
+  "id": 35,
+  "unit": 6,
+  "topic": "Idea of Ratio",
+  "type": "fill",
+  "q": "Write <b>45 minutes : 2 hours</b> as a ratio in its simplest form. <span class='hintline'>(type it like 2:3)</span>",
+  "answer": [
+   "3:8"
+  ],
+  "suffix": "",
+  "explain": [
+   "Change to the same unit first: 2 hours = 120 minutes.",
+   "45 : 120, and the highest common factor is 15.",
+   "45 ÷ 15 = 3 and 120 ÷ 15 = 8, so the answer is <b>3 : 8</b>."
+  ],
+  "tip": "A ratio has no units — but the two quantities must be measured in the same unit before you simplify."
+ },
+ {
+  "id": 36,
+  "unit": 6,
+  "topic": "Idea of Ratio",
+  "type": "mcq",
+  "q": "The ratio of the length to the width of a rectangle is <b>5 : 3</b>. The length is <b>20 cm</b>. What is the width?",
+  "options": [
+   "12 cm",
+   "15 cm",
+   "18 cm",
+   "33 cm"
+  ],
+  "answer": 0,
+  "explain": [
+   "5 parts stand for 20 cm, so 1 part = 20 ÷ 5 = 4 cm.",
+   "The width is 3 parts: 3 × 4 = 12 cm.",
+   "Width = <b>12 cm</b>."
+  ],
+  "tip": "The width must be smaller than the length, because 3 &lt; 5."
+ },
+ {
+  "id": 37,
+  "unit": 6,
+  "topic": "Equivalent Ratios",
+  "type": "fill",
+  "q": "Find the missing number: <b>3 : 7 = 12 : ?</b>",
+  "answer": [
+   "28"
+  ],
+  "suffix": "",
+  "explain": [
+   "Look at how the first part changes: 3 × 4 = 12.",
+   "Do exactly the same to the second part: 7 × 4 = 28.",
+   "So 3 : 7 = <b>12 : 28</b>."
+  ],
+  "tip": "Whatever you multiply one side by, multiply the other side by the same number."
+ },
+ {
+  "id": 38,
+  "unit": 6,
+  "topic": "Equivalent Ratios",
+  "type": "mcq",
+  "q": "Which ratio is <b>equivalent</b> to <b>6 : 9</b>?",
+  "options": [
+   "12 : 15",
+   "3 : 6",
+   "10 : 15",
+   "9 : 12"
+  ],
+  "answer": 2,
+  "explain": [
+   "Simplify 6 : 9 by dividing both parts by 3 → 2 : 3.",
+   "Test each choice: 10 : 15 also divides by 5 to give 2 : 3.",
+   "So <b>10 : 15</b> is equivalent. (12 : 15 = 4 : 5, 3 : 6 = 1 : 2, 9 : 12 = 3 : 4.)"
+  ],
+  "tip": "Simplify the given ratio first, then simplify each option and compare."
+ },
+ {
+  "id": 39,
+  "unit": 6,
+  "topic": "Equivalent Ratios",
+  "type": "fill",
+  "q": "Find the missing number: <b>5 : 8 = ? : 40</b>",
+  "answer": [
+   "25"
+  ],
+  "suffix": "",
+  "explain": [
+   "Look at the second parts: 8 × 5 = 40.",
+   "Do the same to the first part: 5 × 5 = 25.",
+   "So 5 : 8 = <b>25 : 40</b>."
+  ],
+  "tip": "Find the multiplier from the pair you already know both numbers for."
+ },
+ {
+  "id": 40,
+  "unit": 6,
+  "topic": "Equivalent Ratios",
+  "type": "mcq",
+  "q": "Which ratio is <b>NOT</b> equivalent to <b>4 : 6</b>?",
+  "options": [
+   "2 : 3",
+   "8 : 12",
+   "6 : 8",
+   "10 : 15"
+  ],
+  "answer": 2,
+  "explain": [
+   "4 : 6 simplifies to 2 : 3.",
+   "8 : 12 → 2 : 3 ✔ and 10 : 15 → 2 : 3 ✔",
+   "But 6 : 8 simplifies to 3 : 4, not 2 : 3 — so <b>6 : 8</b> is the odd one out."
+  ],
+  "tip": "Read the word NOT carefully. Three answers will be correct and one will not."
+ },
+ {
+  "id": 41,
+  "unit": 6,
+  "topic": "Equivalent Ratios",
+  "type": "fill",
+  "q": "Sixty sweets are shared in the ratio <b>2 : 3</b>. How many sweets are in the <b>larger</b> share?",
+  "answer": [
+   "36"
+  ],
+  "suffix": "sweets",
+  "explain": [
+   "Total number of parts = 2 + 3 = 5.",
+   "1 part = 60 ÷ 5 = 12 sweets.",
+   "The larger share is 3 parts: 3 × 12 = <b>36 sweets</b>. (The other share is 24, and 36 + 24 = 60 ✔)"
+  ],
+  "tip": "For sharing questions, always add the parts together first."
+ },
+ {
+  "id": 42,
+  "unit": 6,
+  "topic": "Equivalent Ratios",
+  "type": "mcq",
+  "q": "Find the missing number: <b>2 : 5 = 14 : ?</b>",
+  "options": [
+   "17",
+   "28",
+   "35",
+   "70"
+  ],
+  "answer": 2,
+  "explain": [
+   "2 × 7 = 14, so the multiplier is 7.",
+   "5 × 7 = 35.",
+   "So 2 : 5 = <b>14 : 35</b>."
+  ],
+  "tip": "17 comes from adding 12 to both sides — ratios grow by multiplying, not adding."
+ },
+ {
+  "id": 43,
+  "unit": 6,
+  "topic": "Scale",
+  "type": "mcq",
+  "q": "A map has a scale of <b>1 : 1000</b>. A road measures <b>4 cm</b> on the map. What is its real length?",
+  "options": [
+   "4 m",
+   "40 m",
+   "400 m",
+   "4 km"
+  ],
+  "answer": 1,
+  "explain": [
+   "1 cm on the map stands for 1000 cm in real life.",
+   "4 cm → 4 × 1000 = 4000 cm.",
+   "4000 cm = 4000 ÷ 100 = <b>40 m</b>."
+  ],
+  "tip": "Multiply first, then convert: 100 cm = 1 m and 100 000 cm = 1 km."
+ },
+ {
+  "id": 44,
+  "unit": 6,
+  "topic": "Scale",
+  "type": "fill",
+  "q": "A map has a scale of <b>1 : 50 000</b>. Two towns are <b>6 cm</b> apart on the map. What is the real distance in kilometres?",
+  "answer": [
+   "3"
+  ],
+  "suffix": "km",
+  "explain": [
+   "Real distance = 6 × 50 000 = 300 000 cm.",
+   "Change cm to km: 100 000 cm = 1 km.",
+   "300 000 ÷ 100 000 = <b>3 km</b>."
+  ],
+  "tip": "1 km = 1000 m = 100 000 cm. Learn this chain by heart."
+ },
+ {
+  "id": 45,
+  "unit": 6,
+  "topic": "Scale",
+  "type": "mcq",
+  "q": "A model car is built to a scale of <b>1 : 25</b>. The model is <b>18 cm</b> long. How long is the real car?",
+  "options": [
+   "0.72 cm",
+   "43 cm",
+   "450 cm",
+   "4500 cm"
+  ],
+  "answer": 2,
+  "explain": [
+   "The real car is 25 times longer than the model.",
+   "18 × 25 = 450.",
+   "The real car is <b>450 cm</b> (4.5 m) long."
+  ],
+  "tip": "In a scale of 1 : 25, the real object is always the bigger one."
+ },
+ {
+  "id": 46,
+  "unit": 6,
+  "topic": "Scale",
+  "type": "fill",
+  "q": "A room is <b>8 m</b> long. It is drawn on a plan with a scale of <b>1 : 200</b>. How long is the room on the plan, in centimetres?",
+  "answer": [
+   "4"
+  ],
+  "suffix": "cm",
+  "explain": [
+   "Change the real length to cm first: 8 m = 800 cm.",
+   "Going from real to plan, divide by 200: 800 ÷ 200 = 4.",
+   "On the plan the room is <b>4 cm</b> long."
+  ],
+  "tip": "Map → real: multiply. Real → map: divide."
+ },
+ {
+  "id": 47,
+  "unit": 6,
+  "topic": "Scale",
+  "type": "mcq",
+  "q": "On a plan with a scale of <b>1 : 2000</b>, a park measures <b>5 cm by 3 cm</b>. What are its real measurements?",
+  "options": [
+   "50 m by 30 m",
+   "100 m by 60 m",
+   "10 m by 6 m",
+   "1000 m by 600 m"
+  ],
+  "answer": 1,
+  "explain": [
+   "Length: 5 × 2000 = 10 000 cm = 100 m.",
+   "Width: 3 × 2000 = 6000 cm = 60 m.",
+   "The park is <b>100 m by 60 m</b>."
+  ],
+  "tip": "Work on each measurement separately, then convert both to metres."
+ },
+ {
+  "id": 48,
+  "unit": 6,
+  "topic": "Ratio Word Problems",
+  "type": "mcq",
+  "q": "<b>450 baht</b> is shared between Anna and Ben in the ratio <b>4 : 5</b>. How much does <b>Ben</b> get?",
+  "options": [
+   "200 baht",
+   "250 baht",
+   "180 baht",
+   "360 baht"
+  ],
+  "answer": 1,
+  "explain": [
+   "Total parts = 4 + 5 = 9.",
+   "1 part = 450 ÷ 9 = 50 baht.",
+   "Ben has 5 parts: 5 × 50 = <b>250 baht</b>. (Anna gets 200 baht, and 250 + 200 = 450 ✔)"
+  ],
+  "tip": "Check which name goes with which number before you calculate."
+ },
+ {
+  "id": 49,
+  "unit": 6,
+  "topic": "Ratio Word Problems",
+  "type": "fill",
+  "q": "On a farm the ratio of ducks to chickens is <b>3 : 7</b>. There are <b>84 chickens</b>. How many ducks are there?",
+  "answer": [
+   "36"
+  ],
+  "suffix": "ducks",
+  "explain": [
+   "7 parts stand for 84 chickens, so 1 part = 84 ÷ 7 = 12.",
+   "Ducks are 3 parts: 3 × 12 = 36.",
+   "There are <b>36 ducks</b>."
+  ],
+  "tip": "84 is not the total here — it is only the chickens."
+ },
+ {
+  "id": 50,
+  "unit": 6,
+  "topic": "Ratio Word Problems",
+  "type": "mcq",
+  "q": "Concrete is made by mixing cement and sand in the ratio <b>1 : 4</b>. How much <b>cement</b> is needed to make <b>35 kg</b> of concrete?",
+  "options": [
+   "7 kg",
+   "8.75 kg",
+   "28 kg",
+   "5 kg"
+  ],
+  "answer": 0,
+  "explain": [
+   "Total parts = 1 + 4 = 5.",
+   "1 part = 35 ÷ 5 = 7 kg.",
+   "Cement is 1 part, so <b>7 kg</b> of cement is needed (and 28 kg of sand)."
+  ],
+  "tip": "35 kg is the whole mixture, so divide by the TOTAL number of parts."
+ },
+ {
+  "id": 51,
+  "unit": 6,
+  "topic": "Ratio Word Problems",
+  "type": "fill",
+  "q": "The ratio of Ann's age to Ben's age is <b>5 : 7</b>. Ben is <b>21 years old</b>. How old is Ann?",
+  "answer": [
+   "15"
+  ],
+  "suffix": "years",
+  "explain": [
+   "7 parts stand for 21 years, so 1 part = 21 ÷ 7 = 3 years.",
+   "Ann is 5 parts: 5 × 3 = 15.",
+   "Ann is <b>15 years old</b>."
+  ],
+  "tip": "Ann's number comes first in the ratio, so she is the younger one."
+ },
+ {
+  "id": 52,
+  "unit": 6,
+  "topic": "Ratio Word Problems",
+  "type": "mcq",
+  "q": "A drink is made by mixing syrup and water in the ratio <b>2 : 9</b>. If <b>18 litres</b> of water are used, how much syrup is needed?",
+  "options": [
+   "2 L",
+   "4 L",
+   "9 L",
+   "81 L"
+  ],
+  "answer": 1,
+  "explain": [
+   "9 parts stand for 18 litres of water, so 1 part = 18 ÷ 9 = 2 litres.",
+   "Syrup is 2 parts: 2 × 2 = 4.",
+   "You need <b>4 litres</b> of syrup."
+  ],
+  "tip": "The syrup must be far less than the water, so 9 L and 81 L are unreasonable."
+ },
+ {
+  "id": 53,
+  "unit": 6,
+  "topic": "Ratio Word Problems",
+  "type": "fill",
+  "q": "Three friends share <b>96 stickers</b> in the ratio <b>1 : 2 : 5</b>. How many stickers are in the <b>largest</b> share?",
+  "answer": [
+   "60"
+  ],
+  "suffix": "stickers",
+  "explain": [
+   "Total parts = 1 + 2 + 5 = 8.",
+   "1 part = 96 ÷ 8 = 12 stickers.",
+   "The largest share is 5 parts: 5 × 12 = <b>60 stickers</b>. (12 + 24 + 60 = 96 ✔)"
+  ],
+  "tip": "A three-part ratio works exactly the same way — just add all three parts."
+ },
+ {
+  "id": 54,
+  "unit": 6,
+  "topic": "Ratio Word Problems",
+  "type": "mcq",
+  "q": "In a box the ratio of red beads to blue beads is <b>5 : 3</b>. There are <b>16 more</b> red beads than blue beads. How many beads are in the box <b>altogether</b>?",
+  "options": [
+   "48",
+   "64",
+   "80",
+   "128"
+  ],
+  "answer": 1,
+  "explain": [
+   "The difference in the ratio is 5 − 3 = 2 parts, and that difference is 16 beads.",
+   "So 1 part = 16 ÷ 2 = 8 beads.",
+   "Altogether there are 5 + 3 = 8 parts: 8 × 8 = <b>64 beads</b>. (40 red, 24 blue, difference 16 ✔)"
+  ],
+  "tip": "When a question gives you a DIFFERENCE, subtract the ratio parts instead of adding them."
+ },
+ {
+  "id": 55,
+  "unit": 6,
+  "topic": "Percentage Word Problems",
+  "type": "fill",
+  "q": "Find <b>15% of 240</b>.",
+  "answer": [
+   "36"
+  ],
+  "suffix": "",
+  "explain": [
+   "15% means 15 out of every 100, or 15/100.",
+   "15/100 × 240 = 15 × 2.4 = 36.",
+   "Answer: <b>36</b>."
+  ],
+  "tip": "A quick way: 10% of 240 = 24 and 5% = 12, so 15% = 24 + 12 = 36."
+ },
+ {
+  "id": 56,
+  "unit": 6,
+  "topic": "Percentage Word Problems",
+  "type": "mcq",
+  "q": "A shirt costs <b>800 baht</b>. The shop gives a <b>25% discount</b>. What is the sale price?",
+  "options": [
+   "200 baht",
+   "575 baht",
+   "600 baht",
+   "775 baht"
+  ],
+  "answer": 2,
+  "explain": [
+   "Discount = 25% of 800 = 25/100 × 800 = 200 baht.",
+   "Sale price = 800 − 200 = 600 baht.",
+   "You pay <b>600 baht</b>. (Or straight away: 75% of 800 = 600.)"
+  ],
+  "tip": "200 baht is only the discount — the question asks what you actually pay."
+ },
+ {
+  "id": 57,
+  "unit": 6,
+  "topic": "Percentage Word Problems",
+  "type": "fill",
+  "q": "In a test, <b>18 out of 25</b> students passed. What <b>percentage</b> of the students passed?",
+  "answer": [
+   "72",
+   "72%"
+  ],
+  "suffix": "%",
+  "explain": [
+   "Write it as a fraction: 18/25.",
+   "Make the denominator 100: 25 × 4 = 100, so 18 × 4 = 72 → 72/100.",
+   "<b>72%</b> of the students passed."
+  ],
+  "tip": "Percentage means “out of 100”, so rewrite the fraction with 100 on the bottom."
+ },
+ {
+  "id": 58,
+  "unit": 6,
+  "topic": "Percentage Word Problems",
+  "type": "mcq",
+  "q": "The price of a toy rises from <b>200 baht</b> to <b>250 baht</b>. What is the <b>percentage increase</b>?",
+  "options": [
+   "20%",
+   "25%",
+   "50%",
+   "5%"
+  ],
+  "answer": 1,
+  "explain": [
+   "Increase = 250 − 200 = 50 baht.",
+   "Compare it with the ORIGINAL price: 50/200 = 1/4.",
+   "1/4 = 25/100 = <b>25%</b>."
+  ],
+  "tip": "Percentage change is always compared with the original amount, not the new one."
+ },
+ {
+  "id": 59,
+  "unit": 6,
+  "topic": "Percentage Word Problems",
+  "type": "fill",
+  "q": "<b>40%</b> of a number is <b>60</b>. What is the number?",
+  "answer": [
+   "150"
+  ],
+  "suffix": "",
+  "explain": [
+   "40% of the number = 60, so 40 parts out of 100 equal 60.",
+   "1% of the number = 60 ÷ 40 = 1.5.",
+   "100% = 1.5 × 100 = <b>150</b>. Check: 40% of 150 = 60 ✔"
+  ],
+  "tip": "Find 1% first, then multiply by 100 to get the whole amount."
+ },
+ {
+  "id": 60,
+  "unit": 6,
+  "topic": "Percentage Word Problems",
+  "type": "mcq",
+  "q": "A shop sells a bag for <b>1,200 baht</b> and adds <b>7% VAT</b>. How much does a customer pay in total?",
+  "options": [
+   "1,207 baht",
+   "1,284 baht",
+   "1,340 baht",
+   "1,116 baht"
+  ],
+  "answer": 1,
+  "explain": [
+   "VAT = 7% of 1200 = 7/100 × 1200 = 84 baht.",
+   "Total = 1200 + 84 = 1284 baht.",
+   "The customer pays <b>1,284 baht</b>."
+  ],
+  "tip": "1% of 1200 is 12, so 7% is 7 × 12 = 84. Easy mental maths."
+ }
+];
+const KEY = "g6-dec-ratio-v1";
+const LETTERS = ["A","B","C","D"];
+const GROUPS = [
+  {unit:5, name:"Fractions & Decimals",     label:"Fractions ↔ decimals",      c:"g1"},
+  {unit:5, name:"Adding & Subtracting",     label:"Adding & subtracting",      c:"g2"},
+  {unit:5, name:"Multiplying & Dividing",   label:"Multiplying & dividing",    c:"g3"},
+  {unit:5, name:"Decimal Word Problems",    label:"Decimal word problems",     c:"g4"},
+  {unit:6, name:"Idea of Ratio",            label:"Idea of ratio",             c:"g5"},
+  {unit:6, name:"Equivalent Ratios",        label:"Equivalent ratios",         c:"g6"},
+  {unit:6, name:"Scale",                    label:"Scale",                     c:"g7"},
+  {unit:6, name:"Ratio Word Problems",      label:"Ratio word problems",       c:"g8"},
+  {unit:6, name:"Percentage Word Problems", label:"Percentage word problems",  c:"g9"}
+];
+
+let state = { idx:0, results:{}, picked:{}, typed:{} };
+
+/* ---------- storage (best effort) ---------- */
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+function load(){
+  try{
+    const raw = localStorage.getItem(KEY); if(!raw) return null;
+    const s = JSON.parse(raw);
+    if(s && typeof s.idx === "number" && s.results) return s;
+  }catch(e){}
+  return null;
+}
+
+/* ---------- answer checking ---------- */
+function normalise(s){
+  return String(s).toLowerCase().replace(/,/g,"").replace(/\s+/g,"")
+    .replace(/baht|บาท|kg|km\/h|km|cm²|cm2|cm|litres|litre|liters|liter|glasses|sweets|stickers|ducks|years|%/g,"")
+    .trim();
+}
+function ratioParts(s){
+  const p = s.split(":").map(x => parseFloat(x));
+  return p.every(n => !isNaN(n)) ? p : null;
+}
+function isRight(input, accepted){
+  const a = normalise(input);
+  if(a === "") return false;
+  for(const acc of accepted){
+    const b = normalise(acc);
+    if(a === b) return true;
+    const ra = ratioParts(a), rb = ratioParts(b);
+    if(ra && rb){ if(ra.length === rb.length && ra.every((n,i) => Math.abs(n-rb[i]) < 1e-9)) return true; continue; }
+    const na = parseFloat(a), nb = parseFloat(b);
+    if(!isNaN(na) && !isNaN(nb) && /^-?\d*\.?\d+$/.test(a) && Math.abs(na-nb) < 1e-9) return true;
+  }
+  return false;
+}
+
+/* ---------- rail ---------- */
+const railGroups = document.getElementById("railGroups");
+function buildRail(){
+  railGroups.innerHTML = GROUPS.map(g => {
+    const qs = QUESTIONS.filter(q => q.topic === g.name);
+    return `<div class="group" style="--gc:var(--${g.c})">
+      <p class="group-title"><span class="dot"></span><span>${g.label}</span><em>U${g.unit}</em></p>
+      <div class="chips">${qs.map(q => `<button class="chip" type="button" data-go="${q.id}" aria-label="Question ${q.id}">${q.id}</button>`).join("")}</div>
+    </div>`;
+  }).join("");
+}
+function paintRail(){
+  railGroups.querySelectorAll(".chip").forEach(c => {
+    const id = +c.dataset.go, r = state.results[id];
+    c.classList.toggle("is-current", id === QUESTIONS[state.idx].id);
+    c.classList.toggle("is-correct", r === true);
+    c.classList.toggle("is-wrong", r === false);
+  });
+}
+
+/* ---------- question view ---------- */
+const qcard = document.getElementById("qcard");
+function render(){
+  const q = QUESTIONS[state.idx];
+  const done = state.results[q.id];
+  const answered = done !== undefined;
+  const picked = state.picked[q.id];
+  const typed  = state.typed[q.id] || "";
+
+  let answerHTML = "";
+  if(q.type === "mcq"){
+    answerHTML = `<div class="opts" role="group" aria-label="Answer choices">` + q.options.map((o,i) => {
+      let cls = "opt";
+      if(!answered && picked === i) cls += " is-picked";
+      if(answered){
+        if(i === q.answer) cls += " mark-good";
+        else if(picked === i) cls += " mark-bad";
+      }
+      let flag = "";
+      if(answered && i === q.answer) flag = `<span class="flag">Correct</span>`;
+      else if(answered && picked === i) flag = `<span class="flag">Your answer</span>`;
+      return `<button class="${cls}" type="button" data-pick="${i}" ${answered ? "disabled" : ""}>
+        <span class="k">${LETTERS[i]}</span><span>${o}</span>${flag}</button>`;
+    }).join("") + `</div>`;
+  } else {
+    const mark = answered ? (done ? " mark-good" : " mark-bad") : "";
+    answerHTML = `<div class="fill${mark}">
+      <label for="fillInput">Write your answer</label>
+      <input id="fillInput" type="text" inputmode="decimal" autocomplete="off" spellcheck="false"
+             placeholder="?" value="${typed.replace(/"/g,"&quot;")}" ${answered ? "disabled" : ""}>
+      ${q.suffix ? `<span class="suffix">${q.suffix}</span>` : ""}
+    </div>`;
+  }
+
+  let fb = "";
+  if(answered){
+    const shown = q.type === "mcq" ? `${LETTERS[q.answer]} · ${q.options[q.answer]}` : `${q.answer[0]}${q.suffix ? " " + q.suffix : ""}`;
+    const tone = done === true ? "good" : (done === false ? "bad" : "neutral");
+    const head = done === true ? `<span class="mark">✓</span><span>Correct — well done.</span>`
+                               : `<span class="mark">✕</span><span>Not quite. Follow the working below.</span>`;
+    fb = `<div class="feedback ${tone}">
+      <div class="fb-head">${head}<span class="ans">Answer: ${shown}</span></div>
+      <div class="fb-body">
+        <h4>How to work it out</h4>
+        <ol class="steps">${q.explain.map(s => `<li><span>${s}</span></li>`).join("")}</ol>
+        <div class="watch"><span class="lbl">Watch out</span><span>${q.tip}</span></div>
+      </div>
+    </div>`;
+  }
+
+  qcard.innerHTML = `
+    <div class="qhead" style="--gc:var(--${(GROUPS.find(g => g.name === q.topic) || {c:"g1"}).c})">
+      <span class="qnum">${q.id}</span>
+      <span class="qmeta"><span class="t">${q.topic}</span><span class="u">Unit ${q.unit}</span></span>
+      <span class="tag">${q.type === "mcq" ? "Multiple choice" : "Write the answer"}</span>
+    </div>
+    <div class="qbody">
+      <p class="qtext">${q.q}</p>
+      ${answerHTML}
+      ${fb}
+      <div class="actions">
+        <button class="btn btn-primary ${answered ? "hidden" : ""}" id="checkBtn" type="button">Check answer</button>
+        <button class="btn ${answered ? "" : "hidden"}" id="retryBtn" type="button">Try again</button>
+        <span class="spacer"></span>
+        <button class="btn" id="prevBtn" type="button" ${state.idx === 0 ? "disabled" : ""}>← Back</button>
+        <button class="btn" id="nextBtn" type="button" ${state.idx === QUESTIONS.length-1 ? "disabled" : ""}>Next →</button>
+      </div>
+    </div>`;
+
+  qcard.querySelectorAll("[data-pick]").forEach(b => b.onclick = () => {
+    state.picked[q.id] = +b.dataset.pick; save(); render();
+  });
+  const inp = document.getElementById("fillInput");
+  if(inp){
+    inp.oninput = () => { state.typed[q.id] = inp.value; };
+    inp.onkeydown = e => { if(e.key === "Enter"){ e.preventDefault(); check(); } };
+  }
+  document.getElementById("checkBtn").onclick = check;
+  const rt = document.getElementById("retryBtn"); if(rt) rt.onclick = retry;
+  document.getElementById("prevBtn").onclick = () => go(state.idx-1);
+  document.getElementById("nextBtn").onclick = () => go(state.idx+1);
+
+  document.getElementById("footPos").textContent = `Q${q.id} / 60`;
+  paintRail(); paintStatus();
+}
+
+function check(){
+  const q = QUESTIONS[state.idx];
+  if(state.results[q.id] !== undefined) return;
+  let ok;
+  if(q.type === "mcq"){
+    if(state.picked[q.id] === undefined){
+      const first = qcard.querySelector("[data-pick]");
+      if(first){ first.focus(); }
+      return;
+    }
+    ok = state.picked[q.id] === q.answer;
+  } else {
+    const v = (state.typed[q.id] || "").trim();
+    if(v === ""){ const i = document.getElementById("fillInput"); if(i) i.focus(); return; }
+    ok = isRight(v, q.answer);
+  }
+  state.results[q.id] = ok; save(); render();
+  const fbEl = qcard.querySelector(".feedback");
+  if(fbEl) fbEl.scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+function retry(){
+  const q = QUESTIONS[state.idx];
+  delete state.results[q.id]; delete state.picked[q.id]; delete state.typed[q.id];
+  save(); render();
+  const i = document.getElementById("fillInput"); if(i) i.focus();
+}
+function go(i){
+  if(i < 0 || i >= QUESTIONS.length) return;
+  state.idx = i; save(); render();
+  qcard.scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+function goId(id){ const i = QUESTIONS.findIndex(q => q.id === id); if(i > -1) go(i); }
+
+function paintStatus(){
+  const keys = Object.keys(state.results);
+  const done = keys.length;
+  const right = keys.filter(k => state.results[k] === true).length;
+  document.getElementById("trackFill").style.width = (done/QUESTIONS.length*100) + "%";
+  document.getElementById("statDone").innerHTML = `Answered <b>${done}</b>/60`;
+  document.getElementById("statScore").innerHTML = `Correct <b>${right}</b>`;
+}
+
+/* ---------- views ---------- */
+const views = {start:document.getElementById("viewStart"), quiz:document.getElementById("viewQuiz"), done:document.getElementById("viewDone")};
+function show(name){
+  Object.entries(views).forEach(([k,el]) => el.classList.toggle("hidden", k !== name));
+  document.getElementById("homeBtn").classList.toggle("hidden", name === "start");
+  document.getElementById("finishBtn").classList.toggle("hidden", name !== "quiz");
+  window.scrollTo({top:0, behavior:"auto"});
+}
+
+function results(){
+  const keys = Object.keys(state.results);
+  const right = keys.filter(k => state.results[k] === true).length;
+  const done = keys.length;
+  document.getElementById("scoreBig").innerHTML = `${right}<small>/${done || 60}</small>`;
+  const pct = done ? Math.round(right/done*100) : 0;
+  let msg;
+  if(done === 0) msg = "You have not answered anything yet — go back and try a question.";
+  else if(pct >= 90) msg = `${pct}% correct out of the ${done} question${done===1?"":"s"} you answered. Excellent work — you are ready for the unit test.`;
+  else if(pct >= 70) msg = `${pct}% correct out of the ${done} question${done===1?"":"s"} you answered. A solid result. Read the working for the ones you missed, then try them again.`;
+  else if(pct >= 50) msg = `${pct}% correct out of the ${done} question${done===1?"":"s"} you answered. You are halfway there. Work through the solutions below one skill group at a time.`;
+  else msg = `${pct}% correct out of the ${done} question${done===1?"":"s"} you answered. Do not worry — open each question again and follow the worked solution step by step.`;
+  document.getElementById("verdict").textContent = msg;
+
+  document.getElementById("breakdown").innerHTML = GROUPS.map(g => {
+    const qs = QUESTIONS.filter(q => q.topic === g.name);
+    const at = qs.filter(q => state.results[q.id] !== undefined);
+    const ok = qs.filter(q => state.results[q.id] === true).length;
+    const w = ok/qs.length*100;
+    const seen = at.length ? at.length/qs.length*100 : 0;
+    return `<div class="brow" style="--gc:var(--${g.c})">
+      <span class="nm"><span>Unit ${g.unit}</span>${g.label}</span>
+      <span class="bar"><u style="width:${seen}%"></u><i style="width:${w}%"></i></span>
+      <span class="sc">${ok}<em style="font-style:normal;color:var(--ink-3)">/${qs.length}</em></span>
+    </div>`;
+  }).join("");
+
+  const wrong = QUESTIONS.filter(q => state.results[q.id] === false);
+  document.getElementById("reviewWrap").classList.toggle("hidden", wrong.length === 0);
+  document.getElementById("review").innerHTML = wrong.map(q =>
+    `<button class="chip is-wrong" type="button" data-go="${q.id}" style="min-width:42px">${q.id}</button>`).join("");
+  show("done");
+}
+
+/* ---------- wiring ---------- */
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-go]");
+  if(b){ goId(+b.dataset.go); show("quiz"); }
+});
+document.getElementById("startBtn").onclick = () => { go(0); show("quiz"); };
+document.getElementById("pickBtn").onclick  = () => { show("quiz"); document.querySelector(".rail").scrollIntoView({behavior:"smooth", block:"start"}); };
+document.getElementById("homeBtn").onclick  = () => show("start");
+document.getElementById("finishBtn").onclick = results;
+document.getElementById("backBtn").onclick  = () => show("quiz");
+document.getElementById("againBtn").onclick = () => {
+  state = {idx:0, results:{}, picked:{}, typed:{}}; save(); render(); show("quiz");
+};
+document.getElementById("railToggle").onclick = e => {
+  const g = document.getElementById("railGroups");
+  const hide = !g.classList.contains("hidden");
+  g.classList.toggle("hidden", hide);
+  document.querySelector(".rail-sub").classList.toggle("hidden", hide);
+  e.target.textContent = hide ? "Show" : "Hide";
+};
+document.getElementById("themeBtn").onclick = () => {
+  const r = document.documentElement;
+  const dark = r.getAttribute("data-theme") === "dark" ||
+    (!r.getAttribute("data-theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  r.setAttribute("data-theme", dark ? "light" : "dark");
+};
+document.addEventListener("keydown", e => {
+  if(views.quiz.classList.contains("hidden")) return;
+  if(e.target.tagName === "INPUT") return;
+  if(e.key === "ArrowRight") go(state.idx+1);
+  if(e.key === "ArrowLeft")  go(state.idx-1);
+  if(e.key === "Enter") check();
+});
+
+buildRail();
+document.getElementById("cells").innerHTML = GROUPS.map(g => {
+  const qs = QUESTIONS.filter(q => q.topic === g.name);
+  return `<button class="cell" type="button" style="--gc:var(--${g.c})" data-go="${qs[0].id}">
+    <span class="u">Unit ${g.unit}</span>
+    <span class="t">${g.label}</span>
+    <span class="n">${qs.length}<em>questions</em></span>
+  </button>`;
+}).join("");
+if(window.matchMedia("(max-width:860px)").matches){
+  document.getElementById("railGroups").classList.add("hidden");
+  document.querySelector(".rail-sub").classList.add("hidden");
+  document.getElementById("railToggle").textContent = "Show";
+}
+const saved = load();
+if(saved){
+  state = Object.assign(state, saved);
+  const n = Object.keys(state.results).length;
+  if(n > 0) document.getElementById("resumeNote").textContent = `You have already answered ${n} question${n===1?"":"s"}.`;
+}
+render();
+</script>
+
+</body>
+</html>
