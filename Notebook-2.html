@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notebook 2 — Present Continuous and Conjunctions</title>
+<style>
+:root{
+  --page:#EFE6D4; --paper:#FDFBF4; --paper-2:#F6F1E4;
+  --ink:#2B2A26; --ink-2:#6E675C; --ink-3:#9A9284;
+  --line:#E2D9C4; --line-2:#CFC3A8; --edge:#CDBF9F;
+  --rule:rgba(90,120,160,.22); --margin-rule:rgba(200,80,60,.45);
+  --accent:#D2553A; --accent-deep:#A93D25; --accent-soft:#FBE7DF;
+  --good:#3F7F4E; --good-soft:#E7F2E4;
+  --bad:#B23A26; --bad-soft:#FBE6DF;
+  --t1:#E2674A; --t2:#E0A82E; --t3:#6E9B6B; --t4:#4A7BA7; --t5:#9A5B8C; --t6:#C98A5B;
+  --shadow:0 2px 0 rgba(43,42,38,.05), 0 7px 16px rgba(90,70,35,.14);
+  --shadow-lift:0 3px 0 rgba(43,42,38,.06), 0 12px 24px rgba(90,70,35,.18);
+  --serif:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,"Times New Roman",serif;
+  --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}
+html[data-theme="dark"]{
+  --page:#191A18; --paper:#26282A; --paper-2:#2E3134;
+  --ink:#EDE7D8; --ink-2:#B0A897; --ink-3:#857D6E;
+  --line:#3A3C3E; --line-2:#4A4D50; --edge:#4E5154;
+  --rule:rgba(150,180,215,.16); --margin-rule:rgba(230,120,95,.40);
+  --accent:#E8785C; --accent-deep:#F0977F; --accent-soft:#3A231C;
+  --good:#67BE79; --good-soft:#1B2E1F;
+  --bad:#F0836A; --bad-soft:#33201A;
+  --t1:#F07B5E; --t2:#F0BE4B; --t3:#8CBE88; --t4:#6C9FCE; --t5:#C07CAF; --t6:#DDA476;
+  --shadow:0 2px 0 rgba(0,0,0,.18), 0 8px 18px rgba(0,0,0,.36);
+  --shadow-lift:0 3px 0 rgba(0,0,0,.2), 0 14px 26px rgba(0,0,0,.44);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;max-width:100%;overflow-x:hidden}
+body{
+  background-color:var(--page);
+  background-image:
+    repeating-linear-gradient(0deg,transparent 0 23px,rgba(120,100,60,.045) 23px 24px),
+    repeating-linear-gradient(90deg,transparent 0 23px,rgba(120,100,60,.045) 23px 24px);
+  color:var(--ink); font-family:var(--sans); font-size:18px; line-height:1.6;
+  -webkit-text-size-adjust:100%;
+}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:700;letter-spacing:-.008em;line-height:1.2;margin:0 0 .42em}
+h1{font-size:2.5rem} h2{font-size:1.68rem} h3{font-size:1.22rem}
+p{margin:0 0 .85em}
+.wrap{max-width:980px;margin:0 auto;padding:0 18px}
+.hide{display:none !important}
+b,strong{font-weight:700}
+
+/* ---------- washi tape ---------- */
+.tape{position:relative}
+.tape::before,.tape::after{
+  content:"";position:absolute;z-index:3;height:25px;width:96px;pointer-events:none;
+  background-image:repeating-linear-gradient(46deg,rgba(255,255,255,0) 0 7px,rgba(255,255,255,.3) 7px 14px);
+  background-color:var(--tape,var(--t2));
+  opacity:.86;border-top:1px solid rgba(0,0,0,.1);border-bottom:1px solid rgba(0,0,0,.12);
+  box-shadow:0 1px 3px rgba(70,55,30,.16);
+}
+.tape::before{top:-12px;left:24px;transform:rotate(-2.6deg)}
+.tape::after{top:-12px;right:24px;transform:rotate(2.2deg)}
+.tape.one::after{display:none}
+.tape.one::before{left:50%;margin-left:-48px}
+.tape.t1{--tape:var(--t1)} .tape.t2{--tape:var(--t2)} .tape.t3{--tape:var(--t3)}
+.tape.t4{--tape:var(--t4)} .tape.t5{--tape:var(--t5)} .tape.t6{--tape:var(--t6)}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:40;background:var(--page);border-bottom:1px solid var(--line-2);
+     box-shadow:0 2px 10px rgba(90,70,35,.08)}
+.topin{max-width:980px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:10px}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.mark{width:38px;height:38px;flex:0 0 38px;background:var(--paper);border:1px solid var(--line-2);
+      border-radius:3px;display:grid;place-items:center;box-shadow:var(--shadow);transform:rotate(-3deg)}
+.mark svg{width:21px;height:21px;display:block}
+.brandname{font-family:var(--serif);font-weight:700;font-size:1.05rem;white-space:nowrap}
+.brandsub{font-size:.64rem;color:var(--ink-2);font-weight:600;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.nav{margin-left:auto;display:flex;gap:5px;align-items:center;flex-wrap:nowrap}
+.nb{font:inherit;font-family:var(--sans);font-weight:600;font-size:.87rem;cursor:pointer;padding:7px 13px;
+    border:1px solid var(--line-2);border-radius:6px 6px 2px 2px;background:var(--paper);color:var(--ink-2);
+    box-shadow:0 1px 4px rgba(90,70,35,.1);white-space:nowrap}
+.nb:hover{color:var(--ink);transform:translateY(-1px)}
+.nb[aria-current="true"]{background:var(--ink);color:var(--page);border-color:var(--ink);font-weight:700}
+.nb .lng{display:inline} .nb .shrt{display:none}
+.tgl{width:38px;padding:7px 0;text-align:center;border-radius:6px}
+
+/* ---------- buttons ---------- */
+.btn{font:inherit;font-family:var(--sans);font-weight:600;cursor:pointer;border:1px solid var(--line-2);
+     border-radius:7px;background:var(--paper);color:var(--ink);padding:12px 20px;
+     box-shadow:var(--shadow);min-height:52px}
+.btn:hover{box-shadow:var(--shadow-lift);transform:translateY(-1px)}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 3px rgba(90,70,35,.18)}
+.btn:disabled{opacity:.42;cursor:not-allowed;transform:none;box-shadow:none}
+.btn.pri{background:var(--accent);color:#FFF9F5;border-color:var(--accent-deep);font-weight:700}
+html[data-theme="dark"] .btn.pri{color:#241310}
+.btn.sm{padding:8px 14px;min-height:42px;font-size:.9rem}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* ---------- paper cards ---------- */
+.card{background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:22px 24px;box-shadow:var(--shadow)}
+.card.c1{--tape:var(--t1)} .card.c2{--tape:var(--t2)} .card.c3{--tape:var(--t3)}
+.card.c4{--tape:var(--t4)} .card.c5{--tape:var(--t5)} .card.c6{--tape:var(--t6)}
+.card.tilt{transform:rotate(-.45deg)}
+.card.flat{box-shadow:none;background:var(--paper-2)}
+
+/* ---------- home ---------- */
+.hero{padding:40px 0 8px}
+.eyebrow{display:inline-block;font-family:var(--sans);font-weight:700;font-size:.7rem;letter-spacing:.16em;
+  text-transform:uppercase;padding:6px 14px;margin-bottom:18px;color:#3A2A12;
+  background-image:repeating-linear-gradient(46deg,rgba(255,255,255,0) 0 7px,rgba(255,255,255,.34) 7px 14px);
+  background-color:var(--t2);transform:rotate(-1.2deg);box-shadow:0 1px 3px rgba(70,55,30,.2)}
+.hero h1{font-size:clamp(2.1rem,7vw,3.4rem);margin-bottom:.2em;letter-spacing:-.02em}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.lede{font-size:1.05rem;color:var(--ink-2);max-width:56ch}
+.herowrap{display:grid;grid-template-columns:1fr 320px;gap:30px;align-items:center}
+.herocard{background:var(--paper);border:1px solid var(--line);padding:16px;box-shadow:var(--shadow-lift);
+          transform:rotate(1.3deg)}
+.herocard svg{width:100%;height:auto;display:block}
+
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:22px;margin:38px 0 26px}
+.tile{text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:20px;
+      box-shadow:var(--shadow);cursor:pointer;font:inherit;font-family:var(--sans);color:var(--ink);display:block;width:100%}
+.tile:nth-child(3n+1){--tape:var(--t1);transform:rotate(-.5deg)}
+.tile:nth-child(3n+2){--tape:var(--t3);transform:rotate(.35deg)}
+.tile:nth-child(3n+3){--tape:var(--t4);transform:rotate(-.25deg)}
+.tile:hover{box-shadow:var(--shadow-lift);transform:rotate(0deg) translateY(-3px)}
+.tile:active{transform:translateY(1px)}
+.tbadge{width:44px;height:44px;border-radius:50%;background:var(--tape);color:#FFF9F0;
+        display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:1.3rem;margin-bottom:12px;
+        box-shadow:0 2px 5px rgba(70,55,30,.24)}
+.tile h3{margin:0 0 .3em} .tile p{margin:0;color:var(--ink-2);font-size:.93rem}
+.tmeta{margin-top:12px;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:16px;margin:22px 0}
+.stat{background:var(--paper);border:1px solid var(--line);padding:15px 12px;box-shadow:var(--shadow);text-align:center;
+      border-top:4px solid var(--tape)}
+.stat:nth-child(4n+1){--tape:var(--t1)} .stat:nth-child(4n+2){--tape:var(--t2)}
+.stat:nth-child(4n+3){--tape:var(--t3)} .stat:nth-child(4n+4){--tape:var(--t4)}
+.stat b{display:block;font-family:var(--serif);font-size:1.75rem;line-height:1.15}
+.stat span{font-size:.68rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-2)}
+
+/* ---------- notes pages ---------- */
+.slidebar{display:flex;gap:4px;flex-wrap:wrap;margin:20px 0 0;padding-left:6px}
+.pip{font:inherit;font-family:var(--sans);font-weight:700;font-size:.8rem;cursor:pointer;border:1px solid var(--line-2);
+     border-bottom:none;border-radius:7px 7px 0 0;background:var(--paper-2);color:var(--ink-2);padding:8px 15px 9px;
+     position:relative;top:1px}
+.pip[aria-current="true"]{background:var(--paper);color:var(--ink);padding-bottom:11px;box-shadow:0 -2px 6px rgba(90,70,35,.08)}
+.pip.done::after{content:"\2713";color:var(--good);font-size:.78rem;margin-left:5px}
+.slide{background:var(--paper);border:1px solid var(--line-2);border-radius:0 3px 3px 3px;padding:26px 28px;
+       box-shadow:var(--shadow-lift)}
+.slide h2{margin-top:0}
+.kicker{font-family:var(--sans);font-weight:700;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;
+        color:var(--accent);margin-bottom:8px}
+
+.formula{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:18px 0;font-weight:700;font-size:1rem}
+.chipf{border:1px dashed var(--line-2);border-radius:4px;padding:9px 14px;background:var(--paper-2)}
+.chipf.a{background:#EAF1F8;border-color:#9FB9D3} .chipf.b{background:#EAF3E8;border-color:#A6C6A3}
+.chipf.c{background:#FBF0DA;border-color:#DEC189} .chipf.d{background:#FAE6E0;border-color:#DFAC9B}
+html[data-theme="dark"] .chipf.a{background:#1E2A34;border-color:#41596E}
+html[data-theme="dark"] .chipf.b{background:#1E2B20;border-color:#41613F}
+html[data-theme="dark"] .chipf.c{background:#332A16;border-color:#6A5A2E}
+html[data-theme="dark"] .chipf.d{background:#33201A;border-color:#6B4034}
+.plus{font-family:var(--serif);font-size:1.3rem;color:var(--ink-3)}
+
+table.gt{width:100%;border-collapse:collapse;margin:16px 0;font-size:.95rem}
+table.gt th,table.gt td{border:1px solid var(--line-2);padding:10px 12px;text-align:left}
+table.gt th{background:var(--paper-2);font-family:var(--sans);font-weight:700;font-size:.72rem;
+            letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+.note{border-left:4px solid var(--t4);background:var(--paper-2);padding:14px 17px;margin:17px 0;border-radius:0 4px 4px 0}
+.note b{font-weight:700}
+.warn{border-left-color:var(--bad);background:var(--bad-soft)}
+.yes{border-left-color:var(--good);background:var(--good-soft)}
+.exlist{list-style:none;padding:0;margin:12px 0}
+.exlist li{padding:7px 0 7px 30px;position:relative}
+.exlist li::before{position:absolute;left:0;top:7px;font-weight:700}
+.exlist li.ok::before{content:"\2713";color:var(--good)}
+.exlist li.no::before{content:"\2717";color:var(--bad)}
+.exlist li.no s{color:var(--ink-3)}
+.hl{background:linear-gradient(180deg,transparent 52%,rgba(224,168,46,.55) 52%);font-weight:700;padding:0 2px}
+.hl.g{background:linear-gradient(180deg,transparent 52%,rgba(110,155,107,.5) 52%)}
+.hl.b{background:linear-gradient(180deg,transparent 52%,rgba(74,123,167,.42) 52%)}
+
+/* timeline */
+.tl{border:1px dashed var(--line-2);border-radius:4px;background:var(--paper-2);padding:20px 18px 14px;margin:18px 0}
+.tlline{height:0;border-top:1px solid var(--line-2);margin:28px 0 8px;position:relative}
+.tlbar{position:absolute;height:14px;border-radius:7px;top:-7px}
+.tlnow{position:absolute;top:-28px;width:3px;height:40px;background:var(--accent);border-radius:2px}
+.tllab{font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;position:absolute;top:-32px;white-space:nowrap}
+.grow{animation:grow 1.4s ease-out both}
+@keyframes grow{from{width:0} to{width:var(--w)}}
+.pop{animation:pop .5s ease-out both}
+@keyframes pop{from{transform:scale(.2);opacity:0} to{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion:reduce){.grow,.pop{animation:none}.grow{width:var(--w)}}
+
+/* ---------- question sheet ---------- */
+.qwrap{margin:18px 0}
+.qhead{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.qnum{width:40px;height:40px;flex:0 0 40px;border-radius:50%;background:var(--ink);color:var(--page);
+      display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:1rem}
+.sec-A .qnum{background:var(--t4)} .sec-B .qnum{background:var(--t3)} .sec-C .qnum{background:var(--t1)}
+.qnum, .sec-A .qnum, .sec-B .qnum, .sec-C .qnum{color:#FFF9F0}
+.qmeta{font-family:var(--sans);font-weight:700;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2)}
+.qcard{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:3px;
+       padding:24px 26px 24px 60px;box-shadow:var(--shadow)}
+.qcard::before{content:"";position:absolute;left:44px;top:0;bottom:0;width:1px;background:var(--margin-rule)}
+.qcard::after{content:"";position:absolute;left:16px;top:34px;width:11px;height:11px;border-radius:50%;
+  background:var(--page);box-shadow:0 92px 0 var(--page),0 184px 0 var(--page),inset 0 1px 2px rgba(0,0,0,.18)}
+.qcard.sec-A{border-top:3px solid var(--t4)} .qcard.sec-B{border-top:3px solid var(--t3)} .qcard.sec-C{border-top:3px solid var(--t1)}
+.qtext{font-size:1.14rem;font-weight:600;margin:0 0 6px;line-height:1.55}
+.qhint{color:var(--ink-2);font-size:.9rem;margin:0 0 14px}
+.gap{display:inline-block;min-width:78px;border-bottom:2px solid var(--ink-3);margin:0 3px}
+
+/* marked-up sentence for find-the-mistake */
+.sent{background:var(--paper-2);border:1px dashed var(--line-2);border-radius:4px;padding:16px 18px;margin:6px 0 4px;
+      font-size:1.08rem;font-weight:600;line-height:2.25}
+.sent u{text-decoration:none;border-bottom:2px solid var(--t1);font-weight:700;padding:0 1px}
+.sent .lab{display:inline-block;width:21px;height:21px;line-height:21px;text-align:center;border-radius:50%;
+      background:var(--t1);color:#FFF9F0;font-family:var(--sans);font-size:.66rem;font-weight:700;
+      vertical-align:super;margin:0 1px 0 4px}
+.rv .sent{font-size:.98rem;margin:9px 0}
+
+.opts{display:grid;gap:11px;margin-top:16px}
+.opt{display:flex;align-items:flex-start;gap:13px;text-align:left;width:100%;font:inherit;font-family:var(--sans);
+     font-weight:600;cursor:pointer;background:var(--paper);color:var(--ink);border:1px solid var(--line-2);
+     border-radius:5px;padding:14px 16px;min-height:58px;box-shadow:0 1px 4px rgba(90,70,35,.1)}
+.opt:hover:not(:disabled){box-shadow:var(--shadow);transform:translateY(-1px);border-color:var(--ink-3)}
+.opt:active:not(:disabled){transform:translateY(1px)}
+.opt:disabled{cursor:default;transform:none}
+.ol{width:28px;height:28px;flex:0 0 28px;border-radius:4px;border:1.5px solid var(--line-2);background:var(--paper-2);
+    display:grid;place-items:center;font-family:var(--sans);font-weight:700;font-size:.84rem;margin-top:1px;color:var(--ink-2)}
+.otx{flex:1;min-width:0}
+.olab{display:block;width:-moz-fit-content;width:fit-content;margin-top:9px;font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+      border:1.5px solid currentColor;border-radius:3px;padding:2px 7px;transform:rotate(-2.5deg)}
+.opt.right{border-color:var(--good);background:var(--good-soft);border-width:1.5px}
+.opt.right .ol{background:var(--good);color:#FFF9F0;border-color:var(--good)}
+.opt.right .olab{color:var(--good)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft);border-width:1.5px}
+.opt.wrong .ol{background:var(--bad);color:#FFF9F0;border-color:var(--bad)}
+.opt.wrong .olab{color:var(--bad)}
+
+/* sticky-note feedback */
+.fb{position:relative;padding:16px 18px;margin-top:16px;box-shadow:var(--shadow);transform:rotate(-.5deg);
+    background:var(--good-soft);border:1px solid var(--line)}
+.fb.no{background:var(--bad-soft);transform:rotate(.45deg)}
+.fb .fbh{font-family:var(--serif);font-weight:700;display:flex;align-items:center;gap:9px;margin-bottom:6px;font-size:1.08rem}
+.fb.ok .fbh{color:var(--good)} .fb.no .fbh{color:var(--bad)}
+.fb .fbh .g{font-size:1.2rem}
+
+/* chip builder */
+.built{min-height:66px;border:1px dashed var(--line-2);border-radius:4px;padding:11px;background:var(--paper-2);
+       display:flex;flex-wrap:wrap;gap:9px;align-content:flex-start;margin:13px 0}
+.built:empty::before{content:"Tap the words below to build your sentence.";color:var(--ink-3);font-size:.9rem}
+.bank{display:flex;flex-wrap:wrap;gap:9px;margin:10px 0}
+.chip{font:inherit;font-family:var(--sans);font-weight:600;cursor:pointer;border:1px solid var(--line-2);border-radius:5px;
+      background:var(--paper);color:var(--ink);padding:10px 14px;box-shadow:0 1px 4px rgba(90,70,35,.12);min-height:44px}
+.chip:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
+.chip:active{transform:translateY(1px)}
+.chip.used{opacity:.26;pointer-events:none}
+.chip.inb{background:var(--accent-soft);border-color:var(--accent)}
+
+.tin{font:inherit;font-family:var(--sans);font-weight:600;font-size:1.02rem;border:1px solid var(--line-2);
+     border-radius:5px;padding:12px 14px;background:var(--paper);color:var(--ink);width:100%;max-width:320px;min-height:50px;
+     box-shadow:inset 0 1px 3px rgba(90,70,35,.1)}
+.tin:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.tin.right{border-color:var(--good);background:var(--good-soft)}
+.tin.wrong{border-color:var(--bad);background:var(--bad-soft)}
+
+/* picture */
+.picbox{background:var(--paper);border:1px solid var(--line);padding:12px;box-shadow:var(--shadow-lift);
+        overflow-x:auto;-webkit-overflow-scrolling:touch}
+.picbox svg{display:block;width:100%;height:auto;min-width:580px}
+.swipe{display:none;font-size:.8rem;color:var(--ink-2);text-align:center;margin:8px 0 0;letter-spacing:.06em}
+
+/* progress: a paper ruler */
+.prog{display:flex;align-items:center;gap:11px;margin:16px 0}
+.track{flex:1;height:16px;border:1px solid var(--line-2);border-radius:3px;min-width:60px;overflow:hidden;
+  background-color:var(--paper);
+  background-image:repeating-linear-gradient(90deg,transparent 0 15px,var(--line-2) 15px 16px)}
+.fill{height:100%;background:var(--t3);opacity:.62;width:0;transition:width .3s ease}
+@media (prefers-reduced-motion:reduce){.fill{transition:none}}
+.score{font-family:var(--sans);font-weight:700;font-size:.88rem;white-space:nowrap;border:1px solid var(--line-2);
+       border-radius:4px;padding:4px 11px;background:var(--paper)}
+
+.navgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:8px;margin:14px 0}
+.gcell{font:inherit;font-family:var(--sans);font-weight:700;cursor:pointer;border:1px solid var(--line-2);border-radius:4px;
+       background:var(--paper);color:var(--ink-2);padding:10px 0;min-height:44px;box-shadow:0 1px 3px rgba(90,70,35,.1)}
+.gcell.g-ok{background:var(--good-soft);border-color:var(--good);color:var(--good)}
+.gcell.g-no{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.gcell[aria-current="true"]{background:var(--ink);color:var(--page);border-color:var(--ink)}
+
+/* results */
+.bigscore{font-family:var(--serif);font-size:3.5rem;font-weight:700;line-height:1;letter-spacing:-.03em}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.rchip{border:1px solid var(--line-2);border-radius:4px;padding:7px 14px;font-weight:600;font-size:.88rem;
+       background:var(--paper-2);border-left:4px solid var(--tape)}
+.rchip:nth-child(1){--tape:var(--t3)} .rchip:nth-child(2){--tape:var(--t1)} .rchip:nth-child(3){--tape:var(--t2)}
+.parts{display:grid;gap:13px;margin:20px 0}
+.part{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:center}
+.part .pn{font-weight:600;font-size:.94rem}
+.part .track{grid-column:1/-1}
+.stars{font-size:1.9rem;letter-spacing:.14em;line-height:1;color:var(--t2)}
+.review{display:grid;gap:14px;margin-top:16px}
+.rv{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--bad);padding:16px 18px;box-shadow:var(--shadow)}
+.rv .rq{font-weight:600;margin-bottom:9px}
+.rv .ra{font-weight:700;font-size:.96rem}
+.rv .ra.y{color:var(--good)} .rv .ra.n{color:var(--bad)}
+.rv .rx{color:var(--ink-2);font-size:.94rem;margin-top:8px}
+
+footer{border-top:1px solid var(--line-2);margin-top:52px;padding:24px 0 34px;color:var(--ink-2);font-size:.85rem}
+footer b{color:var(--ink);font-weight:700}
+.foot-brand{display:flex;align-items:center;gap:11px;margin-bottom:9px;font-family:var(--serif)}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .herowrap{grid-template-columns:1fr}
+  .herocard{max-width:340px}
+}
+@media (max-width:640px){
+  body{font-size:17px}
+  .wrap{padding:0 14px}
+  .slide,.card{padding:18px}
+  .qcard{padding:18px 18px 18px 38px}
+  .qcard::before{left:24px}
+  .qcard::after{display:none}
+  .swipe{display:block}
+  .hero{padding:26px 0 4px}
+  .tape::before,.tape::after{width:74px;height:21px;top:-10px}
+}
+@media (max-width:620px){
+  .nb .lng{display:none} .nb .shrt{display:inline}
+  .brandsub{display:none}
+  .nb{padding:7px 10px;font-size:.82rem}
+}
+@media (max-width:560px){ .brandname{display:none} }
+@media (max-width:430px){
+  .topin{padding:9px 12px;gap:7px}
+  .mark{width:33px;height:33px;flex:0 0 33px}
+  .nb{padding:6px 9px;font-size:.79rem}
+  .bigscore{font-size:2.9rem}
+  .sent{line-height:2.35;padding:13px 14px}
+}
+@media (max-width:360px){ .score{display:none} }
+@media print{
+  .top,.nav,.btnrow,.slidebar,.navgrid{display:none !important}
+  body{background:#fff;font-size:12pt}
+  .card,.qcard,.slide{box-shadow:none;transform:none;break-inside:avoid}
+  .tape::before,.tape::after{display:none}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="topin">
+    <div class="logo">
+      <div class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2.6l2.7 5.9 6.4.7-4.8 4.3 1.3 6.3L12 16.6 6.4 19.8l1.3-6.3L2.9 9.2l6.4-.7z" fill="#E0A82E" stroke="#2B2A26" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="brandname">Bright EngMath</div>
+        <div class="brandsub">English &amp; Maths Resources</div>
+      </div>
+    </div>
+    <nav class="nav" aria-label="Main">
+      <button class="nb" data-go="home" aria-current="true"><span class="lng">Home</span><span class="shrt">Home</span></button>
+      <button class="nb" data-go="lesson"><span class="lng">Notes</span><span class="shrt">Notes</span></button>
+      <button class="nb" data-go="practice"><span class="lng">Practice</span><span class="shrt">Drill</span></button>
+      <button class="nb" data-go="test"><span class="lng">Test</span><span class="shrt">Test</span></button>
+      <button class="nb tgl" id="themeBtn" title="Switch light / dark" aria-label="Switch light or dark theme">&#9681;</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= HOME ================= -->
+<section id="view-home" class="wrap">
+  <div class="hero">
+    <div class="herowrap">
+      <div>
+        <span class="eyebrow">Paper 2 &middot; Grade 6 &ndash; M.1</span>
+        <h1>The Grammar <em>Notebook</em></h1>
+        <p class="lede">A second helping of the Present Continuous and conjunctions &mdash; every question
+        brand new. Skim the notes, drill the seven activities, then sit the thirty-question paper.
+        Nothing is marked without an explanation.</p>
+        <div class="btnrow" style="margin-top:20px">
+          <button class="btn pri" data-go="lesson">Open the notes</button>
+          <button class="btn" data-go="practice">Start practising</button>
+        </div>
+      </div>
+      <div class="herocard" aria-hidden="true">
+        <svg viewBox="0 0 300 250">
+          <ellipse cx="152" cy="212" rx="126" ry="12" fill="#000" opacity=".07"/>
+          <rect x="22" y="34" width="128" height="164" rx="3" fill="#FFFDF6" stroke="#C9BB9C" stroke-width="1.4"/>
+          <rect x="150" y="34" width="128" height="164" rx="3" fill="#FFFDF6" stroke="#C9BB9C" stroke-width="1.4"/>
+          <path d="M150 34v164" stroke="#C9BB9C" stroke-width="1.4"/>
+          <g stroke="#AFC4DA" stroke-width="1">
+            <path d="M34 74h104M34 96h104M34 118h104M34 140h104M34 162h104"/>
+            <path d="M162 74h104M162 96h104M162 118h104M162 140h104M162 162h104"/>
+          </g>
+          <path d="M42 40v152M170 40v152" stroke="#E3A79A" stroke-width="1"/>
+          <text x="50" y="68" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#2B2A26">Right now:</text>
+          <text x="50" y="92" font-family="Georgia,serif" font-size="14" fill="#2B2A26">am / is / are</text>
+          <text x="50" y="114" font-family="Georgia,serif" font-size="14" fill="#2B2A26">+ verb-</text>
+          <text x="97" y="114" font-family="Georgia,serif" font-size="14" font-weight="700" fill="#D2553A">ing</text>
+          <text x="50" y="158" font-family="Georgia,serif" font-size="13" font-style="italic" fill="#6E675C">She is cooking.</text>
+          <text x="178" y="68" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#2B2A26">Joining words:</text>
+          <text x="178" y="92" font-family="Georgia,serif" font-size="14" fill="#2B2A26">and &middot; but &middot; so</text>
+          <text x="178" y="114" font-family="Georgia,serif" font-size="14" fill="#2B2A26">because &middot; while</text>
+          <text x="178" y="136" font-family="Georgia,serif" font-size="14" fill="#2B2A26">both &hellip; and</text>
+          <text x="178" y="158" font-family="Georgia,serif" font-size="13" font-style="italic" fill="#6E675C">two halves, one idea</text>
+          <g transform="rotate(-8 216 34)">
+            <rect x="196" y="22" width="72" height="22" fill="#6E9B6B" opacity=".8"/>
+            <rect x="196" y="22" width="72" height="22" fill="none" stroke="#2B2A26" stroke-width=".8" opacity=".35"/>
+          </g>
+          <g transform="rotate(-9 150 218)">
+            <rect x="52" y="210" width="188" height="13" rx="2" fill="#E0A82E" stroke="#2B2A26" stroke-width="1.3"/>
+            <path d="M52 210h-16l-8 6.5 8 6.5h16z" fill="#F0DCB4" stroke="#2B2A26" stroke-width="1.3" stroke-linejoin="round"/>
+            <path d="M36 210l-8 6.5 8 6.5z" fill="#3D3A34"/>
+            <rect x="240" y="209" width="16" height="15" rx="3" fill="#E2674A" stroke="#2B2A26" stroke-width="1.3"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="tiles">
+    <button class="tile tape one t1" data-go="lesson">
+      <div class="tbadge">1</div>
+      <h3>Quick Notes</h3>
+      <p>Five revision pages. Everything you need on one screen each &mdash; forms, rules and the traps.</p>
+      <div class="tmeta" id="m-lesson">5 pages</div>
+    </button>
+    <button class="tile tape one t3" data-go="practice">
+      <div class="tbadge">2</div>
+      <h3>Practice</h3>
+      <p>Seven activities, including spelling, sentence building and finding the mistake.</p>
+      <div class="tmeta" id="m-practice">7 activities</div>
+    </button>
+    <button class="tile tape one t4" data-go="test">
+      <div class="tbadge">3</div>
+      <h3>The Paper</h3>
+      <p>Thirty questions in three parts. Skip, come back, finish when you like, then review.</p>
+      <div class="tmeta" id="m-test">30 questions</div>
+    </button>
+  </div>
+
+  <h2 style="margin-top:34px">Your progress</h2>
+  <div class="stats">
+    <div class="stat"><b id="s-lesson">0/5</b><span>Notes read</span></div>
+    <div class="stat"><b id="s-practice">0/7</b><span>Activities done</span></div>
+    <div class="stat"><b id="s-pscore">&ndash;</b><span>Practice score</span></div>
+    <div class="stat"><b id="s-best">&ndash;</b><span>Best paper score</span></div>
+  </div>
+
+  <div class="card tape t2" style="margin-top:26px">
+    <h3 style="margin-top:0">What this paper covers</h3>
+    <div class="tscroll">
+    <table class="gt">
+      <tr><th style="width:44%">Present Continuous</th><th>Conjunctions</th></tr>
+      <tr><td>Positive &mdash; <b>am / is / are + verb-ing</b></td><td>Coordinating &mdash; <b>FANBOYS</b></td></tr>
+      <tr><td>Negative &mdash; <b>am not / isn&#8217;t / aren&#8217;t</b></td><td>Subordinating &mdash; <b>because, since, although, while, if</b></td></tr>
+      <tr><td>Questions and short answers</td><td>Correlative &mdash; <b>both&hellip;and, either&hellip;or, neither&hellip;nor, not only&hellip;but also</b></td></tr>
+      <tr><td>Spelling of <b>-ing</b> &middot; state verbs</td><td>Commas and subject&ndash;verb agreement</td></tr>
+    </table>
+    </div>
+    <p style="margin:14px 0 0;font-size:.88rem;color:var(--ink-2)">
+      This is <b>Paper 2</b>. Every sentence here is different from Paper 1, so the two can be used
+      one after the other &mdash; teach with one, test with the other.</p>
+  </div>
+</section>
+
+<!-- ================= NOTES ================= -->
+<section id="view-lesson" class="wrap">
+  <h1 style="margin-top:30px">Quick Notes</h1>
+  <p class="lede">Five pages of revision. Page 1&ndash;3 are the Present Continuous, pages 4&ndash;5 are conjunctions.</p>
+  <div class="slidebar" id="slidebar"></div>
+  <div class="slide" id="slideBox" tabindex="-1"></div>
+  <div class="btnrow" style="margin:18px 0 10px">
+    <button class="btn" id="slPrev">&lsaquo; Back</button>
+    <button class="btn pri" id="slNext">Next page &rsaquo;</button>
+    <button class="btn" data-go="practice" id="slToPractice">Go to practice</button>
+  </div>
+</section>
+
+<!-- ================= PRACTICE ================= -->
+<section id="view-practice" class="wrap hide">
+  <div id="pracMenu">
+    <h1 style="margin-top:30px">Practice</h1>
+    <p class="lede">Every answer is checked and explained straight away. Do them in any order, as often as you like.</p>
+    <div class="tiles" id="pracTiles"></div>
+    <div class="btnrow"><button class="btn" id="pracReset">Reset practice scores</button></div>
+  </div>
+  <div id="pracRun" class="hide">
+    <div class="btnrow" style="margin:24px 0 6px">
+      <button class="btn sm" id="pracBack">&lsaquo; All activities</button>
+    </div>
+    <h2 id="pracTitle"></h2>
+    <p class="qhint" id="pracIntro"></p>
+    <div class="prog">
+      <div class="track"><div class="fill" id="pracFill"></div></div>
+      <span class="score" id="pracScore">0 / 0</span>
+    </div>
+    <div id="pracBody"></div>
+    <div class="btnrow" style="margin-top:18px">
+      <button class="btn pri" id="pracNext">Next &rsaquo;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEST ================= -->
+<section id="view-test" class="wrap hide">
+  <div id="testStart">
+    <h1 style="margin-top:30px">The Paper</h1>
+    <div class="card tape t1">
+      <h3 style="margin-top:0">30 questions &middot; three parts</h3>
+      <ul class="exlist">
+        <li class="ok"><b>Part A</b> &mdash; Present Continuous: form, negatives, questions, spelling (10)</li>
+        <li class="ok"><b>Part B</b> &mdash; Conjunctions: coordinating, subordinating, correlative (10)</li>
+        <li class="ok"><b>Part C</b> &mdash; Mixed: find the mistake and join the ideas (10)</li>
+      </ul>
+      <p>Answer in any order, skip a question and come back to it with the <b>&#9638;</b> button, and press
+      <b>Finish</b> whenever you want. Each question is marked the moment you answer it, and the full
+      explanations are waiting at the end.</p>
+      <div class="btnrow" style="margin-top:8px">
+        <button class="btn pri" id="testGo">Start the paper</button>
+      </div>
+      <p style="margin:18px 0 0;font-size:.85rem;color:var(--ink-2)">Bright EngMath &middot; English &amp; Maths Resources</p>
+    </div>
+  </div>
+
+  <div id="testRun" class="hide">
+    <div class="prog" style="margin-top:26px">
+      <button class="btn sm" id="tPrev" aria-label="Previous question">&lsaquo;</button>
+      <div class="track"><div class="fill" id="tFill"></div></div>
+      <span class="score" id="tScore">0 / 30</span>
+      <button class="btn sm" id="tNext" aria-label="Next question">&rsaquo;</button>
+      <button class="btn sm" id="tGrid" aria-label="Show all questions">&#9638;</button>
+    </div>
+    <div id="tGridBox" class="hide"><div class="navgrid" id="tGridInner"></div></div>
+    <div id="tBody"></div>
+    <div class="btnrow" style="margin-top:18px">
+      <button class="btn" id="tSkip">Skip this one</button>
+      <button class="btn pri" id="tFinish">Finish &amp; see my score</button>
+    </div>
+  </div>
+
+  <div id="testResult" class="hide"></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-brand">
+      <div class="mark" aria-hidden="true" style="width:30px;height:30px;flex:0 0 30px">
+        <svg viewBox="0 0 24 24"><path d="M12 2.6l2.7 5.9 6.4.7-4.8 4.3 1.3 6.3L12 16.6 6.4 19.8l1.3-6.3L2.9 9.2l6.4-.7z" fill="#E0A82E" stroke="#2B2A26" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </div>
+      <b>Bright EngMath</b> &mdash; English &amp; Maths Resources
+    </div>
+    &copy; 2026 Bright EngMath. Made for the classroom.<br>
+    One teacher / one classroom licence &middot; please do not resell or share publicly.
+  </div>
+</footer>
+
+<template id="kitchenScene">
+<svg viewBox="0 0 1000 480" role="img" aria-label="A family kitchen. A woman is cooking, a man is washing the dishes, a boy is doing his homework, a girl is playing the guitar, a dog is eating and a cat is sleeping.">
+<style>
+.k-ol{stroke:#2B2A26;stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round;fill:none}
+.k-f{stroke:#2B2A26;stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round}
+.k-t{stroke:#2B2A26;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round;fill:none}
+.k-limb{stroke:#2B2A26;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.k-sk1{stroke:#F2CBA4;stroke-width:5.4;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.k-sk2{stroke:#D79B6E;stroke-width:5.4;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.k-eye{fill:#2B2A26}
+</style>
+
+<!-- ===== room ===== -->
+<rect x="0" y="0" width="1000" height="334" fill="#F3E7D2"/>
+<rect x="0" y="334" width="1000" height="146" fill="#C79A68"/>
+<path d="M0 334h1000" class="k-ol"/>
+<path d="M120 334l-60 146M360 334l-40 146M620 334v146M860 334l40 146" style="stroke:#A97F52;stroke-width:2.2"/>
+<path d="M0 392h1000M0 440h1000" style="stroke:#A97F52;stroke-width:2.2"/>
+
+<!-- window -->
+<g>
+  <rect x="52" y="58" width="146" height="124" rx="4" fill="#CFE8F7" class="k-f"/>
+  <circle cx="168" cy="86" r="15" fill="#F6C445" class="k-f"/>
+  <path d="M66 150c0-16 12-27 26-24 5-13 24-14 30-3 11-4 20 5 20 14 0 8-5 13-12 13z" fill="#8CC48A" class="k-f"/>
+  <path d="M125 58v124M52 120h146" class="k-f"/>
+  <rect x="44" y="50" width="162" height="10" rx="3" fill="#B8895A" class="k-f"/>
+  <rect x="44" y="180" width="162" height="10" rx="3" fill="#B8895A" class="k-f"/>
+</g>
+
+<!-- wall clock -->
+<g>
+  <circle cx="486" cy="82" r="33" fill="#FFFFFF" class="k-f"/>
+  <path d="M486 62v22l14 9" class="k-f" fill="none" stroke-width="3"/>
+  <circle cx="486" cy="82" r="3.4" fill="#2B2A26"/>
+  <path d="M486 55v6M513 82h-6M486 109v-6M459 82h6" class="k-t"/>
+</g>
+
+<!-- wall shelf with jars -->
+<g>
+  <rect x="640" y="130" width="150" height="9" rx="3" fill="#B8895A" class="k-f"/>
+  <rect x="656" y="98" width="30" height="32" rx="4" fill="#E2674A" class="k-f"/>
+  <rect x="694" y="104" width="26" height="26" rx="4" fill="#6E9B6B" class="k-f"/>
+  <rect x="730" y="94" width="34" height="36" rx="4" fill="#E0A82E" class="k-f"/>
+  <path d="M660 98h22M698 104h18M736 94h22" class="k-t"/>
+</g>
+
+<!-- ===== SOFA + GIRL PLAYING THE GUITAR + CAT  (left) ===== -->
+<g>
+  <rect x="34" y="214" width="262" height="90" rx="12" fill="#8FA9C4" class="k-f"/>
+  <rect x="26" y="252" width="46" height="66" rx="12" fill="#7C97B4" class="k-f"/>
+  <rect x="258" y="252" width="46" height="66" rx="12" fill="#7C97B4" class="k-f"/>
+  <rect x="30" y="296" width="270" height="34" rx="10" fill="#9FB7CF" class="k-f"/>
+  <rect x="48" y="330" width="14" height="22" rx="4" fill="#8A6742" class="k-f"/>
+  <rect x="270" y="330" width="14" height="22" rx="4" fill="#8A6742" class="k-f"/>
+
+  <!-- girl: legs -->
+  <path d="M108 300l-6 44" class="k-limb"/><path d="M108 300l-6 44" class="k-sk1"/>
+  <path d="M130 300l6 44" class="k-limb"/><path d="M130 300l6 44" class="k-sk1"/>
+  <path d="M88 344h24v11H88z" fill="#E2674A" class="k-f"/>
+  <path d="M126 344h24v11h-24z" fill="#E2674A" class="k-f"/>
+  <!-- skirt + torso -->
+  <path d="M96 300l4 -20h40l4 20z" fill="#E0A82E" class="k-f"/>
+  <path d="M102 236c0-11 8-18 18-18s18 7 18 18v46h-36z" fill="#F2C65C" class="k-f"/>
+  <!-- hair behind the head -->
+  <path d="M98 200c-9 17-8 34 0 45 5 3 11 1 12 -4-9-9-12-28-6-41z" fill="#4A3524" class="k-f"/>
+  <path d="M142 200c9 17 8 34 0 45-5 3-11 1-12 -4 9-9 12-28 6-41z" fill="#4A3524" class="k-f"/>
+  <circle cx="120" cy="208" r="17" fill="#F2CBA4" class="k-f"/>
+  <path d="M103 206c0-14 8-22 17-22s17 8 17 22c0-9-8-13-17-13s-17 4-17 13z" fill="#4A3524" class="k-f"/>
+  <circle cx="114" cy="211" r="2.2" class="k-eye"/><circle cx="126" cy="211" r="2.2" class="k-eye"/>
+  <path d="M114 219c4 4 9 4 12 0" class="k-ol"/>
+  <!-- guitar across her lap -->
+  <g>
+    <path d="M170 226l-38 34" style="stroke:#2B2A26;stroke-width:9;stroke-linecap:round"/>
+    <path d="M170 226l-38 34" style="stroke:#8A6742;stroke-width:5;stroke-linecap:round"/>
+    <path d="M176 216h16v14h-16z" transform="rotate(42 184 223)" fill="#3D3A34" class="k-f"/>
+    <ellipse cx="118" cy="272" rx="34" ry="26" transform="rotate(-42 118 272)" fill="#D98A3F" class="k-f"/>
+    <ellipse cx="100" cy="288" rx="26" ry="22" transform="rotate(-42 100 288)" fill="#D98A3F" class="k-f"/>
+    <circle cx="116" cy="274" r="8" fill="#7A4C21" class="k-f"/>
+    <path d="M136 256l-40 36" class="k-t"/>
+  </g>
+  <!-- arms on the guitar -->
+  <path d="M104 244l-16 26 22 14" class="k-limb"/><path d="M104 244l-16 26 22 14" class="k-sk1"/>
+  <path d="M136 244l18 12 -18 16" class="k-limb"/><path d="M136 244l18 12 -18 16" class="k-sk1"/>
+
+  <!-- cat asleep on the sofa -->
+  <g>
+    <ellipse cx="240" cy="284" rx="38" ry="20" fill="#9A9490" class="k-f"/>
+    <circle cx="212" cy="278" r="16" fill="#9A9490" class="k-f"/>
+    <path d="M202 268c-4-11-2-16 4-14 4 1 6 6 6 11z" fill="#7E7874" class="k-f"/>
+    <path d="M220 266c4-10 9-13 12-8 2 4-1 9-5 12z" fill="#7E7874" class="k-f"/>
+    <path d="M204 278c3 2 7 2 9 0M216 278c3 2 7 2 9 0" class="k-ol"/>
+    <path d="M208 286c3 3 8 3 11 0" class="k-ol"/>
+    <path d="M272 282c14-4 20-14 14-22" class="k-ol"/>
+    <path d="M232 268c8-4 18-4 26 0" class="k-t"/>
+    <path d="M262 258c2-6 6-9 10-9M268 260c4-4 9-5 12-3" class="k-t"/>
+    <text x="272" y="246" font-family="Georgia,serif" font-size="17" font-weight="700" fill="#2B2A26">z</text>
+    <text x="286" y="232" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#2B2A26">z</text>
+  </g>
+</g>
+
+<!-- ===== DINING TABLE + BOY DOING HIS HOMEWORK  (centre) ===== -->
+<g>
+  <!-- chair back behind him -->
+  <rect x="470" y="214" width="72" height="84" rx="8" fill="#B8895A" class="k-f"/>
+  <path d="M486 226v60M506 226v60M526 226v60" class="k-t"/>
+  <!-- boy -->
+  <path d="M488 236c0-12 8-20 18-20s18 8 18 20v62h-36z" fill="#6E9B6B" class="k-f"/>
+  <circle cx="506" cy="200" r="17" fill="#D79B6E" class="k-f"/>
+  <path d="M489 198c0-14 8-22 17-22s17 8 17 22c0-10-8-14-17-14s-17 4-17 14z" fill="#2E2A26" class="k-f"/>
+  <circle cx="500" cy="204" r="2.2" class="k-eye"/><circle cx="512" cy="204" r="2.2" class="k-eye"/>
+  <path d="M500 212c4 4 9 4 12 0" class="k-ol"/>
+  <!-- arms forward onto the table -->
+  <path d="M490 246l-24 32" class="k-limb"/><path d="M490 246l-24 32" class="k-sk2"/>
+  <path d="M524 246l20 26 -12 12" class="k-limb"/><path d="M524 246l20 26 -12 12" class="k-sk2"/>
+  <!-- table -->
+  <rect x="352" y="292" width="304" height="16" rx="5" fill="#D2A56F" class="k-f"/>
+  <rect x="366" y="308" width="14" height="86" rx="4" fill="#B8895A" class="k-f"/>
+  <rect x="628" y="308" width="14" height="86" rx="4" fill="#B8895A" class="k-f"/>
+  <path d="M372 386h264" style="stroke:#B8895A;stroke-width:9;stroke-linecap:round"/>
+  <path d="M372 386h264" class="k-t"/>
+  <!-- open exercise book + pencil in his hand -->
+  <path d="M446 274h96v20h-96z" fill="#FFFFFF" class="k-f"/>
+  <path d="M494 274v20" class="k-ol"/>
+  <path d="M454 280h30M454 287h30M502 280h30M502 287h30" class="k-t"/>
+  <path d="M536 276l22 -26" style="stroke:#E0A82E;stroke-width:7;stroke-linecap:round"/>
+  <path d="M536 276l22 -26" class="k-t"/>
+  <path d="M531 282l7 -9 4 5z" fill="#2B2A26"/>
+  <!-- a stack of books on the table -->
+  <rect x="576" y="276" width="64" height="9" rx="2" fill="#E2674A" class="k-f"/>
+  <rect x="580" y="285" width="60" height="9" rx="2" fill="#4A7BA7" class="k-f"/>
+</g>
+
+<!-- ===== DOG EATING FROM ITS BOWL  (foreground floor) ===== -->
+<g transform="translate(268,438)">
+  <ellipse cx="66" cy="6" rx="74" ry="11" fill="#A97F52" opacity=".5"/>
+  <!-- body -->
+  <path d="M56 -34c0-15 11-24 26-24h34c15 0 24 9 24 23 0 13-9 21-24 21H82c-15 0-26-7-26-20z" fill="#C89A6C" class="k-f"/>
+  <path d="M74 -14v14M94 -14v14M120 -14v14M138 -14v14" class="k-limb" style="stroke-width:8"/>
+  <path d="M74 -14v14M94 -14v14M120 -14v14M138 -14v14" style="stroke:#C89A6C;stroke-width:3.6;stroke-linecap:round;fill:none"/>
+  <path d="M66 -14h16v14H66zM86 -14h16v14h-16zM112 -14h16v14h-16zM130 -14h16v14h-16z" fill="#A5744C" class="k-f"/>
+  <!-- tail up -->
+  <path d="M140 -42c12-6 17-20 10-28-1 10-7 17-13 19z" fill="#C89A6C" class="k-f"/>
+  <!-- neck + head bent down to the bowl -->
+  <path d="M60 -40c-10 6-18 14-22 22" class="k-limb" style="stroke-width:15"/>
+  <path d="M60 -40c-10 6-18 14-22 22" style="stroke:#C89A6C;stroke-width:10;stroke-linecap:round;fill:none"/>
+  <circle cx="30" cy="-20" r="17" fill="#C89A6C" class="k-f"/>
+  <path d="M20 -34c-8-9-8-17-1-17 5 0 9 6 10 12z" fill="#A5744C" class="k-f"/>
+  <path d="M42 -32c3-11 9-14 12-8 2 5-1 11-5 14z" fill="#A5744C" class="k-f"/>
+  <circle cx="28" cy="-26" r="2.2" class="k-eye"/>
+  <path d="M14 -14c2 6 8 9 14 8" class="k-ol"/>
+  <!-- bowl, with the muzzle inside it -->
+  <path d="M2 -14h56l-8 22H10z" fill="#4A7BA7" class="k-f"/>
+  <ellipse cx="30" cy="-14" rx="28" ry="8" fill="#6D9AC4" class="k-f"/>
+  <path d="M14 -16c6 4 14 5 22 2" class="k-t"/>
+</g>
+
+<!-- ===== KITCHEN COUNTER : MAN WASHING UP + WOMAN COOKING  (right) ===== -->
+<g>
+  <!-- man behind the sink -->
+  <path d="M710 230c0-12 9-20 20-20s20 8 20 20v62h-40z" fill="#4A7BA7" class="k-f"/>
+  <circle cx="730" cy="192" r="17" fill="#F2CBA4" class="k-f"/>
+  <path d="M713 190c0-14 8-22 17-22s17 8 17 22c0-9-8-13-17-13s-17 4-17 13z" fill="#8A6742" class="k-f"/>
+  <circle cx="724" cy="196" r="2.2" class="k-eye"/><circle cx="736" cy="196" r="2.2" class="k-eye"/>
+  <path d="M724 204c4 4 9 4 12 0" class="k-ol"/>
+  <path d="M712 240l-14 24 10 10" class="k-limb"/><path d="M712 240l-14 24 10 10" class="k-sk1"/>
+  <path d="M748 240l14 24-10 10" class="k-limb"/><path d="M748 240l14 24-10 10" class="k-sk1"/>
+
+  <!-- woman standing to the right of the stove -->
+  <path d="M932 234c0-12 9-20 20-20s20 8 20 20v58h-40z" fill="#9A5B8C" class="k-f"/>
+  <path d="M934 248h36v44h-36z" fill="#FFFFFF" class="k-f" opacity=".9"/>
+  <rect x="944" y="262" width="18" height="14" rx="3" fill="none" class="k-t"/>
+  <path d="M937 190c-6 14-6 26 0 34 4 2 8 1 9 -3-7-7-9-21-5-31z" fill="#5B3A22" class="k-f"/>
+  <path d="M967 190c6 14 6 26 0 34-4 2-8 1-9 -3 7-7 9-21 5-31z" fill="#5B3A22" class="k-f"/>
+  <circle cx="952" cy="196" r="17" fill="#D79B6E" class="k-f"/>
+  <path d="M935 194c0-14 8-22 17-22s17 8 17 22c0-9-8-13-17-13s-17 4-17 13z" fill="#5B3A22" class="k-f"/>
+  <circle cx="946" cy="200" r="2.2" class="k-eye"/><circle cx="958" cy="200" r="2.2" class="k-eye"/>
+  <path d="M946 208c4 4 9 4 12 0" class="k-ol"/>
+  <path d="M970 244l14 24" class="k-limb"/><path d="M970 244l14 24" class="k-sk2"/>
+  <!-- her stirring arm reaches left to the pot -->
+  <path d="M934 240l-14 -14 -18 4" class="k-limb"/><path d="M934 240l-14 -14 -18 4" class="k-sk2"/>
+
+  <!-- counter -->
+  <rect x="648" y="288" width="344" height="18" rx="5" fill="#E4D9C4" class="k-f"/>
+  <rect x="656" y="306" width="328" height="94" rx="6" fill="#B8895A" class="k-f"/>
+  <path d="M820 306v94" class="k-f"/>
+  <path d="M792 348h20M834 348h20" style="stroke:#2B2A26;stroke-width:5;stroke-linecap:round"/>
+
+  <!-- tap -->
+  <path d="M676 266v-26c0-7 5-12 12-12h20c7 0 12 5 12 12v8" style="stroke:#7E8A8E;stroke-width:7;fill:none;stroke-linecap:round"/>
+  <path d="M676 266v-26c0-7 5-12 12-12h20c7 0 12 5 12 12v8" class="k-t"/>
+  <!-- sink basin -->
+  <rect x="672" y="262" width="116" height="28" rx="7" fill="#CFD6D8" class="k-f"/>
+  <path d="M682 270h96" class="k-t"/>
+  <!-- his hands, the plate and the suds, on top of the basin -->
+  <ellipse cx="730" cy="274" rx="18" ry="9" fill="#FFFFFF" class="k-f"/>
+  <path d="M722 272c4 4 11 4 15 0" class="k-t"/>
+  <circle cx="708" cy="274" r="6" fill="#F2CBA4" class="k-f"/>
+  <circle cx="752" cy="274" r="6" fill="#F2CBA4" class="k-f"/>
+  <circle cx="696" cy="256" r="9" fill="#FFFFFF" class="k-f"/>
+  <circle cx="712" cy="248" r="6" fill="#FFFFFF" class="k-f"/>
+  <circle cx="754" cy="254" r="7" fill="#FFFFFF" class="k-f"/>
+  <!-- plates drying beside the sink -->
+  <ellipse cx="806" cy="282" rx="18" ry="7" fill="#FFFFFF" class="k-f"/>
+  <ellipse cx="806" cy="274" rx="15" ry="6" fill="#FFFFFF" class="k-f"/>
+
+  <!-- stove and the open pot -->
+  <rect x="840" y="272" width="112" height="18" rx="4" fill="#5A5F63" class="k-f"/>
+  <circle cx="866" cy="281" r="7" fill="#3D3A34" class="k-f"/>
+  <circle cx="926" cy="281" r="7" fill="#3D3A34" class="k-f"/>
+  <path d="M856 240h60v32h-60z" fill="#8E969B" class="k-f"/>
+  <ellipse cx="886" cy="240" rx="30" ry="8" fill="#B0B7BB" class="k-f"/>
+  <path d="M916 250h13" style="stroke:#2B2A26;stroke-width:5;stroke-linecap:round"/>
+  <path d="M856 250h-13" style="stroke:#2B2A26;stroke-width:5;stroke-linecap:round"/>
+  <!-- the spoon handle rises out of the pot into her hand -->
+  <path d="M884 246l18 -16" style="stroke:#2B2A26;stroke-width:8;stroke-linecap:round"/>
+  <path d="M884 246l18 -16" style="stroke:#B8895A;stroke-width:4.5;stroke-linecap:round"/>
+  <!-- steam -->
+  <path d="M868 222c-7-8-2-15 2-20M886 216c-7-9-1-17 3-22M904 222c-6-8-1-14 3-19" class="k-ol"/>
+</g>
+</svg>
+
+</template>
+<script>
+/* ============================ QUICK NOTES ============================ */
+var LESSON = [
+{
+ pip:"1", kicker:"Present Continuous &middot; Page 1 of 5",
+ title:"What is happening right now",
+ html:
+ "<p>The Present Continuous is for an action <b>in progress at this moment</b> &mdash; it started, and it has not finished.</p>"+
+ "<div class='tl'>"+
+ " <div class='tlline'>"+
+ "  <span class='tllab' style='left:3%;color:#4A7BA7'>He started</span>"+
+ "  <span class='tllab' style='left:72%;color:#D2553A'>NOW</span>"+
+ "  <span class='tlbar grow' style='left:3%;--w:75%;background:#A9C6E0'></span>"+
+ "  <span class='tlnow pop' style='left:78%'></span>"+
+ " </div>"+
+ " <p style='margin:18px 0 0;font-weight:600'>He <span class='hl b'>is painting</span> the fence. &mdash; he is holding the brush as we speak.</p>"+
+ "</div>"+
+ "<div class='formula'><span class='chipf a'>Subject</span><span class='plus'>+</span>"+
+ "<span class='chipf b'>am / is / are</span><span class='plus'>+</span><span class='chipf c'>verb + ing</span></div>"+
+ "<div class='tscroll'><table class='gt'>"+
+ "<tr><th>Subject</th><th>be</th><th>Example</th></tr>"+
+ "<tr><td><b>I</b></td><td><b>am</b></td><td>I <b>am</b> wait<b>ing</b> for the bus.</td></tr>"+
+ "<tr><td><b>He / She / It</b><br>Nok, the kettle, my phone</td><td><b>is</b></td><td>The kettle <b>is</b> boil<b>ing</b>.</td></tr>"+
+ "<tr><td><b>You / We / They</b><br>the children, my parents</td><td><b>are</b></td><td>My parents <b>are</b> cook<b>ing</b>.</td></tr>"+
+ "</table></div>"+
+ "<div class='note'><b>Signal words.</b> <span class='hl'>now</span>, <span class='hl'>right now</span>, "+
+ "<span class='hl'>at the moment</span>, <span class='hl'>today</span>, <span class='hl'>this week</span>, "+
+ "<span class='hl'>Look!</span>, <span class='hl'>Listen!</span>, <span class='hl'>Be quiet!</span></div>"+
+ "<ul class='exlist'>"+
+ "<li class='ok'>Listen! Somebody <b>is playing</b> the piano.</li>"+
+ "<li class='no'><s>Listen! Somebody <b>plays</b> the piano.</s> &nbsp;&larr; the Present Simple is for habits, not for this moment</li>"+
+ "</ul>"
+},
+{
+ pip:"2", kicker:"Present Continuous &middot; Page 2 of 5",
+ title:"Spelling the -ing form",
+ html:
+ "<div class='tscroll'><table class='gt'>"+
+ "<tr><th>Rule</th><th>What you do</th><th>Examples</th></tr>"+
+ "<tr><td><b>1. Most verbs</b></td><td>just add <b>-ing</b></td><td>listen &rarr; listen<b>ing</b> &middot; help &rarr; help<b>ing</b> &middot; wait &rarr; wait<b>ing</b></td></tr>"+
+ "<tr><td><b>2. Ends in silent -e</b></td><td>drop the <b>e</b></td><td>make &rarr; mak<b>ing</b> &middot; come &rarr; com<b>ing</b> &middot; hope &rarr; hop<b>ing</b></td></tr>"+
+ "<tr><td><b>3. One vowel between<br>two consonants (stressed)</b></td><td><b>double</b> the last letter</td><td>stop &rarr; sto<b>pp</b>ing &middot; hit &rarr; hi<b>tt</b>ing &middot; plan &rarr; pla<b>nn</b>ing &middot; forget &rarr; forge<b>tt</b>ing</td></tr>"+
+ "<tr><td><b>4. Ends in -ie</b></td><td><b>ie</b> &rarr; <b>y</b></td><td>tie &rarr; t<b>y</b>ing &middot; lie &rarr; l<b>y</b>ing &middot; die &rarr; d<b>y</b>ing</td></tr>"+
+ "</table></div>"+
+ "<div class='note warn'><b>Do not double the letter</b> when there are <b>two</b> vowels before it, when the verb "+
+ "ends in <b>-w -x -y</b>, or when the last part is not stressed:<br>"+
+ "rain &rarr; rain<b>ing</b> &middot; read &rarr; read<b>ing</b> &middot; snow &rarr; snow<b>ing</b> &middot; "+
+ "fix &rarr; fix<b>ing</b> &middot; listen &rarr; listen<b>ing</b> &middot; happen &rarr; happen<b>ing</b></div>"+
+ "<div class='note yes'><b>The -y never disappears</b> before -ing: carry &rarr; carry<b>ing</b>, "+
+ "study &rarr; study<b>ing</b>, worry &rarr; worry<b>ing</b>, play &rarr; play<b>ing</b>. "+
+ "(It only changes in the Present Simple: <i>he carries</i>.)</div>"+
+ "<div class='note'><b>Two easy ones to mix up:</b> <b>agree</b> keeps both e&#8217;s &rarr; agree<b>ing</b> "+
+ "(the <i>e</i> is not silent), but <b>dance</b> loses its silent e &rarr; danc<b>ing</b>.</div>"
+},
+{
+ pip:"3", kicker:"Present Continuous &middot; Page 3 of 5",
+ title:"Negatives, questions, and the verbs that refuse -ing",
+ html:
+ "<h3>Negative &mdash; <span class='hl'>not</span> goes after am / is / are</h3>"+
+ "<div class='tscroll'><table class='gt'>"+
+ "<tr><th>Long</th><th>Short</th></tr>"+
+ "<tr><td>I am not using it.</td><td>I<b>&#8217;m not</b> using it.</td></tr>"+
+ "<tr><td>She is not coming.</td><td>She <b>isn&#8217;t</b> coming. / She<b>&#8217;s not</b> coming.</td></tr>"+
+ "<tr><td>They are not listening.</td><td>They <b>aren&#8217;t</b> listening. / They<b>&#8217;re not</b> listening.</td></tr>"+
+ "</table></div>"+
+ "<h3>Question &mdash; am / is / are jumps to the front</h3>"+
+ "<div class='formula'><span class='chipf b'>Am / Is / Are</span><span class='plus'>+</span>"+
+ "<span class='chipf a'>subject</span><span class='plus'>+</span><span class='chipf c'>verb + ing</span><span class='plus'>?</span></div>"+
+ "<ul class='exlist'>"+
+ "<li class='ok'><b>Is</b> your mother work<b>ing</b> today? &mdash; Yes, she <b>is</b>. / No, she <b>isn&#8217;t</b>.</li>"+
+ "<li class='ok'><b>What</b> are you do<b>ing</b>? &nbsp;&larr; a Wh- word goes <b>before</b> am/is/are</li>"+
+ "<li class='no'><s><b>Do</b> you working today?</s> &nbsp;&larr; never <i>do</i> or <i>does</i> here</li>"+
+ "<li class='no'><s><b>What you are</b> doing?</s> &nbsp;&larr; the subject and <i>are</i> must swap</li>"+
+ "<li class='no'><s>Yes, I<b>&#8217;m</b>.</s> &nbsp;&larr; never shorten <i>I am</i> at the end of a short answer</li>"+
+ "</ul>"+
+ "<h3>State verbs stay in the Present Simple</h3>"+
+ "<div class='tscroll'><table class='gt'>"+
+ "<tr><th>Group</th><th>Verbs</th></tr>"+
+ "<tr><td><b>Thinking</b></td><td>know, understand, remember, believe, think (= have an opinion), mean</td></tr>"+
+ "<tr><td><b>Feeling</b></td><td>like, love, hate, want, need, prefer</td></tr>"+
+ "<tr><td><b>Senses</b></td><td>see, hear, smell, taste, seem</td></tr>"+
+ "<tr><td><b>Having</b></td><td>have (= own), belong, own, cost</td></tr>"+
+ "</table></div>"+
+ "<ul class='exlist'>"+
+ "<li class='no'><s>He <b>is having</b> two brothers.</s> &nbsp;&rarr; He <b>has</b> two brothers.</li>"+
+ "<li class='no'><s>I <b>am wanting</b> a drink.</s> &nbsp;&rarr; I <b>want</b> a drink.</li>"+
+ "<li class='ok'>But: We <b>are having</b> breakfast. &nbsp;&larr; here <i>have</i> = <i>eat</i>, a real action</li>"+
+ "</ul>"
+},
+{
+ pip:"4", kicker:"Conjunctions &middot; Page 4 of 5",
+ title:"FANBOYS, and the words that lean on a main clause",
+ html:
+ "<h3>Coordinating &mdash; joins two <b>equal</b> parts</h3>"+
+ "<div class='tscroll'><table class='gt'>"+
+ "<tr><th>Word</th><th>Job</th><th>Example</th></tr>"+
+ "<tr><td><b>for</b></td><td>because (formal)</td><td>Take a jacket, <b>for</b> the evening will be cold.</td></tr>"+
+ "<tr><td><b>and</b></td><td>adds</td><td>She is smiling <b>and</b> waving.</td></tr>"+
+ "<tr><td><b>nor</b></td><td>a second negative</td><td>He didn&#8217;t apologise, <b>nor did he</b> explain.</td></tr>"+
+ "<tr><td><b>but</b></td><td>contrast</td><td>The box was tiny, <b>but</b> it was heavy.</td></tr>"+
+ "<tr><td><b>or</b></td><td>a choice</td><td>You may borrow my pen <b>or</b> my pencil.</td></tr>"+
+ "<tr><td><b>yet</b></td><td>but, surprisingly</td><td>The film was long, <b>yet</b> it was never boring.</td></tr>"+
+ "<tr><td><b>so</b></td><td>a result</td><td>It was late, <b>so</b> we took a taxi.</td></tr>"+
+ "</table></div>"+
+ "<div class='note'><b>Comma rule.</b> A comma goes <b>before</b> FANBOYS only when it joins two <b>complete sentences</b>.<br>"+
+ "&#10003; It was late<b>,</b> so we took a taxi. &nbsp;&nbsp; &#10007; <s>I bought rice<b>,</b> and eggs.</s> &rarr; rice <b>and</b> eggs</div>"+
+ "<h3>Subordinating &mdash; the part it starts cannot stand alone</h3>"+
+ "<div class='tscroll'><table class='gt'>"+
+ "<tr><th>Word</th><th>Answers</th><th>Example</th></tr>"+
+ "<tr><td><b>because</b></td><td>Why?</td><td>We can&#8217;t go out <b>because</b> it is still raining.</td></tr>"+
+ "<tr><td><b>since</b></td><td>Why? / From when?</td><td>I have lived here <b>since</b> I was five.</td></tr>"+
+ "<tr><td><b>although</b></td><td>a surprise</td><td><b>Although</b> he practises daily, he still makes mistakes.</td></tr>"+
+ "<tr><td><b>while</b></td><td>at the same time</td><td>The dog barked <b>while</b> we were sleeping.</td></tr>"+
+ "<tr><td><b>if</b></td><td>a condition</td><td><b>If</b> the bus is late, we will walk.</td></tr>"+
+ "</table></div>"+
+ "<div class='note yes'><b>Comma rule.</b> Use a comma only when this part comes <b>first</b>.<br>"+
+ "&#10003; <b>While</b> I am cooking<b>,</b> the children are doing their homework.<br>"+
+ "&#10003; The children are doing their homework <b>while</b> I am cooking. &nbsp;(no comma)</div>"+
+ "<div class='note warn'><b>One joiner per join.</b><br>"+
+ "&#10007; <s><b>Because</b> it was hot, <b>so</b> we opened the window.</s><br>"+
+ "&#10003; <b>Because</b> it was hot, we opened the window. &nbsp;/&nbsp; It was hot, <b>so</b> we opened the window.</div>"
+},
+{
+ pip:"5", kicker:"Conjunctions &middot; Page 5 of 5",
+ title:"Pairs that must stay together",
+ html:
+ "<div class='tscroll'><table class='gt'>"+
+ "<tr><th>Pair</th><th>Meaning</th><th>Example</th></tr>"+
+ "<tr><td><b>both &hellip; and</b></td><td>the two of them</td><td><b>Both</b> Nok <b>and</b> Ploy won a prize.</td></tr>"+
+ "<tr><td><b>either &hellip; or</b></td><td>one of the two</td><td>We can meet <b>either</b> on Friday <b>or</b> on Saturday.</td></tr>"+
+ "<tr><td><b>neither &hellip; nor</b></td><td>not one, not the other</td><td><b>Neither</b> the shop <b>nor</b> the bank was open.</td></tr>"+
+ "<tr><td><b>not only &hellip; but also</b></td><td>this, and this too</td><td>He is <b>not only</b> a teacher <b>but also</b> a football coach.</td></tr>"+
+ "</table></div>"+
+ "<div class='note'><b>Balance.</b> The same kind of word follows each half.<br>"+
+ "&#10003; She is <b>both</b> <span class='hl g'>quick</span> <b>and</b> <span class='hl g'>careful</span>. &nbsp;(adjective &middot; adjective)<br>"+
+ "&#10007; <s>She <b>both</b> <span class='hl'>is quick</span> <b>and</b> <span class='hl'>careful</span>.</s></div>"+
+ "<div class='note yes'><b>The verb agrees with the NEAREST subject.</b><br>"+
+ "&#10003; Neither my shoes <b>nor</b> my <span class='hl g'>bag</span> <b>is</b> new. &nbsp;(bag &rarr; is)<br>"+
+ "&#10003; Neither my bag <b>nor</b> my <span class='hl g'>shoes</span> <b>are</b> new. &nbsp;(shoes &rarr; are)<br>"+
+ "&#10003; Either the twins <b>or</b> their <span class='hl g'>father</span> <b>is</b> driving.</div>"+
+ "<div class='note warn'><b>Two things that are always wrong</b><br>"+
+ "1. Mixing the halves: <s>neither &hellip; or</s>, <s>either &hellip; nor</s>, <s>not only &hellip; but</s> (you still need <b>also</b>).<br>"+
+ "2. Forgetting that <b>both &hellip; and</b> is <b>always plural</b>: &#10003; <b>Both</b> the cat <b>and</b> the dog <b>are</b> hungry.</div>"
+}
+];
+
+/* ============================ PRACTICE ============================ */
+var PRACTICE = [
+{
+ id:"q1", title:"1 &middot; Look, read and tick", badge:"1",
+ intro:"Look at the kitchen. Decide whether each sentence is TRUE or FALSE for the picture.",
+ pic:true, type:"tf",
+ qs:[
+  {q:"A woman is cooking at the stove.", a:true, ex:"Yes &mdash; she is stirring a pot and the steam is rising."},
+  {q:"A man is washing the dishes.", a:true, ex:"Yes &mdash; his hands are in the sink and he is holding a plate."},
+  {q:"A boy is doing his homework at the table.", a:true, ex:"Yes &mdash; he is writing in an open book with a pencil."},
+  {q:"A girl is playing the guitar.", a:true, ex:"Yes &mdash; she is sitting on the sofa with a guitar on her lap."},
+  {q:"The cat is sleeping on the sofa.", a:true, ex:"Yes &mdash; its eyes are closed. <i>The cat</i> is singular, so we say <b>is</b> sleeping."},
+  {q:"Two children are watching television.", a:false, ex:"False &mdash; there is no television, and only one boy and one girl are in the room."},
+  {q:"The dog is sleeping under the table.", a:false, ex:"False &mdash; the dog <b>is eating</b> from its bowl on the floor."},
+  {q:"A man is talking on the phone.", a:false, ex:"False &mdash; the man <b>is washing</b> the dishes. Nobody is holding a phone."},
+  {q:"The family are eating dinner at the table.", a:false, ex:"False &mdash; the dinner is still in the pot, and the boy at the table <b>is doing</b> his homework."}
+ ]
+},
+{
+ id:"q2", title:"2 &middot; Choose the correct form", badge:"2",
+ intro:"All of these are happening now. Pick am, is or are with the right -ing form.",
+ type:"mc",
+ qs:[
+  {q:"Be quiet! Grandpa ____ in the next room.", o:["is resting","are resting","rest"], a:0,
+   ex:"<i>Grandpa</i> is one person &rarr; <b>is</b> + rest<b>ing</b>. <i>Be quiet!</i> tells you it is happening now."},
+  {q:"My cousins ____ with us this week.", o:["is staying","stay","are staying"], a:2,
+   ex:"<i>My cousins</i> is plural &rarr; <b>are</b> + stay<b>ing</b>. <i>This week</i> means a temporary situation, so the continuous is right."},
+  {q:"I ____ my best, so please be patient.", o:["am trying","is trying","are trying"], a:0,
+   ex:"With <b>I</b> we always use <b>am</b>."},
+  {q:"Look! The kettle ____.", o:["boil","are boiling","is boiling"], a:2,
+   ex:"<i>The kettle</i> &rarr; <b>is</b> + boil<b>ing</b>. Note the spelling: two vowels (<b>oi</b>), so no doubling."},
+  {q:"Nan and I ____ a project about rivers.", o:["are making","am making","is making"], a:0,
+   ex:"<i>Nan and I</i> = <b>we</b> &rarr; <b>are</b>. And <i>make</i> drops its silent e: mak<b>ing</b>."},
+  {q:"Where is Mum? She ____ the plants.", o:["water","is watering","are watering"], a:1,
+   ex:"<b>She</b> &rarr; <b>is</b> + water<b>ing</b>."},
+  {q:"The rain ____ at last.", o:["is stoping","is stopping","are stopping"], a:1,
+   ex:"<i>Stop</i> has one vowel between two consonants, so the <b>p</b> doubles: <b>stopping</b>."},
+  {q:"It is eight o&#8217;clock and the children ____ their teeth.", o:["is brushing","are brush","are brushing"], a:2,
+   ex:"<i>The children</i> is plural &rarr; <b>are</b>, and the main verb keeps <b>-ing</b>."},
+  {q:"Somebody ____ at the door.", o:["is knocking","are knocking","knock"], a:0,
+   ex:"<i>Somebody</i> is always singular in English &rarr; <b>is</b> knocking."},
+  {q:"My little brother ____ a picture right now.", o:["draw","are drawing","is drawing"], a:2,
+   ex:"<i>My little brother</i> &rarr; <b>is</b> + draw<b>ing</b>. Never double after <b>-w</b>."}
+ ]
+},
+{
+ id:"q3", title:"3 &middot; Spell the -ing form", badge:"3",
+ intro:"Type the -ing form. Spelling counts, so look hard at the last letters.",
+ type:"type",
+ qs:[
+  {q:"stop", a:["stopping"], ex:"One vowel between two consonants &rarr; double the <b>p</b>: <b>stopping</b>."},
+  {q:"make", a:["making"], ex:"Drop the silent <b>e</b>: <b>making</b>."},
+  {q:"carry", a:["carrying"], ex:"The <b>y</b> never disappears before -ing: <b>carrying</b>."},
+  {q:"hit", a:["hitting"], ex:"Short consonant&ndash;vowel&ndash;consonant verb &rarr; double the <b>t</b>: <b>hitting</b>."},
+  {q:"come", a:["coming"], ex:"Drop the silent <b>e</b>: <b>coming</b> (one <b>m</b>, not two)."},
+  {q:"forget", a:["forgetting"], ex:"The stress is on <i>-get</i>, so the <b>t</b> doubles: <b>forgetting</b>."},
+  {q:"agree", a:["agreeing"], ex:"The final <b>e</b> here is not silent, so nothing is dropped: <b>agreeing</b>."},
+  {q:"listen", a:["listening"], ex:"The stress is on <i>lis</i>-ten, not the last part, so do <b>not</b> double: <b>listening</b>."}
+ ]
+},
+{
+ id:"q4", title:"4 &middot; Put the words in order", badge:"4",
+ intro:"Tap the words to build the sentence. Tap a word in the box to take it back.",
+ type:"order",
+ qs:[
+  {w:["The baby","is","sleeping","in the cot."], ex:"Subject + <b>is</b> + verb-ing + the rest."},
+  {w:["We","are not","having","lunch now."], ex:"<b>not</b> goes straight after <i>are</i>. Here <i>have</i> means <i>eat</i>, so the continuous is fine."},
+  {w:["Is","your sister","learning","Chinese?"], ex:"In a question, <b>Is</b> moves in front of the subject."},
+  {w:["Where","are","they","going?"], ex:"A Wh- word comes <b>before</b> am/is/are, then the subject."},
+  {w:["The tap","isn&#8217;t","working","today."], ex:"<i>The tap</i> is singular, so the short negative is <b>isn&#8217;t</b>."},
+  {w:["My parents","are","painting","the kitchen."], ex:"<i>My parents</i> is plural &rarr; <b>are</b>."},
+  {w:["Are","you","waiting","for the bus?"], ex:"With <b>you</b> the question starts with <b>Are</b>."},
+  {w:["What","is","he","cooking?"], ex:"Wh- word, then <b>is</b>, then the subject, then the -ing verb."}
+ ]
+},
+{
+ id:"q5", title:"5 &middot; Choose the conjunction", badge:"5",
+ intro:"Pick the joining word that fits the meaning. Read the whole sentence first.",
+ type:"mc",
+ qs:[
+  {q:"It was very late, ____ we took a taxi.", o:["but","so","or"], a:1, ex:"Taking a taxi is the <b>result</b> &rarr; <b>so</b>."},
+  {q:"I like durian, ____ my sister hates it.", o:["but","and","for"], a:0, ex:"The two halves <b>contrast</b> &rarr; <b>but</b>."},
+  {q:"Would you like rice ____ noodles?", o:["and","nor","or"], a:2, ex:"A choice between two things &rarr; <b>or</b>."},
+  {q:"We can&#8217;t go out ____ it is still raining.", o:["although","because","yet"], a:1, ex:"The second half gives the <b>reason</b> &rarr; <b>because</b>."},
+  {q:"____ he practises every day, he still makes mistakes.", o:["Because","So","Although"], a:2, ex:"Practising daily but still making mistakes is <b>surprising</b> &rarr; <b>Although</b>."},
+  {q:"____ the bus is late, we will walk to school.", o:["If","Although","But"], a:0, ex:"This is a <b>condition</b> &rarr; <b>If</b>."},
+  {q:"I have lived in this house ____ I was five years old.", o:["while","since","although"], a:1, ex:"<b>since</b> marks the starting point in time."},
+  {q:"The dog barked loudly ____ we were sleeping.", o:["while","because","so"], a:0, ex:"Two things at the <b>same time</b> &rarr; <b>while</b>."},
+  {q:"She doesn&#8217;t play tennis, ____ does she play badminton.", o:["or","and","nor"], a:2, ex:"A second negative &rarr; <b>nor</b>, with question word order after it: <i>nor <b>does she</b> play</i>."},
+  {q:"Be kind to others, ____ you will make many friends.", o:["and","but","nor"], a:0, ex:"<b>and</b> adds the good result that follows."},
+  {q:"The box was tiny, ____ it was surprisingly heavy.", o:["so","yet","for"], a:1, ex:"<b>yet</b> = <i>but, surprisingly</i>."},
+  {q:"Take a jacket, ____ the evening will be cold.", o:["for","or","nor"], a:0, ex:"<b>for</b> is a slightly formal way of saying <i>because</i>."}
+ ]
+},
+{
+ id:"q6", title:"6 &middot; Conjunctions in pairs", badge:"6",
+ intro:"Correlative conjunctions come in two halves &mdash; and the verb watches the nearest subject.",
+ type:"mc",
+ qs:[
+  {q:"____ Nok ____ Ploy won a prize. (the two of them did)", o:["Both &hellip; and","Either &hellip; or","Neither &hellip; nor"], a:0,
+   ex:"Both girls won &rarr; <b>Both Nok and Ploy</b>."},
+  {q:"We can meet ____ on Friday ____ on Saturday, but not both days.", o:["both &hellip; and","either &hellip; or","neither &hellip; nor"], a:1,
+   ex:"One of the two &rarr; <b>either &hellip; or</b>."},
+  {q:"____ the shop ____ the bank was open. Both of them were closed.", o:["Both &hellip; and","Either &hellip; or","Neither &hellip; nor"], a:2,
+   ex:"Not one and not the other &rarr; <b>Neither &hellip; nor</b>."},
+  {q:"He is ____ a teacher ____ a football coach. He does both jobs.", o:["not only &hellip; but also","either &hellip; or","neither &hellip; nor"], a:0,
+   ex:"This one, and this one too &rarr; <b>not only &hellip; but also</b>."},
+  {q:"Neither my shoes nor my bag ____ new.", o:["are","is","were"], a:1,
+   ex:"The verb agrees with the <b>nearest</b> subject, <i>my bag</i>, which is singular &rarr; <b>is</b>."},
+  {q:"Either the twins or their father ____ driving today.", o:["is","are","be"], a:0,
+   ex:"The nearest subject is <i>their father</i> &rarr; <b>is</b>."},
+  {q:"Both the cat and the dog ____ hungry.", o:["is","was","are"], a:2,
+   ex:"<b>both &hellip; and</b> is always plural &rarr; <b>are</b>."},
+  {q:"Not only the windows but also the door ____ open.", o:["is","are","were"], a:0,
+   ex:"The nearest subject is <i>the door</i>, which is singular &rarr; <b>is</b>."},
+  {q:"She speaks neither Japanese ____ Korean.", o:["or","and","nor"], a:2,
+   ex:"<b>neither</b> must be followed by <b>nor</b>. <i>neither &hellip; or</i> is never correct."}
+ ]
+},
+{
+ id:"q7", title:"7 &middot; Find the mistake", badge:"7",
+ intro:"One underlined part of each sentence is wrong. Choose the part that must change.",
+ type:"mc",
+ qs:[
+  {q:"Which part must change?", stem:"The students <u>is</u><span class='lab'>A</span> <u>waiting</u><span class='lab'>B</span> <u>outside</u><span class='lab'>C</span>.",
+   o:["is","waiting","outside"], a:0, ex:"<i>The students</i> is plural &rarr; <i>The students <b>are</b> waiting outside.</i>"},
+  {q:"Which part must change?", stem:"<u>Do</u><span class='lab'>A</span> <u>you</u><span class='lab'>B</span> <u>listening</u><span class='lab'>C</span> to the radio?",
+   o:["Do","you","listening"], a:0, ex:"The Present Continuous never uses <i>do</i>. It must be <i><b>Are</b> you listening to the radio?</i>"},
+  {q:"Which part must change?", stem:"She <u>is wanting</u><span class='lab'>A</span> <u>a new</u><span class='lab'>B</span> <u>bicycle</u><span class='lab'>C</span>.",
+   o:["is wanting","a new","bicycle"], a:0, ex:"<i>Want</i> is a state verb &rarr; <i>She <b>wants</b> a new bicycle.</i>"},
+  {q:"Which part must change?", stem:"Neither the boys nor their sister <u>are</u><span class='lab'>A</span> <u>ready</u><span class='lab'>B</span> <u>yet</u><span class='lab'>C</span>.",
+   o:["are","ready","yet"], a:0, ex:"The nearest subject is <i>their sister</i>, which is singular &rarr; <b>is</b> ready."},
+  {q:"Which part must change?", stem:"<u>Because</u><span class='lab'>A</span> it was hot, <u>so</u><span class='lab'>B</span> we <u>opened</u><span class='lab'>C</span> the window.",
+   o:["Because","so","opened"], a:1, ex:"Use <i>because</i> <b>or</b> <i>so</i>, never both. Delete <b>so</b>: <i>Because it was hot, we opened the window.</i>"},
+  {q:"Which part must change?", stem:"My father <u>is</u><span class='lab'>A</span> <u>cook</u><span class='lab'>B</span> <u>the dinner</u><span class='lab'>C</span>.",
+   o:["is","cook","the dinner"], a:1, ex:"After <i>is</i> the main verb needs <b>-ing</b>: <i>My father is <b>cooking</b> the dinner.</i>"},
+  {q:"Which part must change?", stem:"I like <u>neither</u><span class='lab'>A</span> tea <u>or</u><span class='lab'>B</span> <u>coffee</u><span class='lab'>C</span>.",
+   o:["neither","or","coffee"], a:1, ex:"The partner of <i>neither</i> is <b>nor</b>: <i>I like neither tea <b>nor</b> coffee.</i>"},
+  {q:"Which part must change?", stem:"<u>They</u><span class='lab'>A</span> <u>not are</u><span class='lab'>B</span> <u>coming</u><span class='lab'>C</span> today.",
+   o:["They","not are","coming"], a:1, ex:"<i>not</i> goes <b>after</b> the verb <i>be</i>: <i>They <b>are not</b> coming today.</i>"}
+ ]
+}
+];
+</script>
+<script>
+/* ============================ THE PAPER : 30 questions ============================ */
+var TEST = [
+/* ---------- PART A : Present Continuous (10) ---------- */
+{sec:"A", q:"Listen! The birds ____ in the garden.", o:["sing","sings","is singing","are singing"], a:3,
+ ex:"<i>The birds</i> is plural &rarr; <b>are</b> + sing<b>ing</b>. <i>Listen!</i> tells you it is happening now."},
+{sec:"A", q:"Which sentence is correct?", o:["She not is wearing her glasses today.","She isn&#8217;t wearing her glasses today.","She doesn&#8217;t wearing her glasses today.","She isn&#8217;t wear her glasses today."], a:1,
+ ex:"<b>not</b> goes after <i>is</i>, and the main verb keeps <b>-ing</b>: <b>isn&#8217;t wearing</b>."},
+{sec:"A", q:"What is the -ing form of <b>plan</b>?", o:["planing","plannning","planning","planeing"], a:2,
+ ex:"One vowel between two consonants &rarr; double the <b>n</b>: <b>planning</b> (two n&#8217;s, not three)."},
+{sec:"A", q:"Change to a question: <i>They are cleaning the classroom.</i>", o:["Do they cleaning the classroom?","They are cleaning the classroom?","Are cleaning they the classroom?","Are they cleaning the classroom?"], a:3,
+ ex:"Move <b>are</b> to the front, keep the subject next: <b>Are they cleaning the classroom?</b>"},
+{sec:"A", q:"Look out of the window! It ____ .", o:["is snowing","are snowing","snow","is snowwing"], a:0,
+ ex:"<b>It</b> &rarr; <b>is</b> + snow<b>ing</b>. Never double the letter after <b>-w</b>."},
+{sec:"A", q:"Which sentence is <b>WRONG</b>?", o:["We are needing more time.","We are waiting for the bus.","They are having breakfast.","He is reading a comic."], a:0,
+ ex:"<i>Need</i> is a state verb, so it has no -ing form here. It must be <b>We need more time.</b>"},
+{sec:"A", q:"____ your mother working today?", o:["Do","Are","Is","Am"], a:2,
+ ex:"<i>Your mother</i> is one person &rarr; <b>Is</b>. <i>Do</i> never appears in this tense."},
+{sec:"A", q:"Make it negative: <i>I am using the computer.</i>", o:["I don&#8217;t using the computer.","I am not use the computer.","I not am using the computer.","I am not using the computer."], a:3,
+ ex:"<b>not</b> follows <i>am</i>, and <i>use</i> keeps <b>-ing</b>. The short form is <i>I&#8217;m not using</i>."},
+{sec:"A", q:"What is the -ing form of <b>tie</b>?", o:["tieing","tying","tiing","tyeing"], a:1,
+ ex:"Verbs ending in <b>-ie</b> change the <b>ie</b> to <b>y</b>: <b>tying</b>."},
+{sec:"A", q:"<i>Are you feeling better?</i> &mdash; Choose the correct short answer.", o:["Yes, I&#8217;m.","Yes, I am.","Yes, I do.","Yes, I am feeling."], a:1,
+ ex:"A short answer keeps only <i>be</i>, and <i>I am</i> is never shortened at the end of one."},
+
+/* ---------- PART B : Conjunctions (10) ---------- */
+{sec:"B", q:"The film was three hours long, ____ it was never boring.", o:["so","yet","for","nor"], a:1,
+ ex:"<b>yet</b> shows a surprising contrast &mdash; long, and yet still interesting."},
+{sec:"B", q:"____ we were waiting at the bus stop, it started to rain.", o:["Although","Because","While","So"], a:2,
+ ex:"Two things at the <b>same time</b> &rarr; <b>While</b>. The comma is there because this part comes first."},
+{sec:"B", q:"I switched off the fan ____ the room was already cold.", o:["because","although","or","yet"], a:0,
+ ex:"The second half gives the <b>reason</b> &rarr; <b>because</b>."},
+{sec:"B", q:"You may borrow my pen ____ my pencil.", o:["nor","but","or","so"], a:2,
+ ex:"A choice between two things &rarr; <b>or</b>. No comma is needed &mdash; these are just two nouns."},
+{sec:"B", q:"____ Ken ____ Ann are in my class. The two of them sit at the front.", o:["Either &hellip; or","Both &hellip; and","Neither &hellip; nor","Not only &hellip; or"], a:1,
+ ex:"Both of them &rarr; <b>Both Ken and Ann</b>, and <i>both &hellip; and</i> always takes a plural verb: <b>are</b>."},
+{sec:"B", q:"He didn&#8217;t apologise, ____ did he explain what had happened.", o:["or","and","but","nor"], a:3,
+ ex:"A second negative idea &rarr; <b>nor</b>, followed by question word order: <i>nor <b>did he</b> explain</i>."},
+{sec:"B", q:"Which of these is a <b>coordinating</b> conjunction?", o:["while","because","so","although"], a:2,
+ ex:"<b>so</b> is one of the FANBOYS. <i>While, because</i> and <i>although</i> all start a part that cannot stand alone."},
+{sec:"B", q:"____ you finish your work early, you may go home.", o:["If","Although","Nor","But"], a:0,
+ ex:"This is a <b>condition</b> &rarr; <b>If</b>."},
+{sec:"B", q:"Neither the pens ____ the ruler is on the desk.", o:["or","nor","and","but"], a:1,
+ ex:"<i>Neither</i> must be paired with <b>nor</b>. The verb <i>is</i> follows the nearest subject, <i>the ruler</i>."},
+{sec:"B", q:"She was extremely tired, ____ she kept working until midnight.", o:["so","for","but","or"], a:2,
+ ex:"The second half is the <b>opposite</b> of what you would expect &rarr; <b>but</b>."},
+
+/* ---------- PART C : Mixed (10) ---------- */
+{sec:"C", q:"One part of this sentence is wrong. Which part must change?",
+ stem:"The children <u>is</u><span class='lab'>A</span> <u>drawing</u><span class='lab'>B</span> <u>pictures</u><span class='lab'>C</span>.",
+ o:["is","drawing","pictures"], a:0,
+ ex:"<i>The children</i> is plural, so <b>is</b> becomes <b>are</b>: <i>The children <b>are</b> drawing pictures.</i>"},
+{sec:"C", q:"One part of this sentence is wrong. Which part must change?",
+ stem:"<u>Although</u><span class='lab'>A</span> she was ill, <u>but</u><span class='lab'>B</span> she <u>came</u><span class='lab'>C</span> to school.",
+ o:["Although","but","came"], a:1,
+ ex:"English uses <i>although</i> <b>or</b> <i>but</i>, never both. Delete <b>but</b>: <i>Although she was ill, she came to school.</i>"},
+{sec:"C", q:"One part of this sentence is wrong. Which part must change?",
+ stem:"He <u>is having</u><span class='lab'>A</span> <u>two</u><span class='lab'>B</span> <u>brothers</u><span class='lab'>C</span>.",
+ o:["is having","two","brothers"], a:0,
+ ex:"Here <i>have</i> means <b>own</b>, which is a state, so there is no -ing form: <i>He <b>has</b> two brothers.</i>"},
+{sec:"C", q:"One part of this sentence is wrong. Which part must change?",
+ stem:"Neither the teachers nor the principal <u>are</u><span class='lab'>A</span> <u>coming</u><span class='lab'>B</span> <u>today</u><span class='lab'>C</span>.",
+ o:["are","coming","today"], a:0,
+ ex:"The verb follows the <b>nearest</b> subject, <i>the principal</i>, which is singular &rarr; <b>is</b> coming."},
+{sec:"C", q:"One part of this sentence is wrong. Which part must change?",
+ stem:"<u>What</u><span class='lab'>A</span> <u>you are</u><span class='lab'>B</span> <u>doing</u><span class='lab'>C</span> in the garden?",
+ o:["What","you are","doing"], a:1,
+ ex:"In a Wh- question the subject and <i>are</i> swap places: <i>What <b>are you</b> doing in the garden?</i>"},
+{sec:"C", q:"Join with <b>while</b>: <i>Dad is cooking. Mum is setting the table.</i>",
+ o:["Dad is cooking while, Mum is setting the table.","While Dad is cooking but Mum is setting the table.","Dad is cooking while Mum is setting the table.","Dad is cooking while is Mum setting the table."], a:2,
+ ex:"<i>While</i> joins two things happening at the same time. It comes second here, so no comma is needed, and the word order after it does not change."},
+{sec:"C", q:"Join with <b>although</b>: <i>The soup is very hot. He is eating it quickly.</i>",
+ o:["Although the soup is very hot, he is eating it quickly.","Although the soup is very hot, but he is eating it quickly.","Although is the soup very hot, he is eating it quickly.","The soup is very hot, although he is eating it quickly too."], a:0,
+ ex:"<i>Although</i> starts the surprising part, and because that part comes first the two halves are separated by a <b>comma</b>."},
+{sec:"C", q:"Join with <b>either &hellip; or</b>: <i>We can take the bus. We can take the train.</i>",
+ o:["We either can take the bus or the train.","Either we can take the bus or we can the train.","We can take either the bus nor the train.","We can take either the bus or the train."], a:3,
+ ex:"Put the same kind of words after each half &mdash; here two nouns: <b>either the bus or the train</b>. And <i>either</i> is always paired with <i>or</i>."},
+{sec:"C", q:"Which sentence is punctuated correctly?",
+ o:["While I am cooking the children are doing their homework.","While I am cooking, the children are doing their homework.","While, I am cooking the children are doing their homework.","The children are doing their homework, while I am cooking."], a:1,
+ ex:"When the <i>while</i> part comes <b>first</b>, a comma separates the two halves. When it comes second, no comma is needed."},
+{sec:"C", q:"Which sentence is completely correct?",
+ o:["Both Ann and Ben is playing outside.","Neither the boys or the girl is ready.","Not only my sister but also my parents are learning Thai.","Look! The dogs is barking and the cat are sleeping."], a:2,
+ ex:"The verb follows the nearest subject, <i>my parents</i>, which is plural &rarr; <b>are</b> learning. The others have a wrong <i>be</i> or the broken pair <i>neither &hellip; or</i>."}
+];
+</script>
+<script>
+(function(){
+"use strict";
+var $ = function(s){return document.querySelector(s)};
+var $$ = function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+var KEY = "gnb_v1";
+var esc = function(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;")};
+
+/* ---------------- storage (best score only) ---------------- */
+var store = {best:null};
+try{ var raw = localStorage.getItem(KEY); if(raw){ store = JSON.parse(raw) || store; } }catch(e){}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} }
+
+/* ---------------- theme ---------------- */
+var themeBtn = $("#themeBtn");
+function setTheme(t){
+  document.documentElement.setAttribute("data-theme", t);
+  themeBtn.textContent = (t==="dark") ? "◕" : "◑";
+  try{ store.theme = t; save(); }catch(e){}
+}
+setTheme(store.theme === "dark" ? "dark" : "light");
+themeBtn.addEventListener("click", function(){
+  setTheme(document.documentElement.getAttribute("data-theme")==="dark" ? "light" : "dark");
+});
+
+/* ---------------- routing ---------------- */
+var VIEWS = ["home","lesson","practice","test"];
+function go(name){
+  VIEWS.forEach(function(v){ $("#view-"+v).classList.toggle("hide", v!==name); });
+  $$(".nb[data-go]").forEach(function(b){ b.setAttribute("aria-current", String(b.dataset.go===name)); });
+  window.scrollTo(0,0);
+  if(name==="home") refreshHome();
+  if(name==="lesson") drawSlide(true);
+  if(name==="practice"){ if(prac.act===null) drawPracMenu(); }
+}
+document.addEventListener("click", function(e){
+  var b = e.target.closest("[data-go]");
+  if(b){ go(b.dataset.go); }
+});
+
+/* ---------------- home stats ---------------- */
+var readSlides = {};
+function refreshHome(){
+  var nread = Object.keys(readSlides).length;
+  $("#s-lesson").textContent = nread + "/" + LESSON.length;
+  var pqs = PRACTICE.reduce(function(a,p){ return a + p.qs.length; },0);
+  $("#m-practice").innerHTML = PRACTICE.length + " activities &middot; " + pqs + " questions";
+  var doneActs = 0, got = 0, tot = 0;
+  PRACTICE.forEach(function(p){
+    var s = prac.scores[p.id];
+    if(s && s.done >= p.qs.length){ doneActs++; }
+    if(s){ got += s.right; tot += s.done; }
+  });
+  $("#s-practice").textContent = doneActs + "/" + PRACTICE.length;
+  $("#s-pscore").textContent = tot ? (got + "/" + tot) : "–";
+  $("#s-best").textContent = (store.best!=null) ? (store.best + "/30") : "–";
+}
+
+/* ================================ LESSON ================================ */
+var slideIdx = 0;
+function drawSlide(mark){
+  var s = LESSON[slideIdx];
+  if(mark !== false){ readSlides[slideIdx] = true; }
+  $("#slideBox").innerHTML = "<div class='kicker'>"+s.kicker+"</div><h2>"+s.title+"</h2>"+s.html;
+  var bar = $("#slidebar"); bar.innerHTML = "";
+  LESSON.forEach(function(x,i){
+    var b = document.createElement("button");
+    b.className = "pip" + (readSlides[i] ? " done" : "");
+    b.setAttribute("aria-current", String(i===slideIdx));
+    b.textContent = x.pip;
+    b.setAttribute("aria-label","Slide "+x.pip);
+    b.addEventListener("click", function(){ slideIdx = i; drawSlide(); $("#slideBox").focus(); });
+    bar.appendChild(b);
+  });
+  $("#slPrev").disabled = (slideIdx===0);
+  $("#slNext").disabled = (slideIdx===LESSON.length-1);
+  $("#slToPractice").classList.toggle("hide", slideIdx !== LESSON.length-1);
+}
+$("#slPrev").addEventListener("click", function(){ if(slideIdx>0){ slideIdx--; drawSlide(); window.scrollTo(0,0);} });
+$("#slNext").addEventListener("click", function(){ if(slideIdx<LESSON.length-1){ slideIdx++; drawSlide(); window.scrollTo(0,0);} });
+
+/* ================================ PRACTICE ================================ */
+var prac = { act:null, i:0, right:0, done:0, answered:false, scores:{}, built:[] };
+
+function drawPracMenu(){
+  $("#pracMenu").classList.remove("hide");
+  $("#pracRun").classList.add("hide");
+  var box = $("#pracTiles"); box.innerHTML = "";
+  PRACTICE.forEach(function(p, idx){
+    var s = prac.scores[p.id];
+    var meta = s ? (s.right + " / " + p.qs.length + (s.done>=p.qs.length ? " · done" : " · in progress"))
+                 : (p.qs.length + " questions");
+    var b = document.createElement("button");
+    b.className = "tile";
+    b.innerHTML = "<div class='tbadge'>"+p.badge+"</div><h3>"+p.title.replace(/^\d+ &middot; /,"")+"</h3>"+
+                  "<p>"+p.intro+"</p><div class='tmeta'>"+meta+"</div>";
+    b.addEventListener("click", function(){ startPrac(idx); });
+    box.appendChild(b);
+  });
+  refreshHome();
+}
+$("#pracBack").addEventListener("click", function(){ prac.act=null; drawPracMenu(); window.scrollTo(0,0); });
+$("#pracReset").addEventListener("click", function(){ prac.scores = {}; drawPracMenu(); });
+
+function startPrac(idx){
+  prac.act = idx; prac.i = 0; prac.right = 0; prac.done = 0; prac.answered = false;
+  var p = PRACTICE[idx];
+  prac.scores[p.id] = {right:0, done:0};
+  $("#pracMenu").classList.add("hide");
+  $("#pracRun").classList.remove("hide");
+  $("#pracTitle").innerHTML = p.title;
+  $("#pracIntro").innerHTML = p.intro;
+  drawPrac();
+  window.scrollTo(0,0);
+}
+
+function pracProgress(){
+  var p = PRACTICE[prac.act];
+  $("#pracFill").style.width = (100*prac.done/p.qs.length) + "%";
+  $("#pracScore").textContent = prac.right + " / " + p.qs.length;
+}
+
+function shuffled(n){
+  var a = []; for(var i=0;i<n;i++){a.push(i);}
+  for(var j=a.length-1;j>0;j--){ var k = Math.floor(Math.random()*(j+1)); var t=a[j]; a[j]=a[k]; a[k]=t; }
+  return a;
+}
+
+function drawPrac(){
+  var p = PRACTICE[prac.act];
+  if(prac.i >= p.qs.length){ drawPracEnd(); return; }
+  var q = p.qs[prac.i];
+  prac.answered = false;
+  var box = $("#pracBody");
+  var html = "";
+  if(p.pic){
+    html += "<div class='picbox' id='picHolder'></div><p class='swipe'>← Swipe the picture →</p>";
+  }
+  html += "<div class='qwrap'><div class='qhead sec-A'><div class='qnum'>"+(prac.i+1)+"</div>"+
+          "<div class='qmeta'>Question "+(prac.i+1)+" of "+p.qs.length+"</div></div>"+
+          "<div class='qcard sec-A'>";
+
+  if(p.type==="tf"){
+    html += "<p class='qtext'>"+q.q+"</p><div class='opts' id='optBox'>"+
+            "<button class='opt' data-v='1'><span class='ol'>T</span><span class='otx'>TRUE — the picture shows this.</span></button>"+
+            "<button class='opt' data-v='0'><span class='ol'>F</span><span class='otx'>FALSE — the picture does not show this.</span></button></div>";
+  } else if(p.type==="mc"){
+    html += "<p class='qtext'>"+q.q+"</p>"+
+            (q.stem ? "<div class='sent'>"+q.stem+"</div>" : "")+
+            "<div class='opts' id='optBox'>";
+    q.o.forEach(function(t,i){
+      html += "<button class='opt' data-v='"+i+"'><span class='ol'>"+"ABCD".charAt(i)+"</span><span class='otx'>"+t+"</span></button>";
+    });
+    html += "</div>";
+  } else if(p.type==="type"){
+    html += "<p class='qtext'>Write the <b>-ing</b> form of: <span class='hl'>"+q.q+"</span></p>"+
+            "<p class='qhint'>Type your answer, then press Check.</p>"+
+            "<input class='tin' id='tinBox' type='text' autocomplete='off' autocapitalize='off' spellcheck='false' aria-label='Your answer'>"+
+            "<div class='btnrow' style='margin-top:12px'><button class='btn sm pri' id='checkBtn'>Check</button></div>";
+  } else if(p.type==="order"){
+    html += "<p class='qtext'>Build the sentence.</p><p class='qhint'>Tap a word to add it. Tap a word in the box above to take it back.</p>"+
+            "<div class='built' id='builtBox'></div><div class='bank' id='bankBox'></div>"+
+            "<div class='btnrow' style='margin-top:6px'>"+
+            "<button class='btn sm pri' id='checkBtn'>Check</button>"+
+            "<button class='btn sm' id='clearBtn'>Clear</button></div>";
+  }
+  html += "<div id='fbBox'></div></div></div>";
+  box.innerHTML = html;
+
+  if(p.pic){
+    var tpl = $("#kitchenScene");
+    $("#picHolder").appendChild(tpl.content.cloneNode(true));
+  }
+
+  if(p.type==="tf" || p.type==="mc"){
+    $$("#optBox .opt").forEach(function(b){
+      b.addEventListener("click", function(){
+        if(prac.answered) return;
+        var v = parseInt(b.dataset.v,10);
+        var ok = (p.type==="tf") ? ((v===1)===q.a) : (v===q.a);
+        var correct = (p.type==="tf") ? (q.a?1:0) : q.a;
+        markPrac(ok, q.ex);
+        $$("#optBox .opt").forEach(function(o){
+          o.disabled = true;
+          var ov = parseInt(o.dataset.v,10);
+          if(ov===correct){ o.classList.add("right"); o.querySelector(".otx").innerHTML += "<span class='olab'>Correct answer</span>"; }
+          if(ov===v && !ok){ o.classList.add("wrong"); o.querySelector(".otx").innerHTML += "<span class='olab'>You chose this</span>"; }
+        });
+      });
+    });
+  }
+  if(p.type==="type"){
+    var inp = $("#tinBox");
+    var check = function(){
+      if(prac.answered) return;
+      var val = inp.value.trim().toLowerCase();
+      var ok = q.a.indexOf(val) >= 0;
+      inp.classList.add(ok ? "right" : "wrong");
+      inp.disabled = true; $("#checkBtn").disabled = true;
+      markPrac(ok, (ok ? "" : "The answer is <b>"+q.a[0]+"</b>. ") + q.ex);
+    };
+    $("#checkBtn").addEventListener("click", check);
+    inp.addEventListener("keydown", function(e){ if(e.key==="Enter"){ e.preventDefault(); check(); } });
+    inp.focus();
+  }
+  if(p.type==="order"){
+    prac.built = [];
+    var bank = $("#bankBox"), builtBox = $("#builtBox");
+    var order = shuffled(q.w.length);
+    if(order.join()===q.w.map(function(_,i){return i;}).join() && q.w.length>1){ order.reverse(); }
+    var chipEls = [];
+    order.forEach(function(wi){
+      var c = document.createElement("button");
+      c.className = "chip"; c.textContent = q.w[wi]; c.dataset.wi = wi;
+      c.addEventListener("click", function(){
+        if(prac.answered || c.classList.contains("used")) return;
+        c.classList.add("used");
+        prac.built.push(wi);
+        redrawBuilt();
+      });
+      chipEls.push(c); bank.appendChild(c);
+    });
+    function redrawBuilt(){
+      builtBox.innerHTML = "";
+      prac.built.forEach(function(wi, pos){
+        var c = document.createElement("button");
+        c.className = "chip inb"; c.textContent = q.w[wi];
+        c.addEventListener("click", function(){
+          if(prac.answered) return;
+          prac.built.splice(pos,1);
+          chipEls.forEach(function(e){ if(parseInt(e.dataset.wi,10)===wi && e.classList.contains("used")){ e.classList.remove("used"); } });
+          redrawBuilt();
+        });
+        builtBox.appendChild(c);
+      });
+    }
+    $("#clearBtn").addEventListener("click", function(){
+      if(prac.answered) return;
+      prac.built = []; chipEls.forEach(function(e){ e.classList.remove("used"); }); redrawBuilt();
+    });
+    $("#checkBtn").addEventListener("click", function(){
+      if(prac.answered) return;
+      var ok = prac.built.length===q.w.length && prac.built.every(function(v,i){ return v===i; });
+      $("#checkBtn").disabled = true; $("#clearBtn").disabled = true;
+      markPrac(ok, (ok ? "" : "The correct sentence is: <b>"+q.w.join(" ")+"</b><br>") + q.ex);
+    });
+  }
+  pracProgress();
+  $("#pracNext").disabled = true;
+  $("#pracNext").textContent = (prac.i === p.qs.length-1) ? "See my score ›" : "Next ›";
+}
+
+function markPrac(ok, ex){
+  var p = PRACTICE[prac.act];
+  prac.answered = true;
+  prac.done++;
+  if(ok) prac.right++;
+  prac.scores[p.id] = {right:prac.right, done:prac.done};
+  var fb = document.createElement("div");
+  fb.className = "fb " + (ok ? "ok" : "no");
+  fb.innerHTML = "<div class='fbh'><span class='g'>"+(ok ? "✓" : "✗")+"</span>"+
+                 (ok ? "Correct!" : "Not quite.")+"</div><div>"+ex+"</div>";
+  $("#fbBox").appendChild(fb);
+  pracProgress();
+  $("#pracNext").disabled = false;
+  $("#pracNext").focus();
+}
+
+$("#pracNext").addEventListener("click", function(){
+  if(!prac.answered) return;
+  prac.i++;
+  drawPrac();
+  window.scrollTo(0,0);
+});
+
+function drawPracEnd(){
+  var p = PRACTICE[prac.act];
+  var pct = Math.round(100*prac.right/p.qs.length);
+  var stars = pct>=90 ? 5 : pct>=75 ? 4 : pct>=60 ? 3 : pct>=40 ? 2 : 1;
+  var s = ""; for(var i=0;i<5;i++){ s += (i<stars ? "★" : "☆"); }
+  $("#pracBody").innerHTML =
+    "<div class='card c1' style='text-align:center'>"+
+    "<div class='stars'>"+s+"</div>"+
+    "<div class='bigscore'>"+prac.right+" / "+p.qs.length+"</div>"+
+    "<p style='font-weight:800;margin-top:8px'>"+pct+"% correct</p>"+
+    "<div class='btnrow' style='justify-content:center;margin-top:10px'>"+
+    "<button class='btn pri' id='againBtn'>Try this again</button>"+
+    "<button class='btn' id='menuBtn'>All activities</button></div>"+
+    "<p style='margin:18px 0 0;font-size:.84rem;color:var(--ink-2);font-weight:700'>Bright EngMath &middot; English &amp; Maths Resources</p>"+
+    "</div>";
+  $("#pracNext").disabled = true;
+  $("#pracNext").textContent = "Finished";
+  $("#againBtn").addEventListener("click", function(){ startPrac(prac.act); });
+  $("#menuBtn").addEventListener("click", function(){ prac.act=null; drawPracMenu(); window.scrollTo(0,0); });
+  pracProgress();
+}
+
+/* ================================ TEST ================================ */
+var T = { order:[], idx:0, ans:{}, live:false };
+
+function startTest(order){
+  T.order = order || TEST.map(function(_,i){return i;});
+  T.idx = 0; T.ans = {}; T.live = true;
+  $("#testStart").classList.add("hide");
+  $("#testResult").classList.add("hide");
+  $("#testRun").classList.remove("hide");
+  $("#tGridBox").classList.add("hide");
+  drawTest();
+  window.scrollTo(0,0);
+}
+$("#testGo").addEventListener("click", function(){ startTest(null); });
+
+function tDone(){ return T.order.filter(function(i){ return T.ans[i]!=null; }).length; }
+function tRight(){ return T.order.filter(function(i){ return T.ans[i] && T.ans[i].ok; }).length; }
+
+function tProgress(){
+  $("#tFill").style.width = (100*tDone()/T.order.length) + "%";
+  $("#tScore").textContent = tRight() + " / " + T.order.length;
+  $("#tPrev").disabled = (T.idx===0);
+  $("#tNext").disabled = (T.idx===T.order.length-1);
+}
+
+function drawTest(){
+  var qi = T.order[T.idx], q = TEST[qi], rec = T.ans[qi];
+  var secName = {A:"Part A · Present Continuous", B:"Part B · Conjunctions", C:"Part C · Mixed"}[q.sec];
+  var html = "<div class='qwrap'><div class='qhead sec-"+q.sec+"'><div class='qnum'>"+(T.idx+1)+"</div>"+
+             "<div class='qmeta'>"+secName+" &middot; question "+(T.idx+1)+" of "+T.order.length+"</div></div>"+
+             "<div class='qcard sec-"+q.sec+"'><p class='qtext'>"+q.q+"</p>"+
+             (q.stem ? "<div class='sent'>"+q.stem+"</div>" : "")+
+             "<div class='opts' id='tOpts'>";
+  q.o.forEach(function(t,i){
+    html += "<button class='opt' data-v='"+i+"'><span class='ol'>"+"ABCD".charAt(i)+"</span><span class='otx'>"+t+"</span></button>";
+  });
+  html += "</div><div id='tFb'></div></div></div>";
+  $("#tBody").innerHTML = html;
+
+  if(rec){ paintTest(qi, rec.pick); }
+  else{
+    $$("#tOpts .opt").forEach(function(b){
+      b.addEventListener("click", function(){
+        if(T.ans[qi]) return;
+        var v = parseInt(b.dataset.v,10);
+        T.ans[qi] = {pick:v, ok:(v===q.a)};
+        paintTest(qi, v);
+        tProgress(); drawGrid();
+      });
+    });
+  }
+  tProgress(); drawGrid();
+}
+
+function paintTest(qi, pick){
+  var q = TEST[qi];
+  $$("#tOpts .opt").forEach(function(o){
+    o.disabled = true;
+    var ov = parseInt(o.dataset.v,10);
+    if(ov===q.a){ o.classList.add("right"); if(!o.querySelector(".olab")) o.querySelector(".otx").innerHTML += "<span class='olab'>Correct answer</span>"; }
+    if(ov===pick && pick!==q.a){ o.classList.add("wrong"); if(!o.querySelector(".olab")) o.querySelector(".otx").innerHTML += "<span class='olab'>You chose this</span>"; }
+  });
+  var ok = (pick===q.a);
+  $("#tFb").innerHTML = "<div class='fb "+(ok?"ok":"no")+"'><div class='fbh'><span class='g'>"+
+    (ok?"✓":"✗")+"</span>"+(ok?"Correct!":"Not quite.")+"</div><div>"+q.ex+"</div></div>";
+}
+
+function drawGrid(){
+  var g = $("#tGridInner"); g.innerHTML = "";
+  T.order.forEach(function(qi, pos){
+    var b = document.createElement("button");
+    var rec = T.ans[qi];
+    b.className = "gcell" + (rec ? (rec.ok ? " g-ok" : " g-no") : "");
+    b.setAttribute("aria-current", String(pos===T.idx));
+    b.textContent = (pos+1);
+    b.setAttribute("aria-label","Go to question "+(pos+1)+(rec?(rec.ok?", correct":", wrong"):", not answered"));
+    b.addEventListener("click", function(){ T.idx = pos; drawTest(); window.scrollTo(0,0); });
+    g.appendChild(b);
+  });
+}
+$("#tGrid").addEventListener("click", function(){ $("#tGridBox").classList.toggle("hide"); });
+$("#tPrev").addEventListener("click", function(){ if(T.idx>0){ T.idx--; drawTest(); window.scrollTo(0,0);} });
+$("#tNext").addEventListener("click", function(){ if(T.idx<T.order.length-1){ T.idx++; drawTest(); window.scrollTo(0,0);} });
+$("#tSkip").addEventListener("click", function(){
+  if(T.idx<T.order.length-1){ T.idx++; drawTest(); }
+  else { T.idx = 0; drawTest(); }
+  window.scrollTo(0,0);
+});
+$("#tFinish").addEventListener("click", finishTest);
+
+function finishTest(){
+  var total = T.order.length, right = tRight(), done = tDone();
+  var wrongIdx = T.order.filter(function(i){ return T.ans[i] && !T.ans[i].ok; });
+  var skipped = T.order.filter(function(i){ return T.ans[i]==null; });
+  var pct = Math.round(100*right/total);
+  var stars = pct>=90 ? 5 : pct>=75 ? 4 : pct>=60 ? 3 : pct>=40 ? 2 : 1;
+  var st = ""; for(var i=0;i<5;i++){ st += (i<stars ? "★" : "☆"); }
+
+  if(total===TEST.length){
+    if(store.best==null || right > store.best){ store.best = right; save(); }
+  }
+
+  var parts = {A:[0,0], B:[0,0], C:[0,0]};
+  T.order.forEach(function(qi){
+    var s = TEST[qi].sec; parts[s][1]++;
+    if(T.ans[qi] && T.ans[qi].ok) parts[s][0]++;
+  });
+  var partNames = {A:"Part A · Present Continuous", B:"Part B · Conjunctions", C:"Part C · Mixed"};
+  var partHtml = "";
+  ["A","B","C"].forEach(function(s){
+    if(!parts[s][1]) return;
+    var w = Math.round(100*parts[s][0]/parts[s][1]);
+    partHtml += "<div class='part'><span class='pn'>"+partNames[s]+"</span><span class='pn'>"+parts[s][0]+"/"+parts[s][1]+"</span>"+
+                "<div class='track'><div class='fill' style='width:"+w+"%'></div></div></div>";
+  });
+
+  var reviewHtml = "";
+  wrongIdx.forEach(function(qi){
+    var q = TEST[qi], pos = T.order.indexOf(qi)+1;
+    reviewHtml += "<div class='rv'><div class='rq'>"+pos+". "+q.q+"</div>"+
+      (q.stem ? "<div class='sent'>"+q.stem+"</div>" : "")+
+      "<div class='ra n'>✗ You chose: "+q.o[T.ans[qi].pick]+"</div>"+
+      "<div class='ra y'>✓ Correct answer: "+q.o[q.a]+"</div>"+
+      "<div class='rx'>"+q.ex+"</div></div>";
+  });
+
+  var skipHtml = skipped.length
+    ? "<div class='note warn'><b>Not answered:</b> question "+skipped.map(function(qi){ return T.order.indexOf(qi)+1; }).join(", ")+"</div>"
+    : "";
+
+  $("#testRun").classList.add("hide");
+  $("#testResult").classList.remove("hide");
+  $("#testResult").innerHTML =
+    "<h1 style='margin-top:26px'>Your result</h1>"+
+    "<div class='card c2'>"+
+      "<div class='stars'>"+st+"</div>"+
+      "<div class='bigscore'>"+right+" / "+total+"</div>"+
+      "<div class='chips'>"+
+        "<span class='rchip'>"+pct+"% correct</span>"+
+        "<span class='rchip'>"+wrongIdx.length+" wrong</span>"+
+        "<span class='rchip'>"+skipped.length+" not answered</span>"+
+      "</div>"+
+      "<div class='parts'>"+partHtml+"</div>"+
+      skipHtml+
+      "<div class='btnrow' style='margin-top:14px'>"+
+        (wrongIdx.length ? "<button class='btn pri' id='missBtn'>Practise what I missed ("+wrongIdx.length+")</button>" : "")+
+        "<button class='btn' id='retakeBtn'>Take the whole test again</button>"+
+        "<button class='btn' data-go='home'>Back to home</button>"+
+      "</div>"+
+      "<p style='margin:18px 0 0;font-size:.84rem;color:var(--ink-2);font-weight:700'>Bright EngMath &middot; English &amp; Maths Resources</p>"+
+    "</div>"+
+    (reviewHtml ? "<h2 style='margin-top:30px'>Review — the ones to look at again</h2><div class='review'>"+reviewHtml+"</div>" : "")+
+    (done===total && !wrongIdx.length ? "<div class='note yes' style='margin-top:20px'><b>Perfect score.</b> Every question correct — well done!</div>" : "");
+
+  if(wrongIdx.length){
+    $("#missBtn").addEventListener("click", function(){ startTest(wrongIdx.slice()); });
+  }
+  $("#retakeBtn").addEventListener("click", function(){
+    $("#testResult").classList.add("hide");
+    $("#testStart").classList.remove("hide");
+    window.scrollTo(0,0);
+  });
+  window.scrollTo(0,0);
+  refreshHome();
+}
+
+/* ---------------- boot ---------------- */
+drawSlide(false);
+drawPracMenu();
+refreshHome();
+go("home");
+})();
+</script>
+</body>
+</html>
