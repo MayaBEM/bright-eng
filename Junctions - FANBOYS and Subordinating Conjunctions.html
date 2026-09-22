@@ -1,0 +1,1646 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Junctions — FANBOYS &amp; Subordinating Conjunctions | Bright EngMath</title>
+<meta name="description" content="An interactive lesson, practice set and test on coordinating (FANBOYS) and subordinating conjunctions for Grade 6 – M.1. Bright EngMath.">
+<style>
+/* ===================================================================
+   RAIL MAP  —  Bright EngMath house theme for this app
+   Two families of joining word, drawn as two lines on a transit map:
+   the amber line joins equals, the teal line runs a branch into a main
+   line. Every colour, rule and roundel in here belongs to that idea.
+   =================================================================== */
+:root{
+  --paper:#F7F4ED;        --paper-2:#FFFFFF;    --paper-3:#EFEAE0;
+  --ink:#16243A;          --ink-2:#5A6676;      --ink-3:#8A93A0;
+  --rule:#D9D2C4;         --rule-2:#C3BAA8;    --grid:#E7E0D2;
+  --amber:#C0632A;        --amber-s:#F4E5D6;    /* coordinating line */
+  --teal:#186E68;         --teal-s:#DCECE9;     /* subordinating line */
+  --plum:#6B3F63;         --plum-s:#EEE2EC;     /* mixed line */
+  --sun:#D9A62B;          --sun-s:#F8EDD2;
+  --ok:#1F6B45;           --ok-s:#DFEFE5;
+  --no:#A82F26;           --no-s:#F7E1DE;
+  --shadow:0 1px 0 var(--rule-2), 0 6px 18px rgba(22,36,58,.07);
+  --shadow-2:0 1px 0 var(--rule-2), 0 14px 34px rgba(22,36,58,.11);
+  --r:14px; --r-s:10px;
+  --sans:"Helvetica Neue",Helvetica,"Segoe UI",Arial,"Liberation Sans",sans-serif;
+  --mono:"SFMono-Regular",Menlo,Consolas,"DejaVu Sans Mono",monospace;
+}
+html[data-theme="dark"]{
+  --paper:#0F1722;        --paper-2:#17212E;    --paper-3:#1D2937;
+  --ink:#EAF0F6;          --ink-2:#A9B6C4;      --ink-3:#7C8998;
+  --rule:#2A3746;         --rule-2:#38485A;    --grid:#1B2634;
+  --amber:#E8965B;        --amber-s:#3A2A1E;
+  --teal:#5BBFB4;         --teal-s:#12302F;
+  --plum:#C79BBE;         --plum-s:#2E1F2C;
+  --sun:#EEC356;          --sun-s:#332912;
+  --ok:#57C98A;           --ok-s:#12301F;
+  --no:#F08175;           --no-s:#331815;
+  --shadow:0 1px 0 #000, 0 6px 18px rgba(0,0,0,.34);
+  --shadow-2:0 1px 0 #000, 0 14px 34px rgba(0,0,0,.44);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans); background:var(--paper); color:var(--ink);
+  font-size:17px; line-height:1.62; letter-spacing:.005em;
+  overflow-x:hidden;
+  background-image:
+    linear-gradient(var(--grid) .7px, transparent .7px),
+    linear-gradient(90deg, var(--grid) .7px, transparent .7px);
+  background-size:30px 30px, 30px 30px;
+  background-position:-1px -1px, -1px -1px;
+}
+html[data-theme="dark"] body{opacity:1}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:radial-gradient(120% 70% at 50% 0%, transparent 40%, var(--paper) 100%);
+}
+.wrap{max-width:980px; margin:0 auto; padding:0 18px 90px; position:relative; z-index:1}
+.hide{display:none !important}
+h1,h2,h3{line-height:1.2; letter-spacing:-.015em; margin:0}
+h1{font-size:clamp(1.65rem,4.6vw,2.5rem); font-weight:800}
+h2{font-size:clamp(1.2rem,3vw,1.55rem); font-weight:800}
+h3{font-size:1.04rem; font-weight:800}
+p{margin:0 0 .85em}
+b,strong{font-weight:800}
+a{color:var(--teal)}
+
+/* ---------- map furniture ---------- */
+.kicker{
+  font-size:.72rem; font-weight:800; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--ink-3); margin-bottom:8px;
+}
+.roundel{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:34px; height:34px; border-radius:50%; flex:0 0 34px;
+  border:3px solid var(--amber); background:var(--paper-2);
+  font-weight:800; font-size:.95rem; color:var(--ink);
+}
+.roundel.t{border-color:var(--teal)}
+.roundel.p{border-color:var(--plum)}
+.tag{
+  display:inline-block; padding:3px 10px; border-radius:999px;
+  font-size:.7rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+  border:1.5px solid currentColor;
+}
+.tag.a{color:var(--amber); background:var(--amber-s)}
+.tag.t{color:var(--teal);  background:var(--teal-s)}
+.tag.p{color:var(--plum);  background:var(--plum-s)}
+
+/* ---------- top bar ---------- */
+header.bar{
+  position:sticky; top:0; z-index:40; background:var(--paper);
+  border-bottom:1.5px solid var(--rule-2);
+}
+header.bar::after{
+  content:""; display:block; height:4px;
+  background:linear-gradient(90deg,var(--amber) 0 42%, var(--sun) 42% 58%, var(--teal) 58% 100%);
+}
+.barin{
+  max-width:980px; margin:0 auto; padding:11px 18px;
+  display:flex; align-items:center; gap:12px;
+}
+.brand{display:flex; align-items:center; gap:10px; margin-right:auto; min-width:0}
+.blogo{
+  width:30px; height:30px; flex:0 0 30px; border-radius:50%;
+  border:3px solid var(--amber); position:relative; background:var(--paper-2);
+}
+.blogo::after{
+  content:""; position:absolute; left:-5px; right:-5px; top:50%; height:3.5px;
+  transform:translateY(-50%); background:var(--teal); border-radius:2px;
+}
+.bname{font-weight:800; font-size:.96rem; letter-spacing:-.01em; white-space:nowrap}
+.bsub{font-size:.68rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
+.nav{display:flex; gap:4px}
+.nb{
+  appearance:none; border:1.5px solid transparent; background:none; cursor:pointer;
+  font:inherit; font-size:.86rem; font-weight:800; color:var(--ink-2);
+  padding:7px 12px; border-radius:999px; line-height:1;
+}
+.nb:hover{background:var(--paper-3); color:var(--ink)}
+.nb[aria-current="true"]{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+.nb:focus-visible,.btn:focus-visible,.opt:focus-visible,.tile:focus-visible,
+.pip:focus-visible,.gcell:focus-visible,.chip:focus-visible,.tin:focus-visible{
+  outline:3px solid var(--sun); outline-offset:2px;
+}
+.iconb{
+  appearance:none; cursor:pointer; font:inherit; font-size:1rem; line-height:1;
+  width:34px; height:34px; border-radius:50%; border:1.5px solid var(--rule-2);
+  background:var(--paper-2); color:var(--ink-2);
+}
+.iconb:hover{border-color:var(--ink-2); color:var(--ink)}
+.iconb{display:inline-flex; align-items:center; justify-content:center; padding:0}
+.halfdisc{
+  width:15px; height:15px; border-radius:50%; border:2px solid var(--ink-2);
+  background:linear-gradient(90deg, var(--ink-2) 0 50%, transparent 50% 100%);
+}
+.iconb:hover .halfdisc{border-color:var(--ink); background:linear-gradient(90deg,var(--ink) 0 50%,transparent 50% 100%)}
+
+/* ---------- buttons ---------- */
+.btn{
+  appearance:none; cursor:pointer; font:inherit; font-weight:800; font-size:.95rem;
+  padding:12px 20px; border-radius:999px; border:2px solid var(--ink);
+  background:var(--paper-2); color:var(--ink); line-height:1.15;
+  transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.btn:hover:not(:disabled){transform:translateY(-1px); box-shadow:0 4px 0 var(--ink)}
+.btn:active:not(:disabled){transform:translateY(1px); box-shadow:none}
+.btn.pri{background:var(--ink); color:var(--paper)}
+.btn.pri:hover:not(:disabled){box-shadow:0 4px 0 var(--amber)}
+.btn.sm{padding:9px 15px; font-size:.87rem}
+.btn:disabled{opacity:.42; cursor:not-allowed}
+.btnrow{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+
+/* ---------- cards ---------- */
+.card{
+  background:var(--paper-2); border:1.5px solid var(--rule-2); border-radius:var(--r);
+  padding:22px; box-shadow:var(--shadow); margin:16px 0;
+}
+.card.c1{border-top:5px solid var(--amber)}
+.card.c2{border-top:5px solid var(--teal)}
+.card.c3{border-top:5px solid var(--plum)}
+.card > :last-child{margin-bottom:0}
+
+/* ---------- home ---------- */
+.hero{padding:34px 0 8px}
+.hero .line{
+  display:flex; align-items:center; gap:10px; margin-bottom:14px;
+}
+.hero .line i{display:block; height:5px; border-radius:3px; flex:1}
+.hero .line i.a{background:var(--amber)}
+.hero .line i.t{background:var(--teal)}
+.hero .line span{
+  font-size:.7rem; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3);
+  white-space:nowrap;
+}
+.hero p.lead{font-size:1.08rem; color:var(--ink-2); max-width:62ch; margin-top:12px}
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:20px 0 4px}
+.stat{
+  background:var(--paper-2); border:1.5px solid var(--rule-2); border-radius:var(--r-s);
+  padding:12px 13px;
+}
+.stat .n{font-size:1.4rem; font-weight:800; line-height:1.1}
+.stat .l{font-size:.66rem; font-weight:800; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); margin-top:3px}
+.routes{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:22px}
+.route{
+  display:block; text-align:left; width:100%; cursor:pointer; font:inherit; color:inherit;
+  background:var(--paper-2); border:1.5px solid var(--rule-2); border-radius:var(--r);
+  padding:0; overflow:hidden; box-shadow:var(--shadow);
+  transition:transform .13s ease, box-shadow .13s ease;
+}
+.route:hover{transform:translateY(-3px); box-shadow:var(--shadow-2)}
+.route .top{height:6px}
+.route.r1 .top{background:var(--amber)} .route.r2 .top{background:var(--teal)} .route.r3 .top{background:var(--plum)}
+.route .in{padding:16px 17px 17px}
+.route h3{margin-bottom:5px}
+.route p{font-size:.9rem; color:var(--ink-2); margin:0 0 10px}
+.route .meta{font-size:.72rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3)}
+
+/* ---------- lesson ---------- */
+.slidebar{display:flex; gap:7px; flex-wrap:wrap; margin:16px 0 18px}
+.pip{
+  appearance:none; cursor:pointer; font:inherit; font-weight:800; font-size:.8rem;
+  width:32px; height:32px; border-radius:50%; border:2px solid var(--rule-2);
+  background:var(--paper-2); color:var(--ink-2); line-height:1;
+}
+.pip:hover{border-color:var(--ink-2)}
+.pip.done{border-color:var(--teal); color:var(--teal); background:var(--teal-s)}
+.pip[aria-current="true"]{background:var(--ink); border-color:var(--ink); color:var(--paper)}
+.slide{
+  background:var(--paper-2); border:1.5px solid var(--rule-2); border-radius:var(--r);
+  padding:24px; box-shadow:var(--shadow); outline:none;
+}
+.slide h2{margin-bottom:12px}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+.box{
+  border:1.5px solid var(--rule-2); border-radius:var(--r-s); padding:14px 15px;
+  background:var(--paper); 
+}
+.box h4{margin:0 0 6px; font-size:.72rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
+.box.a{border-left:5px solid var(--amber)} .box.t{border-left:5px solid var(--teal)}
+.box.y{border-left:5px solid var(--ok); background:var(--ok-s)}
+.box.n{border-left:5px solid var(--no); background:var(--no-s)}
+.note{
+  border-left:5px solid var(--sun); background:var(--sun-s); border-radius:var(--r-s);
+  padding:13px 15px; margin:14px 0; font-size:.95rem;
+}
+.note.yes{border-left-color:var(--ok); background:var(--ok-s)}
+.note.warn{border-left-color:var(--no); background:var(--no-s)}
+table.g{width:100%; border-collapse:collapse; margin:12px 0; font-size:.94rem}
+table.g th,table.g td{border:1px solid var(--rule-2); padding:8px 10px; text-align:left; vertical-align:top}
+table.g th{background:var(--paper-3); font-size:.7rem; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-2)}
+table.g td.w{white-space:nowrap; font-weight:800; color:var(--amber)}
+table.g td.wt{white-space:nowrap; font-weight:800; color:var(--teal)}
+.tscroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+.eg{font-style:italic}
+.hl{background:var(--sun-s); box-shadow:0 -2px 0 var(--sun) inset; padding:0 3px; font-weight:800; border-radius:2px}
+.hl.a{background:var(--amber-s); box-shadow:0 -2px 0 var(--amber) inset; color:var(--amber)}
+.hl.t{background:var(--teal-s);  box-shadow:0 -2px 0 var(--teal) inset;  color:var(--teal)}
+.y-ex{color:var(--ok); font-weight:800} .n-ex{color:var(--no); font-weight:800}
+ul.tick{list-style:none; padding:0; margin:10px 0}
+ul.tick li{position:relative; padding:5px 0 5px 26px}
+ul.tick li::before{position:absolute; left:0; top:5px; font-weight:800}
+ul.tick li.y::before{content:"\2713"; color:var(--ok)}
+ul.tick li.n::before{content:"\2717"; color:var(--no)}
+
+/* ---------- picture ---------- */
+.picbox{
+  border:1.5px solid var(--rule-2); border-radius:var(--r); background:var(--paper-2);
+  padding:10px; margin-bottom:12px; overflow-x:auto; -webkit-overflow-scrolling:touch;
+  box-shadow:var(--shadow);
+}
+.picbox svg{display:block; min-width:640px; width:100%; height:auto}
+.swipe{font-size:.76rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink-3); text-align:center; margin:-6px 0 14px}
+@media(min-width:720px){ .swipe{display:none} .picbox svg{min-width:0} }
+
+/* ---------- practice tiles ---------- */
+.tiles{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px}
+.tile{
+  text-align:left; cursor:pointer; font:inherit; color:inherit;
+  background:var(--paper-2); border:1.5px solid var(--rule-2); border-radius:var(--r);
+  padding:16px 17px; box-shadow:var(--shadow);
+  transition:transform .13s ease, box-shadow .13s ease;
+}
+.tile:hover{transform:translateY(-3px); box-shadow:var(--shadow-2)}
+.tile h3{margin:9px 0 5px}
+.tile p{font-size:.88rem; color:var(--ink-2); margin:0 0 10px}
+.tbadge{
+  display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+  border-radius:50%; border:3px solid var(--teal); font-weight:800; font-size:.85rem;
+}
+.tmeta{font-size:.72rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3)}
+
+/* ---------- question card ---------- */
+.qwrap{margin:6px 0 4px}
+.qhead{display:flex; align-items:center; gap:12px; margin-bottom:-1px; padding:0 4px}
+.qnum{
+  display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px;
+  border-radius:50%; border:3px solid var(--amber); background:var(--paper-2);
+  font-weight:800; font-size:.95rem;
+}
+.sec-B .qnum{border-color:var(--teal)} .sec-C .qnum{border-color:var(--plum)}
+.qmeta{font-size:.72rem; font-weight:800; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
+.qcard{
+  background:var(--paper-2); border:1.5px solid var(--rule-2); border-radius:var(--r);
+  border-top:5px solid var(--amber); padding:20px; box-shadow:var(--shadow); margin-top:10px;
+}
+.qcard.sec-B{border-top-color:var(--teal)} .qcard.sec-C{border-top-color:var(--plum)}
+.qtext{font-size:1.06rem; font-weight:700; margin:0 0 4px}
+.qhint{font-size:.86rem; color:var(--ink-2); margin:4px 0 10px}
+.sent{
+  border-left:5px solid var(--rule-2); background:var(--paper); border-radius:var(--r-s);
+  padding:12px 15px; margin:12px 0; font-size:1.04rem;
+}
+.opts{display:flex; flex-direction:column; gap:9px; margin-top:12px}
+.opt{
+  display:flex; align-items:flex-start; gap:12px; text-align:left; width:100%;
+  cursor:pointer; font:inherit; color:inherit; padding:13px 15px;
+  background:var(--paper-2); border:2px solid var(--rule-2); border-radius:var(--r-s);
+  transition:border-color .12s ease, background .12s ease, transform .1s ease;
+}
+.opt:hover:not(:disabled){border-color:var(--ink-2); transform:translateX(2px)}
+.opt:disabled{cursor:default}
+.ol{
+  flex:0 0 26px; height:26px; border-radius:50%; border:2px solid var(--rule-2);
+  display:inline-flex; align-items:center; justify-content:center;
+  font-weight:800; font-size:.82rem; margin-top:1px;
+}
+.otx{flex:1; min-width:0}
+.opt.right{border-color:var(--ok); background:var(--ok-s)}
+.opt.right .ol{border-color:var(--ok); background:var(--ok); color:#fff}
+.opt.wrong{border-color:var(--no); background:var(--no-s)}
+.opt.wrong .ol{border-color:var(--no); background:var(--no); color:#fff}
+.olab{
+  display:block; font-size:.68rem; font-weight:800; letter-spacing:.12em;
+  text-transform:uppercase; margin-top:4px; color:var(--ink-2);
+}
+.opt.right .olab{color:var(--ok)} .opt.wrong .olab{color:var(--no)}
+
+/* typed + order */
+.tin{
+  width:100%; font:inherit; font-size:1.05rem; font-weight:700; padding:12px 14px;
+  border:2px solid var(--rule-2); border-radius:var(--r-s);
+  background:var(--paper-2); color:var(--ink);
+}
+.tin.right{border-color:var(--ok); background:var(--ok-s)}
+.tin.wrong{border-color:var(--no); background:var(--no-s)}
+.built{
+  min-height:58px; border:2px dashed var(--rule-2); border-radius:var(--r-s);
+  padding:9px; display:flex; flex-wrap:wrap; gap:7px; align-content:flex-start;
+  background:var(--paper); margin:10px 0;
+}
+.bank{display:flex; flex-wrap:wrap; gap:7px; margin-bottom:10px}
+.chip{
+  cursor:pointer; font:inherit; font-weight:700; font-size:.95rem; padding:8px 13px;
+  border:2px solid var(--rule-2); border-radius:999px; background:var(--paper-2); color:var(--ink);
+}
+.chip:hover:not(.used){border-color:var(--ink-2)}
+.chip.used{opacity:.3; cursor:default}
+.chip.inb{border-color:var(--teal); background:var(--teal-s); color:var(--teal)}
+
+/* feedback */
+.fb{border-radius:var(--r-s); padding:13px 15px; margin-top:14px; font-size:.95rem; border-left:5px solid}
+.fb.ok{background:var(--ok-s); border-color:var(--ok)}
+.fb.no{background:var(--no-s); border-color:var(--no)}
+.fbh{font-weight:800; margin-bottom:4px; display:flex; align-items:center; gap:8px}
+.fb.ok .fbh{color:var(--ok)} .fb.no .fbh{color:var(--no)}
+.fbh .g{font-size:1.1rem}
+
+/* progress rail */
+.rail{
+  display:flex; align-items:center; gap:12px; margin:16px 0 4px;
+  background:var(--paper-2); border:1.5px solid var(--rule-2); border-radius:999px;
+  padding:9px 16px; box-shadow:var(--shadow);
+}
+.track{flex:1; height:7px; border-radius:4px; background:var(--paper-3); overflow:hidden; min-width:60px}
+.fill{height:100%; background:var(--teal); border-radius:4px; transition:width .3s ease}
+.rail .sc{font-weight:800; font-size:.9rem; white-space:nowrap}
+
+/* result */
+.stars{font-size:1.7rem; letter-spacing:.16em; color:var(--sun)}
+.bigscore{font-size:3rem; font-weight:800; line-height:1.05; margin-top:4px}
+.chips{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-top:12px}
+.rchip{
+  font-size:.76rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+  border:1.5px solid var(--rule-2); border-radius:999px; padding:6px 13px; color:var(--ink-2);
+}
+.parts{margin-top:18px; display:flex; flex-direction:column; gap:11px; text-align:left}
+.part{display:grid; grid-template-columns:1fr auto; gap:4px 12px; align-items:center}
+.part .pn{font-size:.86rem; font-weight:800}
+.part .track{grid-column:1/-1}
+.part .fill.pA{background:var(--amber)} .part .fill.pB{background:var(--teal)} .part .fill.pC{background:var(--plum)}
+.review{display:flex; flex-direction:column; gap:12px}
+.rv{background:var(--paper-2); border:1.5px solid var(--rule-2); border-left:5px solid var(--no);
+  border-radius:var(--r-s); padding:15px 17px}
+.rq{font-weight:800; margin-bottom:6px}
+.ra{font-size:.94rem; margin:3px 0}
+.ra.y{color:var(--ok); font-weight:800} .ra.n{color:var(--no); font-weight:800}
+.rx{font-size:.92rem; color:var(--ink-2); margin-top:7px}
+
+/* test grid */
+.gridbox{background:var(--paper-2); border:1.5px solid var(--rule-2); border-radius:var(--r); padding:14px; margin:14px 0}
+.gridin{display:grid; grid-template-columns:repeat(10,1fr); gap:7px}
+.gcell{
+  aspect-ratio:1/1; cursor:pointer; font:inherit; font-weight:800; font-size:.82rem;
+  border:2px solid var(--rule-2); border-radius:50%; background:var(--paper-2); color:var(--ink-2);
+}
+.gcell.g-ok{border-color:var(--ok); background:var(--ok-s); color:var(--ok)}
+.gcell.g-no{border-color:var(--no); background:var(--no-s); color:var(--no)}
+.gcell[aria-current="true"]{box-shadow:0 0 0 3px var(--sun)}
+
+footer.foot{
+  border-top:1.5px solid var(--rule-2); margin-top:44px; padding:22px 0 0;
+  font-size:.82rem; color:var(--ink-3); text-align:center;
+}
+footer.foot b{color:var(--ink-2)}
+
+@media(max-width:600px){
+  .barin{flex-wrap:wrap; row-gap:9px}
+  .brand{order:1; margin-right:auto}
+  #themeBtn{order:2}
+  .nav{order:3; width:100%; justify-content:space-between; gap:2px}
+  .nb{flex:1; text-align:center}
+  .bsub{display:block}
+}
+@media(max-width:720px){
+  body{font-size:16px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .routes,.tiles{grid-template-columns:1fr}
+  .grid2{grid-template-columns:1fr}
+  .gridin{grid-template-columns:repeat(6,1fr)}
+  .bsub{display:none}
+  .card,.slide,.qcard{padding:17px}
+  .nb{padding:7px 9px; font-size:.8rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition:none !important; animation:none !important}
+}
+@media print{ header.bar,.nav,.btnrow{display:none} body{background:#fff} }
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="barin">
+    <div class="brand">
+      <span class="blogo" aria-hidden="true"></span>
+      <span>
+        <span class="bname">Bright EngMath</span><br>
+        <span class="bsub">Junctions &middot; Grade 6&ndash;M.1</span>
+      </span>
+    </div>
+    <nav class="nav" aria-label="Main">
+      <button class="nb" data-go="home">Home</button>
+      <button class="nb" data-go="lesson">Lesson</button>
+      <button class="nb" data-go="practice">Practice</button>
+      <button class="nb" data-go="test">Test</button>
+    </nav>
+    <button class="iconb" id="themeBtn" aria-label="Switch between light and dark"><span class="halfdisc" aria-hidden="true"></span></button>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ============================ HOME ============================ -->
+<section id="view-home">
+  <div class="hero">
+    <div class="line">
+      <span>Line C</span><i class="a"></i><span>Junction</span><i class="t"></i><span>Line S</span>
+    </div>
+    <h1>Junctions: the two ways English joins ideas</h1>
+    <p class="lead">Coordinating conjunctions &mdash; the <b>FANBOYS</b> &mdash; join two ideas of
+    equal weight. Subordinating conjunctions run one idea <i>into</i> another. Learn the rules,
+    practise them, then take the thirty-question test.</p>
+    <div class="btnrow" style="margin-top:18px">
+      <button class="btn pri" data-go="lesson">Start the lesson &rsaquo;</button>
+      <button class="btn" data-go="test">Go straight to the test</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="n" id="s-lesson">0/10</div><div class="l">Lesson read</div></div>
+    <div class="stat"><div class="n" id="s-practice">0/6</div><div class="l">Activities done</div></div>
+    <div class="stat"><div class="n" id="s-pscore">&ndash;</div><div class="l">Practice score</div></div>
+    <div class="stat"><div class="n" id="s-best">&ndash;</div><div class="l">Best test score</div></div>
+  </div>
+
+  <div class="routes">
+    <button class="route r1" data-go="lesson">
+      <span class="top"></span>
+      <span class="in">
+        <span class="tag a">Step one</span>
+        <h3>Lesson</h3>
+        <p>Ten short slides: the seven FANBOYS, the comma rule, the four jobs of a subordinating
+        joiner, and how to tell a clause from a fragment.</p>
+        <span class="meta" id="m-lesson">10 slides &middot; with a junction map</span>
+      </span>
+    </button>
+    <button class="route r2" data-go="practice">
+      <span class="top"></span>
+      <span class="in">
+        <span class="tag t">Step two</span>
+        <h3>Practice</h3>
+        <p>Six activities, one skill each. You see whether you are right the moment you answer,
+        with the reason written out.</p>
+        <span class="meta" id="m-practice">6 activities</span>
+      </span>
+    </button>
+    <button class="route r3" data-go="test">
+      <span class="top"></span>
+      <span class="in">
+        <span class="tag p">Step three</span>
+        <h3>Test</h3>
+        <p>Thirty questions in three parts. At the end you get a score, a breakdown by part and a
+        review of everything you missed.</p>
+        <span class="meta">30 questions &middot; about 25 minutes</span>
+      </span>
+    </button>
+  </div>
+
+  <div class="card c1" style="margin-top:26px">
+    <div class="kicker">How to use this with a class</div>
+    <h3>Teach it, practise it, test it &mdash; in one lesson</h3>
+    <p style="margin-top:8px">Put the lesson on the board and work through the slides together. Then
+    let students take the practice activities at their own pace; each one is short enough to finish
+    in a few minutes and can be repeated as often as they like. Keep the test for the end of the
+    lesson, or set it as homework &mdash; the best score is remembered on the device.</p>
+    <p style="margin:0"><b>No internet needed.</b> Everything in this page works offline once the
+    file is open, so it runs from a memory stick, a school laptop or a tablet.</p>
+  </div>
+</section>
+
+<!-- ============================ LESSON ============================ -->
+<section id="view-lesson" class="hide">
+  <h1 style="margin-top:26px">Lesson</h1>
+  <div class="slidebar" id="slidebar"></div>
+  <article class="slide" id="slideBox" tabindex="-1"></article>
+  <div class="btnrow" style="margin-top:16px">
+    <button class="btn" id="slPrev">&lsaquo; Back</button>
+    <button class="btn" id="slNext">Next &rsaquo;</button>
+    <button class="btn pri hide" id="slToPractice" data-go="practice">Go to practice &rsaquo;</button>
+  </div>
+</section>
+
+<!-- ============================ PRACTICE ============================ -->
+<section id="view-practice" class="hide">
+  <div id="pracMenu">
+    <h1 style="margin-top:26px">Practice</h1>
+    <p style="color:var(--ink-2); max-width:62ch">Six activities. Pick any one &mdash; you can take
+    them in any order and repeat them as many times as you like.</p>
+    <div class="tiles" id="pracTiles"></div>
+    <div class="btnrow" style="margin-top:18px">
+      <button class="btn sm" id="pracReset">Clear my practice scores</button>
+    </div>
+  </div>
+
+  <div id="pracRun" class="hide">
+    <h1 style="margin-top:26px" id="pracTitle"></h1>
+    <p style="color:var(--ink-2); max-width:62ch" id="pracIntro"></p>
+    <div class="rail">
+      <div class="track"><div class="fill" id="pracFill" style="width:0%"></div></div>
+      <span class="sc" id="pracScore">0 / 0</span>
+    </div>
+    <div id="pracBody"></div>
+    <div class="btnrow" style="margin-top:16px">
+      <button class="btn" id="pracBack">&lsaquo; All activities</button>
+      <button class="btn pri" id="pracNext" disabled>Next &rsaquo;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TEST ============================ -->
+<section id="view-test" class="hide">
+  <div id="testStart">
+    <h1 style="margin-top:26px">Test</h1>
+    <div class="card c3">
+      <div class="kicker">Thirty questions &middot; three parts</div>
+      <h3>Before you start</h3>
+      <ul class="tick" style="margin-top:10px">
+        <li class="y"><b>Part A &middot; Coordinating (FANBOYS)</b> &mdash; questions 1&ndash;11</li>
+        <li class="y"><b>Part B &middot; Subordinating</b> &mdash; questions 12&ndash;22</li>
+        <li class="y"><b>Part C &middot; Mixed</b> &mdash; questions 23&ndash;30</li>
+      </ul>
+      <p>You will see whether each answer is right as soon as you choose it, with a short reason.
+      You can move backwards and forwards, and skip a question and come back to it. Press
+      <b>Finish</b> when you are ready for your result.</p>
+      <div class="btnrow"><button class="btn pri" id="testGo">Start the test &rsaquo;</button></div>
+    </div>
+  </div>
+
+  <div id="testRun" class="hide">
+    <h1 style="margin-top:26px">Test</h1>
+    <div class="rail">
+      <div class="track"><div class="fill" id="tFill" style="width:0%"></div></div>
+      <span class="sc" id="tScore">0 / 30</span>
+      <button class="btn sm" id="tGrid">Map</button>
+    </div>
+    <div class="gridbox hide" id="tGridBox"><div class="gridin" id="tGridInner"></div></div>
+    <div id="tBody"></div>
+    <div class="btnrow" style="margin-top:16px">
+      <button class="btn" id="tPrev">&lsaquo; Back</button>
+      <button class="btn" id="tNext">Next &rsaquo;</button>
+      <button class="btn" id="tSkip">Skip</button>
+      <button class="btn pri" id="tFinish">Finish &amp; see my score</button>
+    </div>
+  </div>
+
+  <div id="testResult" class="hide"></div>
+</section>
+
+<footer class="foot">
+  <p><b>Bright EngMath</b> &middot; English &amp; Maths Resources<br>
+  Junctions: FANBOYS &amp; Subordinating Conjunctions &middot; Grade 6 &ndash; M.1<br>
+  &copy; 2026 Bright EngMath. One teacher, one classroom licence.</p>
+</footer>
+</main>
+
+<!-- ==================== the junction map, drawn once ==================== -->
+<template id="railScene">
+<svg viewBox="0 0 1000 566" role="img"
+     aria-label="A transit map. The amber Line C joins two equal stations, The bell rang and nobody moved, at a junction marked comma but. The teal Line S runs a branch, because it was raining, into a main line, we went inside.">
+  <defs>
+    <style>
+      .rl-t{font-family:var(--sans); font-weight:800}
+      .rl-lab{font-size:21px; fill:var(--ink)}
+      .rl-sm{font-size:15px; fill:var(--ink-2)}
+      .rl-k{font-size:13px; letter-spacing:.18em; fill:var(--ink-3)}
+      .rl-j{font-size:22px; fill:#fff}
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="566" rx="16" fill="var(--paper)"/>
+  <path d="M40 270H960" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 7"/>
+
+  <!-- ================= LINE C : coordinating ================= -->
+  <text class="rl-t rl-k" x="50" y="44">LINE C &#183; COORDINATING &#183; FANBOYS</text>
+  <rect x="50" y="54" width="184" height="5" rx="2.5" fill="var(--amber)"/>
+
+  <text class="rl-t rl-k" x="500" y="96" text-anchor="middle">JUNCTION</text>
+  <path d="M500 106V134" stroke="var(--ink-3)" stroke-width="2.5" stroke-linecap="round"/>
+
+  <path d="M96 168H904" stroke="var(--amber)" stroke-width="11" stroke-linecap="round" fill="none"/>
+  <circle cx="96" cy="168" r="9" fill="var(--amber)"/>
+  <circle cx="904" cy="168" r="9" fill="var(--amber)"/>
+
+  <rect x="430" y="138" width="140" height="60" rx="30" fill="var(--amber)"/>
+  <text class="rl-t rl-j" x="500" y="177" text-anchor="middle">, but</text>
+
+  <circle cx="250" cy="168" r="27" fill="var(--paper-2)" stroke="var(--amber)" stroke-width="9"/>
+  <circle cx="750" cy="168" r="27" fill="var(--paper-2)" stroke="var(--amber)" stroke-width="9"/>
+
+  <text class="rl-t rl-lab" x="250" y="232" text-anchor="middle">The bell rang</text>
+  <text class="rl-t rl-sm" x="250" y="255" text-anchor="middle">complete sentence</text>
+  <text class="rl-t rl-lab" x="750" y="232" text-anchor="middle">nobody moved</text>
+  <text class="rl-t rl-sm" x="750" y="255" text-anchor="middle">complete sentence</text>
+  <text class="rl-t rl-sm" x="500" y="232" text-anchor="middle">comma, then the joining word</text>
+  <text class="rl-t rl-sm" x="500" y="255" text-anchor="middle">two stations of equal size</text>
+
+  <!-- ================= LINE S : subordinating ================= -->
+  <text class="rl-t rl-k" x="50" y="320">LINE S &#183; SUBORDINATING</text>
+  <rect x="50" y="330" width="150" height="5" rx="2.5" fill="var(--teal)"/>
+
+  <!-- the branch: dotted, because it cannot carry traffic on its own -->
+  <path d="M640 452C640 452 636 392 566 384H500"
+        stroke="var(--teal)" stroke-width="8" stroke-linecap="round" fill="none" opacity=".22"/>
+  <path d="M640 452C640 452 636 392 566 384H500"
+        stroke="var(--teal)" stroke-width="8" stroke-linecap="round" fill="none"
+        stroke-dasharray="2 17"/>
+
+  <!-- the main line runs right through -->
+  <path d="M96 452H904" stroke="var(--teal)" stroke-width="11" stroke-linecap="round" fill="none"/>
+  <circle cx="96" cy="452" r="9" fill="var(--teal)"/>
+  <circle cx="904" cy="452" r="9" fill="var(--teal)"/>
+
+  <!-- branch terminus: half filled, it cannot run alone -->
+  <circle cx="478" cy="384" r="21" fill="var(--paper-2)" stroke="var(--teal)" stroke-width="7"/>
+  <path d="M478 363A21 21 0 0 0 478 405Z" fill="var(--teal)"/>
+  <text class="rl-t rl-lab" x="446" y="379" text-anchor="end">because it was raining</text>
+  <text class="rl-t rl-sm" x="446" y="402" text-anchor="end">subordinate clause &#183; cannot run alone</text>
+
+  <!-- main-line station -->
+  <circle cx="232" cy="452" r="27" fill="var(--paper-2)" stroke="var(--teal)" stroke-width="9"/>
+  <text class="rl-t rl-lab" x="232" y="516" text-anchor="middle">we went inside</text>
+  <text class="rl-t rl-sm" x="232" y="539" text-anchor="middle">main clause &#183; runs on its own</text>
+
+  <!-- junction on the main line -->
+  <circle cx="640" cy="452" r="12" fill="var(--teal)"/>
+  <circle cx="640" cy="452" r="5" fill="var(--paper-2)"/>
+  <text class="rl-t rl-sm" x="672" y="484">the branch joins here</text>
+  <text class="rl-t rl-sm" x="672" y="506">main clause first &#8594; no comma</text>
+</svg>
+</template>
+<script>
+/* ===================== LESSON ===================== */
+var LESSON = [
+{pip:"1", kicker:"The whole idea in one picture", title:"Two lines, two ways to join", pic:true, html:
+ "<p>Every long sentence in English is made of shorter ideas that have been joined. There are two "+
+ "ways to do it, and this map shows both.</p>"+
+ "<div class='grid2'>"+
+ "<div class='box a'><h4>Line C &middot; coordinating</h4><p style='margin:0'>Two stations of the "+
+ "<b>same size</b>. Each one is a complete sentence on its own. A <span class='hl a'>FANBOYS</span> "+
+ "word sits at the junction and holds them together as equals.</p></div>"+
+ "<div class='box t'><h4>Line S &middot; subordinating</h4><p style='margin:0'>One <b>main line</b> "+
+ "and one <b>branch</b>. The branch begins with a word like <span class='hl t'>because</span>, and it "+
+ "cannot run on its own &mdash; it has to join the main line.</p></div></div>"+
+ "<div class='note'><b>The test that never fails.</b> Cover the rest of the sentence and read the "+
+ "part on its own. If it makes sense alone, it is a main line. If it leaves you waiting for more, "+
+ "it is a branch.</div>"},
+
+{pip:"2", kicker:"Line C", title:"The seven FANBOYS", html:
+ "<p>There are only seven coordinating conjunctions in English, and their first letters spell "+
+ "<b>FANBOYS</b>. Learn the list and you have learnt them all.</p>"+
+ "<div class='tscroll'><table class='g'><tr><th>Word</th><th>What it does</th><th>Example</th></tr>"+
+ "<tr><td class='w'>For</td><td>gives a reason (rather formal)</td><td class='eg'>I went to bed early, for I was tired.</td></tr>"+
+ "<tr><td class='w'>And</td><td>adds one idea to another</td><td class='eg'>Nan opened her book, and she began to read.</td></tr>"+
+ "<tr><td class='w'>Nor</td><td>adds a second negative idea</td><td class='eg'>He did not call, nor did he write.</td></tr>"+
+ "<tr><td class='w'>But</td><td>shows a contrast</td><td class='eg'>The bag was small, but it was heavy.</td></tr>"+
+ "<tr><td class='w'>Or</td><td>offers a choice</td><td class='eg'>We can walk, or we can take the bus.</td></tr>"+
+ "<tr><td class='w'>Yet</td><td>a contrast, with a hint of surprise</td><td class='eg'>She trained hard, yet she lost.</td></tr>"+
+ "<tr><td class='w'>So</td><td>gives a result</td><td class='eg'>It started to rain, so we ran home.</td></tr>"+
+ "</table></div>"+
+ "<div class='note yes'><b>But and yet</b> both show contrast. <b>Yet</b> adds the feeling that the "+
+ "second idea is a surprise after the first one.</div>"},
+
+{pip:"3", kicker:"Line C", title:"Comma or no comma?", html:
+ "<p>This is the only punctuation rule you need for FANBOYS, and it depends on <b>what is being "+
+ "joined</b>, not on how long the sentence is.</p>"+
+ "<div class='box y'><h4>Two complete sentences &rarr; comma</h4>"+
+ "<p style='margin:0' class='eg'>The bell rang<span class='hl'>,</span> but nobody moved.</p>"+
+ "<p style='margin:6px 0 0; font-size:.92rem'><i>The bell rang</i> works alone. <i>Nobody moved</i> "+
+ "works alone. Two stations &rarr; put the comma in.</p></div>"+
+ "<div class='box n' style='margin-top:12px'><h4>Two words or two phrases &rarr; no comma</h4>"+
+ "<p style='margin:0' class='eg'>The bag was small but heavy.</p>"+
+ "<p style='margin:6px 0 0; font-size:.92rem'><i>Heavy</i> is not a sentence &mdash; it is one word "+
+ "being added to another. One station &rarr; leave the comma out.</p></div>"+
+ "<ul class='tick'>"+
+ "<li class='y'>We sang and we danced all evening. <span style='color:var(--ink-3)'>&mdash; two short clauses; the comma is optional when both are very short</span></li>"+
+ "<li class='y'>We sang and danced all evening. <span style='color:var(--ink-3)'>&mdash; one subject, two verbs: no comma</span></li>"+
+ "<li class='n'>We sang, and danced all evening. <span style='color:var(--ink-3)'>&mdash; a comma in front of just a verb</span></li>"+
+ "</ul>"},
+
+{pip:"4", kicker:"Line C", title:"Nor and for &mdash; the two awkward ones", html:
+ "<p>Five of the FANBOYS behave in the ordinary way. Two of them need a second look.</p>"+
+ "<div class='box a'><h4>Nor</h4>"+
+ "<p>Use <b>nor</b> to add a <b>second negative</b> after a first negative. The words after "+
+ "<b>nor</b> turn around, exactly as they do in a question.</p>"+
+ "<p style='margin:0' class='eg'>She did not phone<span class='hl'>, nor did she</span> send a message.</p>"+
+ "<p style='margin:6px 0 0; font-size:.92rem'><span class='n-ex'>&#10007;</span> <s>nor she sent a message</s> &nbsp;&nbsp; "+
+ "<span class='y-ex'>&#10003;</span> nor did she send a message</p></div>"+
+ "<div class='box a' style='margin-top:12px'><h4>For</h4>"+
+ "<p style='margin:0'>As a FANBOYS word, <b>for</b> means <i>because</i>. It always needs a comma, "+
+ "and it can never start the sentence.</p>"+
+ "<p style='margin:6px 0 0' class='eg'>We turned back, for the path was flooded.</p>"+
+ "<p style='margin:6px 0 0; font-size:.92rem'><span class='n-ex'>&#10007;</span> <s>For the path was flooded, we turned back.</s> "+
+ "&mdash; that is what <b>because</b> is for.</p></div>"},
+
+{pip:"5", kicker:"Line S", title:"Main clause and subordinate clause", html:
+ "<p>A <b>clause</b> is a group of words with a subject and a verb. A sentence built with a "+
+ "subordinating conjunction has two of them, and they are <b>not</b> equal.</p>"+
+ "<div class='sent' style='margin-top:4px'><span class='hl t'>Because it was raining</span>, "+
+ "<span class='hl'>we went inside</span>.</div>"+
+ "<div class='grid2'>"+
+ "<div class='box t'><h4>Subordinate clause</h4><p style='margin:0'><i>Because it was raining</i><br>"+
+ "Starts with the joiner. Leaves you waiting. <b>Cannot</b> stand alone.</p></div>"+
+ "<div class='box'><h4>Main clause</h4><p style='margin:0'><i>We went inside</i><br>"+
+ "Makes sense by itself. <b>Can</b> stand alone as a sentence.</p></div></div>"+
+ "<div class='note'><b>Watch out.</b> The joining word belongs to the clause it starts, and it "+
+ "travels with it. When you move the clause, the joiner moves too.</div>"},
+
+{pip:"6", kicker:"Line S", title:"The four jobs", html:
+ "<p>There are many subordinating conjunctions, but at this level they do four jobs. Learn the job "+
+ "and the word chooses itself.</p>"+
+ "<div class='tscroll'><table class='g'><tr><th>Job</th><th>Words</th><th>Example</th></tr>"+
+ "<tr><td><b>Reason</b><br><span style='font-size:.85rem;color:var(--ink-2)'>why it happened</span></td>"+
+ "<td class='wt'>because, since, as</td><td class='eg'>We stayed in because it was raining.</td></tr>"+
+ "<tr><td><b>Contrast</b><br><span style='font-size:.85rem;color:var(--ink-2)'>the opposite of what you expect</span></td>"+
+ "<td class='wt'>although, though,<br>even though, while</td><td class='eg'>Although he was tired, he finished the race.</td></tr>"+
+ "<tr><td><b>Time</b><br><span style='font-size:.85rem;color:var(--ink-2)'>when it happened</span></td>"+
+ "<td class='wt'>when, while, before,<br>after, until, since</td><td class='eg'>While the rice cooked, Mali laid the table.</td></tr>"+
+ "<tr><td><b>Condition</b><br><span style='font-size:.85rem;color:var(--ink-2)'>what has to be true first</span></td>"+
+ "<td class='wt'>if, unless</td><td class='eg'>If you finish early, you may read.</td></tr>"+
+ "</table></div>"+
+ "<div class='note warn'><b>While</b> does two of these jobs. <i>While I was waiting</i> is time. "+
+ "<i>While I agree with you</i> is contrast. Read the whole sentence before you decide.</div>"},
+
+{pip:"7", kicker:"Line S", title:"Where does the comma go?", html:
+ "<p>A subordinate clause can come first or second, and the meaning does not change. The "+
+ "<b>punctuation</b> does.</p>"+
+ "<div class='box y'><h4>Branch first &rarr; comma</h4>"+
+ "<p style='margin:0' class='eg'>Although the hall was full<span class='hl'>,</span> we found two seats.</p></div>"+
+ "<div class='box n' style='margin-top:12px'><h4>Main line first &rarr; no comma</h4>"+
+ "<p style='margin:0' class='eg'>We found two seats although the hall was full.</p></div>"+
+ "<div class='note yes' style='margin-top:14px'><b>Say it out loud.</b> When the branch comes first "+
+ "your voice pauses before the main clause &mdash; and that pause is the comma. When the main clause "+
+ "comes first there is no pause, so there is no comma.</div>"+
+ "<p style='margin-top:12px'><b>Careful:</b> this is the opposite of the FANBOYS rule, where the "+
+ "comma goes <i>before</i> the joining word. With a subordinating joiner the comma goes at the "+
+ "<i>end</i> of the clause it started.</p>"},
+
+{pip:"8", kicker:"Line S", title:"because / because of &middot; the two sinces", html:
+ "<div class='box t'><h4>because + clause</h4>"+
+ "<p style='margin:0' class='eg'>The match was called off because <b>the rain was heavy</b>.</p>"+
+ "<p style='margin:6px 0 0; font-size:.92rem'>A subject and a verb follow.</p></div>"+
+ "<div class='box t' style='margin-top:12px'><h4>because of + noun</h4>"+
+ "<p style='margin:0' class='eg'>The match was called off because of <b>the heavy rain</b>.</p>"+
+ "<p style='margin:6px 0 0; font-size:.92rem'>Only a naming word follows &mdash; no verb.</p></div>"+
+ "<p style='margin-top:14px'><b>Since</b> is two words in one. Decide by asking what the clause "+
+ "tells you: a reason, or a starting point in time?</p>"+
+ "<ul class='tick'>"+
+ "<li class='y'><b>Reason:</b> Since you already know the way, you can lead.</li>"+
+ "<li class='y'><b>Time:</b> Since the bell rang, nobody has left the room.</li>"+
+ "</ul>"+
+ "<div class='note'>A perfect tense in the main clause (<i>has left</i>, <i>have lived</i>) almost "+
+ "always means <b>since</b> is doing the <b>time</b> job.</div>"},
+
+{pip:"9", kicker:"Line S", title:"Fragments: a branch with no main line", html:
+ "<p>This is the commonest mistake with subordinating conjunctions. A branch on its own is not a "+
+ "sentence, however long it is.</p>"+
+ "<div class='box n'><h4>Fragment</h4><p style='margin:0' class='eg'>Because the bus was late.</p>"+
+ "<p style='margin:6px 0 0; font-size:.92rem'>Subject and verb, capital letter, full stop &mdash; "+
+ "and still not a sentence, because it leaves you waiting.</p></div>"+
+ "<div class='box y' style='margin-top:12px'><h4>Mended</h4>"+
+ "<p style='margin:0' class='eg'>Because the bus was late, we missed the first lesson.</p></div>"+
+ "<div class='note warn'><b>Two ways to mend a fragment:</b> add a main clause to it, or take the "+
+ "joining word away. <i>The bus was late.</i> is a perfectly good sentence.</div>"+
+ "<p><b>The other trap</b> is using two joiners where one is enough:</p>"+
+ "<ul class='tick'>"+
+ "<li class='n'><s>Although he was tired, but he finished.</s></li>"+
+ "<li class='y'>Although he was tired, he finished.</li>"+
+ "<li class='y'>He was tired, but he finished.</li>"+
+ "</ul>"},
+
+{pip:"10", kicker:"Both lines", title:"Choosing your line", pic:true, html:
+ "<p>The same two facts can be joined either way. What changes is which idea you push into the "+
+ "background.</p>"+
+ "<div class='tscroll'><table class='g'>"+
+ "<tr><th>Joined with</th><th>The sentence</th><th>What it says</th></tr>"+
+ "<tr><td class='w'>so</td><td class='eg'>It was raining, so we went inside.</td>"+
+ "<td>Two equal facts, one after the other.</td></tr>"+
+ "<tr><td class='wt'>because</td><td class='eg'>We went inside because it was raining.</td>"+
+ "<td>The point is that we went inside. The rain is the background.</td></tr>"+
+ "<tr><td class='wt'>Because &hellip;</td><td class='eg'>Because it was raining, we went inside.</td>"+
+ "<td>Same meaning, but the rain is announced first.</td></tr>"+
+ "</table></div>"+
+ "<div class='grid2' style='margin-top:6px'>"+
+ "<div class='box a'><h4>Quick check &middot; Line C</h4><p style='margin:0'>Is the joiner one of the "+
+ "seven? Are both sides complete sentences? Then put a comma <b>before</b> the joiner.</p></div>"+
+ "<div class='box t'><h4>Quick check &middot; Line S</h4><p style='margin:0'>Does one side leave you "+
+ "waiting? Then it is the branch. Comma only when the branch comes <b>first</b>.</p></div></div>"+
+ "<div class='note yes'><b>You are ready.</b> Go to Practice and take the six activities, then try "+
+ "the thirty-question test.</div>"}
+];
+
+/* ===================== PRACTICE ===================== */
+var PRACTICE = [
+{id:"p1", badge:"1", title:"1 &middot; Spot the joiner", type:"mc",
+ intro:"Read the sentence and pick out the word that is doing the joining.",
+ qs:[
+ {q:"Which word joins the two ideas?", stem:"The film was long, yet nobody looked at the clock.",
+  o:["long","yet","nobody","clock"], a:1,
+  ex:"<b>Yet</b> is a FANBOYS word. It joins two complete sentences and shows a contrast, so a comma goes in front of it."},
+ {q:"Which word joins the two ideas?", stem:"We waited by the gate until the rain stopped.",
+  o:["waited","by","until","stopped"], a:2,
+  ex:"<b>Until</b> is a subordinating conjunction doing the <b>time</b> job. The branch is <i>until the rain stopped</i>."},
+ {q:"Which word joins the two ideas?", stem:"Somchai could not find his key, so he waited on the step.",
+  o:["not","his","so","waited"], a:2,
+  ex:"<b>So</b> is a FANBOYS word showing a <b>result</b>: not finding the key is why he waited."},
+ {q:"Which word joins the two ideas?", stem:"Although the shop was closed, the lights were still on.",
+  o:["Although","was","closed","still"], a:0,
+  ex:"<b>Although</b> starts the subordinate clause and does the <b>contrast</b> job. Because the branch comes first, the comma is needed."},
+ {q:"Which word joins the two ideas?", stem:"Nan fed the cat before she left for school.",
+  o:["fed","the","before","left"], a:2,
+  ex:"<b>Before</b> is a subordinating conjunction doing the <b>time</b> job. The main clause is <i>Nan fed the cat</i>."},
+ {q:"Which word joins the two ideas?", stem:"You may borrow my umbrella, or you may wait here.",
+  o:["may","borrow","or","wait"], a:2,
+  ex:"<b>Or</b> is the FANBOYS word that offers a <b>choice</b> between two complete sentences."},
+ {q:"Which word joins the two ideas?", stem:"The team trained every morning because the final was close.",
+  o:["trained","every","because","close"], a:2,
+  ex:"<b>Because</b> gives the <b>reason</b>. The main clause comes first, so there is no comma."},
+ {q:"Which word joins the two ideas?", stem:"He did not answer, nor did he look up.",
+  o:["did","not","nor","look"], a:2,
+  ex:"<b>Nor</b> adds a second negative idea. Notice that the words turn round after it: <i>nor <b>did he</b> look up</i>."}
+ ]},
+
+{id:"p2", badge:"2", title:"2 &middot; Which line, which job?", type:"mc", pic:true,
+ intro:"Use the map. Say which line the joining word runs on, and what job it is doing in this sentence.",
+ qs:[
+ {q:"Which line, and which job?", stem:"The path was steep, but the view was worth it.",
+  o:["Line C &middot; contrast","Line C &middot; result","Line S &middot; reason","Line S &middot; time"], a:0,
+  ex:"<b>But</b> is one of the seven FANBOYS, so it runs on Line C, and it sets one idea against the other &mdash; contrast."},
+ {q:"Which line, and which job?", stem:"Mali took a jacket because the evening was cold.",
+  o:["Line C &middot; result","Line S &middot; reason","Line S &middot; condition","Line C &middot; addition"], a:1,
+  ex:"<b>Because</b> is not a FANBOYS word. It starts a branch that gives the <b>reason</b> for taking the jacket."},
+ {q:"Which line, and which job?", stem:"The kettle boiled, so I made the tea.",
+  o:["Line S &middot; time","Line C &middot; result","Line C &middot; choice","Line S &middot; reason"], a:1,
+  ex:"<b>So</b> is a FANBOYS word. It joins two equal stations and the second one is the <b>result</b> of the first."},
+ {q:"Which line, and which job?", stem:"If the bus is late, ring me.",
+  o:["Line C &middot; contrast","Line S &middot; time","Line S &middot; condition","Line C &middot; reason"], a:2,
+  ex:"<b>If</b> runs on Line S and does the <b>condition</b> job: it says what has to be true before the main clause happens."},
+ {q:"Which line, and which job?", stem:"While the rice cooked, Nok laid the table.",
+  o:["Line S &middot; time","Line S &middot; reason","Line C &middot; addition","Line C &middot; contrast"], a:0,
+  ex:"Here <b>while</b> means <i>at the same time as</i>, so it is doing the <b>time</b> job. (<i>While</i> can also show contrast &mdash; read the whole sentence.)"},
+ {q:"Which line, and which job?", stem:"Dao has not eaten, nor has she slept.",
+  o:["Line S &middot; contrast","Line C &middot; a second negative","Line S &middot; condition","Line C &middot; choice"], a:1,
+  ex:"<b>Nor</b> is the N of FANBOYS, so it runs on Line C. It adds a <b>second negative</b> idea to the first one."},
+ {q:"Which line, and which job?", stem:"Although the test was hard, everyone finished it.",
+  o:["Line C &middot; contrast","Line S &middot; contrast","Line S &middot; reason","Line C &middot; result"], a:1,
+  ex:"<b>Although</b> is not in FANBOYS. It starts a branch, and the job is <b>contrast</b> &mdash; the ending is not what you would expect."},
+ {q:"Which line, and which job?", stem:"We can walk, or we can take the boat.",
+  o:["Line C &middot; choice","Line S &middot; condition","Line C &middot; addition","Line S &middot; time"], a:0,
+  ex:"<b>Or</b> is a FANBOYS word offering a <b>choice</b> between two complete sentences, so the comma goes in front of it."}
+ ]},
+
+{id:"p3", badge:"3", title:"3 &middot; Comma or no comma", type:"mc",
+ intro:"Decide what belongs where the mark is missing. Remember: FANBOYS take the comma in front, a branch takes it at the end &mdash; and only when it comes first.",
+ qs:[
+ {q:"What belongs in the gap?", stem:"The rain stopped <span class='hl'>&nbsp;?&nbsp;</span> but the sky stayed grey.",
+  o:["a comma","no comma"], a:0,
+  ex:"Both sides are complete sentences (<i>The rain stopped</i> / <i>the sky stayed grey</i>), so the FANBOYS word takes a comma in front of it."},
+ {q:"What belongs in the gap?", stem:"The soup was hot <span class='hl'>&nbsp;?&nbsp;</span> and salty.",
+  o:["a comma","no comma"], a:1,
+  ex:"<i>Salty</i> is one word, not a sentence. <b>And</b> is joining two describing words, so no comma."},
+ {q:"What belongs in the gap?", stem:"If you see Pim <span class='hl'>&nbsp;?&nbsp;</span> give her this note.",
+  o:["a comma","no comma"], a:0,
+  ex:"The branch <i>If you see Pim</i> comes first, so it is closed off with a comma before the main clause."},
+ {q:"What belongs in the gap?", stem:"Give her this note <span class='hl'>&nbsp;?&nbsp;</span> if you see Pim.",
+  o:["a comma","no comma"], a:1,
+  ex:"Same two clauses, the other way round. When the main clause comes first, the branch follows straight on with no comma."},
+ {q:"What belongs in the gap?", stem:"Uncle Sak washed the van <span class='hl'>&nbsp;?&nbsp;</span> and swept the yard.",
+  o:["a comma","no comma"], a:1,
+  ex:"One subject, two verbs: <i>Uncle Sak washed &hellip; and swept &hellip;</i>. The second half is not a sentence on its own, so no comma."},
+ {q:"What belongs in the gap?", stem:"We left at six <span class='hl'>&nbsp;?&nbsp;</span> for the road is always busy later.",
+  o:["a comma","no comma"], a:0,
+  ex:"<b>For</b> as a FANBOYS word means <i>because</i>, it joins two complete sentences, and it always takes a comma."},
+ {q:"What belongs in the gap?", stem:"Because the lift was broken <span class='hl'>&nbsp;?&nbsp;</span> we climbed the stairs.",
+  o:["a comma","no comma"], a:0,
+  ex:"The branch comes first, so it ends with a comma. Move it to the back and the comma disappears: <i>We climbed the stairs because the lift was broken.</i>"},
+ {q:"What belongs in the gap?", stem:"Nobody spoke <span class='hl'>&nbsp;?&nbsp;</span> until the film had finished.",
+  o:["a comma","no comma"], a:1,
+  ex:"<b>Until</b> starts a branch that comes second, so the sentence runs straight on without a comma."}
+ ]},
+
+{id:"p4", badge:"4", title:"4 &middot; Choose the joiner", type:"mc",
+ intro:"Only one joining word carries the meaning the sentence needs. Read to the end before you choose.",
+ qs:[
+ {q:"Which word fits the meaning?", stem:"The bag looked heavy, <span class='hl'>&nbsp;?&nbsp;</span> Ploy carried it easily.",
+  o:["so","yet","for","or"], a:1,
+  ex:"Carrying it easily is a surprise after <i>looked heavy</i>, and that surprise is what <b>yet</b> adds. <i>So</i> would mean the opposite."},
+ {q:"Which word fits the meaning?", stem:"<span class='hl'>&nbsp;?&nbsp;</span> you press this button, the machine stops.",
+  o:["Although","If","While","But"], a:1,
+  ex:"The first clause is the thing that has to happen first, so this is the <b>condition</b> job: <b>if</b>."},
+ {q:"Which word fits the meaning?", stem:"Grandma kept the recipe, <span class='hl'>&nbsp;?&nbsp;</span> she never wrote it down.",
+  o:["but","so","for","and"], a:0,
+  ex:"Keeping it and never writing it down pull against each other, so the sentence needs the contrast word <b>but</b>."},
+ {q:"Which word fits the meaning?", stem:"<span class='hl'>&nbsp;?&nbsp;</span> the coach was crowded, we stood all the way.",
+  o:["Although","Unless","Because","If"], a:2,
+  ex:"The crowd is the <b>reason</b> they stood, so <b>because</b> is the joiner. <i>Although</i> would say the opposite of what happened."},
+ {q:"Which word fits the meaning?", stem:"Take a torch, <span class='hl'>&nbsp;?&nbsp;</span> the path has no lights.",
+  o:["or","nor","for","yet"], a:2,
+  ex:"<b>For</b> is the FANBOYS word that gives a reason. It means the same as <i>because</i> here, and it always follows a comma."},
+ {q:"Which word fits the meaning?", stem:"Dao waited by the door <span class='hl'>&nbsp;?&nbsp;</span> her father arrived.",
+  o:["until","although","unless","so"], a:0,
+  ex:"The waiting goes on up to the moment he arrives, which is exactly the <b>time</b> job that <b>until</b> does."},
+ {q:"Which word fits the meaning?", stem:"<span class='hl'>&nbsp;?&nbsp;</span> you hand it in today, it will not be marked.",
+  o:["Because","Unless","Since","While"], a:1,
+  ex:"<b>Unless</b> means <i>if &hellip; not</i>. Handing it in today is the one thing that would stop it going unmarked."},
+ {q:"Which word fits the meaning?", stem:"I have not seen Kit, <span class='hl'>&nbsp;?&nbsp;</span> have I heard from him.",
+  o:["or","nor","but","and"], a:1,
+  ex:"The first idea is negative and a second negative is being added, so the word is <b>nor</b> &mdash; and the words turn round after it: <i>nor <b>have I</b></i>."}
+ ]},
+
+{id:"p5", badge:"5", title:"5 &middot; Build the sentence", type:"order",
+ intro:"Tap the words in order to build one correct sentence. The punctuation is already attached to the words.",
+ qs:[
+ {w:["Although","the","hall","was","full,","we","found","two","seats."],
+  ex:"The branch comes first, so it is closed with a comma before the main clause."},
+ {w:["We","found","two","seats","although","the","hall","was","full."],
+  ex:"The same sentence the other way round. Main clause first means no comma at all."},
+ {w:["The","bell","rang,","but","nobody","moved."],
+  ex:"Two complete sentences joined by a FANBOYS word, so the comma goes in front of <b>but</b>."},
+ {w:["Because","the","bus","was","late,","we","missed","assembly."],
+  ex:"<i>Because the bus was late</i> cannot stand alone &mdash; it needs the main clause that follows the comma."},
+ {w:["Nok","practised","every","evening,","so","she","passed","easily."],
+  ex:"<b>So</b> joins a cause and its result. Both halves are complete sentences, so the comma stays."},
+ {w:["While","the","rice","cooked,","Mali","laid","the","table."],
+  ex:"<b>While</b> is doing the time job here: the two actions happen together."},
+ {w:["He","did","not","call,","nor","did","he","write."],
+  ex:"After <b>nor</b> the word order turns round, just as it does in a question: <i>did he write</i>."}
+ ]},
+
+{id:"p6", badge:"6", title:"6 &middot; Sentence or fragment?", type:"mc",
+ intro:"A subordinate clause on its own is not a sentence, however long it looks. Decide whether each one is finished.",
+ qs:[
+ {q:"Is this a complete sentence?", stem:"Because the shop had already closed.",
+  o:["Complete sentence","Fragment &mdash; it needs a main clause"], a:1,
+  ex:"It leaves you waiting: closed, and then what? Add a main clause, or take <i>because</i> away."},
+ {q:"Is this a complete sentence?", stem:"The shop had already closed.",
+  o:["Complete sentence","Fragment &mdash; it needs a main clause"], a:0,
+  ex:"Take the joining word off a branch and what is left is a perfectly good main clause."},
+ {q:"Is this a complete sentence?", stem:"Although we searched the whole classroom.",
+  o:["Complete sentence","Fragment &mdash; it needs a main clause"], a:1,
+  ex:"<i>Although</i> makes it a branch. It has a subject and a verb, but it still cannot run alone."},
+ {q:"Is this a complete sentence?", stem:"We searched the whole classroom, but the ruler was gone.",
+  o:["Complete sentence","Fragment &mdash; it needs a main clause"], a:0,
+  ex:"Two complete sentences joined by <b>but</b>, with the comma correctly in front of it."},
+ {q:"Is this a complete sentence?", stem:"While Pim was cutting the paper.",
+  o:["Complete sentence","Fragment &mdash; it needs a main clause"], a:1,
+  ex:"A time branch with nothing to join. <i>While Pim was cutting the paper, Nan drew the lines.</i> mends it."},
+ {q:"Is this a complete sentence?", stem:"Since eight o'clock the corridor has been empty.",
+  o:["Complete sentence","Fragment &mdash; it needs a main clause"], a:0,
+  ex:"<i>Since eight o'clock</i> is only a phrase of time; <i>the corridor has been empty</i> is the main clause, so the sentence is finished."},
+ {q:"Is this a complete sentence?", stem:"If you would like a second copy.",
+  o:["Complete sentence","Fragment &mdash; it needs a main clause"], a:1,
+  ex:"A condition branch with no main clause. Finish it: <i>If you would like a second copy, ask at the office.</i>"}
+ ]}
+];
+</script>
+<script>
+/* ===================== TEST — 30 questions ===================== */
+var TEST = [
+/* ---------- Part A · Coordinating (FANBOYS) ---------- */
+{sec:"A", q:"Which sentence is punctuated correctly?",
+ o:["The gate was open but nobody, was inside.",
+    "The gate was open, but nobody was inside.",
+    "The gate was open but, nobody was inside.",
+    "The gate, was open but nobody was inside."], a:1,
+ ex:"Both halves are complete sentences, so the comma goes <b>in front of</b> the FANBOYS word &mdash; never after it."},
+
+{sec:"A", q:"Which FANBOYS word gives a result?",
+ o:["for","nor","so","yet"], a:2,
+ ex:"<b>So</b> introduces what happened as a result. <i>For</i> gives a reason, <i>nor</i> adds a negative and <i>yet</i> shows contrast."},
+
+{sec:"A", q:"Which word completes the sentence?",
+ stem:"Kanya had revised for hours, <b>?</b> she still felt nervous.",
+ o:["so","yet","for","nor"], a:1,
+ ex:"Feeling nervous is a surprise after hours of revision, and <b>yet</b> carries that surprise. <i>So</i> would say the nerves were the result of revising."},
+
+{sec:"A", q:"Three of these need a comma before the joining word. Which one does not?",
+ o:["The road was narrow and the bus was wide.",
+    "We can cycle or we can walk.",
+    "Ploy opened the box and looked inside.",
+    "It was late so we went home."], a:2,
+ ex:"<i>Looked inside</i> has no subject of its own &mdash; one subject with two verbs. The other three join two complete sentences, so they keep their commas."},
+
+{sec:"A", q:"What is wrong with this sentence?",
+ stem:"Nor he did answer the second question.",
+ o:["Nothing is wrong.",
+    "After <i>nor</i> the words must turn round: <i>nor did he answer</i>.",
+    "<i>Nor</i> should be <i>or</i>.",
+    "It needs a comma after <i>nor</i>."], a:1,
+ ex:"After <b>nor</b> the subject and the helping verb change places, exactly as they do in a question: <i>nor did he answer</i>."},
+
+{sec:"A", q:"Which word completes the sentence?",
+ stem:"Take the earlier train, <b>?</b> the later one is always full.",
+ o:["for","or","nor","yet"], a:0,
+ ex:"<b>For</b> is the FANBOYS word meaning <i>because</i>. It gives the reason for the advice, and it always follows a comma."},
+
+{sec:"A", q:"What does the FANBOYS word join in this sentence?",
+ stem:"Dao bought rice and noodles at the market.",
+ o:["two complete sentences","two words","two subordinate clauses","a question and an answer"], a:1,
+ ex:"<i>Rice</i> and <i>noodles</i> are two single words, so no comma is used. A comma is only needed when two complete sentences are joined."},
+
+{sec:"A", q:"Which sentence uses <i>so</i> correctly?",
+ o:["So the tyre was flat, we walked.",
+    "The tyre was flat, so we walked.",
+    "The tyre was flat so, we walked.",
+    "So, the tyre was flat we walked."], a:1,
+ ex:"A FANBOYS word sits <b>between</b> the two clauses with the comma in front. It can never start the sentence the way <i>because</i> can."},
+
+{sec:"A", q:"Which sentence has a comma that should not be there?",
+ o:["Miss Pim marked the books, and wrote the report.",
+    "Miss Pim marked the books, and she wrote the report.",
+    "Miss Pim marked the books and wrote the report.",
+    "Miss Pim was tired, but she finished the report."], a:0,
+ ex:"<i>Wrote the report</i> is not a sentence on its own &mdash; there is no second subject &mdash; so the comma should be taken out."},
+
+{sec:"A", q:"Which word completes the sentence?",
+ stem:"The younger children did not swim, <b>?</b> did they paddle.",
+ o:["and","or","nor","but"], a:2,
+ ex:"A second negative idea is being added to a first, which is the one job <b>nor</b> does. Note the turned-round order: <i>nor did they</i>."},
+
+{sec:"A", q:"Which FANBOYS word would join these two sentences best?",
+ stem:"The lift was out of order. &nbsp; We carried the boxes up.",
+ o:["or","so","nor","yet"], a:1,
+ ex:"Carrying the boxes up is the <b>result</b> of the lift being broken, and <b>so</b> is the result word: <i>The lift was out of order, so we carried the boxes up.</i>"},
+
+/* ---------- Part B · Subordinating ---------- */
+{sec:"B", q:"Which part of this sentence is the subordinate clause?",
+ stem:"We ate on the balcony because the kitchen was hot.",
+ o:["We ate on the balcony","because the kitchen was hot","on the balcony","the kitchen"], a:1,
+ ex:"It begins with the joining word and cannot stand alone. <i>We ate on the balcony</i> is a complete sentence, so it is the main clause."},
+
+{sec:"B", q:"Which sentence is punctuated correctly?",
+ o:["Although it was late we kept working.",
+    "Although it was late, we kept working.",
+    "We kept working although, it was late.",
+    "Although, it was late we kept working."], a:1,
+ ex:"When the branch comes first it is closed off with a comma. The comma belongs at the <b>end</b> of the subordinate clause &mdash; never straight after the joining word."},
+
+{sec:"B", q:"What job is <i>while</i> doing here?",
+ stem:"While I agree with the plan, I cannot pay for it.",
+ o:["time","contrast","reason","condition"], a:1,
+ ex:"Here <b>while</b> means <i>even though</i>, so it is doing the <b>contrast</b> job. In <i>while the rice cooked</i> it would mean <i>at the same time as</i> &mdash; time."},
+
+{sec:"B", q:"Which word completes the sentence?",
+ stem:"<b>?</b> you leave now, you will miss the ferry.",
+ o:["Although","Unless","Because","While"], a:1,
+ ex:"<b>Unless</b> means <i>if &hellip; not</i>. Leaving now is the one thing that would stop you missing the ferry."},
+
+{sec:"B", q:"Which is correct?",
+ o:["The game was cancelled because of the rain was heavy.",
+    "The game was cancelled because the heavy rain.",
+    "The game was cancelled because of the heavy rain.",
+    "The game was cancelled because of it rained."], a:2,
+ ex:"<b>Because of</b> is followed by a naming word with no verb. <b>Because</b> on its own is followed by a whole clause: <i>because the rain was heavy</i>."},
+
+{sec:"B", q:"What is wrong with this?",
+ stem:"Although the shop was shut, but the lights were on.",
+ o:["Nothing is wrong.",
+    "It uses two joiners where one is enough.",
+    "The comma is in the wrong place.",
+    "<i>Although</i> should be <i>because</i>."], a:1,
+ ex:"<i>Although</i> has already made the contrast, so <i>but</i> is doing the same job twice. Drop one: <i>Although the shop was shut, the lights were on.</i>"},
+
+{sec:"B", q:"Which of these is a fragment, not a sentence?",
+ o:["The corridor was empty.",
+    "Since the bell rang, the corridor has been empty.",
+    "Since the bell rang at eleven.",
+    "The bell rang at eleven."], a:2,
+ ex:"<i>Since</i> turns the words into a branch that is left hanging. Add a main clause, or take <i>since</i> away."},
+
+{sec:"B", q:"What job is <i>since</i> doing here?",
+ stem:"Since you have finished early, you may read quietly.",
+ o:["time","reason","contrast","condition"], a:1,
+ ex:"It answers <i>why</i> you may read, so it is doing the <b>reason</b> job. In <i>Since Monday she has been away</i> it would mark a point in time."},
+
+{sec:"B", q:"Rewrite <i>We stayed indoors because the smoke was thick</i> with the branch first. Which is correct?",
+ o:["Because the smoke was thick we stayed indoors.",
+    "Because the smoke was thick, we stayed indoors.",
+    "Because, the smoke was thick we stayed indoors.",
+    "We stayed indoors, because the smoke was thick."], a:1,
+ ex:"The joining word travels with its clause, and a branch that comes first ends with a comma."},
+
+{sec:"B", q:"Which word completes the sentence?",
+ stem:"Nan checked the list twice <b>?</b> she handed it in.",
+ o:["before","although","unless","so"], a:0,
+ ex:"The checking happened first and the handing in second, which is the <b>time</b> job that <b>before</b> does."},
+
+{sec:"B", q:"Which sentence shows a contrast?",
+ o:["We left early because the road floods.",
+    "We left early although the road was clear.",
+    "We left early, so the road was clear.",
+    "We left early if the road floods."], a:1,
+ ex:"<b>Although</b> sets the two ideas against each other: you would not expect an early start on a clear road."},
+
+/* ---------- Part C · Mixed ---------- */
+{sec:"C", q:"Which sentence is correct?",
+ o:["Because the tide was high, so we waited.",
+    "Because the tide was high, we waited.",
+    "The tide was high so, we waited.",
+    "Because the tide was high we waited, so."], a:1,
+ ex:"One joiner is enough. Use <b>because</b> with a comma after the branch, or <b>so</b> with a comma in front of it &mdash; not both."},
+
+{sec:"C", q:"Which joiner could replace <i>so</i> without changing the meaning?",
+ stem:"The road was flooded, so the bus turned back.",
+ o:["The bus turned back although the road was flooded.",
+    "The bus turned back because the road was flooded.",
+    "The bus turned back if the road was flooded.",
+    "The bus turned back while the road was flooded."], a:1,
+ ex:"<b>So</b> puts the cause first and the result second; <b>because</b> puts the result first and the cause second. The facts are the same."},
+
+{sec:"C", q:"Which sentence joins two ideas of equal weight?",
+ o:["When the film ended, the lights came on.",
+    "The film ended, and the lights came on.",
+    "The lights came on because the film ended.",
+    "Although the film ended, the lights stayed off."], a:1,
+ ex:"Only <b>and</b> is a FANBOYS word. The other three push one idea into the background as a branch."},
+
+{sec:"C", q:"Which sentence has NO mistake?",
+ o:["Although he apologised, but she was still upset.",
+    "He apologised, she was still upset.",
+    "He apologised, yet she was still upset.",
+    "Although he apologised she was still upset, yet."], a:2,
+ ex:"A FANBOYS word with a comma in front of it joins the two complete sentences. Option B has a comma doing a job only a joining word can do."},
+
+{sec:"C", q:"Which sentence means the writer did go?",
+ o:["Unless the ticket was free, I did not go.",
+    "Although the ticket was free, I did not go.",
+    "Because the ticket was free, I went.",
+    "If the ticket was free, I would go."], a:2,
+ ex:"Only option C reports something that happened. A and B both end in <i>did not go</i>, and D is about something that has not happened yet."},
+
+{sec:"C", q:"Which joiner turns these notes into one correct sentence?",
+ stem:"the library was closed &nbsp;/&nbsp; we worked in the canteen",
+ o:["The library was closed, nor we worked in the canteen.",
+    "The library was closed, so we worked in the canteen.",
+    "The library was closed, because we worked in the canteen.",
+    "Although the library was closed so we worked in the canteen."], a:1,
+ ex:"Working in the canteen is the result of the library being closed. Option C reverses cause and result; option D uses two joiners."},
+
+{sec:"C", q:"How many coordinating conjunctions are there in English?",
+ o:["four","seven","eleven","too many to count"], a:1,
+ ex:"Seven &mdash; <b>for, and, nor, but, or, yet, so</b> &mdash; and their first letters spell FANBOYS. Subordinating conjunctions are a much longer list."},
+
+{sec:"C", q:"Which sentence is a fragment?",
+ o:["The power came back at nine.",
+    "The power came back, but the lift stayed off.",
+    "After the power came back at nine.",
+    "The power came back after the storm passed."], a:2,
+ ex:"<b>After</b> makes it a branch and there is no main clause to join, so the reader is left waiting."}
+];
+</script>
+<script>
+(function(){
+"use strict";
+var $ = function(s){return document.querySelector(s)};
+var SECNAME = {A:"Part A \u00b7 Coordinating (FANBOYS)", B:"Part B \u00b7 Subordinating", C:"Part C \u00b7 Mixed"};
+var $$ = function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+var KEY = "rail_v1";
+var esc = function(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;")};
+
+/* ---------------- storage (best score only) ---------------- */
+var store = {best:null};
+try{ var raw = localStorage.getItem(KEY); if(raw){ store = JSON.parse(raw) || store; } }catch(e){}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} }
+
+/* ---------------- theme ---------------- */
+var themeBtn = $("#themeBtn");
+function setTheme(t){
+  document.documentElement.setAttribute("data-theme", t);
+  try{ store.theme = t; save(); }catch(e){}
+}
+setTheme(store.theme === "dark" ? "dark" : "light");
+themeBtn.addEventListener("click", function(){
+  setTheme(document.documentElement.getAttribute("data-theme")==="dark" ? "light" : "dark");
+});
+
+/* ---------------- routing ---------------- */
+var VIEWS = ["home","lesson","practice","test"];
+function go(name){
+  VIEWS.forEach(function(v){ $("#view-"+v).classList.toggle("hide", v!==name); });
+  $$(".nb[data-go]").forEach(function(b){ b.setAttribute("aria-current", String(b.dataset.go===name)); });
+  window.scrollTo(0,0);
+  if(name==="home") refreshHome();
+  if(name==="lesson") drawSlide(true);
+  if(name==="practice"){ if(prac.act===null) drawPracMenu(); }
+}
+document.addEventListener("click", function(e){
+  var b = e.target.closest("[data-go]");
+  if(b){ go(b.dataset.go); }
+});
+
+/* ---------------- home stats ---------------- */
+var readSlides = {};
+function refreshHome(){
+  var nread = Object.keys(readSlides).length;
+  $("#s-lesson").textContent = nread + "/" + LESSON.length;
+  var pqs = PRACTICE.reduce(function(a,p){ return a + p.qs.length; },0);
+  $("#m-practice").innerHTML = PRACTICE.length + " activities &middot; " + pqs + " questions";
+  $("#m-lesson").innerHTML = LESSON.length + " slides &middot; with a junction map";
+  var doneActs = 0, got = 0, tot = 0;
+  PRACTICE.forEach(function(p){
+    var s = prac.scores[p.id];
+    if(s && s.done >= p.qs.length){ doneActs++; }
+    if(s){ got += s.right; tot += s.done; }
+  });
+  $("#s-practice").textContent = doneActs + "/" + PRACTICE.length;
+  $("#s-pscore").textContent = tot ? (got + "/" + tot) : "–";
+  $("#s-best").textContent = (store.best!=null) ? (store.best + "/" + TEST.length) : "\u2013";
+}
+
+/* ================================ LESSON ================================ */
+var slideIdx = 0;
+function drawSlide(mark){
+  var s = LESSON[slideIdx];
+  if(mark !== false){ readSlides[slideIdx] = true; }
+  $("#slideBox").innerHTML = "<div class='kicker'>"+s.kicker+"</div><h2>"+s.title+"</h2>"+
+    (s.pic ? "<div class='picbox' id='slidePic'></div><p class='swipe'>&larr; Swipe the map &rarr;</p>" : "")+
+    s.html;
+  if(s.pic){ $("#slidePic").appendChild($("#railScene").content.cloneNode(true)); }
+  var bar = $("#slidebar"); bar.innerHTML = "";
+  LESSON.forEach(function(x,i){
+    var b = document.createElement("button");
+    b.className = "pip" + (readSlides[i] ? " done" : "");
+    b.setAttribute("aria-current", String(i===slideIdx));
+    b.textContent = x.pip;
+    b.setAttribute("aria-label","Slide "+x.pip);
+    b.addEventListener("click", function(){ slideIdx = i; drawSlide(); $("#slideBox").focus(); });
+    bar.appendChild(b);
+  });
+  $("#slPrev").disabled = (slideIdx===0);
+  $("#slNext").disabled = (slideIdx===LESSON.length-1);
+  $("#slToPractice").classList.toggle("hide", slideIdx !== LESSON.length-1);
+}
+$("#slPrev").addEventListener("click", function(){ if(slideIdx>0){ slideIdx--; drawSlide(); window.scrollTo(0,0);} });
+$("#slNext").addEventListener("click", function(){ if(slideIdx<LESSON.length-1){ slideIdx++; drawSlide(); window.scrollTo(0,0);} });
+
+/* ================================ PRACTICE ================================ */
+var prac = { act:null, i:0, right:0, done:0, answered:false, scores:{}, built:[] };
+
+function drawPracMenu(){
+  $("#pracMenu").classList.remove("hide");
+  $("#pracRun").classList.add("hide");
+  var box = $("#pracTiles"); box.innerHTML = "";
+  PRACTICE.forEach(function(p, idx){
+    var s = prac.scores[p.id];
+    var meta = s ? (s.right + " / " + p.qs.length + (s.done>=p.qs.length ? " · done" : " · in progress"))
+                 : (p.qs.length + " questions");
+    var b = document.createElement("button");
+    b.className = "tile";
+    b.innerHTML = "<div class='tbadge'>"+p.badge+"</div><h3>"+p.title.replace(/^\d+ &middot; /,"")+"</h3>"+
+                  "<p>"+p.intro+"</p><div class='tmeta'>"+meta+"</div>";
+    b.addEventListener("click", function(){ startPrac(idx); });
+    box.appendChild(b);
+  });
+  refreshHome();
+}
+$("#pracBack").addEventListener("click", function(){ prac.act=null; drawPracMenu(); window.scrollTo(0,0); });
+$("#pracReset").addEventListener("click", function(){ prac.scores = {}; drawPracMenu(); });
+
+function startPrac(idx){
+  prac.act = idx; prac.i = 0; prac.right = 0; prac.done = 0; prac.answered = false;
+  var p = PRACTICE[idx];
+  prac.scores[p.id] = {right:0, done:0};
+  $("#pracMenu").classList.add("hide");
+  $("#pracRun").classList.remove("hide");
+  $("#pracTitle").innerHTML = p.title;
+  $("#pracIntro").innerHTML = p.intro;
+  drawPrac();
+  window.scrollTo(0,0);
+}
+
+function pracProgress(){
+  var p = PRACTICE[prac.act];
+  $("#pracFill").style.width = (100*prac.done/p.qs.length) + "%";
+  $("#pracScore").textContent = prac.right + " / " + p.qs.length;
+}
+
+function shuffled(n){
+  var a = []; for(var i=0;i<n;i++){a.push(i);}
+  for(var j=a.length-1;j>0;j--){ var k = Math.floor(Math.random()*(j+1)); var t=a[j]; a[j]=a[k]; a[k]=t; }
+  return a;
+}
+
+function drawPrac(){
+  var p = PRACTICE[prac.act];
+  if(prac.i >= p.qs.length){ drawPracEnd(); return; }
+  var q = p.qs[prac.i];
+  prac.answered = false;
+  var box = $("#pracBody");
+  var html = "";
+  if(p.pic){
+    html += "<div class='picbox' id='picHolder'></div><p class='swipe'>&larr; Swipe the map &rarr;</p>";
+  }
+  html += "<div class='qwrap'><div class='qhead sec-A'><div class='qnum'>"+(prac.i+1)+"</div>"+
+          "<div class='qmeta'>Question "+(prac.i+1)+" of "+p.qs.length+"</div></div>"+
+          "<div class='qcard sec-A'>";
+
+  if(p.type==="mc"){
+    html += "<p class='qtext'>"+q.q+"</p>"+
+            (q.stem ? "<div class='sent'>"+q.stem+"</div>" : "")+
+            "<div class='opts' id='optBox'>";
+    q.o.forEach(function(t,i){
+      html += "<button class='opt' data-v='"+i+"'><span class='ol'>"+"ABCD".charAt(i)+"</span><span class='otx'>"+t+"</span></button>";
+    });
+    html += "</div>";
+  } else if(p.type==="order"){
+    html += "<p class='qtext'>Build the sentence.</p><p class='qhint'>Tap a word to add it. Tap a word in the box above to take it back.</p>"+
+            "<div class='built' id='builtBox'></div><div class='bank' id='bankBox'></div>"+
+            "<div class='btnrow' style='margin-top:6px'>"+
+            "<button class='btn sm pri' id='checkBtn'>Check</button>"+
+            "<button class='btn sm' id='clearBtn'>Clear</button></div>";
+  }
+  html += "<div id='fbBox'></div></div></div>";
+  box.innerHTML = html;
+
+  if(p.pic){
+    $("#picHolder").appendChild($("#railScene").content.cloneNode(true));
+  }
+
+  if(p.type==="mc"){
+    $$("#optBox .opt").forEach(function(b){
+      b.addEventListener("click", function(){
+        if(prac.answered) return;
+        var v = parseInt(b.dataset.v,10);
+        var ok = (v===q.a);
+        var correct = q.a;
+        markPrac(ok, q.ex);
+        $$("#optBox .opt").forEach(function(o){
+          o.disabled = true;
+          var ov = parseInt(o.dataset.v,10);
+          if(ov===correct){ o.classList.add("right"); o.querySelector(".otx").innerHTML += "<span class='olab'>Correct answer</span>"; }
+          if(ov===v && !ok){ o.classList.add("wrong"); o.querySelector(".otx").innerHTML += "<span class='olab'>You chose this</span>"; }
+        });
+      });
+    });
+  }
+  if(p.type==="order"){
+    prac.built = [];
+    var bank = $("#bankBox"), builtBox = $("#builtBox");
+    var order = shuffled(q.w.length);
+    if(order.join()===q.w.map(function(_,i){return i;}).join() && q.w.length>1){ order.reverse(); }
+    var chipEls = [];
+    order.forEach(function(wi){
+      var c = document.createElement("button");
+      c.className = "chip"; c.textContent = q.w[wi]; c.dataset.wi = wi;
+      c.addEventListener("click", function(){
+        if(prac.answered || c.classList.contains("used")) return;
+        c.classList.add("used");
+        prac.built.push(wi);
+        redrawBuilt();
+      });
+      chipEls.push(c); bank.appendChild(c);
+    });
+    function redrawBuilt(){
+      builtBox.innerHTML = "";
+      prac.built.forEach(function(wi, pos){
+        var c = document.createElement("button");
+        c.className = "chip inb"; c.textContent = q.w[wi];
+        c.addEventListener("click", function(){
+          if(prac.answered) return;
+          prac.built.splice(pos,1);
+          chipEls.forEach(function(e){ if(parseInt(e.dataset.wi,10)===wi && e.classList.contains("used")){ e.classList.remove("used"); } });
+          redrawBuilt();
+        });
+        builtBox.appendChild(c);
+      });
+    }
+    $("#clearBtn").addEventListener("click", function(){
+      if(prac.answered) return;
+      prac.built = []; chipEls.forEach(function(e){ e.classList.remove("used"); }); redrawBuilt();
+    });
+    $("#checkBtn").addEventListener("click", function(){
+      if(prac.answered) return;
+      var ok = prac.built.length===q.w.length && prac.built.every(function(v,i){ return v===i; });
+      $("#checkBtn").disabled = true; $("#clearBtn").disabled = true;
+      markPrac(ok, (ok ? "" : "The correct sentence is: <b>"+q.w.join(" ")+"</b><br>") + q.ex);
+    });
+  }
+  pracProgress();
+  $("#pracNext").disabled = true;
+  $("#pracNext").textContent = (prac.i === p.qs.length-1) ? "See my score ›" : "Next ›";
+}
+
+function markPrac(ok, ex){
+  var p = PRACTICE[prac.act];
+  prac.answered = true;
+  prac.done++;
+  if(ok) prac.right++;
+  prac.scores[p.id] = {right:prac.right, done:prac.done};
+  var fb = document.createElement("div");
+  fb.className = "fb " + (ok ? "ok" : "no");
+  fb.innerHTML = "<div class='fbh'><span class='g'>"+(ok ? "✓" : "✗")+"</span>"+
+                 (ok ? "Correct!" : "Not quite.")+"</div><div>"+ex+"</div>";
+  $("#fbBox").appendChild(fb);
+  pracProgress();
+  $("#pracNext").disabled = false;
+  $("#pracNext").focus();
+}
+
+$("#pracNext").addEventListener("click", function(){
+  if(!prac.answered) return;
+  prac.i++;
+  drawPrac();
+  window.scrollTo(0,0);
+});
+
+function drawPracEnd(){
+  var p = PRACTICE[prac.act];
+  var pct = Math.round(100*prac.right/p.qs.length);
+  var stars = pct>=90 ? 5 : pct>=75 ? 4 : pct>=60 ? 3 : pct>=40 ? 2 : 1;
+  var s = ""; for(var i=0;i<5;i++){ s += (i<stars ? "★" : "☆"); }
+  $("#pracBody").innerHTML =
+    "<div class='card c1' style='text-align:center'>"+
+    "<div class='stars'>"+s+"</div>"+
+    "<div class='bigscore'>"+prac.right+" / "+p.qs.length+"</div>"+
+    "<p style='font-weight:800;margin-top:8px'>"+pct+"% correct</p>"+
+    "<div class='btnrow' style='justify-content:center;margin-top:10px'>"+
+    "<button class='btn pri' id='againBtn'>Try this again</button>"+
+    "<button class='btn' id='menuBtn'>All activities</button></div>"+
+    "<p style='margin:18px 0 0;font-size:.84rem;color:var(--ink-2);font-weight:700'>Bright EngMath &middot; English &amp; Maths Resources</p>"+
+    "</div>";
+  $("#pracNext").disabled = true;
+  $("#pracNext").textContent = "Finished";
+  $("#againBtn").addEventListener("click", function(){ startPrac(prac.act); });
+  $("#menuBtn").addEventListener("click", function(){ prac.act=null; drawPracMenu(); window.scrollTo(0,0); });
+  pracProgress();
+}
+
+/* ================================ TEST ================================ */
+var T = { order:[], idx:0, ans:{}, live:false };
+
+function startTest(order){
+  T.order = order || TEST.map(function(_,i){return i;});
+  T.idx = 0; T.ans = {}; T.live = true;
+  $("#testStart").classList.add("hide");
+  $("#testResult").classList.add("hide");
+  $("#testRun").classList.remove("hide");
+  $("#tGridBox").classList.add("hide");
+  drawTest();
+  window.scrollTo(0,0);
+}
+$("#testGo").addEventListener("click", function(){ startTest(null); });
+
+function tDone(){ return T.order.filter(function(i){ return T.ans[i]!=null; }).length; }
+function tRight(){ return T.order.filter(function(i){ return T.ans[i] && T.ans[i].ok; }).length; }
+
+function tProgress(){
+  $("#tFill").style.width = (100*tDone()/T.order.length) + "%";
+  $("#tScore").textContent = tRight() + " / " + T.order.length;
+  $("#tPrev").disabled = (T.idx===0);
+  $("#tNext").disabled = (T.idx===T.order.length-1);
+}
+
+function drawTest(){
+  var qi = T.order[T.idx], q = TEST[qi], rec = T.ans[qi];
+  var secName = SECNAME[q.sec];
+  var html = "<div class='qwrap'><div class='qhead sec-"+q.sec+"'><div class='qnum'>"+(T.idx+1)+"</div>"+
+             "<div class='qmeta'>"+secName+" &middot; question "+(T.idx+1)+" of "+T.order.length+"</div></div>"+
+             "<div class='qcard sec-"+q.sec+"'><p class='qtext'>"+q.q+"</p>"+
+             (q.stem ? "<div class='sent'>"+q.stem+"</div>" : "")+
+             "<div class='opts' id='tOpts'>";
+  q.o.forEach(function(t,i){
+    html += "<button class='opt' data-v='"+i+"'><span class='ol'>"+"ABCD".charAt(i)+"</span><span class='otx'>"+t+"</span></button>";
+  });
+  html += "</div><div id='tFb'></div></div></div>";
+  $("#tBody").innerHTML = html;
+
+  if(rec){ paintTest(qi, rec.pick); }
+  else{
+    $$("#tOpts .opt").forEach(function(b){
+      b.addEventListener("click", function(){
+        if(T.ans[qi]) return;
+        var v = parseInt(b.dataset.v,10);
+        T.ans[qi] = {pick:v, ok:(v===q.a)};
+        paintTest(qi, v);
+        tProgress(); drawGrid();
+      });
+    });
+  }
+  tProgress(); drawGrid();
+}
+
+function paintTest(qi, pick){
+  var q = TEST[qi];
+  $$("#tOpts .opt").forEach(function(o){
+    o.disabled = true;
+    var ov = parseInt(o.dataset.v,10);
+    if(ov===q.a){ o.classList.add("right"); if(!o.querySelector(".olab")) o.querySelector(".otx").innerHTML += "<span class='olab'>Correct answer</span>"; }
+    if(ov===pick && pick!==q.a){ o.classList.add("wrong"); if(!o.querySelector(".olab")) o.querySelector(".otx").innerHTML += "<span class='olab'>You chose this</span>"; }
+  });
+  var ok = (pick===q.a);
+  $("#tFb").innerHTML = "<div class='fb "+(ok?"ok":"no")+"'><div class='fbh'><span class='g'>"+
+    (ok?"✓":"✗")+"</span>"+(ok?"Correct!":"Not quite.")+"</div><div>"+q.ex+"</div></div>";
+}
+
+function drawGrid(){
+  var g = $("#tGridInner"); g.innerHTML = "";
+  T.order.forEach(function(qi, pos){
+    var b = document.createElement("button");
+    var rec = T.ans[qi];
+    b.className = "gcell" + (rec ? (rec.ok ? " g-ok" : " g-no") : "");
+    b.setAttribute("aria-current", String(pos===T.idx));
+    b.textContent = (pos+1);
+    b.setAttribute("aria-label","Go to question "+(pos+1)+(rec?(rec.ok?", correct":", wrong"):", not answered"));
+    b.addEventListener("click", function(){ T.idx = pos; drawTest(); window.scrollTo(0,0); });
+    g.appendChild(b);
+  });
+}
+$("#tGrid").addEventListener("click", function(){ $("#tGridBox").classList.toggle("hide"); });
+$("#tPrev").addEventListener("click", function(){ if(T.idx>0){ T.idx--; drawTest(); window.scrollTo(0,0);} });
+$("#tNext").addEventListener("click", function(){ if(T.idx<T.order.length-1){ T.idx++; drawTest(); window.scrollTo(0,0);} });
+$("#tSkip").addEventListener("click", function(){
+  if(T.idx<T.order.length-1){ T.idx++; drawTest(); }
+  else { T.idx = 0; drawTest(); }
+  window.scrollTo(0,0);
+});
+$("#tFinish").addEventListener("click", finishTest);
+
+function finishTest(){
+  var total = T.order.length, right = tRight(), done = tDone();
+  var wrongIdx = T.order.filter(function(i){ return T.ans[i] && !T.ans[i].ok; });
+  var skipped = T.order.filter(function(i){ return T.ans[i]==null; });
+  var pct = Math.round(100*right/total);
+  var stars = pct>=90 ? 5 : pct>=75 ? 4 : pct>=60 ? 3 : pct>=40 ? 2 : 1;
+  var st = ""; for(var i=0;i<5;i++){ st += (i<stars ? "★" : "☆"); }
+
+  if(total===TEST.length){
+    if(store.best==null || right > store.best){ store.best = right; save(); }
+  }
+
+  var parts = {A:[0,0], B:[0,0], C:[0,0]};
+  T.order.forEach(function(qi){
+    var s = TEST[qi].sec; parts[s][1]++;
+    if(T.ans[qi] && T.ans[qi].ok) parts[s][0]++;
+  });
+  var partHtml = "";
+  ["A","B","C"].forEach(function(s){
+    if(!parts[s][1]) return;
+    var w = Math.round(100*parts[s][0]/parts[s][1]);
+    partHtml += "<div class='part'><span class='pn'>"+SECNAME[s]+"</span><span class='pn'>"+parts[s][0]+"/"+parts[s][1]+"</span>"+
+                "<div class='track'><div class='fill p"+s+"' style='width:"+w+"%'></div></div></div>";
+  });
+
+  var reviewHtml = "";
+  wrongIdx.forEach(function(qi){
+    var q = TEST[qi], pos = T.order.indexOf(qi)+1;
+    reviewHtml += "<div class='rv'><div class='rq'>"+pos+". "+q.q+"</div>"+
+      (q.stem ? "<div class='sent'>"+q.stem+"</div>" : "")+
+      "<div class='ra n'>✗ You chose: "+q.o[T.ans[qi].pick]+"</div>"+
+      "<div class='ra y'>✓ Correct answer: "+q.o[q.a]+"</div>"+
+      "<div class='rx'>"+q.ex+"</div></div>";
+  });
+
+  var skipHtml = skipped.length
+    ? "<div class='note warn'><b>Not answered:</b> question "+skipped.map(function(qi){ return T.order.indexOf(qi)+1; }).join(", ")+"</div>"
+    : "";
+
+  $("#testRun").classList.add("hide");
+  $("#testResult").classList.remove("hide");
+  $("#testResult").innerHTML =
+    "<h1 style='margin-top:26px'>Your result</h1>"+
+    "<div class='card c2'>"+
+      "<div class='stars'>"+st+"</div>"+
+      "<div class='bigscore'>"+right+" / "+total+"</div>"+
+      "<div class='chips'>"+
+        "<span class='rchip'>"+pct+"% correct</span>"+
+        "<span class='rchip'>"+wrongIdx.length+" wrong</span>"+
+        "<span class='rchip'>"+skipped.length+" not answered</span>"+
+      "</div>"+
+      "<div class='parts'>"+partHtml+"</div>"+
+      skipHtml+
+      "<div class='btnrow' style='margin-top:14px'>"+
+        (wrongIdx.length ? "<button class='btn pri' id='missBtn'>Practise what I missed ("+wrongIdx.length+")</button>" : "")+
+        "<button class='btn' id='retakeBtn'>Take the whole test again</button>"+
+        "<button class='btn' data-go='home'>Back to home</button>"+
+      "</div>"+
+      "<p style='margin:18px 0 0;font-size:.84rem;color:var(--ink-2);font-weight:700'>Bright EngMath &middot; English &amp; Maths Resources</p>"+
+    "</div>"+
+    (reviewHtml ? "<h2 style='margin-top:30px'>Review — the ones to look at again</h2><div class='review'>"+reviewHtml+"</div>" : "")+
+    (done===total && !wrongIdx.length ? "<div class='note yes' style='margin-top:20px'><b>Perfect score.</b> Every question correct — well done!</div>" : "");
+
+  if(wrongIdx.length){
+    $("#missBtn").addEventListener("click", function(){ startTest(wrongIdx.slice()); });
+  }
+  $("#retakeBtn").addEventListener("click", function(){
+    $("#testResult").classList.add("hide");
+    $("#testStart").classList.remove("hide");
+    window.scrollTo(0,0);
+  });
+  window.scrollTo(0,0);
+  refreshHome();
+}
+
+/* ---------------- boot ---------------- */
+drawSlide(false);
+drawPracMenu();
+refreshHome();
+go("home");
+})();
+</script>
+</body>
+</html>
