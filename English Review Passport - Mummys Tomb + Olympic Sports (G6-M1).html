@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gate &amp; Passport — English Review</title>
+<style>
+:root{
+  --ivory:#FBF7EF; --paper:#FFFFFF; --kraft:#EFE4D2; --kraft-d:#E3D4B8;
+  --ink:#1E3A5C; --ink-2:#4A6485; --ink-3:#7C8DA5;
+  --sage:#3F7A5A; --sage-l:#E7F0E9;
+  --terra:#B4432F; --terra-l:#FBEAE5;
+  --gold:#B08842; --butter:#E9C46A;
+  --line:#DCD3C2; --line-2:#EDE6D8;
+  --serif:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,serif;
+  --sans:"Trebuchet MS","Segoe UI",system-ui,-apple-system,sans-serif;
+  --thai:"Sarabun","Noto Sans Thai",Thonburi,"Leelawadee UI","Tahoma",sans-serif;
+  --r:10px; --sh:0 1px 2px rgba(30,58,92,.06),0 6px 18px rgba(30,58,92,.07);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--ivory); color:var(--ink); font-family:var(--sans);
+  font-size:16px; line-height:1.55; -webkit-text-size-adjust:100%;
+}
+.th{font-family:var(--thai); font-size:.92em; color:var(--ink-2); line-height:1.7}
+body.no-th .th{display:none}
+button{font-family:inherit; font-size:inherit; cursor:pointer; border:none; background:none; color:inherit}
+button:focus-visible,a:focus-visible{outline:3px solid var(--butter); outline-offset:2px}
+.wrap{max-width:900px; margin:0 auto; padding:0 16px}
+.screen{display:none}
+.screen.on{display:block}
+
+/* ---------- top bar ---------- */
+.bar{
+  position:sticky; top:0; z-index:20; background:var(--ink); color:#fff;
+  border-bottom:3px solid var(--gold);
+}
+.bar .wrap{display:flex; align-items:center; gap:12px; height:56px}
+.bar .brand{font-family:var(--serif); font-size:15px; letter-spacing:.06em; white-space:nowrap}
+.bar .brand b{color:var(--butter); font-weight:normal}
+.bar .spacer{flex:1}
+.chip{
+  border:1px solid rgba(255,255,255,.35); border-radius:999px; padding:5px 12px;
+  font-size:12.5px; letter-spacing:.06em; color:#fff; background:transparent;
+}
+.chip[aria-pressed="true"]{background:var(--butter); color:var(--ink); border-color:var(--butter); font-weight:bold}
+.chip.ghost:hover{background:rgba(255,255,255,.12)}
+
+/* ---------- cover ---------- */
+#cover{padding:0}
+.cover-in{min-height:calc(100vh - 0px); display:flex; align-items:center; justify-content:center; padding:32px 16px}
+.passport{
+  width:100%; max-width:460px; background:linear-gradient(170deg,#24425F,#16304C);
+  border-radius:14px; padding:34px 28px 28px; color:#F6EFE2;
+  box-shadow:0 2px 4px rgba(0,0,0,.14),0 22px 48px rgba(22,48,76,.34);
+  border:1px solid #2E516F; position:relative; overflow:hidden;
+}
+.passport::after{
+  content:""; position:absolute; inset:9px; border:1px solid rgba(233,196,106,.42);
+  border-radius:9px; pointer-events:none;
+}
+.passport .kicker{
+  font-size:11.5px; letter-spacing:.3em; text-transform:uppercase; color:var(--butter); text-align:center;
+}
+.passport h1{
+  font-family:var(--serif); font-size:31px; line-height:1.15; text-align:center;
+  margin:14px 0 6px; letter-spacing:.01em;
+}
+.passport .sub{text-align:center; font-size:13.5px; color:#C8D6E4; letter-spacing:.04em}
+.crest{display:block; margin:20px auto 16px}
+.dests{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin:18px 0 22px}
+.dest-chip{
+  border:1px solid rgba(233,196,106,.5); border-radius:6px; padding:7px 13px;
+  font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; color:#F0E4CC;
+}
+.btn{
+  display:inline-block; border-radius:8px; padding:13px 26px; font-size:16px;
+  font-weight:bold; letter-spacing:.03em; text-align:center;
+}
+.btn-go{background:var(--butter); color:#16304C; width:100%; box-shadow:0 2px 0 #C9A44F}
+.btn-go:hover{background:#F0D07E}
+.cover-note{text-align:center; font-size:12.5px; color:#B9C9D9; margin-top:14px}
+.cover-note .th{color:#B9C9D9}
+
+/* ---------- passport pages ---------- */
+.page-head{padding:26px 0 6px}
+.page-head h2{font-family:var(--serif); font-size:24px; margin:0}
+.page-head .lede{color:var(--ink-2); font-size:14.5px; margin-top:4px}
+
+.progress-strip{
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--r);
+  padding:14px 16px; margin:14px 0 22px; box-shadow:var(--sh);
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+}
+.pmeter{flex:1; min-width:200px}
+.pmeter .lab{display:flex; justify-content:space-between; font-size:12.5px; color:var(--ink-2); margin-bottom:6px}
+.track{height:9px; background:var(--line-2); border-radius:99px; overflow:hidden}
+.track > i{display:block; height:100%; background:var(--sage); border-radius:99px; transition:width .45s ease}
+.stamp-count{font-size:12.5px; color:var(--ink-2); white-space:nowrap}
+.stamp-count b{font-family:var(--serif); font-size:19px; color:var(--ink)}
+
+.destpage{
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--r);
+  box-shadow:var(--sh); margin-bottom:22px; overflow:hidden;
+}
+.destpage > header{
+  display:flex; gap:14px; align-items:center; padding:16px 18px;
+  background:linear-gradient(180deg,#FFFDF8,#F8F1E3); border-bottom:1px solid var(--line);
+}
+.destpage > header .txt{flex:1; min-width:0}
+.destpage h3{font-family:var(--serif); font-size:19px; margin:0}
+.destpage .meta{font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); margin-bottom:3px}
+.topics{list-style:none; margin:0; padding:0}
+.topic{
+  display:flex; gap:14px; align-items:center; padding:13px 18px;
+  border-top:1px solid var(--line-2); flex-wrap:wrap;
+}
+.topic:first-child{border-top:none}
+.topic .tnum{
+  width:28px; height:28px; border-radius:50%; border:1.5px solid var(--line);
+  display:grid; place-items:center; font-size:12.5px; color:var(--ink-2); flex:none;
+  font-family:var(--serif);
+}
+.topic.done .tnum{background:var(--sage); border-color:var(--sage); color:#fff}
+.topic .tinfo{flex:1; min-width:150px}
+.topic .tname{display:block; font-weight:bold; font-size:15.5px}
+.topic .tsub{display:block; font-size:12.5px; color:var(--ink-3); margin-top:1px}
+.topic .tsub .th{display:inline; font-size:13px}
+.topic .score{font-size:12.5px; color:var(--ink-2); white-space:nowrap}
+.topic .score b{color:var(--sage)}
+.tactions{display:flex; gap:8px; flex:none}
+.mini{
+  border:1px solid var(--ink); color:var(--ink); background:var(--paper);
+  border-radius:7px; padding:7px 13px; font-size:13.5px; font-weight:bold;
+}
+.mini:hover{background:var(--ink); color:#fff}
+.mini.solid{background:var(--ink); color:#fff}
+.mini.solid:hover{background:#16304C}
+
+.testcard{
+  background:linear-gradient(170deg,#24425F,#16304C); color:#F6EFE2; border-radius:var(--r);
+  padding:20px 22px; margin-bottom:34px; box-shadow:var(--sh);
+  display:flex; gap:18px; align-items:center; flex-wrap:wrap;
+}
+.testcard .txt{flex:1; min-width:210px}
+.testcard h3{font-family:var(--serif); font-size:19px; margin:0 0 4px}
+.testcard p{margin:0; font-size:13.5px; color:#C8D6E4}
+.testcard .th{color:#C8D6E4}
+.btn-test{background:var(--butter); color:#16304C; border-radius:8px; padding:12px 22px; font-weight:bold}
+.btn-test:hover{background:#F0D07E}
+
+/* ---------- lesson ---------- */
+.subbar{display:flex; align-items:center; gap:12px; padding:18px 0 4px; flex-wrap:wrap}
+.back{font-size:13.5px; color:var(--ink-2); border-bottom:1px solid var(--line)}
+.back:hover{color:var(--ink); border-color:var(--ink)}
+.subbar h2{font-family:var(--serif); font-size:22px; margin:0; flex:1; min-width:180px}
+.stepdots{display:flex; gap:6px}
+.stepdots i{width:8px; height:8px; border-radius:50%; background:var(--line); display:block}
+.stepdots i.on{background:var(--gold)}
+
+.card{
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--r);
+  box-shadow:var(--sh); padding:22px 22px 20px; margin:16px 0;
+}
+.card h3{font-family:var(--serif); font-size:19px; margin:0 0 3px}
+.card h3 + .th{margin-bottom:12px}
+.plist{list-style:none; margin:0; padding:0}
+.plist li{padding:10px 0; border-top:1px solid var(--line-2)}
+.plist li:first-child{border-top:none}
+.eg{
+  font-family:var(--serif); font-style:italic; color:var(--ink);
+  background:#FFFCF4; border-left:3px solid var(--butter); padding:9px 13px;
+  margin:9px 0 2px; border-radius:0 6px 6px 0;
+}
+.eg b{font-style:normal; background:#FBF0D4; padding:0 3px; border-radius:2px}
+.nav{display:flex; gap:10px; justify-content:space-between; align-items:center; margin:18px 0 40px; flex-wrap:wrap}
+.btn-prim{background:var(--ink); color:#fff; border-radius:8px; padding:12px 24px; font-weight:bold}
+.btn-prim:hover{background:#16304C}
+.btn-prim[disabled]{background:var(--line); color:var(--ink-3); cursor:not-allowed}
+.btn-sec{border:1px solid var(--line); border-radius:8px; padding:12px 20px; color:var(--ink-2); background:var(--paper)}
+.btn-sec:hover{border-color:var(--ink-2); color:var(--ink)}
+
+/* ---------- quiz ---------- */
+.qhead{display:flex; align-items:center; gap:14px; margin:18px 0 10px; flex-wrap:wrap}
+.qhead .count{font-size:13px; color:var(--ink-2); letter-spacing:.08em; white-space:nowrap}
+.qhead .track{flex:1; min-width:140px}
+.qhead .live{font-size:13px; color:var(--ink-2); white-space:nowrap}
+.qcard{
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--r);
+  box-shadow:var(--sh); padding:22px; margin-bottom:16px;
+}
+.qtag{
+  display:inline-block; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-3); border:1px solid var(--line); border-radius:4px; padding:2px 8px; margin-bottom:12px;
+}
+.stem{font-family:var(--serif); font-size:19px; line-height:1.45; margin-bottom:4px}
+.stem .blank{display:inline-block; min-width:70px; border-bottom:2px solid var(--ink-3); vertical-align:baseline}
+.ctx{
+  font-family:var(--serif); font-style:italic; color:var(--ink-2); background:#FAF7F0;
+  border:1px dashed var(--line); border-radius:6px; padding:10px 13px; margin:10px 0 2px; font-size:15.5px;
+}
+.opts{list-style:none; margin:14px 0 0; padding:0; display:grid; gap:9px}
+.opt{
+  width:100%; text-align:left; display:flex; gap:12px; align-items:flex-start;
+  border:1.5px solid var(--line); border-radius:9px; padding:12px 14px; background:var(--paper);
+  transition:border-color .15s, background .15s;
+}
+.opt:hover:not([disabled]){border-color:var(--ink-2); background:#FCFAF5}
+.opt .k{
+  flex:none; width:24px; height:24px; border-radius:6px; border:1.5px solid var(--line);
+  display:grid; place-items:center; font-size:12.5px; font-weight:bold; color:var(--ink-2);
+}
+.opt .t{flex:1}
+.opt[disabled]{cursor:default}
+.opt.correct{border-color:var(--sage); background:var(--sage-l)}
+.opt.correct .k{background:var(--sage); border-color:var(--sage); color:#fff}
+.opt.wrong{border-color:var(--terra); background:var(--terra-l)}
+.opt.wrong .k{background:var(--terra); border-color:var(--terra); color:#fff}
+.opt .mark{flex:none; font-size:13px; font-weight:bold; letter-spacing:.04em}
+.opt.correct .mark{color:var(--sage)}
+.opt.wrong .mark{color:var(--terra)}
+
+.fb{border-radius:9px; padding:14px 16px; margin-top:14px; border:1px solid}
+.fb.ok{background:var(--sage-l); border-color:#BEDAC6}
+.fb.no{background:var(--terra-l); border-color:#EFC9BE}
+.fb .hd{font-weight:bold; font-size:14.5px; margin-bottom:5px; display:flex; gap:8px; align-items:center}
+.fb.ok .hd{color:#2E6046}
+.fb.no .hd{color:#8E3323}
+.fb .ex{font-size:14.5px}
+.fb .th{margin-top:5px}
+
+/* ---------- result ---------- */
+.result{
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--r);
+  box-shadow:var(--sh); padding:28px 24px; margin:20px 0 40px; text-align:center;
+}
+.result h2{font-family:var(--serif); font-size:25px; margin:0 0 4px}
+.bigscore{font-family:var(--serif); font-size:52px; line-height:1.05; margin:14px 0 2px}
+.result .pct{font-size:14px; color:var(--ink-2); letter-spacing:.06em}
+.stampwrap{margin:18px auto 6px; width:132px}
+.result .msg{font-size:15px; margin-top:12px}
+.breakdown{list-style:none; margin:20px 0 0; padding:0; text-align:left}
+.breakdown li{
+  display:flex; justify-content:space-between; gap:12px; padding:9px 2px;
+  border-top:1px solid var(--line-2); font-size:14.5px;
+}
+.breakdown li span.n{color:var(--ink-2)}
+.breakdown li b{white-space:nowrap}
+.rnav{display:flex; gap:10px; justify-content:center; margin-top:22px; flex-wrap:wrap}
+
+/* ---------- misc ---------- */
+.foot{
+  border-top:1px solid var(--line); margin-top:26px; padding:16px 0 30px;
+  font-size:12.5px; color:var(--ink-3); text-align:center;
+}
+.sronly{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0)}
+@media (max-width:560px){
+  .stem{font-size:17.5px}
+  .passport h1{font-size:26px}
+  .topic .tactions{width:100%}
+  .topic .tactions .mini{flex:1}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style>
+</head>
+<body>
+<!-- ============ TOP BAR ============ -->
+<div class="bar" id="topbar" hidden>
+  <div class="wrap">
+    <div class="brand">BRIGHT&nbsp;<b>ENGMATH</b></div>
+    <div class="spacer"></div>
+    <button class="chip ghost" id="homeBtn">Passport</button>
+    <button class="chip" id="thBtn" aria-pressed="true">ไทย</button>
+  </div>
+</div>
+
+<!-- ============ COVER ============ -->
+<section class="screen on" id="cover">
+  <div class="cover-in">
+    <div class="passport">
+      <div class="kicker">Bright EngMath</div>
+      <svg class="crest" width="92" height="92" viewBox="0 0 92 92" role="img" aria-label="Gate emblem">
+        <g fill="none" stroke="#E9C46A" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M46 8 C31 8 22 20 22 34 L22 72 L70 72 L70 34 C70 20 61 8 46 8 Z"/>
+          <path d="M46 16 C35 16 29 25 29 35 L29 65 L63 65 L63 35 C63 25 57 16 46 16 Z" opacity=".55"/>
+          <path d="M46 26 L46 56 M36 41 L56 41" opacity=".8"/>
+          <path d="M33 78 C39 78 43 75 46 71 C49 75 53 78 59 78" />
+          <path d="M28 74 C33 76 36 79 38 83 M64 74 C59 76 56 79 54 83" opacity=".7"/>
+        </g>
+        <circle cx="46" cy="41" r="4.2" fill="#E9C46A"/>
+      </svg>
+      <h1>English Review<br>Passport</h1>
+      <div class="sub">Grade 6 / M.1 &nbsp;&middot;&nbsp; Two units, one journey</div>
+      <div class="dests">
+        <span class="dest-chip">Ancient Egypt</span>
+        <span class="dest-chip">Rio 2016</span>
+      </div>
+      <button class="btn btn-go" id="startBtn">Open my passport</button>
+      <div class="cover-note">
+        60 questions &middot; Lesson &rarr; Practice &rarr; Test
+        <div class="th">60 ข้อ · เรียน → ฝึก → ทดสอบ · กดปุ่ม “ไทย” ด้านบนเพื่อเปิด-ปิดคำแปล</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PASSPORT / HOME ============ -->
+<section class="screen" id="home">
+  <div class="wrap">
+    <div class="page-head">
+      <h2>Your passport</h2>
+      <div class="lede">Collect a stamp from every topic. You need <b>80%</b> or more to earn one.</div>
+      <div class="th">สะสมตราประทับให้ครบทุกหัวข้อ ต้องทำได้ 80% ขึ้นไปจึงจะได้ตรา</div>
+    </div>
+
+    <div class="progress-strip">
+      <div class="pmeter">
+        <div class="lab"><span>Overall progress</span><span id="pctLab">0%</span></div>
+        <div class="track"><i id="pctBar" style="width:0%"></i></div>
+      </div>
+      <div class="stamp-count"><b id="stampN">0</b> / 8 stamps</div>
+    </div>
+
+    <div id="destWrap"></div>
+
+    <div class="testcard">
+      <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true">
+        <g fill="none" stroke="#E9C46A" stroke-width="1.6" stroke-linejoin="round">
+          <rect x="8" y="6" width="30" height="34" rx="3"/>
+          <path d="M14 15h18M14 22h18M14 29h11"/>
+        </g>
+      </svg>
+      <div class="txt">
+        <h3>Final Test &mdash; 30 mixed questions</h3>
+        <p>Questions from both units, shuffled. Your best score is saved.</p>
+        <div class="th">ข้อสอบรวม 30 ข้อจากทั้งสองบท สลับข้อทุกครั้งที่เริ่มใหม่</div>
+      </div>
+      <button class="btn-test" id="testBtn">Start test</button>
+    </div>
+
+    <div class="foot">Bright EngMath &middot; English Review Passport &middot; Grade 6 / M.1</div>
+  </div>
+</section>
+
+<!-- ============ LESSON ============ -->
+<section class="screen" id="lesson">
+  <div class="wrap">
+    <div class="subbar">
+      <button class="back" data-home>&larr; Passport</button>
+      <h2 id="lsTitle">Lesson</h2>
+      <div class="stepdots" id="lsDots"></div>
+    </div>
+    <div id="lsBody"></div>
+    <div class="nav">
+      <button class="btn-sec" id="lsPrev">&larr; Back</button>
+      <button class="btn-prim" id="lsNext">Next &rarr;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section class="screen" id="quiz">
+  <div class="wrap">
+    <div class="subbar">
+      <button class="back" data-home>&larr; Passport</button>
+      <h2 id="qzTitle">Practice</h2>
+    </div>
+    <div class="qhead">
+      <span class="count" id="qzCount">1 / 8</span>
+      <div class="track"><i id="qzBar" style="width:0%"></i></div>
+      <span class="live" id="qzLive">Score 0</span>
+    </div>
+    <div class="qcard" id="qzCard"></div>
+    <div class="nav">
+      <span></span>
+      <button class="btn-prim" id="qzNext" disabled>Next &rarr;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULT ============ -->
+<section class="screen" id="result">
+  <div class="wrap">
+    <div class="result" id="rsBody"></div>
+  </div>
+</section>
+
+<!-- stamp art templates -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="stamp-egypt" viewBox="0 0 132 132">
+    <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+      <circle cx="66" cy="66" r="58" stroke-dasharray="5 4"/>
+      <circle cx="66" cy="66" r="48"/>
+      <path d="M40 84 L66 44 L92 84 Z"/>
+      <path d="M66 44 L56 84 M66 44 L76 84" opacity=".5"/>
+      <path d="M34 92 H98"/>
+      <circle cx="66" cy="30" r="6"/>
+    </g>
+    <text x="66" y="110" text-anchor="middle" font-family="Georgia,serif" font-size="11.5"
+          letter-spacing="2.2" fill="currentColor">EGYPT</text>
+  </symbol>
+  <symbol id="stamp-rio" viewBox="0 0 132 132">
+    <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+      <circle cx="66" cy="66" r="58" stroke-dasharray="5 4"/>
+      <circle cx="66" cy="66" r="48"/>
+      <path d="M42 88 C32 72 36 50 52 40 M90 88 C100 72 96 50 80 40"/>
+      <path d="M56 86 H76 L73 62 H59 Z"/>
+      <path d="M53 62 H79"/>
+      <path d="M66 56 C58 48 60 36 66 28 C72 36 74 48 66 56 Z"/>
+    </g>
+    <text x="66" y="110" text-anchor="middle" font-family="Georgia,serif" font-size="11.5"
+          letter-spacing="2.2" fill="currentColor">RIO 2016</text>
+  </symbol>
+  <symbol id="stamp-gold" viewBox="0 0 132 132">
+    <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+      <circle cx="66" cy="66" r="58" stroke-dasharray="5 4"/>
+      <circle cx="66" cy="72" r="24"/>
+      <path d="M52 50 L44 20 L60 28 L66 14 L72 28 L88 20 L80 50"/>
+      <path d="M66 62 L69 69 H77 L71 74 L73 82 L66 77 L59 82 L61 74 L55 69 H63 Z"/>
+    </g>
+  </symbol>
+</svg>
+<script>
+(function(){
+"use strict";
+const UNITS = [
+ { id:'egypt', name:"The Mummy's Tomb", place:'Ancient Egypt', stamp:'stamp-egypt', ink:'#A2622C',
+   th:'สุสานมัมมี่ · อียิปต์โบราณ',
+   topics:[
+    {id:'t1', n:'Tomb Vocabulary', th:'คำศัพท์ในสุสาน'},
+    {id:'t2', n:'Story Comprehension', th:'ความเข้าใจเนื้อเรื่อง'},
+    {id:'t3', n:'Past Simple & Past Continuous', th:'อดีตกาลสองแบบ'},
+    {id:'t4', n:'Linkers & Dialogue', th:'คำเชื่อมและบทสนทนา'}
+   ]},
+ { id:'rio', name:'Olympic Sports', place:'Rio 2016', stamp:'stamp-rio', ink:'#3F7A5A',
+   th:'กีฬาโอลิมปิก · รีโอ 2016',
+   topics:[
+    {id:'t5', n:'Sports Vocabulary', th:'คำศัพท์กีฬา'},
+    {id:'t6', n:'could & Suggestions', th:'could และการชวน'},
+    {id:'t7', n:'Reading: Story & X Games', th:'การอ่าน: นิทานและ X Games'},
+    {id:'t8', n:'Comparatives & as … as', th:'การเปรียบเทียบ'}
+   ]}
+];
+
+const LESSONS = {
+ t1:[
+  {h:'Inside the tomb', th:'คำศัพท์เกี่ยวกับสถานที่',
+   p:[['tomb — a place where a dead person is buried','สุสาน, หลุมฝังศพ'],
+      ['pyramid — the huge stone building above the tomb','พีระมิด'],
+      ['doorway — the opening you walk through','ช่องประตู ทางเข้า'],
+      ['corridor — a long, narrow passage inside a building','ทางเดินยาวแคบ']],
+   eg:'The children walked up to the <b>tomb</b> and looked in through the <b>doorway</b>.'},
+  {h:'What they found', th:'สิ่งที่พวกเขาเจอ',
+   p:[['scorpion — a small animal with eight legs and a sting','แมงป่อง'],
+      ['hieroglyphics — Egyptian picture-writing','อักษรภาพอียิปต์โบราณ'],
+      ['glow — a soft light / to shine softly','แสงเรือง ๆ / เปล่งแสง'],
+      ['object — a thing, especially one you can pick up','วัตถุ สิ่งของ']],
+   eg:'The gold and silver <b>objects</b> were <b>glowing</b> in the sunlight.'},
+  {h:'Action verbs', th:'คำกริยาสำคัญ',
+   p:[['escape (from) — to get away from danger','หนีจากอันตราย'],
+      ['block — to stop something passing','ปิดกั้น ขวางไว้'],
+      ['scream — to cry out loudly and high','กรีดร้อง'],
+      ['disappear — to go away suddenly so you cannot see it','หายวับไป']],
+   eg:'They ran down the corridor to <b>escape</b> from the scorpions.'}
+ ],
+ t2:[
+  {h:'How the trouble started', th:'จุดเริ่มต้นของปัญหา',
+   p:[['Patrick wanted to go in; Alex worried it was dangerous.','แพทริกอยากเข้าไป อเล็กซ์กลัวว่าอันตราย'],
+      ['Patrick guessed the hieroglyphics said “Welcome”. Alex thought “Keep out”.','แพทริกเดาว่า “ยินดีต้อนรับ” อเล็กซ์คิดว่า “ห้ามเข้า”'],
+      ['Inside it was dark, and scorpions fell on them.','ข้างในมืด และแมงป่องตกใส่พวกเขา']],
+   eg:'“<b>Keep out</b>”, I think,’ answered Alex.'},
+  {h:'The button and the slide', th:'ปุ่มและการไถล',
+   p:[['They ran to escape the scorpions but met a wall.','พวกเขาวิ่งหนีแต่เจอกำแพงตัน'],
+      ['Patrick pushed the button before Alex finished his question.','แพทริกกดปุ่มก่อนที่อเล็กซ์จะถามจบ'],
+      ['The floor disappeared and they slid under the pyramid.','พื้นหายไปและพวกเขาไถลลงใต้พีระมิด']],
+   eg:'The floor under their feet <b>disappeared</b>.'},
+  {h:'The mummy and the way out', th:'มัมมี่และทางออก',
+   p:[['Something big and white walked towards them — a mummy.','สิ่งสีขาวตัวใหญ่เดินเข้ามา — มัมมี่'],
+      ['They blocked the door with a rock and found a sunlit treasure room.','พวกเขาเอาหินปิดประตูและเจอห้องสมบัติ'],
+      ['A yellow glow appeared — the gate. They were gone in a flash.','แสงเหลืองปรากฏขึ้น คือประตูมิติ แล้วพวกเขาก็หายไป']],
+   eg:'The children walked into the light. They were gone <b>in a flash</b>.'}
+ ],
+ t3:[
+  {h:'Past Simple — the events', th:'Past Simple — เหตุการณ์ที่จบแล้ว',
+   p:[['Use V2 for finished actions in order.','ใช้กริยาช่อง 2 เล่าเหตุการณ์ที่จบแล้วตามลำดับ'],
+      ['Regular: walk → walked, push → pushed','ปกติเติม -ed'],
+      ['Irregular: take → took, run → ran, fall → fell, throw → threw','ที่ไม่ปกติต้องท่อง']],
+   eg:'Patrick <b>pushed</b> the button. The floor <b>disappeared</b>.'},
+  {h:'Past Continuous — the background', th:'Past Continuous — ฉากที่กำลังเกิด',
+   p:[['was / were + V-ing','was หรือ were + กริยาเติม -ing'],
+      ['Use it for an action already in progress.','ใช้กับเหตุการณ์ที่กำลังดำเนินอยู่'],
+      ['I / he / she / it → was &nbsp;·&nbsp; you / we / they → were','ประธานเอกพจน์ใช้ was พหูพจน์ใช้ were']],
+   eg:'Alex <b>was looking</b> at a big button on the wall.'},
+  {h:'Putting them together', th:'ใช้คู่กัน',
+   p:[['Past Continuous + when + Past Simple','เหตุการณ์ยาว + when + เหตุการณ์สั้นที่มาขัด'],
+      ['The long action starts first; the short one interrupts it.','เหตุการณ์ยาวเกิดก่อน แล้วเหตุการณ์สั้นแทรกเข้ามา'],
+      ['Never drop was / were — that is the most common mistake.','อย่าลืม was/were เป็นข้อผิดที่พบบ่อยที่สุด']],
+   eg:'They <b>were walking</b> in the dark <b>when</b> Phoebe <b>screamed</b>.'}
+ ],
+ t4:[
+  {h:'Time linkers', th:'คำเชื่อมบอกเวลา',
+   p:[['as soon as — immediately after','ทันทีที่'],
+      ['before — earlier than','ก่อนที่จะ'],
+      ['when — at the same time','เมื่อ'],
+      ['just then / suddenly — at that moment','ทันใดนั้น']],
+   eg:'<b>As soon as</b> they were inside, they noticed the scorpions.'},
+  {h:'Reason and contrast', th:'เหตุผลและความขัดแย้ง',
+   p:[['because + reason','เพราะว่า + เหตุผล'],
+      ['so + result','ดังนั้น + ผลลัพธ์'],
+      ['but + something surprising','แต่ + สิ่งที่ขัดกัน']],
+   eg:'It was dark inside, <b>but</b> they could see a little.'},
+  {h:'What the characters are doing when they speak', th:'หน้าที่ของบทพูด',
+   p:[['Let’s go in. → making a suggestion','ชวน / เสนอ'],
+      ['But what if it’s dangerous? → saying you are worried','บอกว่ากังวล'],
+      ['Don’t be silly, we’re coming with you. → reassuring a friend','ปลอบใจเพื่อน'],
+      ['Help me block the door. → asking for help','ขอความช่วยเหลือ']],
+   eg:'‘<b>Let’s</b> go in,’ said Patrick.'}
+ ],
+ t5:[
+  {h:'Ten Olympic sports', th:'กีฬาโอลิมปิก 10 ชนิด',
+   p:[['long jump, high jump, hurdles — athletics events','กระโดดไกล กระโดดสูง วิ่งข้ามรั้ว'],
+      ['boxing, wrestling, fencing — fighting events','ชกมวย มวยปล้ำ ฟันดาบ'],
+      ['archery, weightlifting, rowing, gymnastics','ยิงธนู ยกน้ำหนัก เรือพาย ยิมนาสติก']],
+   eg:'In <b>archery</b> you shoot arrows with a bow at a target.'},
+  {h:'The person who does the sport', th:'คำเรียกผู้เล่น',
+   p:[['box → a boxer &nbsp;·&nbsp; wrestle → a wrestler &nbsp;·&nbsp; row → a rower','ส่วนใหญ่เติม -er'],
+      ['archery → an archer &nbsp;·&nbsp; fencing → a fencer','อาร์เชอรี่ → อาร์เชอร์'],
+      ['gymnastics → a gymnast (not “gymnasticser”)','ยิมนาสติก → gymnast']],
+   eg:'Both <b>wrestlers</b> were good, but the shorter one was fighting very well.'},
+  {h:'play / go / do', th:'กริยาที่ใช้คู่กับกีฬา',
+   p:[['play + ball games — play volleyball, play football','กีฬาที่มีลูกบอล'],
+      ['go + −ing sports — go swimming, go snowboarding','กีฬาที่ลงท้าย -ing'],
+      ['do + individual sports — do gymnastics, do archery','กีฬาเดี่ยว']],
+   eg:'In the winter X Games you can <b>go</b> snowboarding and snowmobiling.'}
+ ],
+ t6:[
+  {h:'could for suggestions', th:'could ใช้เสนอความคิด',
+   p:[['Subject + could + base verb (no “to”)','ประธาน + could + กริยาช่อง 1 ไม่มี to'],
+      ['It is a soft suggestion: “we … if you like”.','เป็นข้อเสนอแบบนุ่ม ๆ'],
+      ['Add “instead” when you offer a different idea.','เติม instead เมื่อเสนอสิ่งอื่นแทน']],
+   eg:'We <b>could go</b> and see the high jump. We <b>could watch</b> the boxing instead.'},
+  {h:'Accepting and refusing', th:'ตอบรับและปฏิเสธ',
+   p:[['Accept: Sounds good to me. / Good idea. / Let’s go!','ตอบรับ'],
+      ['Refuse politely: I’m not too keen on that, to be honest.','ปฏิเสธอย่างสุภาพ'],
+      ['Always give a reason after refusing.','ปฏิเสธแล้วต้องให้เหตุผลเสมอ']],
+   eg:'‘The high jump? <b>I’m not too keen on that, to be honest.</b>’'},
+  {h:'Telling the time of an event', th:'บอกเวลาของการแข่งขัน',
+   p:[['in + period = in the future: in 40 minutes','in + ช่วงเวลา = อีก...ข้างหน้า'],
+      ['period + ago = in the past: an hour ago','...ago = เมื่อ...ที่แล้ว'],
+      ['It is 9.50. “in 40 minutes” → 10.30. “an hour ago” → 8.50.','ตัวอย่างการคิด']],
+   eg:'The men’s high jump starts <b>in 40 minutes</b>. The fencing started <b>an hour ago</b>.'}
+ ],
+ t7:[
+  {h:'Not the Best Day — three accidents', th:'สามอุบัติเหตุ',
+   p:[['Volleyball: the ball hit Phoebe in the face → a black eye.','ลูกบอลโดนหน้าฟีบี้ ตาเขียวช้ำ'],
+      ['Wrestling: the tall man landed on Patrick’s foot.','นักมวยปล้ำร่างสูงตกทับเท้าแพทริก'],
+      ['Rowing: Alex leaned too far forward and fell in the lake.','อเล็กซ์โน้มตัวมากไปจนตกทะเลสาบ']],
+   eg:'One had a black eye, one had a very <b>sore</b> foot and the third one was <b>soaking wet</b>.'},
+  {h:'Reading numbers in a story', th:'อ่านตัวเลขในเนื้อเรื่อง',
+   p:[['“eight boats, with four women in each” → 8 × 4 = 32 rowers','แปดลำ ลำละสี่คน = 32 คน'],
+      ['Look for two numbers that must be multiplied or added.','มองหาตัวเลขสองตัวที่ต้องคูณหรือบวกกัน']],
+   eg:'There were <b>eight boats</b>, with <b>four women in each</b>.'},
+  {h:'The X Games — key facts', th:'ข้อมูลสำคัญของ X Games',
+   p:[['First held in Rhode Island, USA, in 1995.','ครั้งแรกที่โรดไอแลนด์ สหรัฐฯ ปี 1995'],
+      ['Held every year: winter in January, summer in August.','จัดทุกปี ฤดูหนาวมกราคม ฤดูร้อนสิงหาคม'],
+      ['Since 2003: summer in Los Angeles, winter in Aspen.','ตั้งแต่ปี 2003 ฤดูร้อนที่ LA ฤดูหนาวที่แอสเพน']],
+   eg:'<b>Since 2003</b>, the summer games <b>have been</b> in Los Angeles.'}
+ ],
+ t8:[
+  {h:'Comparative + than', th:'ขั้นกว่า + than',
+   p:[['Short word + er: fast → faster, high → higher','คำสั้นเติม -er'],
+      ['−y → −ier: heavy → heavier','ลงท้าย y เปลี่ยนเป็น -ier'],
+      ['Long word → more + adjective: exciting → more exciting','คำยาวใช้ more'],
+      ['Irregular: good → better, bad → worse, far → further','ที่ไม่ปกติ']],
+   eg:'A cheetah can run <b>faster than</b> any human athlete.'},
+  {h:'as … as', th:'โครงสร้าง as … as',
+   p:[['as + plain adjective/adverb + as = the same','เท่ากัน'],
+      ['not as … as = less than','ไม่เท่า, น้อยกว่า'],
+      ['Never put −er between as … as.','ห้ามเติม -er ระหว่าง as … as']],
+   eg:'I can’t swim <b>as fast as</b> a sailfish.'},
+  {h:'The unit sentence frame', th:'โครงประโยคประจำบท',
+   p:[['I’m sure I can run faster than a …, but I can’t run as fast as a … .','ครึ่งแรกใช้ขั้นกว่า ครึ่งหลังใช้ as…as'],
+      ['much / far can make a comparative stronger.','ใช้ much นำหน้าเพื่อเน้น']],
+   eg:'This is <b>much better than</b> watching on TV.'}
+ ]
+};
+
+const QS = [
+/* ---- t1 Tomb Vocabulary ---- */
+{t:'t1',q:'A place where a dead person is buried is a ______.',o:['tomb','corridor','doorway','pyramid'],a:0,
+ e:'A tomb is the burial place itself. The pyramid is the huge building above it.',eth:'tomb = สุสาน/หลุมฝังศพ ส่วน pyramid คืออาคารหินขนาดใหญ่ด้านบน'},
+{t:'t1',q:'The children started running down the dark ______ to escape.',o:['doorway','corridor','front row','gate'],a:1,
+ e:'A corridor is a long, narrow passage inside a building.',eth:'corridor = ทางเดินยาวแคบภายในอาคาร'},
+{t:'t1',q:'It has eight legs and a sting. Alex said, “It’s a ______.”',o:['mummy','creature','scorpion','pirate'],a:2,
+ e:'A scorpion has eight legs and a curved tail with a sting.',eth:'แมงป่องมีแปดขาและหางโค้งที่มีเหล็กใน'},
+{t:'t1',q:'The Egyptian picture-writing on the walls is called ______.',o:['hieroglyphics','pyramids','objects','arrows'],a:0,
+ e:'Hieroglyphics is a writing system made of picture signs.',eth:'อักษรภาพอียิปต์โบราณ ใช้รูปภาพแทนเสียงและความหมาย'},
+{t:'t1',q:'Which word means “to get away from something dangerous”?',o:['block','notice','escape','complain'],a:2,
+ e:'Escape (from) = to get away from danger.',eth:'escape = หนีจากอันตราย'},
+{t:'t1',q:'“Help me ______ the door with this rock.”',o:['block','glow','land','point'],a:0,
+ e:'To block something is to stop anything passing through it.',eth:'block = ปิดกั้น ขวางไว้ไม่ให้ผ่าน'},
+{t:'t1',q:'Phoebe ______ when something fell on her head.',o:['whispered','screamed','gasped','smiled'],a:1,
+ e:'Scream = to cry out loudly and in a high voice, usually from fear or pain.',eth:'scream = กรีดร้องเสียงสูงด้วยความกลัวหรือเจ็บ'},
+{t:'t1',q:'The gold and silver objects were ______ in the sunlight.',o:['blocking','escaping','disappearing','glowing'],a:3,
+ e:'To glow is to shine with a soft, steady light.',eth:'glow = เปล่งแสงนวล ๆ อย่างสม่ำเสมอ'},
+
+/* ---- t2 Story Comprehension ---- */
+{t:'t2',q:'What did Alex think the hieroglyphics on the doorway said?',o:['“Welcome”','“Keep out”','“Treasure”','“Danger, scorpions”'],a:1,
+ e:'Patrick suggested “Welcome”; Alex answered that he thought it said “Keep out”.',eth:'แพทริกเดาว่า “ยินดีต้อนรับ” ส่วนอเล็กซ์คิดว่าเขียนว่า “ห้ามเข้า”'},
+{t:'t2',q:'Why did the children start running down the dark corridor?',o:['They saw the gate.','They wanted to find the treasure.','They wanted to escape from the scorpions.','A mummy was chasing them.'],a:2,
+ e:'The scorpions were everywhere, so they ran. The mummy appears later, after the slide.',eth:'เพราะมีแมงป่องเต็มไปหมด ส่วนมัมมี่ปรากฏทีหลัง หลังจากไถลลงไปแล้ว'},
+{t:'t2',q:'Who pushed the button on the wall?',o:['Alex','Phoebe','Patrick','Nobody'],a:2,
+ e:'Alex was still asking about it when Patrick walked up and pushed it.',eth:'อเล็กซ์ยังถามไม่จบ แพทริกก็เดินมากดปุ่มเลย'},
+{t:'t2',q:'What happened immediately after the button was pushed?',o:['A mummy appeared.','The floor disappeared and they slid under the pyramid.','The gate opened.','The scorpions ran away.'],a:1,
+ e:'The floor under their feet disappeared and they slid very fast under the pyramid.',eth:'พื้นใต้เท้าหายไป พวกเขาไถลลงไปใต้พีระมิดอย่างเร็ว'},
+{t:'t2',q:'In the dark room, what was walking towards them with its arms out?',o:['a scorpion','a mummy','Alex','a statue'],a:1,
+ e:'Something big and white came closer and closer, holding its two arms out in front of it.',eth:'สิ่งสีขาวตัวใหญ่ค่อย ๆ เข้ามาใกล้ พร้อมยื่นแขนสองข้างออกมา'},
+{t:'t2',q:'Why did Patrick ask Alex to help him with the rock?',o:['To break the wall.','To hide the treasure.','To block the door so the mummy could not come in.','To open the tomb.'],a:2,
+ e:'They blocked the door to keep the mummy out of the sunlit room.',eth:'เพื่อปิดประตูไม่ให้มัมมี่เข้ามาในห้องที่มีแสงแดด'},
+{t:'t2',q:'What did the children find in the sunlit room?',o:['more scorpions','gold and silver objects','a map','another button'],a:1,
+ e:'Gold and silver objects were glowing in the mysterious sunlight.',eth:'ข้าวของทองและเงินเปล่งประกายอยู่ในแสงแดดลึกลับ'},
+{t:'t2',q:'How did the children finally get out of the tomb?',o:['They climbed back up the slide.','They walked into the yellow glow of the gate.','They pushed the button again.','They followed the mummy.'],a:1,
+ e:'Another glow appeared — the yellow glow of the gate. They walked into the light and were gone in a flash.',eth:'แสงเหลืองของประตูมิติปรากฏขึ้น พวกเขาเดินเข้าไปแล้วหายวับไป'},
+
+/* ---- t3 Past Simple & Past Continuous ---- */
+{t:'t3',q:'Alex ______ at a big button on the wall when Patrick pushed it.',o:['looked','was looking','is looking','looks'],a:1,
+ e:'The looking was already in progress when the short action (pushed) interrupted it, so use the past continuous.',eth:'การมองกำลังดำเนินอยู่แล้ว จึงใช้ Past Continuous ส่วน pushed คือเหตุการณ์สั้นที่มาขัด'},
+{t:'t3',q:'The children ______ on a hard stone floor in a dark room.',o:['were landing','land','landed','was landing'],a:2,
+ e:'This is one short, finished event in the sequence, so the past simple is right.',eth:'เป็นเหตุการณ์สั้นที่จบแล้วในลำดับเรื่อง จึงใช้ Past Simple'},
+{t:'t3',q:'The gold and silver objects ______ in the sunlight.',o:['were glowing','was glowing','glow','has glowed'],a:0,
+ e:'“Objects” is plural, so use were, and the glowing was a continuing state.',eth:'objects เป็นพหูพจน์จึงใช้ were และเป็นสภาพที่กำลังดำเนินอยู่'},
+{t:'t3',q:'Phoebe ______ the top of her head and a black creature fell off.',o:['was touching','touched','touches','touch'],a:1,
+ e:'Two short actions happened one after the other, so both are past simple.',eth:'สองเหตุการณ์สั้นเกิดต่อกัน จึงใช้ Past Simple ทั้งคู่'},
+{t:'t3',q:'Which sentence is correct?',o:['They walking in the dark when Phoebe screamed.','They were walking in the dark when Phoebe screamed.','They were walk in the dark when Phoebe screamed.','They was walking in the dark when Phoebe screamed.'],a:1,
+ e:'Past continuous = were + V-ing, and “they” takes were, not was.',eth:'Past Continuous ต้องมี were + V-ing และประธาน they ใช้ were ไม่ใช่ was'},
+{t:'t3',q:'The past simple of “take” is ______.',o:['taked','took','taken','takes'],a:1,
+ e:'Take is irregular: take → took → taken. Never add −ed.',eth:'take เป็นกริยาอปกติ ช่อง 2 คือ took ห้ามเติม -ed'},
+{t:'t3',q:'Choose the correct past continuous: “The mummy ______ towards them.”',o:['walk','walked','was walking','were walking'],a:2,
+ e:'“The mummy” is singular, so was + walking.',eth:'the mummy เป็นเอกพจน์ จึงใช้ was + walking'},
+
+/* ---- t4 Linkers & Dialogue ---- */
+{t:'t4',q:'______ they were inside the tomb, they found scorpions everywhere.',o:['As soon as','Because','But','So'],a:0,
+ e:'As soon as = immediately after. It links two events in time.',eth:'as soon as = ทันทีที่ ใช้เชื่อมเหตุการณ์สองอย่างในเวลา'},
+{t:'t4',q:'It was dark inside, ______ they could see a little.',o:['because','but','so','before'],a:1,
+ e:'The second part is surprising after the first, so use but.',eth:'ส่วนหลังขัดกับส่วนหน้า จึงใช้ but'},
+{t:'t4',q:'They ran down the corridor ______ they wanted to escape from the scorpions.',o:['so','but','because','when'],a:2,
+ e:'Because introduces the reason. So would introduce the result instead.',eth:'because นำหน้าเหตุผล ส่วน so นำหน้าผลลัพธ์'},
+{t:'t4',q:'______ he could finish his question, Patrick pushed the button.',o:['After','Before','Because','But'],a:1,
+ e:'The pushing happened earlier than the end of the question, so use before.',eth:'การกดปุ่มเกิดก่อนที่คำถามจะจบ จึงใช้ before'},
+{t:'t4',q:'‘Let’s go in,’ said Patrick. What is Patrick doing?',o:['making a suggestion','refusing','apologising','asking for help'],a:0,
+ e:'Let’s + base verb is one of the strongest ways to suggest doing something together.',eth:'Let’s + กริยาช่อง 1 คือการชวนที่หนักแน่นที่สุด'},
+{t:'t4',q:'‘But what if it’s dangerous or we get lost?’ What is Alex doing?',o:['agreeing','saying he is worried','giving an order','making a joke'],a:1,
+ e:'What if …? is used to talk about something you are afraid might happen.',eth:'What if …? ใช้พูดถึงสิ่งที่กลัวว่าอาจเกิดขึ้น'},
+{t:'t4',q:'‘Don’t be silly, we’re coming with you.’ What is Phoebe doing?',o:['refusing to help','reassuring a friend','asking a question','warning of danger'],a:1,
+ e:'She tells Patrick not to worry and promises the group will stay together.',eth:'เธอบอกไม่ให้แพทริกคิดมาก และยืนยันว่าจะไปด้วยกัน'},
+
+/* ---- t5 Sports Vocabulary ---- */
+{t:'t5',q:'You shoot arrows with a bow and try to hit a target. This sport is ______.',o:['fencing','archery','hurdles','rowing'],a:1,
+ e:'Archery uses a bow and arrows. A fencer uses a sword.',eth:'archery = ยิงธนู ส่วน fencing = ฟันดาบ'},
+{t:'t5',q:'You lift a very heavy bar above your head. This sport is ______.',o:['weightlifting','wrestling','gymnastics','boxing'],a:0,
+ e:'Weightlifting — the athlete lifts a heavy bar over the head.',eth:'weightlifting = ยกน้ำหนัก ยกบาร์หนักเหนือศีรษะ'},
+{t:'t5',q:'Two people fight with long, thin swords and wear a white suit and mask. This is ______.',o:['boxing','wrestling','fencing','archery'],a:2,
+ e:'Fencing uses thin swords, a white suit and a protective mask.',eth:'fencing = ฟันดาบ ใช้ดาบบางยาว ชุดขาวและหน้ากาก'},
+{t:'t5',q:'You run a race and jump over a line of low fences. This is the ______.',o:['long jump','high jump','hurdles','relay'],a:2,
+ e:'Hurdles are the low fences you jump over during the race.',eth:'hurdles = วิ่งข้ามรั้ว รั้วเตี้ยที่ต้องกระโดดข้ามระหว่างวิ่ง'},
+{t:'t5',q:'A person who does gymnastics is a ______.',o:['gymnasticser','gymnaster','gymnast','gymnastic'],a:2,
+ e:'Gymnastics → gymnast. It does not simply take −er like boxer or rower.',eth:'gymnastics เปลี่ยนเป็น gymnast ไม่ได้เติม -er เหมือน boxer หรือ rower'},
+{t:'t5',q:'Choose the correct verb: “I ______ gymnastics every Friday.”',o:['play','go','do','make'],a:2,
+ e:'do + individual sports (do gymnastics, do archery); play + ball games; go + −ing sports.',eth:'กีฬาเดี่ยวใช้ do · กีฬาลูกบอลใช้ play · กีฬาลงท้าย -ing ใช้ go'},
+{t:'t5',q:'Which of these is a WINTER X Games sport?',o:['skateboarding','snowmobiling','BMX biking','climbing'],a:1,
+ e:'The winter games have snowboarding, snowmobiling and extreme skiing. The other three are summer sports.',eth:'ฤดูหนาวมีสโนว์บอร์ด สโนว์โมบิล และสกีผาดโผน อีกสามอย่างเป็นกีฬาฤดูร้อน'},
+{t:'t5',q:'You move a boat across water using oars, usually in a team. This is ______.',o:['rowing','swimming','sailing','diving'],a:0,
+ e:'Rowing — in the story there were eight boats with four women in each.',eth:'rowing = เรือพาย ในเรื่องมีเรือแปดลำ ลำละสี่คน'},
+
+/* ---- t6 could & Suggestions ---- */
+{t:'t6',q:'Put the words in order: <i>long jump / could / and / see / We / go / the</i>',o:['We could to go and see the long jump.','We could go and see the long jump.','We could going and see the long jump.','Could we go and see the long jump.'],a:1,
+ e:'Subject + could + base verb. There is no “to” after could, and go and see stay together.',eth:'ประธาน + could + กริยาช่อง 1 ไม่มี to และ go and see ต้องอยู่ติดกัน'},
+{t:'t6',q:'What always comes directly after <b>could</b>?',o:['to + verb','the base verb with no “to”','verb + −ing','verb + −ed'],a:1,
+ e:'Could is a modal verb, so the verb after it never changes and never takes to.',eth:'could เป็น modal verb กริยาที่ตามมาต้องเป็นช่อง 1 เปล่า ๆ'},
+{t:'t6',q:'Your friend suggests the high jump but you do not want to go. Which reply is the most polite?',o:['No.','I hate the high jump.','I’m not too keen on that, to be honest.','That is a bad idea.'],a:2,
+ e:'“To be honest” softens a refusal. Adding a reason afterwards makes it even better.',eth:'“to be honest” ทำให้การปฏิเสธนุ่มลง และควรตามด้วยเหตุผลด้วย'},
+{t:'t6',q:'Which reply means “I agree — let’s do it”?',o:['Not really.','Sounds good to me.','I’m not so good at it.','What shall we do?'],a:1,
+ e:'Sounds good to me = a friendly way of accepting a suggestion.',eth:'Sounds good to me = ตอบรับข้อเสนออย่างเป็นมิตร'},
+{t:'t6',q:'It is 9.50 now. The men’s high jump starts in 40 minutes. What time does it start?',o:['9.10','10.10','10.30','11.30'],a:2,
+ e:'“In 40 minutes” points to the future: 9.50 + 40 minutes = 10.30.',eth:'in 40 minutes คืออนาคต จึงบวก: 9.50 + 40 นาที = 10.30'},
+{t:'t6',q:'It is 10.00 now. Ben says the boxing started an hour ago. What time did it start?',o:['9.00','10.30','11.00','9.30'],a:0,
+ e:'“Ago” always points to the past, so subtract: 10.00 − 1 hour = 9.00.',eth:'ago คืออดีตเสมอ จึงลบ: 10.00 − 1 ชั่วโมง = 9.00'},
+{t:'t6',q:'“The fencing has already started. We ______ watch the boxing instead.”',o:['could','couldn’t','could to','coulding'],a:0,
+ e:'Could + base verb makes a fresh suggestion; instead shows it replaces the first idea.',eth:'could + กริยาช่อง 1 ใช้เสนอไอเดียใหม่ และ instead แปลว่า “แทน”'},
+{t:'t6',q:'Which question asks your partner to decide together with you?',o:['What shall we go and see?','What did you see?','What are you seeing?','What have you seen?'],a:0,
+ e:'Shall we …? is used with I and we to ask for a shared decision.',eth:'Shall we …? ใช้กับ I และ we เพื่อขอให้ตัดสินใจร่วมกัน'},
+
+/* ---- t7 Reading ---- */
+{t:'t7',q:'In “Not the Best Day”, who was hit in the face by the volleyball?',o:['Alex','Patrick','Phoebe','a player'],a:2,
+ e:'The ball hit Phoebe two minutes before the end of the game and she got a black eye.',eth:'ลูกบอลโดนฟีบี้ก่อนจบเกมสองนาที ทำให้ตาเขียวช้ำ'},
+{t:'t7',q:'Who hurt their foot at the wrestling match?',o:['Patrick','Alex','Phoebe','the tall wrestler'],a:0,
+ e:'The shorter wrestler threw the tall man through the air and he landed on Patrick’s foot.',eth:'นักมวยปล้ำคนเตี้ยเหวี่ยงคนสูงลอยไป แล้วเขาตกลงมาทับเท้าแพทริก'},
+{t:'t7',q:'There were eight boats with four women in each. How many rowers were in the race?',o:['12','24','32','48'],a:2,
+ e:'8 boats × 4 women = 32 rowers.',eth:'เรือ 8 ลำ × ลำละ 4 คน = 32 คน'},
+{t:'t7',q:'How did Alex end up in the water?',o:['He slipped on the wet grass.','He leaned forward too far while he was cheering.','Phoebe pushed him.','A boat hit the bank.'],a:1,
+ e:'He was so excited that he leaned forward even further, and then fell in with a loud splash.',eth:'เขาตื่นเต้นมากจนโน้มตัวไปข้างหน้ามากเกินไป แล้วก็ตกน้ำเสียงดัง'},
+{t:'t7',q:'Where and when did the first X Games take place?',o:['Los Angeles, in 2003','Rhode Island, USA, in 1995','Aspen, in 1998','France, in 2010'],a:1,
+ e:'The article says the first X Games took place in Rhode Island, in the USA, in 1995.',eth:'บทความระบุว่าครั้งแรกจัดที่โรดไอแลนด์ สหรัฐอเมริกา ในปี 1995'},
+{t:'t7',q:'How often are the X Games held?',o:['Every four years','Every two years','Every year','Every six months in one city'],a:2,
+ e:'Every year: the winter games in January (sometimes February) and the summer games usually in August.',eth:'ทุกปี ฤดูหนาวเดือนมกราคม (บางครั้งกุมภาพันธ์) ฤดูร้อนมักเป็นสิงหาคม'},
+{t:'t7',q:'Since 2003, the summer X Games have taken place in ______.',o:['Aspen','Rhode Island','Los Angeles','France'],a:2,
+ e:'Since 2003 the summer games have been in Los Angeles and the winter games in Aspen.',eth:'ตั้งแต่ปี 2003 งานฤดูร้อนจัดที่ลอสแอนเจลิส ส่วนฤดูหนาวที่แอสเพน'},
+
+/* ---- t8 Comparatives ---- */
+{t:'t8',q:'A cheetah can run ______ than any human athlete.',o:['fast','faster','fastest','more fast'],a:1,
+ e:'Fast is a short word, so add −er and follow it with than.',eth:'fast เป็นคำสั้น เติม -er แล้วตามด้วย than'},
+{t:'t8',q:'I’m a good swimmer, but I can’t swim ______ fast ______ a sailfish.',o:['more … than','as … as','so … that','too … to'],a:1,
+ e:'not as + plain adverb + as is the way to say you are slower than something.',eth:'not as + คำธรรมดา + as ใช้บอกว่าเราช้ากว่า'},
+{t:'t8',q:'An elephant is much ______ than a puma.',o:['heavy','heavyer','heavier','more heavy'],a:2,
+ e:'Heavy ends in −y, so change y to i and add −er: heavier.',eth:'heavy ลงท้ายด้วย y เปลี่ยนเป็น i แล้วเติม -er = heavier'},
+{t:'t8',q:'Which sentence uses <b>as … as</b> correctly?',o:['I can’t jump as higher as a puma.','I can’t jump as high as a puma.','I can’t jump so higher than a puma.','I can’t jump more high as a puma.'],a:1,
+ e:'Between as … as the adjective never takes −er. This is the most common mistake in this unit.',eth:'ระหว่าง as … as ห้ามเติม -er เด็ดขาด นี่คือข้อผิดที่พบบ่อยที่สุดของบทนี้'},
+{t:'t8',q:'The comparative form of <b>good</b> is ______.',o:['gooder','more good','better','best'],a:2,
+ e:'Good is irregular: good → better → best. Best is the superlative, not the comparative.',eth:'good เป็นคำอปกติ: good → better → best ส่วน best คือขั้นสูงสุด'},
+{t:'t8',q:'“This is ______ better than watching on TV!” Which word makes the comparison stronger?',o:['very','much','so','too'],a:1,
+ e:'Much (or far) goes in front of a comparative to make it stronger. Very cannot.',eth:'ใช้ much หรือ far นำหน้าขั้นกว่าเพื่อเน้น ห้ามใช้ very'},
+{t:'t8',q:'A kangaroo can jump ______ than a rabbit.',o:['far','further','as far','more far'],a:1,
+ e:'Far is irregular: far → further (or farther).',eth:'far เป็นคำอปกติ ขั้นกว่าคือ further หรือ farther'}
+];
+
+
+/* ---------------- state ---------------- */
+var KEY = 'begm.passport.v1';
+var TOPIC = {};   // id -> topic meta
+var store = { best:{}, testBest:0 };
+try { var raw = localStorage.getItem(KEY); if (raw) store = Object.assign(store, JSON.parse(raw)); } catch(e){}
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} }
+
+UNITS.forEach(function(u){ u.topics.forEach(function(t){ t.unit = u; TOPIC[t.id] = t; }); });
+var POOL = {};
+QS.forEach(function(q){ (POOL[q.t] = POOL[q.t] || []).push(q); });
+
+var $ = function(s){ return document.querySelector(s); };
+var esc = function(s){ return String(s); };
+
+/* ---------------- screens ---------------- */
+function show(id){
+  ['cover','home','lesson','quiz','result'].forEach(function(s){
+    var el = document.getElementById(s); if (el) el.classList.toggle('on', s === id);
+  });
+  document.getElementById('topbar').hidden = (id === 'cover');
+  window.scrollTo(0,0);
+}
+
+/* ---------------- Thai toggle ---------------- */
+var thOn = true;
+try { thOn = localStorage.getItem(KEY + '.th') !== '0'; } catch(e){}
+function applyTh(){
+  document.body.classList.toggle('no-th', !thOn);
+  var b = $('#thBtn'); b.setAttribute('aria-pressed', thOn ? 'true' : 'false');
+  b.textContent = thOn ? 'ไทย' : 'TH';
+}
+$('#thBtn').addEventListener('click', function(){
+  thOn = !thOn; applyTh();
+  try { localStorage.setItem(KEY + '.th', thOn ? '1' : '0'); } catch(e){}
+});
+applyTh();
+
+/* ---------------- home ---------------- */
+function pct(t){ var b = store.best[t.id]; if (!b) return 0; return Math.round(b.c / b.n * 100); }
+function stamped(t){ return pct(t) >= 80; }
+
+function renderHome(){
+  var host = $('#destWrap'); host.innerHTML = '';
+  var totalQ = 0, gotQ = 0, stamps = 0;
+
+  UNITS.forEach(function(u){
+    var sec = document.createElement('section');
+    sec.className = 'destpage';
+    var rows = u.topics.map(function(t, i){
+      var n = POOL[t.id].length, b = store.best[t.id], p = pct(t), done = stamped(t);
+      totalQ += n; gotQ += b ? b.c : 0; if (done) stamps++;
+      var scoreTxt = b
+        ? ('Best <b>' + b.c + '/' + b.n + '</b> · ' + p + '%')
+        : '<span style="color:var(--ink-3)">Not started</span>';
+      return '<li class="topic' + (done ? ' done' : '') + '">' +
+        '<span class="tnum">' + (done ? '✓' : (i + 1)) + '</span>' +
+        '<span class="tinfo"><span class="tname">' + t.n + '</span>' +
+        '<span class="tsub">' + n + ' questions · <span class="th">' + t.th + '</span></span></span>' +
+        '<span class="score">' + scoreTxt + '</span>' +
+        '<span class="tactions">' +
+          '<button class="mini" data-lesson="' + t.id + '">Lesson</button>' +
+          '<button class="mini solid" data-practice="' + t.id + '">Practice</button>' +
+        '</span></li>';
+    }).join('');
+
+    sec.innerHTML =
+      '<header>' +
+        '<svg width="58" height="58" viewBox="0 0 132 132" style="color:' + u.ink + '; flex:none">' +
+          '<use href="#' + u.stamp + '"/></svg>' +
+        '<span class="txt"><span class="meta">' + u.place + '</span>' +
+        '<h3>' + u.name + '</h3><div class="th">' + u.th + '</div></span>' +
+      '</header><ul class="topics">' + rows + '</ul>';
+    host.appendChild(sec);
+  });
+
+  var overall = totalQ ? Math.round(gotQ / totalQ * 100) : 0;
+  $('#pctBar').style.width = overall + '%';
+  $('#pctLab').textContent = overall + '%';
+  $('#stampN').textContent = stamps;
+
+  var tb = $('#testBtn');
+  tb.textContent = store.testBest ? ('Start test · best ' + store.testBest + '/30') : 'Start test';
+}
+
+document.addEventListener('click', function(e){
+  var el = e.target.closest('[data-lesson],[data-practice],[data-home]');
+  if (!el) return;
+  if (el.hasAttribute('data-home')) { renderHome(); show('home'); }
+  else if (el.hasAttribute('data-lesson')) startLesson(el.getAttribute('data-lesson'));
+  else startQuiz(el.getAttribute('data-practice'));
+});
+$('#homeBtn').addEventListener('click', function(){ renderHome(); show('home'); });
+$('#startBtn').addEventListener('click', function(){ renderHome(); show('home'); });
+$('#testBtn').addEventListener('click', startTest);
+
+/* ---------------- lesson ---------------- */
+var ls = { id:null, i:0 };
+function startLesson(id){
+  ls.id = id; ls.i = 0;
+  $('#lsTitle').textContent = TOPIC[id].n;
+  renderLesson(); show('lesson');
+}
+function renderLesson(){
+  var cards = LESSONS[ls.id], c = cards[ls.i];
+  $('#lsDots').innerHTML = cards.map(function(_, i){
+    return '<i class="' + (i === ls.i ? 'on' : '') + '"></i>';
+  }).join('');
+  $('#lsBody').innerHTML =
+    '<article class="card"><h3>' + c.h + '</h3><div class="th">' + c.th + '</div>' +
+    '<ul class="plist">' + c.p.map(function(p){
+      return '<li>' + p[0] + '<div class="th">' + p[1] + '</div></li>';
+    }).join('') + '</ul>' +
+    (c.eg ? '<div class="eg">' + c.eg + '</div>' : '') + '</article>';
+  $('#lsPrev').disabled = false;
+  $('#lsPrev').textContent = ls.i === 0 ? '← Passport' : '← Back';
+  $('#lsNext').textContent = ls.i === cards.length - 1 ? 'Start practice →' : 'Next →';
+}
+$('#lsPrev').addEventListener('click', function(){
+  if (ls.i === 0) { renderHome(); show('home'); } else { ls.i--; renderLesson(); }
+});
+$('#lsNext').addEventListener('click', function(){
+  if (ls.i === LESSONS[ls.id].length - 1) startQuiz(ls.id);
+  else { ls.i++; renderLesson(); }
+});
+
+/* ---------------- quiz ---------------- */
+var qz = { list:[], i:0, correct:0, mode:'practice', topic:null, wrong:[] };
+
+function shuffle(a){
+  a = a.slice();
+  for (var i = a.length - 1; i > 0; i--){
+    var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+function prepare(q){
+  var idx = q.o.map(function(_, i){ return i; });
+  idx = shuffle(idx);
+  return { q:q, order:idx, ansPos:idx.indexOf(q.a) };
+}
+
+function startQuiz(topicId){
+  qz = { list:shuffle(POOL[topicId]).map(prepare), i:0, correct:0,
+         mode:'practice', topic:topicId, wrong:[] };
+  $('#qzTitle').textContent = TOPIC[topicId].n;
+  renderQ(); show('quiz');
+}
+function startTest(){
+  var picked = [];
+  Object.keys(POOL).forEach(function(k){ picked = picked.concat(shuffle(POOL[k]).slice(0, 4)); });
+  picked = shuffle(picked).slice(0, 30);
+  qz = { list:picked.map(prepare), i:0, correct:0, mode:'test', topic:null, wrong:[] };
+  $('#qzTitle').textContent = 'Final Test';
+  renderQ(); show('quiz');
+}
+
+function renderQ(){
+  var item = qz.list[qz.i], q = item.q, n = qz.list.length;
+  $('#qzCount').textContent = (qz.i + 1) + ' / ' + n;
+  $('#qzBar').style.width = Math.round(qz.i / n * 100) + '%';
+  $('#qzLive').textContent = 'Score ' + qz.correct;
+
+  var opts = item.order.map(function(oi, pos){
+    return '<li><button class="opt" data-pos="' + pos + '">' +
+      '<span class="k">' + 'ABCD'[pos] + '</span>' +
+      '<span class="t">' + q.o[oi] + '</span></button></li>';
+  }).join('');
+
+  $('#qzCard').innerHTML =
+    '<div class="qtag">' + TOPIC[q.t].n + '</div>' +
+    '<div class="stem">' + q.q + '</div>' +
+    (q.ctx ? '<div class="ctx">' + q.ctx + '</div>' : '') +
+    '<ul class="opts">' + opts + '</ul>' +
+    '<div id="fbSlot"></div>';
+
+  $('#qzNext').disabled = true;
+  $('#qzNext').textContent = (qz.i === n - 1) ? 'See result →' : 'Next →';
+}
+
+$('#qzCard').addEventListener('click', function(e){
+  var btn = e.target.closest('.opt'); if (!btn || btn.disabled) return;
+  var item = qz.list[qz.i], pos = +btn.getAttribute('dataPos' in btn ? 'data-pos' : 'data-pos');
+  var ok = (pos === item.ansPos);
+  var all = $('#qzCard').querySelectorAll('.opt');
+
+  Array.prototype.forEach.call(all, function(b, i){
+    b.disabled = true;
+    if (i === item.ansPos){
+      b.classList.add('correct');
+      b.insertAdjacentHTML('beforeend', '<span class="mark">CORRECT</span>');
+    } else if (i === pos){
+      b.classList.add('wrong');
+      b.insertAdjacentHTML('beforeend', '<span class="mark">YOUR ANSWER</span>');
+    }
+  });
+
+  if (ok) qz.correct++; else qz.wrong.push(item.q);
+  $('#qzLive').textContent = 'Score ' + qz.correct;
+
+  $('#fbSlot').innerHTML =
+    '<div class="fb ' + (ok ? 'ok' : 'no') + '">' +
+      '<div class="hd">' + (ok ? '✓ Correct' : '✗ Not quite') + '</div>' +
+      '<div class="ex">' + item.q.e + '</div>' +
+      '<div class="th">' + item.q.eth + '</div>' +
+    '</div>';
+
+  $('#qzNext').disabled = false;
+  $('#qzNext').focus();
+});
+
+$('#qzNext').addEventListener('click', function(){
+  if (qz.i === qz.list.length - 1) finish();
+  else { qz.i++; renderQ(); }
+});
+
+/* ---------------- result ---------------- */
+function finish(){
+  var n = qz.list.length, c = qz.correct, p = Math.round(c / n * 100);
+  var isTest = qz.mode === 'test';
+  var earned = !isTest && p >= 80;
+
+  if (isTest){
+    if (c > store.testBest) store.testBest = c;
+  } else {
+    var prev = store.best[qz.topic];
+    if (!prev || c > prev.c) store.best[qz.topic] = { c:c, n:n };
+  }
+  save();
+
+  var msg, msgTh;
+  if (p === 100){ msg = 'Perfect. Every single one.'; msgTh = 'เต็ม! ถูกทุกข้อเลย'; }
+  else if (p >= 80){ msg = 'Strong work — stamp earned.'; msgTh = 'ทำได้ดีมาก ได้ตราประทับแล้ว'; }
+  else if (p >= 60){ msg = 'Almost there. Read the lesson again and retry.'; msgTh = 'เกือบแล้ว ลองอ่านใบความรู้อีกรอบแล้วทำใหม่'; }
+  else { msg = 'Take another look at the lesson first, then try again.'; msgTh = 'ลองกลับไปอ่านบทเรียนก่อน แล้วค่อยทำใหม่นะ'; }
+
+  var stampHtml = '';
+  if (earned){
+    stampHtml = '<div class="stampwrap"><svg viewBox="0 0 132 132" width="132" height="132" ' +
+      'style="color:' + TOPIC[qz.topic].unit.ink + '"><use href="#' + TOPIC[qz.topic].unit.stamp + '"/></svg></div>';
+  } else if (isTest && p >= 80){
+    stampHtml = '<div class="stampwrap"><svg viewBox="0 0 132 132" width="132" height="132" ' +
+      'style="color:#B08842"><use href="#stamp-gold"/></svg></div>';
+  }
+
+  var breakdown = '';
+  if (isTest){
+    var byTopic = {};
+    qz.list.forEach(function(it){
+      var k = it.q.t; byTopic[k] = byTopic[k] || { n:0, c:0 };
+      byTopic[k].n++;
+    });
+    qz.list.forEach(function(it){
+      if (qz.wrong.indexOf(it.q) === -1) byTopic[it.q.t].c++;
+    });
+    breakdown = '<div style="text-align:left; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-top:22px">Score by topic</div>' + '<ul class="breakdown">' + Object.keys(byTopic).map(function(k){
+      return '<li><span class="n">' + TOPIC[k].n + '</span><b>' +
+        byTopic[k].c + ' / ' + byTopic[k].n + '</b></li>';
+    }).join('') + '</ul>';
+  } else if (qz.wrong.length){
+    breakdown = '<div style="text-align:left; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-top:22px">Review these &middot; <span class="th" style="text-transform:none; letter-spacing:0">ทบทวนข้อที่พลาด</span></div>' + '<ul class="breakdown">' + qz.wrong.slice(0, 6).map(function(q){
+      return '<li><span class="n">' + q.q.replace(/<[^>]+>/g, '') + '</span><b>' +
+        q.o[q.a] + '</b></li>';
+    }).join('') + '</ul>';
+  }
+
+  $('#rsBody').innerHTML =
+    '<h2>' + (isTest ? 'Final Test complete' : TOPIC[qz.topic].n) + '</h2>' +
+    '<div class="pct">' + (isTest ? '30 mixed questions' : 'Practice round') + '</div>' +
+    '<div class="bigscore">' + c + '<span style="font-size:24px; color:var(--ink-3)"> / ' + n + '</span></div>' +
+    '<div class="pct">' + p + '%</div>' +
+    stampHtml +
+    '<div class="msg">' + msg + '<div class="th">' + msgTh + '</div></div>' +
+    breakdown +
+    '<div class="rnav">' +
+      '<button class="btn-prim" id="rsAgain">Try again</button>' +
+      (isTest ? '' : '<button class="btn-sec" id="rsLesson">Read the lesson</button>') +
+      '<button class="btn-sec" data-home>Back to passport</button>' +
+    '</div>';
+
+  $('#rsAgain').addEventListener('click', function(){
+    if (isTest) startTest(); else startQuiz(qz.topic);
+  });
+  var rl = document.getElementById('rsLesson');
+  if (rl) rl.addEventListener('click', function(){ startLesson(qz.topic); });
+
+  show('result');
+}
+
+renderHome();
+})();
+</script>
+</body>
+</html>
