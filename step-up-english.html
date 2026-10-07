@@ -1,0 +1,1931 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Step Up English</title>
+<meta name="description" content="แนวข้อสอบภาษาอังกฤษเข้า ม.1 ห้องเรียนพิเศษ EP / Gifted 5 ชุด 150 ข้อ พร้อมเฉลยและคำอธิบายทุกข้อ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F8F3EA; --paper:#FFFDF8; --paper-2:#F3ECDF; --ink:#1D2939; --ink-2:#4B5565; --ink-3:#7A8494;
+  --line:#E6DCCB; --line-2:#D6C9B3;
+  --coral:#D9573A; --coral-ink:#B23F25; --coral-soft:#FBE4DB;
+  --sage:#4E8461; --sage-ink:#2F6644; --sage-soft:#DFEDE3;
+  --sky:#3874A6; --sky-ink:#255A86; --sky-soft:#DCE9F4;
+  --butter:#E3AE3A; --butter-ink:#8A6110; --butter-soft:#FAEFD3;
+  --navy:#1D2939; --on-navy:#FFF9EF;
+  --shadow:0 1px 0 rgba(29,41,57,.04),0 8px 24px -12px rgba(29,41,57,.18);
+  --r:14px; --r-sm:10px;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans Thai",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#14181F; --paper:#1C222B; --paper-2:#232A35; --ink:#F1EBDF; --ink-2:#C2BAAC; --ink-3:#8F887C;
+  --line:#2E3642; --line-2:#3C4553;
+  --coral:#EE7A5C; --coral-ink:#F59A80; --coral-soft:#3A2420;
+  --sage:#76B08A; --sage-ink:#93C7A4; --sage-soft:#1F3127;
+  --sky:#6FA6D6; --sky-ink:#94BEE3; --sky-soft:#1C2D3E;
+  --butter:#E9BE5C; --butter-ink:#F0CF84; --butter-soft:#342A15;
+  --navy:#F1EBDF; --on-navy:#14181F;
+  --shadow:0 8px 24px -12px rgba(0,0,0,.6);
+}}
+:root[data-theme="dark"]{
+  --bg:#14181F; --paper:#1C222B; --paper-2:#232A35; --ink:#F1EBDF; --ink-2:#C2BAAC; --ink-3:#8F887C;
+  --line:#2E3642; --line-2:#3C4553;
+  --coral:#EE7A5C; --coral-ink:#F59A80; --coral-soft:#3A2420;
+  --sage:#76B08A; --sage-ink:#93C7A4; --sage-soft:#1F3127;
+  --sky:#6FA6D6; --sky-ink:#94BEE3; --sky-soft:#1C2D3E;
+  --butter:#E9BE5C; --butter-ink:#F0CF84; --butter-soft:#342A15;
+  --navy:#F1EBDF; --on-navy:#14181F;
+  --shadow:0 8px 24px -12px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.65;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sky);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+@media (max-width:600px){.wrap{padding:0 16px}}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px;height:62px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;text-decoration:none;background:none;border:0;padding:0}
+.brand-mark{width:34px;height:34px;border-radius:9px;background:var(--navy);color:var(--on-navy);display:grid;place-items:center;font-family:var(--serif);font-size:19px;line-height:1}
+.brand small{display:block;font-weight:500;font-size:12px;color:var(--ink-3);line-height:1.2}
+.brand b{display:block;font-family:var(--serif);font-size:19px;line-height:1.1;letter-spacing:-.01em}
+.nav{margin-left:auto;display:flex;gap:4px}
+.lang{display:flex;border:1.5px solid var(--line-2);border-radius:9px;overflow:hidden;flex-shrink:0}
+.lang button{background:var(--paper);border:0;padding:5px 10px;font-size:13px;font-weight:700;color:var(--ink-3);min-height:34px}
+.lang button[aria-pressed="true"]{background:var(--navy);color:var(--on-navy)}
+.nav button{white-space:nowrap;background:none;border:0;padding:8px 12px;border-radius:8px;font-weight:500;color:var(--ink-2)}
+.nav button:hover{background:var(--paper-2);color:var(--ink)}
+.nav button[aria-current="page"]{color:var(--ink);background:var(--paper-2)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 20px;border-radius:10px;border:1.5px solid transparent;font-weight:600;font-size:16px;text-decoration:none;transition:transform .12s ease,background .15s ease,border-color .15s}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--coral);color:#fff}
+.btn-primary:hover{background:var(--coral-ink)}
+.btn-dark{background:var(--navy);color:var(--on-navy)}
+.btn-ghost{background:var(--paper);border-color:var(--line-2);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink-3)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+.btn-sm{min-height:38px;padding:6px 14px;font-size:15px}
+
+/* chips */
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.cg{background:var(--coral-soft);color:var(--coral-ink)}
+.cv{background:var(--sage-soft);color:var(--sage-ink)}
+.cc{background:var(--sky-soft);color:var(--sky-ink)}
+.cr{background:var(--butter-soft);color:var(--butter-ink)}
+
+/* HOME */
+.hero{padding-top:56px;padding-bottom:40px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.kicker{font-weight:600;color:var(--coral-ink);font-size:15px;margin:0 0 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.kicker span{background:var(--paper);border:1px solid var(--line);padding:2px 10px;border-radius:6px;color:var(--ink-2);font-weight:500}
+.hero h1{font-size:clamp(32px,4.6vw,52px);line-height:1.18;margin:0 0 18px;letter-spacing:-.01em;font-weight:700}
+.hero h1 em{font-style:normal;color:var(--coral);position:relative;white-space:nowrap}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.04em;height:.18em;background:var(--butter);opacity:.45;z-index:-1;border-radius:3px}
+.hero p.lead{font-size:18px;color:var(--ink-2);margin:0 0 26px;max-width:34em}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.facts{display:flex;gap:28px;margin-top:34px;flex-wrap:wrap}
+.facts div{line-height:1.25}
+.facts b{display:block;font-family:var(--serif);font-size:34px;font-weight:700}
+.facts span{font-size:14px;color:var(--ink-3)}
+
+.sheet{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:28px 28px 30px 52px;box-shadow:var(--shadow);transform:rotate(1.2deg);
+  background-image:linear-gradient(var(--paper),var(--paper)),repeating-linear-gradient(transparent 0 33px,var(--line) 33px 34px);}
+.sheet::before{content:"";position:absolute;left:34px;top:0;bottom:0;width:1.5px;background:var(--coral);opacity:.35}
+.sheet .q-no{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--ink-3)}
+.sheet .q-text{font-size:18px;margin:4px 0 14px}
+.sheet .q-text u{text-decoration:none;border-bottom:2px solid var(--ink);padding:0 18px}
+.sheet ol{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 16px}
+.sheet li{display:flex;gap:10px;align-items:center}
+.sheet li i{font-style:normal;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line-2);display:grid;place-items:center;font-size:13px;font-weight:600}
+.sheet li.circ i{border:2.5px solid var(--coral);color:var(--coral-ink);transform:rotate(-8deg) scale(1.12)}
+.note{position:absolute;right:-14px;bottom:-34px;width:230px;background:var(--butter-soft);border:1px solid color-mix(in srgb,var(--butter) 50%,transparent);padding:12px 14px;border-radius:4px;transform:rotate(-3deg);font-size:14px;line-height:1.5;box-shadow:var(--shadow)}
+.note b{color:var(--butter-ink)}
+.stamp{position:absolute;top:-14px;right:22px;background:var(--sage);color:#fff;font-size:12px;font-weight:700;padding:4px 10px;border-radius:4px;transform:rotate(4deg);letter-spacing:.02em}
+
+.section{padding-top:44px;padding-bottom:44px}
+.section h2{font-size:28px;margin:0 0 6px;line-height:1.3}
+.section .sub{color:var(--ink-2);margin:0 0 26px}
+
+.blueprint{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:var(--r);background:var(--paper);overflow:hidden}
+.bp{padding:20px 20px 22px;border-right:1px solid var(--line)}
+.bp:last-child{border-right:0}
+.bp .n{font-family:var(--serif);font-size:30px;font-weight:700;line-height:1}
+.bp .n small{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink-3);margin-left:4px}
+.bp h3{font-size:16px;margin:12px 0 2px}
+.bp p{margin:0;font-size:14px;color:var(--ink-2);line-height:1.55}
+.bp .bar{height:6px;border-radius:3px;margin-top:14px}
+
+.sets{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.set-row{display:grid;grid-template-columns:76px 1fr auto;gap:20px;align-items:center;padding:22px 4px;border-bottom:1px solid var(--line)}
+.set-no{font-family:var(--serif);font-size:46px;font-weight:700;line-height:1;color:var(--ink-3)}
+.set-row:hover .set-no{color:var(--coral)}
+.set-info h3{margin:0;font-size:21px;line-height:1.35}
+.set-info h3 span{font-family:var(--serif);font-weight:500;font-size:16px;color:var(--ink-3);margin-left:8px}
+.set-meta{display:flex;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--ink-2);margin-top:4px}
+.dots{letter-spacing:2px;color:var(--coral)}
+.dots s{color:var(--line-2);text-decoration:none}
+.best{font-weight:600;color:var(--sage-ink)}
+.set-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+.mode{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.mode h3{margin:0 0 4px;font-size:17px}
+.mode p{margin:0;color:var(--ink-2);font-size:15px}
+
+.foot{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--ink-3);font-size:13px;margin-top:20px}
+
+/* QUIZ */
+.qbar{background:var(--paper);border-bottom:1px solid var(--line)}
+.qbar .wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
+.qbar .title{font-weight:600;line-height:1.3}
+.qbar .title small{display:block;color:var(--ink-3);font-weight:500;font-size:13px}
+.qbar .right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.badge{font-size:13px;font-weight:600;padding:4px 10px;border-radius:6px;background:var(--paper-2);color:var(--ink-2);white-space:nowrap}
+.timer{font-variant-numeric:tabular-nums;font-weight:600;font-size:15px;color:var(--ink-2)}
+.progress{height:5px;background:var(--line);}
+.progress i{display:block;height:100%;background:var(--coral);transition:width .3s ease}
+
+.quiz{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;padding:28px 0 60px;max-width:780px;margin:0 auto}
+.quiz.split{grid-template-columns:minmax(0,1fr) minmax(0,1fr);max-width:none}
+.passage{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);align-self:start;position:sticky;top:78px;max-height:calc(100vh - 96px);overflow:auto}
+.passage summary{list-style:none;cursor:default;padding:14px 20px;border-bottom:1px solid var(--line);font-size:13px;font-weight:600;color:var(--butter-ink);background:var(--butter-soft);border-radius:var(--r) var(--r) 0 0}
+.passage summary::-webkit-details-marker{display:none}
+.passage .pbody{padding:18px 22px 22px}
+.passage h3{font-family:var(--serif);font-size:23px;margin:0 0 10px;line-height:1.3}
+.passage p{margin:0 0 12px;font-size:16.5px;line-height:1.75}
+.passage .cap{font-size:14px;color:var(--ink-3)}
+
+.sign{border:3px solid var(--ink);border-radius:8px;padding:16px;font-size:15.5px}
+.sign-head{font-family:var(--serif);font-weight:700;font-size:22px;text-align:center;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:10px;letter-spacing:.04em}
+.sign-row{display:grid;grid-template-columns:130px 1fr;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line-2)}
+.sign-rules{margin:10px 0 0;padding-left:20px}
+.sign-rules li::marker{content:"⊘  ";color:var(--coral)}
+.notice{background:var(--sage-soft);border-radius:8px;padding:18px;font-size:15.5px}
+.notice-kicker{font-weight:700;color:var(--sage-ink);text-transform:uppercase;font-size:13px;letter-spacing:.06em}
+.notice-head{font-family:var(--serif);font-weight:700;font-size:25px;line-height:1.2;margin:2px 0 8px}
+.notice-meta{margin:0 0 12px !important}
+.notice-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.notice-cols ul{margin:4px 0 0;padding-left:18px}
+.notice-foot{margin:12px 0 0 !important;padding-top:10px;border-top:1px solid color-mix(in srgb,var(--sage) 35%,transparent)}
+.ad{border:2px dashed var(--coral);border-radius:10px;padding:18px;text-align:center;font-size:15.5px}
+.ad-top{font-size:14px;color:var(--ink-2)}
+.ad-head{font-family:var(--serif);font-weight:700;font-size:27px;color:var(--coral-ink);line-height:1.15;margin:4px 0}
+.ad-sub{font-weight:600}
+.ad-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;text-align:left}
+.ad-grid div{background:var(--paper-2);border-radius:8px;padding:10px 12px}
+.ad-grid b,.ad-list b{display:block;font-size:13px;color:var(--ink-3)}
+.ad-grid em{font-size:13.5px;color:var(--coral-ink)}
+.ad-list{text-align:left;margin-bottom:10px}
+.ad-foot{font-size:14px;color:var(--ink-2)}
+table.data{width:100%;border-collapse:collapse;font-size:15.5px}
+table.data th,table.data td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left}
+table.data th{background:var(--paper-2);font-size:14px}
+table.data td:not(:first-child),table.data th:not(:first-child){text-align:right;font-variant-numeric:tabular-nums}
+.bars{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.bars .bar{display:grid;grid-template-columns:110px 1fr 46px;gap:10px;align-items:center;font-size:15px}
+.bars .bt{height:20px;background:var(--paper-2);border-radius:4px;overflow:hidden}
+.bars .bt i{display:block;height:100%;background:var(--sky);border-radius:4px}
+.bars .bv{font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+
+.qcard{min-width:0}
+.qhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.qhead .topic{font-size:14px;color:var(--ink-3)}
+.qnum{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--ink-3);margin:0 0 2px}
+.qtext{font-size:21px;line-height:1.6;margin:0 0 22px;font-weight:500}
+.qtext u{text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:var(--coral)}
+.blank{display:inline-block;min-width:72px;border-bottom:2.5px solid var(--ink);margin:0 4px;transform:translateY(-4px)}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:grid;grid-template-columns:36px 1fr auto;gap:14px;align-items:center;text-align:left;background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:12px 16px;min-height:58px;font-size:17px;line-height:1.5;transition:border-color .15s,background .15s}
+.opt:hover:not([disabled]){border-color:var(--ink-3)}
+.opt .key{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line-2);display:grid;place-items:center;font-weight:700;font-size:15px;background:var(--bg)}
+.opt.sel{border-color:var(--navy);background:var(--paper-2)}
+.opt.sel .key{background:var(--navy);color:var(--on-navy);border-color:var(--navy)}
+.opt .mark{font-size:13px;font-weight:700;white-space:nowrap}
+.opt.ok{border-color:var(--sage);background:var(--sage-soft)}
+.opt.ok .key{background:var(--sage);border-color:var(--sage);color:#fff}
+.opt.ok .mark{color:var(--sage-ink)}
+.opt.bad{border-color:var(--coral);background:var(--coral-soft)}
+.opt.bad .key{background:var(--coral);border-color:var(--coral);color:#fff}
+.opt.bad .mark{color:var(--coral-ink)}
+.opt[disabled]{cursor:default}
+.opt.dim{opacity:.6}
+
+.fb{margin-top:18px;border-radius:var(--r);padding:16px 20px;border-left:5px solid;background:var(--paper);border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line);animation:rise .25s ease}
+.fb.ok{border-left-color:var(--sage)}
+.fb.bad{border-left-color:var(--coral)}
+.fb-head{font-weight:700;font-size:17px;margin-bottom:6px;display:flex;gap:8px;align-items:center}
+.fb.ok .fb-head{color:var(--sage-ink)}
+.fb.bad .fb-head{color:var(--coral-ink)}
+.fb-body{font-size:16px;line-height:1.75;color:var(--ink)}
+.fb-body i{color:var(--ink-2)}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.actions{display:flex;gap:10px;margin-top:22px;align-items:center;flex-wrap:wrap}
+.actions .grow{flex:1}
+.hint{font-size:13px;color:var(--ink-3);margin-top:12px}
+.hint kbd{font-family:var(--sans);font-size:12px;border:1px solid var(--line-2);border-bottom-width:2px;border-radius:4px;padding:0 5px;background:var(--paper)}
+
+.grid-wrap{margin-top:28px;border-top:1px solid var(--line);padding-top:16px}
+.grid-wrap summary{cursor:pointer;font-weight:600;font-size:15px;color:var(--ink-2)}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(42px,1fr));gap:6px;margin-top:12px}
+.qgrid button{height:42px;border-radius:8px;border:1.5px solid var(--line);background:var(--paper);font-weight:600;font-size:14px;font-variant-numeric:tabular-nums}
+.qgrid button.done{background:var(--paper-2);border-color:var(--line-2)}
+.qgrid button.gok{background:var(--sage-soft);border-color:var(--sage);color:var(--sage-ink)}
+.qgrid button.gbad{background:var(--coral-soft);border-color:var(--coral);color:var(--coral-ink)}
+.qgrid button.cur{outline:2.5px solid var(--navy);outline-offset:1px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-3);margin-top:10px}
+
+/* modal */
+.scrim{position:fixed;inset:0;background:rgba(20,24,31,.45);display:grid;place-items:center;padding:16px;z-index:50;animation:fade .15s ease}
+.modal{background:var(--paper);border-radius:var(--r);padding:26px;max-width:420px;width:100%;box-shadow:0 20px 50px -20px rgba(0,0,0,.4)}
+.modal h3{margin:0 0 8px;font-size:21px}
+.modal p{margin:0 0 20px;color:var(--ink-2)}
+.modal .actions{justify-content:flex-end;margin:0}
+@keyframes fade{from{opacity:0}}
+
+/* RESULT */
+.result-top{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;padding:40px 0 30px}
+.score-ring{--p:0;width:180px;height:180px;border-radius:50%;background:conic-gradient(var(--ring,var(--sage)) calc(var(--p)*1%),var(--line) 0);display:grid;place-items:center}
+.score-ring div{width:146px;height:146px;border-radius:50%;background:var(--bg);display:grid;place-items:center;text-align:center;line-height:1.1}
+.score-ring b{font-family:var(--serif);font-size:48px;font-weight:700}
+.score-ring span{font-size:14px;color:var(--ink-3)}
+.result-top h1{font-size:clamp(26px,3.6vw,36px);margin:0 0 6px;line-height:1.3}
+.result-top p{margin:0 0 18px;color:var(--ink-2);font-size:17px}
+.catbars{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 28px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.catbar .row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;font-size:15px}
+.catbar .row b{font-variant-numeric:tabular-nums}
+.catbar .track{height:9px;background:var(--paper-2);border-radius:5px;overflow:hidden}
+.catbar .track i{display:block;height:100%;border-radius:5px}
+.advice{margin-top:16px;padding:14px 18px;background:var(--butter-soft);border-radius:var(--r-sm);font-size:15.5px}
+.advice button{background:none;border:0;padding:0;color:var(--coral-ink);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.tabs{display:flex;gap:6px;margin:32px 0 14px;flex-wrap:wrap;align-items:center}
+.tabs h2{margin:0 auto 0 0;font-size:22px}
+.tabs button{border:1.5px solid var(--line-2);background:var(--paper);padding:6px 14px;border-radius:999px;font-size:14px;font-weight:600}
+.tabs button[aria-pressed="true"]{background:var(--navy);color:var(--on-navy);border-color:var(--navy)}
+.review{display:flex;flex-direction:column;gap:10px}
+.rv{background:var(--paper);border:1px solid var(--line);border-radius:12px}
+.rv summary{cursor:pointer;list-style:none;padding:14px 18px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start}
+.rv summary::-webkit-details-marker{display:none}
+.rv .st{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px;color:#fff;margin-top:2px}
+.rv .st.ok{background:var(--sage)}
+.rv .st.bad{background:var(--coral)}
+.rv .st.skip{background:var(--ink-3)}
+.rv .rq{font-size:16px;line-height:1.55;min-width:0}
+.rv .rq small{display:block;font-size:13px;color:var(--ink-3)}
+.rv .chev{color:var(--ink-3);transition:transform .2s;margin-top:4px}
+.rv[open] .chev{transform:rotate(90deg)}
+.rv .rbody{padding:0 18px 18px 58px}
+.rv .ans{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;font-size:15.5px}
+.rv .ans .y{color:var(--coral-ink)}
+.rv .ans .c{color:var(--sage-ink);font-weight:600}
+.rv .exp{font-size:15.5px;line-height:1.75;background:var(--paper-2);border-radius:10px;padding:12px 16px}
+
+/* NOTES */
+.notes{display:grid;grid-template-columns:230px minmax(0,1fr);gap:40px;padding:36px 0 60px}
+.toc{position:sticky;top:84px;align-self:start;display:flex;flex-direction:column;gap:2px;font-size:15px}
+.toc b{font-size:13px;color:var(--ink-3);margin:12px 0 4px;font-weight:600}
+.toc b:first-child{margin-top:0}
+.toc a{text-decoration:none;padding:5px 10px;border-radius:6px;color:var(--ink-2);border-left:3px solid transparent}
+.toc a:hover{background:var(--paper-2);color:var(--ink)}
+.note-sec{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px 26px;margin-bottom:18px;scroll-margin-top:84px}
+.note-sec h2{margin:8px 0 12px;font-size:22px;line-height:1.3}
+.note-sec p,.note-sec li{font-size:16px}
+.note-sec ol,.note-sec ul{padding-left:22px;margin:8px 0}
+.note-sec li{margin-bottom:4px}
+.note-sec .ex{background:var(--paper-2);border-radius:8px;padding:10px 14px}
+.note-sec .tip{background:var(--butter-soft);border-radius:8px;padding:10px 14px;font-size:15px}
+.note-sec .tip::before{content:"เคล็ดลับ  ";font-weight:700;color:var(--butter-ink)}
+html:lang(en) .note-sec .tip::before{content:"Tip  "}
+table.mini{width:100%;border-collapse:collapse;font-size:15px;margin:10px 0;display:block;overflow-x:auto}
+table.mini th,table.mini td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+table.mini th{background:var(--paper-2);font-size:14px}
+
+/* PRINT VIEW */
+.print-view{max-width:820px;margin:0 auto;padding:30px 0 60px}
+.print-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:14px 18px;margin-bottom:26px}
+.print-bar p{margin:0 auto 0 0;font-size:15px;color:var(--ink-2)}
+.pv h1{font-size:26px;margin:0 0 2px}
+.pv .pv-sub{color:var(--ink-3);margin:0 0 6px}
+.pv .pv-name{border-bottom:1px solid var(--line-2);padding:14px 0 6px;margin-bottom:20px;color:var(--ink-2);font-size:15px}
+.pv h2{font-size:18px;margin:26px 0 10px;padding-bottom:4px;border-bottom:2px solid var(--ink)}
+.pv-q{margin:0 0 14px;break-inside:avoid}
+.pv-q .t{margin:0 0 4px}
+.pv-q ol{list-style:none;padding:0 0 0 26px;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 18px}
+.pv-pass{border:1px solid var(--line-2);border-radius:8px;padding:14px 18px;margin:8px 0 16px;break-inside:avoid}
+.pv-pass h3{margin:0 0 6px;font-family:var(--serif)}
+.pv-key{display:grid;grid-template-columns:repeat(6,1fr);gap:4px 12px;font-variant-numeric:tabular-nums;margin-bottom:16px}
+.pv-exp{font-size:14.5px;margin:0 0 10px;break-inside:avoid}
+.page-break{break-before:page}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;gap:40px;padding-top:36px}
+  .sheet{margin:0 10px 30px}
+  .note{position:relative;right:auto;bottom:auto;margin:18px 0 -10px auto}
+  .quiz.split{grid-template-columns:minmax(0,1fr)}
+  .passage{position:static;max-height:none}
+  .passage summary{cursor:pointer}
+  .passage summary::after{content:attr(data-fold);font-weight:500;color:var(--ink-3)}
+  .notes{grid-template-columns:minmax(0,1fr)}
+  .notes>*{min-width:0}
+  .toc{position:static;flex-direction:row;flex-wrap:wrap;gap:6px}
+  .toc b{display:none}
+  .toc a{border:1px solid var(--line);background:var(--paper);font-size:14px}
+  .blueprint{grid-template-columns:1fr 1fr}
+  .bp:nth-child(2){border-right:0}
+  .bp:nth-child(-n+2){border-bottom:1px solid var(--line)}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .nav button{padding:8px 8px;font-size:14px}
+  .brand small{display:none}
+  .brand b{font-size:17px;white-space:nowrap}
+  .top .wrap{gap:6px}
+  .nav button{padding:8px 6px}
+  .brand-mark{display:none}
+  .lang button{padding:4px 8px}
+  .set-row{grid-template-columns:48px 1fr;gap:12px}
+  .set-no{font-size:34px}
+  .set-actions{grid-column:1 / -1;justify-content:stretch}
+  .set-actions .btn{flex:1}
+  .modes{grid-template-columns:1fr}
+  .qtext{font-size:19px}
+  .opt{grid-template-columns:32px 1fr;padding:12px 12px;font-size:16px}
+  .opt .key{width:30px;height:30px}
+  .opt .mark{grid-column:2}
+  .result-top{grid-template-columns:1fr;justify-items:center;text-align:center;gap:20px}
+  .catbars{grid-template-columns:1fr}
+  .rv .rbody{padding-left:18px}
+  .sheet{padding:24px 18px 24px 40px}
+  .sheet::before{left:26px}
+  .sheet ol{grid-template-columns:1fr}
+  .sign-row{grid-template-columns:1fr;gap:0}
+  .notice-cols,.ad-grid{grid-template-columns:1fr}
+  .bars .bar{grid-template-columns:92px 1fr 40px}
+  .pv-q ol{grid-template-columns:1fr}
+  .pv-key{grid-template-columns:repeat(3,1fr)}
+  .qbar .right{margin-left:0;width:100%;justify-content:space-between}
+  .note-sec{padding:20px 18px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+@media print{
+  body{background:#fff;color:#000;font-size:12.5pt}
+  .top,.print-bar,.foot{display:none !important}
+  .print-view{padding:0;max-width:none}
+  .pv-pass{border-color:#999}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+window.SETS = window.SETS || [];
+SETS.push({
+  id: 1,
+  title: `ปูพื้นให้แน่น`,
+  en: `Foundation`,
+  theme: `ทะเล สัตว์ และชีวิตประจำวัน`,
+  themeEn: `The sea, animals and daily life`,
+  level: 1,
+  passages: {
+    A: {
+      kind: `article`,
+      label: `Passage A · บทความวิทยาศาสตร์`,
+      labelEn: `Passage A · Science Article`,
+      title: `Saving Sea Turtles`,
+      html: `<p>Sea turtles have lived in the oceans for more than 100 million years. Today, however, six of the seven species are in danger. One major problem is plastic. Turtles often mistake plastic bags for jellyfish, which are one of their favourite foods. When they eat them, the plastic blocks their stomachs, and the turtles can starve to death.</p>
+<p>Another problem is the loss of nesting beaches. Female turtles return to the same beach where they were born to lay their eggs. If hotels are built on these beaches, the turtles have nowhere to go. On some islands in Thailand, volunteers collect turtle eggs and protect them until the babies hatch. Then they release the young turtles into the sea. Thanks to their hard work, more baby turtles now reach the ocean safely.</p>`
+    },
+    B: {
+      kind: `sign`,
+      label: `Passage B · ป้ายประกาศ`,
+      labelEn: `Passage B · Public Notice`,
+      title: `Blue Bay Aquarium`,
+      html: `<div class="sign">
+<div class="sign-head">BLUE BAY AQUARIUM</div>
+<div class="sign-row"><b>Opening Hours</b><span>Tuesday – Sunday, 9:00 a.m. – 5:00 p.m.<br><em>Closed on Mondays</em></span></div>
+<div class="sign-row"><b>Tickets</b><span>Adults 150 baht<br>Children (under 12) 80 baht<br>Students with ID card 100 baht</span></div>
+<div class="sign-row"><b>Feeding Show</b><span>11:00 a.m. and 3:00 p.m.</span></div>
+<ul class="sign-rules"><li>No flash photography</li><li>Please do not tap on the glass</li><li>Food and drinks are not allowed inside</li></ul>
+</div>`
+    }
+  },
+  questions: [
+    { c:`g`, t:`Present Perfect`, q:`My family ___ in Rayong since 2019.`,
+      o:[`lives`,`lived`,`has lived`,`is living`], a:2,
+      e:`คำว่า <b>since + จุดเวลา</b> (since 2019) บอกว่าเหตุการณ์เริ่มในอดีตและ <b>ยังดำเนินอยู่ถึงปัจจุบัน</b> จึงใช้ Present Perfect: <b>has/have + V.3</b> และ My family เป็นเอกพจน์ → <b>has lived</b><br>ตัวลวง: <i>lived</i> (Past Simple) แปลว่าเคยอยู่และจบไปแล้ว ซึ่งขัดกับ since`,
+      ee:`<b>since + a point in time</b> (since 2019) shows that something started in the past and is <b>still going on now</b>, so we use the Present Perfect: <b>has/have + V3</b>. “My family” is singular → <b>has lived</b><br>Trap: <i>lived</i> (Past Simple) means they lived there and it is finished, which doesn’t fit with since` },
+    { c:`g`, t:`Past Simple vs Past Continuous`, q:`While Mali ___ her homework, the lights suddenly went out.`,
+      o:[`did`,`was doing`,`has done`,`does`], a:1,
+      e:`โครงสร้าง <b>While + Past Continuous, Past Simple</b> ใช้เมื่อเหตุการณ์หนึ่ง <b>กำลังเกิด</b> (ทำการบ้าน) แล้วมีอีกเหตุการณ์ <b>แทรกเข้ามา</b> (ไฟดับ)<br>เหตุการณ์ที่กำลังทำอยู่ → <b>was doing</b>`,
+      ee:`The pattern <b>While + Past Continuous, Past Simple</b> is used when one action <b>was in progress</b> (doing homework) and another action <b>interrupted</b> it (the lights went out)<br>The action in progress → <b>was doing</b>` },
+    { c:`g`, t:`Passive Voice`, q:`English ___ in many countries around the world.`,
+      o:[`is spoken`,`speaks`,`spoke`,`is speaking`], a:0,
+      e:`ภาษาอังกฤษ <b>ถูกพูด</b> โดยคน ภาษาพูดเองไม่ได้ ประธานจึงเป็นผู้ถูกกระทำ → Passive: <b>is/am/are + V.3</b><br>เป็นความจริงทั่วไปจึงใช้ Present Simple → <b>is spoken</b>`,
+      ee:`English <b>is spoken</b> by people — a language can’t speak by itself, so the subject receives the action → Passive: <b>is/am/are + V3</b><br>It is a general fact, so use the Present Simple → <b>is spoken</b>` },
+    { c:`g`, t:`Passive Voice`, q:`The new library in our school ___ last year.`,
+      o:[`built`,`was building`,`was built`,`has built`], a:2,
+      e:`ห้องสมุด <b>ถูกสร้าง</b> (สร้างตัวเองไม่ได้) → Passive และมี <b>last year</b> บอกอดีต → <b>was + V.3</b> = <b>was built</b><br>ตัวลวง: <i>has built</i> เป็น Active และใช้กับ last year ไม่ได้`,
+      ee:`The library <b>was built</b> (it can’t build itself) → Passive, and <b>last year</b> shows the past → <b>was + V3</b> = <b>was built</b><br>Trap: <i>has built</i> is Active and can’t be used with last year` },
+    { c:`g`, t:`Relative Clauses`, q:`The girl ___ bicycle was stolen reported it to the police.`,
+      o:[`who`,`whom`,`which`,`whose`], a:3,
+      e:`หลังช่องว่างเป็น <b>คำนาม</b> (bicycle) ที่เป็น <b>ของ</b> the girl → ใช้ <b>whose + คำนาม</b> แสดงความเป็นเจ้าของ<br>จำง่าย: whose = “ของ…” เช่น the girl whose bicycle = เด็กหญิงที่จักรยาน<b>ของเธอ</b>ถูกขโมย`,
+      ee:`After the blank comes a <b>noun</b> (bicycle) that <b>belongs to</b> the girl → use <b>whose + noun</b> to show possession<br>Easy tip: whose = “belonging to …”, e.g. the girl whose bicycle was stolen = the girl, and <b>her</b> bicycle was stolen` },
+    { c:`g`, t:`Relative Clauses`, q:`The smartphone ___ my father bought yesterday is very expensive.`,
+      o:[`who`,`which`,`whose`,`whom`], a:1,
+      e:`คำนามที่ถูกขยายคือ <b>The smartphone</b> ซึ่งเป็น <b>สิ่งของ</b> → ใช้ <b>which</b> (หรือ that)<br>who / whom ใช้กับคน, whose ต้องตามด้วยคำนาม`,
+      ee:`The noun being described is <b>The smartphone</b>, which is a <b>thing</b> → use <b>which</b> (or that)<br>who / whom are for people, and whose must be followed by a noun` },
+    { c:`g`, t:`Conjunctions: ความขัดแย้ง`, q:`___ it was raining heavily, the students continued playing football.`,
+      o:[`Despite`,`Because`,`Although`,`Therefore`], a:2,
+      e:`ฝนตกหนัก <b>แต่</b> ยังเล่นต่อ → ความหมายขัดแย้ง ตัด Because / Therefore<br>หลังช่องว่างเป็น <b>ประโยค</b> (it was raining) → ใช้ <b>Although + ประโยค</b><br>ตัวลวง: <i>Despite</i> ต้องตามด้วย <b>คำนาม / V-ing</b> เช่น Despite the heavy rain`,
+      ee:`It rained heavily <b>but</b> they kept playing → the ideas contrast, so cross out Because / Therefore<br>After the blank comes a <b>clause</b> (it was raining) → use <b>Although + clause</b><br>Trap: <i>Despite</i> must be followed by a <b>noun / V-ing</b>, e.g. Despite the heavy rain` },
+    { c:`g`, t:`Conjunctions: เหตุผล`, q:`The flight was delayed ___ the heavy storm.`,
+      o:[`because`,`because of`,`although`,`so`], a:1,
+      e:`พายุเป็น <b>สาเหตุ</b> ที่เที่ยวบินล่าช้า และหลังช่องว่างเป็น <b>คำนามวลี</b> (the heavy storm) → <b>because of + คำนาม</b><br>ถ้าใช้ <i>because</i> ต้องตามด้วยประโยค เช่น because there was a heavy storm`,
+      ee:`The storm is the <b>reason</b> the flight was late, and after the blank comes a <b>noun phrase</b> (the heavy storm) → <b>because of + noun</b><br>If you use <i>because</i>, it must be followed by a clause, e.g. because there was a heavy storm` },
+    { c:`g`, t:`Subject-Verb Agreement`, q:`The box of chocolates on the shelves ___ a gift from my aunt.`,
+      o:[`are`,`were`,`is`,`be`], a:2,
+      e:`ประธานตัวจริงคือ <b>The box</b> (เอกพจน์) ส่วน <i>of chocolates on the shelves</i> เป็นแค่ส่วนขยาย อย่าหลงไปผันตาม chocolates หรือ shelves<br>ประธานเอกพจน์ + ปัจจุบัน → <b>is</b>`,
+      ee:`The real subject is <b>The box</b> (singular). <i>of chocolates on the shelves</i> only describes it — don’t be tricked into matching the verb to chocolates or shelves<br>Singular subject + present → <b>is</b>` },
+    { c:`g`, t:`Comparison`, q:`Of all the students in the class, Nida is the ___ at drawing.`,
+      o:[`better`,`best`,`most good`,`goodest`], a:1,
+      e:`<b>Of all the students</b> + <b>the</b> → เปรียบเทียบขั้นสูงสุด (Superlative)<br>good เปลี่ยนรูปพิเศษ: <b>good → better → best</b> ไม่มี “most good” หรือ “goodest”`,
+      ee:`<b>Of all the students</b> + <b>the</b> → the highest degree (Superlative)<br>good has special forms: <b>good → better → best</b>. There is no “most good” or “goodest”` },
+
+    { c:`v`, t:`Synonyms`, q:`The blue whale is an <u>enormous</u> animal. It can grow up to 30 metres long.<br>The word “enormous” is closest in meaning to ___.`,
+      o:[`huge`,`tiny`,`fast`,`gentle`], a:0,
+      e:`<b>enormous</b> = ใหญ่โตมาก ความหมายเดียวกับ <b>huge</b><br>บริบทช่วย: “can grow up to 30 metres long” บอกชัดว่าใหญ่มาก<br>ตัวลวง: <i>tiny</i> = เล็กมาก (ความหมายตรงข้าม)`,
+      ee:`<b>enormous</b> = extremely big, the same meaning as <b>huge</b><br>Context helps: “can grow up to 30 metres long” clearly shows it is very big<br>Trap: <i>tiny</i> = very small (the opposite meaning)` },
+    { c:`v`, t:`Antonyms`, q:`Tom is very <u>generous</u>. He always shares his snacks with his friends.<br>Which word is OPPOSITE in meaning to “generous”?`,
+      o:[`kind`,`honest`,`selfish`,`friendly`], a:2,
+      e:`<b>generous</b> = ใจกว้าง ชอบแบ่งปัน → คำตรงข้ามคือ <b>selfish</b> = เห็นแก่ตัว<br>kind, honest, friendly เป็นคำความหมายบวกทั้งหมด จึงไม่ใช่คำตรงข้าม`,
+      ee:`<b>generous</b> = kind and happy to share → the opposite is <b>selfish</b> = only thinking of yourself<br>kind, honest and friendly are all positive words, so they are not opposites` },
+    { c:`v`, t:`Context Clues`, q:`The water in the old well was <u>contaminated</u>, so nobody could drink it safely.<br>“Contaminated” probably means ___.`,
+      o:[`fresh and cold`,`dirty and unsafe`,`deep and dark`,`expensive`], a:1,
+      e:`เบาะแสอยู่หลัง <b>so</b>: “nobody could drink it safely” (ไม่มีใครดื่มได้อย่างปลอดภัย) → น้ำต้อง <b>สกปรก/ปนเปื้อน</b><br><b>contaminated</b> = ปนเปื้อน`,
+      ee:`The clue comes after <b>so</b>: “nobody could drink it safely” → the water must be <b>dirty/polluted</b><br><b>contaminated</b> = made dirty or unsafe` },
+    { c:`v`, t:`Idioms`, q:`Don’t worry about the spelling test. It will be <u>a piece of cake</u> for you.<br>The underlined idiom means ___.`,
+      o:[`very difficult`,`very boring`,`very easy`,`very delicious`], a:2,
+      e:`<b>a piece of cake</b> = ง่ายมาก (ง่ายเหมือนกินขนมเค้กหนึ่งชิ้น)<br>บริบท “Don’t worry” ก็สนับสนุนว่าไม่ต้องกังวลเพราะง่าย`,
+      ee:`<b>a piece of cake</b> = very easy (as easy as eating a piece of cake)<br>The context “Don’t worry” also shows there is nothing to worry about because it’s easy` },
+    { c:`v`, t:`Idioms`, q:`I’m feeling a bit <u>under the weather</u> today, so I’ll stay at home.<br>What does the speaker mean?`,
+      o:[`She is excited.`,`She is slightly ill.`,`She is very busy.`,`She doesn’t like rain.`], a:1,
+      e:`<b>under the weather</b> = ไม่ค่อยสบาย ป่วยเล็กน้อย ไม่เกี่ยวกับสภาพอากาศจริง ๆ<br>ตัวลวง: <i>She doesn’t like rain</i> แปลตามตัวอักษร ซึ่งเป็นกับดักที่พบบ่อยของสำนวน`,
+      ee:`<b>under the weather</b> = a little ill, not feeling well. It has nothing to do with the real weather<br>Trap: <i>She doesn’t like rain</i> takes the words literally — a very common trap with idioms` },
+    { c:`v`, t:`Word Forms`, q:`Students need to use their ___ to design a new robot.`,
+      o:[`create`,`creative`,`creativity`,`creatively`], a:2,
+      e:`หลัง <b>their</b> (คำแสดงความเป็นเจ้าของ) ต้องเป็น <b>คำนาม</b><br>create (v.) → creative (adj.) → <b>creativity (n.)</b> → creatively (adv.)<br>จำ suffix คำนาม: -ity, -tion, -ness, -ment`,
+      ee:`After <b>their</b> (a possessive word) we need a <b>noun</b><br>create (v.) → creative (adj.) → <b>creativity (n.)</b> → creatively (adv.)<br>Remember noun suffixes: -ity, -tion, -ness, -ment` },
+    { c:`v`, t:`Word Forms`, q:`Listen! Pim is singing ___ on the stage.`,
+      o:[`beauty`,`beautiful`,`beautify`,`beautifully`], a:3,
+      e:`ช่องว่างขยาย <b>กริยา</b> (singing) ว่าร้องอย่างไร → ต้องใช้ <b>คำวิเศษณ์ (adverb)</b> ซึ่งมักลงท้าย -ly → <b>beautifully</b><br>ตัวลวง: <i>beautiful</i> เป็น adjective ใช้ขยายคำนาม เช่น a beautiful song`,
+      ee:`The blank describes the <b>verb</b> (singing) — how she sings → we need an <b>adverb</b>, which often ends in -ly → <b>beautifully</b><br>Trap: <i>beautiful</i> is an adjective that describes nouns, e.g. a beautiful song` },
+
+    { c:`c`, t:`Asking for Help`, q:`A: ___ the window? It’s really hot in here.<br>B: Not at all. I’ll do it now.`,
+      o:[`Would you mind opening`,`Would you mind to open`,`You must open`,`Do you mind open`], a:0,
+      e:`<b>Would you mind + V-ing?</b> เป็นการขอร้องที่สุภาพมาก (mind ตามด้วย V-ing เสมอ)<br>ข้อสังเกต: การตอบ <b>“Not at all.”</b> แปลว่า “ไม่รังเกียจเลย” = <b>ยินดีช่วย</b> ไม่ใช่การปฏิเสธ<br>ตัวลวง: <i>You must open</i> เป็นคำสั่ง ไม่สุภาพ`,
+      ee:`<b>Would you mind + V-ing?</b> is a very polite request (mind is always followed by V-ing)<br>Note: the answer <b>“Not at all.”</b> means “I don’t mind at all” = <b>happy to help</b>, not a refusal<br>Trap: <i>You must open</i> is an order, not polite` },
+    { c:`c`, t:`Responding to Offers`, q:`A: Would you like to come to my birthday party on Saturday?<br>B: ___ I have to visit my grandmother in Chanthaburi.`,
+      o:[`Yes, I’d love to.`,`I’d love to, but`,`No, I don’t like parties with you.`,`Of course. Here you are.`], a:1,
+      e:`B ให้เหตุผลว่าต้องไปเยี่ยมยาย = <b>ปฏิเสธ</b> คำเชิญ วิธีปฏิเสธอย่างสุภาพคือ <b>“I’d love to, but…”</b> (อยากไปนะ แต่…)<br>ตัวลวง: <i>Yes, I’d love to</i> ตอบรับ ซึ่งขัดกับเหตุผลที่ตามมา, <i>Here you are</i> ใช้ตอนยื่นของให้`,
+      ee:`B gives a reason — she has to visit her grandmother = she is <b>refusing</b> the invitation. A polite way to refuse is <b>“I’d love to, but…”</b><br>Traps: <i>Yes, I’d love to</i> accepts, which doesn’t match the reason that follows; <i>Here you are</i> is used when handing something to someone` },
+    { c:`c`, t:`Apologies & Excuses`, q:`Teacher: Ken, you’re twenty minutes late.<br>Ken: ___`,
+      o:[`So what? It’s only twenty minutes.`,`I’m terribly sorry. The bus broke down.`,`Never mind.`,`You’re welcome.`], a:1,
+      e:`เมื่อทำผิด (มาสาย) ควร <b>ขอโทษ + ให้เหตุผล</b> → “I’m terribly sorry. The bus broke down.”<br><i>Never mind</i> เป็นคำที่ <b>ผู้ถูกขอโทษ</b> ใช้ตอบ, <i>You’re welcome</i> ใช้ตอบคำขอบคุณ`,
+      ee:`When you do something wrong (being late), you should <b>apologise + give a reason</b> → “I’m terribly sorry. The bus broke down.”<br><i>Never mind</i> is what the <b>person receiving the apology</b> says, and <i>You’re welcome</i> is a reply to thank you` },
+    { c:`c`, t:`Giving Directions`, q:`A: Excuse me. How can I get to the post office?<br>B: Go straight ahead and ___ left at the traffic lights. It’s next to the bank.`,
+      o:[`turn`,`walk`,`cross`,`stay`], a:0,
+      e:`การบอกทางเลี้ยวใช้ <b>turn left / turn right</b> (เลี้ยวซ้าย/ขวา)<br>สำนวนบอกทางอื่น ๆ: go straight ahead (ตรงไป), next to (ติดกับ), opposite (ตรงข้าม), between A and B (ระหว่าง)`,
+      ee:`To give directions for turning, use <b>turn left / turn right</b><br>Other direction phrases: go straight ahead, next to, opposite, between A and B` },
+    { c:`c`, t:`Expressing Opinions`, q:`A: I think students should wear uniforms to school.<br>B: ___ Uniforms make everyone look equal.`,
+      o:[`I’m afraid I disagree.`,`I completely agree.`,`That’s not true at all.`,`I don’t think so.`], a:1,
+      e:`ประโยคที่ตามมา “Uniforms make everyone look equal” <b>สนับสนุน</b> ความเห็นของ A → B ต้อง <b>เห็นด้วย</b> → <b>I completely agree.</b><br>อีก 3 ตัวเลือกเป็นการไม่เห็นด้วยทั้งหมด (I’m afraid I disagree = ไม่เห็นด้วยอย่างสุภาพ)`,
+      ee:`The next sentence “Uniforms make everyone look equal” <b>supports</b> A’s opinion → B must <b>agree</b> → <b>I completely agree.</b><br>The other 3 choices all disagree (I’m afraid I disagree = a polite way to disagree)` },
+
+    { c:`r`, p:`A`, t:`Main Idea`, q:`What is the best title for Passage A?`,
+      o:[`Turtles: The Best Pets for Children`,`How to Cook Jellyfish`,`Dangers to Sea Turtles and How People Help`,`The History of Thai Islands`], a:2,
+      e:`ย่อหน้าแรกพูดถึง <b>อันตรายจากพลาสติก</b> ย่อหน้าที่สองพูดถึง <b>การสูญเสียชายหาดวางไข่</b> และ <b>อาสาสมัครที่ช่วยเหลือ</b> → ชื่อเรื่องที่ครอบคลุมทั้งหมดคือ “Dangers to Sea Turtles and How People Help”<br>เทคนิค: ชื่อเรื่องที่ดีต้องครอบคลุม <b>ทุกย่อหน้า</b> ไม่แคบหรือกว้างเกินไป`,
+      ee:`Paragraph 1 is about the <b>danger of plastic</b>. Paragraph 2 is about <b>losing nesting beaches</b> and <b>volunteers who help</b> → the title that covers everything is “Dangers to Sea Turtles and How People Help”<br>Tip: a good title must cover <b>every paragraph</b> — not too narrow and not too broad` },
+    { c:`r`, p:`A`, t:`Detail`, q:`According to the passage, why do sea turtles eat plastic bags?`,
+      o:[`They like the taste of plastic.`,`Volunteers feed them plastic.`,`They think the bags are jellyfish.`,`There is no other food in the sea.`], a:2,
+      e:`บทความเขียนตรง ๆ ว่า “Turtles often <b>mistake plastic bags for jellyfish</b>” (mistake A for B = เข้าใจผิดว่า A คือ B)<br>คำถามประเภท Detail คำตอบจะ <b>อยู่ในเนื้อเรื่อง</b> เสมอ ให้หา keyword จากคำถามแล้วกลับไปอ่านรอบ ๆ`,
+      ee:`The passage says it directly: “Turtles often <b>mistake plastic bags for jellyfish</b>” (mistake A for B = wrongly think A is B)<br>For Detail questions, the answer is <b>always in the text</b>. Find the keyword from the question and read around it` },
+    { c:`r`, p:`A`, t:`Pronoun Reference`, q:`In the sentence “When they eat <u>them</u>, the plastic blocks their stomachs,” the word “them” refers to ___.`,
+      o:[`jellyfish`,`turtles`,`plastic bags`,`favourite foods`], a:2,
+      e:`they = เต่า (ผู้กิน) ส่วน <b>them</b> = สิ่งที่ถูกกิน และประโยคต่อมาบอกว่า “<b>the plastic</b> blocks their stomachs” → สิ่งที่เต่ากินเข้าไปจนอุดตันคือ <b>plastic bags</b><br>เทคนิค: แทนคำตอบลงไปในประโยคแล้วอ่านดูว่าความหมายเข้ากันไหม`,
+      ee:`they = the turtles (the ones eating), and <b>them</b> = the things being eaten. The next part says “<b>the plastic</b> blocks their stomachs” → what the turtles eat and get blocked by is <b>plastic bags</b><br>Tip: put your answer into the sentence and read it again to check the meaning makes sense` },
+    { c:`r`, p:`A`, t:`Inference`, q:`What can we infer about building hotels on beaches?`,
+      o:[`It can reduce the number of baby turtles.`,`It helps turtles find food more easily.`,`It is the main reason turtles eat plastic.`,`It makes turtles lay more eggs.`], a:0,
+      e:`บทความบอกว่าเต่าตัวเมียกลับมาวางไข่ที่ <b>ชายหาดเดิม</b> และถ้ามีโรงแรม “the turtles have <b>nowhere to go</b>” → อนุมานได้ว่าเต่าวางไข่ไม่ได้ <b>ลูกเต่าจึงลดลง</b><br>Inference คือข้อสรุปที่ไม่ได้เขียนตรง ๆ แต่ <b>มีหลักฐานรองรับ</b> ในเนื้อเรื่อง`,
+      ee:`The passage says female turtles return to the <b>same beach</b> to lay eggs, and if hotels are built there, “the turtles have <b>nowhere to go</b>” → we can infer they can’t lay eggs, so <b>there will be fewer baby turtles</b><br>An inference is a conclusion that is not written directly but is <b>supported by evidence</b> in the text` },
+    { c:`r`, p:`B`, t:`Detail (Sign)`, q:`A 13-year-old student with an ID card visits Blue Bay Aquarium with her mother. How much do they pay in total?`,
+      o:[`230 baht`,`250 baht`,`300 baht`,`180 baht`], a:1,
+      e:`นักเรียนอายุ 13 ปี <b>ไม่ใช่</b> “Children (under 12)” แต่มีบัตรนักเรียน → <b>100 baht</b><br>แม่ = Adult → <b>150 baht</b><br>รวม 100 + 150 = <b>250 baht</b><br>กับดัก: 230 baht มาจากการคิดราคาเด็ก 80 + 150`,
+      ee:`A 13-year-old student is <b>not</b> “Children (under 12)”, but she has a student ID card → <b>100 baht</b><br>Mother = Adult → <b>150 baht</b><br>Total 100 + 150 = <b>250 baht</b><br>Trap: 230 baht comes from using the child price 80 + 150` },
+    { c:`r`, p:`B`, t:`Detail (Sign)`, q:`On which day is the aquarium closed?`,
+      o:[`Sunday`,`Tuesday`,`Saturday`,`Monday`], a:3,
+      e:`ป้ายเขียนว่า “Closed on <b>Mondays</b>” และเปิด Tuesday – Sunday`,
+      ee:`The sign says “Closed on <b>Mondays</b>” and it is open Tuesday – Sunday` },
+    { c:`r`, p:`B`, t:`Inference (Sign)`, q:`Why is flash photography probably not allowed at the aquarium?`,
+      o:[`Flash cameras are too expensive.`,`The bright light may scare or harm the animals.`,`Visitors are not allowed to bring phones.`,`The aquarium sells its own photos.`], a:1,
+      e:`ป้ายไม่ได้บอกเหตุผลตรง ๆ ต้อง <b>อนุมาน</b>: กฎข้ออื่น “do not tap on the glass” ก็มีเป้าหมายเพื่อ <b>ไม่รบกวนสัตว์</b> ดังนั้นการห้ามแฟลชน่าจะเพราะแสงจ้าทำให้สัตว์ตกใจหรือเป็นอันตราย<br>ตัวลวง: ป้ายไม่ได้ห้ามนำโทรศัพท์เข้า`,
+      ee:`The sign doesn’t give the reason directly, so we must <b>infer</b>: another rule, “do not tap on the glass”, also aims to <b>not disturb the animals</b>. So flash is probably banned because bright light can scare or harm the animals<br>Trap: the sign does not ban bringing phones` },
+    { c:`r`, p:`B`, t:`Detail (Sign)`, q:`Which of these is ALLOWED inside the aquarium?`,
+      o:[`Eating a sandwich`,`Tapping on the glass`,`Taking photos without flash`,`Drinking juice`], a:2,
+      e:`ป้ายห้ามเฉพาะ <b>flash photography</b> (ถ่ายรูปแบบใช้แฟลช) จึงถ่ายรูปแบบ <b>ไม่ใช้แฟลช</b> ได้<br>การกินแซนด์วิชและดื่มน้ำผลไม้ผิดกฎ “Food and drinks are not allowed inside”`,
+      ee:`The sign only bans <b>flash photography</b>, so taking photos <b>without flash</b> is allowed<br>Eating a sandwich and drinking juice break the rule “Food and drinks are not allowed inside”` }
+  ]
+});
+
+</script>
+<script>
+window.SETS = window.SETS || [];
+SETS.push({
+  id: 2,
+  title: `วิทย์ & เทคโนโลยี`,
+  en: `Science & Technology`,
+  theme: `สมาร์ตโฟน หุ่นยนต์ และนักประดิษฐ์`,
+  themeEn: `Smartphones, robots and inventors`,
+  level: 2,
+  passages: {
+    A: {
+      kind: `article`,
+      label: `Passage A · บทความวิทยาศาสตร์`,
+      labelEn: `Passage A · Science Article`,
+      title: `Phones, Blue Light and Sleep`,
+      html: `<p>Many teenagers use their smartphones late at night. Scientists have found that this habit can be harmful. Phone screens give off blue light, which tells the brain that it is still daytime. As a result, the body produces less melatonin, a chemical that helps us feel sleepy.</p>
+<p>Students who use their phones in bed often fall asleep later and wake up feeling tired. This can affect their grades at school. Experts suggest that teenagers should stop using screens at least one hour before bedtime. Some phones now have a “night mode” that reduces blue light. However, the best solution is simply to keep the phone outside the bedroom.</p>`
+    },
+    B: {
+      kind: `table`,
+      label: `Passage B · ตารางข้อมูล`,
+      labelEn: `Passage B · Data Table`,
+      title: `Daily Screen Time of Grade 6 Students`,
+      html: `<p class="cap">Average hours per day, by activity (survey of 120 students)</p>
+<table class="data">
+<thead><tr><th>Activity</th><th>Weekdays</th><th>Weekends</th></tr></thead>
+<tbody>
+<tr><td>Online games</td><td>2.5</td><td>4.0</td></tr>
+<tr><td>Watching videos</td><td>2.0</td><td>3.0</td></tr>
+<tr><td>Social media</td><td>1.5</td><td>2.5</td></tr>
+<tr><td>Homework &amp; study</td><td>1.0</td><td>0.5</td></tr>
+</tbody></table>`
+    }
+  },
+  questions: [
+    { c:`g`, t:`Present Perfect`, q:`A: Have you ever ___ to Japan?<br>B: Yes, I went there with my family last summer.`,
+      o:[`go`,`went`,`been`,`going`], a:2,
+      e:`ถามถึง <b>ประสบการณ์</b> (Have you ever…?) ใช้ Present Perfect: have + V.3<br><b>have been to</b> = เคยไป (และกลับมาแล้ว)<br>เปรียบเทียบ: <i>has gone to</i> = ไปแล้วและ <b>ยังไม่กลับ</b>`,
+      ee:`The question asks about <b>experience</b> (Have you ever…?), so use the Present Perfect: have + V3<br><b>have been to</b> = have visited (and come back)<br>Compare: <i>has gone to</i> = went there and <b>hasn’t come back yet</b>` },
+    { c:`g`, t:`Past Simple vs Past Continuous`, q:`I ___ TV when my mother called me for dinner.`,
+      o:[`watched`,`was watching`,`am watching`,`have watched`], a:1,
+      e:`เหตุการณ์ที่ <b>กำลังทำอยู่</b> ในอดีต (ดูทีวี) ถูก <b>เหตุการณ์สั้น ๆ แทรก</b> (แม่เรียก) →<br><b>Past Continuous</b> (was watching) + <b>when</b> + <b>Past Simple</b> (called)`,
+      ee:`An action that was <b>in progress</b> in the past (watching TV) was <b>interrupted by a short action</b> (Mum called) →<br><b>Past Continuous</b> (was watching) + <b>when</b> + <b>Past Simple</b> (called)` },
+    { c:`g`, t:`Passive Voice`, q:`Millions of emails ___ around the world every day.`,
+      o:[`send`,`are sending`,`are sent`,`sent`], a:2,
+      e:`อีเมล <b>ถูกส่ง</b> (ส่งตัวเองไม่ได้) → Passive<br>every day = ความจริงทั่วไป → Present Simple Passive: <b>are + V.3</b> (emails เป็นพหูพจน์) → <b>are sent</b>`,
+      ee:`Emails <b>are sent</b> (they can’t send themselves) → Passive<br>every day = a general fact → Present Simple Passive: <b>are + V3</b> (emails is plural) → <b>are sent</b>` },
+    { c:`g`, t:`Passive Voice`, q:`Mobile phones must ___ off during the exam.`,
+      o:[`turn`,`be turned`,`turned`,`be turning`], a:1,
+      e:`โทรศัพท์ <b>ถูกปิด</b> โดยนักเรียน → Passive<br>หลัง modal (must, can, should, will) ใช้โครงสร้าง <b>modal + be + V.3</b> → must <b>be turned</b> off`,
+      ee:`The phones <b>are turned off</b> by the students → Passive<br>After a modal (must, can, should, will) use <b>modal + be + V3</b> → must <b>be turned</b> off` },
+    { c:`g`, t:`Relative Clauses`, q:`Marie Curie was a scientist ___ won two Nobel Prizes.`,
+      o:[`who`,`which`,`whose`,`whom`], a:0,
+      e:`ขยาย <b>a scientist</b> (คน) และช่องว่างทำหน้าที่ <b>ประธาน</b> ของกริยา won → ใช้ <b>who</b><br>whom ใช้เมื่อเป็น <b>กรรม</b> (ตามด้วยประธาน + กริยา เช่น whom we met)`,
+      ee:`It describes <b>a scientist</b> (a person), and the blank is the <b>subject</b> of the verb won → use <b>who</b><br>whom is used when it is the <b>object</b> (followed by a subject + verb, e.g. whom we met)` },
+    { c:`g`, t:`Relative Clauses`, q:`The man ___ we met at the science fair is a famous inventor.`,
+      o:[`whose`,`which`,`whom`,`what`], a:2,
+      e:`ขยาย <b>The man</b> (คน) และหลังช่องว่างมีประธาน <b>we</b> + กริยา <b>met</b> อยู่แล้ว → ช่องว่างทำหน้าที่ <b>กรรม</b> (we met <i>him</i>) → ใช้ <b>whom</b><br>ตัวลวง: <i>what</i> ใช้เป็น relative pronoun ขยายคำนามไม่ได้`,
+      ee:`It describes <b>The man</b> (a person), and after the blank there is already a subject <b>we</b> + verb <b>met</b> → the blank is the <b>object</b> (we met <i>him</i>) → use <b>whom</b><br>Trap: <i>what</i> can’t be used as a relative pronoun to describe a noun` },
+    { c:`g`, t:`Conjunctions: ความขัดแย้ง`, q:`The robot is very expensive. ___, many schools want to buy it.`,
+      o:[`Therefore`,`However`,`Because`,`Although`], a:1,
+      e:`แพงมาก <b>แต่</b> ยังอยากซื้อ → ขัดแย้ง ตัด Therefore, Because<br>ตำแหน่งคือ <b>ต้นประโยคใหม่ + เครื่องหมายจุลภาค</b> → <b>However,</b><br>ตัวลวง: <i>Although</i> ต้องเชื่อมสองประโยคในประโยคเดียว เช่น Although the robot is expensive, many schools…`,
+      ee:`Very expensive <b>but</b> they still want to buy it → contrast, so cross out Therefore and Because<br>The position is <b>the start of a new sentence + a comma</b> → <b>However,</b><br>Trap: <i>Although</i> must join two clauses in one sentence, e.g. Although the robot is expensive, many schools…` },
+    { c:`g`, t:`Conjunctions: ผลลัพธ์`, q:`Nok practised coding every day. ___, she won the national competition.`,
+      o:[`However`,`Although`,`As a result`,`Despite`], a:2,
+      e:`ฝึกทุกวัน → <b>ผลคือ</b> ชนะการแข่งขัน → ความสัมพันธ์แบบ <b>เหตุ → ผล</b><br><b>As a result,</b> / <b>Therefore,</b> ใช้ขึ้นต้นประโยคผลลัพธ์`,
+      ee:`She practised every day → <b>as a result</b> she won → a <b>cause → effect</b> relationship<br><b>As a result,</b> / <b>Therefore,</b> are used to start the result sentence` },
+    { c:`g`, t:`Subject-Verb Agreement`, q:`Either the students or the teacher ___ going to turn off the computers.`,
+      o:[`is`,`are`,`were`,`be`], a:0,
+      e:`กฎ <b>Either A or B / Neither A nor B</b>: กริยาผันตามประธาน <b>ตัวที่อยู่ใกล้กริยามากที่สุด</b> (B)<br>ตัวที่ใกล้คือ <b>the teacher</b> (เอกพจน์) → <b>is</b>`,
+      ee:`Rule for <b>Either A or B / Neither A nor B</b>: the verb agrees with the subject <b>closest to the verb</b> (B)<br>The closest one is <b>the teacher</b> (singular) → <b>is</b>` },
+    { c:`g`, t:`Comparison`, q:`My new phone works much ___ than my old one.`,
+      o:[`good`,`well`,`better`,`best`], a:2,
+      e:`มี <b>than</b> → ขั้นกว่า (Comparative) ตัด good, well, best<br>ทั้ง good และ well เปลี่ยนรูปเป็น <b>better → best</b> เหมือนกัน<br><b>much</b> วางหน้าขั้นกว่าเพื่อเน้นว่า “ดีกว่ามาก”`,
+      ee:`There is <b>than</b> → Comparative, so cross out good, well and best<br>Both good and well change to <b>better → best</b><br><b>much</b> goes before a comparative to stress “a lot better”` },
+
+    { c:`v`, t:`Synonyms`, q:`Smartphones have become <u>essential</u> in our daily lives.<br>The word “essential” is closest in meaning to ___.`,
+      o:[`useless`,`necessary`,`expensive`,`modern`], a:1,
+      e:`<b>essential</b> = จำเป็นอย่างยิ่ง = <b>necessary</b><br>ตัวลวง: useless (ไร้ประโยชน์) ตรงข้าม, modern (ทันสมัย) เกี่ยวกับโทรศัพท์แต่ความหมายไม่ตรง`,
+      ee:`<b>essential</b> = really needed = <b>necessary</b><br>Traps: useless is the opposite; modern is about phones but doesn’t have the same meaning` },
+    { c:`v`, t:`Antonyms`, q:`This change is only <u>temporary</u>. The app will go back to normal next week.<br>Which word is OPPOSITE in meaning to “temporary”?`,
+      o:[`short`,`brief`,`permanent`,`quick`], a:2,
+      e:`<b>temporary</b> = ชั่วคราว → ตรงข้ามคือ <b>permanent</b> = ถาวร<br>short, brief, quick มีความหมายใกล้กับ “ชั่วคราว/สั้น” จึงเป็นตัวลวง`,
+      ee:`<b>temporary</b> = lasting only a short time → the opposite is <b>permanent</b> = lasting forever<br>short, brief and quick are close to “temporary/short”, so they are traps` },
+    { c:`v`, t:`Context Clues`, q:`The inventor was very <u>persistent</u>. He failed 1,000 times, but he never stopped trying until his light bulb finally worked.<br>“Persistent” means ___.`,
+      o:[`not giving up easily`,`very lucky`,`lazy and slow`,`easily angry`], a:0,
+      e:`เบาะแส: “failed 1,000 times, but he <b>never stopped trying</b>” → <b>persistent</b> = มุ่งมั่น ไม่ยอมแพ้ง่าย ๆ`,
+      ee:`Clue: “failed 1,000 times, but he <b>never stopped trying</b>” → <b>persistent</b> = determined, not giving up easily` },
+    { c:`v`, t:`Idioms`, q:`I can’t buy the new tablet. It <u>costs an arm and a leg</u>.<br>The underlined idiom means ___.`,
+      o:[`is dangerous to use`,`is very heavy`,`is broken`,`is very expensive`], a:3,
+      e:`<b>cost an arm and a leg</b> = แพงมหาศาล (แพงจนต้องจ่ายด้วยแขนและขา)<br>บริบท “I can’t buy” ช่วยยืนยันว่าเป็นเรื่องราคา`,
+      ee:`<b>cost an arm and a leg</b> = be extremely expensive (so expensive you’d pay with your arm and leg)<br>The context “I can’t buy” confirms it is about the price` },
+    { c:`v`, t:`Idioms`, q:`We have worked on this project for eight hours. Let’s <u>call it a day</u>.<br>What does the speaker want to do?`,
+      o:[`Phone a friend`,`Stop working for today`,`Start a new project`,`Work all night`], a:1,
+      e:`<b>call it a day</b> = พอแค่นี้ก่อนสำหรับวันนี้ / เลิกงาน<br>บริบท “worked … for eight hours” แสดงว่าทำมานานและเหนื่อยแล้ว`,
+      ee:`<b>call it a day</b> = stop working for today<br>The context “worked … for eight hours” shows they have worked a long time and are tired` },
+    { c:`v`, t:`Word Forms`, q:`The ___ of the telephone changed the way people communicate.`,
+      o:[`invent`,`inventor`,`invention`,`inventive`], a:2,
+      e:`หลัง <b>The</b> ต้องเป็นคำนาม → เหลือ inventor กับ invention<br>สิ่งที่ <b>เปลี่ยนวิธีสื่อสาร</b> คือ “การประดิษฐ์” โทรศัพท์ → <b>invention</b><br>inventor = นักประดิษฐ์ (คน) ความหมายไม่เข้ากับ “of the telephone”`,
+      ee:`After <b>The</b> we need a noun → only inventor and invention are left<br>What <b>changed the way people communicate</b> is “the invention” of the telephone → <b>invention</b><br>inventor = a person who invents, which doesn’t fit “of the telephone”` },
+    { c:`v`, t:`Word Forms`, q:`It is ___ to use your phone while you are crossing the road.`,
+      o:[`danger`,`dangerous`,`dangerously`,`endanger`], a:1,
+      e:`โครงสร้าง <b>It is + adjective + to V.</b> → ต้องใช้คำคุณศัพท์ → <b>dangerous</b><br>danger (n.) อันตราย, dangerously (adv.), endanger (v.) ทำให้ตกอยู่ในอันตราย`,
+      ee:`The pattern <b>It is + adjective + to V.</b> → we need an adjective → <b>dangerous</b><br>danger (n.), dangerously (adv.), endanger (v.) = put in danger` },
+
+    { c:`c`, t:`Asking for Help`, q:`A: Could you possibly ___ me with my science project?<br>B: Of course. What do you need?`,
+      o:[`help`,`to help`,`helping`,`helped`], a:0,
+      e:`<b>Could you (possibly) + V.1?</b> เป็นการขอร้องอย่างสุภาพ หลัง modal could ใช้ <b>กริยาช่องที่ 1</b> ไม่เติม to หรือ -ing<br>คำว่า <b>possibly</b> ทำให้สุภาพยิ่งขึ้น`,
+      ee:`<b>Could you (possibly) + V1?</b> is a polite request. After the modal could, use the <b>base form (V1)</b> — no to and no -ing<br>The word <b>possibly</b> makes it even more polite` },
+    { c:`c`, t:`Making Offers`, q:`A: Your bag looks really heavy. ___<br>B: Thanks. That’s very kind of you.`,
+      o:[`Can you carry it for me?`,`Do you carry it?`,`Shall I carry it for you?`,`Will you carry mine?`], a:2,
+      e:`B ตอบขอบคุณว่า “very kind of you” → A ต้อง <b>เสนอความช่วยเหลือ</b><br><b>Shall I + V…?</b> = ให้ฉัน…ไหม (การเสนอตัวช่วย)<br>ตัวลวง: <i>Can you carry it for me?</i> เป็นการ <b>ขอ</b> ให้คนอื่นช่วย ไม่ใช่เสนอ`,
+      ee:`B says thank you, “very kind of you” → A must be <b>offering help</b><br><b>Shall I + V…?</b> = Would you like me to…? (offering to help)<br>Trap: <i>Can you carry it for me?</i> is <b>asking</b> someone else for help, not offering` },
+    { c:`c`, t:`Responding to Apologies`, q:`A: I’m sorry I broke your ruler.<br>B: ___`,
+      o:[`You’re welcome.`,`That’s all right. Accidents happen.`,`Yes, please.`,`Congratulations!`], a:1,
+      e:`การตอบรับคำขอโทษ: <b>That’s all right. / Never mind. / Don’t worry about it.</b><br><i>You’re welcome</i> ใช้ตอบ <b>Thank you</b> เท่านั้น ซึ่งเป็นความผิดที่พบบ่อย`,
+      ee:`Replies to an apology: <b>That’s all right. / Never mind. / Don’t worry about it.</b><br><i>You’re welcome</i> is only a reply to <b>Thank you</b> — a very common mistake` },
+    { c:`c`, t:`Giving Directions`, q:`A: Where is the museum?<br>B: It’s ___ the bank and the school. You can’t miss it.`,
+      o:[`among`,`between`,`across`,`through`], a:1,
+      e:`<b>between A and B</b> = อยู่ระหว่างสองสิ่ง (สังเกตคำว่า and)<br><b>among</b> ใช้กับ “ท่ามกลาง” สิ่งของ 3 สิ่งขึ้นไปที่ไม่ระบุชัด`,
+      ee:`<b>between A and B</b> = in the middle of two things (notice the word and)<br><b>among</b> means “in a group of” 3 or more things that are not named one by one` },
+    { c:`c`, t:`Expressing Opinions`, q:`A: Video games are a complete waste of time.<br>B: ___ Some games can help us think and solve problems.`,
+      o:[`I’m afraid I disagree.`,`You’re absolutely right.`,`I couldn’t agree more.`,`That’s exactly what I think.`], a:0,
+      e:`ประโยคต่อมาบอกข้อดีของเกม → B <b>ไม่เห็นด้วย</b> กับ A<br><b>I’m afraid I disagree.</b> = ไม่เห็นด้วยอย่างสุภาพ (I’m afraid… ทำให้ฟังนุ่มนวล)<br>อีก 3 ตัวเลือกล้วนแปลว่าเห็นด้วย (I couldn’t agree more = เห็นด้วยที่สุด)`,
+      ee:`The next sentence gives a good point about games → B <b>disagrees</b> with A<br><b>I’m afraid I disagree.</b> = a polite way to disagree (I’m afraid… makes it sound softer)<br>The other 3 choices all mean agreeing (I couldn’t agree more = I totally agree)` },
+
+    { c:`r`, p:`A`, t:`Main Idea`, q:`What is the main idea of Passage A?`,
+      o:[`Night mode is the best phone feature.`,`Using phones at night can hurt teenagers’ sleep.`,`Teenagers should not have smartphones.`,`Melatonin is a dangerous chemical.`], a:1,
+      e:`ทั้งบทความอธิบายว่า <b>การใช้โทรศัพท์ตอนกลางคืน</b> → แสงสีฟ้า → เมลาโทนินลด → <b>นอนหลับยากและง่วงตอนเช้า</b><br>ตัวลวง: <i>Teenagers should not have smartphones</i> กว้าง/สุดโต่งเกินกว่าที่บทความพูด, <i>Melatonin is dangerous</i> ผิด เพราะเมลาโทนินช่วยให้ง่วง`,
+      ee:`The whole passage explains that <b>using phones at night</b> → blue light → less melatonin → <b>harder to fall asleep and tired in the morning</b><br>Traps: <i>Teenagers should not have smartphones</i> is too broad/extreme compared to the passage; <i>Melatonin is dangerous</i> is wrong because melatonin helps us feel sleepy` },
+    { c:`r`, p:`A`, t:`Detail`, q:`According to the passage, what does melatonin do?`,
+      o:[`It produces blue light.`,`It helps us feel sleepy.`,`It makes the brain think it is daytime.`,`It improves school grades.`], a:1,
+      e:`บทความเขียนว่า “melatonin, <b>a chemical that helps us feel sleepy</b>” (ส่วนที่อยู่หลังจุลภาคเป็นการอธิบายคำ melatonin)<br>ตัวลวง: สิ่งที่หลอกสมองว่าเป็นกลางวันคือ <b>blue light</b> ไม่ใช่ melatonin`,
+      ee:`The passage says “melatonin, <b>a chemical that helps us feel sleepy</b>” (the part after the comma explains the word melatonin)<br>Trap: the thing that tricks the brain into thinking it’s daytime is <b>blue light</b>, not melatonin` },
+    { c:`r`, p:`A`, t:`Pronoun Reference`, q:`In the sentence “Phone screens give off blue light, <u>which</u> tells the brain that it is still daytime,” the word “which” refers to ___.`,
+      o:[`phone screens`,`the brain`,`blue light`,`teenagers`], a:2,
+      e:`which เป็น relative pronoun ที่ขยาย <b>คำนามที่อยู่ข้างหน้าติดกัน</b> คือ <b>blue light</b><br>ตรวจสอบ: “Blue light tells the brain that it is still daytime” → ความหมายถูกต้องตามเนื้อเรื่อง`,
+      ee:`which is a relative pronoun that describes <b>the noun right before it</b>: <b>blue light</b><br>Check: “Blue light tells the brain that it is still daytime” → this matches the passage` },
+    { c:`r`, p:`A`, t:`Inference`, q:`Which student will most likely sleep best?`,
+      o:[`Arm, who plays games in bed until midnight`,`Bee, who uses night mode while chatting in bed`,`Cake, who leaves her phone in the living room at night`,`Dan, who watches videos for one hour in bed`], a:2,
+      e:`บทความบอกว่า “the <b>best solution</b> is simply to <b>keep the phone outside the bedroom</b>” → Cake ทำตามวิธีที่ดีที่สุด<br>Bee ใช้ night mode ซึ่งช่วยได้บ้าง แต่บทความบอกว่ายังไม่ใช่วิธีที่ดีที่สุด`,
+      ee:`The passage says “the <b>best solution</b> is simply to <b>keep the phone outside the bedroom</b>” → Cake follows the best solution<br>Bee uses night mode, which helps a little, but the passage says it is not the best solution` },
+    { c:`r`, p:`B`, t:`Reading a Table`, q:`Which activity shows the BIGGEST increase from weekdays to weekends?`,
+      o:[`Online games`,`Watching videos`,`Social media`,`Homework & study`], a:0,
+      e:`คำนวณส่วนต่าง (Weekends − Weekdays):<br>Online games 4.0 − 2.5 = <b>1.5</b> · Videos 3.0 − 2.0 = 1.0 · Social media 2.5 − 1.5 = 1.0 · Homework 0.5 − 1.0 = <b>ลดลง</b> 0.5<br>→ <b>Online games</b> เพิ่มมากที่สุด`,
+      ee:`Work out the difference (Weekends − Weekdays):<br>Online games 4.0 − 2.5 = <b>1.5</b> · Videos 3.0 − 2.0 = 1.0 · Social media 2.5 − 1.5 = 1.0 · Homework 0.5 − 1.0 = <b>down</b> 0.5<br>→ <b>Online games</b> increases the most` },
+    { c:`r`, p:`B`, t:`Reading a Table`, q:`How many hours in total do the students spend on screens on a weekday?`,
+      o:[`6.0 hours`,`7.0 hours`,`10.0 hours`,`8.5 hours`], a:1,
+      e:`รวมคอลัมน์ Weekdays: 2.5 + 2.0 + 1.5 + 1.0 = <b>7.0 hours</b><br>กับดัก: 10.0 คือผลรวมของ Weekends`,
+      ee:`Add up the Weekdays column: 2.5 + 2.0 + 1.5 + 1.0 = <b>7.0 hours</b><br>Trap: 10.0 is the total for Weekends` },
+    { c:`r`, p:`B`, t:`Fact Check`, q:`Which statement is TRUE according to the table?`,
+      o:[`Students study more at weekends than on weekdays.`,`Students spend the same time on social media every day.`,`Students spend less time on homework at weekends.`,`Watching videos is the most popular activity.`], a:2,
+      e:`Homework & study: Weekdays 1.0 → Weekends <b>0.5</b> = <b>ลดลง</b> ✔<br>ข้ออื่นผิด: social media ไม่เท่ากัน (1.5 / 2.5), กิจกรรมที่ใช้เวลามากที่สุดคือ Online games ไม่ใช่ videos`,
+      ee:`Homework & study: Weekdays 1.0 → Weekends <b>0.5</b> = <b>less</b> ✔<br>The others are wrong: social media is not the same (1.5 / 2.5), and the activity with the most time is Online games, not videos` },
+    { c:`r`, p:`B`, t:`Inference`, q:`What conclusion can be drawn from the table?`,
+      o:[`Most screen time is used for entertainment, not study.`,`Students do not have any homework at weekends.`,`Online games help students get better grades.`,`Grade 6 students do not use social media.`], a:0,
+      e:`เกม + วิดีโอ + โซเชียลมีเดีย (ความบันเทิง) = 6.0 ชม. ในวันธรรมดา เทียบกับการเรียนเพียง 1.0 ชม. → ส่วนใหญ่ใช้เพื่อ <b>ความบันเทิง</b><br>ข้ออื่นสรุปเกินข้อมูล เช่น ตารางไม่ได้บอกว่าไม่มีการบ้านเลย หรือเกมช่วยเพิ่มเกรด`,
+      ee:`Games + videos + social media (entertainment) = 6.0 hours on weekdays, compared with only 1.0 hour of study → most time is used for <b>entertainment</b><br>The other choices go beyond the data, e.g. the table doesn’t say there is no homework at all, or that games improve grades` }
+  ]
+});
+
+</script>
+<script>
+window.SETS = window.SETS || [];
+SETS.push({
+  id: 3,
+  title: `สิ่งแวดล้อมรอบตัว`,
+  en: `Our Planet`,
+  theme: `โลกร้อน แนวปะการัง และจิตอาสา`,
+  themeEn: `Global warming, coral reefs and volunteering`,
+  level: 2,
+  passages: {
+    A: {
+      kind: `article`,
+      label: `Passage A · บทความสิ่งแวดล้อม`,
+      labelEn: `Passage A · Environment Article`,
+      title: `Why Are Corals Turning White?`,
+      html: `<p>Coral reefs are sometimes called “the rainforests of the sea.” Although they cover less than one percent of the ocean floor, they are home to about a quarter of all ocean animals. Many people think corals are plants or rocks, but they are actually tiny animals. They live together with small algae, which give them food and their beautiful colours.</p>
+<p>When the sea becomes too warm, the corals push the algae out. Without them, the corals turn white. This is called “coral bleaching.” If the water does not cool down soon, the corals may starve and die. In recent years, scientists have seen more and more bleaching around the world. To protect reefs, people can save energy to slow down global warming and choose sunscreen that is safe for corals.</p>`
+    },
+    B: {
+      kind: `notice`,
+      label: `Passage B · ประกาศ`,
+      labelEn: `Passage B · Notice`,
+      title: `Beach Clean-Up Day`,
+      html: `<div class="notice">
+<div class="notice-kicker">Volunteers wanted!</div>
+<div class="notice-head">BEACH CLEAN-UP DAY</div>
+<p class="notice-meta"><b>Sunrise Beach</b> · Saturday 15 November · 7:00 – 10:00 a.m.<br>Meeting point: the car park next to the Sea Turtle Statue</p>
+<div class="notice-cols">
+<div><b>Please bring</b><ul><li>a hat</li><li>a refillable water bottle</li><li>sunscreen</li></ul></div>
+<div><b>We provide</b><ul><li>gloves and rubbish bags</li><li>free breakfast after the clean-up</li></ul></div>
+</div>
+<p class="notice-foot">Register at <b>Room 204</b> before <b>10 November</b>.<br>Every volunteer will receive a certificate for 3 volunteer hours.</p>
+</div>`
+    }
+  },
+  questions: [
+    { c:`g`, t:`Present Perfect`, q:`Look! Somebody ___ the window. There is broken glass everywhere.`,
+      o:[`broke`,`has broken`,`was breaking`,`breaks`], a:1,
+      e:`Present Perfect ใช้กับเหตุการณ์ที่ <b>ผลยังเห็นอยู่ในปัจจุบัน</b> — เศษกระจก “everywhere” ยังอยู่ตรงหน้า และไม่ได้ระบุเวลาในอดีต → <b>has broken</b><br>ถ้ามีเวลาชัดเจน เช่น yesterday จึงจะใช้ broke`,
+      ee:`The Present Perfect is used when <b>the result can still be seen now</b> — the broken glass is still “everywhere” in front of us, and no past time is given → <b>has broken</b><br>Use broke only when there is a clear past time, e.g. yesterday` },
+    { c:`g`, t:`Past Simple vs Past Continuous`, q:`The children were swimming in the sea when they ___ a shark.`,
+      o:[`were seeing`,`see`,`have seen`,`saw`], a:3,
+      e:`กำลังว่ายน้ำอยู่ (Past Continuous) แล้ว <b>เห็นฉลาม</b> แทรกขึ้นมา → เหตุการณ์ที่แทรกใช้ <b>Past Simple</b> → <b>saw</b><br>see เป็นกริยาที่ไม่นิยมใช้รูป -ing ในความหมาย “มองเห็น”`,
+      ee:`The children were in the middle of swimming (Past Continuous) when <b>seeing the shark</b> interrupted them → the interrupting action uses the <b>Past Simple</b> → <b>saw</b><br>We don’t usually use see in the -ing form when it means “notice with your eyes”` },
+    { c:`g`, t:`Passive Voice`, q:`A lot of trees ___ down every year to make paper.`,
+      o:[`cut`,`are cut`,`are cutting`,`cutting`], a:1,
+      e:`ต้นไม้ <b>ถูกตัด</b> → Passive · every year = Present Simple · trees เป็นพหูพจน์ → <b>are + V.3</b><br>cut เป็นกริยาที่ 3 ช่องเหมือนกัน (cut – cut – cut) → <b>are cut</b>`,
+      ee:`Trees <b>are cut</b> by people → Passive · every year = Present Simple · trees is plural → <b>are + V.3</b><br>cut has the same form in all 3 columns (cut – cut – cut) → <b>are cut</b>` },
+    { c:`g`, t:`Passive Voice`, q:`Many endangered animals ___ by this organisation since 1990.`,
+      o:[`have protected`,`were protecting`,`have been protected`,`protect`], a:2,
+      e:`สัตว์ <b>ถูกปกป้อง</b> (มี by this organisation) → Passive และมี <b>since 1990</b> → Present Perfect<br>รวมกันเป็น Present Perfect Passive: <b>have/has + been + V.3</b> → <b>have been protected</b>`,
+      ee:`The animals <b>are protected</b> (there is “by this organisation”) → Passive, and <b>since 1990</b> → Present Perfect<br>Put them together → Present Perfect Passive: <b>have/has + been + V.3</b> → <b>have been protected</b>` },
+    { c:`g`, t:`Relative Clauses`, q:`Bangkok, ___ is the capital of Thailand, has serious air pollution problems.`,
+      o:[`that`,`which`,`who`,`what`], a:1,
+      e:`ขยาย Bangkok (สถานที่/สิ่ง) ในประโยคที่มี <b>จุลภาคคั่น</b> (non-defining clause) → ใช้ <b>which</b><br>กฎสำคัญ: <b>ห้ามใช้ that หลังเครื่องหมายจุลภาค</b>`,
+      ee:`The clause describes Bangkok (a place/thing) and is <b>separated by commas</b> (a non-defining clause) → use <b>which</b><br>Key rule: <b>never use that after a comma</b>` },
+    { c:`g`, t:`Relative Clauses`, q:`We should help the animals ___ homes were destroyed by the forest fire.`,
+      o:[`who`,`which`,`whose`,`that`], a:2,
+      e:`หลังช่องว่างเป็นคำนาม <b>homes</b> ที่เป็น <b>ของ</b> สัตว์เหล่านั้น → ใช้ <b>whose + คำนาม</b><br>whose ใช้ได้ทั้งกับคน สัตว์ และสิ่งของ`,
+      ee:`After the blank comes the noun <b>homes</b>, which <b>belong to</b> the animals → use <b>whose + noun</b><br>whose can be used for people, animals and things` },
+    { c:`g`, t:`Conjunctions: ความขัดแย้ง`, q:`___ the bad weather, hundreds of people joined the beach clean-up.`,
+      o:[`Although`,`In spite of`,`Because`,`Even though`], a:1,
+      e:`อากาศแย่ <b>แต่</b> คนมาร่วมเยอะ → ขัดแย้ง ตัด Because<br>หลังช่องว่างเป็น <b>คำนามวลี</b> (the bad weather) ไม่ใช่ประโยค → <b>In spite of / Despite</b><br>Although / Even though ต้องตามด้วยประโยค เช่น Although the weather was bad`,
+      ee:`The weather was bad <b>but</b> many people came → a contrast, so Because is out<br>After the blank is a <b>noun phrase</b> (the bad weather), not a clause → <b>In spite of / Despite</b><br>Although / Even though must be followed by a clause, e.g. Although the weather was bad` },
+    { c:`g`, t:`Conjunctions: เหตุผล`, q:`Thousands of fish died ___ the oil spill.`,
+      o:[`due to`,`although`,`so`,`however`], a:0,
+      e:`น้ำมันรั่วเป็น <b>สาเหตุ</b> ที่ปลาตาย และตามด้วยคำนามวลี → <b>due to + คำนาม</b> (= because of)<br>ตัวลวง: <i>so</i> ใช้นำหน้า <b>ผลลัพธ์</b> ไม่ใช่สาเหตุ`,
+      ee:`The oil spill is the <b>cause</b> of the fish dying, and it is followed by a noun phrase → <b>due to + noun</b> (= because of)<br>Trap: <i>so</i> introduces a <b>result</b>, not a cause` },
+    { c:`g`, t:`Subject-Verb Agreement`, q:`Neither my parents nor my sister ___ plastic bags when they go shopping.`,
+      o:[`use`,`uses`,`using`,`are use`], a:1,
+      e:`Neither A nor B → กริยาผันตาม <b>B</b> (ตัวที่อยู่ใกล้กริยา)<br>B = <b>my sister</b> (เอกพจน์) → Present Simple เติม s → <b>uses</b>`,
+      ee:`Neither A nor B → the verb agrees with <b>B</b> (the subject closest to the verb)<br>B = <b>my sister</b> (singular) → Present Simple + s → <b>uses</b>` },
+    { c:`g`, t:`Comparison`, q:`In Chiang Mai, the air is usually ___ in March than in July because of forest fires.`,
+      o:[`bad`,`worse`,`worst`,`more bad`], a:1,
+      e:`มี <b>than</b> → ขั้นกว่า และ bad เปลี่ยนรูปพิเศษ: <b>bad → worse → worst</b><br>ไม่มีคำว่า “more bad”`,
+      ee:`There is <b>than</b> → comparative form, and bad is irregular: <b>bad → worse → worst</b><br>“more bad” is not a correct form` },
+
+    { c:`v`, t:`Synonyms`, q:`We must <u>reduce</u> the amount of plastic we use every day.<br>The word “reduce” is closest in meaning to ___.`,
+      o:[`increase`,`recycle`,`decrease`,`collect`], a:2,
+      e:`<b>reduce</b> = ลดลง = <b>decrease</b><br>ตัวลวง: increase (เพิ่ม) ตรงข้าม · recycle (นำกลับมาใช้ใหม่) อยู่ในกลุ่ม 3R เหมือนกันแต่ความหมายต่างกัน`,
+      ee:`<b>reduce</b> = make smaller = <b>decrease</b><br>Traps: increase (make bigger) is the opposite · recycle (use again) is also one of the 3Rs, but it has a different meaning` },
+    { c:`v`, t:`Antonyms`, q:`Clean water is becoming <u>scarce</u> in some parts of the world.<br>Which word is OPPOSITE in meaning to “scarce”?`,
+      o:[`rare`,`limited`,`plentiful`,`dirty`], a:2,
+      e:`<b>scarce</b> = ขาดแคลน หายาก → ตรงข้ามคือ <b>plentiful</b> = มีอยู่มากมาย<br>rare, limited มีความหมายใกล้เคียงกับ scarce ส่วน dirty ไม่เกี่ยวกับปริมาณ`,
+      ee:`<b>scarce</b> = hard to find, not enough → the opposite is <b>plentiful</b> = more than enough<br>rare and limited have meanings similar to scarce, and dirty is not about amount` },
+    { c:`v`, t:`Context Clues`, q:`The forest fire was <u>devastating</u>. It destroyed hundreds of homes and killed many animals.<br>“Devastating” means ___.`,
+      o:[`causing great damage`,`very small`,`easy to control`,`beautiful to watch`], a:0,
+      e:`ประโยคที่ตามมาบอกผลกระทบ: “<b>destroyed</b> hundreds of homes and <b>killed</b> many animals” → <b>devastating</b> = สร้างความเสียหายร้ายแรง`,
+      ee:`The next sentence tells us the effects: “<b>destroyed</b> hundreds of homes and <b>killed</b> many animals” → <b>devastating</b> = causing very serious damage` },
+    { c:`v`, t:`Idioms`, q:`Before the English speech contest, my friends smiled and said, “<u>Break a leg!</u>”<br>What did they mean?`,
+      o:[`Be careful on the stairs.`,`Good luck!`,`You will fail.`,`Run away quickly.`], a:1,
+      e:`<b>Break a leg!</b> = ขอให้โชคดี! ใช้อวยพรก่อนขึ้นแสดงหรือแข่งขัน<br>ห้ามแปลตามตัวอักษรว่า “ขาหัก” — นี่คือกับดักของสำนวน`,
+      ee:`<b>Break a leg!</b> = Good luck! People say it before someone performs or competes<br>Don’t translate it word for word as “break your leg” — that’s the idiom trap` },
+    { c:`v`, t:`Idioms`, q:`I have a big exam tomorrow, so I need to <u>hit the books</u> tonight.<br>“Hit the books” means ___.`,
+      o:[`throw books away`,`study hard`,`buy new books`,`sleep early`], a:1,
+      e:`<b>hit the books</b> = ตั้งใจอ่านหนังสืออย่างหนัก<br>บริบท “big exam tomorrow” ช่วยยืนยันความหมาย`,
+      ee:`<b>hit the books</b> = study very hard<br>The context “big exam tomorrow” confirms the meaning` },
+    { c:`v`, t:`Word Forms`, q:`We need to protect the ___ for future generations.`,
+      o:[`environmental`,`environment`,`environmentally`,`environmentalist`], a:1,
+      e:`หลัง <b>the</b> และเป็นกรรมของ protect → ต้องเป็นคำนาม → environment หรือ environmentalist<br>สิ่งที่ต้องปกป้องเพื่อคนรุ่นหลังคือ <b>สิ่งแวดล้อม (environment)</b> ไม่ใช่นักอนุรักษ์ (environmentalist)`,
+      ee:`After <b>the</b>, and as the object of protect → we need a noun → environment or environmentalist<br>What we protect for future generations is <b>the environment</b>, not a person who protects nature (environmentalist)` },
+    { c:`v`, t:`Word Forms`, q:`The ___ of electricity in Thailand increases every summer.`,
+      o:[`consume`,`consumption`,`consumer`,`consuming`], a:1,
+      e:`หลัง The ต้องเป็นคำนาม → consumption หรือ consumer<br>“การใช้/การบริโภค” ไฟฟ้าเพิ่มขึ้น → <b>consumption</b> (n. สิ่ง/การกระทำ)<br>consumer = ผู้บริโภค (คน) ไม่เข้ากับ “of electricity”`,
+      ee:`After The we need a noun → consumption or consumer<br>The “use” of electricity increases → <b>consumption</b> (n. the act of using)<br>consumer = a person who uses or buys things, which doesn’t fit “of electricity”` },
+
+    { c:`c`, t:`Asking for Help`, q:`You want to borrow a pen from a classmate you don’t know well. Which is the MOST polite?`,
+      o:[`Give me your pen.`,`I want your pen now.`,`Could I possibly borrow your pen?`,`Pen, please.`], a:2,
+      e:`<b>Could I possibly…?</b> เป็นรูปแบบการขออนุญาตที่สุภาพที่สุดในตัวเลือก (could + possibly เพิ่มความสุภาพ)<br>ข้ออื่นเป็นคำสั่งหรือห้วนเกินไป`,
+      ee:`<b>Could I possibly…?</b> is the most polite way to ask for permission among the choices (could + possibly makes it extra polite)<br>The other choices are orders or too short and rude` },
+    { c:`c`, t:`Responding to Offers`, q:`A: Can I help you carry those boxes?<br>B: ___ I can manage by myself.`,
+      o:[`That’s very kind of you, but`,`Yes, of course.`,`Go away.`,`Here you are.`], a:0,
+      e:`“I can manage by myself” = ฉันทำเองได้ → B <b>ปฏิเสธ</b> ความช่วยเหลือ<br>วิธีปฏิเสธอย่างสุภาพ: ขอบคุณก่อน แล้วค่อยปฏิเสธ → <b>That’s very kind of you, but…</b><br><i>Go away</i> หยาบคาย, <i>Yes, of course</i> ขัดกับประโยคที่ตามมา`,
+      ee:`“I can manage by myself” = I can do it alone → B <b>refuses</b> the help<br>To refuse politely, say thank you first, then refuse → <b>That’s very kind of you, but…</b><br><i>Go away</i> is rude, and <i>Yes, of course</i> doesn’t match the next sentence` },
+    { c:`c`, t:`Apologies & Excuses`, q:`Teacher: Why didn’t you hand in your homework, Ploy?<br>Ploy: ___`,
+      o:[`It’s not my problem.`,`You’re welcome, teacher.`,`I’m sorry. I left it at home. Can I bring it tomorrow?`,`I don’t like homework.`], a:2,
+      e:`คำตอบที่เหมาะสม = <b>ขอโทษ + บอกเหตุผล + เสนอทางแก้</b><br>“I’m sorry. I left it at home. Can I bring it tomorrow?” ครบทั้งสามส่วน`,
+      ee:`A good answer = <b>say sorry + give a reason + offer a solution</b><br>“I’m sorry. I left it at home. Can I bring it tomorrow?” has all three parts` },
+    { c:`c`, t:`Giving Directions`, q:`A: Is there a pharmacy near here?<br>B: Yes. Walk past the school, and it’s ___ your right.`,
+      o:[`on`,`at`,`in`,`by`], a:0,
+      e:`สำนวนบอกตำแหน่งข้าง: <b>on your right / on your left</b> = อยู่ทางขวา/ซ้ายมือของคุณ`,
+      ee:`To say which side something is on: <b>on your right / on your left</b>` },
+    { c:`c`, t:`Expressing Opinions`, q:`A: We should stop giving out plastic bags in supermarkets.<br>B: ___ It’s one of the best ways to reduce waste.`,
+      o:[`I couldn’t agree more.`,`I’m not so sure about that.`,`I’m afraid I disagree.`,`That’s a terrible idea.`], a:0,
+      e:`B ให้เหตุผลสนับสนุน (ช่วยลดขยะ) → <b>เห็นด้วย</b><br><b>I couldn’t agree more.</b> = เห็นด้วยอย่างยิ่ง (แปลตรงตัวว่า “ฉันเห็นด้วยมากกว่านี้ไม่ได้แล้ว”)<br>กับดัก: มีคำว่า couldn’t ทำให้หลายคนคิดว่าเป็นการปฏิเสธ`,
+      ee:`B gives a reason to support the idea (it reduces waste) → B <b>agrees</b><br><b>I couldn’t agree more.</b> = I agree completely (literally, “it’s impossible for me to agree more”)<br>Trap: the word couldn’t makes many students think it is a disagreement` },
+
+    { c:`r`, p:`A`, t:`Detail`, q:`Why are coral reefs called “the rainforests of the sea”?`,
+      o:[`They are full of green plants.`,`They cover most of the ocean floor.`,`Many different animals live there.`,`They are found near rainforests.`], a:2,
+      e:`ประโยคถัดไปอธิบายว่า “they are <b>home to about a quarter of all ocean animals</b>” → มีสิ่งมีชีวิตหลากหลายมากเหมือนป่าฝน<br>ตัวลวง: แนวปะการังครอบคลุมพื้นที่ <b>น้อยกว่า 1%</b> ไม่ใช่ส่วนใหญ่`,
+      ee:`The next sentence explains that “they are <b>home to about a quarter of all ocean animals</b>” → many different living things, just like a rainforest<br>Trap: coral reefs cover <b>less than 1%</b> of the ocean floor, not most of it` },
+    { c:`r`, p:`A`, t:`Pronoun Reference`, q:`In the sentence “<u>Without them</u>, the corals turn white,” the word “them” refers to ___.`,
+      o:[`the corals`,`the algae`,`ocean animals`,`scientists`], a:1,
+      e:`ประโยคก่อนหน้า: “the corals push <b>the algae</b> out” → เมื่อไม่มีสาหร่าย ปะการังจึงเป็นสีขาว<br>สอดคล้องกับย่อหน้าแรกที่บอกว่าสาหร่ายให้ “<b>their beautiful colours</b>”`,
+      ee:`The sentence before says: “the corals push <b>the algae</b> out” → without the algae, the corals turn white<br>This matches the first paragraph, which says the algae give the corals “<b>their beautiful colours</b>”` },
+    { c:`r`, p:`A`, t:`Main Idea`, q:`What is Passage A mainly about?`,
+      o:[`How to choose good sunscreen`,`The history of rainforests`,`What coral bleaching is and why it happens`,`Different kinds of algae`], a:2,
+      e:`ย่อหน้าแรกปูพื้นว่าปะการังคืออะไร ย่อหน้าที่สองอธิบาย <b>coral bleaching</b> สาเหตุ และวิธีป้องกัน → ใจความหลักคือ “ปะการังฟอกขาวคืออะไรและเกิดจากอะไร”<br>ครีมกันแดดเป็นเพียง <b>รายละเอียดย่อย</b>`,
+      ee:`Paragraph 1 explains what corals are, and paragraph 2 explains <b>coral bleaching</b>, its cause and how to prevent it → the main idea is “what coral bleaching is and why it happens”<br>Sunscreen is only a <b>minor detail</b>` },
+    { c:`r`, p:`A`, t:`Inference`, q:`What would most likely happen if ocean temperatures keep rising?`,
+      o:[`Corals would get more colourful.`,`More corals would turn white and die.`,`Algae would grow faster inside corals.`,`Fish would move to rainforests.`], a:1,
+      e:`บทความบอกว่าเมื่อทะเล <b>อุ่นเกินไป</b> ปะการังจะขับสาหร่ายออก → ขาว → ถ้าน้ำไม่เย็นลงก็อาจตาย<br>ถ้าอุณหภูมิสูงขึ้นเรื่อย ๆ จึงอนุมานได้ว่า <b>ปะการังจะฟอกขาวและตายมากขึ้น</b>`,
+      ee:`The article says that when the sea gets <b>too warm</b>, corals push out the algae → they turn white → if the water doesn’t cool down, they may die<br>So if temperatures keep rising, we can infer that <b>more corals will bleach and die</b>` },
+    { c:`r`, p:`B`, t:`Purpose`, q:`What is the main purpose of this notice?`,
+      o:[`To sell beach hats and sunscreen`,`To invite people to help clean the beach`,`To tell people the beach is closed`,`To advertise a breakfast restaurant`], a:1,
+      e:`หัวประกาศ “<b>Volunteers wanted!</b>” และ “Beach Clean-Up Day” → จุดประสงค์คือ <b>เชิญชวนอาสาสมัคร</b> มาช่วยเก็บขยะ<br>อาหารเช้าและหมวกเป็นเพียงรายละเอียด`,
+      ee:`The headings “<b>Volunteers wanted!</b>” and “Beach Clean-Up Day” → the purpose is to <b>invite volunteers</b> to help collect rubbish<br>Breakfast and hats are only details` },
+    { c:`r`, p:`B`, t:`Detail`, q:`What do volunteers NOT need to bring?`,
+      o:[`A hat`,`Gloves`,`Sunscreen`,`A water bottle`], a:1,
+      e:`ในหัวข้อ “<b>We provide</b>” (ผู้จัดเตรียมให้) มี <b>gloves</b> and rubbish bags → ไม่ต้องนำมาเอง<br>หมวก ขวดน้ำ ครีมกันแดด อยู่ในหัวข้อ “Please bring”`,
+      ee:`Under “<b>We provide</b>” (things the organisers give you) are <b>gloves</b> and rubbish bags → you don’t need to bring them<br>A hat, a water bottle and sunscreen are under “Please bring”` },
+    { c:`r`, p:`B`, t:`Detail`, q:`Where should volunteers meet?`,
+      o:[`In Room 204`,`At a breakfast restaurant`,`In the car park next to the Sea Turtle Statue`,`In front of the school`], a:2,
+      e:`ประกาศระบุ “<b>Meeting point</b>: the car park next to the Sea Turtle Statue”<br>กับดัก: <b>Room 204</b> คือสถานที่ <b>ลงทะเบียน</b> ไม่ใช่จุดนัดพบ`,
+      ee:`The notice says “<b>Meeting point</b>: the car park next to the Sea Turtle Statue”<br>Trap: <b>Room 204</b> is where you <b>register</b>, not where you meet` },
+    { c:`r`, p:`B`, t:`Inference`, q:`Which student will NOT be able to join the event?`,
+      o:[`Fah, who registered on 1 November`,`Golf, who registered on 12 November`,`Ice, who registered on 9 November`,`Jay, who brought his own gloves`], a:1,
+      e:`ต้องลงทะเบียน <b>before 10 November</b> (ก่อนวันที่ 10)<br>Golf ลงทะเบียนวันที่ <b>12</b> ซึ่งเลยกำหนด → เข้าร่วมไม่ได้<br>Jay นำถุงมือมาเองไม่ผิดกฎ เพียงแต่ไม่จำเป็น`,
+      ee:`You must register <b>before 10 November</b><br>Golf registered on the <b>12th</b>, which is too late → he can’t join<br>Jay bringing his own gloves breaks no rule — it just isn’t necessary` }
+  ]
+});
+
+</script>
+<script>
+window.SETS = window.SETS || [];
+SETS.push({
+  id: 4,
+  title: `สังคม & วัฒนธรรม`,
+  en: `People & Culture`,
+  theme: `ประเพณีไทย ชีวิตในเมือง และค่ายภาษา`,
+  themeEn: `Thai traditions, city life and language camps`,
+  level: 3,
+  passages: {
+    A: {
+      kind: `article`,
+      label: `Passage A · ข่าว / สารคดีสั้น`,
+      labelEn: `Passage A · News / Short Feature`,
+      title: `More Than a Water Fight`,
+      html: `<p>Songkran, the Thai New Year festival, is celebrated from 13 to 15 April. In December 2023, UNESCO added it to its list of the world’s Intangible Cultural Heritage. Today, many tourists think of Songkran as a giant water fight. However, the festival has much deeper meanings.</p>
+<p>Traditionally, young people pour scented water over the hands of their elders to show respect and to ask for blessings. Families also visit temples and make merit together. Because many people travel back to their hometowns, Songkran is also a time for family reunions. Some older people worry that the true spirit of the festival is being forgotten. They hope that young people will remember its traditions while they enjoy the fun.</p>`
+    },
+    B: {
+      kind: `ad`,
+      label: `Passage B · โฆษณา`,
+      labelEn: `Passage B · Advertisement`,
+      title: `Summer English Camp`,
+      html: `<div class="ad">
+<div class="ad-top">For students aged <b>10 – 14</b></div>
+<div class="ad-head">SUMMER ENGLISH CAMP</div>
+<div class="ad-sub">5 days · 4 nights · Green Hill Resort, Ban Chang</div>
+<div class="ad-grid">
+<div><b>Dates</b><span>5 – 9 April</span></div>
+<div><b>Price</b><span>6,500 baht<br><em>Early bird: 10% off if you register before 1 March</em></span></div>
+</div>
+<div class="ad-list"><b>Activities</b> drama · debate · science experiments in English · beach games</div>
+<div class="ad-foot">All classes taught by native English-speaking teachers. Limited to 60 students!</div>
+</div>`
+    }
+  },
+  questions: [
+    { c:`g`, t:`Present Perfect`, q:`Somchai has been my best friend ___ ten years.`,
+      o:[`since`,`for`,`ago`,`during`], a:1,
+      e:`<b>for + ระยะเวลา</b> (ten years, two months)<br><b>since + จุดเริ่มต้น</b> (2015, last Monday)<br>ago ใช้กับ Past Simple เช่น ten years ago`,
+      ee:`<b>for + a length of time</b> (ten years, two months)<br><b>since + a starting point</b> (2015, last Monday)<br>ago is used with the Past Simple, e.g. ten years ago` },
+    { c:`g`, t:`Past Continuous`, q:`A: What ___ you doing at 8 p.m. last night?<br>B: I was reading a comic book.`,
+      o:[`did`,`are`,`were`,`have`], a:2,
+      e:`ถามถึงสิ่งที่ <b>กำลังทำอยู่ ณ เวลาหนึ่งในอดีต</b> (8 p.m. last night) → Past Continuous: <b>was/were + V-ing</b><br>ประธาน you → <b>were</b> และคำตอบของ B ก็ใช้ was reading ยืนยัน`,
+      ee:`The question asks what someone <b>was in the middle of doing at a time in the past</b> (8 p.m. last night) → Past Continuous: <b>was/were + V-ing</b><br>The subject is you → <b>were</b>, and B’s answer “was reading” confirms it` },
+    { c:`g`, t:`Comparison`, q:`Today is ___ day of the year. It’s 40 degrees outside!`,
+      o:[`hotter`,`the hottest`,`the most hot`,`hottest`], a:1,
+      e:`เปรียบเทียบกับ “ทุกวันในปี” → ขั้นสูงสุด ต้องมี <b>the</b> นำหน้าเสมอ<br>hot เป็นคำพยางค์เดียว สระเดี่ยว + ตัวสะกดเดี่ยว → ซ้ำตัวสะกด: hot → <b>hotter → hottest</b>`,
+      ee:`Comparing with “every day of the year” → superlative, which always needs <b>the</b><br>hot has one syllable with one vowel + one final consonant → double the last letter: hot → <b>hotter → hottest</b>` },
+    { c:`g`, t:`Passive Voice`, q:`Songkran ___ in April every year.`,
+      o:[`celebrates`,`celebrated`,`is celebrating`,`is celebrated`], a:3,
+      e:`เทศกาลสงกรานต์ <b>ถูกจัด/ถูกเฉลิมฉลอง</b> โดยผู้คน → Passive<br>every year = Present Simple → <b>is + V.3</b> → <b>is celebrated</b>`,
+      ee:`Songkran <b>is celebrated</b> by people → Passive<br>every year = Present Simple → <b>is + V.3</b> → <b>is celebrated</b>` },
+    { c:`g`, t:`Passive Voice`, q:`A: When ___ the Grand Palace built?<br>B: In 1782.`,
+      o:[`did`,`was`,`is`,`has`], a:1,
+      e:`พระบรมมหาราชวัง <b>ถูกสร้าง</b> → Passive ในอดีต (In 1782) → <b>was + V.3</b><br>รูปคำถาม: <b>When + was + ประธาน + V.3?</b><br>ตัวลวง: <i>did</i> ต้องตามด้วยกริยาช่อง 1 (When did they build…?)`,
+      ee:`The Grand Palace <b>was built</b> → Passive in the past (In 1782) → <b>was + V.3</b><br>Question form: <b>When + was + subject + V.3?</b><br>Trap: <i>did</i> must be followed by the base verb (When did they build…?)` },
+    { c:`g`, t:`Relative Clauses`, q:`This is the most delicious mango sticky rice ___ I have ever eaten.`,
+      o:[`who`,`whom`,`that`,`whose`], a:2,
+      e:`ขยายสิ่งของ (mango sticky rice) ที่มี <b>ขั้นสูงสุด</b> (the most delicious) นำหน้า → นิยมใช้ <b>that</b><br>หลัง superlative, all, everything, the first/only มักใช้ that`,
+      ee:`The clause describes a thing (mango sticky rice) after a <b>superlative</b> (the most delicious) → we usually use <b>that</b><br>After superlatives, all, everything, the first/only, we usually use that` },
+    { c:`g`, t:`Relative Clauses`, q:`The teacher to ___ I gave my homework was Ms. Suda.`,
+      o:[`who`,`whom`,`which`,`that`], a:1,
+      e:`เมื่อมี <b>บุพบท (to, with, for) อยู่หน้า</b> relative pronoun ที่หมายถึงคน ต้องใช้ <b>whom</b> เท่านั้น<br>ห้ามใช้ to who หรือ to that`,
+      ee:`When a <b>preposition (to, with, for) comes before</b> a relative pronoun for a person, you must use <b>whom</b> only<br>Never say to who or to that` },
+    { c:`g`, t:`Conjunctions: ความขัดแย้ง`, q:`___ Ploy is only eleven, she can speak three languages.`,
+      o:[`Despite`,`In spite of`,`However`,`Even though`], a:3,
+      e:`อายุแค่ 11 <b>แต่</b> พูดได้ 3 ภาษา → ขัดแย้ง และหลังช่องว่างเป็น <b>ประโยค</b> (Ploy is only eleven) → <b>Even though</b> / Although<br>Despite / In spite of ต้องตามด้วยคำนาม · However ใช้เชื่อมสองประโยคแยกกัน`,
+      ee:`She is only 11 <b>but</b> speaks 3 languages → a contrast, and after the blank is a <b>clause</b> (Ploy is only eleven) → <b>Even though</b> / Although<br>Despite / In spite of must be followed by a noun · However links two separate sentences` },
+    { c:`g`, t:`Conjunctions: เหตุผล`, q:`___ my teacher’s help, I passed the exam with a high score.`,
+      o:[`Thanks to`,`Because`,`Therefore`,`Although`], a:0,
+      e:`ความช่วยเหลือของครูเป็น <b>สาเหตุในทางดี</b> ที่ทำให้สอบผ่าน + ตามด้วยคำนามวลี → <b>Thanks to</b> (ขอบคุณ… / เพราะได้…)<br>Because ต้องตามด้วยประโยค · Therefore ใช้นำผลลัพธ์`,
+      ee:`The teacher’s help is a <b>good cause</b> that led to passing the exam + it is followed by a noun phrase → <b>Thanks to</b> (because of someone’s help)<br>Because must be followed by a clause · Therefore introduces a result` },
+    { c:`g`, t:`Subject-Verb Agreement`, q:`One of my friends ___ a YouTube channel about Thai cooking.`,
+      o:[`have`,`has`,`are having`,`were having`], a:1,
+      e:`โครงสร้าง <b>One of + คำนามพหูพจน์</b> → ประธานตัวจริงคือ <b>One</b> (เอกพจน์)<br>→ ใช้ <b>has</b> อย่าหลงผันตาม friends`,
+      ee:`Pattern: <b>One of + plural noun</b> → the real subject is <b>One</b> (singular)<br>→ use <b>has</b>; don’t be tricked into matching friends` },
+
+    { c:`v`, t:`Synonyms`, q:`The night market was extremely <u>crowded</u>. We could hardly walk.<br>The word “crowded” is closest in meaning to ___.`,
+      o:[`empty`,`packed`,`quiet`,`cheap`], a:1,
+      e:`<b>crowded</b> = แออัด คนเยอะ = <b>packed</b><br>เบาะแส: “We could hardly walk” (แทบเดินไม่ได้)`,
+      ee:`<b>crowded</b> = full of people = <b>packed</b><br>Clue: “We could hardly walk”` },
+    { c:`v`, t:`Antonyms`, q:`The museum guide was very <u>polite</u> to all the visitors.<br>Which word is OPPOSITE in meaning to “polite”?`,
+      o:[`rude`,`kind`,`helpful`,`gentle`], a:0,
+      e:`<b>polite</b> = สุภาพ → ตรงข้ามคือ <b>rude</b> = หยาบคาย<br>kind, helpful, gentle เป็นคำทางบวกเหมือน polite`,
+      ee:`<b>polite</b> = having good manners → the opposite is <b>rude</b><br>kind, helpful and gentle are positive words like polite` },
+    { c:`v`, t:`Context Clues`, q:`My grandmother is very <u>frugal</u>. She never wastes money and always looks for the lowest prices.<br>“Frugal” means ___.`,
+      o:[`careful with money`,`very rich`,`fond of shopping`,`generous with money`], a:0,
+      e:`เบาะแส: “<b>never wastes money</b>” และ “<b>looks for the lowest prices</b>” → <b>frugal</b> = มัธยัสถ์ ประหยัด`,
+      ee:`Clues: “<b>never wastes money</b>” and “<b>looks for the lowest prices</b>” → <b>frugal</b> = careful with money, saving` },
+    { c:`v`, t:`Idioms`, q:`My uncle lives in Canada, so we only see him <u>once in a blue moon</u>.<br>The idiom means ___.`,
+      o:[`every month`,`at night`,`very rarely`,`on his birthday`], a:2,
+      e:`<b>once in a blue moon</b> = นาน ๆ ครั้ง แทบไม่เคยเลย<br>บริบท: ลุงอยู่แคนาดา จึงเจอกันได้ยาก`,
+      ee:`<b>once in a blue moon</b> = very rarely, almost never<br>Context: the uncle lives in Canada, so they rarely see him` },
+    { c:`v`, t:`Idioms`, q:`We cancelled the picnic because it was <u>raining cats and dogs</u>.<br>What does this mean?`,
+      o:[`It was raining very heavily.`,`Animals were running in the rain.`,`It was raining a little.`,`The weather was sunny.`], a:0,
+      e:`<b>rain cats and dogs</b> = ฝนตกหนักมาก<br>บริบท: ต้องยกเลิกปิกนิก แสดงว่าฝนตกหนักจริง`,
+      ee:`<b>rain cats and dogs</b> = rain very heavily<br>Context: they had to cancel the picnic, so the rain must have been really heavy` },
+    { c:`v`, t:`Word Forms`, q:`Thai people are famous for their ___ towards visitors.`,
+      o:[`friendly`,`friendliness`,`friend`,`friendlily`], a:1,
+      e:`หลัง <b>their</b> ต้องเป็นคำนาม และความหมายคือ “ความเป็นมิตร” → <b>friendliness</b> (friendly + -ness)<br>กับดัก: <i>friendly</i> ลงท้าย -ly แต่เป็น <b>adjective</b> ไม่ใช่ adverb`,
+      ee:`After <b>their</b> we need a noun, and the meaning is “being friendly” → <b>friendliness</b> (friendly + -ness)<br>Trap: <i>friendly</i> ends in -ly but it is an <b>adjective</b>, not an adverb` },
+    { c:`v`, t:`Word Forms`, q:`Please speak ___. The baby is sleeping.`,
+      o:[`quiet`,`quietness`,`quietly`,`quieten`], a:2,
+      e:`ขยายกริยา <b>speak</b> ว่าพูดอย่างไร → ใช้ adverb → <b>quietly</b>`,
+      ee:`It describes <b>how</b> to speak (the verb speak) → use an adverb → <b>quietly</b>` },
+
+    { c:`c`, t:`Asking for Help`, q:`A: Would you mind ___ the music down? I’m trying to study.<br>B: Oh, sorry. Not at all.`,
+      o:[`turn`,`to turn`,`turning`,`turned`], a:2,
+      e:`<b>Would you mind + V-ing?</b> เสมอ → <b>turning</b><br>การตอบ “Not at all.” = ไม่รังเกียจ ยินดีทำให้`,
+      ee:`Always use <b>Would you mind + V-ing?</b> → <b>turning</b><br>The reply “Not at all.” = I don’t mind, I’m happy to do it` },
+    { c:`c`, t:`Responding to Offers`, q:`A: Would you like some more fried rice?<br>B: ___ I’m really full.`,
+      o:[`Yes, I would.`,`No, thank you.`,`Here you are.`,`Help yourself.`], a:1,
+      e:`“I’m really full” (อิ่มมาก) → <b>ปฏิเสธ</b> อย่างสุภาพ → <b>No, thank you.</b><br><i>Help yourself</i> คือคำที่ <b>เจ้าบ้าน</b> พูดเชิญให้ตักเอง`,
+      ee:`“I’m really full” → a polite <b>refusal</b> → <b>No, thank you.</b><br><i>Help yourself</i> is what the <b>host</b> says to invite you to take food yourself` },
+    { c:`c`, t:`Responding to Apologies`, q:`A: I’m so sorry I’m late. The traffic was terrible.<br>B: ___ The movie hasn’t started yet.`,
+      o:[`Don’t worry about it.`,`You’re welcome.`,`Thank you so much.`,`Congratulations.`], a:0,
+      e:`ตอบรับคำขอโทษอย่างเป็นมิตร → <b>Don’t worry about it.</b> (ไม่เป็นไร)<br>ประโยคต่อมา “The movie hasn’t started yet” ยืนยันว่าไม่ได้เสียหายอะไร`,
+      ee:`A friendly reply to an apology → <b>Don’t worry about it.</b><br>The next sentence “The movie hasn’t started yet” shows that no harm was done` },
+    { c:`c`, t:`Giving Directions`, q:`A: Excuse me, where is the nearest ATM?<br>B: It’s just ___ the convenience store, on the other side of the street.`,
+      o:[`opposite`,`between`,`among`,`through`], a:0,
+      e:`“on the other side of the street” (อีกฝั่งถนน) → <b>opposite</b> = ตรงข้าม<br>between ต้องมีสองสิ่ง (between A and B)`,
+      ee:`“on the other side of the street” → <b>opposite</b> = across from<br>between needs two things (between A and B)` },
+    { c:`c`, t:`Asking for Opinions`, q:`A: ___ about online learning?<br>B: I think it’s convenient, but I miss my friends.`,
+      o:[`What do you think`,`How do you think`,`What are you think`,`Do you think`], a:0,
+      e:`ถามความคิดเห็น: <b>What do you think about…?</b><br>กับดักยอดนิยมของคนไทย: “<i>How</i> do you think…?” แปลตรงตัวจาก “คิดอย่างไร” แต่ <b>ผิด</b> ในภาษาอังกฤษ<br>ใช้ How ได้กับ “How do you feel about…?”`,
+      ee:`To ask for an opinion: <b>What do you think about…?</b><br>A very common trap for Thai learners: “<i>How</i> do you think…?” is a direct translation from Thai, but it is <b>wrong</b> in English<br>You can use How in “How do you feel about…?”` },
+
+    { c:`r`, p:`A`, t:`Main Idea`, q:`What is the main point of Passage A?`,
+      o:[`Songkran is the biggest water fight in the world.`,`Songkran has important traditions beyond water fights.`,`Tourists should not visit Thailand in April.`,`UNESCO organises Songkran every year.`], a:1,
+      e:`ชื่อเรื่อง “More Than a Water Fight” และประโยค “the festival has <b>much deeper meanings</b>” → ใจความหลักคือสงกรานต์มีคุณค่าทางประเพณี <b>มากกว่าการเล่นน้ำ</b><br>ตัวลวง: UNESCO <b>ขึ้นทะเบียน</b> ไม่ได้เป็นผู้จัดงาน`,
+      ee:`The title “More Than a Water Fight” and the sentence “the festival has <b>much deeper meanings</b>” → the main idea is that Songkran has traditional value <b>beyond water fights</b><br>Trap: UNESCO <b>listed</b> Songkran; it does not organise the festival` },
+    { c:`r`, p:`A`, t:`Detail`, q:`Why do young people pour scented water over their elders’ hands?`,
+      o:[`To clean their hands before eating`,`To show respect and ask for blessings`,`To start the water fight`,`To make the elders feel cool`], a:1,
+      e:`บทความเขียนตรง ๆ: “…to <b>show respect</b> and to <b>ask for blessings</b>” (เพื่อแสดงความเคารพและขอพร)`,
+      ee:`The article says it directly: “…to <b>show respect</b> and to <b>ask for blessings</b>”` },
+    { c:`r`, p:`A`, t:`Pronoun Reference`, q:`In the sentence “<u>They</u> hope that young people will remember its traditions,” the word “They” refers to ___.`,
+      o:[`tourists`,`young people`,`families`,`some older people`], a:3,
+      e:`ประโยคก่อนหน้า: “<b>Some older people</b> worry that the true spirit … is being forgotten.” → They ในประโยคถัดมาคือกลุ่มเดิม<br>ไม่ใช่ young people เพราะ young people อยู่หลัง They ในประโยคเดียวกันในฐานะ <b>ผู้ที่ถูกหวัง</b>`,
+      ee:`The sentence before says: “<b>Some older people</b> worry that the true spirit … is being forgotten.” → They in the next sentence is the same group<br>It isn’t young people, because young people come after They in the same sentence as <b>the people being hoped about</b>` },
+    { c:`r`, p:`A`, t:`Inference`, q:`What can we infer about the days just before Songkran?`,
+      o:[`Many people travel, so roads and buses are busy.`,`Temples are closed to visitors.`,`Most families stay at home in Bangkok.`,`Elders do not want to see young people.`], a:0,
+      e:`บทความบอกว่า “many people <b>travel back to their hometowns</b>” → อนุมานได้ว่าก่อนสงกรานต์ <b>การเดินทางจะหนาแน่น</b><br>ข้อนี้ไม่ได้เขียนตรง ๆ แต่มีหลักฐานรองรับ = Inference`,
+      ee:`The article says “many people <b>travel back to their hometowns</b>” → we can infer that before Songkran <b>travel is very busy</b><br>This isn’t written directly, but there is evidence for it = Inference` },
+    { c:`r`, p:`B`, t:`Detail (Ad)`, q:`Who can join the Summer English Camp?`,
+      o:[`A 9-year-old girl`,`A 12-year-old boy`,`A 16-year-old student`,`Parents of students`], a:1,
+      e:`โฆษณาระบุ “For students aged <b>10 – 14</b>” → เด็กชายอายุ <b>12</b> ปีอยู่ในช่วงนี้`,
+      ee:`The ad says “For students aged <b>10 – 14</b>” → a <b>12</b>-year-old boy fits this age range` },
+    { c:`r`, p:`B`, t:`Calculation`, q:`Mint registers for the camp on 20 February. How much does she pay?`,
+      o:[`6,500 baht`,`650 baht`,`5,850 baht`,`5,500 baht`], a:2,
+      e:`20 กุมภาพันธ์ อยู่ <b>ก่อน 1 มีนาคม</b> → ได้ส่วนลด Early bird 10%<br>10% ของ 6,500 = 650 → 6,500 − 650 = <b>5,850 baht</b><br>กับดัก: 650 คือ <b>ส่วนลด</b> ไม่ใช่ราคาที่จ่าย`,
+      ee:`20 February is <b>before 1 March</b> → she gets the 10% Early bird discount<br>10% of 6,500 = 650 → 6,500 − 650 = <b>5,850 baht</b><br>Trap: 650 is the <b>discount</b>, not the price she pays` },
+    { c:`r`, p:`B`, t:`Detail (Ad)`, q:`Which activity is NOT mentioned in the advertisement?`,
+      o:[`Drama`,`Debate`,`Cooking class`,`Beach games`], a:2,
+      e:`กิจกรรมในโฆษณา: drama · debate · science experiments in English · beach games → <b>ไม่มี Cooking class</b><br>คำถามที่มี NOT ให้ตรวจทีละตัวเลือกว่าข้อไหนไม่ปรากฏในเนื้อเรื่อง`,
+      ee:`Activities in the ad: drama · debate · science experiments in English · beach games → <b>no Cooking class</b><br>For NOT questions, check each choice one by one to see which one is not in the text` },
+    { c:`r`, p:`B`, t:`Inference (Ad)`, q:`What can we infer from the advertisement?`,
+      o:[`Students go home every evening.`,`Students will stay overnight at the resort.`,`The camp is free for early registrants.`,`Thai teachers teach all the classes.`], a:1,
+      e:`“5 days · <b>4 nights</b>” → นักเรียน <b>พักค้างคืน</b> ที่รีสอร์ต<br>ข้ออื่นขัดกับโฆษณา: ส่วนลดเพียง 10% (ไม่ฟรี) และสอนโดยครูเจ้าของภาษา`,
+      ee:`“5 days · <b>4 nights</b>” → students <b>stay overnight</b> at the resort<br>The other choices go against the ad: the discount is only 10% (not free), and the teachers are native English speakers` }
+  ]
+});
+
+</script>
+<script>
+window.SETS = window.SETS || [];
+SETS.push({
+  id: 5,
+  title: `จำลองสนามสอบจริง`,
+  en: `Final Mock Test`,
+  theme: `รวมโจทย์ระดับท้าทาย ครบทุกหมวด`,
+  themeEn: `Challenging questions covering every section`,
+  level: 3,
+  passages: {
+    A: {
+      kind: `article`,
+      label: `Passage A · ข่าวเทคโนโลยี`,
+      labelEn: `Passage A · Tech News`,
+      title: `A Robot in the English Classroom`,
+      html: `<p>Last month, a primary school started using an AI robot named “Mika” to help students practise speaking English. Mika can listen to students, correct their pronunciation, and answer simple questions. Teachers say that shy students, who rarely speak in class, now feel more confident because they can practise without being afraid of making mistakes in front of their friends.</p>
+<p>However, not everyone is happy. Some parents worry that children will spend too much time talking to machines instead of real people. Others are concerned about privacy, since the robot records students’ voices. The school says it will study the results carefully for one year before deciding whether to use Mika in other classes.</p>`
+    },
+    B: {
+      kind: `chart`,
+      label: `Passage B · กราฟ`,
+      labelEn: `Passage B · Chart`,
+      title: `Favourite After-School Activities`,
+      html: `<p class="cap">A survey of 200 Grade 6 students</p>
+<div class="bars">
+<div class="bar"><span class="bl">Sports</span><span class="bt"><i style="width:35%"></i></span><span class="bv">35%</span></div>
+<div class="bar"><span class="bl">Online games</span><span class="bt"><i style="width:30%"></i></span><span class="bv">30%</span></div>
+<div class="bar"><span class="bl">Reading</span><span class="bt"><i style="width:15%"></i></span><span class="bv">15%</span></div>
+<div class="bar"><span class="bl">Music</span><span class="bt"><i style="width:12%"></i></span><span class="bv">12%</span></div>
+<div class="bar"><span class="bl">Others</span><span class="bt"><i style="width:8%"></i></span><span class="bv">8%</span></div>
+</div>`
+    }
+  },
+  questions: [
+    { c:`g`, t:`Present Perfect vs Past Simple`, q:`I ___ my science report yesterday, but I ___ it to the teacher yet.`,
+      o:[`finished / haven’t given`,`have finished / didn’t give`,`finished / didn’t give`,`have finished / haven’t given`], a:0,
+      e:`ช่องแรกมี <b>yesterday</b> (เวลาในอดีตที่ชัดเจน) → Past Simple: <b>finished</b><br>ช่องที่สองมี <b>yet</b> (ยังไม่…) → Present Perfect ปฏิเสธ: <b>haven’t given</b><br>จำ: yesterday / last / ago → Past Simple · yet / already / ever / never → Present Perfect`,
+      ee:`The first blank has <b>yesterday</b> (a clear time in the past) → Past Simple: <b>finished</b><br>The second blank has <b>yet</b> (not … yet) → negative Present Perfect: <b>haven’t given</b><br>Remember: yesterday / last / ago → Past Simple · yet / already / ever / never → Present Perfect` },
+    { c:`g`, t:`Past Simple vs Past Continuous`, q:`When the earthquake ___, we ___ dinner.`,
+      o:[`was happening / had`,`happened / were having`,`happens / are having`,`has happened / have had`], a:1,
+      e:`แผ่นดินไหว = เหตุการณ์สั้นที่ <b>แทรกเข้ามา</b> → Past Simple (happened)<br>กินข้าวเย็น = เหตุการณ์ที่ <b>กำลังดำเนินอยู่</b> → Past Continuous (were having)`,
+      ee:`The earthquake = a short action that <b>interrupts</b> → Past Simple (happened)<br>Having dinner = an action that was <b>in progress</b> → Past Continuous (were having)` },
+    { c:`g`, t:`Passive Voice`, q:`“Someone stole my bicycle last night.”<br>Which sentence has the SAME meaning?`,
+      o:[`My bicycle was stolen last night.`,`My bicycle stole last night.`,`My bicycle was stealing last night.`,`My bicycle has stolen last night.`], a:0,
+      e:`เปลี่ยน Active → Passive: นำกรรม (my bicycle) ขึ้นเป็นประธาน + <b>be + V.3</b><br>stole เป็น Past Simple → <b>was stolen</b> (steal – stole – stolen)<br>ตัด “by someone” ได้เพราะไม่รู้ว่าเป็นใคร`,
+      ee:`Active → Passive: move the object (my bicycle) to the subject position + <b>be + V.3</b><br>stole is Past Simple → <b>was stolen</b> (steal – stole – stolen)<br>We can drop “by someone” because we don’t know who did it.` },
+    { c:`g`, t:`Passive Voice`, q:`The exam results ___ on the school website next Monday.`,
+      o:[`will announce`,`will be announced`,`are announcing`,`announced`], a:1,
+      e:`ผลสอบ <b>ถูกประกาศ</b> → Passive และมี <b>next Monday</b> → อนาคต<br>Future Passive: <b>will + be + V.3</b> → will be announced`,
+      ee:`The results <b>are announced</b> by someone → Passive, and <b>next Monday</b> → future<br>Future Passive: <b>will + be + V.3</b> → will be announced` },
+    { c:`g`, t:`Relative Clauses`, q:`Which sentence is grammatically CORRECT?`,
+      o:[`The boy who he won the prize is my cousin.`,`The boy which won the prize is my cousin.`,`The boy who won the prize is my cousin.`,`The boy whose won the prize is my cousin.`], a:2,
+      e:`<b>who</b> ทำหน้าที่เป็นประธานของ won แล้ว จึง <b>ห้ามมี he ซ้ำ</b> (who he won ผิด)<br>which ใช้กับสิ่งของ ไม่ใช้กับคน · whose ต้องตามด้วยคำนาม (whose won จึงผิด)`,
+      ee:`<b>who</b> is already the subject of won, so we <b>can’t add he again</b> (who he won is wrong)<br>which is for things, not people · whose must be followed by a noun (so whose won is wrong)` },
+    { c:`g`, t:`Relative Clauses`, q:`I have a friend ___ father works as a pilot for Thai Airways.`,
+      o:[`who`,`whose`,`whom`,`which`], a:1,
+      e:`father เป็นคำนามที่เป็น <b>ของ</b> a friend (พ่อ<b>ของ</b>เพื่อน) → <b>whose + คำนาม</b>`,
+      ee:`father is a noun that <b>belongs to</b> a friend (the friend’s father) → <b>whose + noun</b>` },
+    { c:`g`, t:`Conjunctions: ความขัดแย้ง`, q:`Despite ___ very hard, Beam didn’t pass the swimming test.`,
+      o:[`he practised`,`practise`,`practising`,`practised`], a:2,
+      e:`<b>Despite / In spite of + คำนาม หรือ V-ing</b> เท่านั้น → Despite <b>practising</b><br>ถ้าต้องการใช้ประโยค (he practised) ต้องเปลี่ยนเป็น Although he practised…`,
+      ee:`<b>Despite / In spite of + noun or V-ing</b> only → Despite <b>practising</b><br>If you want a full clause (he practised), use Although he practised… instead.` },
+    { c:`g`, t:`Conjunctions: ความหมายเดียวกัน`, q:`“Although the test was difficult, Ann got full marks.”<br>Which sentence has the SAME meaning?`,
+      o:[`The test was difficult, so Ann got full marks.`,`In spite of the difficult test, Ann got full marks.`,`Because the test was difficult, Ann got full marks.`,`The test was easy; therefore, Ann got full marks.`], a:1,
+      e:`ประโยคต้นฉบับแสดง <b>ความขัดแย้ง</b> (ยาก แต่ได้เต็ม) → In spite of + คำนาม (the difficult test) ให้ความหมายเดียวกัน<br>so / Because / therefore แสดง <b>เหตุ-ผล</b> ซึ่งทำให้ความหมายเปลี่ยน`,
+      ee:`The original sentence shows <b>contrast</b> (difficult, but full marks) → In spite of + noun (the difficult test) keeps the same meaning<br>so / Because / therefore show <b>cause and result</b>, which changes the meaning.` },
+    { c:`g`, t:`Subject-Verb Agreement`, q:`The number of students who bring smartphones to school ___ increasing every year.`,
+      o:[`are`,`is`,`have`,`were`], a:1,
+      e:`<b>The number of + N พหูพจน์</b> → ประธานคือ “จำนวน” (เอกพจน์) → <b>is</b><br>เปรียบเทียบ: <b>A number of</b> students <b>are</b>… (= นักเรียนจำนวนหนึ่ง → พหูพจน์)`,
+      ee:`<b>The number of + plural noun</b> → the subject is “the number” (singular) → <b>is</b><br>Compare: <b>A number of</b> students <b>are</b>… (= some / many students → plural)` },
+    { c:`g`, t:`Comparison`, q:`The more books you read, ___ your English becomes.`,
+      o:[`the better`,`better`,`the best`,`more good`], a:0,
+      e:`โครงสร้าง <b>The + ขั้นกว่า…, the + ขั้นกว่า…</b> = ยิ่ง…ยิ่ง…<br>The more books you read, <b>the better</b> your English becomes. = ยิ่งอ่านมาก ภาษาอังกฤษยิ่งดีขึ้น`,
+      ee:`Structure: <b>The + comparative…, the + comparative…</b> = the more…, the more…<br>The more books you read, <b>the better</b> your English becomes. = Read more, and your English gets better.` },
+
+    { c:`v`, t:`Synonyms`, q:`The teacher asked us to <u>observe</u> the plants carefully and write down any changes.<br>The word “observe” is closest in meaning to ___.`,
+      o:[`water`,`watch`,`cut`,`ignore`], a:1,
+      e:`<b>observe</b> = สังเกต เฝ้าดู = <b>watch</b> (carefully)<br>บริบท: “write down any changes” ต้องดูอย่างตั้งใจจึงจะเห็นความเปลี่ยนแปลง<br>ignore (เพิกเฉย) มีความหมายตรงข้าม`,
+      ee:`<b>observe</b> = to look at carefully = <b>watch</b> (carefully)<br>Context: “write down any changes” – you must watch closely to see changes.<br>ignore (to pay no attention) is the opposite.` },
+    { c:`v`, t:`Antonyms`, q:`The old wooden bridge is <u>fragile</u>, so heavy trucks are not allowed to use it.<br>Which word is OPPOSITE in meaning to “fragile”?`,
+      o:[`weak`,`delicate`,`sturdy`,`broken`], a:2,
+      e:`<b>fragile</b> = เปราะบาง แตกหักง่าย → ตรงข้ามคือ <b>sturdy</b> = แข็งแรง มั่นคง<br>weak, delicate มีความหมายใกล้เคียงกับ fragile`,
+      ee:`<b>fragile</b> = easily broken → the opposite is <b>sturdy</b> = strong and solid<br>weak and delicate are similar in meaning to fragile.` },
+    { c:`v`, t:`Context Clues`, q:`Unlike his talkative sister, Tony is quite <u>reticent</u>. He rarely shares his thoughts with others.<br>“Reticent” means ___.`,
+      o:[`quiet and not saying much`,`funny and loud`,`angry and rude`,`clever and quick`], a:0,
+      e:`เบาะแสสองชั้น: <b>Unlike</b> his <b>talkative</b> sister (ต่างจากพี่สาวที่ช่างพูด) + “<b>rarely shares his thoughts</b>” → <b>reticent</b> = เงียบ ไม่ค่อยพูด<br>คำว่า Unlike บอกให้รู้ว่าความหมายตรงข้ามกับ talkative`,
+      ee:`Two clues: <b>Unlike</b> his <b>talkative</b> sister (different from his chatty sister) + “<b>rarely shares his thoughts</b>” → <b>reticent</b> = quiet, doesn’t say much<br>The word Unlike tells you the meaning is the opposite of talkative.` },
+    { c:`v`, t:`Idioms in Context`, q:`Your best friend is about to sing on stage at the school concert. What should you say?`,
+      o:[`“Break a leg!”`,`“You look under the weather!”`,`“Let’s call it a day!”`,`“It costs an arm and a leg!”`], a:0,
+      e:`ก่อนขึ้นแสดง ใช้ <b>Break a leg!</b> = ขอให้โชคดี<br>under the weather = ไม่สบาย · call it a day = เลิกงาน · cost an arm and a leg = แพงมาก`,
+      ee:`Before someone performs, say <b>Break a leg!</b> = Good luck!<br>under the weather = feeling ill · call it a day = stop working · cost an arm and a leg = very expensive` },
+    { c:`v`, t:`Idioms in Context`, q:`I spent the whole day cleaning the house, and now I’m exhausted. I think I’ll ___.`,
+      o:[`break a leg`,`call it a day`,`cost an arm and a leg`,`be a piece of cake`], a:1,
+      e:`ทำงานทั้งวันจนเหนื่อย (exhausted) → อยากพัก → <b>call it a day</b> = พอแค่นี้ก่อนสำหรับวันนี้`,
+      ee:`Working all day until exhausted → wants to rest → <b>call it a day</b> = stop for today` },
+    { c:`v`, t:`Word Forms`, q:`Water ___ is very important during the dry season.`,
+      o:[`conserve`,`conservation`,`conservative`,`conserved`], a:1,
+      e:`ช่องว่างทำหน้าที่ <b>ประธาน</b> ของ is (ร่วมกับ Water) → ต้องเป็นคำนาม → <b>conservation</b> (การอนุรักษ์)<br>conserve (v.) · conservative (adj.) หัวโบราณ/อนุรักษ์นิยม`,
+      ee:`The blank is part of the <b>subject</b> of is (together with Water) → it must be a noun → <b>conservation</b> (protecting / saving)<br>conserve (v.) · conservative (adj.) old-fashioned / traditional` },
+    { c:`v`, t:`Word Forms`, q:`He answered all the questions ___, so he got full marks.`,
+      o:[`correction`,`correct`,`correctness`,`correctly`], a:3,
+      e:`ขยายกริยา <b>answered</b> → ต้องเป็น adverb → <b>correctly</b><br>correct (adj.) · correction / correctness (n.)`,
+      ee:`It describes the verb <b>answered</b> → we need an adverb → <b>correctly</b><br>correct (adj.) · correction / correctness (n.)` },
+
+    { c:`c`, t:`Responding to Requests`, q:`A: Could you possibly lend me your notes?<br>Which response is NOT appropriate?`,
+      o:[`Sure. Here you are.`,`Of course. I’ll bring them tomorrow.`,`Sorry, I need them to study tonight.`,`Yes, I could possibly.`], a:3,
+      e:`ตอบรับคำขอร้องด้วย <b>Sure / Of course</b> หรือปฏิเสธสุภาพด้วย <b>Sorry, …</b><br><b>“Yes, I could possibly.”</b> เป็นการตอบตามรูปประโยคแบบตรงตัว ซึ่งเจ้าของภาษาไม่ใช้ และฟังดูแปลก`,
+      ee:`Accept a request with <b>Sure / Of course</b>, or refuse politely with <b>Sorry, …</b><br><b>“Yes, I could possibly.”</b> just copies the question word for word – native speakers don’t say this and it sounds strange.` },
+    { c:`c`, t:`Responding to Offers`, q:`A: Would you like me to help you with your bags?<br>B: ___`,
+      o:[`Yes, I like.`,`Yes, please. That’s very kind of you.`,`No, I wouldn’t like me.`,`I’d like you, thanks.`], a:1,
+      e:`ตอบรับข้อเสนออย่างสุภาพ: <b>Yes, please. That’s very kind of you.</b><br>ข้ออื่นผิดไวยากรณ์ / ความหมายเพี้ยน เช่น “I’d like you” = ฉันชอบคุณ`,
+      ee:`Politely accept an offer: <b>Yes, please. That’s very kind of you.</b><br>The other choices are ungrammatical or mean something odd, e.g. “I’d like you” = I like you.` },
+    { c:`c`, t:`Responding to Apologies`, q:`A: I’m really sorry. I forgot to bring back your book.<br>B: ___`,
+      o:[`You’re welcome.`,`Thank you very much.`,`Never mind. You can bring it tomorrow.`,`I’m sorry too.`], a:2,
+      e:`ตอบรับคำขอโทษ: <b>Never mind.</b> (ไม่เป็นไร) + เสนอทางออกอย่างใจดี<br><i>You’re welcome</i> ใช้ตอบ Thank you เท่านั้น`,
+      ee:`Reply to an apology: <b>Never mind.</b> (It’s OK) + kindly offer a solution<br><i>You’re welcome</i> is only used to answer Thank you.` },
+    { c:`c`, t:`Asking for Directions`, q:`A: Excuse me. ___ the nearest bus stop?<br>B: Sure. It’s just around the corner.`,
+      o:[`Could you tell me the way to`,`Can you show me where is`,`Do you know where is`,`Tell me where`], a:0,
+      e:`ถามทางสุภาพ: <b>Could you tell me the way to + สถานที่?</b><br>กับดัก: ประโยคคำถามซ้อน (embedded question) ต้องเรียง <b>where + ประธาน + กริยา</b> เช่น Do you know where <b>the bus stop is</b>? ดังนั้น “where is the…” หลัง Do you know จึงผิด`,
+      ee:`Polite way to ask for directions: <b>Could you tell me the way to + place?</b><br>Trap: in an embedded question the order is <b>where + subject + verb</b>, e.g. Do you know where <b>the bus stop is</b>? So “where is the…” after Do you know is wrong.` },
+    { c:`c`, t:`Expressing Opinions`, q:`A: In my opinion, homework should be banned.<br>B: I see your point, ___ homework helps us practise what we learn.`,
+      o:[`and I agree that`,`but I think`,`so`,`because`], a:1,
+      e:`B ยอมรับมุมมองของ A ก่อน (I see your point) แล้ว <b>แย้ง</b> ว่าการบ้านมีประโยชน์ → ต้องใช้คำเชื่อมขัดแย้ง <b>but I think</b><br>เป็นวิธีไม่เห็นด้วยอย่างสุภาพที่ใช้บ่อยมาก`,
+      ee:`B first accepts A’s view (I see your point), then <b>disagrees</b> and says homework is useful → we need a contrast connector: <b>but I think</b><br>This is a very common, polite way to disagree.` },
+
+    { c:`r`, p:`A`, t:`Main Idea`, q:`Which is the best title for Passage A?`,
+      o:[`How to Build Your Own Robot`,`Shy Students Hate English`,`An AI Robot Teacher: Benefits and Worries`,`Parents Ban Robots from Schools`], a:2,
+      e:`ย่อหน้าแรกพูดถึง <b>ข้อดี</b> (เด็กขี้อายมั่นใจขึ้น) ย่อหน้าที่สองพูดถึง <b>ข้อกังวล</b> (เวลากับเครื่องจักร, ความเป็นส่วนตัว) → “Benefits and Worries” ครอบคลุมทั้งเรื่อง<br>ตัวลวง: ผู้ปกครอง <b>กังวล</b> แต่ไม่ได้ <b>สั่งห้าม</b>`,
+      ee:`Paragraph 1 talks about the <b>benefits</b> (shy students feel more confident); paragraph 2 talks about the <b>worries</b> (time with machines, privacy) → “Benefits and Worries” covers the whole passage<br>Trap: the parents are <b>worried</b>, but they did not <b>ban</b> the robot.` },
+    { c:`r`, p:`A`, t:`Pronoun Reference`, q:`In the sentence “…now feel more confident because <u>they</u> can practise without being afraid…,” the word “they” refers to ___.`,
+      o:[`teachers`,`shy students`,`parents`,`friends`], a:1,
+      e:`ผู้ที่ “feel more confident” และ “can practise” คือ <b>shy students</b> ที่อยู่ต้นประโยค<br>แทนคำลงไป: shy students can practise without being afraid… ✔`,
+      ee:`The people who “feel more confident” and “can practise” are the <b>shy students</b> at the start of the sentence<br>Put it back in: shy students can practise without being afraid… ✔` },
+    { c:`r`, p:`A`, t:`Detail`, q:`Why are some people concerned about privacy?`,
+      o:[`The robot records students’ voices.`,`The robot takes photos of parents.`,`Students share passwords with Mika.`,`Teachers read students’ diaries.`], a:0,
+      e:`บทความระบุ “concerned about privacy, <b>since the robot records students’ voices</b>” (since = because ในบริบทนี้)`,
+      ee:`The passage says “concerned about privacy, <b>since the robot records students’ voices</b>” (since = because here)` },
+    { c:`r`, p:`A`, t:`Inference`, q:`What is the school’s attitude towards using Mika in the future?`,
+      o:[`It has decided to stop using Mika.`,`It will use Mika in every class next month.`,`It is careful and has not decided yet.`,`It does not care about parents’ opinions.`], a:2,
+      e:`“will study the results carefully for one year <b>before deciding whether</b> to use Mika in other classes” → โรงเรียน <b>ระมัดระวัง และยังไม่ตัดสินใจ</b><br>Inference เรื่องทัศนคติ (attitude) ให้ดูคำที่แสดงท่าที เช่น carefully, before deciding`,
+      ee:`“will study the results carefully for one year <b>before deciding whether</b> to use Mika in other classes” → the school is <b>careful and has not decided yet</b><br>For attitude questions, look for words that show feeling or approach, e.g. carefully, before deciding.` },
+    { c:`r`, p:`B`, t:`Reading a Chart`, q:`How many students chose reading as their favourite activity?`,
+      o:[`15 students`,`20 students`,`30 students`,`35 students`], a:2,
+      e:`Reading = 15% ของนักเรียน 200 คน<br>15/100 × 200 = <b>30 students</b><br>กับดัก: 15 คือ <b>เปอร์เซ็นต์</b> ไม่ใช่จำนวนคน`,
+      ee:`Reading = 15% of 200 students<br>15/100 × 200 = <b>30 students</b><br>Trap: 15 is a <b>percentage</b>, not the number of students.` },
+    { c:`r`, p:`B`, t:`Reading a Chart`, q:`Which TWO activities together were chosen by exactly half of the students?`,
+      o:[`Sports and Reading`,`Online games and Music`,`Sports and Online games`,`Reading and Music`], a:0,
+      e:`ครึ่งหนึ่ง = 50%<br>Sports 35% + Reading 15% = <b>50%</b> ✔<br>Online games + Music = 42% · Sports + Online games = 65% · Reading + Music = 27%`,
+      ee:`Half = 50%<br>Sports 35% + Reading 15% = <b>50%</b> ✔<br>Online games + Music = 42% · Sports + Online games = 65% · Reading + Music = 27%` },
+    { c:`r`, p:`B`, t:`Fact Check`, q:`Which statement is TRUE according to the chart?`,
+      o:[`More students like reading than online games.`,`Music is the least popular activity.`,`Sports is more popular than online games.`,`Half of the students like online games.`], a:2,
+      e:`Sports 35% > Online games 30% ✔<br>ข้ออื่นผิด: Reading 15% น้อยกว่า Online games · กิจกรรมที่น้อยที่สุดคือ Others (8%) · Online games 30% ไม่ใช่ครึ่งหนึ่ง`,
+      ee:`Sports 35% > Online games 30% ✔<br>The others are false: Reading 15% is less than Online games · the least popular is Others (8%) · Online games 30% is not half.` },
+    { c:`r`, p:`B`, t:`Inference`, q:`If the school wants to start a new club that most students will enjoy, which club would be the best choice?`,
+      o:[`A poetry club`,`A football or basketball club`,`A piano club`,`A cooking club`], a:1,
+      e:`กราฟแสดงว่า <b>Sports</b> เป็นกิจกรรมยอดนิยมอันดับ 1 (35%) → ชมรมกีฬา เช่น ฟุตบอล/บาสเกตบอล น่าจะมีคนสนใจมากที่สุด<br>เป็นการนำข้อมูลไป <b>ประยุกต์ใช้</b> (Application/Inference)`,
+      ee:`The chart shows <b>Sports</b> is the most popular activity (35%) → a sports club such as football/basketball would attract the most students<br>This means <b>applying</b> the data (Application/Inference).` }
+  ]
+});
+
+</script>
+<script>
+// สรุปเนื้อหาก่อนสอบ — แสดงในหน้า "สรุปเนื้อหา"
+window.NOTES = [
+  { cat:`g`, id:`n-pp`, title:`Present Perfect`, titleEn:`Present Perfect`, html:`
+<p><b>have / has + V.3</b> ใช้กับ 3 สถานการณ์หลัก</p>
+<ol>
+<li><b>ต่อเนื่องถึงปัจจุบัน</b> — I <b>have lived</b> here <b>since</b> 2019 / <b>for</b> five years.</li>
+<li><b>ประสบการณ์</b> — <b>Have</b> you <b>ever been</b> to Japan? · I have <b>never</b> eaten sushi.</li>
+<li><b>ผลยังอยู่ตอนนี้</b> — Someone <b>has broken</b> the window. (เศษแก้วยังอยู่)</li>
+</ol>
+<table class="mini"><tr><th>Present Perfect</th><th>Past Simple</th></tr>
+<tr><td>since, for, ever, never, already, yet, just</td><td>yesterday, last …, … ago, in 2010</td></tr></table>
+<p class="tip">since + จุดเวลา (since Monday) · for + ระยะเวลา (for two days) · been to = เคยไปแล้วกลับ · gone to = ไปแล้วยังไม่กลับ</p>`,
+    htmlEn:`
+<p><b>have / has + V.3</b> is used in 3 main situations</p>
+<ol>
+<li><b>Continuing up to now</b> — I <b>have lived</b> here <b>since</b> 2019 / <b>for</b> five years.</li>
+<li><b>Experience</b> — <b>Have</b> you <b>ever been</b> to Japan? · I have <b>never</b> eaten sushi.</li>
+<li><b>The result is still here now</b> — Someone <b>has broken</b> the window. (the broken glass is still there)</li>
+</ol>
+<table class="mini"><tr><th>Present Perfect</th><th>Past Simple</th></tr>
+<tr><td>since, for, ever, never, already, yet, just</td><td>yesterday, last …, … ago, in 2010</td></tr></table>
+<p class="tip">since + a point in time (since Monday) · for + a length of time (for two days) · been to = went and came back · gone to = went and hasn’t come back yet</p>` },
+
+  { cat:`g`, id:`n-past`, title:`Past Simple vs Past Continuous`, titleEn:`Past Simple vs Past Continuous`, html:`
+<p>เหตุการณ์ยาวที่ <b>กำลังเกิด</b> → was/were + V-ing · เหตุการณ์สั้นที่ <b>แทรกเข้ามา</b> → V.2</p>
+<p class="ex">While I <b>was doing</b> my homework, the lights <b>went</b> out.<br>I <b>was watching</b> TV when Mum <b>called</b> me.</p>
+<p class="tip">while + เหตุการณ์ที่ยาว (Past Continuous) · when + มักตามด้วยเหตุการณ์สั้น (Past Simple)</p>`,
+    htmlEn:`
+<p>A longer action that was <b>in progress</b> → was/were + V-ing · A short action that <b>interrupts</b> → V.2</p>
+<p class="ex">While I <b>was doing</b> my homework, the lights <b>went</b> out.<br>I <b>was watching</b> TV when Mum <b>called</b> me.</p>
+<p class="tip">while + the longer action (Past Continuous) · when + usually the short action (Past Simple)</p>` },
+
+  { cat:`g`, id:`n-passive`, title:`Passive Voice`, titleEn:`Passive Voice`, html:`
+<p>ประธาน <b>ถูกกระทำ</b> → <b>Subject + be + V.3 (+ by …)</b></p>
+<table class="mini"><tr><th>Tense</th><th>รูป Passive</th><th>ตัวอย่าง</th></tr>
+<tr><td>Present Simple</td><td>is / am / are + V.3</td><td>English <b>is spoken</b> here.</td></tr>
+<tr><td>Past Simple</td><td>was / were + V.3</td><td>The bridge <b>was built</b> in 1990.</td></tr>
+<tr><td>Present Perfect</td><td>has / have been + V.3</td><td>Animals <b>have been protected</b>.</td></tr>
+<tr><td>Future / Modal</td><td>will / must / can + be + V.3</td><td>Phones <b>must be turned</b> off.</td></tr></table>
+<p class="tip">ถามตัวเองว่า “ประธานทำเองได้ไหม?” ถ้าไม่ได้ (ตึก, ภาษา, อีเมล) → Passive</p>`,
+    htmlEn:`
+<p>The subject <b>receives the action</b> → <b>Subject + be + V.3 (+ by …)</b></p>
+<table class="mini"><tr><th>Tense</th><th>Passive form</th><th>Example</th></tr>
+<tr><td>Present Simple</td><td>is / am / are + V.3</td><td>English <b>is spoken</b> here.</td></tr>
+<tr><td>Past Simple</td><td>was / were + V.3</td><td>The bridge <b>was built</b> in 1990.</td></tr>
+<tr><td>Present Perfect</td><td>has / have been + V.3</td><td>Animals <b>have been protected</b>.</td></tr>
+<tr><td>Future / Modal</td><td>will / must / can + be + V.3</td><td>Phones <b>must be turned</b> off.</td></tr></table>
+<p class="tip">Ask yourself: “Can the subject do this by itself?” If not (a building, a language, an email) → Passive</p>` },
+
+  { cat:`g`, id:`n-rel`, title:`Relative Clauses`, titleEn:`Relative Clauses`, html:`
+<table class="mini"><tr><th>คำ</th><th>ใช้กับ</th><th>ตัวอย่าง</th></tr>
+<tr><td><b>who</b></td><td>คน (ประธาน)</td><td>a scientist <b>who</b> won a prize</td></tr>
+<tr><td><b>whom</b></td><td>คน (กรรม / หลังบุพบท)</td><td>the man <b>whom</b> we met · to <b>whom</b></td></tr>
+<tr><td><b>whose</b></td><td>ความเป็นเจ้าของ + คำนาม</td><td>the girl <b>whose</b> bike was stolen</td></tr>
+<tr><td><b>which</b></td><td>สัตว์ / สิ่งของ</td><td>the phone <b>which</b> I bought</td></tr>
+<tr><td><b>that</b></td><td>คนหรือของ (ไม่ใช้หลัง ,)</td><td>the best food <b>that</b> I’ve eaten</td></tr></table>
+<p class="tip">หลังเครื่องหมายจุลภาค ห้ามใช้ that · who ทำหน้าที่ประธานแล้ว ห้ามมี he/she ซ้ำ</p>`,
+    htmlEn:`
+<table class="mini"><tr><th>Word</th><th>Used for</th><th>Example</th></tr>
+<tr><td><b>who</b></td><td>people (subject)</td><td>a scientist <b>who</b> won a prize</td></tr>
+<tr><td><b>whom</b></td><td>people (object / after a preposition)</td><td>the man <b>whom</b> we met · to <b>whom</b></td></tr>
+<tr><td><b>whose</b></td><td>possession + noun</td><td>the girl <b>whose</b> bike was stolen</td></tr>
+<tr><td><b>which</b></td><td>animals / things</td><td>the phone <b>which</b> I bought</td></tr>
+<tr><td><b>that</b></td><td>people or things (not after a comma)</td><td>the best food <b>that</b> I’ve eaten</td></tr></table>
+<p class="tip">Never use that after a comma · who is already the subject, so don’t add he/she again</p>` },
+
+  { cat:`g`, id:`n-conj`, title:`Conjunctions & Connectors`, titleEn:`Conjunctions & Connectors`, html:`
+<table class="mini"><tr><th></th><th>+ ประโยค</th><th>+ คำนาม / V-ing</th><th>ขึ้นประโยคใหม่</th></tr>
+<tr><td><b>ขัดแย้ง</b></td><td>Although, Even though</td><td>Despite, In spite of</td><td>However,</td></tr>
+<tr><td><b>เหตุผล</b></td><td>Because, As, Since</td><td>Because of, Due to, Thanks to</td><td>—</td></tr>
+<tr><td><b>ผลลัพธ์</b></td><td>so</td><td>—</td><td>Therefore, As a result,</td></tr></table>
+<p class="ex"><b>Although</b> it rained, we played. = <b>Despite</b> the rain, we played.</p>
+<p class="tip">ดู 2 อย่างเสมอ: (1) ความหมายขัดแย้งหรือเหตุผล (2) หลังช่องว่างเป็นประโยคหรือคำนาม</p>`,
+    htmlEn:`
+<table class="mini"><tr><th></th><th>+ clause</th><th>+ noun / V-ing</th><th>Starts a new sentence</th></tr>
+<tr><td><b>Contrast</b></td><td>Although, Even though</td><td>Despite, In spite of</td><td>However,</td></tr>
+<tr><td><b>Reason</b></td><td>Because, As, Since</td><td>Because of, Due to, Thanks to</td><td>—</td></tr>
+<tr><td><b>Result</b></td><td>so</td><td>—</td><td>Therefore, As a result,</td></tr></table>
+<p class="ex"><b>Although</b> it rained, we played. = <b>Despite</b> the rain, we played.</p>
+<p class="tip">Always check 2 things: (1) is the meaning contrast or reason? (2) is a clause or a noun after the blank?</p>` },
+
+  { cat:`g`, id:`n-sva`, title:`Subject-Verb Agreement`, titleEn:`Subject-Verb Agreement`, html:`
+<ul>
+<li>หาประธานตัวจริง ตัดส่วนขยายทิ้ง: The box <s>of chocolates</s> <b>is</b>…</li>
+<li><b>One of</b> + N พหูพจน์ → เอกพจน์: One of my friends <b>has</b>…</li>
+<li><b>Either A or B / Neither A nor B</b> → ผันตาม B: Neither my parents nor my sister <b>uses</b>…</li>
+<li><b>Everyone, Someone, Nobody, Each</b> → เอกพจน์: Everyone <b>wants</b>…</li>
+<li><b>The number of</b> → เอกพจน์ · <b>A number of</b> → พหูพจน์</li>
+</ul>`,
+    htmlEn:`
+<ul>
+<li>Find the real subject and ignore the extra words: The box <s>of chocolates</s> <b>is</b>…</li>
+<li><b>One of</b> + plural noun → singular: One of my friends <b>has</b>…</li>
+<li><b>Either A or B / Neither A nor B</b> → the verb follows B: Neither my parents nor my sister <b>uses</b>…</li>
+<li><b>Everyone, Someone, Nobody, Each</b> → singular: Everyone <b>wants</b>…</li>
+<li><b>The number of</b> → singular · <b>A number of</b> → plural</li>
+</ul>` },
+
+  { cat:`g`, id:`n-comp`, title:`Comparison`, titleEn:`Comparison`, html:`
+<table class="mini"><tr><th>คำ</th><th>ขั้นกว่า</th><th>ขั้นสูงสุด</th></tr>
+<tr><td>good / well</td><td>better</td><td>the best</td></tr>
+<tr><td>bad</td><td>worse</td><td>the worst</td></tr>
+<tr><td>many / much</td><td>more</td><td>the most</td></tr>
+<tr><td>little</td><td>less</td><td>the least</td></tr>
+<tr><td>hot / big</td><td>hotter / bigger</td><td>the hottest / the biggest</td></tr>
+<tr><td>expensive</td><td>more expensive</td><td>the most expensive</td></tr></table>
+<p class="ex">The more you read, <b>the better</b> you become. (ยิ่ง…ยิ่ง…)</p>`,
+    htmlEn:`
+<table class="mini"><tr><th>Word</th><th>Comparative</th><th>Superlative</th></tr>
+<tr><td>good / well</td><td>better</td><td>the best</td></tr>
+<tr><td>bad</td><td>worse</td><td>the worst</td></tr>
+<tr><td>many / much</td><td>more</td><td>the most</td></tr>
+<tr><td>little</td><td>less</td><td>the least</td></tr>
+<tr><td>hot / big</td><td>hotter / bigger</td><td>the hottest / the biggest</td></tr>
+<tr><td>expensive</td><td>more expensive</td><td>the most expensive</td></tr></table>
+<p class="ex">The more you read, <b>the better</b> you become. (the more…, the more…)</p>` },
+
+  { cat:`v`, id:`n-wf`, title:`Word Forms (การเปลี่ยนรูปคำ)`, titleEn:`Word Forms`, html:`
+<table class="mini"><tr><th>ชนิดคำ</th><th>ปัจจัยที่พบบ่อย</th><th>ตัวอย่าง</th></tr>
+<tr><td>Noun</td><td>-tion, -ment, -ness, -ity, -er/-or</td><td>invention, friendliness, creativity</td></tr>
+<tr><td>Adjective</td><td>-ful, -ous, -ive, -al, -able</td><td>beautiful, dangerous, creative</td></tr>
+<tr><td>Adverb</td><td>-ly</td><td>quietly, correctly</td></tr></table>
+<p class="tip">ดูตำแหน่ง: หลัง the/my/their → Noun · หน้าคำนามหรือหลัง is → Adjective · ขยายกริยา → Adverb<br>ระวัง friendly, lovely เป็น adjective</p>`,
+    htmlEn:`
+<table class="mini"><tr><th>Part of speech</th><th>Common suffixes</th><th>Examples</th></tr>
+<tr><td>Noun</td><td>-tion, -ment, -ness, -ity, -er/-or</td><td>invention, friendliness, creativity</td></tr>
+<tr><td>Adjective</td><td>-ful, -ous, -ive, -al, -able</td><td>beautiful, dangerous, creative</td></tr>
+<tr><td>Adverb</td><td>-ly</td><td>quietly, correctly</td></tr></table>
+<p class="tip">Look at the position: after the/my/their → Noun · before a noun or after is → Adjective · describing a verb → Adverb<br>Careful: friendly and lovely are adjectives</p>` },
+
+  { cat:`v`, id:`n-idiom`, title:`Idioms ที่ออกบ่อย`, titleEn:`Common Idioms`, html:`
+<table class="mini">
+<tr><td><b>Break a leg!</b></td><td>ขอให้โชคดี (ก่อนแสดง/แข่ง)</td></tr>
+<tr><td><b>a piece of cake</b></td><td>ง่ายมาก</td></tr>
+<tr><td><b>under the weather</b></td><td>ไม่สบาย</td></tr>
+<tr><td><b>call it a day</b></td><td>พอแค่นี้ เลิกงาน</td></tr>
+<tr><td><b>cost an arm and a leg</b></td><td>แพงมาก</td></tr>
+<tr><td><b>hit the books</b></td><td>อ่านหนังสืออย่างหนัก</td></tr>
+<tr><td><b>once in a blue moon</b></td><td>นาน ๆ ครั้ง</td></tr>
+<tr><td><b>rain cats and dogs</b></td><td>ฝนตกหนักมาก</td></tr></table>
+<p class="tip">สำนวนห้ามแปลตามตัวอักษร ให้ใช้บริบทรอบ ๆ ช่วยเดา</p>`,
+    htmlEn:`
+<table class="mini">
+<tr><td><b>Break a leg!</b></td><td>Good luck! (before a show/competition)</td></tr>
+<tr><td><b>a piece of cake</b></td><td>very easy</td></tr>
+<tr><td><b>under the weather</b></td><td>feeling ill</td></tr>
+<tr><td><b>call it a day</b></td><td>stop working for today</td></tr>
+<tr><td><b>cost an arm and a leg</b></td><td>very expensive</td></tr>
+<tr><td><b>hit the books</b></td><td>study very hard</td></tr>
+<tr><td><b>once in a blue moon</b></td><td>very rarely</td></tr>
+<tr><td><b>rain cats and dogs</b></td><td>rain very heavily</td></tr></table>
+<p class="tip">Never translate idioms word for word – use the context around them to guess the meaning</p>` },
+
+  { cat:`c`, id:`n-conv`, title:`ประโยคสนทนาที่ต้องรู้`, titleEn:`Must-Know Conversation Phrases`, html:`
+<table class="mini">
+<tr><th>สถานการณ์</th><th>พูด</th><th>ตอบ</th></tr>
+<tr><td>ขอร้อง</td><td>Would you mind + <b>V-ing</b>?<br>Could you possibly + V.1?</td><td><b>Not at all.</b> (= ยินดี)<br>Sure. / Of course.</td></tr>
+<tr><td>เสนอช่วย</td><td>Shall I …? / Would you like me to …?</td><td>Yes, please. That’s kind of you.<br>That’s kind of you, but …</td></tr>
+<tr><td>ตอบรับ/ปฏิเสธคำชวน</td><td>Would you like to …?</td><td>I’d love to. / I’d love to, <b>but</b> …</td></tr>
+<tr><td>ขอโทษ</td><td>I’m terribly sorry. + เหตุผล</td><td>That’s all right. / Never mind.</td></tr>
+<tr><td>ความเห็น</td><td><b>What</b> do you think about …?</td><td>I completely agree. / I couldn’t agree more.<br>I’m afraid I disagree. / I see your point, but …</td></tr>
+<tr><td>บอกทาง</td><td>Could you tell me the way to …?</td><td>turn left/right · on your left · opposite · between A and B · next to</td></tr></table>
+<p class="tip">You’re welcome ใช้ตอบ Thank you เท่านั้น ไม่ใช้ตอบคำขอโทษ</p>`,
+    htmlEn:`
+<table class="mini">
+<tr><th>Situation</th><th>Say</th><th>Reply</th></tr>
+<tr><td>Making a request</td><td>Would you mind + <b>V-ing</b>?<br>Could you possibly + V.1?</td><td><b>Not at all.</b> (= I’m happy to)<br>Sure. / Of course.</td></tr>
+<tr><td>Offering help</td><td>Shall I …? / Would you like me to …?</td><td>Yes, please. That’s kind of you.<br>That’s kind of you, but …</td></tr>
+<tr><td>Accepting/declining an invitation</td><td>Would you like to …?</td><td>I’d love to. / I’d love to, <b>but</b> …</td></tr>
+<tr><td>Apologising</td><td>I’m terribly sorry. + reason</td><td>That’s all right. / Never mind.</td></tr>
+<tr><td>Opinions</td><td><b>What</b> do you think about …?</td><td>I completely agree. / I couldn’t agree more.<br>I’m afraid I disagree. / I see your point, but …</td></tr>
+<tr><td>Giving directions</td><td>Could you tell me the way to …?</td><td>turn left/right · on your left · opposite · between A and B · next to</td></tr></table>
+<p class="tip">You’re welcome is only used to answer Thank you – never to answer an apology</p>` },
+
+  { cat:`r`, id:`n-read`, title:`กลยุทธ์การอ่าน 4 แบบคำถาม`, titleEn:`Reading Strategies for 4 Question Types`, html:`
+<ol>
+<li><b>Main Idea / Title</b> — คำตอบต้องครอบคลุม <b>ทุกย่อหน้า</b> ไม่แคบหรือกว้างเกินไป</li>
+<li><b>Detail</b> — หา keyword จากคำถาม แล้วกลับไปอ่านประโยครอบ ๆ คำตอบ “อยู่ในเนื้อเรื่อง”</li>
+<li><b>Inference</b> — ไม่ได้เขียนตรง ๆ แต่ต้องมี <b>หลักฐานรองรับ</b> ระวังตัวเลือกที่สุดโต่งเกินจริง</li>
+<li><b>Pronoun Reference</b> — ย้อนดูคำนามข้างหน้า แล้ว <b>แทนค่าลงไป</b> อ่านดูว่าความหมายเข้ากันไหม</li>
+</ol>
+<p class="tip">ป้าย/โฆษณา/ตาราง: อ่านคำถามก่อน แล้วค่อยกวาดหาข้อมูล · ระวังกับดักตัวเลข (เปอร์เซ็นต์ ≠ จำนวนคน, ส่วนลด ≠ ราคาจ่าย)</p>`,
+    htmlEn:`
+<ol>
+<li><b>Main Idea / Title</b> — the answer must cover <b>every paragraph</b>, not too narrow and not too broad</li>
+<li><b>Detail</b> — find a keyword in the question, then go back and read the sentences around it. The answer is “in the text”</li>
+<li><b>Inference</b> — not written directly, but there must be <b>evidence</b> for it. Watch out for extreme choices that go too far</li>
+<li><b>Pronoun Reference</b> — look back at the nouns before it, then <b>put the noun in its place</b> and check if the meaning works</li>
+</ol>
+<p class="tip">Signs/ads/tables: read the question first, then scan for the information · Watch out for number traps (percentage ≠ number of people, discount ≠ price you pay)</p>` }
+];
+
+</script>
+<script>
+(() => {
+'use strict';
+
+// ปรับชื่อแบรนด์ได้ที่นี่ / Change the brand here
+const BRAND = { name: 'Step Up English', sub: { th: 'แนวข้อสอบเข้า ม.1 ห้องพิเศษ', en: 'M.1 Special Program Entrance Prep' } };
+
+const CAT = {
+  g: { en: 'Grammar', th: 'ไวยากรณ์', cls: 'cg', color: 'var(--coral)', note: 'n-pp',
+       desc: { th: 'Tenses, Passive, Relative Clauses, คำเชื่อม, Subject-Verb Agreement, Comparison',
+               en: 'Tenses, Passive Voice, Relative Clauses, Connectors, Subject-Verb Agreement, Comparison' } },
+  v: { en: 'Vocabulary', th: 'คำศัพท์และสำนวน', cls: 'cv', color: 'var(--sage)', note: 'n-wf',
+       desc: { th: 'Synonyms, Antonyms, Context Clues, Idioms, Word Forms', en: 'Synonyms, Antonyms, Context Clues, Idioms, Word Forms' } },
+  c: { en: 'Conversation', th: 'บทสนทนา', cls: 'cc', color: 'var(--sky)', note: 'n-conv',
+       desc: { th: 'ขอร้อง เสนอความช่วยเหลือ ขอโทษ บอกทาง แสดงความคิดเห็น', en: 'Requests, offers, apologies, directions, opinions' } },
+  r: { en: 'Reading', th: 'การอ่านจับใจความ', cls: 'cr', color: 'var(--butter)', note: 'n-read',
+       desc: { th: 'บทความ ข่าว ป้าย ประกาศ โฆษณา ตาราง กราฟ', en: 'Articles, news, signs, notices, ads, tables, charts' } }
+};
+
+const STR = {
+  th: {
+    navSets: 'ชุดข้อสอบ', navNotes: 'สรุปเนื้อหา', home: 'หน้าแรก',
+    kicker: 'ภาษาอังกฤษ · สอบเข้า ม.1',
+    h1: 'ฝึกให้ <em>เข้าใจ</em> ทุกข้อ<br>ไม่ใช่แค่จำเฉลย',
+    lead: 'ข้อสอบ 5 ชุดตามแนวข้อสอบห้องเรียนพิเศษ ครบทั้งไวยากรณ์ คำศัพท์ บทสนทนา และการอ่าน ทุกข้อมีคำอธิบายทั้งภาษาไทยและอังกฤษ ว่าทำไมถูก และตัวลวงหลอกเราอย่างไร',
+    startSet1: 'เริ่มทำชุดที่ 1', readNotes: 'อ่านสรุปเนื้อหาก่อน',
+    fSets: 'ชุดข้อสอบ', fQs: 'ข้อ พร้อมเฉลย', fCats: 'หมวดตาม Blueprint',
+    stamp: 'เฉลยละเอียด', whyBest: 'ทำไมต้อง best?', whyBest2: 'Of all + the → ขั้นสูงสุด',
+    coverH: 'ครอบคลุมทุกหมวดที่ออกสอบ', coverSub: n => `ทุกชุดแบ่งสัดส่วนเหมือนกัน ชุดละ ${n} ข้อ ระดับความยากเพิ่มขึ้นทีละชุด`,
+    perSet: 'ข้อ/ชุด', pickH: 'เลือกชุดข้อสอบ', pickSub: 'แนะนำให้ทำเรียงจากชุดที่ 1 ไปชุดที่ 5',
+    mPractice: 'โหมดฝึก', mPracticeD: 'ตอบทีละข้อ ตรวจและอ่านคำอธิบายได้ทันที เหมาะกับการเรียนรู้และสอนในห้อง',
+    mExam: 'โหมดสอบจริง', mExamD: 'ทำครบทุกข้อแล้วส่ง จับเวลาให้ จากนั้นดูคะแนนแยกหมวดและเฉลยทั้งหมด',
+    qCount: n => `${n} ข้อ`, level: 'ระดับ', best: (b, n) => `คะแนนดีที่สุด ${b}/${n}`, print: 'พิมพ์ / PDF',
+    foot: 'ข้อสอบชุดนี้เป็นแนวข้อสอบที่จัดทำขึ้นเพื่อการฝึกฝน ไม่ใช่ข้อสอบจริงของโรงเรียนใด · คะแนนบันทึกไว้ในเครื่องนี้เท่านั้น',
+    setN: n => `ชุดที่ ${n}`, ofN: (i, n) => `ข้อ ${i} จาก ${n}`, wrongOnly: ' (ฝึกข้อที่ผิด)',
+    submitN: (d, n) => `ส่งคำตอบ (${d}/${n})`, timeUsed: 'เวลาที่ใช้',
+    correctAns: '✓ คำตอบที่ถูก', youPicked: '✗ คุณเลือก', right: '✓ ถูกต้อง!', notYet: (k, o) => `✗ ยังไม่ถูก — คำตอบคือ ${k}. ${o}`,
+    prev: '← ก่อนหน้า', check: 'ตรวจคำตอบ', nextQ: 'ข้อถัดไป →', next: 'ถัดไป →', seeScore: 'ดูผลคะแนน', submit: 'ส่งคำตอบ',
+    hint: m => `คีย์ลัด: <kbd>A</kbd>–<kbd>D</kbd> เลือกคำตอบ · <kbd>Enter</kbd> ${m === 'practice' ? 'ตรวจ / ไปต่อ' : 'ข้อถัดไป'} · <kbd>←</kbd> <kbd>→</kbd> เลื่อนข้อ`,
+    allQs: 'ดูข้อทั้งหมด', lgPractice: '<span>เขียว = ตอบถูก</span><span>ส้ม = ตอบผิด</span>', lgExam: '<span>สีเทา = ตอบแล้ว</span><span>ขาว = ยังไม่ตอบ</span>', lgCur: 'กรอบเข้ม = ข้อปัจจุบัน',
+    goQ: n => `ไปข้อ ${n}`, tapFold: ' · แตะเพื่อย่อ/ขยาย',
+    cfH: 'ส่งคำตอบเลยไหม?', cfLeft: n => `ยังมีอีก <b>${n} ข้อ</b> ที่ยังไม่ได้ตอบ ข้อที่ไม่ตอบจะนับเป็นผิด`, cfAll: 'ตอบครบทุกข้อแล้ว พร้อมดูผลคะแนน', cfBack: 'กลับไปทำต่อ',
+    msgs: [['ยอดเยี่ยมมาก!', 'ระดับนี้พร้อมสำหรับข้อสอบห้องพิเศษแล้ว ลองชุดถัดไปเพื่อรักษามาตรฐาน'], ['ทำได้ดีมาก', 'เหลือเก็บรายละเอียดอีกเล็กน้อย อ่านคำอธิบายข้อที่พลาดให้เข้าใจ'], ['มาถูกทางแล้ว', 'ทบทวนหมวดที่คะแนนน้อย แล้วลองฝึกเฉพาะข้อที่ผิดอีกครั้ง'], ['อย่าเพิ่งท้อนะ', 'เริ่มจากอ่านสรุปเนื้อหา แล้วกลับมาฝึกในโหมดฝึกทีละข้อ']],
+    got: p => `ได้ ${p}%`, ofQ: n => `จาก ${n} ข้อ`, used: t => ` · ใช้เวลา ${t} นาที`, wrongTag: ' · ฝึกข้อที่ผิด',
+    retryWrong: n => `ฝึกเฉพาะข้อที่ผิด (${n})`, redo: 'ทำชุดนี้ใหม่', goSet: n => `ไปชุดที่ ${n} →`, backHome: 'กลับหน้าแรก',
+    weak: (c, s) => `หมวดที่ควรทบทวนก่อน: <b>${c}</b> (${s})`, openNote: 'เปิดสรุปเนื้อหาหมวดนี้',
+    reviewH: 'เฉลยและคำอธิบาย', all: n => `ทั้งหมด (${n})`, wrong: n => `ข้อที่ผิด (${n})`,
+    stOk: 'ถูก', stSkip: 'ไม่ได้ตอบ', stBad: 'ผิด', qN: n => `ข้อ ${n}`, ref: 'อ้างอิง', yours: 'คำตอบของคุณ', noAns: 'ไม่ได้ตอบ', theAns: 'คำตอบที่ถูก', perfect: 'ไม่มีข้อที่ผิดเลย เก่งมาก!',
+    notesH: 'สรุปเนื้อหาก่อนสอบ', notesSub: 'กฎสำคัญที่ใช้ตอบข้อสอบทั้ง 5 ชุด อ่านจบภายใน 15 นาที', toExam: 'ไปทำข้อสอบ', toc: 'สารบัญ', tip: 'เคล็ดลับ',
+    printBar: 'หน้าสำหรับพิมพ์ หรือบันทึกเป็น PDF (เลือก “Save as PDF” ในหน้าต่างพิมพ์) · เฉลยอยู่หน้าสุดท้าย', back: 'กลับ', doPrint: 'พิมพ์ / บันทึก PDF',
+    pvSub: n => `${n} ข้อ · แนวข้อสอบภาษาอังกฤษเข้า ม.1 ห้องเรียนพิเศษ`, pvName: n => `ชื่อ ____________________________ เลขที่ ______ คะแนน ______ / ${n}`,
+    pvInstr: '<b>คำสั่ง</b> เลือกคำตอบที่ถูกต้องที่สุดเพียงข้อเดียว', pvRead: (l, a, b) => `อ่าน ${l} แล้วตอบคำถามข้อ ${a}–${b}`,
+    pvKey: n => `เฉลย ชุดที่ ${n}`, pvExp: 'คำอธิบาย', blank: 'ช่องว่าง', options: 'ตัวเลือก', levelOf: l => `ระดับ ${l} จาก 3`
+  },
+  en: {
+    navSets: 'Tests', navNotes: 'Study Notes', home: 'Home',
+    kicker: 'English · M.1 Entrance',
+    h1: 'Practise to <em>understand</em>,<br>not just to memorise',
+    lead: 'Five full practice tests in the style of special-program entrance exams: grammar, vocabulary, conversation and reading. Every question explains, in English and Thai, why the answer is right and how the traps try to fool you.',
+    startSet1: 'Start Test 1', readNotes: 'Read the study notes',
+    fSets: 'practice tests', fQs: 'questions with answers', fCats: 'exam skill areas',
+    stamp: 'Full explanations', whyBest: 'Why “best”?', whyBest2: 'Of all + the → superlative',
+    coverH: 'Covers every part of the exam', coverSub: n => `Every test has the same balance — ${n} questions each, getting harder from Test 1 to Test 5.`,
+    perSet: 'per test', pickH: 'Choose a test', pickSub: 'We recommend working from Test 1 to Test 5.',
+    mPractice: 'Practice mode', mPracticeD: 'Answer one question at a time and see the explanation straight away. Great for learning and teaching.',
+    mExam: 'Exam mode', mExamD: 'Answer everything, then submit. A timer runs, and you get a score by skill area plus all the answers.',
+    qCount: n => `${n} questions`, level: 'Level', best: (b, n) => `Best score ${b}/${n}`, print: 'Print / PDF',
+    foot: 'These are original practice tests, not real exams from any school · Scores are saved on this device only.',
+    setN: n => `Test ${n}`, ofN: (i, n) => `Question ${i} of ${n}`, wrongOnly: ' (review mistakes)',
+    submitN: (d, n) => `Submit (${d}/${n})`, timeUsed: 'Time used',
+    correctAns: '✓ Correct answer', youPicked: '✗ Your choice', right: '✓ Correct!', notYet: (k, o) => `✗ Not quite — the answer is ${k}. ${o}`,
+    prev: '← Back', check: 'Check answer', nextQ: 'Next question →', next: 'Next →', seeScore: 'See my score', submit: 'Submit',
+    hint: m => `Shortcuts: <kbd>A</kbd>–<kbd>D</kbd> choose · <kbd>Enter</kbd> ${m === 'practice' ? 'check / continue' : 'next'} · <kbd>←</kbd> <kbd>→</kbd> move`,
+    allQs: 'All questions', lgPractice: '<span>Green = correct</span><span>Orange = wrong</span>', lgExam: '<span>Grey = answered</span><span>White = not answered</span>', lgCur: 'Dark border = current',
+    goQ: n => `Go to question ${n}`, tapFold: ' · tap to show/hide',
+    cfH: 'Submit your answers?', cfLeft: n => `You still have <b>${n} unanswered</b> question${n > 1 ? 's' : ''}. They will be marked wrong.`, cfAll: 'You have answered every question. Ready to see your score?', cfBack: 'Keep working',
+    msgs: [['Outstanding!', 'You are ready for special-program exams. Try the next test to keep it up.'], ['Great work', 'Just a few details left — read the explanations for the ones you missed.'], ['You’re on the right track', 'Review your weakest area, then practise only the questions you got wrong.'], ['Don’t give up', 'Start with the study notes, then come back and use Practice mode.']],
+    got: p => `You scored ${p}%`, ofQ: n => `out of ${n}`, used: t => ` · Time: ${t}`, wrongTag: ' · review mistakes',
+    retryWrong: n => `Practise my mistakes (${n})`, redo: 'Retake this test', goSet: n => `Go to Test ${n} →`, backHome: 'Back to home',
+    weak: (c, s) => `Review this area first: <b>${c}</b> (${s})`, openNote: 'Open the study notes',
+    reviewH: 'Answers & explanations', all: n => `All (${n})`, wrong: n => `Wrong (${n})`,
+    stOk: 'correct', stSkip: 'not answered', stBad: 'wrong', qN: n => `Q${n}`, ref: 'See', yours: 'Your answer', noAns: 'not answered', theAns: 'Correct answer', perfect: 'No mistakes at all. Brilliant!',
+    notesH: 'Study Notes', notesSub: 'The key rules behind all five tests — a 15-minute read.', toExam: 'Go to the tests', toc: 'Contents', tip: 'Tip',
+    printBar: 'Printable version — print it or choose “Save as PDF”. The answer key is on the last page.', back: 'Back', doPrint: 'Print / Save PDF',
+    pvSub: n => `${n} questions · English entrance practice test for M.1 special programs`, pvName: n => `Name ____________________________ No. ______ Score ______ / ${n}`,
+    pvInstr: '<b>Directions:</b> Choose the one best answer.', pvRead: (l, a, b) => `Read ${l} and answer questions ${a}–${b}`,
+    pvKey: n => `Answer Key · Test ${n}`, pvExp: 'Explanations', blank: 'blank', options: 'choices', levelOf: l => `Level ${l} of 3`
+  }
+};
+
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('stepup:' + k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('stepup:' + k, JSON.stringify(v)); } catch (e) {} }
+};
+
+let LANG = store.get('lang', 'th') === 'en' ? 'en' : 'th';
+const T = () => STR[LANG];
+const catName = k => LANG === 'en' ? CAT[k].en : CAT[k].th;
+const setTitle = s => LANG === 'en' ? s.en : s.title;
+const setTheme = s => LANG === 'en' ? (s.themeEn || s.theme) : s.theme;
+const passLabel = p => LANG === 'en' ? (p.labelEn || p.label) : p.label;
+const expOf = q => LANG === 'en' ? (q.ee || q.e) : q.e;
+
+const KEYS = 'ABCD';
+const SETS = window.SETS.sort((a, b) => a.id - b.id);
+const NOTES = window.NOTES || [];
+
+// กระจายตำแหน่งคำตอบให้สมดุล A–D แบบคงที่ (ทุกเครื่องเห็นลำดับเดียวกัน)
+function rng(seed) { return () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; }; }
+SETS.forEach(set => {
+  const r = rng(set.id * 7919 + 17), n = set.questions.length, t = [];
+  for (let i = 0; i < n; i++) t.push(i % 4);
+  for (let i = n - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [t[i], t[j]] = [t[j], t[i]]; }
+  set.questions.forEach((q, i) => {
+    const right = q.o[q.a], rest = q.o.filter((_, k) => k !== q.a);
+    rest.splice(t[i], 0, right);
+    q.o = rest; q.a = t[i]; q.n = i + 1;
+  });
+});
+
+const app = document.getElementById('app');
+let S = { view: 'home' };
+let tick = null;
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const blanks = s => s.replace(/___/g, `<span class="blank" aria-label="${T().blank}"></span>`);
+const strip = s => s.replace(/<br>/g, ' ').replace(/<[^>]+>/g, '').replace(/___/g, '____');
+const fmtTime = ms => { const s = Math.floor(ms / 1000); return String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0'); };
+const getSet = id => SETS.find(s => s.id === id);
+const total = SETS.reduce((n, s) => n + s.questions.length, 0);
+
+function topbar(active) {
+  const t = T();
+  return `<header class="top"><div class="wrap">
+    <button class="brand" data-act="home" aria-label="${t.home}"><span class="brand-mark">S</span><span><b>${esc(BRAND.name)}</b><small>${esc(BRAND.sub[LANG])}</small></span></button>
+    <nav class="nav">
+      <button data-act="home" ${active === 'home' ? 'aria-current="page"' : ''}>${t.navSets}</button>
+      <button data-act="notes" ${active === 'notes' ? 'aria-current="page"' : ''}>${t.navNotes}</button>
+    </nav>
+    <div class="lang" role="group" aria-label="Language / ภาษา">
+      <button data-act="lang" data-l="th" aria-pressed="${LANG === 'th'}">TH</button><button data-act="lang" data-l="en" aria-pressed="${LANG === 'en'}">EN</button>
+    </div></div></header>`;
+}
+
+function dots(level) { return `<span class="dots" aria-label="${T().levelOf(level)}">` + '●'.repeat(level) + '<s>' + '●'.repeat(3 - level) + '</s></span>'; }
+
+// ---------- HOME ----------
+function viewHome() {
+  const t = T();
+  const best = store.get('best', {});
+  const per = SETS[0].questions.reduce((m, q) => (m[q.c] = (m[q.c] || 0) + 1, m), {});
+  const qn = SETS[0].questions.length;
+  return topbar('home') + `<main>
+  <section class="wrap hero">
+    <div>
+      <p class="kicker">${t.kicker} <span>EP / Gifted</span></p>
+      <h1>${t.h1}</h1>
+      <p class="lead">${t.lead}</p>
+      <div class="ctas">
+        <button class="btn btn-primary" data-act="start" data-set="1" data-mode="practice">${t.startSet1}</button>
+        <button class="btn btn-ghost" data-act="notes">${t.readNotes}</button>
+      </div>
+      <div class="facts">
+        <div><b>${SETS.length}</b><span>${t.fSets}</span></div>
+        <div><b>${total}</b><span>${t.fQs}</span></div>
+        <div><b>4</b><span>${t.fCats}</span></div>
+      </div>
+    </div>
+    <div class="sheet" aria-hidden="true">
+      <span class="stamp">${t.stamp}</span>
+      <div class="q-no">10.</div>
+      <div class="q-text">Of all the students in the class, Nida is the <u></u> at drawing.</div>
+      <ol><li><i>A</i>better</li><li class="circ"><i>B</i>best</li><li><i>C</i>most good</li><li><i>D</i>goodest</li></ol>
+      <div class="note"><b>${t.whyBest}</b><br>${t.whyBest2}<br>good → better → <b>best</b></div>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <h2>${t.coverH}</h2>
+    <p class="sub">${t.coverSub(qn)}</p>
+    <div class="blueprint">
+      ${Object.keys(CAT).map(k => `<div class="bp">
+        <div class="n">${per[k] || 0}<small>${t.perSet}</small></div>
+        <h3><span class="chip ${CAT[k].cls}">${catName(k)}</span></h3>
+        <p>${CAT[k].desc[LANG]}</p>
+        <div class="bar" style="background:${CAT[k].color};width:${(per[k] / qn) * 250}%"></div>
+      </div>`).join('')}
+    </div>
+  </section>
+
+  <section class="wrap section" id="sets">
+    <h2>${t.pickH}</h2>
+    <p class="sub">${t.pickSub}</p>
+    <div class="modes">
+      <div class="mode"><h3>${t.mPractice}</h3><p>${t.mPracticeD}</p></div>
+      <div class="mode"><h3>${t.mExam}</h3><p>${t.mExamD}</p></div>
+    </div>
+    <div class="sets" style="margin-top:22px">
+      ${SETS.map(s => {
+        const b = best[s.id];
+        return `<article class="set-row">
+          <div class="set-no">${String(s.id).padStart(2, '0')}</div>
+          <div class="set-info">
+            <h3>${esc(setTitle(s))}${LANG === 'th' ? `<span>${esc(s.en)}</span>` : ''}</h3>
+            <div class="set-meta"><span>${esc(setTheme(s))}</span><span>${t.qCount(s.questions.length)}</span><span>${t.level} ${dots(s.level)}</span>
+            ${b != null ? `<span class="best">${t.best(b, s.questions.length)}</span>` : ''}</div>
+          </div>
+          <div class="set-actions">
+            <button class="btn btn-primary btn-sm" data-act="start" data-set="${s.id}" data-mode="practice">${t.mPractice}</button>
+            <button class="btn btn-ghost btn-sm" data-act="start" data-set="${s.id}" data-mode="exam">${t.mExam}</button>
+            <button class="btn btn-ghost btn-sm" data-act="print" data-set="${s.id}">${t.print}</button>
+          </div>
+        </article>`;
+      }).join('')}
+    </div>
+  </section>
+  </main>
+  <footer class="foot"><div class="wrap">© ${esc(BRAND.name)} · ${t.foot}</div></footer>`;
+}
+
+// ---------- QUIZ ----------
+function startQuiz(setId, mode, idxs) {
+  const set = getSet(setId);
+  S = { view: 'quiz', set: setId, mode, idxs: idxs || set.questions.map((_, i) => i), cur: 0, ans: {}, checked: {}, start: Date.now(), confirm: false };
+  render(true);
+}
+
+function viewQuiz() {
+  const t = T();
+  const set = getSet(S.set), qi = S.idxs[S.cur], q = set.questions[qi];
+  const pass = q.p ? set.passages[q.p] : null;
+  const picked = S.ans[qi], checked = S.mode === 'practice' && S.checked[qi];
+  const done = Object.keys(S.ans).length, n = S.idxs.length, last = S.cur === n - 1;
+  const pct = S.mode === 'practice' ? (Object.keys(S.checked).length / n) * 100 : (done / n) * 100;
+  const subset = n !== set.questions.length;
+
+  const opts = q.o.map((o, k) => {
+    let cls = 'opt', mark = '';
+    if (checked) {
+      if (k === q.a) { cls += ' ok'; mark = t.correctAns; }
+      else if (k === picked) { cls += ' bad'; mark = t.youPicked; }
+      else cls += ' dim';
+    } else if (k === picked) cls += ' sel';
+    return `<button class="${cls}" data-act="pick" data-k="${k}" ${checked ? 'disabled' : ''} aria-pressed="${k === picked}">
+      <span class="key">${KEYS[k]}</span><span class="txt">${esc(o)}</span>${mark ? `<span class="mark">${mark}</span>` : ''}</button>`;
+  }).join('');
+
+  let fb = '';
+  if (checked) {
+    const ok = picked === q.a;
+    fb = `<div class="fb ${ok ? 'ok' : 'bad'}" role="status">
+      <div class="fb-head">${ok ? t.right : t.notYet(KEYS[q.a], esc(q.o[q.a]))}</div>
+      <div class="fb-body">${expOf(q)}</div></div>`;
+  }
+
+  const prevBtn = `<button class="btn btn-ghost" data-act="prev" ${S.cur === 0 ? 'disabled' : ''}>${t.prev}</button><span class="grow"></span>`;
+  const actions = S.mode === 'practice'
+    ? prevBtn + (!checked
+        ? `<button class="btn btn-dark" data-act="check" ${picked == null ? 'disabled' : ''}>${t.check}</button>`
+        : (last ? `<button class="btn btn-primary" data-act="finish">${t.seeScore}</button>` : `<button class="btn btn-primary" data-act="next">${t.nextQ}</button>`))
+    : prevBtn + (last ? `<button class="btn btn-primary" data-act="submit">${t.submit}</button>` : `<button class="btn btn-dark" data-act="next">${t.next}</button>`);
+
+  const grid = S.idxs.map((ix, i) => {
+    const qq = set.questions[ix];
+    let c = '';
+    if (S.mode === 'practice' && S.checked[ix]) c = S.ans[ix] === qq.a ? 'gok' : 'gbad';
+    else if (S.ans[ix] != null) c = 'done';
+    if (i === S.cur) c += ' cur';
+    return `<button class="${c}" data-act="go" data-i="${i}" aria-label="${t.goQ(qq.n)}">${qq.n}</button>`;
+  }).join('');
+
+  const firstOfPass = pass && S.idxs.findIndex(ix => set.questions[ix].p === q.p) === S.cur;
+  const passHtml = pass ? `<details class="passage" ${firstOfPass || window.innerWidth > 900 ? 'open' : ''}><summary data-fold="${t.tapFold}">${esc(passLabel(pass))}</summary>
+    <div class="pbody"><h3>${esc(pass.title)}</h3>${pass.html}</div></details>` : '';
+
+  return topbar('') + `
+  <div class="qbar"><div class="wrap">
+    <div class="title">${t.setN(set.id)} · ${esc(setTitle(set))}${subset ? t.wrongOnly : ''}<small>${t.ofN(S.cur + 1, n)}</small></div>
+    <div class="right">
+      <span class="badge">${S.mode === 'practice' ? t.mPractice : t.mExam}</span>
+      ${S.mode === 'exam' ? `<span class="timer" id="timer" aria-label="${t.timeUsed}">⏱ ${fmtTime(Date.now() - S.start)}</span>
+        <button class="btn btn-ghost btn-sm" data-act="submit">${t.submitN(done, n)}</button>` : ''}
+    </div></div>
+    <div class="progress" role="progressbar" aria-valuenow="${Math.round(pct)}" aria-valuemin="0" aria-valuemax="100"><i style="width:${pct}%"></i></div>
+  </div>
+  <main class="wrap">
+    <div class="quiz ${pass ? 'split' : ''}" id="quiz">
+      ${passHtml}
+      <section class="qcard" aria-labelledby="qt">
+        <div class="qhead"><span class="chip ${CAT[q.c].cls}">${catName(q.c)}</span><span class="topic">${esc(q.t)}</span></div>
+        <p class="qnum">${q.n}.</p>
+        <p class="qtext" id="qt">${blanks(q.q)}</p>
+        <div class="opts" role="group" aria-label="${t.options}">${opts}</div>
+        ${fb}
+        <div class="actions">${actions}</div>
+        <p class="hint">${t.hint(S.mode)}</p>
+        <details class="grid-wrap" ${S.mode === 'exam' ? 'open' : ''}><summary>${t.allQs}</summary>
+          <div class="qgrid">${grid}</div>
+          <div class="legend">${S.mode === 'practice' ? t.lgPractice : t.lgExam}<span>${t.lgCur}</span></div>
+        </details>
+      </section>
+    </div>
+  </main>
+  ${S.confirm ? confirmModal(n - done) : ''}`;
+}
+
+function confirmModal(left) {
+  const t = T();
+  return `<div class="scrim" data-act="cancel"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt">
+    <h3 id="mt">${t.cfH}</h3>
+    <p>${left > 0 ? t.cfLeft(left) : t.cfAll}</p>
+    <div class="actions"><button class="btn btn-ghost" data-act="cancel">${t.cfBack}</button><button class="btn btn-primary" data-act="finish">${t.submit}</button></div>
+  </div></div>`;
+}
+
+// ---------- RESULT ----------
+function finish() {
+  const set = getSet(S.set);
+  const res = S.idxs.map(ix => ({ ix, q: set.questions[ix], y: S.ans[ix] }));
+  const score = res.filter(r => r.y === r.q.a).length;
+  const full = S.idxs.length === set.questions.length;
+  if (full) {
+    const best = store.get('best', {});
+    if (best[set.id] == null || score > best[set.id]) { best[set.id] = score; store.set('best', best); }
+  }
+  S = { view: 'result', set: set.id, mode: S.mode, res, score, time: Date.now() - S.start, full, filter: 'all' };
+  render(true);
+}
+
+function viewResult() {
+  const t = T();
+  const set = getSet(S.set), n = S.res.length, pct = Math.round((S.score / n) * 100);
+  const msg = t.msgs[pct >= 90 ? 0 : pct >= 75 ? 1 : pct >= 50 ? 2 : 3];
+  const ring = pct >= 75 ? 'var(--sage)' : pct >= 50 ? 'var(--butter)' : 'var(--coral)';
+
+  const cats = Object.keys(CAT).map(k => {
+    const rs = S.res.filter(r => r.q.c === k);
+    return { k, n: rs.length, ok: rs.filter(r => r.y === r.q.a).length };
+  }).filter(c => c.n);
+  const weak = cats.slice().sort((a, b) => a.ok / a.n - b.ok / b.n)[0];
+  const wrong = S.res.filter(r => r.y !== r.q.a);
+  const next = getSet(S.set + 1);
+
+  const list = S.res.filter(r => S.filter === 'all' || r.y !== r.q.a).map(r => {
+    const ok = r.y === r.q.a, skip = r.y == null;
+    return `<details class="rv"><summary>
+      <span class="st ${ok ? 'ok' : skip ? 'skip' : 'bad'}" aria-label="${ok ? t.stOk : skip ? t.stSkip : t.stBad}">${ok ? '✓' : skip ? '–' : '✗'}</span>
+      <span class="rq"><small>${t.qN(r.q.n)} · ${catName(r.q.c)} · ${esc(r.q.t)}</small>${esc(strip(r.q.q))}</span>
+      <span class="chev" aria-hidden="true">›</span></summary>
+      <div class="rbody">
+        ${r.q.p ? `<p class="hint" style="margin:0 0 8px">${t.ref} ${esc(passLabel(set.passages[r.q.p]))}: “${esc(set.passages[r.q.p].title)}”</p>` : ''}
+        <div class="ans">
+          ${!ok ? `<span class="y">${t.yours}: ${skip ? t.noAns : KEYS[r.y] + '. ' + esc(r.q.o[r.y])}</span>` : ''}
+          <span class="c">${t.theAns}: ${KEYS[r.q.a]}. ${esc(r.q.o[r.q.a])}</span>
+        </div>
+        <div class="exp">${expOf(r.q)}</div>
+      </div></details>`;
+  }).join('') || `<p class="sub">${t.perfect}</p>`;
+
+  return topbar('') + `<main class="wrap">
+    <section class="result-top">
+      <div class="score-ring" style="--p:${pct};--ring:${ring}"><div><span><b>${S.score}</b><br>${t.ofQ(n)}</span></div></div>
+      <div>
+        <p class="kicker" style="margin-bottom:6px">${t.setN(set.id)} · ${esc(setTitle(set))} · ${S.mode === 'practice' ? t.mPractice : t.mExam}${S.full ? '' : t.wrongTag}</p>
+        <h1>${msg[0]} ${t.got(pct)}</h1>
+        <p>${msg[1]}${S.mode === 'exam' ? t.used(fmtTime(S.time)) : ''}</p>
+        <div class="ctas" style="display:flex;gap:10px;flex-wrap:wrap">
+          ${wrong.length ? `<button class="btn btn-primary" data-act="retrywrong">${t.retryWrong(wrong.length)}</button>` : ''}
+          <button class="btn btn-ghost" data-act="start" data-set="${set.id}" data-mode="${S.mode}">${t.redo}</button>
+          ${next ? `<button class="btn btn-ghost" data-act="start" data-set="${next.id}" data-mode="${S.mode}">${t.goSet(next.id)}</button>` : `<button class="btn btn-ghost" data-act="home">${t.backHome}</button>`}
+        </div>
+      </div>
+    </section>
+
+    <div class="catbars">
+      ${cats.map(c => `<div class="catbar"><div class="row"><span class="chip ${CAT[c.k].cls}">${catName(c.k)}</span><b>${c.ok}/${c.n}</b></div>
+        <div class="track"><i style="width:${(c.ok / c.n) * 100}%;background:${CAT[c.k].color}"></i></div></div>`).join('')}
+    </div>
+    ${weak && weak.ok < weak.n ? `<div class="advice">${t.weak(catName(weak.k), weak.ok + '/' + weak.n)} — <button data-act="notes" data-anchor="${CAT[weak.k].note}">${t.openNote}</button></div>` : ''}
+
+    <div class="tabs"><h2>${t.reviewH}</h2>
+      <button data-act="filter" data-f="all" aria-pressed="${S.filter === 'all'}">${t.all(n)}</button>
+      <button data-act="filter" data-f="wrong" aria-pressed="${S.filter === 'wrong'}">${t.wrong(wrong.length)}</button>
+    </div>
+    <div class="review">${list}</div>
+    <div style="height:60px"></div>
+  </main>`;
+}
+
+// ---------- NOTES ----------
+function viewNotes() {
+  const t = T();
+  const nt = n => LANG === 'en' ? (n.titleEn || n.title) : n.title;
+  const nh = n => LANG === 'en' ? (n.htmlEn || n.html) : n.html;
+  const groups = Object.keys(CAT).map(k => ({ k, items: NOTES.filter(n => n.cat === k) })).filter(g => g.items.length);
+  return topbar('notes') + `<main class="wrap"><div class="notes" data-tip="${t.tip}">
+    <nav class="toc" aria-label="${t.toc}">
+      ${groups.map(g => `<b>${catName(g.k)}</b>${g.items.map(n => `<a href="#${n.id}" data-act="jump" data-anchor="${n.id}">${esc(nt(n))}</a>`).join('')}`).join('')}
+    </nav>
+    <div>
+      <h1 style="margin:0 0 6px;font-size:30px">${t.notesH}</h1>
+      <p class="sub" style="color:var(--ink-2);margin:0 0 24px">${t.notesSub}</p>
+      ${NOTES.map(n => `<section class="note-sec" id="${n.id}"><span class="chip ${CAT[n.cat].cls}">${catName(n.cat)}</span><h2>${esc(nt(n))}</h2>${nh(n)}</section>`).join('')}
+      <div style="text-align:center;margin-top:26px"><button class="btn btn-primary" data-act="home">${t.toExam}</button></div>
+    </div>
+  </div></main>`;
+}
+
+// ---------- PRINT ----------
+function viewPrint() {
+  const t = T();
+  const set = getSet(S.set);
+  const qs = set.questions;
+  const sec = { g: [], v: [], c: [], r: [] };
+  qs.forEach(q => sec[q.c].push(q));
+  const qHtml = q => `<div class="pv-q"><p class="t"><b>${q.n}.</b> ${blanks(q.q)}</p>
+    <ol>${q.o.map((o, k) => `<li>${KEYS[k]}. ${esc(o)}</li>`).join('')}</ol></div>`;
+  let reading = '';
+  const seen = {};
+  sec.r.forEach(q => {
+    if (!seen[q.p]) {
+      seen[q.p] = 1;
+      const p = set.passages[q.p];
+      const nums = sec.r.filter(x => x.p === q.p).map(x => x.n);
+      reading += `<p><b>${t.pvRead(esc(passLabel(p)), nums[0], nums[nums.length - 1])}</b></p><div class="pv-pass"><h3>${esc(p.title)}</h3>${p.html}</div>`;
+    }
+    reading += qHtml(q);
+  });
+  return topbar('') + `<main class="wrap"><div class="print-view">
+    <div class="print-bar"><p>${t.printBar}</p>
+      <button class="btn btn-ghost btn-sm" data-act="home">${t.back}</button><button class="btn btn-primary btn-sm" data-act="doprint">${t.doPrint}</button></div>
+    <article class="pv">
+      <h1>${esc(BRAND.name)} · ${t.setN(set.id)}: ${esc(setTitle(set))}</h1>
+      <p class="pv-sub">${LANG === 'th' ? esc(set.en) + ' · ' : ''}${t.pvSub(qs.length)}</p>
+      <div class="pv-name">${t.pvName(qs.length)}</div>
+      <p>${t.pvInstr}</p>
+      <h2>Part 1 · Grammar &amp; Structure</h2>${sec.g.map(qHtml).join('')}
+      <h2>Part 2 · Vocabulary &amp; Expressions</h2>${sec.v.map(qHtml).join('')}
+      <h2>Part 3 · Situational Conversation</h2>${sec.c.map(qHtml).join('')}
+      <h2>Part 4 · Reading Comprehension</h2>${reading}
+      <div class="page-break"></div>
+      <h2>${t.pvKey(set.id)}</h2>
+      <div class="pv-key">${qs.map(q => `<span><b>${q.n}.</b> ${KEYS[q.a]}</span>`).join('')}</div>
+      <h2>${t.pvExp}</h2>
+      ${qs.map(q => `<div class="pv-exp"><b>${q.n}. ${KEYS[q.a]}. ${esc(q.o[q.a])}</b> — ${expOf(q)}</div>`).join('')}
+    </article>
+  </div></main>`;
+}
+
+// ---------- render & events ----------
+function render(toTop) {
+  clearInterval(tick);
+  document.documentElement.lang = LANG;
+  app.innerHTML = S.view === 'home' ? viewHome() : S.view === 'quiz' ? viewQuiz() : S.view === 'result' ? viewResult() : S.view === 'print' ? viewPrint() : viewNotes();
+  if (S.view === 'quiz' && S.mode === 'exam') {
+    tick = setInterval(() => { const el = document.getElementById('timer'); if (el) el.textContent = '⏱ ' + fmtTime(Date.now() - S.start); }, 1000);
+  }
+  if (toTop) window.scrollTo(0, 0);
+}
+
+function moveTo(i) {
+  if (i < 0 || i >= S.idxs.length) return;
+  S.cur = i; render();
+  const quiz = document.getElementById('quiz');
+  if (quiz && quiz.getBoundingClientRect().top < 0) quiz.scrollIntoView({ block: 'start' });
+}
+
+function act(a, el) {
+  if (a === 'home') { S = { view: 'home' }; render(true); }
+  else if (a === 'lang') { LANG = el.dataset.l; store.set('lang', LANG); render(); }
+  else if (a === 'notes') {
+    S = { view: 'notes' }; render(true);
+    const id = el && el.dataset.anchor;
+    if (id) { const tg = document.getElementById(id); if (tg) tg.scrollIntoView({ block: 'start' }); }
+  }
+  else if (a === 'jump') { const tg = document.getElementById(el.dataset.anchor); if (tg) tg.scrollIntoView({ block: 'start', behavior: 'smooth' }); }
+  else if (a === 'start') startQuiz(+el.dataset.set, el.dataset.mode);
+  else if (a === 'print') { S = { view: 'print', set: +el.dataset.set }; render(true); }
+  else if (a === 'doprint') window.print();
+  else if (a === 'pick') {
+    const qi = S.idxs[S.cur];
+    if (S.mode === 'practice' && S.checked[qi]) return;
+    S.ans[qi] = +el.dataset.k; render();
+    const b = document.querySelector(`.opt[data-k="${el.dataset.k}"]`); if (b) b.focus({ preventScroll: true });
+  }
+  else if (a === 'check') {
+    const qi = S.idxs[S.cur]; if (S.ans[qi] == null) return;
+    S.checked[qi] = true; render();
+    const fb = document.querySelector('.fb'); if (fb && fb.getBoundingClientRect().bottom > window.innerHeight) fb.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    const nb = document.querySelector('.actions [data-act="next"],.actions [data-act="finish"]'); if (nb) nb.focus({ preventScroll: true });
+  }
+  else if (a === 'next') moveTo(S.cur + 1);
+  else if (a === 'prev') moveTo(S.cur - 1);
+  else if (a === 'go') moveTo(+el.dataset.i);
+  else if (a === 'submit') { S.confirm = true; render(); const f = document.querySelector('.modal [data-act="finish"]'); if (f) f.focus(); }
+  else if (a === 'cancel') { S.confirm = false; render(); }
+  else if (a === 'finish') finish();
+  else if (a === 'filter') { S.filter = el.dataset.f; render(); }
+  else if (a === 'retrywrong') startQuiz(S.set, 'practice', S.res.filter(r => r.y !== r.q.a).map(r => r.ix));
+}
+
+app.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]');
+  if (!el || el.disabled) return;
+  if (el.dataset.act === 'cancel' && el.classList.contains('scrim') && e.target !== el) return;
+  if (el.tagName === 'A') e.preventDefault();
+  act(el.dataset.act, el);
+});
+
+document.addEventListener('keydown', e => {
+  if (S.view !== 'quiz' || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (S.confirm) { if (e.key === 'Escape') act('cancel'); return; }
+  const k = e.key.toUpperCase(), idx = KEYS.indexOf(k), num = '1234'.indexOf(e.key);
+  const qi = S.idxs[S.cur];
+  if (e.key.length === 1 && (idx > -1 || num > -1)) {
+    const i = idx > -1 ? idx : num;
+    if (i < getSet(S.set).questions[qi].o.length) { e.preventDefault(); act('pick', { dataset: { k: String(i) } }); }
+  } else if (e.key === 'Enter' && (!e.target.closest('button,summary') || e.target.classList.contains('opt'))) {
+    e.preventDefault();
+    if (S.mode === 'practice') {
+      if (!S.checked[qi]) act('check');
+      else if (S.cur === S.idxs.length - 1) act('finish'); else act('next');
+    } else if (S.cur === S.idxs.length - 1) act('submit'); else act('next');
+  } else if (e.key === 'ArrowRight') { if (S.mode === 'exam' || S.checked[qi]) act('next'); }
+  else if (e.key === 'ArrowLeft') act('prev');
+});
+
+window.addEventListener('beforeunload', e => {
+  if (S.view === 'quiz' && Object.keys(S.ans).length) { e.preventDefault(); e.returnValue = ''; }
+});
+
+render();
+})();
+
+</script>
+</body>
+</html>
