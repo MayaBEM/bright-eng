@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tense Timeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: a teacher's whiteboard on graph paper — the timeline is the hero, the 3×4 tense matrix is the map, the detail below is the workbook page */
+:root{
+  --bg:#F4F6F1; --grid:#E5E9DE; --surface:#FFFFFF; --ink:#1E2940; --muted:#58637A; --line:#D6DBCD;
+  --accent:#F0B43C; --on-accent:#2A1E05;
+  --past:#C4532F; --present:#2B7D5A; --future:#2A69A6;
+  --past-wash:#F8E7E0; --present-wash:#E0F0E7; --future-wash:#E1EBF6;
+  --ok:#2B7D5A; --bad:#BF3434; --ok-wash:#E1F1E8; --bad-wash:#FBE6E4;
+  --f-display:"Bricolage Grotesque","IBM Plex Sans Thai",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans Thai",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111724; --grid:#182031; --surface:#19212F; --ink:#E8ECF3; --muted:#9BA6BA; --line:#2B3649;
+  --accent:#F2BE55; --on-accent:#231804;
+  --past:#F28A68; --present:#62C394; --future:#70B0E8;
+  --past-wash:#352520; --present-wash:#1B3128; --future-wash:#1B2A3C;
+  --ok:#62C394; --bad:#F27D7D; --ok-wash:#1B3128; --bad-wash:#3A2225; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111724; --grid:#182031; --surface:#19212F; --ink:#E8ECF3; --muted:#9BA6BA; --line:#2B3649;
+  --accent:#F2BE55; --on-accent:#231804;
+  --past:#F28A68; --present:#62C394; --future:#70B0E8;
+  --past-wash:#352520; --present-wash:#1B3128; --future-wash:#1B2A3C;
+  --ok:#62C394; --bad:#F27D7D; --ok-wash:#1B3128; --bad-wash:#3A2225; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background-color:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px}
+.app{max-width:1120px;margin:0 auto;padding-inline:20px;padding-block:18px 48px;display:flex;flex-direction:column;gap:22px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.2}
+p{margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+code{font-family:var(--f-mono)}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.brand{display:flex;flex-direction:column;margin-right:auto}
+.brand small{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.brand b{font-family:var(--f-display);font-size:26px;font-weight:800;letter-spacing:-.01em;line-height:1.1}
+.tabs{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px;gap:4px}
+.tab{border:0;background:transparent;padding:8px 16px;border-radius:7px;font-weight:600;cursor:pointer;color:var(--muted);min-height:40px}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--surface)}
+.ghost{border:1.5px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 14px;font-weight:600;cursor:pointer;min-height:44px}
+.ghost:hover{border-color:var(--ink)}
+.ghost[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+
+/* intro */
+.intro{display:flex;flex-direction:column;gap:10px}
+.intro h1{font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-.02em;max-width:24ch}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--muted);font-size:15px}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.lg{display:inline-block;flex:none}
+.lg-flag{width:16px;height:12px;background:var(--accent);clip-path:polygon(0 0,100% 0,78% 50%,100% 100%,0 100%)}
+.lg-dot{width:12px;height:12px;border-radius:50%;background:var(--ink)}
+.lg-bar{width:26px;height:10px;border-radius:3px;background:repeating-linear-gradient(45deg,var(--ink) 0 3px,transparent 3px 7px);border:1.5px solid var(--ink)}
+.lg-x{font-weight:800;color:var(--ink);font-size:15px;line-height:1}
+
+/* board */
+.board{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:14px;box-shadow:0 1px 0 var(--line),0 10px 30px -18px rgba(30,41,64,.35)}
+.board-top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border:1.5px solid var(--line);background:var(--bg);border-radius:9px;padding:7px 12px;font-weight:600;cursor:pointer;min-height:42px;font-size:15px}
+.seg button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--surface)}
+.tl{width:100%}
+.tl svg{display:block;width:100%;height:auto;touch-action:none;user-select:none;-webkit-user-select:none}
+.grab{cursor:grab}
+.tl svg:active .grab{cursor:grabbing}
+.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 1.6s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.7);opacity:.9}100%{transform:scale(1.9);opacity:0}}
+.flow{animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-16}}
+.pop{transform-box:fill-box;transform-origin:center;animation:pop 2.4s ease-in-out infinite}
+@keyframes pop{0%,100%{transform:scale(1)}15%{transform:scale(1.35)}30%{transform:scale(1)}}
+
+.readout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:14px 24px;border-top:1px dashed var(--line);padding-top:14px}
+.eyebrow{font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--fc,var(--muted))}
+.ro-name{font-size:clamp(28px,4.4vw,44px);font-weight:800;letter-spacing:-.02em;color:var(--fc)}
+.ro-th{color:var(--muted);font-weight:500}
+.ro-side{display:flex;flex-direction:column;gap:8px;min-width:0}
+.formula{display:inline-block;align-self:flex-start;background:var(--bg);border:1.5px solid var(--fc);border-radius:8px;padding:6px 12px;font-weight:700;font-size:17px;max-width:100%;overflow-wrap:anywhere}
+.ro-ex{font-size:17px}
+.ro-ex b,.ex b,.q-fill b{color:var(--fc);font-weight:700}
+.ro-shape{color:var(--muted);font-size:15px}
+.hint{background:var(--bg);border-left:4px solid var(--accent);padding:8px 12px;border-radius:0 8px 8px 0;font-size:14.5px}
+.jump{align-self:flex-start;font-weight:600;color:var(--ink);text-decoration:underline;text-underline-offset:3px;font-size:15px}
+
+/* matrix */
+.mx-wrap{display:flex;flex-direction:column;gap:8px}
+.mx-wrap h2{font-size:22px}
+.mx-note{color:var(--muted);font-size:15px}
+.matrix{display:grid;grid-template-columns:minmax(64px,auto) repeat(4,minmax(0,1fr));gap:6px}
+.mx-col{font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);text-align:center;align-self:end;line-height:1.25;padding-bottom:2px}
+.mx-row{display:flex;flex-direction:column;justify-content:center;font-family:var(--f-display);font-weight:800;font-size:17px;color:var(--fc);line-height:1.1}
+.mx-row small{font-family:var(--f-body);font-weight:500;font-size:12.5px;color:var(--muted)}
+.mx-cell{border:1.5px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 6px;cursor:pointer;min-height:58px;display:flex;align-items:center;justify-content:center;text-align:center;transition:background .2s,border-color .2s}
+.mx-cell code{font-size:13px;font-weight:500;overflow-wrap:anywhere;line-height:1.35}
+.mx-cell:hover{border-color:var(--fc)}
+.mx-cell[aria-pressed="true"]{background:var(--wash);border-color:var(--fc);box-shadow:inset 0 0 0 1.5px var(--fc)}
+.mx-cell[aria-pressed="true"] code{font-weight:700;color:var(--fc)}
+
+/* detail */
+.detail{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.d-head{background:var(--wash);padding:20px;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--line)}
+.d-head h2{font-size:clamp(26px,3.6vw,36px);font-weight:800;color:var(--fc);letter-spacing:-.015em}
+.d-head h2 span{display:block;font-family:var(--f-body);font-size:17px;font-weight:500;color:var(--muted);letter-spacing:0}
+.idea{max-width:65ch;font-size:17px}
+.d-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 32px;padding:20px}
+.d-grid section{display:flex;flex-direction:column;gap:10px;min-width:0}
+.d-grid h3{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-family:var(--f-body);font-weight:700}
+.span2{grid-column:1 / -1}
+.form{margin:0;display:flex;flex-direction:column;gap:6px}
+.form div{display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:10px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:6px}
+.form dt{color:var(--muted);font-size:14.5px}
+.form dd{margin:0;font-family:var(--f-mono);font-weight:700;overflow-wrap:anywhere}
+.chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.chips li{border:1.5px solid var(--fc);color:var(--fc);border-radius:7px;padding:2px 10px;font-size:14.5px;font-weight:600}
+.ex{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+.ex li{display:flex;flex-direction:column;border-left:3px solid var(--fc);padding-left:12px}
+.ex .en{font-size:17px}
+.ex .th{color:var(--muted);font-size:15px}
+.errs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.err{border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;background:var(--bg)}
+.err .w,.err .r{display:flex;gap:8px;align-items:baseline;font-weight:600}
+.err .w s{color:var(--bad);text-decoration-thickness:2px}
+.err .r{color:var(--ok)}
+.mk{flex:none;font-size:12px;font-weight:700;border-radius:5px;padding:0 6px;line-height:1.6}
+.mk.bad{background:var(--bad-wash);color:var(--bad)}
+.mk.ok{background:var(--ok-wash);color:var(--ok)}
+.err .why{color:var(--muted);font-size:14.5px}
+
+/* quiz */
+.quiz{max-width:760px;width:100%;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px}
+.q-top{display:flex;justify-content:space-between;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;font-size:15px}
+.bar{height:8px;background:var(--bg);border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.bar i{display:block;height:100%;background:var(--ink);transition:width .3s}
+.q-label{font-size:14px;letter-spacing:.02em;font-weight:700;color:var(--muted)}
+.q-sit{font-size:19px;font-weight:600}
+.q-sent{font-family:var(--f-display);font-size:clamp(22px,3.4vw,30px);font-weight:600;line-height:1.35;background:var(--bg);border-radius:10px;padding:14px 16px}
+.blank{display:inline-block;min-width:4.5em;border-bottom:3px solid var(--accent)}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.opt{border:1.5px solid var(--line);background:var(--surface);border-radius:10px;padding:12px 14px;text-align:left;cursor:pointer;min-height:56px;display:flex;flex-direction:column;justify-content:center}
+.opt b{font-size:17px}
+.opt small{color:var(--muted);font-size:13.5px}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt:disabled{cursor:default}
+.opt.ok{border-color:var(--ok);background:var(--ok-wash)}
+.opt.bad{border-color:var(--bad);background:var(--bad-wash)}
+.opt .tag{font-size:12.5px;font-weight:700}
+.opt.ok .tag{color:var(--ok)} .opt.bad .tag{color:var(--bad)}
+.feedback{display:flex;flex-direction:column;gap:10px;border-top:1px dashed var(--line);padding-top:14px}
+.verdict{font-family:var(--f-display);font-size:22px;font-weight:800}
+.verdict.ok{color:var(--ok)} .verdict.bad{color:var(--bad)}
+.q-fill{font-size:18px}
+.q-why{color:var(--muted)}
+.mini{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:4px}
+.mini svg{display:block;width:100%;height:auto}
+.primary{align-self:flex-end;background:var(--ink);color:var(--surface);border:0;border-radius:10px;padding:12px 22px;font-weight:700;cursor:pointer;min-height:48px;font-size:16px}
+.primary:hover{opacity:.9}
+.end{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.score{font-family:var(--f-display);font-size:64px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.missed{display:flex;flex-wrap:wrap;gap:8px}
+.missed button{border:1.5px solid var(--fc);color:var(--fc);background:var(--surface);border-radius:8px;padding:6px 12px;font-weight:600;cursor:pointer;min-height:40px}
+.end .row{display:flex;flex-wrap:wrap;gap:10px}
+
+footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:14px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px}
+.wm{display:none}
+
+/* TikTok recording mode: a 9:16-friendly column with larger type */
+body.rec .app{max-width:460px;gap:16px}
+body.rec .intro .legend,body.rec .mx-note,body.rec .tabs{display:none}
+body.rec .readout{grid-template-columns:1fr}
+body.rec .ro-name{font-size:40px}
+body.rec .d-grid{grid-template-columns:1fr}
+body.rec .opts{grid-template-columns:1fr}
+body.rec .wm{display:block;position:fixed;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--surface);font-weight:700;font-size:13px;padding:4px 10px;border-radius:6px;opacity:.85;pointer-events:none}
+
+@media (max-width:720px){
+  .readout{grid-template-columns:1fr}
+  .d-grid{grid-template-columns:1fr}
+  .opts{grid-template-columns:1fr}
+  .app{padding-inline:16px}
+  .board{padding:12px}
+}
+@media (max-width:440px){
+  .matrix{grid-template-columns:52px repeat(4,minmax(0,1fr));gap:4px}
+  .mx-cell{padding:8px 3px}
+  .mx-cell code{font-size:11px}
+  .mx-col{font-size:10.5px;letter-spacing:0}
+  .mx-row{font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  .pulse,.flow,.pop{animation:none}
+  .bar i,.mx-cell{transition:none}
+}
+</style>
+</head>
+<body>
+
+
+<div class="app" id="app">
+  <header class="top">
+    <div class="brand"><small>Bright EngMath · 12 English Tenses</small><b>Tense Timeline</b></div>
+    <nav class="tabs" role="tablist" aria-label="เมนู">
+      <button class="tab" role="tab" id="tab-explore" aria-selected="true" aria-controls="view-explore">เส้นเวลา &amp; 12 Tense</button>
+      <button class="tab" role="tab" id="tab-quiz" aria-selected="false" aria-controls="view-quiz">ควิซ</button>
+    </nav>
+    <button class="ghost" id="recBtn" aria-pressed="false">โหมดอัดคลิป 9:16</button>
+  </header>
+
+  <main id="view-explore" role="tabpanel" aria-labelledby="tab-explore" style="display:flex;flex-direction:column;gap:22px">
+    <div class="intro">
+      <h1>ลากบนเส้นเวลา แล้วดูว่าต้องใช้ Tense ไหน</h1>
+      <div class="legend">
+        <span><i class="lg lg-flag"></i>ธงเหลือง = เวลาที่เรา “มอง” เหตุการณ์</span>
+        <span><i class="lg lg-dot"></i>จุด = เหตุการณ์ที่เกิดแล้วจบ</span>
+        <span><i class="lg lg-bar"></i>แถบ = ช่วงที่ทำต่อเนื่อง</span>
+        <span><b class="lg lg-x">× × ×</b>ทำซ้ำเป็นประจำ</span>
+      </div>
+    </div>
+
+    <section class="board" aria-label="เส้นเวลาโต้ตอบ">
+      <div class="board-top">
+        <div class="seg" role="group" aria-label="รูปแบบเหตุการณ์">
+          <button id="m-point" data-m="point" aria-pressed="false">จุด · เกิดแล้วจบ</button>
+          <button id="m-span" data-m="span" aria-pressed="false">แถบ · ทำต่อเนื่อง</button>
+          <button id="m-habit" data-m="habit" aria-pressed="false">ทำเป็นประจำ</button>
+        </div>
+        <button class="ghost" id="autoBtn" aria-pressed="false">▶ เล่นอัตโนมัติ 12 Tense</button>
+      </div>
+      <div class="tl" id="tl"><svg id="tlsvg" role="img" aria-label="เส้นเวลา อดีต ปัจจุบัน อนาคต"></svg></div>
+      <div class="readout" id="readout" aria-live="polite"></div>
+    </section>
+
+    <section class="mx-wrap" aria-labelledby="mxh">
+      <h2 id="mxh">แผนที่ 12 Tense</h2>
+      <p class="mx-note">แถว = เวลา · คอลัมน์ = ลักษณะการกระทำ · แตะช่องไหน เส้นเวลาจะจัดให้ดูทันที</p>
+      <div class="matrix" id="matrix"></div>
+    </section>
+
+    <article class="detail" id="detail"></article>
+  </main>
+
+  <main id="view-quiz" role="tabpanel" aria-labelledby="tab-quiz" hidden>
+    <div class="quiz" id="quiz"></div>
+  </main>
+
+  <footer><span>© Bright EngMath</span><span>Tense Timeline · ฝึก 12 Tense ด้วยเส้นเวลา</span></footer>
+</div>
+<div class="wm" aria-hidden="true">© Bright EngMath</div>
+
+<script>
+const FR={past:{en:'PAST',th:'อดีต'},present:{en:'NOW',th:'ปัจจุบัน'},future:{en:'FUTURE',th:'อนาคต'}};
+const ASP={simple:'Simple',continuous:'Continuous',perfect:'Perfect',pc:'Perfect Continuous'};
+const FRAMES=['past','present','future'], ASPS=['simple','continuous','perfect','pc'];
+const SHAPE={
+  simple:`บนเส้นเวลา: เหตุการณ์อยู่ตรงจุดที่มองพอดี`,
+  continuous:`บนเส้นเวลา: แถบคร่อมธง = ตอนนั้นกำลังทำอยู่ ยังไม่จบ`,
+  perfect:`บนเส้นเวลา: เหตุการณ์เกิดก่อนธง แล้วโยงผลมาถึงจุดที่มอง`,
+  pc:`บนเส้นเวลา: แถบลากยาวมาชนธงพอดี = ทำต่อเนื่องมาจนถึงตอนนั้น`
+};
+const T={
+'past-simple':{name:`Past Simple`,th:`อดีตกาลธรรมดา`,short:`V2`,
+ idea:`เหตุการณ์ที่เกิดและจบไปแล้ว ณ เวลาหนึ่งในอดีต เรามองจากจุดในอดีตนั้นเลย ไม่ได้โยงผลมาถึงตอนนี้`,
+ form:[`S + V2`,`S + did not (didn't) + V1`,`Did + S + V1 ?`],
+ words:[`yesterday`,`last night`,`last week`,`two days ago`,`in 2019`,`when I was a kid`],
+ ex:[[`I **visited** Chiang Mai last December.`,`ฉันไปเที่ยวเชียงใหม่เมื่อธันวาคมที่แล้ว`],[`She **didn't call** me yesterday.`,`เมื่อวานเธอไม่ได้โทรหาฉัน`],[`**Did** you **finish** your homework last night?`,`เมื่อคืนเธอทำการบ้านเสร็จไหม`]],
+ err:[[`I go to the mall yesterday.`,`I went to the mall yesterday.`,`ภาษาไทยไม่ผันกริยา ใช้คำว่า “เมื่อวาน” ก็พอ แต่ภาษาอังกฤษต้องเปลี่ยนกริยาเป็นช่อง 2 ด้วย`],[`Did you went there?`,`Did you go there?`,`มี did แล้ว did บอกความเป็นอดีตไปแล้ว กริยาหลักต้องกลับเป็นช่อง 1`],[`I was go to school.`,`I went to school.`,`ไม่ต้องใส่ was หน้ากริยาแท้ คนไทยมักแปลคำว่า “ได้/เป็น” ติดมา`]]},
+'past-continuous':{name:`Past Continuous`,th:`อดีตกาลกำลังกระทำ`,short:`was/were + V-ing`,
+ idea:`เหตุการณ์ที่ “กำลังเกิดอยู่” ณ เวลาหนึ่งในอดีต มักมีเหตุการณ์สั้น ๆ (Past Simple) แทรกเข้ามาระหว่างนั้น`,
+ form:[`S + was/were + V-ing`,`S + was/were not + V-ing`,`Was/Were + S + V-ing ?`],
+ words:[`at 8 p.m. last night`,`at this time yesterday`,`while`,`when`,`all morning`],
+ ex:[[`I **was cooking** when the phone rang.`,`ฉันกำลังทำอาหารอยู่ตอนที่โทรศัพท์ดัง`],[`They **were playing** football at 5 p.m. yesterday.`,`เมื่อวานห้าโมงเย็น พวกเขากำลังเตะฟุตบอลอยู่`],[`What **were** you **doing** last night?`,`เมื่อคืนเธอกำลังทำอะไรอยู่`]],
+ err:[[`I was cook dinner.`,`I was cooking dinner.`,`was/were ในรูปนี้ต้องตามด้วย V-ing คนไทยมักลืมเติม -ing`],[`They was sleeping.`,`They were sleeping.`,`I/He/She/It ใช้ was ส่วน You/We/They ใช้ were`],[`I was knowing the answer.`,`I knew the answer.`,`กริยาบอกสภาวะ เช่น know, like, want, need ไม่นิยมใช้รูป -ing`]]},
+'past-perfect':{name:`Past Perfect`,th:`อดีตกาลสมบูรณ์`,short:`had + V3`,
+ idea:`เหตุการณ์ที่เกิด “ก่อน” อีกเหตุการณ์หนึ่งในอดีต หรือ “อดีตของอดีต” ใช้เมื่อต้องบอกลำดับว่าอะไรเกิดก่อน`,
+ form:[`S + had + V3`,`S + had not (hadn't) + V3`,`Had + S + V3 ?`],
+ words:[`before`,`after`,`by the time`,`already`,`when + Past Simple`,`never … before`],
+ ex:[[`The movie **had** already **started** when we arrived.`,`หนังเริ่มไปแล้วตอนที่เราไปถึง`],[`She **hadn't eaten** sushi before that trip.`,`ก่อนทริปนั้น เธอไม่เคยกินซูชิมาก่อน`],[`**Had** they **left** by the time you called?`,`ตอนที่เธอโทรไป พวกเขาออกไปแล้วหรือยัง`]],
+ err:[[`I had gone to Japan last year.`,`I went to Japan last year.`,`Past Perfect ไม่ได้แปลว่า “อดีตที่นานมาก” ถ้ามีเหตุการณ์อดีตเรื่องเดียว ใช้ Past Simple ก็พอ`],[`He had went home.`,`He had gone home.`,`หลัง had ต้องเป็นกริยาช่อง 3 (gone) ไม่ใช่ช่อง 2 (went)`],[`When I arrived, she left.`,`When I arrived, she had left.`,`ถ้าเธอออกไปก่อนเราถึง ต้องใช้ had left ถ้าใช้ left จะแปลว่าเธอออกไปตอนที่เราเพิ่งถึงพอดี`]]},
+'past-pc':{name:`Past Perfect Continuous`,th:`อดีตกาลสมบูรณ์กำลังกระทำ`,short:`had been + V-ing`,
+ idea:`การกระทำที่ทำต่อเนื่องมาระยะหนึ่งจนถึงจุดหนึ่งในอดีต เน้นว่า “ทำมานานแค่ไหน” ก่อนอีกเหตุการณ์จะเกิด`,
+ form:[`S + had been + V-ing`,`S + had not been + V-ing`,`Had + S + been + V-ing ?`],
+ words:[`for two hours`,`since morning`,`before`,`by the time`,`all day`,`How long …?`],
+ ex:[[`She **had been waiting** for an hour before the bus came.`,`เธอรอมาชั่วโมงหนึ่งแล้วกว่ารถเมล์จะมา`],[`His eyes were red because he **had been crying**.`,`ตาเขาแดงเพราะเขาร้องไห้มา`],[`How long **had** you **been living** there before you moved?`,`เธออยู่ที่นั่นมานานแค่ไหนก่อนจะย้ายออก`]],
+ err:[[`I had been wait for two hours.`,`I had been waiting for two hours.`,`had been ต้องตามด้วย V-ing เสมอ`],[`She had been knowing him for years.`,`She had known him for years.`,`กริยาบอกสภาวะ (know, own, believe) ใช้ Past Perfect แทน`],[`I had been working there since five years.`,`I had been working there for five years.`,`ระยะเวลาใช้ for ส่วน since ใช้กับจุดเริ่มต้น เช่น since 2015`]]},
+'present-simple':{name:`Present Simple`,th:`ปัจจุบันกาลธรรมดา`,short:`V1 / V-s, es`,
+ idea:`ใช้กับนิสัย กิจวัตร และความจริงทั่วไป ไม่ได้หมายถึง “แค่ตอนนี้” แต่เป็นเรื่องที่จริงทั้งเมื่อก่อน ตอนนี้ และต่อไป`,
+ form:[`S + V1 (He/She/It + V-s/es)`,`S + do/does not + V1`,`Do/Does + S + V1 ?`],
+ words:[`always`,`usually`,`often`,`sometimes`,`never`,`every day`,`on Mondays`],
+ ex:[[`She **drinks** coffee every morning.`,`เธอดื่มกาแฟทุกเช้า`],[`Water **boils** at 100°C.`,`น้ำเดือดที่ 100 องศาเซลเซียส`],[`My dad **doesn't eat** spicy food.`,`พ่อฉันไม่กินอาหารเผ็ด`]],
+ err:[[`She go to school by bus.`,`She goes to school by bus.`,`ประธานเอกพจน์บุรุษที่ 3 (he/she/it หรือชื่อคนหนึ่งคน) ต้องเติม -s/-es ภาษาไทยไม่มีกฎนี้จึงลืมบ่อยที่สุด`],[`He don't like durian.`,`He doesn't like durian.`,`he/she/it ใช้ does not (doesn't) ไม่ใช่ don't`],[`I am go to school every day.`,`I go to school every day.`,`ไม่ต้องใส่ am/is/are หน้ากริยาแท้ คนไทยมักแปลคำว่า “เป็น/อยู่” ติดมา`]]},
+'present-continuous':{name:`Present Continuous`,th:`ปัจจุบันกาลกำลังกระทำ`,short:`am/is/are + V-ing`,
+ idea:`สิ่งที่กำลังเกิดขึ้น “ตอนนี้” หรือช่วงนี้ชั่วคราว เริ่มก่อนตอนนี้และยังไม่จบ`,
+ form:[`S + am/is/are + V-ing`,`S + am/is/are not + V-ing`,`Am/Is/Are + S + V-ing ?`],
+ words:[`now`,`right now`,`at the moment`,`Look!`,`Listen!`,`these days`,`this week`],
+ ex:[[`I**'m studying** English right now.`,`ตอนนี้ฉันกำลังเรียนภาษาอังกฤษอยู่`],[`Look! It**'s raining**.`,`ดูสิ ฝนกำลังตก`],[`**Are** you **working** from home this week?`,`สัปดาห์นี้เธอทำงานที่บ้านหรือเปล่า`]],
+ err:[[`I studying now.`,`I am studying now.`,`ต้องมี am/is/are นำหน้า V-ing เสมอ`],[`I am understanding you.`,`I understand you.`,`กริยาบอกสภาวะ เช่น understand, know, like, want ไม่ใช้รูป -ing แม้จะหมายถึงตอนนี้`],[`I am going to the gym every day.`,`I go to the gym every day.`,`ทำเป็นประจำใช้ Present Simple ไม่ใช่ Continuous`]]},
+'present-perfect':{name:`Present Perfect`,th:`ปัจจุบันกาลสมบูรณ์`,short:`have/has + V3`,
+ idea:`เหตุการณ์ในอดีตที่ “มีผลหรือเกี่ยวข้องกับตอนนี้” ไม่ระบุเวลาที่แน่ชัด เน้นผลลัพธ์หรือประสบการณ์`,
+ form:[`S + have/has + V3`,`S + have/has not + V3`,`Have/Has + S + V3 ?`],
+ words:[`already`,`yet`,`just`,`ever`,`never`,`so far`,`since 2020`,`for three years`],
+ ex:[[`I**'ve lost** my keys.`,`ฉันทำกุญแจหาย (ตอนนี้ก็ยังหาไม่เจอ)`],[`**Have** you ever **been** to Korea?`,`เธอเคยไปเกาหลีไหม`],[`She **has lived** here since 2020.`,`เธออาศัยอยู่ที่นี่ตั้งแต่ปี 2020`]],
+ err:[[`I have seen him yesterday.`,`I saw him yesterday.`,`ถ้าระบุเวลาที่จบไปแล้ว (yesterday, last week, ago) ต้องใช้ Past Simple`],[`I live here for five years.`,`I have lived here for five years.`,`“อยู่มา 5 ปีแล้ว” คือเริ่มในอดีตและยังอยู่ ต้องใช้ have lived`],[`Have you ever went to Japan?`,`Have you ever been to Japan?`,`หลัง have ต้องเป็นช่อง 3 และ “เคยไป” ใช้ been to`]]},
+'present-pc':{name:`Present Perfect Continuous`,th:`ปัจจุบันกาลสมบูรณ์กำลังกระทำ`,short:`have/has been + V-ing`,
+ idea:`ทำมาตั้งแต่อดีตต่อเนื่องจนถึงตอนนี้ (อาจยังทำอยู่หรือเพิ่งหยุด) เน้นว่า “ทำมานานแค่ไหน”`,
+ form:[`S + have/has been + V-ing`,`S + have/has not been + V-ing`,`Have/Has + S + been + V-ing ?`],
+ words:[`for three hours`,`since this morning`,`all day`,`lately`,`recently`,`How long …?`],
+ ex:[[`I**'ve been studying** for three hours.`,`ฉันอ่านหนังสือมาสามชั่วโมงแล้ว`],[`It **has been raining** since noon.`,`ฝนตกมาตั้งแต่เที่ยง`],[`How long **have** you **been waiting**?`,`เธอรอมานานแค่ไหนแล้ว`]],
+ err:[[`I am studying here since 2022.`,`I have been studying here since 2022.`,`ภาษาไทยพูดว่า “เรียนอยู่ที่นี่ตั้งแต่ 2022” จึงเผลอใช้ Continuous ธรรมดา แต่ถ้ามี since/for ต้องเป็นรูป Perfect`],[`I have been knowing her for years.`,`I have known her for years.`,`กริยาบอกสภาวะใช้ Present Perfect แทน`],[`She has been work all day.`,`She has been working all day.`,`has been ต้องตามด้วย V-ing`]]},
+'future-simple':{name:`Future Simple`,th:`อนาคตกาลธรรมดา`,short:`will + V1`,
+ idea:`เหตุการณ์ในอนาคต การคาดเดา คำสัญญา หรือการตัดสินใจทันทีตอนพูด`,
+ form:[`S + will + V1`,`S + will not (won't) + V1`,`Will + S + V1 ?`],
+ words:[`tomorrow`,`next week`,`soon`,`later`,`in 2030`,`I think …`,`probably`],
+ ex:[[`I**'ll call** you tomorrow.`,`พรุ่งนี้ฉันจะโทรหานะ`],[`I think it **will rain** later.`,`ฉันว่าเดี๋ยวฝนจะตก`],[`Don't worry, I **won't tell** anyone.`,`ไม่ต้องห่วง ฉันจะไม่บอกใคร`]],
+ err:[[`I will to go.`,`I will go.`,`หลัง will ใช้กริยาช่อง 1 ทันที ไม่มี to`],[`If it will rain, we will stay home.`,`If it rains, we will stay home.`,`ในประโยค if ส่วนเงื่อนไขใช้ Present Simple แม้จะหมายถึงอนาคต`],[`She will goes there.`,`She will go there.`,`หลัง will ไม่เติม -s ไม่ว่าประธานจะเป็นอะไร`]]},
+'future-continuous':{name:`Future Continuous`,th:`อนาคตกาลกำลังกระทำ`,short:`will be + V-ing`,
+ idea:`สิ่งที่ “กำลังทำอยู่” ณ เวลาหนึ่งในอนาคต เป็นภาพว่าตอนนั้นเราจะอยู่ระหว่างทำอะไร`,
+ form:[`S + will be + V-ing`,`S + will not be + V-ing`,`Will + S + be + V-ing ?`],
+ words:[`at this time tomorrow`,`at 9 a.m. next Monday`,`this time next week`,`all evening tomorrow`],
+ ex:[[`At 9 a.m. tomorrow, I**'ll be taking** the exam.`,`พรุ่งนี้ 9 โมง ฉันจะกำลังสอบอยู่`],[`This time next week, we**'ll be lying** on the beach.`,`เวลานี้สัปดาห์หน้า เราจะกำลังนอนเล่นอยู่บนชายหาด`],[`**Will** you **be using** the car tonight?`,`คืนนี้เธอจะใช้รถอยู่หรือเปล่า`]],
+ err:[[`I will be take the exam.`,`I will be taking the exam.`,`will be ต้องตามด้วย V-ing`],[`I will taking a shower at 8.`,`I will be taking a shower at 8.`,`อย่าลืม be ระหว่าง will กับ V-ing`],[`At 8 tomorrow, I will sleep.`,`At 8 tomorrow, I will be sleeping.`,`ถ้าจะบอกว่า “ตอนนั้นกำลังทำอยู่” ใช้ will be + V-ing ส่วน will sleep หมายถึงจะเริ่มนอนตอนนั้น`]]},
+'future-perfect':{name:`Future Perfect`,th:`อนาคตกาลสมบูรณ์`,short:`will have + V3`,
+ idea:`สิ่งที่จะ “เสร็จก่อน” เวลาหนึ่งในอนาคต เหมือนยืนอยู่ในอนาคตแล้วมองย้อนกลับมา`,
+ form:[`S + will have + V3`,`S + will not have + V3`,`Will + S + have + V3 ?`],
+ words:[`by Friday`,`by the time`,`by 2030`,`by then`,`before`],
+ ex:[[`By Friday, I **will have finished** the report.`,`ภายในวันศุกร์ ฉันจะทำรายงานเสร็จแล้ว`],[`By the time you arrive, the show **will have started**.`,`กว่าเธอจะมาถึง การแสดงก็คงเริ่มไปแล้ว`],[`**Will** you **have saved** enough money by June?`,`ภายในมิถุนายน เธอจะเก็บเงินได้พอหรือยัง`]],
+ err:[[`I will have finish by 6.`,`I will have finished by 6.`,`หลัง will have ต้องเป็นกริยาช่อง 3`],[`I will have finished until Friday.`,`I will have finished by Friday.`,`“ภายใน/ก่อน” ใช้ by ส่วน until แปลว่า “จนถึง” ใช้กับการกระทำที่ทำต่อเนื่องไปจนถึงเวลานั้น`],[`By the time she will come, I will have left.`,`By the time she comes, I will have left.`,`หลัง by the time / when / before ที่พูดถึงอนาคต ใช้ Present Simple ไม่ใช้ will`]]},
+'future-pc':{name:`Future Perfect Continuous`,th:`อนาคตกาลสมบูรณ์กำลังกระทำ`,short:`will have been + V-ing`,
+ idea:`ทำต่อเนื่องมาจนถึงเวลาหนึ่งในอนาคต เน้นว่า “ถึงตอนนั้นจะทำมานานแค่ไหนแล้ว”`,
+ form:[`S + will have been + V-ing`,`S + will not have been + V-ing`,`Will + S + have been + V-ing ?`],
+ words:[`for ten years + by …`,`by the time`,`by next month`,`by December`],
+ ex:[[`By December, I **will have been teaching** for ten years.`,`พอถึงธันวาคม ฉันจะสอนมาครบสิบปีแล้ว`],[`By 6 p.m., she **will have been working** for nine hours.`,`พอหกโมงเย็น เธอจะทำงานมาเก้าชั่วโมงแล้ว`],[`How long **will** you **have been living** here by next year?`,`พอถึงปีหน้า เธอจะอยู่ที่นี่มานานเท่าไรแล้ว`]],
+ err:[[`By 2030, I will have been teach for ten years.`,`By 2030, I will have been teaching for ten years.`,`will have been ต้องตามด้วย V-ing`],[`She will has been working.`,`She will have been working.`,`หลัง will ใช้ have เสมอ ไม่ใช้ has`],[`By June, I will be living here for 5 years.`,`By June, I will have been living here for 5 years.`,`ถ้าบอกว่า “ถึงตอนนั้นจะทำมาครบ…แล้ว” ต้องใช้รูป Perfect (will have been + V-ing)`]]}
+};
+const ORDER=[];FRAMES.forEach(f=>ASPS.forEach(a=>ORDER.push(f+'-'+a)));
+const PRESET={
+ 'past-simple':{mode:'point',ref:260,p:260,a:180,b:340},
+ 'past-continuous':{mode:'span',ref:260,p:200,a:170,b:350},
+ 'past-perfect':{mode:'point',ref:340,p:150,a:180,b:340},
+ 'past-pc':{mode:'span',ref:340,p:200,a:120,b:340},
+ 'present-simple':{mode:'habit',ref:500,p:500,a:420,b:580},
+ 'present-continuous':{mode:'span',ref:500,p:400,a:410,b:590},
+ 'present-perfect':{mode:'point',ref:500,p:310,a:330,b:500},
+ 'present-pc':{mode:'span',ref:500,p:330,a:300,b:500},
+ 'future-simple':{mode:'point',ref:740,p:740,a:660,b:820},
+ 'future-continuous':{mode:'span',ref:740,p:700,a:650,b:830},
+ 'future-perfect':{mode:'point',ref:850,p:670,a:660,b:850},
+ 'future-pc':{mode:'span',ref:850,p:700,a:640,b:850}
+};
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const md=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const frameOf=k=>k.split('-')[0];
+const aspOf=k=>k.split('-')[1];
+
+/* ---------- timeline drawing ---------- */
+const PX=34, AX=196, H=290, TOL=16;
+function zone(u){return u<472?'past':u>528?'future':'present'}
+function classify(s){
+  const f=zone(s.ref);
+  if(s.mode==='habit') return {k:f+'-simple'};
+  if(s.mode==='point'){
+    const d=s.p-s.ref;
+    if(Math.abs(d)<=TOL) return {k:f+'-simple',hint:f==='present'?`เหตุการณ์ตรง NOW พอดี: Present Simple ใช้กับนิสัยและความจริงเป็นหลัก ลองกด “ทำเป็นประจำ” ดูนะ`:null};
+    if(d<0) return {k:f+'-perfect'};
+    return {k:zone(s.p)+'-simple',hint:`เหตุการณ์อยู่หลังธง แอปจึงอ่านตามเวลาของเหตุการณ์แทน ลองลากธงมาไว้ที่จุด หรือไว้หลังจุด`};
+  }
+  if(s.a<s.ref-TOL && s.b>s.ref+TOL) return {k:f+'-continuous'};
+  if(s.a<s.ref-TOL && Math.abs(s.b-s.ref)<=TOL) return {k:f+'-pc'};
+  if(s.b<s.ref-TOL) return {k:f+'-perfect',hint:`แถบจบก่อนธง = ทำเสร็จไปแล้วก่อนจุดที่มอง ถ้าอยากได้ Perfect Continuous ให้ลากปลายแถบมาชนธงพอดี`};
+  return {k:zone((s.a+s.b)/2)+'-continuous',hint:`แถบเริ่มหลังธง ลองลากธงเข้าไปไว้ในแถบ`};
+}
+function svgMarkup(s,W,id,res){
+  const x=u=>PX+(u-40)/920*(W-2*PX);
+  const f=frameOf(res.k), a=aspOf(res.k), col=`var(--${f})`;
+  const tf=`font-family:var(--f-body)`;
+  const anim=RM?'':`<animateTransform attributeName="patternTransform" type="translate" from="0 0" to="14 0" dur="0.9s" repeatCount="indefinite"/>`;
+  let cap='';
+  const capT=(cx,cy,t)=>{cap+=`<text x="${cx}" y="${cy}" text-anchor="middle" style="${tf};font-size:16px;font-weight:600;fill:${col};paint-order:stroke;stroke:var(--surface);stroke-width:6px;stroke-linejoin:round">${t}</text>`};
+  let o=`<defs><pattern id="${id}st" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" style="fill:var(--surface)"/><path d="M-3,3 l6,-6 M0,14 l14,-14 M11,17 l6,-6" style="stroke:${col};stroke-width:3.5"/>${anim}</pattern>
+  <marker id="${id}ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:${col}"/></marker>
+  <marker id="${id}ax" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink)"/></marker></defs>`;
+  o+=`<rect x="${x(40)}" y="34" width="${x(500)-x(40)}" height="${AX+30-34}" rx="10" style="fill:var(--past-wash)"/>`;
+  o+=`<rect x="${x(500)}" y="34" width="${x(960)-x(500)}" height="${AX+30-34}" rx="10" style="fill:var(--future-wash)"/>`;
+  o+=`<line x1="${x(500)}" y1="34" x2="${x(500)}" y2="${AX+30}" style="stroke:var(--present);stroke-width:3"/>`;
+  o+=`<line x1="${x(40)}" y1="${AX}" x2="${x(960)}" y2="${AX}" marker-end="url(#${id}ax)" style="stroke:var(--ink);stroke-width:3"/>`;
+  [['past',250,'PAST · อดีต'],['present',500,'NOW'],['future',750,'FUTURE · อนาคต']].forEach(([z,u,t])=>{
+    o+=`<text x="${x(u)}" y="${AX+58}" text-anchor="middle" style="${tf};font-size:21px;font-weight:700;fill:var(--${z})">${t}</text>`;
+  });
+  // action
+  if(s.mode==='point'){
+    if(a==='perfect' && s.p<s.ref-TOL){
+      const x1=x(s.p),x2=x(s.ref),h=Math.min(110,(x2-x1)*.45+28),mx=(x1+x2)/2;
+      o+=`<path class="${RM?'':'flow'}" d="M${x1},${AX-20} Q${mx},${AX-20-h*1.6} ${x2-6},${AX-22}" marker-end="url(#${id}ar)" style="fill:none;stroke:${col};stroke-width:3;stroke-dasharray:8 8"/>`;
+      if(x2-x1>150) capT(mx,AX-14-h*.8,'ผลโยงมาถึงจุดที่มอง');
+    }
+    const pc=`var(--${zone(s.p)})`;
+    o+=`<g data-h="p" class="grab"><circle cx="${x(s.p)}" cy="${AX}" r="36" style="fill:transparent"/><circle class="pulse" cx="${x(s.p)}" cy="${AX}" r="16" style="fill:none;stroke:${pc};stroke-width:3"/><circle cx="${x(s.p)}" cy="${AX}" r="13" style="fill:${pc};stroke:var(--surface);stroke-width:3"/></g>`;
+  } else if(s.mode==='span'){
+    const xa=x(s.a),xb=x(s.b);
+    const cp=a==='continuous'?'กำลังทำอยู่ ณ ตอนนั้น':a==='pc'?'ทำต่อเนื่องมาถึงตอนนั้น':'';
+    if(cp) capT((xa+xb)/2,AX-36,cp);
+    o+=`<rect data-h="body" class="grab" x="${xa}" y="${AX-17}" width="${Math.max(4,xb-xa)}" height="34" rx="8" style="fill:url(#${id}st);stroke:${col};stroke-width:2.5"/>`;
+    [['a',xa],['b',xb]].forEach(([h,xx])=>{o+=`<g data-h="${h}" class="grab"><rect x="${xx-18}" y="${AX-32}" width="36" height="64" style="fill:transparent"/><rect x="${xx-6}" y="${AX-26}" width="12" height="52" rx="5" style="fill:${col};stroke:var(--surface);stroke-width:2"/></g>`});
+  } else {
+    capT(x(s.ref),AX-36,'ทำซ้ำเป็นประจำ');
+    o+=`<g data-h="ref" class="grab"><rect x="${x(52)}" y="${AX-24}" width="${x(948)-x(52)}" height="48" style="fill:transparent"/>`;
+    let i=0;
+    for(let k=-6;k<=6;k++){const u=s.ref+k*62;if(u<56||u>944)continue;const xx=x(u),d=9;
+      o+=`<path class="${RM?'':'pop'}" style="animation-delay:${(i++)*0.18}s;stroke:${col};stroke-width:4;stroke-linecap:round;fill:none" d="M${xx-d},${AX-d} L${xx+d},${AX+d} M${xx+d},${AX-d} L${xx-d},${AX+d}"/>`;}
+    o+=`</g>`;
+  }
+  // reference flag
+  const xr=x(s.ref), fw=136, left=xr+fw>W-6;
+  const fp=left?`M${xr},44 h-${fw} l14,16 l-14,16 h${fw} z`:`M${xr},44 h${fw} l-14,16 l14,16 h-${fw} z`;
+  o+=`<g data-h="ref" class="grab"><rect x="${xr-22}" y="38" width="44" height="${AX-30}" style="fill:transparent"/><rect x="${left?xr-fw:xr}" y="38" width="${fw}" height="44" style="fill:transparent"/>
+    <line x1="${xr}" y1="44" x2="${xr}" y2="${AX+14}" style="stroke:var(--ink);stroke-width:2.5;stroke-dasharray:6 6"/>
+    <path d="${fp}" style="fill:var(--accent);stroke:var(--ink);stroke-width:1.5"/>
+    <text x="${left?xr-fw/2-4:xr+fw/2-4}" y="66" text-anchor="middle" style="${tf};font-size:16px;font-weight:700;fill:var(--on-accent)">มองจากตรงนี้</text></g>`;
+  return o+cap;
+}
+
+/* ---------- explorer state ---------- */
+const st={...PRESET['present-perfect']};
+let W=1000, curKey=null, dragging=null, auto=null, autoIdx=0;
+const svg=document.getElementById('tlsvg'), host=document.getElementById('tl');
+function fitW(){const w=host.clientWidth;const nw=w<640?620:1000;if(nw!==W){W=nw;draw()}}
+function draw(){
+  const res=classify(st);
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.innerHTML=svgMarkup(st,W,'m',res);
+  ['point','span','habit'].forEach(m=>document.getElementById('m-'+m).setAttribute('aria-pressed',st.mode===m));
+  if(res.k!==curKey){curKey=res.k;renderReadout();renderMatrix();renderDetail()}
+  const h=document.getElementById('hint');h.hidden=!res.hint;h.textContent=res.hint||'';
+}
+function renderReadout(){
+  const t=T[curKey],f=frameOf(curKey),a=aspOf(curKey);
+  const r=document.getElementById('readout');r.style.setProperty('--fc',`var(--${f})`);
+  r.innerHTML=`<div><p class="eyebrow">${FR[f].en} · ${FR[f].th} / ${ASP[a]}</p><h2 class="ro-name">${t.name}</h2><p class="ro-th">${t.th}</p></div>
+  <div class="ro-side"><code class="formula">${esc(t.form[0])}</code><p class="ro-ex">${md(t.ex[0][0])}</p><p class="ro-shape">${SHAPE[a]}</p><p class="hint" id="hint" hidden></p><a class="jump" href="#detail">ดูโครงสร้าง คำบอกเวลา และข้อผิดของคนไทย ↓</a></div>`;
+}
+function renderMatrix(){
+  const m=document.getElementById('matrix');
+  let o=`<div></div>`+ASPS.map(a=>`<div class="mx-col">${ASP[a]}</div>`).join('');
+  FRAMES.forEach(f=>{
+    o+=`<div class="mx-row" style="--fc:var(--${f})">${f==='present'?'Present':FR[f].en[0]+FR[f].en.slice(1).toLowerCase()}<small>${FR[f].th}</small></div>`;
+    ASPS.forEach(a=>{const k=f+'-'+a;o+=`<button class="mx-cell" data-k="${k}" aria-pressed="${k===curKey}" aria-label="${T[k].name}" style="--fc:var(--${f});--wash:var(--${f}-wash)"><code>${esc(T[k].short)}</code></button>`});
+  });
+  m.innerHTML=o;
+}
+function renderDetail(){
+  const t=T[curKey],f=frameOf(curKey),a=aspOf(curKey);
+  const d=document.getElementById('detail');
+  d.style.setProperty('--fc',`var(--${f})`);d.style.setProperty('--wash',`var(--${f}-wash)`);
+  d.innerHTML=`<header class="d-head"><p class="eyebrow">${FR[f].en} · ${FR[f].th} / ${ASP[a]}</p><h2>${t.name}<span>${t.th}</span></h2><p class="idea">${t.idea}</p></header>
+  <div class="d-grid">
+    <section><h3>โครงสร้าง</h3><dl class="form">
+      <div><dt>บอกเล่า (+)</dt><dd>${esc(t.form[0])}</dd></div>
+      <div><dt>ปฏิเสธ (−)</dt><dd>${esc(t.form[1])}</dd></div>
+      <div><dt>คำถาม (?)</dt><dd>${esc(t.form[2])}</dd></div></dl>
+      <h3 style="margin-top:8px">คำบอกเวลา</h3><ul class="chips">${t.words.map(w=>`<li>${esc(w)}</li>`).join('')}</ul></section>
+    <section><h3>ตัวอย่าง</h3><ul class="ex">${t.ex.map(e=>`<li><span class="en">${md(e[0])}</span><span class="th">${e[1]}</span></li>`).join('')}</ul></section>
+    <section class="span2"><h3>ข้อผิดที่คนไทยชอบทำ</h3><div class="errs">${t.err.map(e=>`<div class="err"><p class="w"><span class="mk bad">✗ ผิด</span><s>${esc(e[0])}</s></p><p class="r"><span class="mk ok">✓ ถูก</span><span>${esc(e[1])}</span></p><p class="why">${e[2]}</p></div>`).join('')}</div></section>
+  </div>`;
+}
+function goTo(k,keepAuto){
+  if(!keepAuto) stopAuto();
+  const tg=PRESET[k];st.mode=tg.mode;
+  const from={ref:st.ref,p:st.p,a:st.a,b:st.b};
+  if(RM){Object.assign(st,tg);draw();return}
+  const t0=performance.now(),dur=520;
+  function step(now){const q=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-q,3);
+    ['ref','p','a','b'].forEach(n=>st[n]=from[n]+(tg[n]-from[n])*e);
+    if(q>=1)Object.assign(st,tg);draw();if(q<1)requestAnimationFrame(step)}
+  requestAnimationFrame(step);
+}
+function stopAuto(){if(auto){clearInterval(auto);auto=null}const b=document.getElementById('autoBtn');b.setAttribute('aria-pressed','false');b.textContent='▶ เล่นอัตโนมัติ 12 Tense'}
+document.getElementById('autoBtn').addEventListener('click',()=>{
+  if(auto){stopAuto();return}
+  const b=document.getElementById('autoBtn');b.setAttribute('aria-pressed','true');b.textContent='■ หยุดเล่นอัตโนมัติ';
+  autoIdx=0;goTo(ORDER[autoIdx],true);
+  auto=setInterval(()=>{autoIdx=(autoIdx+1)%12;goTo(ORDER[autoIdx],true)},3400);
+});
+document.getElementById('matrix').addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(b)goTo(b.dataset.k)});
+document.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{
+  stopAuto();const m=b.dataset.m;if(st.mode===m)return;st.mode=m;
+  if(m==='point'&&Math.abs(st.p-st.ref)>TOL&&st.p>st.ref)st.p=st.ref;
+  if(m==='span'&&!(st.a<st.ref&&st.b>st.ref)){st.a=Math.max(60,st.ref-120);st.b=Math.min(940,st.ref+90)}
+  draw();
+}));
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+function toU(e){const r=svg.getBoundingClientRect();const px=(e.clientX-r.left)/r.width*W;return 40+(px-PX)/(W-2*PX)*920}
+svg.addEventListener('pointerdown',e=>{
+  stopAuto();
+  const t=e.target.closest('[data-h]');const u=clamp(toU(e),52,948);
+  let h=t?t.dataset.h:null;
+  if(!h){ if(st.mode==='point'){st.p=u;h='p'} else return; }
+  dragging={h,u0:u,a0:st.a,b0:st.b};svg.setPointerCapture(e.pointerId);e.preventDefault();move(e);
+});
+function move(e){
+  if(!dragging)return;
+  const u=clamp(toU(e),52,948),h=dragging.h;
+  if(h==='ref'){st.ref=Math.abs(u-500)<30?500:u}
+  else if(h==='p'){st.p=Math.abs(u-st.ref)<14?st.ref:u}
+  else if(h==='a'){st.a=Math.min(u,st.b-40)}
+  else if(h==='b'){let v=Math.max(u,st.a+40);if(Math.abs(v-st.ref)<16)v=st.ref;st.b=v}
+  else if(h==='body'){const w=dragging.b0-dragging.a0;let na=clamp(dragging.a0+(u-dragging.u0),52,948-w);st.a=na;st.b=na+w;if(Math.abs(st.b-st.ref)<12){st.b=st.ref;st.a=st.ref-w}}
+  draw();
+}
+svg.addEventListener('pointermove',move);
+const end=()=>{dragging=null};
+svg.addEventListener('pointerup',end);svg.addEventListener('pointercancel',end);
+
+/* ---------- tabs & rec mode ---------- */
+function showTab(q){
+  document.getElementById('tab-explore').setAttribute('aria-selected',!q);
+  document.getElementById('tab-quiz').setAttribute('aria-selected',q);
+  document.getElementById('view-explore').hidden=q;document.getElementById('view-quiz').hidden=!q;
+  if(q){stopAuto();renderQuiz()}else fitW();
+  scrollTo({top:0});
+}
+document.getElementById('tab-explore').onclick=()=>showTab(false);
+document.getElementById('tab-quiz').onclick=()=>showTab(true);
+document.getElementById('recBtn').onclick=e=>{const on=document.body.classList.toggle('rec');e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.textContent=on?'ออกจากโหมดอัดคลิป':'โหมดอัดคลิป 9:16';setTimeout(fitW,30)};
+
+/* ---------- quiz ---------- */
+const QB=[
+ {sit:`ตอนนี้แม่อยู่ในครัว ยืนผัดกับข้าวอยู่`,s:`Mom ___ dinner right now.`,k:'present-continuous',o:['present-simple','present-continuous','present-perfect','past-continuous'],fill:`Mom **is cooking** dinner right now.`,why:`มี right now และการกระทำยังไม่จบ จึงใช้ am/is/are + V-ing`},
+ {sit:`เมื่อวานไปดูหนังกับเพื่อน ดูจบแล้วกลับบ้าน`,s:`I ___ a movie with my friends yesterday.`,k:'past-simple',o:['past-simple','present-perfect','past-perfect','past-continuous'],fill:`I **watched** a movie with my friends yesterday.`,why:`มี yesterday ซึ่งเป็นเวลาในอดีตที่จบไปแล้ว ใช้ Past Simple (V2) ห้ามใช้ Present Perfect กับ yesterday`},
+ {sit:`ย้ายมาอยู่กรุงเทพตั้งแต่ปี 2020 และตอนนี้ก็ยังอยู่`,s:`I ___ in Bangkok since 2020.`,k:'present-perfect',o:['present-simple','past-simple','present-perfect','present-continuous'],fill:`I **have lived** in Bangkok since 2020.`,why:`เริ่มในอดีตและยังเป็นจริงถึงตอนนี้ มี since 2020 จึงใช้ have/has + V3`},
+ {sit:`พรุ่งนี้สองทุ่มตรง ฉันจะอยู่ในคอนเสิร์ต กำลังดูวงโปรดอยู่`,s:`At 8 p.m. tomorrow, I ___ my favorite band.`,k:'future-continuous',o:['future-simple','future-continuous','future-perfect','present-continuous'],fill:`At 8 p.m. tomorrow, I **will be watching** my favorite band.`,why:`ระบุเวลาหนึ่งในอนาคตและตอนนั้น “กำลังทำอยู่” จึงใช้ will be + V-ing`},
+ {sit:`เราไปถึงสถานีช้า รถไฟออกไปก่อนเราถึงแล้ว`,s:`When we got to the station, the train ___.`,k:'past-perfect',o:['past-perfect','present-perfect','past-continuous','future-perfect'],fill:`When we got to the station, the train **had left**.`,why:`รถไฟออกไป “ก่อน” อีกเหตุการณ์ในอดีต (เราไปถึง) จึงใช้ had + V3`},
+ {sit:`ความจริงทางวิทยาศาสตร์: น้ำเดือดที่ 100 องศาเซลเซียส`,s:`Water ___ at 100°C.`,k:'present-simple',o:['present-simple','present-continuous','present-perfect','future-simple'],fill:`Water **boils** at 100°C.`,why:`ความจริงทั่วไปใช้ Present Simple ประธาน water เป็นเอกพจน์ จึงเติม -s`},
+ {sit:`เมื่อคืนไฟดับ ตอนนั้นฉันกำลังอาบน้ำอยู่พอดี`,s:`I ___ a shower when the lights went out.`,k:'past-continuous',o:['past-simple','past-continuous','past-perfect','present-continuous'],fill:`I **was taking** a shower when the lights went out.`,why:`การกระทำยาว (อาบน้ำ) กำลังเกิดอยู่ แล้วมีเหตุการณ์สั้น (ไฟดับ) แทรกเข้ามา การกระทำยาวใช้ was/were + V-ing`},
+ {sit:`หัวหน้าถามเรื่องรายงาน ฉันมั่นใจว่าก่อนวันศุกร์จะทำเสร็จแน่นอน`,s:`By Friday, I ___ the report.`,k:'future-perfect',o:['future-perfect','future-continuous','present-perfect','past-perfect'],fill:`By Friday, I **will have finished** the report.`,why:`by + เวลาในอนาคต และเน้นว่า “เสร็จก่อน” เวลานั้น จึงใช้ will have + V3`},
+ {sit:`เพิ่งวิ่งเสร็จเมื่อกี้ วิ่งมาครึ่งชั่วโมง ตอนนี้เหงื่อท่วมตัว`,s:`I'm sweaty because I ___ for 30 minutes.`,k:'present-pc',o:['present-pc','present-continuous','past-perfect','future-continuous'],fill:`I'm sweaty because I **have been running** for 30 minutes.`,why:`ทำต่อเนื่องมาจนถึงตอนนี้และเห็นผล (เหงื่อ) เน้นระยะเวลา for 30 minutes จึงใช้ have/has been + V-ing`},
+ {sit:`คนไข้นั่งรอมาสองชั่วโมงแล้ว กว่าหมอจะมาถึง`,s:`The patient ___ for two hours before the doctor came.`,k:'past-pc',o:['past-pc','present-pc','past-continuous','future-pc'],fill:`The patient **had been waiting** for two hours before the doctor came.`,why:`รอต่อเนื่องมาจนถึงจุดหนึ่งในอดีต (หมอมาถึง) เน้นว่ารอนานแค่ไหน จึงใช้ had been + V-ing`},
+ {sit:`เห็นเพื่อนถือกล่องหนัก ๆ เลยตัดสินใจตอนนั้นเลยว่าจะช่วย`,s:`That box looks heavy. I ___ you.`,k:'future-simple',o:['future-simple','present-continuous','future-perfect','present-simple'],fill:`That box looks heavy. I**'ll help** you.`,why:`ตัดสินใจทันทีตอนพูด ใช้ will + V1`},
+ {sit:`ครูเริ่มสอนปี 2017 ถึงธันวาคมปีหน้าจะสอนครบสิบปี`,s:`By next December, I ___ for ten years.`,k:'future-pc',o:['future-pc','future-continuous','present-pc','past-pc'],fill:`By next December, I **will have been teaching** for ten years.`,why:`ทำต่อเนื่องมาถึงจุดหนึ่งในอนาคต และบอกระยะเวลา for ten years จึงใช้ will have been + V-ing`},
+ {sit:`กุญแจบ้านหาย ตอนนี้ยืนอยู่หน้าบ้าน เข้าไม่ได้`,s:`I ___ my keys, so I can't get in.`,k:'present-perfect',o:['present-perfect','present-continuous','past-perfect','future-perfect'],fill:`I **have lost** my keys, so I can't get in.`,why:`เหตุการณ์ในอดีตที่ส่งผลถึงตอนนี้ (เข้าบ้านไม่ได้) และไม่ได้ระบุเวลา จึงใช้ have/has + V3`},
+ {sit:`พี่ชายไปยิมทุกเช้าวันจันทร์ ทำแบบนี้มาเป็นปีแล้ว`,s:`My brother ___ to the gym every Monday morning.`,k:'present-simple',o:['present-simple','present-continuous','present-perfect','future-continuous'],fill:`My brother **goes** to the gym every Monday morning.`,why:`กิจวัตรที่ทำเป็นประจำ (every Monday) ใช้ Present Simple และ my brother เป็นเอกพจน์ จึงใช้ goes`},
+ {sit:`ปีที่แล้วครอบครัวเราไปเที่ยวญี่ปุ่นกันมา`,s:`Last year, we ___ to Japan.`,k:'past-simple',o:['past-simple','present-perfect','past-perfect','past-continuous'],fill:`Last year, we **went** to Japan.`,why:`last year คือเวลาในอดีตที่จบแล้ว ใช้ Past Simple`},
+ {sit:`มองออกไปนอกหน้าต่าง ฝนกำลังตกหนักเลย`,s:`Look! It ___ outside.`,k:'present-continuous',o:['present-continuous','present-simple','present-perfect','future-simple'],fill:`Look! It**'s raining** outside.`,why:`Look! บอกว่ากำลังเกิดขึ้นตรงหน้าตอนนี้ ใช้ am/is/are + V-ing`}
+];
+let Q=null;
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+function newQuiz(){Q={items:shuffle(QB).slice(0,10).map(q=>({...q,o:shuffle(q.o)})),i:0,score:0,picked:null,missed:[]}}
+function renderQuiz(){
+  if(!Q)newQuiz();
+  const box=document.getElementById('quiz');
+  if(Q.i>=Q.items.length){
+    const miss=[...new Set(Q.missed)];
+    const msg=Q.score===10?'เต็ม! แม่นทุก Tense เลย':Q.score>=8?'เก่งมาก เหลืออีกนิดเดียว':Q.score>=5?'มาถูกทางแล้ว ทบทวน Tense ที่พลาดอีกรอบนะ':'ลองกลับไปเล่นเส้นเวลาสักรอบ แล้วมาลองใหม่';
+    box.innerHTML=`<div class="end"><p class="q-label">ผลคะแนน</p><p class="score">${Q.score}/${Q.items.length}</p><p class="q-sit">${msg}</p>
+    ${miss.length?`<p class="q-label">Tense ที่ควรทบทวน · แตะเพื่อดูบนเส้นเวลา</p><div class="missed">${miss.map(k=>`<button data-k="${k}" style="--fc:var(--${frameOf(k)})">${T[k].name}</button>`).join('')}</div>`:''}
+    <div class="row"><button class="primary" id="again">เล่นอีกครั้ง</button></div></div>`;
+    box.querySelector('#again').onclick=()=>{newQuiz();renderQuiz()};
+    box.querySelectorAll('.missed button').forEach(b=>b.onclick=()=>{showTab(false);goTo(b.dataset.k)});
+    return;
+  }
+  const q=Q.items[Q.i],done=Q.picked!==null;
+  const sent=esc(q.s).replace('___','<span class="blank" aria-label="ช่องว่าง">&nbsp;</span>');
+  box.innerHTML=`<div class="q-top"><span>ข้อ ${Q.i+1} / ${Q.items.length}</span><span>คะแนน ${Q.score}</span></div>
+  <div class="bar"><i style="width:${(Q.i+(done?1:0))/Q.items.length*100}%"></i></div>
+  <p class="q-label">สถานการณ์</p><p class="q-sit">${q.sit}</p>
+  <p class="q-sent">${sent}</p>
+  <p class="q-label">ช่องว่างนี้ควรใช้ Tense ไหน</p>
+  <div class="opts">${q.o.map(k=>{let c='',tag='';if(done){if(k===q.k){c='ok';tag='✓ คำตอบที่ถูก'}else if(k===Q.picked){c='bad';tag='✗ ที่เลือก'}}
+    return `<button class="opt ${c}" data-k="${k}" ${done?'disabled':''}>${tag?`<span class="tag">${tag}</span>`:''}<b>${T[k].name}</b><small>${esc(T[k].short)}</small></button>`}).join('')}</div>
+  ${done?`<div class="feedback" style="--fc:var(--${frameOf(q.k)})"><p class="verdict ${Q.picked===q.k?'ok':'bad'}">${Q.picked===q.k?'✓ ถูกต้อง':'✗ ยังไม่ใช่'}</p>
+    <p class="q-fill">${md(q.fill)}</p><p class="q-why">${q.why}</p>
+    <div class="mini"><svg viewBox="0 0 620 ${H}" role="img" aria-label="เส้นเวลาของ ${T[q.k].name}">${svgMarkup(PRESET[q.k],620,'q'+Q.i,{k:q.k})}</svg></div>
+    <button class="primary" id="next">${Q.i+1<Q.items.length?'ข้อต่อไป':'ดูผลคะแนน'}</button></div>`:''}`;
+  box.querySelectorAll('.opt:not(:disabled)').forEach(b=>b.onclick=()=>{Q.picked=b.dataset.k;if(Q.picked===q.k)Q.score++;else Q.missed.push(q.k);renderQuiz();const n=document.getElementById('next');n&&n.focus({preventScroll:true})});
+  const n=box.querySelector('#next');if(n)n.onclick=()=>{Q.i++;Q.picked=null;renderQuiz();box.scrollIntoView({block:'start'})};
+}
+
+/* ---------- boot ---------- */
+new ResizeObserver(fitW).observe(host);
+fitW();draw();
+</script>
+
+</body>
+</html>
