@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Candy Trail · Halloween phonics walk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Chewy&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Concept: a trick-or-treat route drawn on a night map. You walk a lantern-lit
+   path, read the signs at every fork, and a wrong sign means a cute dead end.
+   Cream paper panels sit on a deep teal night; pumpkin orange is the one accent. */
+:root{
+  --night:#0f2229; --night2:#183540; --paper:#fbf3df; --paper2:#f1e5c4; --ink:#2a2218; --muted:#6b5f47;
+  --cream:#f6ecc8; --orange:#f08a24; --orange-d:#b9560a; --pink:#ef6f91; --mint:#6fd1b0; --butter:#f6d365;
+  --ok:#256f49; --ok-bg:#dcf0e3; --bad:#a63d27; --bad-bg:#fbe1d7; --focus:#ffd166;
+  --c:#f08a24; --d:#a24a05;
+}
+*{box-sizing:border-box}
+html{font-size:18px}
+html.big{font-size:22px}
+body{margin:0;background:var(--night);color:var(--cream);min-height:100vh;line-height:1.5;
+  font-family:'Andika','IBM Plex Sans Thai',system-ui,sans-serif}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+h1,h2,h3,p,ol,ul{margin:0}
+ol,ul{padding:0;list-style:none}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px 3rem}
+.disp{font-family:'Chewy','Andika',sans-serif;font-weight:400;letter-spacing:.01em}
+svg.ico{width:1.15em;height:1.15em;flex:none}
+.pt{color:var(--d)}
+
+/* buttons */
+.btn{font:inherit;display:inline-flex;align-items:center;justify-content:center;gap:.45rem;border:2px solid var(--cream);background:transparent;color:var(--cream);border-radius:12px;padding:.45rem 1.2rem;min-height:48px;cursor:pointer;transition:background .12s,transform .08s}
+.btn:hover:not(:disabled){background:rgba(246,236,200,.12)}
+.btn:active:not(:disabled){transform:translateY(1px)}
+.btn.primary{background:var(--orange);border-color:var(--orange);color:#2a1604;font-weight:700}
+.btn.primary:hover:not(:disabled){background:#ffa040}
+.btn.paper{background:var(--paper);border-color:var(--paper);color:var(--ink)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.link{display:inline-flex;align-items:center;gap:.35rem;background:none;border:0;padding:0;min-height:44px;cursor:pointer;font-size:.9rem;color:var(--cream);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+
+/* top bar */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:.5rem 1rem;flex-wrap:wrap;padding:.4rem 0}
+.wm{font-weight:700;font-size:.82rem;letter-spacing:.03em;color:var(--cream);opacity:.85}
+.menu{position:relative;font-size:.85rem}
+.menu summary{list-style:none;cursor:pointer;min-height:44px;display:inline-flex;align-items:center;gap:.4rem;padding:0 .2rem;text-decoration:underline;text-underline-offset:3px}
+.menu summary::-webkit-details-marker{display:none}
+.menu .drop{position:absolute;right:0;top:100%;z-index:30;background:var(--paper);color:var(--ink);border-radius:12px;padding:.4rem .9rem;min-width:200px;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.menu label{display:flex;align-items:center;gap:.5rem;min-height:44px;cursor:pointer}
+.menu input{width:18px;height:18px;accent-color:var(--orange-d);margin:0}
+.jarbtn{display:inline-flex;align-items:center;gap:.5rem;background:var(--paper);color:var(--ink);border:0;border-radius:999px;padding:.2rem .9rem .2rem .5rem;min-height:44px;cursor:pointer;font-weight:700}
+.jarbtn svg{width:30px;height:30px}
+
+/* title */
+.hero{display:grid;grid-template-columns:1fr minmax(300px,480px);gap:1rem 2.5rem;align-items:center;padding:1.2rem 0 2rem}
+.hero h1{font-size:clamp(3.4rem,10vw,6.4rem);line-height:.95;color:var(--orange);margin:.2rem 0 .5rem}
+.hero .tag{font-size:1.15rem;max-width:26rem}
+.hero .acts{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem}
+.hero .art{border-radius:20px;overflow:hidden;border:2px solid rgba(246,236,200,.25)}
+.hero .art svg{display:block;width:100%;height:auto}
+.how{margin-top:2.4rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;border-top:1px solid rgba(246,236,200,.25);padding-top:1.2rem}
+.how b{display:block;font-size:1.1rem;color:var(--butter)}
+.how p{font-size:.92rem;opacity:.9}
+.how .n{font-family:'Chewy',sans-serif;font-size:2rem;color:var(--orange);line-height:1}
+
+/* character select */
+.sh{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--butter)}
+.pagetitle{font-size:clamp(2.2rem,6vw,3.4rem);line-height:1;margin:.4rem 0 .5rem}
+.chars{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:1.6rem 0}
+.charbtn{position:relative;background:var(--night2);border:3px solid transparent;border-radius:18px;padding:1rem .6rem .8rem;cursor:pointer;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.2rem}
+.charbtn:hover{border-color:rgba(246,236,200,.4)}
+.charbtn[aria-pressed="true"]{border-color:var(--orange);background:#1d4150}
+.charbtn svg{width:min(120px,100%);height:auto}
+.charbtn b{font-size:1.5rem;font-family:'Chewy',sans-serif;font-weight:400;color:var(--butter)}
+.charbtn small{font-size:.8rem;opacity:.85}
+.charbtn .on{position:absolute;top:.5rem;right:.6rem;font-size:.72rem;font-weight:700;background:var(--orange);color:#2a1604;border-radius:6px;padding:0 .4rem;display:none}
+.charbtn[aria-pressed="true"] .on{display:block}
+
+/* trail map */
+.trailhead{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;padding:1rem 0 .4rem}
+.trail{position:relative;max-width:620px;margin:1rem auto 0;height:calc(8*128px + 40px)}
+.trail svg.line{position:absolute;inset:0;width:100%;height:100%}
+.stop{position:absolute;transform:translateX(-50%);width:150px;background:none;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.15rem;padding:.3rem}
+.stop .dot{width:64px;height:64px;border-radius:50%;background:var(--paper);color:var(--ink);display:grid;place-items:center;font-family:'Chewy',sans-serif;font-size:2rem;border:4px solid var(--orange);position:relative}
+.stop:hover .dot{background:#fff;transform:scale(1.06)}
+.stop .nm{font-weight:700;font-size:1rem;line-height:1.2;color:var(--cream);text-shadow:0 0 5px var(--night),0 0 5px var(--night),0 0 2px var(--night)}
+.stop .cb{font-size:.8rem;color:var(--butter);word-spacing:.15em;text-shadow:0 0 5px var(--night),0 0 5px var(--night),0 0 2px var(--night)}
+.stop .st{display:flex;gap:2px;height:18px}
+.stop .st svg{width:18px;height:18px}
+.stop .gold{position:absolute;right:-6px;top:-4px;width:24px;height:24px}
+
+/* play screen */
+.hud{display:flex;align-items:center;gap:.4rem 1rem;flex-wrap:wrap;padding:.3rem 0 .5rem}
+.lvname{font-family:'Chewy',sans-serif;font-size:1.4rem;color:var(--orange);flex:1;min-width:9rem;line-height:1.1}
+.lvname small{font-family:'Andika',sans-serif;font-size:.78rem;color:var(--cream);opacity:.8;margin-left:.4rem}
+.pips{display:flex;gap:6px;align-items:center}
+.pips i{width:14px;height:14px;border-radius:50%;border:2px solid var(--cream);opacity:.8}
+.pips i.done{background:var(--orange);border-color:var(--orange);opacity:1}
+.pips i.now{border-color:var(--butter);box-shadow:0 0 0 3px rgba(246,211,101,.35);opacity:1}
+.pips i.door{border-radius:4px 4px 2px 2px}
+.jar{display:flex;align-items:center;gap:.3rem;font-weight:700}
+.jar svg{width:26px;height:26px}
+.jar.pulse{animation:pulse .4s}
+@keyframes pulse{50%{transform:scale(1.25)}}
+.play{display:grid;grid-template-columns:minmax(300px,520px) 1fr;gap:1.2rem 1.6rem;align-items:start}
+.scene{position:relative;container-type:inline-size;aspect-ratio:360/420;border-radius:18px;overflow:hidden;border:2px solid rgba(246,236,200,.25);background:#14303a;width:100%;transition:opacity .25s}
+.scene.fade{opacity:0}
+.scene svg.sc{position:absolute;inset:0;width:100%;height:100%;display:block}
+.sign{position:absolute;transform:translate(-50%,-100%);background:#b07a40;color:#fff7e3;border:0;border-bottom:4px solid #6b4220;border-radius:8px;padding:.35em .7em .3em;font-weight:700;font-size:max(14px,4.5cqw);line-height:1.15;cursor:pointer;text-align:center;min-width:4.4em;box-shadow:0 0 0 3px #6b4220;z-index:3}
+.sign small{display:block;font-size:.62em;font-weight:400;opacity:.9}
+.sign::after{content:"";position:absolute;left:50%;top:100%;width:8px;height:3.2cqw;background:#6b4220;transform:translateX(-50%);margin-top:4px}
+.sign:hover:not(:disabled){background:#c58a4c}
+.sign.ok{background:#2f8a5b;box-shadow:0 0 0 3px #145c38,0 0 22px 6px rgba(246,211,101,.6)}
+.sign.bad{background:#5b4a3c;color:#c9b99a;box-shadow:0 0 0 3px #3b3027;transform:translate(-50%,-100%) rotate(-7deg)}
+.sign:disabled{cursor:default}
+.bubble{position:absolute;transform:translate(-50%,-100%);background:var(--paper);color:var(--ink);border-radius:12px;padding:.25em .7em;font-weight:700;font-size:max(13px,4.2cqw);white-space:nowrap;z-index:5;animation:rise .2s}
+.bubble::after{content:"";position:absolute;left:50%;top:100%;border:7px solid transparent;border-top-color:var(--paper);transform:translateX(-50%)}
+.bubble.side::after{display:none}
+.pop{position:absolute;z-index:6;left:50%;top:48%;display:flex;gap:4px;align-items:center;transform:translate(-50%,-50%);animation:floatup 1.3s ease-out forwards;pointer-events:none}
+.pop svg{width:11cqw;height:11cqw}
+.pop b{font-family:'Chewy',sans-serif;font-weight:400;font-size:9cqw;color:var(--butter);text-shadow:0 2px 0 #0f2229}
+@keyframes floatup{0%{opacity:0;transform:translate(-50%,-30%)}20%{opacity:1}100%{opacity:0;transform:translate(-50%,-140%)}}
+@keyframes rise{from{opacity:0;transform:translate(-50%,-90%)}to{opacity:1;transform:translate(-50%,-100%)}}
+.hero-bob{animation:bob 1.6s ease-in-out infinite}
+.walking .hero-bob{animation:none}
+@keyframes bob{50%{transform:translateY(-2.5px)}}
+.de{opacity:0;transition:opacity .25s}
+.de.show{opacity:1}
+.obs{transition:opacity .6s,transform .6s;transform-box:fill-box;transform-origin:center}
+.obs.gone{opacity:0;transform:translateY(40px) scale(.8)}
+.obs.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.leaf{transition:transform .8s;transform-box:fill-box}
+.leaf.l{transform-origin:left center}
+.leaf.r{transform-origin:right center}
+.opened .leaf{transform:scaleX(.08)}
+.light{opacity:0;transition:opacity .6s}
+.opened .light{opacity:1}
+
+/* panel */
+.panel{background:var(--paper);color:var(--ink);border-radius:18px;padding:1.1rem 1.2rem 1.3rem;text-align:center}
+.ask{font-size:.95rem;color:var(--muted);margin-bottom:.7rem}
+.wordrow{display:flex;justify-content:center;align-items:center;gap:.8rem;flex-wrap:wrap}
+.pic{display:grid;place-items:center;background:rgba(240,138,36,.16);border-radius:12px;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;line-height:1}
+.pic:empty{display:none}
+.wcard{display:inline-flex;align-items:center;gap:.9rem;padding:.5rem 1.3rem .5rem .5rem;background:#fff;border:2px solid var(--paper2);border-radius:14px}
+.wcard .pic{width:4.2rem;height:4.2rem;font-size:2.7rem}
+.wtxt{font-size:clamp(2.2rem,8vw,3.4rem);font-weight:700;line-height:1.05}
+.panel>.pic,.pic.big{width:5rem;height:5rem;font-size:3.2rem;margin:0 auto .4rem}
+.fillword{font-size:clamp(2.2rem,8vw,3.6rem);font-weight:700;letter-spacing:.03em;line-height:1.2;display:flex;justify-content:center;flex-wrap:wrap}
+.blank{display:inline-block;min-width:1.6em;margin:0 .08em;border-bottom:.07em solid var(--ink);text-align:center;color:var(--ok)}
+.sent{font-size:clamp(1.4rem,5vw,2rem);font-weight:700;line-height:1.45;margin:.2rem 0}
+.thm{min-height:1.6rem;margin:.4rem 0 .2rem;font-size:1rem;color:var(--muted)}
+.say{gap:.45rem}
+.panel .btn{border-color:var(--ink);color:var(--ink)}
+.panel .btn:hover:not(:disabled){background:rgba(42,34,24,.08)}
+.panel .btn.primary{background:var(--orange);border-color:var(--orange-d);color:#2a1604}
+.thplay{width:5rem;height:5rem;border-radius:50%;border:0;background:var(--ink);color:#fff;cursor:pointer;display:grid;place-items:center}
+.thplay .ico{width:2.2rem;height:2.2rem}
+.hintp{font-size:.85rem;color:var(--muted);margin-top:.6rem}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.6rem;max-width:560px;margin:.9rem auto 0}
+.opt{position:relative;min-height:70px;padding:.5rem .4rem;font-size:1.6rem;font-weight:700;background:#fff;border:2px solid #d9c9a0;border-radius:12px;cursor:pointer;color:var(--ink)}
+.opt:hover:not(:disabled){border-color:var(--orange-d)}
+.opt:disabled{cursor:default}
+.opt.bad{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+.opt.ok{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.opt .mk{position:absolute;top:.3rem;right:.4rem;display:flex}
+.opt .mk .ico{width:1rem;height:1rem}
+.tiles{display:flex;justify-content:center;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}
+.tile{width:clamp(40px,12vw,64px);height:clamp(58px,16vw,84px);border:2px solid #d9c9a0;background:#fff;border-radius:10px;font-size:clamp(1.8rem,7vw,2.8rem);font-weight:700;cursor:pointer;color:var(--ink)}
+.tile:hover:not(:disabled){border-color:var(--orange-d)}
+.tile.silent{background:var(--ok-bg);border-color:var(--ok);color:var(--ok);text-decoration:line-through}
+.tile.shake{animation:shake .3s}
+.msg{min-height:1.4rem;font-size:.95rem;color:var(--bad);margin-top:.5rem}
+.fb{display:grid;grid-template-columns:auto 1fr;gap:.2rem .8rem;text-align:left;background:var(--ok-bg);border-left:5px solid var(--ok);border-radius:8px;padding:.8rem 1rem;margin-top:1rem;animation:fadein .2s}
+.fb>.ico{width:1.6rem;height:1.6rem;color:var(--ok);margin-top:.1rem}
+.fb strong{display:block;color:var(--ok);font-size:1.1rem}
+.fb p{font-size:.93rem}
+.fb .btn{grid-column:1/-1;justify-self:start;margin-top:.4rem}
+@keyframes fadein{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+/* results + album */
+.res{display:grid;grid-template-columns:minmax(220px,340px) 1fr;gap:1.4rem 2.4rem;align-items:center;padding:1.5rem 0}
+.sigbox{background:var(--night2);border-radius:22px;padding:1.4rem;text-align:center;position:relative}
+.sigbox .cd{width:130px;height:130px;margin:0 auto}
+.sigbox .cd svg{width:100%;height:100%}
+.sigbox.gold{box-shadow:0 0 0 3px var(--butter),0 0 30px 6px rgba(246,211,101,.35)}
+.sigbox .gl{position:absolute;top:.7rem;left:.7rem;font-size:.72rem;font-weight:700;background:var(--butter);color:#3a2a00;border-radius:6px;padding:0 .45rem}
+.sigbox h2{font-family:'Chewy',sans-serif;font-weight:400;font-size:1.6rem;color:var(--butter);margin-top:.5rem}
+.haul{display:flex;flex-wrap:wrap;gap:.4rem;margin:.8rem 0 1rem}
+.haul span{display:inline-flex;align-items:center;gap:.15rem;background:var(--night2);border-radius:999px;padding:.1rem .7rem .1rem .3rem;font-weight:700;font-size:.9rem}
+.haul svg{width:28px;height:28px}
+.stars{display:flex;gap:6px;margin:.4rem 0 .8rem}
+.stars svg{width:44px;height:44px}
+.actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem}
+.albumgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem;margin-top:1.4rem}
+.cslot{background:var(--night2);border-radius:16px;padding:.9rem .6rem;text-align:center;position:relative;min-height:170px}
+.cslot svg{width:76px;height:76px}
+.cslot.off svg{filter:brightness(0);opacity:.25}
+.cslot b{display:block;font-size:.95rem;margin-top:.3rem;line-height:1.25}
+.cslot small{display:block;font-size:.74rem;opacity:.8;line-height:1.3;margin-top:.15rem}
+.cslot .cnt{position:absolute;top:.5rem;right:.6rem;font-weight:700;background:var(--orange);color:#2a1604;border-radius:999px;min-width:1.6rem;padding:0 .4rem;font-size:.85rem}
+.cslot .gd{position:absolute;top:.5rem;left:.6rem;font-size:.68rem;font-weight:700;background:var(--butter);color:#3a2a00;border-radius:6px;padding:0 .35rem}
+
+@media (max-width:900px){
+  .play{grid-template-columns:1fr}
+  .scene{max-width:520px;margin:0 auto}
+  .hero{grid-template-columns:1fr}
+  .res{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .chars{grid-template-columns:repeat(2,1fr)}
+  .how{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<noscript><p style="padding:1rem">Please turn on JavaScript to play.</p></noscript>
+<script>
+/* ============ DATA ============
+   word tuple: [word, Thai meaning, blank-spelling (or null), index of blank (optional)] */
+const UNITS = [
+ {n:1,c:'#8a5a86',on:'#fff',combos:'ar · ir ur · er or',ex:'car · bird · teacher',
+  ask:'Which letters make the sound in this word?',pool:['ar','ir','ur','er','or'],
+  groups:[
+   {label:'ar',note:'ar says /ɑː/ (ah), as in car, farm, park and star.',words:[['car','รถยนต์','ar'],['farm','ฟาร์ม','ar'],['park','สวนสาธารณะ','ar'],['star','ดาว','ar']]},
+   {label:'ir / ur',note:'ir and ur say the same sound, /ɜː/ (er), as in bird, girl, nurse and purple.',words:[['bird','นก','ir'],['girl','เด็กผู้หญิง','ir'],['nurse','พยาบาล','ur'],['purple','สีม่วง','ur']]},
+   {label:'er / or',note:'At the end of a word, er and or say a soft /ə/, as in teacher, sister, doctor and tractor.',words:[['teacher','ครู','er'],['sister','พี่สาว / น้องสาว','er'],['doctor','หมอ','or'],['tractor','รถแทรกเตอร์','or']]}]},
+ {n:2,c:'#e8792f',on:'#1f1a12',combos:'ou ow · oi oy · oo u',ex:'mouse · coin · book',
+  ask:'Which letters make the sound in this word?',pool:['ou','ow','oi','oy','oo','u'],
+  groups:[
+   {label:'ou / ow',note:'ou and ow say /aʊ/ (ow!), as in mouse, house, cow and brown.',words:[['mouse','หนู','ou'],['house','บ้าน','ou'],['cow','วัว','ow'],['brown','สีน้ำตาล','ow']]},
+   {label:'oi / oy',note:'oi and oy say /ɔɪ/, as in coin, soil, toy and boy. oy is usually at the end of a word.',words:[['coin','เหรียญ','oi'],['soil','ดิน','oi'],['toy','ของเล่น','oy'],['boy','เด็กผู้ชาย','oy']]},
+   {label:'oo / u',note:'oo and u can say a short /ʊ/, as in book, foot, bush and pull.',words:[['book','หนังสือ','oo'],['foot','เท้า','oo'],['bush','พุ่มไม้','u'],['pull','ดึง','u']]}]},
+ {n:3,c:'#e5b32f',on:'#1f1a12',combos:'au aw · all wa · or oar',ex:'sauce · ball · horse',
+  ask:'Which spelling pattern does this word have?',pool:['au','aw','all','wa','or','oar'],
+  groups:[
+   {label:'au / aw',note:'au and aw both say /ɔː/, as in sauce, August, prawn and draw.',words:[['sauce','ซอส','au'],['August','เดือนสิงหาคม','au'],['prawn','กุ้ง','aw'],['draw','วาด','aw']]},
+   {label:'all / wa',note:'all says /ɔːl/, as in ball and tall. wa often says /wɔː/, as in water and walk.',words:[['ball','ลูกบอล','all'],['tall','สูง','all'],['water','น้ำ','wa'],['walk','เดิน','wa']]},
+   {label:'or / oar',note:'or and oar both say /ɔː/, as in horse, fork, roar and board.',words:[['horse','ม้า','or'],['fork','ส้อม','or'],['roar','คำราม','oar'],['board','กระดาน','oar']]}]},
+ {n:4,c:'#3f8450',on:'#fff',combos:'are air · ea ear · ear eer',ex:'square · bread · deer',
+  ask:'Which sound does this word have?',pool:['are','air','ea','ear','eer'],
+  groups:[
+   {label:'air',sub:'as in chair',note:'are, air and ear can all say /eə/, as in square, share, chair, hair, bear and pear.',words:[['square','สี่เหลี่ยมจัตุรัส','are'],['share','แบ่งปัน','are'],['chair','เก้าอี้','air'],['hair','ผม','air'],['bear','หมี','ear'],['pear','ลูกแพร์','ear']]},
+   {label:'e',sub:'as in bread',note:'ea can say a short /e/, as in bread and head.',words:[['bread','ขนมปัง','ea'],['head','ศีรษะ','ea']]},
+   {label:'eer',sub:'as in deer',note:'ear and eer can say /ɪə/, as in ear, clear, deer and cheer.',words:[['ear','หู',null],['clear','ใส / ชัดเจน','ear'],['deer','กวาง','eer'],['cheer','เชียร์','eer']]}]},
+ {n:5,c:'#a5c34a',on:'#1f1a12',combos:'a e i o u',tag:'long vowels',ex:'baby · she · music',
+  ask:'Which vowel says its name in this word?',pool:['a','e','i','o','u'],
+  groups:[
+   {label:'a',note:'In {w}, the letter a says its name: /eɪ/.',words:[['acorn','ลูกโอ๊ก','a',0],['baby','ทารก','a'],['elevator','ลิฟต์','a',4],['lady','สุภาพสตรี','a']]},
+   {label:'e',note:'In {w}, the letter e says its name: /iː/.',words:[['he','เขา (ผู้ชาย)','e'],['she','เธอ (ผู้หญิง)','e']]},
+   {label:'i',note:'In {w}, the letter i says its name: /aɪ/.',words:[['tiger','เสือ','i'],['child','เด็ก','i']]},
+   {label:'o',note:'In {w}, the letter o says its name: /oʊ/.',words:[['cold','หนาว','o'],['hotel','โรงแรม','o']]},
+   {label:'u',note:'In {w}, the letter u says its name: /juː/.',words:[['uniform','เครื่องแบบ','u'],['music','ดนตรี','u']]}]},
+ {n:6,c:'#247b80',on:'#fff',combos:'a e i o u',tag:'schwa',ex:'banana · pencil · honey',
+  ask:'Which letter makes the weak /ə/ (uh) sound?',pool:['a','e','i','o','u'],
+  groups:[
+   {label:'a',note:'In {w}, the letter a is weak. It makes the soft /ə/ sound (uh).',words:[['panda','แพนด้า','a',4],['gorilla','กอริลลา','a',6],['banana','กล้วย','a',5],['umbrella','ร่ม','a',7]]},
+   {label:'e',note:'In {w}, the letter e is weak. It makes the soft /ə/ sound (uh).',words:[['chicken','ไก่','e']]},
+   {label:'i',note:'In {w}, the letter i is weak. It makes the soft /ə/ sound (uh).',words:[['pencil','ดินสอ','i']]},
+   {label:'o',note:'In {w}, the letter o is weak. It makes the soft /ə/ sound (uh).',words:[['lemon','มะนาวเหลือง','o'],['monkey','ลิง','o'],['love','รัก','o'],['son','ลูกชาย','o'],['honey','น้ำผึ้ง','o']]},
+   {label:'u',note:'In {w}, the letter u is weak. It makes the soft /ə/ sound (uh).',words:[['surprise','เซอร์ไพรส์','u']]}]},
+ {n:7,c:'#c24577',on:'#fff',combos:'kn wr mb e rh st',tag:'silent letters',ex:'knife · lamb · castle',
+  ask:'Which silent-letter pattern does this word have?',pool:['kn','wr','mb','rh','st'],
+  groups:[
+   {label:'kn',note:'In kn, the k is silent. Say /n/, as in knife and knee.',words:[['knife','มีด','kn'],['knee','หัวเข่า','kn']]},
+   {label:'wr',note:'In wr, the w is silent. Say /r/, as in write and wrong.',words:[['write','เขียน','wr'],['wrong','ผิด','wr']]},
+   {label:'mb',note:'At the end of a word, the b in mb is silent, as in lamb and comb.',words:[['lamb','ลูกแกะ','mb'],['comb','หวี','mb']]},
+   {label:'e',sub:'at the end',note:'A final e is usually silent, as in glove and live.',words:[['glove','ถุงมือ',null],['live','อาศัยอยู่',null]]},
+   {label:'rh',note:'In rh, the h is silent. Say /r/, as in rhino and rhubarb.',words:[['rhino','แรด','rh'],['rhubarb','รูบาร์บ (พืชชนิดหนึ่ง)','rh']]},
+   {label:'st',note:'In st before le, the t is silent, as in whistle and castle.',words:[['whistle','นกหวีด','st'],['castle','ปราสาท','st']]}]},
+ {n:8,c:'#3a6fb0',on:'#fff',combos:'ture sure · tion sion · ous ful',ex:'picture · station · famous',
+  ask:'Which ending does this word have?',pool:['ture','sure','tion','sion','ous','ful'],
+  groups:[
+   {label:'ture',note:'ture says /tʃə/, as in picture and nature.',words:[['picture','รูปภาพ','ture'],['nature','ธรรมชาติ','ture']]},
+   {label:'sure',note:'sure here says /ʒə/, as in treasure and measure.',words:[['treasure','สมบัติ','sure'],['measure','วัด / ตวง','sure']]},
+   {label:'tion',note:'tion says /ʃən/, as in station and competition.',words:[['station','สถานี','tion'],['competition','การแข่งขัน','tion']]},
+   {label:'sion',note:'sion says /ʒən/, as in television and excursion.',words:[['television','โทรทัศน์','sion'],['excursion','ทัศนศึกษา','sion']]},
+   {label:'ous',note:'ous says /əs/, as in famous and dangerous.',words:[['famous','มีชื่อเสียง','ous'],['dangerous','อันตราย','ous']]},
+   {label:'ful',note:'ful says /fəl/, as in beautiful and helpful.',words:[['beautiful','สวยงาม','ful'],['helpful','ช่วยเหลือ / เป็นประโยชน์','ful']]}]}
+];
+/* silent letter hunt (Unit 7): [target indexes, also-silent indexes] */
+const HUNT = {knife:[[0],[4]],knee:[[0],[]],write:[[0],[4]],wrong:[[0],[]],lamb:[[3],[]],comb:[[3],[]],
+  glove:[[4],[]],live:[[3],[]],rhino:[[1],[]],rhubarb:[[1],[]],whistle:[[4],[1]],castle:[[3],[5]]};
+/* picture clues (emoji) — only for words that can be drawn */
+const EMO = {car:'🚗',farm:'🌾',park:'🏞️',star:'⭐',bird:'🐦',girl:'👧',nurse:'🧑‍⚕️',purple:'🟣',teacher:'🧑‍🏫',sister:'👭',doctor:'🩺',tractor:'🚜',
+ mouse:'🐭',house:'🏠',cow:'🐄',brown:'🟤',coin:'🪙',soil:'🌱',toy:'🧸',boy:'👦',book:'📖',foot:'🦶',bush:'🌿',
+ sauce:'🥫',August:'📅',prawn:'🦐',draw:'🎨',ball:'⚽',tall:'🦒',water:'💧',walk:'🚶',horse:'🐴',fork:'🍴',roar:'🦁',board:'📋',
+ square:'🟦',share:'🤲',chair:'🪑',hair:'💇',bread:'🍞',bear:'🐻',pear:'🍐',ear:'👂',deer:'🦌',cheer:'📣',
+ acorn:'🌰',baby:'👶',elevator:'🛗',lady:'👩',he:'👦',she:'👧',tiger:'🐯',child:'🧒',cold:'🥶',hotel:'🏨',uniform:'👔',music:'🎵',
+ panda:'🐼',gorilla:'🦍',banana:'🍌',umbrella:'☂️',chicken:'🐔',pencil:'✏️',lemon:'🍋',monkey:'🐒',love:'❤️',son:'👨‍👦',honey:'🍯',surprise:'🎉',
+ knife:'🔪',knee:'🦵',write:'✍️',wrong:'❌',lamb:'🐑',glove:'🧤',live:'🏡',rhino:'🦏',castle:'🏰',
+ picture:'🖼️',nature:'🌳',treasure:'💎',measure:'📏',station:'🚉',competition:'🏆',television:'📺',excursion:'🚌',famous:'🌟',dangerous:'⚠️',beautiful:'🌸',helpful:'🙋'};
+/* sentences for reading (K3): [sentence with ___, answer, Thai, two wrong options] */
+const CLOZE = [
+ [['A ___ can fly in the sky.','bird','นกบินบนท้องฟ้าได้',['farm','car']],
+  ['We ride in a ___.','car','เรานั่งรถยนต์',['bird','star']],
+  ['I see a ___ at night.','star','ฉันเห็นดาวตอนกลางคืน',['car','farm']],
+  ['The ___ works at a school.','teacher','ครูทำงานที่โรงเรียน',['tractor','bird']],
+  ['The ___ helps sick people.','doctor','หมอช่วยคนป่วย',['farm','star']],
+  ['The tractor is on the ___.','farm','รถแทรกเตอร์อยู่ที่ฟาร์ม',['star','bird']]],
+ [['The ___ says moo.','cow','วัวร้อง “มู”',['mouse','boy']],
+  ['I live in a ___.','house','ฉันอาศัยอยู่ในบ้าน',['coin','boy']],
+  ['I play with a ___.','toy','ฉันเล่นของเล่น',['cow','brown']],
+  ['I read a ___.','book','ฉันอ่านหนังสือ',['foot','cow']],
+  ['I kick the ball with my ___.','foot','ฉันเตะบอลด้วยเท้า',['book','coin']],
+  ['I have one ___ in my bank.','coin','ฉันมีเหรียญหนึ่งเหรียญในกระปุก',['toy','house']]],
+ [['I ___ to school.','walk','ฉันเดินไปโรงเรียน',['draw','roar']],
+  ['The lion goes ___!','roar','สิงโตคำราม',['draw','ball']],
+  ['The giraffe is ___.','tall','ยีราฟตัวสูง',['ball','water']],
+  ['I drink ___.','water','ฉันดื่มน้ำ',['ball','fork']],
+  ['I kick the ___.','ball','ฉันเตะลูกบอล',['water','fork']],
+  ['I eat rice with a ___.','fork','ฉันกินข้าวด้วยส้อม',['ball','horse']]],
+ [['I sit on a ___.','chair','ฉันนั่งบนเก้าอี้',['pear','deer']],
+  ['A ___ likes honey.','bear','หมีชอบน้ำผึ้ง',['chair','bread']],
+  ['I eat ___ with jam.','bread','ฉันกินขนมปังกับแยม',['hair','deer']],
+  ['I wash my ___.','hair','ฉันสระผม',['bread','pear']],
+  ['A ___ has big horns.','deer','กวางมีเขาใหญ่',['chair','pear']],
+  ['I hear with my ___.','ear','ฉันได้ยินด้วยหู',['hair','bread']]],
+ [['A ___ cries a lot.','baby','ทารกร้องไห้บ่อย',['tiger','music']],
+  ['A ___ has stripes.','tiger','เสือมีลาย',['baby','music']],
+  ['I wear a ___ to school.','uniform','ฉันใส่ชุดนักเรียนไปโรงเรียน',['music','hotel']],
+  ['We sleep in a ___ on a trip.','hotel','เรานอนที่โรงแรมตอนไปเที่ยว',['music','tiger']],
+  ['I like to dance to ___.','music','ฉันชอบเต้นตามเสียงดนตรี',['hotel','uniform']],
+  ['Ice is ___.','cold','น้ำแข็งเย็น',['baby','music']]],
+ [['I peel a ___.','banana','ฉันปอกกล้วย',['pencil','umbrella']],
+  ['I write with a ___.','pencil','ฉันเขียนด้วยดินสอ',['lemon','monkey']],
+  ['A ___ says cluck cluck.','chicken','ไก่ร้อง “กุ๊กๆ”',['monkey','panda']],
+  ['A ___ is sour.','lemon','มะนาวเหลืองมีรสเปรี้ยว',['honey','pencil']],
+  ['Bees make ___.','honey','ผึ้งทำน้ำผึ้ง',['pencil','lemon']],
+  ['I open my ___ when it rains.','umbrella','ฉันกางร่มตอนฝนตก',['pencil','monkey']]],
+ [['I cut bread with a ___.','knife','ฉันตัดขนมปังด้วยมีด',['castle','glove']],
+  ['I bend my ___.','knee','ฉันงอเข่า',['rhino','lamb']],
+  ['I ___ with a pencil.','write','ฉันเขียนด้วยดินสอ',['wrong','live']],
+  ['A baby ___ says baa.','lamb','ลูกแกะร้อง “แบ๊”',['rhino','knee']],
+  ['A king lives in a ___.','castle','กษัตริย์อาศัยอยู่ในปราสาท',['knife','lamb']],
+  ['I wear a ___ on my hand.','glove','ฉันสวมถุงมือที่มือ',['rhino','castle']],
+  ['A ___ has a big horn.','rhino','แรดมีเขาใหญ่',['lamb','knee']]],
+ [['I watch ___ at home.','television','ฉันดูโทรทัศน์ที่บ้าน',['station','nature']],
+  ['A train stops at the ___.','station','รถไฟจอดที่สถานี',['nature','picture']],
+  ['Flowers are ___.','beautiful','ดอกไม้สวยงาม',['dangerous','station']],
+  ['Fire is ___. Do not touch it!','dangerous','ไฟอันตราย อย่าแตะนะ!',['station','famous']],
+  ['I hang a ___ on the wall.','picture','ฉันแขวนรูปภาพบนผนัง',['station','nature']],
+  ['Pirates find a ___.','treasure','โจรสลัดพบสมบัติ',['station','nature']],
+  ['My mom is ___. She helps me.','helpful','แม่ของฉันช่วยเหลือเสมอ ท่านช่วยฉัน',['dangerous','station']]]
+];
+
+/* ============ ART: characters, candies, scenes (all inline SVG) ============ */
+const INK='#2b2b35';
+const dotEyes=(Lx,Rx,cy,mood,ink=INK,r=3.4)=>{
+  if(mood==='cheer')return [Lx,Rx].map(x=>`<path d="M${x-4.5} ${cy+1.5} Q${x} ${cy-5.5} ${x+4.5} ${cy+1.5}" fill="none" stroke="${ink}" stroke-width="2.6" stroke-linecap="round"/>`).join('');
+  if(mood==='scared')return [Lx,Rx].map(x=>`<circle cx="${x}" cy="${cy}" r="${r+1.8}" fill="#fff" stroke="${ink}" stroke-width="1.4"/><circle cx="${x}" cy="${cy}" r="1.6" fill="${ink}"/>`).join('');
+  return [Lx,Rx].map(x=>`<circle cx="${x}" cy="${cy}" r="${r}" fill="${ink}"/><circle cx="${x+1.1}" cy="${cy-1.2}" r="1.1" fill="#fff"/>`).join('');
+};
+const eyePair=(Lx,Rx,cy,mood,o={})=>{
+  o=Object.assign({white:'#fff',ink:INK,r:5,pr:2.6,iris:null},o);
+  if(mood==='cheer')return [Lx,Rx].map(x=>`<path d="M${x-4.5} ${cy+1.5} Q${x} ${cy-5.5} ${x+4.5} ${cy+1.5}" fill="none" stroke="${o.ink}" stroke-width="2.6" stroke-linecap="round"/>`).join('');
+  const r=mood==='scared'?o.r+1.2:o.r,pr=mood==='scared'?o.pr*.55:o.pr;
+  return [Lx,Rx].map(x=>`<circle cx="${x}" cy="${cy}" r="${r}" fill="${o.white}" stroke="${o.ink}" stroke-width="1.3"/>${o.iris?`<circle cx="${x}" cy="${cy}" r="${r-1.3}" fill="${o.iris}"/>`:''}<circle cx="${x+.4}" cy="${cy+(mood==='scared'?0:.7)}" r="${pr}" fill="${o.ink}"/><circle cx="${x+1.5}" cy="${cy-1.5}" r=".9" fill="#fff"/>`).join('');
+};
+const mouth=(cx,cy,mood,ink=INK)=>{
+  if(mood==='cheer')return `<path d="M${cx-5.5} ${cy} Q${cx} ${cy+9} ${cx+5.5} ${cy}Z" fill="#7a2b1d" stroke="${ink}" stroke-width="1.6" stroke-linejoin="round"/>`;
+  if(mood==='scared')return `<ellipse cx="${cx}" cy="${cy+3}" rx="2.8" ry="3.8" fill="#5a1d14" stroke="${ink}" stroke-width="1.2"/>`;
+  return `<path d="M${cx-4} ${cy} Q${cx} ${cy+5} ${cx+4} ${cy}" fill="none" stroke="${ink}" stroke-width="2" stroke-linecap="round"/>`;
+};
+const CHARS=[
+  {id:'boo',name:'Boo',line:'A shy little ghost with a big heart.'},
+  {id:'jack',name:'Jack',line:'A pumpkin who never stops smiling.'},
+  {id:'mimi',name:'Mimi',line:'A clever black cat in a bright scarf.'},
+  {id:'bo',name:'Bo',line:'A tiny bat who loves sweet treats.'}
+];
+function charInner(id,mood='idle'){
+  if(id==='boo')return `
+   <path d="M10 57V30C10 15 20 6 32 6C44 6 54 15 54 30V57Q48 51 43 57Q38 63 32 57Q26 51 21 57Q16 63 10 57Z" fill="#f7f3ea" stroke="#cdc6b3" stroke-width="2" stroke-linejoin="round"/>
+   <ellipse cx="16.5" cy="38" rx="4.2" ry="2.8" fill="#f4a3b4" opacity=".85"/><ellipse cx="47.5" cy="38" rx="4.2" ry="2.8" fill="#f4a3b4" opacity=".85"/>
+   ${dotEyes(24,40,31,mood)}${mouth(32,39,mood)}`;
+  if(id==='jack')return `
+   <path d="M30 18Q29 8 36 5L39 9Q34 11 34 18Z" fill="#4c8a3a"/><path d="M36 9Q44 3 49 10Q43 13 38 11Z" fill="#6fae4f"/>
+   <ellipse cx="32" cy="38" rx="25" ry="20" fill="#f08a24" stroke="#b9560a" stroke-width="2"/>
+   <path d="M32 18Q22 38 32 58M20 21Q9 38 20 55M44 21Q55 38 44 55" fill="none" stroke="#c96a0c" stroke-width="2" stroke-linecap="round"/>
+   <ellipse cx="17" cy="44" rx="4" ry="2.6" fill="#ff7f9a" opacity=".6"/><ellipse cx="47" cy="44" rx="4" ry="2.6" fill="#ff7f9a" opacity=".6"/>
+   ${dotEyes(24,40,36,mood,'#4a2208')}${mouth(32,44,mood,'#4a2208')}`;
+  if(id==='mimi'){
+    const eyes=mood==='cheer'?dotEyes(23,41,30,mood,'#f6d365'):`<circle cx="23" cy="30" r="${mood==='scared'?6.4:5.4}" fill="#f6d365"/><circle cx="41" cy="30" r="${mood==='scared'?6.4:5.4}" fill="#f6d365"/><ellipse cx="23" cy="30" rx="${mood==='scared'?1.2:1.7}" ry="${mood==='scared'?3:3.8}" fill="${INK}"/><ellipse cx="41" cy="30" rx="${mood==='scared'?1.2:1.7}" ry="${mood==='scared'?3:3.8}" fill="${INK}"/><circle cx="24.3" cy="28" r="1" fill="#fff"/><circle cx="42.3" cy="28" r="1" fill="#fff"/>`;
+    const m=mood==='cheer'?`<path d="M28 41Q32 47 36 41Z" fill="#7a2b1d"/>`:mood==='scared'?`<ellipse cx="32" cy="42.5" rx="2" ry="2.8" fill="#5a1d14"/>`:`<path d="M32 40Q29 43.5 26 40M32 40Q35 43.5 38 40" fill="none" stroke="#f6ecc8" stroke-width="1.4" stroke-linecap="round"/>`;
+    return `
+   <path d="M46 55Q62 54 59 36" fill="none" stroke="#2c2c38" stroke-width="6" stroke-linecap="round"/>
+   <ellipse cx="32" cy="52" rx="15" ry="10" fill="#2c2c38"/>
+   <path d="M15 21L17 4L29 14ZM49 21L47 4L35 14Z" fill="#2c2c38" stroke="#6a6a7c" stroke-width="1.5" stroke-linejoin="round"/>
+   <path d="M19 15L19.6 8.5L25 12.5ZM45 15L44.4 8.5L39 12.5Z" fill="#f4a3b4"/>
+   <circle cx="32" cy="31" r="19" fill="#2c2c38" stroke="#6a6a7c" stroke-width="1.5"/>
+   <path d="M16 47Q32 56 48 47L47 53Q32 62 17 53Z" fill="#f08a24"/><path d="M40 53L44 63L49 61L46 52Z" fill="#d9701a"/>
+   ${eyes}<path d="M30 36.2h4l-2 2.4z" fill="#f4a3b4"/>${m}
+   <path d="M14 35H6M14 39L7 42M50 35H58M50 39L57 42" stroke="#f6ecc8" stroke-width="1.2" stroke-linecap="round"/>`;
+  }
+  /* bo the bat */
+  return `
+   <path d="M20 36Q3 22 2 42Q8 38 11 47Q15 41 19 51Z" fill="#7487a8" stroke="#4d5c78" stroke-width="1.5" stroke-linejoin="round"/>
+   <path d="M44 36Q61 22 62 42Q56 38 53 47Q49 41 45 51Z" fill="#7487a8" stroke="#4d5c78" stroke-width="1.5" stroke-linejoin="round"/>
+   <path d="M20 23L22 6L31 17ZM44 23L42 6L33 17Z" fill="#62739a" stroke="#4d5c78" stroke-width="1.5" stroke-linejoin="round"/>
+   <circle cx="32" cy="37" r="17" fill="#6f80a0" stroke="#4d5c78" stroke-width="1.5"/>
+   <ellipse cx="32" cy="46" rx="9" ry="7" fill="#b5c0d6"/>
+   ${eyePair(25,39,33,mood,{r:5.4,pr:2.8})}
+   ${mood==='cheer'?`<path d="M28 41Q32 47 36 41Z" fill="#7a2b1d" stroke="${INK}" stroke-width="1.2"/>`:mood==='scared'?`<ellipse cx="32" cy="43.5" rx="2.4" ry="3.2" fill="#5a1d14"/>`:`<path d="M28 41.5Q32 45 36 41.5" fill="none" stroke="${INK}" stroke-width="1.8" stroke-linecap="round"/><path d="M29.5 43.4l1.2 2.6 1.2-2.4ZM34.1 43.4l-1.2 2.6-1.2-2.4Z" fill="#fff"/>`}`;
+}
+const charSVG=(id,mood='idle',size=110)=>`<svg viewBox="0 0 64 64" width="${size}" height="${size}" role="img" aria-label="${(CHARS.find(c=>c.id===id)||{}).name||''}">${charInner(id,mood)}</svg>`;
+
+/* candies: 12 designs on a 40x40 grid */
+const CANDY=[
+  {id:'wrap1',name:'Strawberry Twist',hint:'Found on the trail'},
+  {id:'wrap2',name:'Mint Twist',hint:'Found on the trail'},
+  {id:'gum',name:'Sugar Gumdrop',hint:'Found on the trail'},
+  {id:'cookie',name:'Choc-chip Cookie',hint:'Found on the trail'},
+  {id:'pumpkin',name:'Mini Pumpkin Drop',lv:0},
+  {id:'ghost',name:'Ghost Marshmallow',lv:1},
+  {id:'eyeball',name:'Goofy Eyeball',lv:2},
+  {id:'star',name:'Moon Star',lv:3},
+  {id:'mint',name:'Peppermint Swirl',lv:4},
+  {id:'lolli',name:'Cobweb Lollipop',lv:5},
+  {id:'choc',name:'Swamp Chocolate',lv:6},
+  {id:'corn',name:'Clock Corn',lv:7}
+];
+const COMMONS=['wrap1','wrap2','gum','cookie'];
+function candyInner(id){
+  const wrap=(c,l)=>`<path d="M11 20L2 12V28Z" fill="${l}"/><path d="M29 20L38 12V28Z" fill="${l}"/><ellipse cx="20" cy="20" rx="11" ry="8" fill="${c}" stroke="rgba(0,0,0,.18)" stroke-width="1"/><path d="M15 17Q20 13.5 26 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".55"/><path d="M18 12.5L15.5 27.5" stroke="${l}" stroke-width="2" opacity=".8"/>`;
+  switch(id){
+    case 'wrap1':return wrap('#ef6f91','#f9b3c6');
+    case 'wrap2':return wrap('#58c9a5','#a8ead4');
+    case 'gum':return `<path d="M6 31Q6 8 20 8Q34 8 34 31Z" fill="#f2b84b" stroke="rgba(0,0,0,.2)"/><rect x="5" y="30" width="30" height="5" rx="2.5" fill="#d99a2b"/><g fill="#fff" opacity=".85"><circle cx="14" cy="20" r="1.4"/><circle cx="22" cy="14" r="1.4"/><circle cx="26" cy="23" r="1.4"/><circle cx="18" cy="26" r="1.4"/><circle cx="12" cy="27" r="1.2"/><circle cx="29" cy="28" r="1.2"/></g>`;
+    case 'cookie':return `<circle cx="20" cy="20" r="15" fill="#d19552" stroke="#8d5a28" stroke-width="1.5"/><g fill="#4a2a14"><ellipse cx="14" cy="15" rx="2.6" ry="2"/><ellipse cx="25" cy="13" rx="2.2" ry="1.8"/><ellipse cx="27" cy="24" rx="2.6" ry="2"/><ellipse cx="16" cy="26" rx="2.4" ry="1.9"/><ellipse cx="21" cy="20" rx="1.8" ry="1.5"/></g>`;
+    case 'pumpkin':return `<path d="M19 10Q19 5 23 4L24.5 6.5Q22 7 22 10Z" fill="#4c8a3a"/><ellipse cx="20" cy="23" rx="15" ry="12.5" fill="#f08a24" stroke="#b9560a" stroke-width="1.4"/><path d="M20 10.5Q14 23 20 35.5M11 12.5Q5 23 11 33.5M29 12.5Q35 23 29 33.5" fill="none" stroke="#c96a0c" stroke-width="1.3"/><circle cx="15" cy="22" r="1.7" fill="#4a2208"/><circle cx="25" cy="22" r="1.7" fill="#4a2208"/><path d="M16 28Q20 31 24 28" fill="none" stroke="#4a2208" stroke-width="1.5" stroke-linecap="round"/>`;
+    case 'ghost':return `<path d="M8 35V18C8 10 13 5 20 5C27 5 32 10 32 18V35Q29 32 26 35Q23 38 20 35Q17 32 14 35Q11 38 8 35Z" fill="#fffaf0" stroke="#d8cfb8" stroke-width="1.4"/><circle cx="15.5" cy="18" r="2" fill="${INK}"/><circle cx="24.5" cy="18" r="2" fill="${INK}"/><ellipse cx="20" cy="24" rx="2" ry="2.6" fill="${INK}"/>`;
+    case 'eyeball':return `<circle cx="20" cy="20" r="15" fill="#fffaf0" stroke="#d0c6b0" stroke-width="1.4"/><path d="M7 15L12 18M9 28L13 24M33 14L28 18" stroke="#e05a5a" stroke-width="1" stroke-linecap="round"/><circle cx="21" cy="20" r="7.5" fill="#5fae5a"/><circle cx="21" cy="20" r="3.6" fill="${INK}"/><circle cx="23" cy="18" r="1.4" fill="#fff"/>`;
+    case 'star':return `<path d="M20 3L25 14.5L37.5 15.8L28.2 24.2L30.8 36.5L20 30.2L9.2 36.5L11.8 24.2L2.5 15.8L15 14.5Z" fill="#f6d365" stroke="#c9962a" stroke-width="1.6" stroke-linejoin="round"/><circle cx="16" cy="17" r="1.1" fill="${INK}" opacity=".0"/>`;
+    case 'mint':return `<circle cx="20" cy="20" r="15" fill="#fff" stroke="#e0475b" stroke-width="1.5"/><g fill="#e0475b"><path d="M20 20L20 5A15 15 0 0 1 33 12.5Z"/><path d="M20 20L35 20A15 15 0 0 1 27.5 33Z"/><path d="M20 20L20 35A15 15 0 0 1 7 27.5Z"/><path d="M20 20L5 20A15 15 0 0 1 12.5 7Z"/></g><circle cx="20" cy="20" r="3" fill="#fff"/>`;
+    case 'lolli':return `<path d="M20 28V38" stroke="#fffaf0" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="16" r="12.5" fill="#fffaf0" stroke="#d8cfb8"/><path d="M20 16m0 0a2 2 0 1 1 4 0a5 5 0 1 1 -8 0a8 8 0 1 1 13 0a11 11 0 0 1 -10 6" fill="none" stroke="#ef6f91" stroke-width="2.2" stroke-linecap="round"/>`;
+    case 'choc':return `<rect x="8" y="4" width="24" height="32" rx="4" fill="#6b3f23" stroke="#3f2313" stroke-width="1.4"/><path d="M8 15H32M8 26H32M20 4V36" stroke="#8a5632" stroke-width="1.6"/><path d="M8 4H20V15H8Z" fill="#f08a24" opacity=".9"/><path d="M13 8L15 12L17 8" fill="none" stroke="#fff" stroke-width="1.2"/>`;
+    case 'corn':return `<path d="M7 33Q7 34 9 34H31Q33 34 33 33L29 22H11Z" fill="#f6d365" stroke="#f6d365" stroke-width="2" stroke-linejoin="round"/><path d="M11 22H29L25 12H15Z" fill="#f08a24" stroke="#f08a24" stroke-width="2" stroke-linejoin="round"/><path d="M15 12H25L22 5Q20 2 18 5Z" fill="#fffaf0" stroke="#fffaf0" stroke-width="2" stroke-linejoin="round"/>`;
+  }
+  return '';
+}
+const candySVG=(id,size=40)=>`<svg viewBox="0 0 40 40" width="${size}" height="${size}" aria-hidden="true">${candyInner(id)}</svg>`;
+
+/* levels: name + palette */
+const LEVELS=[
+  {name:'Pumpkin Patch',sky:'#14303a',ground:'#0f2a2c'},
+  {name:'Foggy Graveyard',sky:'#1b2d3b',ground:'#13232c'},
+  {name:'Creaky Bridge',sky:'#212f3a',ground:'#16252c'},
+  {name:'Whispering Woods',sky:'#133129',ground:'#0e2620'},
+  {name:'Haunted Mansion',sky:'#1b2c40',ground:'#122231'},
+  {name:'Cobweb Cave',sky:'#1b2a2c',ground:'#10201f'},
+  {name:'Misty Swamp',sky:'#16302f',ground:'#0f2724'},
+  {name:'Clock Tower',sky:'#1d2d47',ground:'#121f33'}
+];
+const SIL='#091519';
+const FAR=[
+ /* 0 patch */()=>`<g fill="${SIL}"><rect x="58" y="96" width="4" height="40"/><rect x="46" y="106" width="28" height="4"/><circle cx="60" cy="91" r="7"/><path d="M51 89L69 89L60 76Z"/></g><g fill="#7a420c"><circle cx="262" cy="130" r="7"/><circle cx="284" cy="132" r="9"/><circle cx="312" cy="129" r="6"/></g>`,
+ /* 1 graveyard */()=>`<g fill="${SIL}"><path d="M30 136V108Q30 98 40 98Q50 98 50 108V136Z"/><path d="M84 136V114Q84 106 91 106Q98 106 98 114V136Z"/><path d="M262 136V104Q262 94 272 94Q282 94 282 104V136Z"/><path d="M316 136V112Q316 104 323 104Q330 104 330 112V136Z"/><rect x="196" y="92" width="5" height="44"/><rect x="188" y="100" width="21" height="5"/></g><ellipse cx="90" cy="142" rx="110" ry="9" fill="#f6ecc8" opacity=".1"/><ellipse cx="280" cy="146" rx="120" ry="8" fill="#f6ecc8" opacity=".1"/>`,
+ /* 2 bridge */()=>`<g stroke="${SIL}" stroke-linecap="round" fill="none" stroke-width="5"><path d="M50 136V92M50 112L36 98M50 104L64 90"/><path d="M308 136V88M308 108L322 94M308 100L294 86"/></g><g fill="${SIL}"><rect x="130" y="118" width="100" height="6"/><rect x="134" y="118" width="5" height="18"/><rect x="221" y="118" width="5" height="18"/></g>`,
+ /* 3 woods */()=>`<g fill="${SIL}"><circle cx="42" cy="108" r="24"/><rect x="38" y="120" width="8" height="16"/><circle cx="318" cy="104" r="26"/><rect x="314" y="118" width="8" height="18"/><circle cx="130" cy="120" r="14"/><circle cx="232" cy="118" r="15"/></g><circle cx="35" cy="106" r="2.6" fill="#f6d365"/><circle cx="47" cy="106" r="2.6" fill="#f6d365"/>`,
+ /* 4 mansion */()=>`<g fill="${SIL}"><rect x="238" y="86" width="100" height="50"/><path d="M230 88L288 54L346 88Z"/><rect x="316" y="48" width="12" height="30"/><rect x="250" y="62" width="14" height="26"/><path d="M247 64L257 50L267 64Z"/></g><g fill="#f6d365"><rect x="252" y="98" width="9" height="12"/><rect x="274" y="98" width="9" height="12"/><rect x="298" y="98" width="9" height="12"/><rect x="320" y="98" width="9" height="12"/><rect x="253" y="72" width="7" height="9"/></g>`,
+ /* 5 cave */()=>`<g fill="${SIL}"><path d="M0 136V86Q26 60 56 96L92 136Z"/><path d="M360 136V84Q334 58 304 94L268 136Z"/><path d="M120 136L134 106L148 136ZM214 136L226 112L238 136Z"/></g><g stroke="#f6ecc8" stroke-width="1" fill="none" opacity=".55"><path d="M0 0L52 52M0 20L36 56M20 0L56 36M0 40L22 58"/><path d="M360 0L308 52M360 20L324 56M340 0L304 36"/></g>`,
+ /* 6 swamp */()=>`<g stroke="${SIL}" stroke-width="3" stroke-linecap="round"><path d="M40 136V100M52 136V92M64 136V104M300 136V96M312 136V104M324 136V90"/></g><g fill="${SIL}"><ellipse cx="52" cy="90" rx="3.5" ry="7"/><ellipse cx="324" cy="88" rx="3.5" ry="7"/></g><g fill="#f6d365"><circle cx="110" cy="104" r="2.2"/><circle cx="230" cy="96" r="2.2"/><circle cx="258" cy="116" r="2"/><circle cx="150" cy="118" r="2"/></g>`,
+ /* 7 tower */()=>`<g fill="${SIL}"><rect x="150" y="44" width="60" height="92"/><path d="M144 46L180 12L216 46Z"/><rect x="60" y="106" width="30" height="30"/><rect x="278" y="100" width="34" height="36"/></g><circle cx="180" cy="78" r="19" fill="#f6ecc8"/><path d="M180 78V64M180 78L190 84" stroke="${INK}" stroke-width="3" stroke-linecap="round"/>`
+];
+const NEAR=[
+ /* 0 patch */()=>`<g><circle cx="24" cy="384" r="19" fill="#f08a24"/><path d="M24 366Q24 355 32 354" stroke="#4c8a3a" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M24 366Q12 384 24 402M14 368Q5 384 14 400" stroke="#c96a0c" stroke-width="2" fill="none"/><circle cx="54" cy="338" r="13" fill="#f6a03c"/><circle cx="338" cy="378" r="21" fill="#f08a24"/><path d="M338 357Q338 346 346 345" stroke="#4c8a3a" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M338 357Q324 378 338 399" stroke="#c96a0c" stroke-width="2" fill="none"/><circle cx="308" cy="334" r="12" fill="#f6a03c"/></g>`,
+ /* 1 graveyard */()=>`<g fill="#7d868c" stroke="#4d555a" stroke-width="2"><path d="M10 410V350Q10 330 30 330Q50 330 50 350V410Z"/><path d="M312 410V362Q312 344 330 344Q348 344 348 362V410Z"/></g><path d="M22 352H38M30 345V362" stroke="#4d555a" stroke-width="2.5"/><g fill="#6fa86a" opacity=".8"><ellipse cx="20" cy="408" rx="12" ry="5"/><ellipse cx="340" cy="408" rx="12" ry="5"/></g>`,
+ /* 2 bridge */()=>`<g fill="#7a5230" stroke="#4b3019" stroke-width="2"><rect x="8" y="260" width="9" height="150"/><rect x="343" y="260" width="9" height="150"/><rect x="8" y="285" width="50" height="7"/><rect x="302" y="285" width="50" height="7"/><rect x="8" y="330" width="40" height="7"/><rect x="312" y="330" width="40" height="7"/></g>`,
+ /* 3 woods */()=>`<g><rect x="6" y="330" width="14" height="90" fill="#3b2a1d"/><circle cx="14" cy="318" r="40" fill="#1c4a36"/><circle cx="2" cy="316" r="3" fill="#f6d365"/><circle cx="20" cy="316" r="3" fill="#f6d365"/><rect x="340" y="324" width="14" height="96" fill="#3b2a1d"/><circle cx="348" cy="310" r="42" fill="#1c4a36"/><circle cx="338" cy="308" r="3" fill="#f6d365"/><circle cx="356" cy="308" r="3" fill="#f6d365"/></g>`,
+ /* 4 mansion */()=>`<g fill="#0b1824" stroke="#2a3f55" stroke-width="2"><path d="M6 420V300M20 420V292M34 420V304M326 420V304M340 420V292M354 420V300" stroke-linecap="round"/></g><circle cx="20" cy="286" r="5" fill="#f6d365"/><circle cx="340" cy="286" r="5" fill="#f6d365"/><circle cx="20" cy="286" r="12" fill="#f6d365" opacity=".25"/><circle cx="340" cy="286" r="12" fill="#f6d365" opacity=".25"/>`,
+ /* 5 cave */()=>`<g fill="#223735" stroke="#142625" stroke-width="2"><path d="M0 420L18 330L40 420Z"/><path d="M26 420L44 372L62 420Z"/><path d="M360 420L342 334L320 420Z"/><path d="M334 420L318 376L302 420Z"/></g>`,
+ /* 6 swamp */()=>`<g stroke="#0b1a18" stroke-width="3" stroke-linecap="round"><path d="M16 410V340M28 410V330M40 410V346M326 410V334M338 410V344M350 410V326"/></g><g fill="#0b1a18"><ellipse cx="28" cy="326" rx="4" ry="9"/><ellipse cx="350" cy="322" rx="4" ry="9"/></g><ellipse cx="50" cy="398" rx="22" ry="7" fill="#3f8a4f"/><ellipse cx="312" cy="392" rx="22" ry="7" fill="#3f8a4f"/>`,
+ /* 7 tower */()=>`<g><rect x="16" y="296" width="6" height="124" fill="#0b1824"/><rect x="338" y="296" width="6" height="124" fill="#0b1824"/><circle cx="19" cy="290" r="8" fill="#f6d365"/><circle cx="341" cy="290" r="8" fill="#f6d365"/><circle cx="19" cy="290" r="18" fill="#f6d365" opacity=".22"/><circle cx="341" cy="290" r="18" fill="#f6d365" opacity=".22"/></g>`
+];
+const STARS=[[30,30],[70,62],[120,24],[160,54],[210,30],[250,76],[336,28],[100,92],[344,100],[18,104]];
+function bgSVG(ui){
+  const L=LEVELS[ui];
+  return `<rect width="360" height="420" fill="${L.sky}"/>
+   ${STARS.map(([x,y])=>`<circle cx="${x}" cy="${y}" r="1.6" fill="#f6ecc8" opacity=".8"/>`).join('')}
+   <circle cx="292" cy="58" r="24" fill="#f6ecc8"/><circle cx="284" cy="52" r="4" fill="#e6d9a8"/><circle cx="300" cy="66" r="3" fill="#e6d9a8"/><circle cx="298" cy="48" r="2" fill="#e6d9a8"/>
+   ${FAR[ui]()}
+   <path d="M0 138Q60 126 120 136T240 134T360 130V420H0Z" fill="${L.ground}"/>
+   ${NEAR[ui]()}`;
+}
+
+/* dead ends: three cute props, shown at the end of a wrong path */
+function deadEndSVG(k){
+  if(k===0)return `<ellipse cx="-12" cy="0" rx="12" ry="9" fill="#8d959b"/><ellipse cx="10" cy="2" rx="14" ry="11" fill="#7d868c"/><ellipse cx="0" cy="-9" rx="11" ry="8" fill="#9aa2a8"/><circle cx="-4" cy="-10" r="1.8" fill="${INK}"/><circle cx="4" cy="-10" r="1.8" fill="${INK}"/><path d="M-3 -6Q0 -3 3 -6" fill="none" stroke="${INK}" stroke-width="1.4" stroke-linecap="round"/>`;
+  if(k===1)return `<g stroke="#f6ecc8" stroke-width="1.5" fill="none"><path d="M-26 8Q0 -34 26 8"/><path d="M-18 8Q0 -18 18 8"/><path d="M0 8V-24M-14 8L-20 -12M14 8L20 -12"/></g><circle cx="0" cy="-8" r="5" fill="${INK}"/><circle cx="-1.8" cy="-9" r="1.2" fill="#fff"/><circle cx="1.8" cy="-9" r="1.2" fill="#fff"/>`;
+  return `<ellipse cx="0" cy="-4" rx="17" ry="13" fill="#6a8f5e"/><path d="M-9 -6Q-6 -9 -3 -6M3 -6Q6 -9 9 -6" fill="none" stroke="${INK}" stroke-width="1.6" stroke-linecap="round"/><path d="M-4 1Q0 3 4 1" fill="none" stroke="${INK}" stroke-width="1.4" stroke-linecap="round"/><text x="14" y="-16" font-size="11" font-weight="700" fill="#f6ecc8" font-family="Andika">z z</text>`;
+}
+
+/* obstacles (drawn over the straight path) */
+function obstacleSVG(kind,e){
+  if(kind==='web'){
+    const cx=180,cy=222,rays=[0,1,2,3,4,5,6,7].map(i=>{const a=i*Math.PI/4;return `M${cx} ${cy}L${(cx+Math.cos(a)*86).toFixed(1)} ${(cy+Math.sin(a)*86).toFixed(1)}`}).join('');
+    const ring=r=>[0,1,2,3,4,5,6,7].map(i=>{const a=i*Math.PI/4;return `${(cx+Math.cos(a)*r).toFixed(1)},${(cy+Math.sin(a)*r).toFixed(1)}`}).join(' ');
+    return `<g class="obs" id="obs"><rect x="86" y="130" width="9" height="150" rx="3" fill="#3b2a1d"/><rect x="265" y="130" width="9" height="150" rx="3" fill="#3b2a1d"/>
+     <g stroke="#f6ecc8" stroke-width="1.7" fill="none" stroke-linejoin="round"><path d="${rays}"/><polygon points="${ring(24)}"/><polygon points="${ring(46)}"/><polygon points="${ring(68)}"/><polygon points="${ring(86)}"/></g>
+     <path d="M180 130V250" stroke="#f6ecc8" stroke-width="1.2"/>
+     <g stroke="${INK}" stroke-width="2.2" stroke-linecap="round" fill="none"><path d="M168 252L154 244L150 256M168 258L152 262M170 264L158 276M192 252L206 244L210 256M192 258L208 262M190 264L202 276"/></g>
+     <ellipse cx="180" cy="262" rx="12" ry="10" fill="${INK}"/><circle cx="180" cy="248" r="7.5" fill="${INK}"/><circle cx="177" cy="247" r="2.2" fill="#fff"/><circle cx="183" cy="247" r="2.2" fill="#fff"/><circle cx="177" cy="247.6" r="1" fill="${INK}"/><circle cx="183" cy="247.6" r="1" fill="${INK}"/></g>`;
+  }
+  if(kind==='stone'){
+    const w=e.wd.w,b=blankInfo(e.wd),size=Math.min(40,205/(w.length*.58));
+    return `<g class="obs" id="obs"><path d="M64 310V190Q64 140 180 140Q296 140 296 190V310Z" fill="#8e969c" stroke="#5c6368" stroke-width="3"/>
+     <path d="M108 160L122 178L112 192M268 226L254 240L262 256" fill="none" stroke="#6a7278" stroke-width="2.2" stroke-linecap="round"/>
+     <ellipse cx="86" cy="308" rx="22" ry="8" fill="#6fa86a"/><ellipse cx="272" cy="308" rx="24" ry="8" fill="#6fa86a"/>
+     <text x="180" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="#4d555a" font-family="Andika" letter-spacing="2">FIX THE WORD</text>
+     <text x="180" y="244" text-anchor="middle" font-size="${size.toFixed(1)}" font-weight="700" fill="#2b2f33" font-family="Andika"><tspan>${b.pre}</tspan><tspan id="stoneBlank" fill="#b9560a" text-decoration="underline">${'_'.repeat(b.mid.length>1?2:1)}</tspan><tspan>${b.post}</tspan></text>
+     <circle cx="62" cy="304" r="15" fill="#f08a24"/><path d="M62 290Q62 283 68 282" stroke="#4c8a3a" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="300" cy="306" r="12" fill="#f6a03c"/></g>`;
+  }
+  if(kind==='gate'){
+    const bars=(x0,x1)=>{let s='';for(let x=x0+8;x<x1;x+=14)s+=`<path d="M${x} 300V170" stroke="#1a2530" stroke-width="5"/><path d="M${x-4} 172L${x} 160L${x+4} 172Z" fill="#1a2530"/>`;return s};
+    return `<g id="obs" class="obs gate"><rect x="86" y="150" width="12" height="160" fill="#2c3b49"/><rect x="262" y="150" width="12" height="160" fill="#2c3b49"/>
+     <g class="leaf l" id="leafL"><rect x="98" y="168" width="82" height="132" fill="#2a3a48" opacity=".6"/>${bars(98,180)}<rect x="98" y="205" width="82" height="6" fill="#1a2530"/><rect x="98" y="262" width="82" height="6" fill="#1a2530"/></g>
+     <g class="leaf r" id="leafR"><rect x="180" y="168" width="82" height="132" fill="#2a3a48" opacity=".6"/>${bars(180,262)}<rect x="180" y="205" width="82" height="6" fill="#1a2530"/><rect x="180" y="262" width="82" height="6" fill="#1a2530"/></g>
+     <circle cx="180" cy="236" r="10" fill="#c9a227" stroke="#7a5e10" stroke-width="2"/>
+     <g transform="translate(142 282) scale(.62)">${charInner('boo','idle')}</g><text x="186" y="298" font-size="11" fill="#f6ecc8" font-family="Andika" font-weight="700">Halt!</text></g>`;
+  }
+  /* lock */
+  return `<g class="obs" id="obs"><path d="M180 132V176" stroke="#9a9aa0" stroke-width="5" stroke-dasharray="9 5"/>
+   <path d="M142 214V186Q142 156 180 156Q218 156 218 186V214" fill="none" stroke="#9a9aa4" stroke-width="13" stroke-linecap="round"/>
+   <rect x="112" y="208" width="136" height="96" rx="14" fill="#d9b134" stroke="#7a5e10" stroke-width="3"/>
+   <circle cx="180" cy="246" r="12" fill="${INK}"/><path d="M174 252H186L189 278H171Z" fill="${INK}"/>
+   <path d="M126 222Q180 214 234 222" fill="none" stroke="#f3dc7a" stroke-width="3" stroke-linecap="round" opacity=".7"/></g>`;
+}
+const OBS_OF={listen:'web',fill:'stone',cloze:'gate',hunt:'lock'};
+const OBS_TEXT={web:'A giant web blocks the way. Cut through it!',stone:'A stone blocks the path. Fix the word to move it!',gate:'A gate guard says: read me the right word!',lock:'A big lock! Find the silent letter to open it.'};
+
+/* the haunted-house door at the end of every trail */
+function doorSVG(ui){
+  const L=LEVELS[ui];
+  return `<rect width="360" height="420" fill="${L.sky}"/>${STARS.map(([x,y])=>`<circle cx="${x}" cy="${y}" r="1.6" fill="#f6ecc8" opacity=".8"/>`).join('')}
+   <circle cx="300" cy="50" r="22" fill="#f6ecc8"/>
+   <path d="M0 150Q90 136 180 148T360 144V420H0Z" fill="${L.ground}"/>
+   <g fill="#0b1824"><rect x="50" y="108" width="260" height="226"/><path d="M36 112L180 40L324 112Z"/><rect x="262" y="52" width="22" height="48"/></g>
+   <g fill="#f6d365"><rect x="72" y="140" width="34" height="42" rx="3"/><rect x="254" y="140" width="34" height="42" rx="3"/></g>
+   <path d="M89 140V182M72 161H106M271 140V182M254 161H288" stroke="#0b1824" stroke-width="3"/>
+   <g class="doorbox" id="door">
+    <path d="M132 334V236Q132 196 180 196Q228 196 228 236V334Z" fill="#f6d365" class="light"/>
+    <path d="M142 334V240Q142 208 180 208Q218 208 218 240V334Z" fill="#fff3b0" class="light"/>
+    <g class="leaf l" id="doorL"><path d="M132 334V236Q132 196 180 196V334Z" fill="#a8541a" stroke="#5a2c0a" stroke-width="3"/><path d="M150 250V320M164 230V320" stroke="#7a3a10" stroke-width="3"/><circle cx="172" cy="270" r="4" fill="#f6d365"/></g>
+    <g class="leaf r" id="doorR"><path d="M228 334V236Q228 196 180 196V334Z" fill="#a8541a" stroke="#5a2c0a" stroke-width="3"/><path d="M210 250V320M196 230V320" stroke="#7a3a10" stroke-width="3"/><circle cx="188" cy="270" r="4" fill="#f6d365"/></g>
+   </g>
+   <path d="M120 334H240L262 360H98Z" fill="#33414d"/><path d="M98 360H262L286 420H74Z" fill="#c99a5b"/>
+   <g><circle cx="52" cy="352" r="22" fill="#f08a24"/><path d="M52 330Q52 322 59 321" stroke="#4c8a3a" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M52 330Q38 352 52 374" stroke="#c96a0c" stroke-width="2" fill="none"/><circle cx="310" cy="356" r="20" fill="#f08a24"/><path d="M310 336Q310 329 316 328" stroke="#4c8a3a" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M310 336Q297 356 310 376" stroke="#c96a0c" stroke-width="2" fill="none"/></g>`;
+}
+/* title illustration */
+function titleArt(cid){
+  return `<svg viewBox="0 0 480 400" role="img" aria-label="A winding path to a haunted house under the moon"><rect width="480" height="400" fill="#16303b"/>
+   ${[[40,40],[110,80],[180,30],[250,60],[330,28],[420,70],[60,130],[440,150]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="1.8" fill="#f6ecc8" opacity=".85"/>`).join('')}
+   <circle cx="380" cy="80" r="40" fill="#f6ecc8"/><circle cx="366" cy="70" r="6" fill="#e6d9a8"/><circle cx="392" cy="92" r="4.5" fill="#e6d9a8"/>
+   <path d="M0 190Q120 160 240 180T480 170V400H0Z" fill="#0f2a2c"/>
+   <g fill="#091519"><rect x="190" y="110" width="140" height="74"/><path d="M178 114L260 56L342 114Z"/><rect x="296" y="62" width="16" height="40"/></g>
+   <g fill="#f6d365"><rect x="206" y="128" width="16" height="22" rx="2"/><rect x="238" y="128" width="16" height="22" rx="2"/><rect x="270" y="128" width="16" height="22" rx="2"/><path d="M244 160h20v24h-20z" fill="#f08a24"/></g>
+   <path d="M254 184Q300 230 220 262Q130 292 200 330Q250 360 160 400H300Q330 360 270 330Q200 300 290 262Q350 232 272 184Z" fill="#c99a5b" stroke="#8a5a2e" stroke-width="4" stroke-linejoin="round"/>
+   <g><circle cx="70" cy="330" r="30" fill="#f08a24"/><path d="M70 300Q70 290 80 288" stroke="#4c8a3a" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M70 300Q50 330 70 360" stroke="#c96a0c" stroke-width="2.5" fill="none"/><circle cx="130" cy="372" r="18" fill="#f6a03c"/><circle cx="420" cy="340" r="26" fill="#f08a24"/><path d="M420 314Q420 306 428 305" stroke="#4c8a3a" stroke-width="5" fill="none" stroke-linecap="round"/></g>
+   <g transform="translate(96 214)"><rect x="20" y="30" width="6" height="40" fill="#6b4220"/><rect x="2" y="6" width="42" height="28" rx="6" fill="#b07a40" stroke="#6b4220" stroke-width="3"/><text x="23" y="26" text-anchor="middle" font-family="Andika" font-weight="700" font-size="16" fill="#fff7e3">ar</text></g>
+   <g transform="translate(240 300) scale(1.5)">${charInner(cid,'cheer')}</g>
+   <path d="M380 150q8-12 16 0q8-10 16 0q-8 3-16 8q-8-5-16-8Z" fill="#091519"/><path d="M330 110q6-9 12 0q6-8 12 0q-6 2-12 6q-6-4-12-6Z" fill="#091519"/></svg>`;
+}
+
+/* ============ DATA SETUP ============ */
+const DARK=['#7a4f78','#bf5512','#8c6600','#2c7743','#5b7611','#1b6b70','#ae3266','#2d5c9a'];
+UNITS.forEach((u,ui)=>{
+  u.d=DARK[ui];u.words=[];
+  u.groups.forEach((g,gi)=>{
+    g.words=g.words.map(t=>{const o={w:t[0],th:t[1],s:t[2]||null,at:t[3],u:ui,gi,e:EMO[t[0]]||''};u.words.push(o);return o;});
+  });
+});
+const HL_EXTRA={ear:[0,3],glove:[4,5],live:[3,4]};
+
+/* ============ HELPERS ============ */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const prefs=Object.assign({thai:true,sound:true,fx:true,big:false},store.get('bem_ct_prefs',{}));
+const save=Object.assign({char:null,best:{},album:{}},store.get('bem_ct',{}));
+const persist=()=>store.set('bem_ct',save);
+const app=$('#app');
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const delay=ms=>new Promise(r=>setTimeout(r,ms));
+const applyPrefs=()=>document.documentElement.classList.toggle('big',prefs.big);
+applyPrefs();
+const FAST=/[#?]fast/.test(location.href);
+const reduced=()=>FAST||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+const hasSpeech='speechSynthesis' in window;
+function say(t,rate=.8){
+  if(!hasSpeech)return;
+  try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=rate;speechSynthesis.speak(u);}catch(e){}
+}
+let ac;
+const FX={ok:[[660,0],[880,.09]],boo:[[260,0],[200,.12],[150,.24]],pop:[[700,0],[1050,.07],[1400,.14]],win:[[523,0],[659,.12],[784,.24],[1047,.38]],open:[[330,0],[440,.12],[554,.24],[659,.36]],step:[[420,0]]};
+function fx(kind){
+  if(!prefs.fx)return;
+  try{
+    ac=ac||new (window.AudioContext||window.webkitAudioContext)();
+    const t0=ac.currentTime;
+    FX[kind].forEach(([f,d])=>{
+      const o=ac.createOscillator(),g=ac.createGain();
+      o.type=kind==='boo'?'triangle':'sine';o.frequency.value=f;
+      g.gain.setValueAtTime(.0001,t0+d);g.gain.exponentialRampToValueAtTime(.1,t0+d+.02);g.gain.exponentialRampToValueAtTime(.0001,t0+d+.26);
+      o.connect(g);g.connect(ac.destination);o.start(t0+d);o.stop(t0+d+.28);
+    });
+  }catch(e){}
+}
+const ic=p=>`<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const I={
+  spk:ic('<path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/>'),
+  check:ic('<path d="M5 12.5l4.5 4.5L19 7.5"/>'),
+  cross:ic('<path d="M6 6l12 12M18 6L6 18"/>'),
+  back:ic('<path d="M19 12H5M11 6l-6 6 6 6"/>'),
+  next:ic('<path d="M5 12h14M13 6l6 6-6 6"/>')
+};
+const starSvg=(on,color='#f6d365')=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z" fill="${on?color:'none'}" stroke="${color}" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
+const th=wd=>prefs.thai?wd.th:'';
+const pic=wd=>`<span class="pic" aria-hidden="true">${wd.e}</span>`;
+
+function blankInfo(wd){
+  const at=wd.at!==undefined?wd.at:wd.w.toLowerCase().indexOf(wd.s);
+  return {pre:wd.w.slice(0,at),mid:wd.w.slice(at,at+wd.s.length),post:wd.w.slice(at+wd.s.length)};
+}
+function hlRange(wd){
+  if(wd.s){const b=blankInfo(wd);return [b.pre.length,b.pre.length+b.mid.length]}
+  return HL_EXTRA[wd.w]||null;
+}
+function colored(wd,txt){
+  txt=txt||wd.w;const r=hlRange(wd);
+  return r?txt.slice(0,r[0])+`<span class="pt" style="--d:${UNITS[wd.u].d}">${txt.slice(r[0],r[1])}</span>`+txt.slice(r[1]):txt;
+}
+const fmt=(g,w)=>g.note.replace(/\{w\}/g,w);
+function fillQ(wd){
+  const pool=UNITS[wd.u].pool.filter(x=>x!==wd.s);
+  return {opts:shuffle([wd.s,...shuffle(pool).slice(0,3)])};
+}
+function clozeQ(ui,c){
+  const [s,a,t,d]=c;
+  return {wd:UNITS[ui].words.find(x=>x.w===a),sentence:s,full:s.replace('___',a),thTxt:t,say:s.replace('___','blank'),opts:shuffle([a,...d])};
+}
+
+function menu(){
+  const cb=(k,l)=>`<label><input type="checkbox" data-tg="${k}" ${prefs[k]?'checked':''}> ${l}</label>`;
+  return `<details class="menu"><summary>Settings</summary><div class="drop">${cb('thai','Thai hints')}${cb('sound','Auto sound')}${cb('fx','Sound effects')}${cb('big','Big text')}</div></details>`;
+}
+function bindMenu(redraw){
+  $$('[data-tg]').forEach(b=>b.onchange=()=>{prefs[b.dataset.tg]=b.checked;store.set('bem_ct_prefs',prefs);applyPrefs();if(redraw)redraw();});
+}
+const totalCandy=()=>Object.values(save.album).reduce((a,c)=>a+c.n,0);
+const jarBtn=()=>`<button class="jarbtn" id="jarbtn" aria-label="Open candy jar, ${totalCandy()} candies">${candySVG('gum',30)}<span>Candy jar · ${totalCandy()}</span></button>`;
+function addAlbum(id,gold){
+  const a=save.album[id]||(save.album[id]={n:0,gold:false});
+  a.n++;if(gold)a.gold=true;persist();
+}
+const stars3=(n)=>[1,2,3].map(i=>starSvg(i<=n)).join('');
+
+/* ============ TITLE ============ */
+function title(){
+  S=null;
+  app.innerHTML=`<div class="wrap"><div class="bar"><div class="wm">Bright EngMath</div>${menu()}</div>
+  <section class="hero"><div>
+    <div class="sh">A Halloween phonics walk</div>
+    <h1 class="disp">Candy Trail</h1>
+    <p class="tag">Walk the spooky trail, read the signs and collect candy. Pick the wrong sign and you meet a dead end!</p>
+    <div class="acts"><button class="btn primary" id="go">${save.char?'Continue the trail':'Choose your trick-or-treater'} ${I.next}</button>${totalCandy()?jarBtn():''}</div>
+  </div><div class="art">${titleArt(save.char||'jack')}</div></section>
+  <section class="how"><div><span class="n">1</span><b>Read or listen</b><p>Each stop on the trail shows a word, a sentence or a sound from the letter-combination units.</p></div>
+  <div><span class="n">2</span><b>Choose a path</b><p>Follow the sign with the right answer. A wrong sign leads to a dead end, so you walk back and try again.</p></div>
+  <div><span class="n">3</span><b>Beat the obstacles</b><p>Webs, stones, gates and locks block the way. Answer correctly to clear them, collect candy and reach the door.</p></div></section></div>`;
+  bindMenu(title);
+  $('#go').onclick=()=>save.char?trail():pickChar();
+  const j=$('#jarbtn');if(j)j.onclick=album;
+}
+
+/* ============ CHARACTER SELECT ============ */
+function pickChar(){
+  S=null;
+  let sel=save.char||'jack';
+  const draw=()=>{
+    app.innerHTML=`<div class="wrap"><div class="bar"><button class="link" id="back">${I.back} Back</button>${menu()}</div>
+    <div class="sh" style="margin-top:.8rem">Step 1</div><h1 class="disp pagetitle">Who is going trick-or-treating?</h1>
+    <p>Your friend walks every trail with you. You can change later.</p>
+    <div class="chars">${CHARS.map(c=>`<button class="charbtn" data-c="${c.id}" aria-pressed="${c.id===sel}"><span class="on">Chosen</span>${charSVG(c.id,c.id===sel?'cheer':'idle',120)}<b>${c.name}</b><small>${c.line}</small></button>`).join('')}</div>
+    <button class="btn primary" id="start">Start the trail ${I.next}</button></div>`;
+    bindMenu(draw);
+    $('#back').onclick=title;
+    $$('.charbtn').forEach(b=>b.onclick=()=>{sel=b.dataset.c;draw();$(`[data-c="${sel}"]`).focus()});
+    $('#start').onclick=()=>{save.char=sel;persist();trail()};
+  };
+  draw();
+}
+
+/* ============ TRAIL MAP ============ */
+function trail(){
+  S=null;
+  const next=UNITS.findIndex((_,i)=>!(save.best[i]&&save.best[i].stars));
+  const xs=[28,72,28,72,28,72,28,72],H=8*128+60,top=i=>24+i*128;
+  let d=`M${xs[0]} ${top(0)+32}`;
+  for(let i=1;i<8;i++){const y0=top(i-1)+32,y1=top(i)+32,ym=(y0+y1)/2;d+=` C${xs[i-1]} ${ym} ${xs[i]} ${ym} ${xs[i]} ${y1}`}
+  app.innerHTML=`<div class="wrap"><div class="bar"><button class="link" id="home">${I.back} Title</button><div style="display:flex;gap:.8rem;align-items:center">${jarBtn()}${menu()}</div></div>
+  <div class="trailhead"><div><div class="sh">Pick a trail</div><h1 class="disp pagetitle" style="margin-bottom:0">The Trick-or-Treat Route</h1></div>
+    <button class="link" id="chg">Change character</button></div>
+  <div class="trail" style="height:${H}px"><svg class="line" viewBox="0 0 100 ${H}" preserveAspectRatio="none" aria-hidden="true"><path d="${d}" fill="none" stroke="#c99a5b" stroke-width="6" stroke-dasharray="2 14" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
+  ${UNITS.map((u,i)=>{const b=save.best[i]||{stars:0};return `<button class="stop" data-u="${i}" style="left:${xs[i]}%;top:${top(i)}px;--d:${u.d}" aria-label="Unit ${u.n}, ${LEVELS[i].name}, ${b.stars} of 3 stars">
+    ${i===next&&save.char?`<span style="position:absolute;left:${xs[i]<50?'-8px':'auto'};right:${xs[i]<50?'auto':'-8px'};top:-6px;z-index:2">${charSVG(save.char,'idle',46)}</span>`:''}
+    <span class="dot">${u.n}${b.gold?`<span class="gold" aria-label="Gold candy earned">${candySVG('star',24)}</span>`:''}</span>
+    <span class="nm">${LEVELS[i].name}</span><span class="cb">${u.combos}</span><span class="st">${stars3(b.stars)}</span></button>`}).join('')}</div></div>`;
+  bindMenu(trail);
+  $('#home').onclick=title;$('#chg').onclick=pickChar;$('#jarbtn').onclick=album;
+  $$('.stop').forEach(b=>b.onclick=()=>startLevel(+b.dataset.u));
+}
+
+/* ============ CANDY JAR ============ */
+function album(){
+  S=null;
+  const kinds=CANDY.filter(c=>save.album[c.id]).length;
+  app.innerHTML=`<div class="wrap"><div class="bar"><button class="link" id="back">${I.back} Trail</button>${menu()}</div>
+  <div class="sh" style="margin-top:.8rem">Your collection</div><h1 class="disp pagetitle">Candy Jar</h1>
+  <p>${totalCandy()} candies collected · ${kinds} of ${CANDY.length} kinds found. Every trail has its own special treat at the haunted-house door. Finish without a single wrong turn to win it in gold.</p>
+  <div class="albumgrid">${CANDY.map(c=>{const a=save.album[c.id];return `<div class="cslot${a?'':' off'}">${a?`<span class="cnt">×${a.n}</span>`:''}${a&&a.gold?'<span class="gd">GOLD</span>':''}${candySVG(c.id,76)}<b>${a?c.name:'Not found yet'}</b><small>${c.lv!==undefined?`Treat at the end of “${LEVELS[c.lv].name}”`:c.hint}</small></div>`}).join('')}</div></div>`;
+  bindMenu(album);
+  $('#back').onclick=trail;
+}
+
+/* ============ RUN STATE + LEVEL BUILDER ============ */
+let S=null;
+const HW=30,HH=55;
+function buildLevel(ui){
+  const u=UNITS[ui];
+  const script=[['J','sort'],['O','listen'],['J','fill'],['O',ui===6?'hunt':'cloze'],['J','listen'],['O','fill'],['J','cloze']];
+  const used=new Set(),cl=shuffle(CLOZE[ui]);let ci=0;
+  const take=f=>{const pool=shuffle(u.words).filter(w=>f(w)&&!used.has(w.w));const w=pool[0]||shuffle(u.words).filter(f)[0];used.add(w.w);return w};
+  return script.map(([kind,type],n)=>{
+    const e={kind,type,n,fails:0,obs:kind==='O'?OBS_OF[type]:null};
+    if(type==='sort'){
+      const wd=take(()=>true),others=shuffle(u.groups.map((_,gi)=>gi).filter(g=>g!==wd.gi)).slice(0,2);
+      e.wd=wd;e.say=wd.w;e.options=shuffle([wd.gi,...others]).map(gi=>({label:u.groups[gi].label,sub:u.groups[gi].sub||'',correct:gi===wd.gi}));
+    }else if(type==='fill'){
+      const wd=take(w=>w.s),q=fillQ(wd);
+      e.wd=wd;e.say=wd.w;e.options=q.opts.slice(0,kind==='J'?3:4).map(o=>({label:o,correct:o===wd.s}));
+      if(!e.options.some(o=>o.correct)){e.options[0]={label:wd.s,correct:true}}
+      e.options=shuffle(e.options);
+    }else if(type==='listen'){
+      const wd=take(()=>true),others=shuffle(u.words.filter(x=>x.w!==wd.w)).slice(0,2).map(x=>x.w);
+      e.wd=wd;e.say=wd.w;e.options=shuffle([wd.w,...others]).map(o=>({label:o,correct:o===wd.w}));
+    }else if(type==='cloze'){
+      const q=clozeQ(ui,cl[ci++%cl.length]);
+      Object.assign(e,{wd:q.wd,sentence:q.sentence,full:q.full,thTxt:q.thTxt,say:q.say});
+      e.options=q.opts.map(o=>({label:o,correct:o===q.wd.w}));
+    }else{
+      const wd=take(w=>HUNT[w.w]);e.wd=wd;e.say=wd.w;e.hunt=HUNT[wd.w];
+    }
+    return e;
+  });
+}
+function startLevel(ui){
+  S={ui,enc:buildLevel(ui),i:0,candies:[],fails:0,firstTry:0,busy:false,mood:'idle'};
+  showEncounter();
+}
+const cur=()=>S.enc[S.i];
+const leave=()=>{S=null;if(hasSpeech)try{speechSynthesis.cancel()}catch(e){}trail()};
+
+function hud(){
+  const u=UNITS[S.ui];
+  const pips=S.enc.map((_,i)=>`<i class="${i<S.i?'done':i===S.i?'now':''}"></i>`).join('')+`<i class="door ${S.i>=S.enc.length?'now':''}"></i>`;
+  return `<div class="bar"><button class="link" id="back">${I.back} Trail</button>${menu()}</div>
+  <div class="hud"><div class="lvname">${LEVELS[S.ui].name}<small>Unit ${u.n} · ${u.combos}</small></div>
+  <div class="pips" role="img" aria-label="Stop ${Math.min(S.i+1,S.enc.length)} of ${S.enc.length}, then the door">${pips}</div>
+  <div class="jar" id="jar" aria-label="${S.candies.length} candies this trail">${candySVG('gum',26)}<b id="jarn">${S.candies.length}</b></div></div>`;
+}
+
+/* ---- scene ---- */
+const heroSVG=(x,y)=>`<g id="hero" transform="translate(${x-HW} ${y-HH})"><g class="hero-bob"><g id="heroInner" transform="scale(.95)">${charInner(save.char,S.mood)}</g></g></g>`;
+function junctionXs(n){return n===2?[95,265]:[60,180,300]}
+function sceneHTML(e){
+  const ui=S.ui;let svg=bgSVG(ui),over='';
+  if(e.kind==='J'){
+    const xs=junctionXs(e.options.length);
+    const dirt=xs.map(x=>`M180 424V300C180 238 ${x} 238 ${x} 150`);
+    svg+=dirt.map(d=>`<path d="${d}" fill="none" stroke="#7d5230" stroke-width="42" stroke-linecap="round" stroke-linejoin="round"/>`).join('')+dirt.map(d=>`<path d="${d}" fill="none" stroke="#c99a5b" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>`).join('');
+    svg+=xs.map((x,i)=>`<path id="w${i}" d="M180 395V320C180 275 ${x} 285 ${x} 245" fill="none" stroke="none"/>`).join('');
+    e.dead=xs.map(()=>Math.floor(Math.random()*3));
+    svg+=xs.map((x,i)=>`<g transform="translate(${x} 178)"><g class="de" id="de${i}">${deadEndSVG(e.dead[i])}</g></g>`).join('');
+    svg+=heroSVG(180,395);
+    over=e.options.map((o,i)=>`<button class="sign" data-i="${i}" aria-label="Path ${i+1}: ${o.label}" style="left:${xs[i]/3.6}%;top:${150/4.2}%"><span>${o.label}</span>${o.sub?`<small>${o.sub}</small>`:''}</button>`).join('');
+  }else{
+    const d='M180 424V120';
+    svg+=`<path d="${d}" fill="none" stroke="#7d5230" stroke-width="42" stroke-linecap="round"/><path d="${d}" fill="none" stroke="#c99a5b" stroke-width="34" stroke-linecap="round"/>`;
+    svg+=`<path id="wt" d="M180 372V150" fill="none" stroke="none"/>`;
+    svg+=obstacleSVG(e.obs,e)+heroSVG(180,372);
+  }
+  return `<div class="scene" id="scene"><svg class="sc" viewBox="0 0 360 420" role="img" aria-label="${e.kind==='J'?'A fork in the trail with signposts':OBS_TEXT[e.obs]}">${svg}</svg>${over}</div>`;
+}
+function panelHTML(e){
+  const wd=e.wd,t=e.type;
+  const listen=hasSpeech?`<button class="btn say" id="say" aria-label="Listen">${I.spk}<span>Listen</span></button>`:'';
+  let body='';
+  if(t==='sort')body=`<p class="ask">Which sign matches this word?</p><div class="wordrow"><div class="wcard">${pic(wd)}<span class="wtxt" id="wtxt">${wd.w}</span></div>${listen}</div><div class="thm">${th(wd)}</div>`;
+  else if(t==='fill'){
+    const b=blankInfo(wd);
+    body=e.kind==='J'
+      ?`<p class="ask">Which letters are missing?</p>${pic(wd)}<div class="fillword" aria-label="${wd.w}"><span>${b.pre}</span><span class="blank" id="blank">&nbsp;</span><span>${b.post}</span></div><div class="wordrow" style="margin-top:.4rem">${listen}</div><div class="thm">${th(wd)}</div>`
+      :`<p class="ask">Which letters fix the word on the stone?</p>${pic(wd)}<div class="wordrow">${listen}</div><div class="thm">${th(wd)}</div>`;
+  }else if(t==='listen')body=`<p class="ask">Listen. Which word did you hear?</p><div class="wordrow">${hasSpeech?`<button class="thplay" id="say" aria-label="Play the word again">${I.spk}</button><button class="btn" id="slow">Play slowly</button>`:'<p>Word sounds are not available in this browser.</p>'}</div><div class="thm" id="reveal"></div>`;
+  else if(t==='cloze')body=`<p class="ask">Read the sentence. Which word fits?</p>${pic(wd)}<p class="sent" id="sent">${e.sentence.replace('___','<span class="blank" id="blank">&nbsp;&nbsp;&nbsp;</span>')}</p><div class="wordrow">${listen}</div><div class="thm">${prefs.thai?e.thTxt:''}</div>`;
+  else body=`<p class="ask">Tap the letter that is silent.</p>${pic(wd)}<div class="wordrow">${listen}</div><div class="tiles">${[...wd.w].map((c,i)=>`<button class="tile" data-i="${i}" aria-label="letter ${c}">${c}</button>`).join('')}</div><div class="thm">${th(wd)}</div>`;
+  let input='';
+  if(e.kind==='J')input=`<p class="hintp">Tap a sign on the path. A wrong sign is a dead end.</p>`;
+  else if(t!=='hunt')input=`<div class="opts">${e.options.map((o,i)=>`<button class="opt" data-i="${i}"><span>${o.label}</span></button>`).join('')}</div>`;
+  const lead=e.kind==='O'?`<p class="hintp" style="margin:0 0 .7rem;font-weight:700;color:var(--orange-d)">${OBS_TEXT[e.obs]}</p>`:'';
+  return lead+body+input+`<div class="msg" id="msg" aria-live="polite"></div><div id="fbbox" aria-live="polite"></div>`;
+}
+
+function showEncounter(){
+  if(S.i>=S.enc.length)return showDoor();
+  const e=cur();S.busy=false;S.mood='idle';e.fails=0;
+  app.innerHTML=`<div class="wrap">${hud()}<div class="play">${sceneHTML(e)}<div class="panel" id="panel">${panelHTML(e)}</div></div></div>`;
+  bindMenu();
+  $('#back').onclick=leave;
+  const sayBtn=$('#say');if(sayBtn)sayBtn.onclick=()=>say(e.say,e.type==='cloze'?.75:.8);
+  const slow=$('#slow');if(slow)slow.onclick=()=>say(e.wd.w,.45);
+  if(e.kind==='J')$$('.sign').forEach(b=>b.onclick=()=>pickSign(+b.dataset.i));
+  else if(e.type==='hunt')bindHunt(e);
+  else $$('.opt').forEach(b=>b.onclick=()=>pickOpt(+b.dataset.i));
+  S.keys=n=>{const list=e.kind==='J'?$$('.sign'):$$('.opt');const b=list[n-1];if(b&&!b.disabled)b.click()};
+  if(prefs.sound||e.type==='listen')setTimeout(()=>{if(S&&cur()===e)say(e.say,e.type==='cloze'?.75:.8)},500);
+}
+
+/* ---- hero movement ---- */
+function setMood(m){S.mood=m;const h=$('#heroInner');if(h)h.innerHTML=charInner(save.char,m)}
+function heroAt(x,y){const h=$('#hero');if(h)h.setAttribute('transform',`translate(${x-HW} ${y-HH})`)}
+function walk(pathEl,reverse){
+  return new Promise(res=>{
+    const L=pathEl.getTotalLength(),sc=$('#scene');
+    const set=t=>{const p=pathEl.getPointAtLength((reverse?1-t:t)*L);heroAt(p.x,p.y+Math.sin(t*L/8)*-2);S.hx=p.x;S.hy=p.y};
+    if(reduced()){set(1);return res()}
+    sc.classList.add('walking');
+    const t0=performance.now(),ms=Math.max(500,L*4.2);
+    (function step(now){
+      const t=Math.min(1,(now-t0)/ms),e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+      set(e);
+      if(t<1)requestAnimationFrame(step);else{sc.classList.remove('walking');res()}
+    })(t0);
+  });
+}
+function bubble(text,x,y,side){
+  const sc=$('#scene');if(!sc)return;
+  $$('.bubble').forEach(b=>b.remove());
+  const b=document.createElement('div');b.className='bubble';b.textContent=text;
+  if(side){const cx=x+(x<=180?78:-78);b.classList.add('side');b.style.left=(cx/3.6)+'%';b.style.top=((y-24)/4.2)+'%'}
+  else{b.style.left=(x/3.6)+'%';b.style.top=((y-62)/4.2)+'%'}
+  sc.appendChild(b);setTimeout(()=>b.remove(),1800);
+}
+function popCandy(n,ids){
+  const sc=$('#scene');if(!sc)return;
+  const p=document.createElement('div');p.className='pop';
+  p.innerHTML=ids.map(candySVG).join('')+`<b>+${n}</b>`;
+  sc.appendChild(p);setTimeout(()=>p.remove(),1400);
+  const j=$('#jar');if(j){j.classList.remove('pulse');void j.offsetWidth;j.classList.add('pulse')}
+  const jn=$('#jarn');if(jn)jn.textContent=S.candies.length;
+}
+function award(e){
+  const n=e.fails?1:3,got=[];
+  for(let i=0;i<n;i++)got.push(pick(COMMONS));
+  got.forEach(id=>{S.candies.push(id);addAlbum(id)});
+  if(!e.fails)S.firstTry++;
+  fx('pop');popCandy(n,got);
+  return n;
+}
+function successPanel(e,n){
+  const g=UNITS[S.ui].groups[e.wd.gi],last=S.i+1>=S.enc.length;
+  let note=fmt(g,e.wd.w);
+  if(e.type==='cloze')note=`${e.full}<br>${note}`;
+  if(e.type==='fill'){const b=blankInfo(e.wd);note=`${e.wd.w} = ${b.pre?b.pre+' + ':''}<b>${b.mid}</b>${b.post?' + '+b.post:''}. ${note}`}
+  $('#msg').textContent='';
+  $('#fbbox').innerHTML=`<div class="fb">${I.check}<div><strong>${e.fails?'You made it!':'Right!'} +${n} candy${n>1?'ies':''}</strong><p>${note}</p></div><button class="btn primary" id="nxt">${last?'Walk to the door':'Keep walking'} ${I.next}</button></div>`;
+  const b=$('#nxt');b.onclick=advance;b.focus({preventScroll:true});
+  b.scrollIntoView({block:'nearest',behavior:reduced()?'auto':'smooth'});
+  S.keys=null;
+}
+async function advance(){
+  const sc=$('#scene');
+  if(sc)sc.classList.add('fade');
+  await delay(reduced()?0:280);
+  S.i++;showEncounter();
+}
+
+/* ---- junction: signs ---- */
+async function pickSign(i){
+  if(S.busy)return;
+  const e=cur(),o=e.options[i],sign=$(`.sign[data-i="${i}"]`);
+  S.busy=true;
+  $$('.sign').forEach(s=>s.disabled=true);
+  const path=$('#w'+i);
+  await walk(path);
+  if(o.correct){
+    sign.classList.add('ok');setMood('cheer');
+    if(e.type==='fill')$('#blank').textContent=blankInfo(e.wd).mid;
+    if(e.type==='cloze')$('#blank').innerHTML=colored(e.wd);
+    if(e.type==='sort')$('#wtxt').innerHTML=colored(e.wd);
+    if(e.type==='listen'){const r=$('#reveal');if(r)r.innerHTML=`${pic(e.wd)}<div>${th(e.wd)}</div>`}
+    const n=award(e);
+    successPanel(e,n);
+    S.busy=false;
+  }else{
+    e.fails++;S.fails++;
+    $(`#de${i}`).classList.add('show');setMood('scared');fx('boo');
+    bubble(pick(['Eek! Dead end!','Oops! Wrong way!','Boo! Go back!']),S.hx,S.hy,true);
+    $('#msg').textContent='Dead end! Listen again, then try another sign.';
+    await delay(reduced()?200:1000);
+    setMood('idle');
+    await walk(path,true);
+    sign.classList.add('bad');sign.setAttribute('aria-label',sign.getAttribute('aria-label')+' (dead end)');
+    $$('.sign').forEach((s,k)=>{if(!s.classList.contains('bad'))s.disabled=false});
+    const tryN=$$('.sign:not(.bad)')[0];
+    S.busy=false;
+  }
+}
+
+/* ---- obstacle: answer buttons ---- */
+async function clearObstacle(e){
+  const o=$('#obs');
+  if(e.obs==='gate'){$('#scene').classList.add('opened');o.classList.add('opened')}
+  o.classList.add('gone');
+  await delay(reduced()?0:650);
+}
+async function pickOpt(i){
+  if(S.busy)return;
+  const e=cur(),o=e.options[i],btn=$(`.opt[data-i="${i}"]`);
+  if(o.correct){
+    S.busy=true;
+    $$('.opt').forEach(b=>{b.disabled=true;if(b!==btn)b.style.opacity=.5});
+    btn.classList.add('ok');btn.insertAdjacentHTML('beforeend',`<span class="mk">${I.check}</span>`);
+    if(e.type==='fill'){const sb=$('#stoneBlank');if(sb){sb.textContent=blankInfo(e.wd).mid;sb.setAttribute('fill','#256f49')}}
+    if(e.type==='cloze')$('#blank').innerHTML=colored(e.wd);
+    if(e.type==='listen'){const r=$('#reveal');if(r)r.innerHTML=`${pic(e.wd)}<div>${th(e.wd)}</div>`}
+    setMood('cheer');
+    await clearObstacle(e);
+    await walk($('#wt'));
+    const n=award(e);
+    successPanel(e,n);
+    S.busy=false;
+  }else{
+    e.fails++;S.fails++;
+    btn.disabled=true;btn.classList.add('bad');btn.insertAdjacentHTML('beforeend',`<span class="mk">${I.cross}</span>`);
+    scare(e,'Eek! Try again!');
+  }
+}
+async function scare(e,txt){
+  setMood('scared');fx('boo');
+  const ob=$('#obs');if(ob){ob.classList.remove('shake');void ob.getBoundingClientRect();ob.classList.add('shake')}
+  bubble(txt,180,372);
+  $('#msg').textContent='Not quite. Listen again and try another answer.';
+  await delay(reduced()?200:900);
+  if(S&&cur()===e&&!S.busy)setMood('idle');
+}
+function bindHunt(e){
+  const [target,soft]=e.hunt,wd=e.wd;
+  $$('.tile').forEach(t=>t.onclick=async()=>{
+    if(S.busy)return;
+    const i=+t.dataset.i;
+    if(target.includes(i)){
+      S.busy=true;
+      $$('.tile').forEach((x,k)=>{x.disabled=true;if(target.includes(k))x.classList.add('silent')});
+      setMood('cheer');
+      await clearObstacle(e);
+      await walk($('#wt'));
+      const n=award(e);
+      successPanel(e,n);
+      S.busy=false;
+    }else if(soft.includes(i)){
+      $('#msg').textContent=`That letter is silent too, but look for the one in “${UNITS[S.ui].groups[wd.gi].label}”.`;
+    }else{
+      e.fails++;S.fails++;
+      t.classList.remove('shake');void t.offsetWidth;t.classList.add('shake');
+      scare(e,'Eek! Try again!');
+    }
+  });
+}
+
+/* ============ DOOR + RESULTS ============ */
+function showDoor(){
+  S.busy=false;S.mood='cheer';
+  app.innerHTML=`<div class="wrap">${hud()}<div class="play"><div class="scene" id="scene"><svg class="sc" viewBox="0 0 360 420" role="img" aria-label="The haunted house door at the end of the trail">${doorSVG(S.ui)}${heroSVG(180,398)}</svg></div>
+  <div class="panel"><p class="ask">You made it to the end of the trail!</p><h2 class="disp" style="font-size:2rem;color:var(--orange-d);margin-bottom:.4rem">Knock, knock…</h2>
+  <p>You collected <b>${S.candies.length}</b> candies on the way. Someone is waiting behind this door with a special treat.</p>
+  <div style="margin-top:1rem"><button class="btn primary" id="knock">Knock on the door</button></div></div></div></div>`;
+  bindMenu();$('#back').onclick=leave;
+  $('#knock').onclick=async()=>{
+    $('#knock').disabled=true;fx('open');
+    $('#scene').classList.add('opened');
+    await delay(reduced()?0:1300);
+    finishLevel();
+  };
+}
+function finishLevel(){
+  const ui=S.ui,perfect=S.fails===0,ft=S.firstTry,total=S.enc.length;
+  const stars=ft>=total-1?3:ft>=Math.ceil(total*.6)?2:1;
+  const sig=CANDY.find(c=>c.lv===ui);
+  addAlbum(sig.id,perfect);
+  const prev=save.best[ui]||{stars:0,gold:false,candy:0};
+  save.best[ui]={stars:Math.max(prev.stars,stars),gold:prev.gold||perfect,candy:Math.max(prev.candy,S.candies.length)};
+  persist();fx('win');
+  const counts={};S.candies.forEach(id=>counts[id]=(counts[id]||0)+1);
+  const run=S;
+  const msg=perfect?'No wrong turns at all! The treat is gold.':ft>=total-1?'Just one wrong turn. Great walking!':'You found the way out. Walk again to learn the tricky ones.';
+  app.innerHTML=`<div class="wrap"><div class="bar"><div class="wm">Bright EngMath</div>${menu()}</div>
+  <section class="res"><div class="sigbox${perfect?' gold':''}">${perfect?'<span class="gl">GOLD</span>':''}<div class="cd">${candySVG(sig.id,130)}</div><div class="sh" style="margin-top:.4rem">New treat</div><h2>${sig.name}</h2></div>
+  <div><div class="sh">${LEVELS[ui].name} · Unit ${UNITS[ui].n}</div><h1 class="disp pagetitle">Trick or treat!</h1>
+  <div class="stars" role="img" aria-label="${stars} of 3 stars">${stars3(stars)}</div>
+  <p>${msg}</p><p style="opacity:.85;font-size:.92rem;margin-top:.3rem">${ft} of ${total} stops right on the first try.</p>
+  <div class="haul" aria-label="Candy collected on this trail">${Object.entries(counts).map(([id,n])=>`<span>${candySVG(id,28)}×${n}</span>`).join('')}</div>
+  <div class="actions"><button class="btn primary" id="again">Walk it again</button><button class="btn" id="tr">Back to the trail</button><button class="btn" id="jr">Candy jar</button></div></div></section></div>`;
+  bindMenu();
+  $('#again').onclick=()=>startLevel(ui);$('#tr').onclick=trail;$('#jr').onclick=album;
+  window.scrollTo(0,0);S=null;
+}
+
+document.addEventListener('keydown',e=>{
+  if(S&&S.keys&&!S.busy&&/^[1-9]$/.test(e.key)&&!e.metaKey&&!e.ctrlKey&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName))S.keys(+e.key);
+});
+title();
+</script>
+</body>
+</html>

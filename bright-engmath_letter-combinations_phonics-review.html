@@ -1,0 +1,980 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Letter Combinations Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Concept: a printed phonics workbook. Flat colour from the book's unit tabs,
+   large lowercase letter-pairs, and every word printed with its letter
+   combination coloured, the way phonics readers do it. */
+:root{
+  --page:#f4f2ec; --surface:#fff; --ink:#22252b; --muted:#5d605c; --line:#dcd8cc; --line2:#b4afa0;
+  --ok:#1b7045; --ok-bg:#e4f1e9; --bad:#a43b25; --bad-bg:#f8e6df; --focus:#1f5fbf;
+  --c:#22252b; --d:#22252b; --on:#fff; --t:rgba(34,37,43,.08);
+}
+*{box-sizing:border-box}
+html{font-size:18px}
+html.big{font-size:22px}
+body{margin:0;background:var(--page);color:var(--ink);min-height:100vh;line-height:1.5;
+  font-family:'Andika','IBM Plex Sans Thai',system-ui,sans-serif}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+h1,h2,h3,p,ol,ul{margin:0}
+ol,ul{padding:0;list-style:none}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px 3.5rem}
+svg.ico{width:1.15em;height:1.15em;flex:none}
+.pt{color:var(--d)}
+
+/* masthead + preferences */
+.mast{display:flex;justify-content:space-between;align-items:center;gap:.2rem 1.2rem;flex-wrap:wrap;padding:.3rem 0;border-bottom:1px solid var(--line)}
+.wm{font-weight:700;font-size:.85rem;letter-spacing:.02em}
+.prefs{display:flex;flex-wrap:wrap;gap:0 1.1rem;font-size:.78rem;color:var(--muted)}
+.prefs label{display:inline-flex;align-items:center;gap:.4rem;min-height:44px;cursor:pointer}
+.prefs input{width:18px;height:18px;accent-color:var(--ink);margin:0}
+
+/* buttons + links */
+.btn{font:inherit;display:inline-flex;align-items:center;justify-content:center;gap:.45rem;border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:8px;padding:.45rem 1.1rem;min-height:48px;cursor:pointer;transition:background .12s}
+.btn:hover:not(:disabled){background:rgba(34,37,43,.07)}
+.btn.primary{background:var(--ink);color:#fff}
+.btn.primary:hover:not(:disabled){background:#000}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.link{display:inline-flex;align-items:center;gap:.35rem;background:none;border:0;padding:0;min-height:44px;cursor:pointer;font-size:.9rem;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+
+/* home: the contents page */
+.h1{font-size:clamp(2.3rem,6.4vw,3.8rem);line-height:1.05;font-weight:700;letter-spacing:-.01em;margin:1.8rem 0 .5rem}
+.lead{color:var(--muted);max-width:34rem}
+.index{margin-top:1.8rem;border-top:2px solid var(--ink)}
+.irow{display:grid;grid-template-columns:5rem 1fr auto;width:100%;min-height:5.4rem;padding:0;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);cursor:pointer}
+.irow:hover{background:var(--surface)}
+.itab{background:var(--c);color:var(--on);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.itab small{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:.2rem}
+.itab b{font-size:2.1rem}
+.imain{padding:.7rem 1rem;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.icombos{font-size:clamp(1.5rem,4.6vw,2.5rem);font-weight:700;color:var(--d);line-height:1.15;word-spacing:.28em}
+.isub{font-size:.8rem;color:var(--muted)}
+.iprog{display:flex;align-items:center;gap:.3rem;padding:0 1rem;font-size:.8rem;color:var(--muted);white-space:nowrap}
+.mixbox{margin-top:2.6rem;border-top:2px solid var(--ink);padding-top:1rem;display:grid;gap:.7rem;justify-items:start}
+.sh{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.picks{display:flex;flex-wrap:wrap;gap:.4rem}
+.pk{position:relative}
+.pk input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.pk span{display:inline-flex;align-items:center;justify-content:center;min-width:46px;min-height:46px;border:1.5px solid var(--line2);border-radius:8px;background:var(--surface);font-weight:700}
+.pk input:checked+span{background:var(--c);border-color:var(--c);color:var(--on)}
+.pk input:focus-visible+span{outline:3px solid var(--focus);outline-offset:2px}
+
+/* unit page */
+.uband{background:var(--c);color:var(--on);margin-top:.9rem}
+.uband .in{max-width:960px;margin:0 auto;padding:.5rem 16px 1.7rem}
+.uband .link{color:inherit}
+.ulabel{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-top:.6rem}
+.ucombos{font-size:clamp(2.7rem,10vw,5.6rem);line-height:1.05;font-weight:700;word-spacing:.22em;margin-top:.1rem}
+.utag{display:inline-block;margin-top:.5rem;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid currentColor;border-radius:4px;padding:0 .5rem}
+.sec{margin:2.4rem 0 .7rem}
+.glist{border-top:2px solid var(--ink)}
+.grow{display:grid;grid-template-columns:2.2rem 1fr auto;gap:0 .8rem;align-items:center;width:100%;min-height:4.6rem;padding:.7rem .2rem;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);cursor:pointer}
+.grow:hover:not(:disabled){background:var(--surface)}
+.grow:disabled{opacity:.5;cursor:not-allowed}
+.gnum{font-size:1.5rem;font-weight:700;color:var(--d)}
+.gname{font-size:1.2rem;font-weight:700;line-height:1.25}
+.gdesc{font-size:.84rem;color:var(--muted)}
+.gstars{display:flex;gap:2px;align-items:center}
+.gstars svg{width:20px;height:20px}
+.wgroup{display:grid;grid-template-columns:8rem 1fr;gap:.3rem 1rem;padding:.8rem 0;border-top:1px solid var(--line)}
+.wgroup:first-of-type{border-top:2px solid var(--ink)}
+.wglabel{font-size:2rem;line-height:1.1;font-weight:700;color:var(--d)}
+.wglabel small{display:block;font-size:.72rem;font-weight:400;color:var(--muted)}
+.wl{display:flex;flex-wrap:wrap;gap:.45rem .55rem}
+.wchip{display:flex;align-items:center;gap:.5rem;min-height:48px;padding:.25rem .8rem .25rem .35rem;background:var(--surface);border:1px solid var(--line);border-radius:8px;cursor:pointer;text-align:left;line-height:1.2}
+.wchip:hover{border-color:var(--ink)}
+.wchip .pic{width:2.3rem;height:2.3rem;font-size:1.5rem;border-radius:6px}
+.wchip .w{font-size:1.25rem;font-weight:700}
+.wchip .th{display:block;font-size:.72rem;color:var(--muted);font-weight:400}
+.srow{display:grid;grid-template-columns:1.4rem 1fr;gap:.2rem .7rem;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:.7rem .1rem;cursor:pointer;align-items:start}
+.srow:hover{background:var(--surface)}
+.srow .ico{margin-top:.25rem;color:var(--muted)}
+.stext{font-size:1.2rem;font-weight:700;line-height:1.35}
+.srow .th{display:block;font-size:.78rem;color:var(--muted);font-weight:400}
+.slist{border-top:2px solid var(--ink)}
+
+/* pictures: emoji sit in a quiet tinted tile */
+.pic{display:grid;place-items:center;background:var(--t);border-radius:10px;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;line-height:1}
+.pic:empty{display:none}
+
+/* game screen */
+.ghead{display:flex;align-items:center;flex-wrap:wrap;gap:0 1rem;padding:.2rem 0}
+.gtitle{font-weight:700;flex:1;min-width:9rem}
+.gmeta{display:flex;gap:1rem;font-size:.85rem;color:var(--muted)}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;margin:.2rem 0 .35rem}
+.seg i{height:6px;border-radius:3px;background:var(--line)}
+.seg i.done{background:var(--c)}
+.seg i.miss{background:var(--bad)}
+.seg i.now{background:var(--ink)}
+.qn{font-size:.8rem;color:var(--muted);margin-bottom:.7rem}
+.stage{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:10px;padding:1.2rem 1.1rem 1.4rem;text-align:center}
+.ask{font-size:.95rem;color:var(--muted);margin-bottom:.8rem}
+.wordrow{display:flex;justify-content:center;align-items:center;gap:.9rem;flex-wrap:wrap}
+.wcard{display:inline-flex;align-items:center;gap:1rem;padding:.55rem 1.5rem .55rem .55rem;background:var(--page);border:1.5px solid var(--ink);border-radius:12px;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;position:relative;z-index:2}
+.wcard .pic{width:4.4rem;height:4.4rem;font-size:2.8rem}
+.wtxt{font-size:clamp(2.4rem,9vw,3.9rem);font-weight:700;line-height:1.05}
+.wcard.drag{cursor:grabbing;z-index:10;box-shadow:0 14px 28px rgba(0,0,0,.2)}
+.wcard.back{transition:transform .18s}
+.thm{min-height:1.7rem;margin:.6rem 0 .2rem;font-size:1.05rem;color:var(--muted)}
+.hintp{font-size:.8rem;color:var(--muted);margin:0 0 .9rem}
+.buckets{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.6rem;max-width:780px;margin:0 auto}
+.bk,.opt{position:relative;background:var(--surface);border:1.5px solid var(--line2);border-radius:10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:border-color .12s,background .12s}
+.bk{min-height:86px;padding:.6rem .4rem}
+.bk:hover:not(:disabled),.opt:hover:not(:disabled){border-color:var(--ink);background:var(--page)}
+.bk.over{border-color:var(--ink);background:var(--t);border-width:3px}
+.bk .bl{font-size:1.8rem;font-weight:700;line-height:1.1;color:var(--d)}
+.bk .bs{font-size:.75rem;color:var(--muted)}
+.kn{position:absolute;top:.2rem;left:.45rem;font-size:.66rem;color:var(--muted)}
+.mark{position:absolute;top:.35rem;right:.4rem;display:flex}
+.mark .ico{width:1.1rem;height:1.1rem}
+.bk:disabled,.opt:disabled,.tile:disabled{cursor:default}
+.bk.ok,.opt.ok{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.bk.ok .bl{color:var(--ok)}
+.bk.bad,.opt.bad{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+.bk.bad .bl{color:var(--bad)}
+.bk.dim,.opt.dim{opacity:.5}
+.say{gap:.45rem}
+.thplay{width:5rem;height:5rem;border-radius:50%;border:0;background:var(--ink);color:#fff;cursor:pointer;display:grid;place-items:center}
+.thplay:hover{background:#000}
+.thplay .ico{width:2.2rem;height:2.2rem}
+
+/* fill / listen / sentence */
+.stage>.pic{width:5.4rem;height:5.4rem;font-size:3.4rem;margin:0 auto .4rem}
+.fillword{font-size:clamp(2.5rem,10vw,4.4rem);font-weight:700;letter-spacing:.03em;line-height:1.2;display:flex;justify-content:center;flex-wrap:wrap}
+.blank{display:inline-block;min-width:1.7em;margin:0 .08em;border-bottom:.07em solid var(--ink);text-align:center;color:var(--ok)}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.6rem;max-width:640px;margin:.9rem auto 0}
+.opts.words{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));max-width:720px}
+.opt{min-height:76px;padding:.6rem .4rem;font-size:1.8rem;font-weight:700}
+.opts.words .opt{font-size:1.4rem}
+.reveal{min-height:5.6rem;margin:.5rem 0 .1rem;color:var(--muted)}
+.reveal .pic{width:4rem;height:4rem;font-size:2.5rem;margin:0 auto .2rem}
+.sent{font-size:clamp(1.55rem,5.6vw,2.4rem);font-weight:700;line-height:1.45;margin:.3rem 0 .4rem}
+.sent.q{font-size:clamp(1.3rem,4.6vw,1.9rem)}
+.tw{font:inherit;color:inherit;background:none;border:0;padding:0 .05em;margin:0;cursor:pointer;border-radius:4px}
+.tw:hover{background:var(--t)}
+.tw.now{background:#ffe27a}
+
+/* hunt */
+.tiles{display:flex;justify-content:center;flex-wrap:wrap;gap:.4rem;padding-bottom:1.5rem}
+.tile{width:clamp(40px,11.5vw,84px);height:clamp(60px,16vw,100px);border:1.5px solid var(--line2);background:var(--surface);border-radius:10px;font-size:clamp(2rem,8vw,3.4rem);font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative}
+.tile:hover:not(:disabled){border-color:var(--ink);background:var(--page)}
+.tile.shake{animation:shake .3s}
+.tile.silent{background:var(--ok-bg);border-color:var(--ok);color:var(--ok);text-decoration:line-through;text-decoration-thickness:.06em}
+.tile.silent::after{content:"silent";position:absolute;bottom:-1.5rem;left:50%;transform:translateX(-50%);font-size:.7rem;font-weight:400;text-decoration:none;white-space:nowrap}
+.msg{min-height:1.5rem;font-size:.95rem;color:var(--bad)}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+/* word match */
+.mstat{display:flex;justify-content:center;gap:1.6rem;margin-bottom:.9rem;font-size:.95rem;color:var(--muted)}
+.mstat b{color:var(--ink)}
+.mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:.55rem;max-width:620px;margin:0 auto}
+.mc{display:block;width:100%;perspective:700px;background:none;border:0;padding:0;cursor:pointer;aspect-ratio:1/1.05;min-height:78px}
+.mc .in{display:block;position:relative;width:100%;height:100%;transition:transform .3s;transform-style:preserve-3d}
+.mc.up .in,.mc.done .in{transform:rotateY(180deg)}
+.mc .f{position:absolute;inset:0;border-radius:10px;display:flex;align-items:center;justify-content:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.mc .back-f{background:var(--c);color:var(--on);font-size:clamp(1.4rem,5vw,2rem);font-weight:700}
+.mc .fr{transform:rotateY(180deg);background:var(--surface);border:1.5px solid var(--line2);flex-direction:column;font-weight:700;font-size:clamp(1rem,3.6vw,1.45rem);padding:.2rem;text-align:center;word-break:break-word;line-height:1.1}
+.mc .fr .pic{font-size:clamp(1.9rem,8vw,3rem);background:none}
+.mc.done .fr{background:var(--ok-bg);border-color:var(--ok)}
+
+/* feedback */
+#fb{margin-top:1rem}
+.fb{display:grid;grid-template-columns:auto 1fr auto;gap:.5rem 1rem;align-items:center;border-left:5px solid;border-radius:6px;padding:.9rem 1.1rem;animation:rise .18s}
+.fb.ok{background:var(--ok-bg);border-color:var(--ok)}
+.fb.bad{background:var(--bad-bg);border-color:var(--bad)}
+.fb.meh{background:#fbf0cf;border-color:#9a7400}
+.fb>.ico{width:1.7rem;height:1.7rem}
+.fb.ok>.ico,.fb.ok strong{color:var(--ok)}
+.fb.bad>.ico,.fb.bad strong{color:var(--bad)}
+.fb.meh>.ico,.fb.meh strong{color:#6e5200}
+.fb strong{display:block;font-size:1.1rem;line-height:1.3}
+.fb p{font-size:.95rem}
+@keyframes rise{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+/* story */
+.stage>.scene{width:9.5rem;height:9.5rem;font-size:5.4rem;margin:.3rem auto .6rem;border-radius:14px}
+.stitle{font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.dots{display:flex;justify-content:center;gap:.4rem;margin-top:.9rem}
+.dots i{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--ink)}
+.dots i.on{background:var(--c);border-color:var(--c)}
+.snav{display:flex;justify-content:space-between;gap:.7rem;margin-top:1rem}
+
+/* results */
+.res{padding:1.6rem 0}
+.rlabel{font-size:.85rem;color:var(--muted)}
+.rscore{font-size:clamp(3.6rem,15vw,6.4rem);font-weight:700;line-height:1;color:var(--d);margin:.2rem 0}
+.rstars{display:flex;gap:4px;margin:.5rem 0}
+.rstars svg{width:30px;height:30px}
+.rline{max-width:30rem}
+.mrows{margin-top:1.4rem;border-top:2px solid var(--ink)}
+.mrow{display:flex;align-items:center;gap:.8rem;padding:.55rem 0;border-bottom:1px solid var(--line)}
+.mrow .pic{width:2.6rem;height:2.6rem;font-size:1.7rem}
+.mrow b{font-size:1.3rem}
+.mrow>span{font-size:.85rem;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.6rem}
+
+@media (max-width:640px){
+  .irow{grid-template-columns:4rem 1fr}
+  .iprog{display:none}
+  .itab b{font-size:1.7rem}
+  .wgroup{grid-template-columns:1fr}
+  .stage{padding:1rem .7rem 1.2rem}
+  .fb{grid-template-columns:auto 1fr}
+  .fb .btn{grid-column:1/-1}
+  .wcard{gap:.7rem;padding-right:1rem}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<noscript><p style="padding:1rem">Please turn on JavaScript to play.</p></noscript>
+<script>
+/* ============ DATA ============
+   word tuple: [word, Thai meaning, blank-spelling (or null), index of blank (optional)] */
+const UNITS = [
+ {n:1,c:'#8a5a86',on:'#fff',combos:'ar · ir ur · er or',ex:'car · bird · teacher',
+  ask:'Which letters make the sound in this word?',pool:['ar','ir','ur','er','or'],
+  groups:[
+   {label:'ar',note:'ar says /ɑː/ (ah), as in car, farm, park and star.',words:[['car','รถยนต์','ar'],['farm','ฟาร์ม','ar'],['park','สวนสาธารณะ','ar'],['star','ดาว','ar']]},
+   {label:'ir / ur',note:'ir and ur say the same sound, /ɜː/ (er), as in bird, girl, nurse and purple.',words:[['bird','นก','ir'],['girl','เด็กผู้หญิง','ir'],['nurse','พยาบาล','ur'],['purple','สีม่วง','ur']]},
+   {label:'er / or',note:'At the end of a word, er and or say a soft /ə/, as in teacher, sister, doctor and tractor.',words:[['teacher','ครู','er'],['sister','พี่สาว / น้องสาว','er'],['doctor','หมอ','or'],['tractor','รถแทรกเตอร์','or']]}]},
+ {n:2,c:'#e8792f',on:'#1f1a12',combos:'ou ow · oi oy · oo u',ex:'mouse · coin · book',
+  ask:'Which letters make the sound in this word?',pool:['ou','ow','oi','oy','oo','u'],
+  groups:[
+   {label:'ou / ow',note:'ou and ow say /aʊ/ (ow!), as in mouse, house, cow and brown.',words:[['mouse','หนู','ou'],['house','บ้าน','ou'],['cow','วัว','ow'],['brown','สีน้ำตาล','ow']]},
+   {label:'oi / oy',note:'oi and oy say /ɔɪ/, as in coin, soil, toy and boy. oy is usually at the end of a word.',words:[['coin','เหรียญ','oi'],['soil','ดิน','oi'],['toy','ของเล่น','oy'],['boy','เด็กผู้ชาย','oy']]},
+   {label:'oo / u',note:'oo and u can say a short /ʊ/, as in book, foot, bush and pull.',words:[['book','หนังสือ','oo'],['foot','เท้า','oo'],['bush','พุ่มไม้','u'],['pull','ดึง','u']]}]},
+ {n:3,c:'#e5b32f',on:'#1f1a12',combos:'au aw · all wa · or oar',ex:'sauce · ball · horse',
+  ask:'Which spelling pattern does this word have?',pool:['au','aw','all','wa','or','oar'],
+  groups:[
+   {label:'au / aw',note:'au and aw both say /ɔː/, as in sauce, August, prawn and draw.',words:[['sauce','ซอส','au'],['August','เดือนสิงหาคม','au'],['prawn','กุ้ง','aw'],['draw','วาด','aw']]},
+   {label:'all / wa',note:'all says /ɔːl/, as in ball and tall. wa often says /wɔː/, as in water and walk.',words:[['ball','ลูกบอล','all'],['tall','สูง','all'],['water','น้ำ','wa'],['walk','เดิน','wa']]},
+   {label:'or / oar',note:'or and oar both say /ɔː/, as in horse, fork, roar and board.',words:[['horse','ม้า','or'],['fork','ส้อม','or'],['roar','คำราม','oar'],['board','กระดาน','oar']]}]},
+ {n:4,c:'#3f8450',on:'#fff',combos:'are air · ea ear · ear eer',ex:'square · bread · deer',
+  ask:'Which sound does this word have?',pool:['are','air','ea','ear','eer'],
+  groups:[
+   {label:'air',sub:'as in chair',note:'are, air and ear can all say /eə/, as in square, share, chair, hair, bear and pear.',words:[['square','สี่เหลี่ยมจัตุรัส','are'],['share','แบ่งปัน','are'],['chair','เก้าอี้','air'],['hair','ผม','air'],['bear','หมี','ear'],['pear','ลูกแพร์','ear']]},
+   {label:'e',sub:'as in bread',note:'ea can say a short /e/, as in bread and head.',words:[['bread','ขนมปัง','ea'],['head','ศีรษะ','ea']]},
+   {label:'eer',sub:'as in deer',note:'ear and eer can say /ɪə/, as in ear, clear, deer and cheer.',words:[['ear','หู',null],['clear','ใส / ชัดเจน','ear'],['deer','กวาง','eer'],['cheer','เชียร์','eer']]}]},
+ {n:5,c:'#a5c34a',on:'#1f1a12',combos:'a e i o u',tag:'long vowels',ex:'baby · she · music',
+  ask:'Which vowel says its name in this word?',pool:['a','e','i','o','u'],
+  groups:[
+   {label:'a',note:'In {w}, the letter a says its name: /eɪ/.',words:[['acorn','ลูกโอ๊ก','a',0],['baby','ทารก','a'],['elevator','ลิฟต์','a',4],['lady','สุภาพสตรี','a']]},
+   {label:'e',note:'In {w}, the letter e says its name: /iː/.',words:[['he','เขา (ผู้ชาย)','e'],['she','เธอ (ผู้หญิง)','e']]},
+   {label:'i',note:'In {w}, the letter i says its name: /aɪ/.',words:[['tiger','เสือ','i'],['child','เด็ก','i']]},
+   {label:'o',note:'In {w}, the letter o says its name: /oʊ/.',words:[['cold','หนาว','o'],['hotel','โรงแรม','o']]},
+   {label:'u',note:'In {w}, the letter u says its name: /juː/.',words:[['uniform','เครื่องแบบ','u'],['music','ดนตรี','u']]}]},
+ {n:6,c:'#247b80',on:'#fff',combos:'a e i o u',tag:'schwa',ex:'banana · pencil · honey',
+  ask:'Which letter makes the weak /ə/ (uh) sound?',pool:['a','e','i','o','u'],
+  groups:[
+   {label:'a',note:'In {w}, the letter a is weak. It makes the soft /ə/ sound (uh).',words:[['panda','แพนด้า','a',4],['gorilla','กอริลลา','a',6],['banana','กล้วย','a',5],['umbrella','ร่ม','a',7]]},
+   {label:'e',note:'In {w}, the letter e is weak. It makes the soft /ə/ sound (uh).',words:[['chicken','ไก่','e']]},
+   {label:'i',note:'In {w}, the letter i is weak. It makes the soft /ə/ sound (uh).',words:[['pencil','ดินสอ','i']]},
+   {label:'o',note:'In {w}, the letter o is weak. It makes the soft /ə/ sound (uh).',words:[['lemon','มะนาวเหลือง','o'],['monkey','ลิง','o'],['love','รัก','o'],['son','ลูกชาย','o'],['honey','น้ำผึ้ง','o']]},
+   {label:'u',note:'In {w}, the letter u is weak. It makes the soft /ə/ sound (uh).',words:[['surprise','เซอร์ไพรส์','u']]}]},
+ {n:7,c:'#c24577',on:'#fff',combos:'kn wr mb e rh st',tag:'silent letters',ex:'knife · lamb · castle',
+  ask:'Which silent-letter pattern does this word have?',pool:['kn','wr','mb','rh','st'],
+  groups:[
+   {label:'kn',note:'In kn, the k is silent. Say /n/, as in knife and knee.',words:[['knife','มีด','kn'],['knee','หัวเข่า','kn']]},
+   {label:'wr',note:'In wr, the w is silent. Say /r/, as in write and wrong.',words:[['write','เขียน','wr'],['wrong','ผิด','wr']]},
+   {label:'mb',note:'At the end of a word, the b in mb is silent, as in lamb and comb.',words:[['lamb','ลูกแกะ','mb'],['comb','หวี','mb']]},
+   {label:'e',sub:'at the end',note:'A final e is usually silent, as in glove and live.',words:[['glove','ถุงมือ',null],['live','อาศัยอยู่',null]]},
+   {label:'rh',note:'In rh, the h is silent. Say /r/, as in rhino and rhubarb.',words:[['rhino','แรด','rh'],['rhubarb','รูบาร์บ (พืชชนิดหนึ่ง)','rh']]},
+   {label:'st',note:'In st before le, the t is silent, as in whistle and castle.',words:[['whistle','นกหวีด','st'],['castle','ปราสาท','st']]}]},
+ {n:8,c:'#3a6fb0',on:'#fff',combos:'ture sure · tion sion · ous ful',ex:'picture · station · famous',
+  ask:'Which ending does this word have?',pool:['ture','sure','tion','sion','ous','ful'],
+  groups:[
+   {label:'ture',note:'ture says /tʃə/, as in picture and nature.',words:[['picture','รูปภาพ','ture'],['nature','ธรรมชาติ','ture']]},
+   {label:'sure',note:'sure here says /ʒə/, as in treasure and measure.',words:[['treasure','สมบัติ','sure'],['measure','วัด / ตวง','sure']]},
+   {label:'tion',note:'tion says /ʃən/, as in station and competition.',words:[['station','สถานี','tion'],['competition','การแข่งขัน','tion']]},
+   {label:'sion',note:'sion says /ʒən/, as in television and excursion.',words:[['television','โทรทัศน์','sion'],['excursion','ทัศนศึกษา','sion']]},
+   {label:'ous',note:'ous says /əs/, as in famous and dangerous.',words:[['famous','มีชื่อเสียง','ous'],['dangerous','อันตราย','ous']]},
+   {label:'ful',note:'ful says /fəl/, as in beautiful and helpful.',words:[['beautiful','สวยงาม','ful'],['helpful','ช่วยเหลือ / เป็นประโยชน์','ful']]}]}
+];
+/* silent letter hunt (Unit 7): [target indexes, also-silent indexes] */
+const HUNT = {knife:[[0],[4]],knee:[[0],[]],write:[[0],[4]],wrong:[[0],[]],lamb:[[3],[]],comb:[[3],[]],
+  glove:[[4],[]],live:[[3],[]],rhino:[[1],[]],rhubarb:[[1],[]],whistle:[[4],[1]],castle:[[3],[5]]};
+/* picture clues (emoji) — only for words that can be drawn */
+const EMO = {car:'🚗',farm:'🌾',park:'🏞️',star:'⭐',bird:'🐦',girl:'👧',nurse:'🧑‍⚕️',purple:'🟣',teacher:'🧑‍🏫',sister:'👭',doctor:'🩺',tractor:'🚜',
+ mouse:'🐭',house:'🏠',cow:'🐄',brown:'🟤',coin:'🪙',soil:'🌱',toy:'🧸',boy:'👦',book:'📖',foot:'🦶',bush:'🌿',
+ sauce:'🥫',August:'📅',prawn:'🦐',draw:'🎨',ball:'⚽',tall:'🦒',water:'💧',walk:'🚶',horse:'🐴',fork:'🍴',roar:'🦁',board:'📋',
+ square:'🟦',share:'🤲',chair:'🪑',hair:'💇',bread:'🍞',bear:'🐻',pear:'🍐',ear:'👂',deer:'🦌',cheer:'📣',
+ acorn:'🌰',baby:'👶',elevator:'🛗',lady:'👩',he:'👦',she:'👧',tiger:'🐯',child:'🧒',cold:'🥶',hotel:'🏨',uniform:'👔',music:'🎵',
+ panda:'🐼',gorilla:'🦍',banana:'🍌',umbrella:'☂️',chicken:'🐔',pencil:'✏️',lemon:'🍋',monkey:'🐒',love:'❤️',son:'👨‍👦',honey:'🍯',surprise:'🎉',
+ knife:'🔪',knee:'🦵',write:'✍️',wrong:'❌',lamb:'🐑',glove:'🧤',live:'🏡',rhino:'🦏',castle:'🏰',
+ picture:'🖼️',nature:'🌳',treasure:'💎',measure:'📏',station:'🚉',competition:'🏆',television:'📺',excursion:'🚌',famous:'🌟',dangerous:'⚠️',beautiful:'🌸',helpful:'🙋'};
+/* sentences for reading (K3): [sentence with ___, answer, Thai, two wrong options] */
+const CLOZE = [
+ [['A ___ can fly in the sky.','bird','นกบินบนท้องฟ้าได้',['farm','car']],
+  ['We ride in a ___.','car','เรานั่งรถยนต์',['bird','star']],
+  ['I see a ___ at night.','star','ฉันเห็นดาวตอนกลางคืน',['car','farm']],
+  ['The ___ works at a school.','teacher','ครูทำงานที่โรงเรียน',['tractor','bird']],
+  ['The ___ helps sick people.','doctor','หมอช่วยคนป่วย',['farm','star']],
+  ['The tractor is on the ___.','farm','รถแทรกเตอร์อยู่ที่ฟาร์ม',['star','bird']]],
+ [['The ___ says moo.','cow','วัวร้อง “มู”',['mouse','boy']],
+  ['I live in a ___.','house','ฉันอาศัยอยู่ในบ้าน',['coin','boy']],
+  ['I play with a ___.','toy','ฉันเล่นของเล่น',['cow','brown']],
+  ['I read a ___.','book','ฉันอ่านหนังสือ',['foot','cow']],
+  ['I kick the ball with my ___.','foot','ฉันเตะบอลด้วยเท้า',['book','coin']],
+  ['I have one ___ in my bank.','coin','ฉันมีเหรียญหนึ่งเหรียญในกระปุก',['toy','house']]],
+ [['I ___ to school.','walk','ฉันเดินไปโรงเรียน',['draw','roar']],
+  ['The lion goes ___!','roar','สิงโตคำราม',['draw','ball']],
+  ['The giraffe is ___.','tall','ยีราฟตัวสูง',['ball','water']],
+  ['I drink ___.','water','ฉันดื่มน้ำ',['ball','fork']],
+  ['I kick the ___.','ball','ฉันเตะลูกบอล',['water','fork']],
+  ['I eat rice with a ___.','fork','ฉันกินข้าวด้วยส้อม',['ball','horse']]],
+ [['I sit on a ___.','chair','ฉันนั่งบนเก้าอี้',['pear','deer']],
+  ['A ___ likes honey.','bear','หมีชอบน้ำผึ้ง',['chair','bread']],
+  ['I eat ___ with jam.','bread','ฉันกินขนมปังกับแยม',['hair','deer']],
+  ['I wash my ___.','hair','ฉันสระผม',['bread','pear']],
+  ['A ___ has big horns.','deer','กวางมีเขาใหญ่',['chair','pear']],
+  ['I hear with my ___.','ear','ฉันได้ยินด้วยหู',['hair','bread']]],
+ [['A ___ cries a lot.','baby','ทารกร้องไห้บ่อย',['tiger','music']],
+  ['A ___ has stripes.','tiger','เสือมีลาย',['baby','music']],
+  ['I wear a ___ to school.','uniform','ฉันใส่ชุดนักเรียนไปโรงเรียน',['music','hotel']],
+  ['We sleep in a ___ on a trip.','hotel','เรานอนที่โรงแรมตอนไปเที่ยว',['music','tiger']],
+  ['I like to dance to ___.','music','ฉันชอบเต้นตามเสียงดนตรี',['hotel','uniform']],
+  ['Ice is ___.','cold','น้ำแข็งเย็น',['baby','music']]],
+ [['I peel a ___.','banana','ฉันปอกกล้วย',['pencil','umbrella']],
+  ['I write with a ___.','pencil','ฉันเขียนด้วยดินสอ',['lemon','monkey']],
+  ['A ___ says cluck cluck.','chicken','ไก่ร้อง “กุ๊กๆ”',['monkey','panda']],
+  ['A ___ is sour.','lemon','มะนาวเหลืองมีรสเปรี้ยว',['honey','pencil']],
+  ['Bees make ___.','honey','ผึ้งทำน้ำผึ้ง',['pencil','lemon']],
+  ['I open my ___ when it rains.','umbrella','ฉันกางร่มตอนฝนตก',['pencil','monkey']]],
+ [['I cut bread with a ___.','knife','ฉันตัดขนมปังด้วยมีด',['castle','glove']],
+  ['I bend my ___.','knee','ฉันงอเข่า',['rhino','lamb']],
+  ['I ___ with a pencil.','write','ฉันเขียนด้วยดินสอ',['wrong','live']],
+  ['A baby ___ says baa.','lamb','ลูกแกะร้อง “แบ๊”',['rhino','knee']],
+  ['A king lives in a ___.','castle','กษัตริย์อาศัยอยู่ในปราสาท',['knife','lamb']],
+  ['I wear a ___ on my hand.','glove','ฉันสวมถุงมือที่มือ',['rhino','castle']],
+  ['A ___ has a big horn.','rhino','แรดมีเขาใหญ่',['lamb','knee']]],
+ [['I watch ___ at home.','television','ฉันดูโทรทัศน์ที่บ้าน',['station','nature']],
+  ['A train stops at the ___.','station','รถไฟจอดที่สถานี',['nature','picture']],
+  ['Flowers are ___.','beautiful','ดอกไม้สวยงาม',['dangerous','station']],
+  ['Fire is ___. Do not touch it!','dangerous','ไฟอันตราย อย่าแตะนะ!',['station','famous']],
+  ['I hang a ___ on the wall.','picture','ฉันแขวนรูปภาพบนผนัง',['station','nature']],
+  ['Pirates find a ___.','treasure','โจรสลัดพบสมบัติ',['station','nature']],
+  ['My mom is ___. She helps me.','helpful','แม่ของฉันช่วยเหลือเสมอ ท่านช่วยฉัน',['dangerous','station']]]
+];
+/* short stories (K3): pages [pictures, text, Thai]; quiz [question, right answer, options, page that shows the answer] */
+const STORIES = [
+ {title:'The Farm Trip',pages:[
+   ['🚗','My sister and I go in a car.','ฉันกับพี่สาวนั่งรถยนต์ไป'],
+   ['🌾','We see a farm.','เราเห็นฟาร์ม'],
+   ['🚜','The doctor has a tractor.','คุณหมอมีรถแทรกเตอร์'],
+   ['🐦','A bird is on the tractor.','มีนกอยู่บนรถแทรกเตอร์'],
+   ['⭐','I see a star. It is fun!','ฉันเห็นดาว สนุกจัง!']],
+  quiz:[['How do they go to the farm?','🚗 car',['🚗 car','🚲 bike','🚌 bus'],0],['What is on the tractor?','🐦 bird',['🐦 bird','🐱 cat','🐶 dog'],3]]},
+ {title:'The Mouse in the Toy House',pages:[
+   ['🧸🏠','A boy has a toy house.','เด็กชายมีบ้านของเล่น'],
+   ['🐭','A brown mouse is in the house.','หนูสีน้ำตาลอยู่ในบ้าน'],
+   ['🪙','The mouse has a coin.','หนูมีเหรียญ'],
+   ['📖','The mouse sees a book.','หนูเห็นหนังสือ'],
+   ['👦🐭','The boy and the mouse look at the book.','เด็กชายกับหนูดูหนังสือด้วยกัน']],
+  quiz:[['What color is the mouse?','🟤 brown',['🟤 brown','🟣 purple','🟡 yellow'],1],['What does the mouse have?','🪙 coin',['🪙 coin','⚽ ball','🍎 apple'],2]]},
+ {title:'A Walk with Dad',pages:[
+   ['🚶','I walk with Dad.','ฉันเดินกับพ่อ'],
+   ['🐴','We see a horse.','เราเห็นม้า'],
+   ['🐴','The horse is tall.','ม้าตัวสูง'],
+   ['💧','The horse has water.','ม้ามีน้ำ'],
+   ['🎨','I draw the horse.','ฉันวาดรูปม้า']],
+  quiz:[['Who do they see?','🐴 horse',['🐴 horse','🐮 cow','🐷 pig'],1],['What does the horse have?','💧 water',['💧 water','🍌 banana','⚽ ball'],3]]},
+ {title:'The Bear and the Pear',pages:[
+   ['🐻🪑','A bear sits on a chair.','หมีนั่งบนเก้าอี้'],
+   ['🍐','The bear has a pear.','หมีมีลูกแพร์'],
+   ['🍞','The bear has bread, too.','หมีมีขนมปังด้วย'],
+   ['🦌','A deer is by the bear.','กวางอยู่ข้างหมี'],
+   ['📣','I cheer for the bear and the deer!','ฉันเชียร์หมีกับกวาง!']],
+  quiz:[['Where does the bear sit?','🪑 chair',['🪑 chair','🛏️ bed','📦 box'],0],['Who is by the bear?','🦌 deer',['🦌 deer','🐭 mouse','🐮 cow'],3]]},
+ {title:'The Baby Tiger',pages:[
+   ['🐯','The baby tiger is cold.','เสือน้อยหนาว'],
+   ['🏨','He goes to a hotel.','เขาไปโรงแรม'],
+   ['🛗','He goes up in the elevator.','เขาขึ้นลิฟต์'],
+   ['🎵','The hotel has music.','โรงแรมมีเสียงดนตรี'],
+   ['😊','The baby tiger is happy!','เสือน้อยมีความสุข!']],
+  quiz:[['Who is cold?','🐯 tiger',['🐯 tiger','🐱 cat','🐶 dog'],0],['Where does he go?','🏨 hotel',['🏨 hotel','🏫 school','🌾 farm'],1]]},
+ {title:'The Monkey and the Panda',pages:[
+   ['🐒🍌','A monkey has a banana.','ลิงมีกล้วย'],
+   ['❤️','The monkey loves the banana.','ลิงรักกล้วย'],
+   ['🐼','A panda sees the monkey.','แพนด้าเห็นลิง'],
+   ['🍯','The panda has honey.','แพนด้ามีน้ำผึ้ง'],
+   ['🎉','Surprise! They have fun.','เซอร์ไพรส์! พวกเขาสนุกกัน']],
+  quiz:[['What does the monkey have?','🍌 banana',['🍌 banana','🍋 lemon','✏️ pencil'],0],['What does the panda have?','🍯 honey',['🍯 honey','🍞 bread','☂️ umbrella'],3]]},
+ {title:'The Lamb in the Castle',pages:[
+   ['🏰','I see a castle.','ฉันเห็นปราสาท'],
+   ['🐑','A lamb is in the castle.','ลูกแกะอยู่ในปราสาท'],
+   ['🦏','A rhino is in the castle, too.','แรดก็อยู่ในปราสาทด้วย'],
+   ['💇','The lamb has a comb.','ลูกแกะมีหวี'],
+   ['✍️','I write a story. It is not wrong!','ฉันเขียนเรื่องราว ไม่ผิดนะ!']],
+  quiz:[['Where is the lamb?','🏰 castle',['🏰 castle','🏠 house','🌾 farm'],1],['Who is in the castle, too?','🦏 rhino',['🦏 rhino','🐘 elephant','🐻 bear'],2]]},
+ {title:'The Class Trip',pages:[
+   ['🚌','We go on an excursion.','เราไปทัศนศึกษา'],
+   ['🌳','We see nature.','เราเห็นธรรมชาติ'],
+   ['🌸','The flowers are beautiful.','ดอกไม้สวยงาม'],
+   ['🖼️','I draw a picture of nature.','ฉันวาดภาพธรรมชาติ'],
+   ['🙋','My teacher is helpful.','ครูของฉันใจดีช่วยเหลือ']],
+  quiz:[['How do they go?','🚌 bus',['🚌 bus','🚗 car','⛵ boat'],0],['What is beautiful?','🌸 flowers',['🌸 flowers','🪨 rocks','🚗 cars'],2]]}
+];
+
+const DARK=['#7a4f78','#bf5512','#8c6600','#2c7743','#5b7611','#1b6b70','#ae3266','#2d5c9a'];
+UNITS.forEach((u,ui)=>{
+  u.d=DARK[ui];u.words=[];
+  u.groups.forEach((g,gi)=>{
+    g.words=g.words.map(t=>{const o={w:t[0],th:t[1],s:t[2]||null,at:t[3],u:ui,gi,e:EMO[t[0]]||''};u.words.push(o);return o;});
+  });
+});
+/* letter combination to colour in words that have no blank-spelling */
+const HL_EXTRA={ear:[0,3],glove:[4,5],live:[3,4]};
+
+/* ============ HELPERS ============ */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const prefs=Object.assign({thai:true,sound:true,fx:true,big:false},store.get('bem_lc_prefs',{}));
+const progress=store.get('bem_lc_progress',{});
+const app=$('#app');
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const applyPrefs=()=>document.documentElement.classList.toggle('big',prefs.big);
+applyPrefs();
+const reduced=()=>window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hexA=(h,a)=>{const n=parseInt(h.slice(1),16);return `rgba(${n>>16},${n>>8&255},${n&255},${a})`};
+const uvars=u=>u?`--c:${u.c};--d:${u.d};--on:${u.on};--t:${hexA(u.c,.16)}`:'';
+
+const hasSpeech='speechSynthesis' in window;
+function say(t,rate=.8){
+  if(!hasSpeech)return;
+  try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=rate;speechSynthesis.speak(u);}catch(e){}
+}
+/* tiny synth sound effects (no audio files) */
+let ac;
+const FX={ok:[[660,0],[880,.09]],bad:[[250,0],[190,.12]],streak:[[880,0],[1175,.08],[1568,.16]],win:[[523,0],[659,.12],[784,.24]],flip:[[520,0]],match:[[784,0],[988,.09]]};
+function fx(kind){
+  if(!prefs.fx)return;
+  try{
+    ac=ac||new (window.AudioContext||window.webkitAudioContext)();
+    const t0=ac.currentTime;
+    FX[kind].forEach(([f,d])=>{
+      const o=ac.createOscillator(),g=ac.createGain();
+      o.type=kind==='bad'?'triangle':'sine';o.frequency.value=f;
+      g.gain.setValueAtTime(.0001,t0+d);g.gain.exponentialRampToValueAtTime(.1,t0+d+.02);g.gain.exponentialRampToValueAtTime(.0001,t0+d+.24);
+      o.connect(g);g.connect(ac.destination);o.start(t0+d);o.stop(t0+d+.26);
+    });
+  }catch(e){}
+}
+
+/* one icon family: 24px line icons */
+const ic=p=>`<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const I={
+  spk:ic('<path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/>'),
+  check:ic('<path d="M5 12.5l4.5 4.5L19 7.5"/>'),
+  cross:ic('<path d="M6 6l12 12M18 6L6 18"/>'),
+  info:ic('<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>'),
+  back:ic('<path d="M19 12H5M11 6l-6 6 6 6"/>'),
+  next:ic('<path d="M5 12h14M13 6l6 6-6 6"/>')
+};
+const starSvg=(on,color)=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z" fill="${on?color:'none'}" stroke="${color}" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
+const stars=(n,color)=>[1,2,3].map(i=>starSvg(i<=n,color)).join('');
+
+const GAMES={
+  sort:{name:'Sound Sorter',desc:'Put each word in the right group. Tap a group or drag the word.'},
+  listen:{name:'Listen & Pick',desc:'Hear the word, then pick the right spelling.'},
+  fill:{name:'Missing Letters',desc:'Choose the letters that finish the word.'},
+  match:{name:'Word Match',desc:'Flip the cards. Match each picture with its word.'},
+  sent:{name:'Sentence Fill',desc:'Read the sentence. Pick the missing word.'},
+  story:{name:'Story Time',desc:'Read a short story, then answer 2 questions.'},
+  hunt:{name:'Silent Letter Hunt',desc:'Find the letter that makes no sound.'}
+};
+const gameList=ui=>['sort','listen','fill','match','sent','story',...(ui===6?['hunt']:[])];
+const matchWords=u=>{const seen=new Set();return u.words.filter(w=>w.e&&!seen.has(w.e)&&seen.add(w.e))};
+const gameCount=(u,k)=>k==='fill'?u.words.filter(w=>w.s).length+' words':k==='hunt'?u.words.filter(w=>HUNT[w.w]).length+' words':k==='listen'?Math.min(10,u.words.length)+' words':k==='match'?'6 pairs':k==='sent'?CLOZE[UNITS.indexOf(u)].length+' sentences':k==='story'?STORIES[UNITS.indexOf(u)].pages.length+' pages':u.words.length+' words';
+const starOf=k=>progress[k]||0;
+const unitStars=ui=>({e:gameList(ui).reduce((a,g)=>a+starOf(ui+':'+g),0),m:gameList(ui).length*3});
+const th=wd=>prefs.thai?wd.th:'';
+const pic=wd=>`<span class="pic" aria-hidden="true">${wd.e}</span>`;
+
+/* the letter combination inside a word, coloured in the unit colour */
+function blankInfo(wd){
+  const at=wd.at!==undefined?wd.at:wd.w.toLowerCase().indexOf(wd.s);
+  return {pre:wd.w.slice(0,at),mid:wd.w.slice(at,at+wd.s.length),post:wd.w.slice(at+wd.s.length)};
+}
+function hlRange(wd){
+  if(wd.s){const b=blankInfo(wd);return [b.pre.length,b.pre.length+b.mid.length]}
+  return HL_EXTRA[wd.w]||null;
+}
+function colored(wd,txt){
+  txt=txt||wd.w;const r=hlRange(wd);
+  return r?txt.slice(0,r[0])+`<span class="pt">${txt.slice(r[0],r[1])}</span>`+txt.slice(r[1]):txt;
+}
+const wordLookup=(ui,l)=>UNITS[ui].words.find(w=>w.w.toLowerCase()===l);
+/* split a sentence into tappable words; unit words are printed with the combination coloured */
+function wordsHtml(text,ui){
+  return text.split(/([A-Za-z']+)/).map(t=>{
+    if(!/^[A-Za-z']+$/.test(t))return t;
+    const l=t.toLowerCase(),wd=wordLookup(ui,l)||(l.endsWith('s')?wordLookup(ui,l.slice(0,-1)):null);
+    return `<button class="tw" data-w="${t}">${wd?colored(wd,t):t}</button>`;
+  }).join('');
+}
+/* read a sentence aloud and mark each word as it is spoken (where the browser reports word boundaries) */
+function readSentence(text,box,rate=.7){
+  if(!hasSpeech)return;
+  try{
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=rate;
+    const spans=[...box.querySelectorAll('.tw')];let idx=0;
+    const starts=spans.map(s=>{const p=text.indexOf(s.textContent,idx);idx=p+s.textContent.length;return p});
+    u.onboundary=e=>{if(e.name&&e.name!=='word')return;let k=-1;starts.forEach((p,i)=>{if(e.charIndex>=p)k=i});spans.forEach((s,i)=>s.classList.toggle('now',i===k))};
+    u.onend=()=>spans.forEach(s=>s.classList.remove('now'));
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+const bindWords=box=>box.querySelectorAll('.tw').forEach(b=>b.onclick=()=>say(b.dataset.w));
+
+function mast(){
+  const cb=(k,l)=>`<label><input type="checkbox" data-tg="${k}" ${prefs[k]?'checked':''}> ${l}</label>`;
+  return `<div class="mast"><div class="wm">Bright EngMath</div><div class="prefs">${cb('thai','Thai hints')}${cb('sound','Auto sound')}${cb('fx','Sound effects')}${cb('big','Big text')}</div></div>`;
+}
+function bindPrefs(redraw){
+  $$('[data-tg]').forEach(b=>b.onchange=()=>{prefs[b.dataset.tg]=b.checked;store.set('bem_lc_prefs',prefs);applyPrefs();redraw();});
+}
+
+/* ============ HOME ============ */
+const mixSel=new Set(UNITS.map((_,i)=>i));
+function home(){
+  S=null;
+  const row=(u,i)=>{const {e,m}=unitStars(i);return `<li><button class="irow" data-u="${i}" style="${uvars(u)}">
+    <span class="itab"><small>Unit</small><b>${u.n}</b></span>
+    <span class="imain"><span class="icombos">${u.combos}</span><span class="isub">${u.tag?u.tag+' · ':''}${u.ex}</span></span>
+    <span class="iprog" aria-label="${e} of ${m} stars">${starSvg(e>0,'#8c6600')} ${e}/${m}</span></button></li>`};
+  app.innerHTML=`<div class="wrap">${mast()}
+  <h1 class="h1">Letter Combinations</h1>
+  <p class="lead">Games, stories and sentences to review Units 1–8. Pick a unit to start.</p>
+  <ol class="index">${UNITS.map(row).join('')}</ol>
+  <section class="mixbox"><div><h2 class="sh">Review Mix</h2><p style="margin-top:.2rem">12 questions mixed from the units you tick.</p></div>
+    <div class="picks">${UNITS.map((u,i)=>`<label class="pk" style="${uvars(u)}"><input type="checkbox" data-m="${i}" ${mixSel.has(i)?'checked':''} aria-label="Unit ${u.n}"><span>${u.n}</span></label>`).join('')}</div>
+    <button class="btn primary" id="mixgo" ${mixSel.size?'':'disabled'}>Start Review Mix</button></section></div>`;
+  bindPrefs(home);
+  $$('.irow').forEach(b=>b.onclick=()=>unitScreen(+b.dataset.u));
+  $$('[data-m]').forEach(b=>b.onchange=()=>{const i=+b.dataset.m;b.checked?mixSel.add(i):mixSel.delete(i);$('#mixgo').disabled=!mixSel.size;});
+  $('#mixgo').onclick=startMix;
+}
+
+/* ============ UNIT ============ */
+function unitScreen(ui){
+  S=null;
+  const u=UNITS[ui];
+  app.innerHTML=`<div class="wrap" style="${uvars(u)}">${mast()}</div>
+  <div class="uband" style="${uvars(u)}"><div class="in"><button class="link" id="home">${I.back} All units</button>
+    <div class="ulabel">Unit ${u.n}</div><h1 class="ucombos">${u.combos}</h1>${u.tag?`<span class="utag">${u.tag}</span>`:''}</div></div>
+  <div class="wrap" style="${uvars(u)}">
+  <h2 class="sh sec">Games</h2>
+  <ol class="glist">${gameList(ui).map((k,gi)=>{const s=starOf(ui+':'+k);const off=k==='listen'&&!hasSpeech;
+    return `<li><button class="grow" data-g="${k}" ${off?'disabled':''}><span class="gnum">${gi+1}</span><span><span class="gname">${GAMES[k].name}</span><br><span class="gdesc">${off?'This browser can not play word sounds.':gameCount(u,k)+' · '+GAMES[k].desc}</span></span><span class="gstars" role="img" aria-label="${s} of 3 stars">${stars(s,u.d)}</span></button></li>`}).join('')}</ol>
+  <h2 class="sh sec">Word bank <span style="text-transform:none;letter-spacing:0;font-weight:400">· tap a word to hear it</span></h2>
+  <div>${u.groups.map(g=>`<div class="wgroup"><div class="wglabel">${g.label}${g.sub?`<small>${g.sub}</small>`:''}</div><div class="wl">${g.words.map(w=>`<button class="wchip" data-say="${w.w}">${pic(w)}<span><span class="w">${colored(w)}</span>${prefs.thai?`<span class="th">${w.th}</span>`:''}</span></button>`).join('')}</div></div>`).join('')}</div>
+  <h2 class="sh sec">Sentences to read <span style="text-transform:none;letter-spacing:0;font-weight:400">· tap to hear, then read along</span></h2>
+  <ul class="slist">${CLOZE[ui].map(c=>{const full=c[0].replace('___',c[1]);return `<li><button class="srow" data-sent="${full}">${I.spk}<span><span class="stext">${wordsHtml(full,ui).replace(/<button class="tw"/g,'<span class="tw"').replace(/<\/button>/g,'</span>')}</span>${prefs.thai?`<span class="th">${c[2]}</span>`:''}</span></button></li>`}).join('')}</ul></div>`;
+  bindPrefs(()=>unitScreen(ui));
+  $('#home').onclick=home;
+  $$('.wchip').forEach(b=>b.onclick=()=>say(b.dataset.say));
+  $$('.srow').forEach(b=>b.onclick=()=>say(b.dataset.sent,.7));
+  $$('.grow').forEach(b=>b.onclick=()=>startUnitGame(ui,b.dataset.g));
+}
+
+/* ============ SESSIONS ============ */
+let S=null;
+function fillQ(wd){
+  const pool=UNITS[wd.u].pool.filter(x=>x!==wd.s);
+  return {type:'fill',wd,opts:shuffle([wd.s,...shuffle(pool).slice(0,3)])};
+}
+function listenQ(wd){
+  const others=shuffle(UNITS[wd.u].words.filter(x=>x.w!==wd.w)).slice(0,3).map(x=>x.w);
+  return {type:'listen',wd,opts:shuffle([wd.w,...others])};
+}
+function clozeQ(ui,c){
+  const [s,a,t,d]=c;
+  return {type:'cloze',wd:UNITS[ui].words.find(x=>x.w===a),sentence:s,full:s.replace('___',a),thTxt:t,say:s.replace('___','blank'),opts:shuffle([a,...d])};
+}
+function quizQs(ui){
+  const st=STORIES[ui];
+  return st.quiz.map(([q,a,o,ev])=>({type:'quiz',wd:{u:ui,w:q,th:'',e:''},q,a,say:q,opts:shuffle(o),ev:st.pages[ev][1],evTh:st.pages[ev][2]}));
+}
+function newS(o){return Object.assign({i:0,score:0,missed:[],res:[],locked:false,streak:0,best:0,qs:[]},o)}
+function startUnitGame(ui,kind){
+  const u=UNITS[ui];
+  if(kind==='match')return startMatch(ui);
+  if(kind==='story')return startStory(ui);
+  let qs;
+  if(kind==='sent')qs=CLOZE[ui].map(c=>clozeQ(ui,c));
+  else if(kind==='sort')qs=u.words.map(wd=>({type:'sort',wd}));
+  else if(kind==='listen')qs=shuffle(u.words).slice(0,10).map(listenQ);
+  else if(kind==='fill')qs=u.words.filter(w=>w.s).map(fillQ);
+  else qs=u.words.filter(w=>HUNT[w.w]).map(wd=>({type:'hunt',wd}));
+  begin(kind,qs,ui,`Unit ${u.n} · ${GAMES[kind].name}`,ui+':'+kind);
+}
+function startMix(){
+  const pool=[];mixSel.forEach(ui=>UNITS[ui].words.forEach(w=>pool.push(w)));
+  const qs=shuffle(pool).slice(0,12).map(w=>{
+    const t=['sort'];if(w.s)t.push('fill','fill');if(HUNT[w.w])t.push('hunt');if(hasSpeech)t.push('listen');
+    const ty=pick(t);
+    return ty==='sort'?{type:'sort',wd:w}:ty==='fill'?fillQ(w):ty==='listen'?listenQ(w):{type:'hunt',wd:w};
+  });
+  begin('mix',qs,null,'Review Mix','mix');
+}
+function begin(kind,qs,ui,label,key){
+  S=newS({kind,qs:shuffle(qs),ui,label,key});
+  renderQ();
+}
+const leave=()=>S&&S.ui!==null?unitScreen(S.ui):home();
+const streakTxt=()=>S.streak>=2?`${S.streak} in a row`:'';
+
+function renderQ(){
+  const q=S.qs[S.i],wd=q.wd,u=UNITS[wd.u],N=S.qs.length;
+  S.locked=false;q.failed=false;
+  const stages={sort:sortStage,fill:fillStage,listen:listenStage,hunt:huntStage,cloze:clozeStage,quiz:quizStage};
+  const stage=stages[q.type](q,u),spoken=q.say||wd.w;
+  const seg=S.qs.map((_,i)=>`<i class="${i<S.i?S.res[i]:i===S.i?'now':''}"></i>`).join('');
+  app.innerHTML=`<div class="wrap" style="${uvars(u)}">
+  <div class="ghead"><button class="link" id="back">${I.back} ${S.ui!==null?'Unit '+UNITS[S.ui].n:'Home'}</button>
+    <div class="gtitle">${S.label}</div><div class="gmeta"><span id="streak">${streakTxt()}</span><span id="score">Score ${S.score}</span></div></div>
+  <div class="seg" role="progressbar" aria-valuemin="0" aria-valuemax="${N}" aria-valuenow="${S.i}">${seg}</div>
+  <div class="qn">Question ${S.i+1} of ${N}${S.kind==='mix'?' · Unit '+u.n:''}</div>
+  <section class="stage">${stage}</section>
+  <div id="fb" aria-live="polite"></div></div>`;
+  $('#back').onclick=leave;
+  const sayBtn=$('#say');if(sayBtn)sayBtn.onclick=()=>say(spoken,q.say?.75:.8);
+  S.keys=null;
+  ({sort:bindSort,fill:bindFill,listen:bindListen,hunt:bindHunt,cloze:bindCloze,quiz:bindQuiz})[q.type](q,u);
+  if(prefs.sound||q.type==='listen')setTimeout(()=>say(spoken,q.say?.75:.8),250);
+}
+const sayButton=()=>hasSpeech?`<button class="btn say" id="say" aria-label="Listen">${I.spk}<span>Listen</span></button>`:'';
+
+/* ---- feedback ---- */
+function showFb(kind,title,note){
+  const last=S.i+1===S.qs.length;
+  const icon=kind==='ok'?I.check:kind==='bad'?I.cross:I.info;
+  const run=kind==='ok'&&S.streak>=3?` · ${S.streak} in a row`:'';
+  $('#fb').innerHTML=`<div class="fb ${kind}">${icon}<div><strong>${title}${run}</strong><p>${note}</p></div><button class="btn primary" id="next">${last?'See results':'Next'} ${I.next}</button></div>`;
+  const n=$('#next');n.onclick=next;n.focus({preventScroll:true});
+  n.scrollIntoView({block:'nearest',behavior:reduced()?'auto':'smooth'});
+}
+function settle(q,ok,quiet){
+  S.locked=true;
+  if(ok){S.score++;S.streak++;S.best=Math.max(S.best,S.streak);}
+  else{S.streak=0;S.missed.push(q);}
+  S.res[S.i]=ok?'done':'miss';
+  $$('.seg i')[S.i].className=ok?'done':'miss';
+  $('#score').textContent='Score '+S.score;$('#streak').textContent=streakTxt();
+  if(!quiet)fx(ok?(S.streak>=3&&S.streak%3===0?'streak':'ok'):'bad');
+}
+function next(){
+  S.i++;
+  S.i>=S.qs.length?results():renderQ();
+}
+const fmt=(g,w)=>g.note.replace(/\{w\}/g,w);
+const markOf=ok=>`<span class="mark" aria-hidden="true">${ok?I.check:I.cross}</span>`;
+function markOpts(chosen,right,sel){
+  $$(sel||'.opt').forEach(x=>{
+    x.disabled=true;
+    if(x.dataset.o===right){x.classList.add('ok');x.insertAdjacentHTML('beforeend',markOf(true))}
+    else if(x.dataset.o===chosen){x.classList.add('bad');x.insertAdjacentHTML('beforeend',markOf(false))}
+    else x.classList.add('dim');
+  });
+}
+const optBtns=q=>`<div class="opts words">${q.opts.map((o,i)=>`<button class="opt" data-o="${o}"><span class="kn" aria-hidden="true">${i+1}</span>${o}</button>`).join('')}</div>`;
+
+/* ---- sort ---- */
+function sortStage(q,u){
+  const wd=q.wd;
+  return `<p class="ask">${u.ask}</p>
+  <div class="wordrow"><div class="wcard" id="card" role="img" aria-label="${wd.w}">${pic(wd)}<span class="wtxt" id="wtxt">${wd.w}</span></div>${sayButton()}</div>
+  <div class="thm">${th(wd)}</div>
+  <p class="hintp">Tap a group, or drag the word into it.</p>
+  <div class="buckets">${u.groups.map((g,i)=>`<button class="bk" data-b="${i}" data-o="${i}"><span class="kn" aria-hidden="true">${i+1}</span><span class="bl">${g.label}</span>${g.sub?`<span class="bs">${g.sub}</span>`:''}</button>`).join('')}</div>`;
+}
+function bindSort(q,u){
+  const wd=q.wd;
+  const choose=bi=>{
+    if(S.locked)return;
+    const ok=bi===wd.gi;
+    markOpts(String(bi),String(wd.gi),'.bk');
+    $('#wtxt').innerHTML=colored(wd);
+    settle(q,ok);
+    const g=u.groups[wd.gi];
+    showFb(ok?'ok':'bad',ok?'Correct':`Not quite. “${wd.w}” goes with “${g.label}”`,fmt(g,wd.w));
+  };
+  $$('.bk').forEach(b=>b.onclick=()=>choose(+b.dataset.b));
+  S.keys=n=>{if(n<=u.groups.length)choose(n-1)};
+  /* drag the word card onto a group */
+  const card=$('#card');let sx,sy,drag=false;
+  const bucketAt=(x,y)=>{for(const el of document.elementsFromPoint(x,y)){const b=el.closest&&el.closest('.bk');if(b)return b}return null};
+  card.addEventListener('pointerdown',e=>{if(S.locked)return;drag=true;sx=e.clientX;sy=e.clientY;card.setPointerCapture(e.pointerId);card.classList.add('drag');card.classList.remove('back')});
+  card.addEventListener('pointermove',e=>{
+    if(!drag)return;
+    card.style.transform=`translate(${e.clientX-sx}px,${e.clientY-sy}px) scale(1.04)`;
+    $$('.bk.over').forEach(b=>b.classList.remove('over'));
+    const b=bucketAt(e.clientX,e.clientY);if(b)b.classList.add('over');
+  });
+  const stop=(e,drop)=>{
+    if(!drag)return;drag=false;card.classList.remove('drag');
+    const b=drop?bucketAt(e.clientX,e.clientY):null;
+    $$('.bk.over').forEach(x=>x.classList.remove('over'));
+    card.classList.add('back');card.style.transform='';
+    if(b&&!b.disabled)choose(+b.dataset.b);
+  };
+  card.addEventListener('pointerup',e=>stop(e,true));
+  card.addEventListener('pointercancel',e=>stop(e,false));
+}
+
+/* ---- fill ---- */
+function fillStage(q,u){
+  const wd=q.wd,b=blankInfo(wd);
+  return `<p class="ask">${wd.s.length===1?'Which letter is missing?':'Which letters are missing?'}</p>
+  ${pic(wd)}
+  <div class="wordrow"><div class="fillword" aria-label="${wd.w}"><span>${b.pre}</span><span class="blank" id="blank">&nbsp;</span><span>${b.post}</span></div></div>
+  <div class="wordrow" style="margin-top:.6rem">${sayButton()}</div>
+  <div class="thm">${th(wd)}</div>
+  <div class="opts">${q.opts.map((o,i)=>`<button class="opt" data-o="${o}"><span class="kn" aria-hidden="true">${i+1}</span>${o}</button>`).join('')}</div>`;
+}
+function bindFill(q,u){
+  const wd=q.wd,b=blankInfo(wd);
+  const choose=o=>{
+    if(S.locked)return;
+    const ok=o===wd.s;
+    markOpts(o,wd.s);
+    $('#blank').textContent=b.mid;
+    settle(q,ok);
+    const g=UNITS[wd.u].groups[wd.gi];
+    showFb(ok?'ok':'bad',ok?'Correct':`Not quite. The word is “${wd.w}”`,
+      `${wd.w} = ${b.pre?b.pre+' + ':''}<b>${b.mid}</b>${b.post?' + '+b.post:''}. ${fmt(g,wd.w)}`);
+  };
+  $$('.opt').forEach(x=>x.onclick=()=>choose(x.dataset.o));
+  S.keys=n=>{const x=$$('.opt')[n-1];if(x)choose(x.dataset.o)};
+}
+
+/* ---- listen & pick ---- */
+function listenStage(q,u){
+  return `<p class="ask">Listen. Which word did you hear?</p>
+  <div class="wordrow"><button class="thplay" id="say" aria-label="Play the word again">${I.spk}</button><button class="btn say" id="slow">Play slowly</button></div>
+  <div class="reveal" id="reveal" aria-live="polite"></div>
+  ${optBtns(q)}`;
+}
+function bindListen(q,u){
+  const wd=q.wd;
+  $('#slow').onclick=()=>say(wd.w,.45);
+  const choose=o=>{
+    if(S.locked)return;
+    const ok=o===wd.w;
+    markOpts(o,wd.w);
+    $('#reveal').innerHTML=`${pic(wd)}<div>${th(wd)}</div>`;
+    settle(q,ok);
+    const g=u.groups[wd.gi];
+    showFb(ok?'ok':'bad',ok?'Correct':`Not quite. The word was “${wd.w}”`,fmt(g,wd.w));
+  };
+  $$('.opt').forEach(x=>x.onclick=()=>choose(x.dataset.o));
+  S.keys=n=>{const x=$$('.opt')[n-1];if(x)choose(x.dataset.o)};
+}
+
+/* ---- sentence fill (cloze) and story quiz ---- */
+function clozeStage(q,u){
+  const html=q.sentence.replace('___','<span class="blank" id="blank">&nbsp;&nbsp;&nbsp;</span>');
+  return `<p class="ask">Read the sentence. Which word is missing?</p>
+  ${pic(q.wd)}
+  <p class="sent">${html}</p>
+  <div class="wordrow">${sayButton()}</div>
+  <div class="thm">${prefs.thai?q.thTxt:''}</div>
+  ${optBtns(q)}`;
+}
+function bindCloze(q,u){
+  const choose=o=>{
+    if(S.locked)return;
+    const ok=o===q.wd.w;
+    markOpts(o,q.wd.w);
+    $('#blank').innerHTML=colored(q.wd);
+    settle(q,ok);
+    const g=u.groups[q.wd.gi];
+    if(prefs.sound)setTimeout(()=>say(q.full,.75),350);
+    showFb(ok?'ok':'bad',ok?'Correct':`Not quite. The missing word is “${q.wd.w}”`,`${q.full}<br>${fmt(g,q.wd.w)}`);
+  };
+  $$('.opt').forEach(x=>x.onclick=()=>choose(x.dataset.o));
+  S.keys=n=>{const x=$$('.opt')[n-1];if(x)choose(x.dataset.o)};
+}
+function quizStage(q,u){
+  return `<p class="ask">${STORIES[q.wd.u].title} · story question</p>
+  <p class="sent q">${q.q}</p>
+  <div class="wordrow">${sayButton()}</div>
+  ${optBtns(q)}`;
+}
+function bindQuiz(q,u){
+  const choose=o=>{
+    if(S.locked)return;
+    const ok=o===q.a;
+    markOpts(o,q.a);
+    settle(q,ok);
+    showFb(ok?'ok':'bad',ok?'Correct':`Not quite. The answer is “${q.a.replace(/^\S+\s/,'')}”`,`Look in the story: “${q.ev}”${prefs.thai?`<br><small>${q.evTh}</small>`:''}`);
+  };
+  $$('.opt').forEach(x=>x.onclick=()=>choose(x.dataset.o));
+  S.keys=n=>{const x=$$('.opt')[n-1];if(x)choose(x.dataset.o)};
+}
+
+/* ============ STORY TIME ============ */
+function startStory(ui){
+  const u=UNITS[ui];
+  S=newS({kind:'storyread',ui,label:`Unit ${u.n} · Story Time`,key:ui+':story',page:0});
+  renderStory();
+}
+function renderStory(){
+  const u=UNITS[S.ui],st=STORIES[S.ui],n=st.pages.length,p=st.pages[S.page],last=S.page===n-1;
+  app.innerHTML=`<div class="wrap" style="${uvars(u)}">
+  <div class="ghead"><button class="link" id="back">${I.back} Unit ${u.n}</button><div class="gtitle">Story Time</div><div class="gmeta"><span>Page ${S.page+1} of ${n}</span></div></div>
+  <div class="seg" role="progressbar" aria-valuemin="0" aria-valuemax="${n}" aria-valuenow="${S.page+1}">${st.pages.map((_,i)=>`<i class="${i<S.page?'done':i===S.page?'now':''}"></i>`).join('')}</div>
+  <div class="qn"></div>
+  <section class="stage"><h2 class="stitle">${st.title}</h2>
+    <div class="pic scene" aria-hidden="true">${p[0]}</div>
+    <p class="sent" id="sent">${wordsHtml(p[1],S.ui)}</p>
+    <div class="thm">${prefs.thai?p[2]:''}</div>
+    <div class="wordrow"><button class="btn say" id="read">${I.spk}<span>Read to me</span></button></div>
+    <p class="hintp" style="margin:.9rem 0 0">Tap any word to hear it. Coloured letters are this unit's letter combination.</p>
+  </section>
+  <div class="snav"><button class="btn" id="prev" ${S.page?'':'disabled'}>${I.back} Previous</button><button class="btn primary" id="nx">${last?'Story questions':'Next page'} ${I.next}</button></div></div>`;
+  $('#back').onclick=leave;
+  bindWords($('#sent'));
+  const read=()=>readSentence(p[1],$('#sent'));
+  $('#read').onclick=read;
+  $('#prev').onclick=()=>{S.page--;renderStory()};
+  $('#nx').onclick=()=>{
+    if(!last){S.page++;renderStory();return}
+    const {ui,label,key}=S;
+    begin('story',quizQs(ui),ui,label,key);
+  };
+  if(prefs.sound)setTimeout(read,350);
+}
+
+/* ---- hunt ---- */
+function huntStage(q,u){
+  const wd=q.wd;
+  return `<p class="ask">Tap the silent letter: the one you can't hear.</p>
+  ${pic(wd)}
+  <div class="wordrow" style="margin:.2rem 0 .8rem">${sayButton()}</div>
+  <div class="tiles">${[...wd.w].map((c,i)=>`<button class="tile" data-i="${i}" aria-label="letter ${c}">${c}</button>`).join('')}</div>
+  <div class="thm">${th(wd)}</div>
+  <div class="msg" id="msg" aria-live="polite"></div>`;
+}
+function bindHunt(q,u){
+  const wd=q.wd,[target,soft]=HUNT[wd.w];
+  $$('.tile').forEach(t=>t.onclick=()=>{
+    if(S.locked)return;
+    const i=+t.dataset.i;
+    if(target.includes(i)){
+      $$('.tile').forEach((x,k)=>{x.disabled=true;if(target.includes(k))x.classList.add('silent')});
+      const ok=!q.failed;
+      settle(q,ok,!ok);
+      if(!ok)fx('match');
+      const g=u.groups[wd.gi];
+      $('#msg').textContent='';
+      showFb(ok?'ok':'meh',ok?'Correct':'You found it',`${ok?'':'No point this time, because the first try was a different letter. '}${fmt(g,wd.w)}`);
+    }else if(soft.includes(i)){
+      $('#msg').textContent=`That letter is silent too, but this unit is about the pattern in “${u.groups[wd.gi].label}”. Try another letter.`;
+    }else{
+      if(!q.failed)fx('bad');
+      q.failed=true;
+      $('#msg').textContent='Not that one. Listen again: which letter has no sound?';
+      t.classList.remove('shake');void t.offsetWidth;t.classList.add('shake');
+    }
+  });
+}
+
+/* ============ WORD MATCH (flip cards) ============ */
+function startMatch(ui){
+  const u=UNITS[ui];
+  const ws=shuffle(matchWords(u)).slice(0,6);
+  const cards=shuffle(ws.flatMap(w=>[{w,k:'pic'},{w,k:'word'}]));
+  S=newS({kind:'match',ui,label:`Unit ${u.n} · Word Match`,key:ui+':match',cards,open:[],moves:0,found:0,total:ws.length});
+  renderMatch();
+}
+function renderMatch(){
+  const u=UNITS[S.ui];
+  app.innerHTML=`<div class="wrap" style="${uvars(u)}">
+  <div class="ghead"><button class="link" id="back">${I.back} Unit ${u.n}</button><div class="gtitle">${S.label}</div></div>
+  <div class="seg" role="progressbar" aria-valuemin="0" aria-valuemax="${S.total}" aria-valuenow="${S.found}">${Array.from({length:S.total},(_,i)=>`<i id="sg${i}" class="${i<S.found?'done':''}"></i>`).join('')}</div>
+  <div class="qn">Find the pairs: a picture and its word.</div>
+  <section class="stage"><div class="mstat"><span>Moves <b id="moves">${S.moves}</b></span><span>Pairs <b id="pairs">${S.found}/${S.total}</b></span></div>
+  <div class="mgrid">${S.cards.map((c,i)=>`<button class="mc" data-i="${i}" aria-label="Hidden card ${i+1}"><span class="in"><span class="f back-f" aria-hidden="true">${u.pool[0]}</span><span class="f fr" aria-hidden="true">${c.k==='pic'?`<span class="pic">${c.w.e}</span>`:c.w.w}</span></span></button>`).join('')}</div></section>
+  <div id="fb" aria-live="polite"></div></div>`;
+  $('#back').onclick=leave;
+  $$('.mc').forEach(b=>b.onclick=()=>flip(+b.dataset.i));
+}
+function paintCard(i){
+  const c=S&&S.cards&&S.cards[i],el=$(`.mc[data-i="${i}"]`);
+  if(!c||!el)return;
+  el.classList.toggle('up',!!c.up);el.classList.toggle('done',!!c.done);
+  el.setAttribute('aria-label',c.up||c.done?(c.k==='pic'?`Picture of ${c.w.w}`:c.w.w):`Hidden card ${i+1}`);
+}
+function flip(i){
+  if(S.locked)return;
+  const c=S.cards[i];
+  if(c.up||c.done)return;
+  c.up=true;paintCard(i);fx('flip');
+  if(c.k==='word'&&prefs.sound)say(c.w.w);
+  S.open.push(i);
+  if(S.open.length<2)return;
+  S.moves++;$('#moves').textContent=S.moves;
+  const [ia,ib]=S.open,a=S.cards[ia],b=S.cards[ib];
+  if(a.w===b.w){
+    a.done=b.done=true;a.up=b.up=false;S.found++;S.open=[];
+    setTimeout(()=>{paintCard(ia);paintCard(ib);fx('match');},250);
+    $('#pairs').textContent=`${S.found}/${S.total}`;$(`#sg${S.found-1}`).className='done';
+    if(S.found===S.total){S.locked=true;setTimeout(results,1100)}
+  }else{
+    S.locked=true;
+    setTimeout(()=>{a.up=b.up=false;paintCard(ia);paintCard(ib);S.open=[];S.locked=false},950);
+  }
+}
+
+/* ============ RESULTS ============ */
+function results(){
+  const match=S.kind==='match',N=S.qs.length;
+  let st,big,msg;
+  if(match){st=S.moves<=9?3:S.moves<=13?2:1;big=`${S.moves} moves`;msg=st===3?'Very good memory. You found every pair quickly.':st===2?'Good matching. Try again to use fewer moves.':'You found every pair. Play again to use fewer moves.';}
+  else{const pct=S.score/N;st=pct>=.9?3:pct>=.7?2:1;big=`${S.score} / ${N}`;msg=pct>=.9?'Very good. Almost everything was right.':pct>=.7?'Good work. A few to review below.':'A good start. Practise the missed ones again.';}
+  if(!S.shown){
+    S.shown=true;
+    if(st>starOf(S.key)){progress[S.key]=st;store.set('bem_lc_progress',progress)}
+    fx(st>=2?'win':'ok');
+  }
+  const missed=S.missed,{kind,ui,label,key}=S,old=S,u=ui!==null?UNITS[ui]:null,col=u?u.d:'#22252b';
+  const rows=missed.map(q=>q.type==='quiz'?`<div class="mrow"><b style="font-size:1.05rem">${q.q}</b></div>`:`<div class="mrow">${pic(q.wd)}<b>${colored(q.wd)}</b>${prefs.thai?`<span>${q.wd.th}</span>`:''}</div>`).join('');
+  app.innerHTML=`<div class="wrap" style="${uvars(u)}">${mast()}<section class="res">
+    <div class="rlabel">${label}</div>
+    <div class="rscore">${big}</div>
+    <div class="rstars" role="img" aria-label="${st} of 3 stars">${stars(st,col)}</div>
+    <p class="rline">${msg}${!match&&S.best>=3?` Longest run: ${S.best} correct in a row.`:''}</p>
+    ${missed.length?`<h2 class="sh" style="margin-top:1.6rem">${missed[0].type==='quiz'?'Questions to try again':'Words to practise'}</h2><div class="mrows" style="margin-top:.4rem">${rows}</div>`:''}
+    <div class="actions">
+      ${missed.length?'<button class="btn primary" id="again-missed">Practise missed ones</button>':''}
+      <button class="btn${missed.length?'':' primary'}" id="again">Play again</button>
+      <button class="btn" id="exit">${ui!==null?'Back to Unit '+u.n:'Home'}</button>
+    </div></section></div>`;
+  bindPrefs(results);
+  $('#exit').onclick=leave;
+  $('#again').onclick=()=>kind==='mix'?startMix():startUnitGame(ui,kind);
+  const am=$('#again-missed');
+  if(am)am.onclick=()=>begin(kind,old.missed.map(q=>q.type==='fill'?fillQ(q.wd):q.type==='listen'?listenQ(q.wd):q),ui,label,key);
+  window.scrollTo(0,0);
+}
+
+/* keyboard: 1–6 choose an answer */
+document.addEventListener('keydown',e=>{
+  if(S&&S.keys&&!S.locked&&/^[1-9]$/.test(e.key)&&!e.metaKey&&!e.ctrlKey)S.keys(+e.key);
+});
+home();
+</script>
+</body>
+</html>
