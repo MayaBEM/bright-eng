@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Protractor Teaching Board</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-open" viewBox="0 0 24 24"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5H9l2 2h7.5A2.5 2.5 0 0 1 21 9.5V17a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17z"/></symbol>
+    <symbol id="i-new" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M12 10.5v6M9 13.5h6"/></symbol>
+    <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 12.5V5.8a1.4 1.4 0 0 1 2.8 0V11"/><path d="M10.8 10.5V4.4a1.4 1.4 0 0 1 2.8 0v6.3"/><path d="M13.6 10.7V5.9a1.4 1.4 0 0 1 2.8 0v5.3"/><path d="M16.4 11.2V8.5a1.4 1.4 0 0 1 2.8 0V15a6 6 0 0 1-6 6h-1.4a6 6 0 0 1-4.6-2.2l-3.1-3.9a1.5 1.5 0 0 1 2.2-2l1.7 1.6"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20l1.2-4.3L15.8 5.1a2.1 2.1 0 0 1 3 3L8.3 18.8z"/><path d="M13.8 7.1l3 3"/></symbol>
+    <symbol id="i-hl" viewBox="0 0 24 24"><path d="M14.5 4.5l5 5-7.5 7.5H7v-5z"/><path d="M7 12l5 5"/><path d="M7 17l-3 3h6"/></symbol>
+    <symbol id="i-line" viewBox="0 0 24 24"><path d="M6 18L18 6"/><circle cx="5" cy="19" r="1.8"/><circle cx="19" cy="5" r="1.8"/></symbol>
+    <symbol id="i-eraser" viewBox="0 0 24 24"><path d="M9 20h11"/><path d="M4.7 14.3l8.6-8.6a2 2 0 0 1 2.8 0l2.9 2.9a2 2 0 0 1 0 2.8L11 20H8.4z"/><path d="M9.2 9.8l5.6 5.6"/></symbol>
+    <symbol id="i-laser" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></symbol>
+    <symbol id="i-prot" viewBox="0 0 24 24"><path d="M2.5 17.5a9.5 9.5 0 0 1 19 0z"/><path d="M12 17.5l5.2-6.4"/><path d="M12 8v1.8M7.3 9.3l.9 1.5M16.7 9.3l-.9 1.5M4.3 12.6l1.5.8M19.7 12.6l-1.5.8"/></symbol>
+    <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></symbol>
+    <symbol id="i-redo" viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></symbol>
+    <symbol id="i-clear" viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M6.5 7l1 13h9l1-13"/><path d="M9.5 7V4h5v3"/><path d="M10.3 11v5.5M13.7 11v5.5"/></symbol>
+    <symbol id="i-export" viewBox="0 0 24 24"><path d="M12 3.5v11"/><path d="M7.5 10l4.5 4.5 4.5-4.5"/><path d="M4.5 16.5v3h15v-3"/></symbol>
+    <symbol id="i-save" viewBox="0 0 24 24"><path d="M5 3.5h11l3.5 3.5v13.5H5z"/><path d="M8.5 3.5v5h7v-5"/><path d="M8.5 20.5v-6.5h7v6.5"/></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 10h1.5M9.5 10h1.5M13 10h1.5M16.5 10H18M7.5 14h9"/></symbol>
+    <symbol id="i-full" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+    <symbol id="i-exitfull" viewBox="0 0 24 24"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></symbol>
+    <symbol id="i-prev" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-fit" viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/><rect x="8.5" y="8.5" width="7" height="7" rx="1"/></symbol>
+    <symbol id="i-pages" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/><path d="M5 8h2M5 11h2M5 14h2"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-unlock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 7.7-1.5"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-eyeoff" viewBox="0 0 24 24"><path d="M4 4l16 16"/><path d="M10 6a9 9 0 0 1 2-.5c6 0 9.5 6.5 9.5 6.5a16 16 0 0 1-2.6 3.4M6.6 7.6A16 16 0 0 0 2.5 12S6 18.5 12 18.5a9 9 0 0 0 3.5-.7"/></symbol>
+    <symbol id="i-center" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="1.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-collapse" viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></symbol>
+  </defs>
+</svg>
+
+<div class="app" id="app">
+
+  <header class="toolbar" id="toolbar" role="toolbar" aria-label="Board tools">
+    <div class="group">
+      <button class="tb" id="btnOpen" data-tip="Open PDF or image" aria-label="Open PDF or image"><svg><use href="#i-open"/></svg></button>
+      <div class="menu-wrap">
+        <button class="tb" id="btnNew" data-tip="New page" aria-label="New page" aria-haspopup="menu"><svg><use href="#i-new"/></svg></button>
+        <div class="menu" id="menuNew" role="menu" hidden>
+          <button role="menuitem" data-new="blank">New blank board</button>
+          <button role="menuitem" data-new="grid">New grid board</button>
+          <hr>
+          <button role="menuitem" data-add="blank" class="needs-doc">Add blank page at end</button>
+          <button role="menuitem" data-add="grid" class="needs-doc">Add grid page at end</button>
+        </div>
+      </div>
+    </div>
+    <span class="sep"></span>
+    <div class="group" id="toolGroup">
+      <button class="tb tool" data-tool="hand" data-tip="Move page" data-key="Space" aria-label="Move page"><svg><use href="#i-hand"/></svg></button>
+      <button class="tb tool" data-tool="pen" data-tip="Pen" data-key="P" aria-label="Pen"><svg><use href="#i-pen"/></svg></button>
+      <button class="tb tool" data-tool="hl" data-tip="Highlighter" data-key="H" aria-label="Highlighter"><svg><use href="#i-hl"/></svg></button>
+      <button class="tb toggle" id="btnLine" data-tip="Straight lines" data-key="Shift" aria-label="Straight lines" aria-pressed="false"><svg><use href="#i-line"/></svg></button>
+      <button class="tb tool" data-tool="eraser" data-tip="Eraser (whole strokes)" data-key="E" aria-label="Eraser"><svg><use href="#i-eraser"/></svg></button>
+      <button class="tb tool" data-tool="laser" data-tip="Laser pointer" data-key="L" aria-label="Laser pointer"><svg><use href="#i-laser"/></svg></button>
+    </div>
+    <span class="sep"></span>
+    <button class="tb tb-wide toggle" id="btnProt" data-tip="Show / hide protractor" data-key="R" aria-pressed="false" aria-label="Protractor"><svg><use href="#i-prot"/></svg><span>Protractor</span></button>
+    <span class="sep"></span>
+    <div class="group swatches" id="swatches" aria-label="Colors"></div>
+    <div class="group sizes" id="sizes" aria-label="Sizes"></div>
+    <span class="sep"></span>
+    <div class="group">
+      <button class="tb" id="btnUndo" data-tip="Undo" data-key="Ctrl Z" aria-label="Undo"><svg><use href="#i-undo"/></svg></button>
+      <button class="tb" id="btnRedo" data-tip="Redo" data-key="Ctrl Y" aria-label="Redo"><svg><use href="#i-redo"/></svg></button>
+      <button class="tb" id="btnClear" data-tip="Clear this page" aria-label="Clear this page"><svg><use href="#i-clear"/></svg></button>
+    </div>
+    <span class="grow"></span>
+    <div class="group">
+      <div class="menu-wrap">
+        <button class="tb" id="btnExport" data-tip="Export" aria-label="Export" aria-haspopup="menu"><svg><use href="#i-export"/></svg></button>
+        <div class="menu menu-right" id="menuExport" role="menu" hidden>
+          <button role="menuitem" id="expPng">This page as PNG<small>Includes the protractor if shown</small></button>
+          <button role="menuitem" id="expPdf">All pages as PDF<small>Pages with your drawings</small></button>
+        </div>
+      </div>
+      <div class="menu-wrap">
+        <button class="tb" id="btnDrawings" data-tip="Save / load drawings" aria-label="Save or load drawings" aria-haspopup="menu"><svg><use href="#i-save"/></svg></button>
+        <div class="menu menu-right" id="menuDrawings" role="menu" hidden>
+          <button role="menuitem" id="drSave">Save drawings to file<small>A small .json file</small></button>
+          <button role="menuitem" id="drLoad">Load drawings from file<small>Open the same PDF first</small></button>
+        </div>
+      </div>
+    </div>
+    <span class="sep"></span>
+    <div class="group">
+      <button class="tb" id="btnHelp" data-tip="Keyboard shortcuts" data-key="?" aria-label="Keyboard shortcuts"><svg><use href="#i-help"/></svg></button>
+      <button class="tb" id="btnFull" data-tip="Fullscreen" data-key="F" aria-label="Fullscreen"><svg><use href="#i-full"/></svg></button>
+    </div>
+  </header>
+
+  <div class="workspace">
+    <aside class="thumbs" id="thumbs" aria-label="Pages" hidden>
+      <div class="thumbs-list" id="thumbList"></div>
+    </aside>
+
+    <main class="stage" id="stage">
+      <canvas id="cvPage"></canvas>
+      <canvas id="cvInk" class="blend"></canvas>
+      <canvas id="cvLiveInk" class="blend"></canvas>
+      <canvas id="cvProt"></canvas>
+      <canvas id="cvLaser"></canvas>
+
+      <section class="welcome" id="welcome">
+        <img class="welcome-logo" src="assets/logo.png" alt="Bright EngMath">
+        <canvas id="welcomeArt" width="300" height="190" aria-hidden="true"></canvas>
+        <h1>Protractor Teaching Board</h1>
+        <p class="lead">Open a worksheet, place the protractor on any angle, and teach.</p>
+        <div class="welcome-actions">
+          <button class="btn primary" id="wOpen"><svg><use href="#i-open"/></svg>Open PDF or image</button>
+          <button class="btn" id="wSample">Open sample worksheet</button>
+        </div>
+        <div class="welcome-alt">
+          <span>Or start with</span>
+          <button class="link" id="wBlank">a blank page</button>
+          <span>·</span>
+          <button class="link" id="wGrid">a grid page</button>
+        </div>
+        <p class="hint">You can also drop a PDF, PNG or JPG anywhere on this window.</p>
+      </section>
+
+      <div class="prot-panel" id="protPanel" hidden>
+        <div class="pp-head">
+          <span class="pp-title">Protractor</span>
+          <button class="pp-icon" id="ppCollapse" aria-label="Collapse panel" data-tip="Collapse" data-tip-pos="left"><svg><use href="#i-collapse"/></svg></button>
+        </div>
+        <div class="pp-body" id="ppBody">
+          <div class="pp-reading" id="ppReading">
+            <div class="pp-read-row"><span class="pp-dot inner"></span><span class="pp-lbl">Inner scale</span><b id="ppInner">0°</b></div>
+            <div class="pp-read-row"><span class="pp-dot outer"></span><span class="pp-lbl">Outer scale</span><b id="ppOuter">180°</b></div>
+          </div>
+          <div class="pp-hidden-note" id="ppHiddenNote" hidden>Reading hidden</div>
+          <div class="seg" role="group" aria-label="Protractor type">
+            <button id="pp180" aria-pressed="true">180°</button>
+            <button id="pp360" aria-pressed="false">360°</button>
+          </div>
+          <div class="seg" role="group" aria-label="Scale colors">
+            <button id="ppColor" aria-pressed="true">2 colors</button>
+            <button id="ppBlack" aria-pressed="false">Black</button>
+          </div>
+          <button class="pp-row" id="ppReadBtn" aria-pressed="true"><svg><use href="#i-eye"/></svg><span>Show reading</span></button>
+          <button class="pp-row" id="ppArm" aria-pressed="true" data-tip="Show / hide measuring arm" data-key="A" data-tip-pos="left"><svg><use href="#i-line"/></svg><span>Hide measuring arm</span></button>
+          <button class="pp-row" id="ppLock" aria-pressed="false"><svg><use href="#i-unlock"/></svg><span>Lock in place</span></button>
+          <button class="pp-row" id="ppCenter"><svg><use href="#i-center"/></svg><span>Bring to center</span></button>
+          <button class="pp-row" id="ppHide"><svg><use href="#i-eyeoff"/></svg><span>Hide protractor</span></button>
+        </div>
+      </div>
+
+      <nav class="pagebar" id="pagebar" hidden>
+        <button class="pb" id="btnThumbs" data-tip="Page list" data-tip-pos="top" aria-label="Show page list" aria-pressed="false"><svg><use href="#i-pages"/></svg></button>
+        <span class="pb-sep"></span>
+        <button class="pb" id="btnPrev" data-tip="Previous page" data-key="←" data-tip-pos="top" aria-label="Previous page"><svg><use href="#i-prev"/></svg></button>
+        <label class="pb-page"><input id="pageInput" inputmode="numeric" aria-label="Page number" value="1"><span id="pageTotal">/ 1</span></label>
+        <button class="pb" id="btnNext" data-tip="Next page" data-key="→" data-tip-pos="top" aria-label="Next page"><svg><use href="#i-next"/></svg></button>
+        <span class="pb-sep"></span>
+        <button class="pb" id="btnZoomOut" data-tip="Zoom out" data-key="−" data-tip-pos="top" aria-label="Zoom out"><svg><use href="#i-minus"/></svg></button>
+        <span class="pb-zoom" id="zoomLabel">100%</span>
+        <button class="pb" id="btnZoomIn" data-tip="Zoom in" data-key="+" data-tip-pos="top" aria-label="Zoom in"><svg><use href="#i-plus"/></svg></button>
+        <button class="pb" id="btnFit" data-tip="Fit page" data-key="0" data-tip-pos="top" aria-label="Fit page"><svg><use href="#i-fit"/></svg></button>
+      </nav>
+
+      <div class="brand"><img src="assets/logo.png" alt="Bright EngMath"></div>
+
+      <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+      <div class="help" id="help" hidden role="dialog" aria-label="Keyboard shortcuts">
+        <div class="help-head"><h2>Keyboard shortcuts</h2><button class="pp-icon" id="helpClose" aria-label="Close"><svg><use href="#i-close"/></svg></button></div>
+        <dl>
+          <dt><kbd>P</kbd></dt><dd>Pen</dd>
+          <dt><kbd>H</kbd></dt><dd>Highlighter</dd>
+          <dt><kbd>E</kbd></dt><dd>Eraser</dd>
+          <dt><kbd>L</kbd></dt><dd>Laser pointer</dd>
+          <dt><kbd>R</kbd></dt><dd>Show / hide protractor</dd>
+          <dt><kbd>A</kbd></dt><dd>Show / hide measuring arm</dd>
+          <dt><kbd>Shift</kbd> + draw</dt><dd>Straight line</dd>
+          <dt><kbd>Shift</kbd> + rotate</dt><dd>Snap protractor every 15°</dd>
+          <dt><kbd>Space</kbd> + drag</dt><dd>Move the page</dd>
+          <dt><kbd>Ctrl/⌘</kbd> <kbd>Z</kbd></dt><dd>Undo</dd>
+          <dt><kbd>Ctrl/⌘</kbd> <kbd>Y</kbd></dt><dd>Redo</dd>
+          <dt><kbd>←</kbd> <kbd>→</kbd></dt><dd>Previous / next page</dd>
+          <dt><kbd>+</kbd> <kbd>−</kbd> <kbd>0</kbd></dt><dd>Zoom in / out / fit</dd>
+          <dt><kbd>F</kbd></dt><dd>Fullscreen</dd>
+          <dt><kbd>?</kbd></dt><dd>This panel</dd>
+        </dl>
+      </div>
+
+      <div class="dropzone" id="dropzone" hidden><div>Drop the PDF or image to open it</div></div>
+    </main>
+  </div>
+</div>
+
+<input type="file" id="fileInput" accept="application/pdf,.pdf,image/png,image/jpeg,.png,.jpg,.jpeg" hidden>
+<input type="file" id="drawingsInput" accept=".json,application/json" hidden>
+
+<div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+
+<script src="vendor/pdfjs-3.11.174/pdf.min.js"></script>
+<script src="vendor/pdfjs-3.11.174/pdf.worker.min.js"></script>
+<script src="vendor/jspdf-2.5.2/jspdf.umd.min.js"></script>
+<script src="assets/sample-pdf.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
